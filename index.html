@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="MOKDA brings Korean sauce culture to LATAM with bold K-food flavor for everyday tables and B2B partners."
+    />
+    <title>MOKDA | Korean Sauce for LATAM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              mokdaOrange: '#ef5f18',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      }
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(2.5rem);
+        transition: opacity 700ms ease-out, transform 700ms ease-out;
+        transition-delay: var(--reveal-delay, 0ms);
+      }
+
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .no-scrollbar {
+        scrollbar-width: none;
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        [data-reveal] {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-neutral-950 antialiased">
+    <main class="min-h-screen overflow-hidden bg-white">
+      <header class="fixed inset-x-0 top-0 z-50 border-b border-neutral-950/5 bg-white/90 backdrop-blur">
+        <nav class="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+          <a href="#top" class="inline-flex items-center" aria-label="MOKDA home">
+            <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-8 w-auto sm:h-9" />
+          </a>
+          <div class="flex items-center rounded-full bg-stone-100 p-1" aria-label="Language switcher">
+            <button id="langEN" type="button" class="h-10 rounded-full px-4 text-sm font-black transition-colors">EN</button>
+            <button id="langES" type="button" class="h-10 rounded-full px-4 text-sm font-black transition-colors">ES</button>
+            <button id="langKR" type="button" class="h-10 rounded-full px-4 text-sm font-black transition-colors">KR</button>
+          </div>
+        </nav>
+      </header>
+
+      <section id="top" class="relative mt-20 h-[calc(100vh-5rem)] min-h-[620px] overflow-hidden bg-neutral-950 text-white">
+        <div id="heroSlides" class="relative h-full w-full overflow-hidden"></div>
+        <div id="heroIndicators" class="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3"></div>
+      </section>
+
+      <section id="story" class="bg-white px-5 py-20 sm:px-8 sm:py-24 lg:py-32">
+        <div data-reveal class="mx-auto flex w-full max-w-4xl flex-col items-center px-6 text-center">
+          <p id="storyKicker" class="mb-6 text-sm font-black uppercase tracking-wide text-mokdaOrange"></p>
+          <h2
+            id="storyTitle"
+            class="max-w-4xl break-keep text-balance text-5xl font-black leading-[0.95] tracking-tight text-neutral-950 sm:text-6xl md:text-7xl"
+          ></h2>
+          <div
+            id="storyBody"
+            class="mt-10 max-w-3xl space-y-6 break-keep text-pretty text-xl font-semibold leading-10 text-neutral-600 sm:mt-12 sm:text-2xl sm:leading-[3rem]"
+          ></div>
+        </div>
+      </section>
+
+      <section id="products" class="bg-white px-5 py-20 sm:px-8 sm:py-28 lg:py-36">
+        <div class="mx-auto w-full max-w-7xl">
+          <div data-reveal class="mx-auto mb-12 max-w-3xl text-center sm:mb-16">
+            <p id="productsKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-mokdaOrange"></p>
+            <h2 id="productsTitle" class="text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-6xl md:text-7xl"></h2>
+          </div>
+          <div id="productsGrid" class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-6 py-12 md:grid-cols-3 md:gap-16"></div>
+        </div>
+      </section>
+
+      <section id="map" class="bg-mokdaOrange px-5 py-20 text-white sm:px-8 sm:py-28">
+        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
+          <div data-reveal>
+            <p id="mapKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-white/70"></p>
+            <h2 id="mapTitle" class="break-keep text-balance text-5xl font-black leading-none tracking-tight sm:text-6xl md:text-7xl"></h2>
+            <div id="storeList" class="no-scrollbar mt-10 max-h-[380px] overflow-y-auto rounded-3xl border border-white/20 bg-white/10 p-5 pb-7 backdrop-blur-md"></div>
+          </div>
+          <div data-reveal data-reveal-delay="120" class="relative min-h-[460px] w-full overflow-hidden rounded-3xl bg-white shadow-2xl shadow-orange-950/20">
+            <iframe
+              id="mapFrame"
+              src="https://maps.google.com/maps?q=Latin%20America&t=&z=4&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style="border: 0; position: absolute; inset: 0"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="MOKDA LATAM map"
+              data-map-src="https://maps.google.com/maps?q=Latin%20America&t=&z=4&ie=UTF8&iwloc=&output=embed"
+              class="h-full w-full rounded-3xl opacity-100 transition-opacity duration-500"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section id="sns" class="bg-stone-50 px-5 py-24 sm:px-8">
+        <div class="mx-auto w-full max-w-7xl">
+          <div data-reveal class="mx-auto max-w-3xl text-center">
+            <p class="mb-4 text-sm font-black uppercase tracking-wide text-mokdaOrange">JOIN THE VIBE</p>
+            <h2 class="text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">@mokda_official</h2>
+          </div>
+          <div id="reelsGrid" class="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3"></div>
+        </div>
+      </section>
+
+      <section id="b2b" class="bg-white px-5 py-20 sm:px-8 sm:py-28">
+        <div class="mx-auto w-full max-w-4xl">
+          <div data-reveal class="mx-auto mb-10 max-w-3xl text-center">
+            <p id="b2bKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-mokdaOrange"></p>
+            <h2 id="b2bTitle" class="break-keep text-balance text-4xl font-black leading-none tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
+            <p id="b2bDescription" class="mx-auto mt-6 max-w-2xl break-keep text-pretty text-lg font-semibold leading-8 text-neutral-600 sm:text-xl"></p>
+          </div>
+          <form id="b2bForm" data-reveal data-reveal-delay="120" class="mx-auto rounded-3xl bg-stone-50 p-6 shadow-sm ring-1 ring-neutral-950/10 sm:p-8">
+            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              <label class="block">
+                <span id="companyLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <input
+                  id="companyInput"
+                  type="text"
+                  name="company"
+                  required
+                  autocomplete="organization"
+                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                />
+              </label>
+              <label class="block">
+                <span id="nameLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <input
+                  id="nameInput"
+                  type="text"
+                  name="name"
+                  required
+                  autocomplete="name"
+                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                />
+              </label>
+              <label class="block">
+                <span id="emailLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <input
+                  id="emailInput"
+                  type="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                />
+              </label>
+              <label class="block">
+                <span id="countryLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <select
+                  id="countrySelect"
+                  name="country"
+                  required
+                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                ></select>
+              </label>
+              <label class="block sm:col-span-2">
+                <span id="messageLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <textarea
+                  id="messageInput"
+                  name="message"
+                  rows="6"
+                  required
+                  class="w-full resize-none rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-base font-semibold leading-7 text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                ></textarea>
+              </label>
+            </div>
+            <div class="mt-6 flex justify-center">
+              <button
+                id="submitButton"
+                type="submit"
+                class="rounded-full bg-mokdaOrange px-9 py-4 text-sm font-black uppercase tracking-wide text-white transition hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-500/25"
+              ></button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer class="bg-neutral-950 px-5 py-12 text-white sm:px-8">
+        <div class="mx-auto flex w-full max-w-7xl flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
+          <p id="footerText" class="text-sm font-semibold text-white/60"></p>
+          <div class="flex items-center gap-6">
+            <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" class="text-sm font-black text-white transition hover:text-mokdaOrange">Instagram</a>
+            <a href="https://www.tiktok.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" class="text-sm font-black text-white transition hover:text-mokdaOrange">TikTok</a>
+            <a href="https://www.threads.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" class="text-sm font-black text-white transition hover:text-mokdaOrange">Threads</a>
+          </div>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      window.scrollTo(0, 0);
+
+      const heroSlides = [
+        {
+          desktopImage: 'assets/assetshero-1-desktop.jpg.png',
+          mobileImage: 'assets/assetshero-1-mobile.jpg.png',
+          copy: {
+            EN: { kicker: 'MOKDA KOREAN SAUCE', title: 'A little Korea on my table' },
+            ES: { kicker: 'MOKDA SALSA COREANA', title: 'La pequeña Corea en mi mesa' },
+            KR: { kicker: 'MOKDA 코리안 소스', title: '내 식탁 위 작은 한국' },
+          },
+        },
+        {
+          desktopImage: 'assets/assetshero-2-desktop.jpg.png',
+          mobileImage: 'assets/assetshero-2-mobile.jpg.png',
+          copy: {
+            EN: { kicker: 'MOKDA FLAVORS', title: 'Discover MOKDA Flavors' },
+            ES: { kicker: 'MOKDA FLAVORS', title: 'Descubre MOKDA Flavors' },
+            KR: { kicker: 'MOKDA FLAVORS', title: 'MOKDA의 맛을 발견하세요' },
+          },
+        },
+        {
+          desktopImage: 'assets/assetshero-3-desktop.jpg.png',
+          mobileImage: 'assets/assetshero-3-mobile.jpg.png',
+          copy: {
+            EN: { kicker: 'WHOLESALE / B2B', title: 'Bring MOKDA to your business' },
+            ES: { kicker: 'WHOLESALE / B2B', title: 'Lleva MOKDA a tu negocio' },
+            KR: { kicker: '도매 / B2B', title: 'MOKDA를 당신의 비즈니스로' },
+          },
+        },
+      ];
+
+      const content = {
+        EN: {
+          story: {
+            kicker: 'OUR STORY',
+            title: 'A flavor born in a LATAM kitchen',
+            body: [
+              'It started in a kitchen during my time in LATAM.',
+              'Cooking for friends made one thing clear: sharing food means sharing an entire culture.',
+              'The authentic Korean flavor that surprised that table now comes to everyday meals across LATAM.',
+            ],
+          },
+          products: {
+            kicker: 'SAUCE LINEUP',
+            title: 'MOKDA FLAVORS',
+            items: [
+              { name: 'ORIGINAL', description: 'Gochujang and jalapeño. Bold, balanced, addictive.', image: 'assets/bottle-original.png.png', alt: 'MOKDA Original sauce' },
+              { name: 'SSAMJANG', description: 'A Korean classic built for grilled meat and street food.', image: 'assets/bottle-ssamjang.png.png', alt: 'MOKDA Ssamjang sauce' },
+              { name: 'SWEET SOY', description: 'Garlic, sesame, and sweet-savory comfort in one bottle.', image: 'assets/bottle-sweetsoy.png.png', alt: 'MOKDA Sweet Soy sauce' },
+            ],
+          },
+          map: {
+            kicker: 'LATAM ROUTE',
+            title: 'Korean sauce spots',
+          },
+          b2b: {
+            kicker: 'WHOLESALE / B2B INQUIRY',
+            title: 'Business Inquiry',
+            description: 'Partner with MOKDA and bring authentic Korean flavor to your customers.',
+            fields: {
+              company: ['Company', 'Company name'],
+              name: ['Name', 'Your name'],
+              email: ['Email', 'you@email.com'],
+              country: ['Country', 'Select a country'],
+              message: ['Message', 'Tell us what your business needs'],
+              submit: 'Send Inquiry',
+            },
+          },
+          footer: '© 2026 MOKDA. All rights reserved.',
+        },
+        ES: {
+          story: {
+            kicker: 'NUESTRA HISTORIA',
+            title: 'La vibra que nació en una cocina de LATAM',
+            body: [
+              'Todo empezó en una cocina, durante mis días en LATAM.',
+              'Cocinando para mis amigos, entendí algo simple y potente: compartir comida es compartir una cultura entera.',
+              'Esa vibra y ese sabor coreano auténtico que los sorprendió ahora llegan a tu mesa.',
+            ],
+          },
+          products: {
+            kicker: 'SAUCE LINEUP',
+            title: 'MOKDA FLAVORS',
+            items: [
+              { name: 'ORIGINAL', description: 'Gochujang y jalapeño. El match perfecto.', image: 'assets/bottle-original.png.png', alt: 'Salsa MOKDA Original' },
+              { name: 'SSAMJANG', description: 'El alma gemela de tu carne asada.', image: 'assets/bottle-ssamjang.png.png', alt: 'Salsa MOKDA Ssamjang' },
+              { name: 'SWEET SOY', description: 'Ajo y sésamo al máximo.', image: 'assets/bottle-sweetsoy.png.png', alt: 'Salsa MOKDA Sweet Soy' },
+            ],
+          },
+          map: {
+            kicker: 'RUTA LATAM',
+            title: 'MAPA SALSA COREANA',
+          },
+          b2b: {
+            kicker: 'WHOLESALE / B2B INQUIRY',
+            title: 'Consultas Comerciales / B2B',
+            description: 'Únete a MOKDA y lleva el auténtico sabor coreano a tu negocio.',
+            fields: {
+              company: ['Empresa', 'Nombre de la empresa'],
+              name: ['Nombre', 'Tu nombre'],
+              email: ['Correo electrónico', 'tu@email.com'],
+              country: ['País', 'Selecciona un país'],
+              message: ['Mensaje', 'Cuéntanos qué necesitas para tu negocio'],
+              submit: 'Enviar Consulta',
+            },
+          },
+          footer: '© 2026 MOKDA. Todos los derechos reservados.',
+        },
+        KR: {
+          story: {
+            kicker: 'OUR STORY',
+            title: '중남미의 한 주방에서 시작된 이야기',
+            body: [
+              '중남미 유학 시절, 친구들과 주방에 모여 각자 나라의 전통 음식을 나누던 날이 있었습니다.',
+              '그때 알게 됐습니다. 음식을 나눈다는 건 나의 문화를 온전히 선물하는 일이라는 것을요.',
+              '전통 소스의 오리지널리티에 트렌디한 K-푸드의 색깔을 더해 중남미를 위한 한국의 맛을 일상에 공유합니다.',
+            ],
+          },
+          products: {
+            kicker: 'SAUCE LINEUP',
+            title: 'MOKDA FLAVORS',
+            items: [
+              { name: 'ORIGINAL', description: '오리지널 고추장 & 할라피뇨.', image: 'assets/bottle-original.png.png', alt: 'MOKDA 오리지널 소스' },
+              { name: 'SSAMJANG', description: '오직 고기만을 위한 한국의 대표 소스.', image: 'assets/bottle-ssamjang.png.png', alt: 'MOKDA 쌈장 소스' },
+              { name: 'SWEET SOY', description: '마늘과 참깨가 듬뿍 들어간 단짠의 정석.', image: 'assets/bottle-sweetsoy.png.png', alt: 'MOKDA 스위트 소이 소스' },
+            ],
+          },
+          map: {
+            kicker: 'LATAM ROUTE',
+            title: '살사 코레아나 스팟',
+          },
+          b2b: {
+            kicker: '도매 / B2B 문의',
+            title: '비즈니스 문의 / B2B',
+            description: 'MOKDA와 파트너가 되어 당신의 비즈니스에 진짜 한국의 맛을 더해보세요.',
+            fields: {
+              company: ['회사명', '회사명을 입력해주세요'],
+              name: ['담당자명', '이름을 입력해주세요'],
+              email: ['이메일 주소', '이메일을 입력해주세요'],
+              country: ['국가 선택', '국가 선택'],
+              message: ['문의 내용', '문의하실 내용을 상세히 적어주세요'],
+              submit: '문의 보내기',
+            },
+          },
+          footer: '© 2026 MOKDA. Todos los derechos reservados.',
+        },
+      };
+
+      const stores = [
+        {
+          id: 'mexico',
+          name: 'MOKDA Seoul Market',
+          address: 'Av. Insurgentes Sur 1458, CDMX',
+          tag: 'Open',
+          mapUrl: 'https://maps.google.com/maps?q=Av.%20Insurgentes%20Sur%201458%2C%20Mexico%20City&t=&z=4&ie=UTF8&iwloc=&output=embed',
+        },
+        {
+          id: 'peru',
+          name: 'K-Food Corner Lima',
+          address: 'Av. José Larco 812, Miraflores',
+          tag: 'Open',
+          mapUrl: 'https://maps.google.com/maps?q=Av.%20Jose%20Larco%20812%2C%20Miraflores%2C%20Lima%2C%20Peru&t=&z=4&ie=UTF8&iwloc=&output=embed',
+        },
+        {
+          id: 'colombia',
+          name: 'Casa Corea Gourmet',
+          address: 'Cra. 13 #82-19, Bogotá',
+          tag: 'Soon',
+          mapUrl: 'https://maps.google.com/maps?q=Cra.%2013%20%2382-19%2C%20Bogota%2C%20Colombia&t=&z=4&ie=UTF8&iwloc=&output=embed',
+        },
+      ];
+
+      const reels = [
+        { id: 'r1', label: 'PLAY', title: 'K-Food Vibe', image: 'assets/reel-1.jpg', url: 'https://www.instagram.com/p/DXD19vTiayF/' },
+        { id: 'r2', label: 'PLAY', title: 'El picante que conquistó LATAM', image: 'assets/reel-2.jpg', url: 'https://www.instagram.com/p/DXF9UGyktLN/?img_index=1' },
+        { id: 'r3', label: 'PLAY', title: 'Cómo hackear tu comida con MOKDA', image: 'assets/reel-3.jpg', url: 'https://www.instagram.com/p/DXNkM21krdC/?img_index=1' },
+      ];
+
+      const countries = [
+        ['Mexico', { EN: 'Mexico', ES: 'México', KR: '멕시코' }],
+        ['Peru', { EN: 'Peru', ES: 'Perú', KR: '페루' }],
+        ['Colombia', { EN: 'Colombia', ES: 'Colombia', KR: '콜롬비아' }],
+        ['Chile', { EN: 'Chile', ES: 'Chile', KR: '칠레' }],
+        ['Argentina', { EN: 'Argentina', ES: 'Argentina', KR: '아르헨티나' }],
+        ['Other', { EN: 'Other', ES: 'Otro', KR: '기타' }],
+      ];
+
+      let language = 'ES';
+      let currentSlide = 0;
+      let heroInterval = null;
+      let selectedStoreId = null;
+      let mapTransitionTimer = null;
+
+      const revealObserver =
+        'IntersectionObserver' in window
+          ? new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                  }
+                });
+              },
+              { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+            )
+          : null;
+
+      function bindReveal() {
+        document.querySelectorAll('[data-reveal]:not([data-reveal-bound])').forEach((element) => {
+          const delay = element.getAttribute('data-reveal-delay');
+          if (delay) element.style.setProperty('--reveal-delay', `${delay}ms`);
+          element.setAttribute('data-reveal-bound', 'true');
+          if (revealObserver) revealObserver.observe(element);
+          else element.classList.add('is-visible');
+        });
+      }
+
+      function setText(id, value) {
+        const node = document.getElementById(id);
+        if (node) node.textContent = value;
+      }
+
+      function setPlaceholder(id, value) {
+        const node = document.getElementById(id);
+        if (node) node.setAttribute('placeholder', value);
+      }
+
+      function createHeroCarousel() {
+        document.getElementById('heroSlides').innerHTML = heroSlides
+          .map(
+            (slide, index) => `
+              <div data-hero-slide="${index}" class="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-[1200ms] ease-in-out">
+                <img src="${slide.mobileImage}" alt="" class="absolute inset-0 block h-full w-full object-cover md:hidden" />
+                <img src="${slide.desktopImage}" alt="" class="absolute inset-0 hidden h-full w-full object-cover md:block" />
+                <div class="absolute inset-0 z-10 bg-black/50"></div>
+                <div class="relative z-20 mx-auto flex h-full w-full max-w-7xl flex-col justify-center px-5 py-20 sm:px-8 lg:py-28">
+                  <p data-hero-kicker class="mb-7 text-xs font-black uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
+                  <h1 data-hero-title class="max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-7xl md:text-8xl lg:text-9xl"></h1>
+                </div>
+              </div>
+            `
+          )
+          .join('');
+
+        document.getElementById('heroIndicators').innerHTML = heroSlides
+          .map(
+            (_, index) => `
+              <button type="button" data-hero-indicator="${index}" aria-label="Go to slide ${index + 1}" onclick="setHeroSlide(${index})" class="h-2.5 w-2.5 rounded-full bg-white/55 transition-all duration-300 hover:bg-white"></button>
+            `
+          )
+          .join('');
+      }
+
+      function renderHeroText() {
+        document.querySelectorAll('[data-hero-slide]').forEach((slide) => {
+          const index = Number(slide.getAttribute('data-hero-slide'));
+          const copy = heroSlides[index].copy[language];
+          slide.querySelector('[data-hero-kicker]').textContent = copy.kicker;
+          slide.querySelector('[data-hero-title]').textContent = copy.title;
+        });
+      }
+
+      function updateHeroCarousel() {
+        document.querySelectorAll('[data-hero-slide]').forEach((slide) => {
+          const isActive = Number(slide.getAttribute('data-hero-slide')) === currentSlide;
+          slide.className = `absolute inset-0 h-full w-full transition-opacity duration-[1200ms] ease-in-out ${
+            isActive ? 'z-10 opacity-100' : 'z-0 opacity-0 pointer-events-none'
+          }`;
+        });
+        document.querySelectorAll('[data-hero-indicator]').forEach((indicator) => {
+          const isActive = Number(indicator.getAttribute('data-hero-indicator')) === currentSlide;
+          indicator.setAttribute('aria-pressed', String(isActive));
+          indicator.className = `h-2.5 rounded-full transition-all duration-300 ${
+            isActive ? 'w-10 bg-mokdaOrange' : 'w-2.5 bg-white/55 hover:bg-white'
+          }`;
+        });
+      }
+
+      function setHeroSlide(index) {
+        currentSlide = index;
+        updateHeroCarousel();
+        restartHeroCarousel();
+      }
+
+      function restartHeroCarousel() {
+        if (heroInterval) clearInterval(heroInterval);
+        heroInterval = setInterval(() => {
+          currentSlide = (currentSlide + 1) % heroSlides.length;
+          updateHeroCarousel();
+        }, 5000);
+      }
+
+      function renderLanguageButtons() {
+        ['EN', 'ES', 'KR'].forEach((lang) => {
+          const button = document.getElementById(`lang${lang}`);
+          button.className =
+            language === lang
+              ? 'h-10 rounded-full bg-mokdaOrange px-4 text-sm font-black text-white transition-colors'
+              : 'h-10 rounded-full px-4 text-sm font-black text-neutral-500 transition-colors hover:text-neutral-950';
+          button.setAttribute('aria-pressed', String(language === lang));
+        });
+      }
+
+      function renderProducts(items) {
+        document.getElementById('productsGrid').innerHTML = items
+          .map(
+            (item, index) => `
+              <article data-reveal data-reveal-delay="${index * 120}" class="text-center">
+                <div class="flex h-[380px] w-full items-center justify-center">
+                  <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[340px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out hover:-translate-y-3" loading="lazy" />
+                </div>
+                <div class="mt-8">
+                  <h3 class="break-keep text-3xl font-black tracking-tight text-neutral-950">${item.name}</h3>
+                  <p class="mx-auto mt-4 max-w-xs break-keep text-pretty text-base font-semibold leading-7 text-neutral-500">${item.description}</p>
+                </div>
+              </article>
+            `
+          )
+          .join('');
+      }
+
+      function renderStores() {
+        document.getElementById('storeList').innerHTML = `
+          <div class="space-y-2 pb-2">
+            ${stores
+              .map((store) => {
+                const isSelected = selectedStoreId === store.id;
+                const cardClass = isSelected
+                  ? 'block w-full cursor-pointer rounded-2xl border border-white bg-white p-4 text-left shadow-md translate-x-2 transition-all duration-300'
+                  : 'block w-full cursor-pointer rounded-2xl border border-transparent p-4 text-left transition-all duration-300 hover:translate-x-2 hover:bg-white/20';
+                const nameClass = isSelected ? 'text-neutral-950' : 'text-white';
+                const addressClass = isSelected ? 'text-neutral-600' : 'text-white/75';
+                const tagClass = isSelected
+                  ? 'rounded-full bg-mokdaOrange px-3 py-1 text-xs font-black uppercase tracking-wide text-white'
+                  : 'rounded-full bg-white/15 px-3 py-1 text-xs font-black uppercase tracking-wide text-white';
+                return `
+                  <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">
+                    <span class="flex flex-wrap items-center gap-3">
+                      <span class="break-keep text-xl font-black ${nameClass}">${store.name}</span>
+                      <span class="${tagClass}">${store.tag}</span>
+                    </span>
+                    <span class="mt-2 block text-pretty text-sm font-bold leading-6 ${addressClass}">${store.address}</span>
+                  </button>
+                `;
+              })
+              .join('')}
+          </div>
+        `;
+      }
+
+      function selectStore(id) {
+        selectedStoreId = id;
+        renderStores();
+        const store = stores.find((item) => item.id === id);
+        const frame = document.getElementById('mapFrame');
+        const nextSrc = store?.mapUrl || 'https://maps.google.com/maps?q=Latin%20America&t=&z=4&ie=UTF8&iwloc=&output=embed';
+        if (frame.dataset.mapSrc === nextSrc) return;
+        clearTimeout(mapTransitionTimer);
+        frame.classList.remove('opacity-100');
+        frame.classList.add('opacity-0');
+        mapTransitionTimer = setTimeout(() => {
+          frame.src = nextSrc;
+          frame.dataset.mapSrc = nextSrc;
+          frame.title = store ? `${store.name} map` : 'MOKDA LATAM map';
+          frame.classList.remove('opacity-0');
+          frame.classList.add('opacity-100');
+        }, 250);
+      }
+
+      function renderReels() {
+        document.getElementById('reelsGrid').innerHTML = reels
+          .map(
+            (reel, index) => `
+              <a
+                href="${reel.url}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open ${reel.title} on Instagram"
+                data-reveal
+                data-reveal-delay="${index * 120}"
+                class="group relative aspect-[9/16] overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-neutral-950/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <img src="${reel.image}" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/70"></div>
+                <div class="relative z-10 flex h-full flex-col justify-between p-5">
+                  <div class="grid h-11 w-11 place-items-center rounded-full bg-white text-[10px] font-black text-neutral-950 transition-transform duration-300 group-hover:scale-110">${reel.label}</div>
+                  <h3 class="break-keep text-pretty text-2xl font-black leading-tight text-white sm:text-3xl">${reel.title}</h3>
+                </div>
+              </a>
+            `
+          )
+          .join('');
+      }
+
+      function renderForm(fields) {
+        setText('companyLabel', fields.company[0]);
+        setPlaceholder('companyInput', fields.company[1]);
+        setText('nameLabel', fields.name[0]);
+        setPlaceholder('nameInput', fields.name[1]);
+        setText('emailLabel', fields.email[0]);
+        setPlaceholder('emailInput', fields.email[1]);
+        setText('countryLabel', fields.country[0]);
+        setText('messageLabel', fields.message[0]);
+        setPlaceholder('messageInput', fields.message[1]);
+        setText('submitButton', fields.submit);
+        document.getElementById('countrySelect').innerHTML = `
+          <option value="" selected disabled>${fields.country[1]}</option>
+          ${countries.map(([value, labels]) => `<option value="${value}">${labels[language]}</option>`).join('')}
+        `;
+      }
+
+      function renderPage() {
+        const t = content[language];
+        document.documentElement.lang = language === 'KR' ? 'ko' : language.toLowerCase();
+        renderHeroText();
+        setText('storyKicker', t.story.kicker);
+        setText('storyTitle', t.story.title);
+        document.getElementById('storyBody').innerHTML = t.story.body.map((paragraph) => `<p>${paragraph}</p>`).join('');
+        setText('productsKicker', t.products.kicker);
+        setText('productsTitle', t.products.title);
+        renderProducts(t.products.items);
+        setText('mapKicker', t.map.kicker);
+        setText('mapTitle', t.map.title);
+        renderStores();
+        renderReels();
+        setText('b2bKicker', t.b2b.kicker);
+        setText('b2bTitle', t.b2b.title);
+        setText('b2bDescription', t.b2b.description);
+        renderForm(t.b2b.fields);
+        setText('footerText', t.footer);
+        renderLanguageButtons();
+        bindReveal();
+      }
+
+      document.getElementById('langEN').addEventListener('click', () => {
+        language = 'EN';
+        renderPage();
+      });
+
+      document.getElementById('langES').addEventListener('click', () => {
+        language = 'ES';
+        renderPage();
+      });
+
+      document.getElementById('langKR').addEventListener('click', () => {
+        language = 'KR';
+        renderPage();
+      });
+
+      document.getElementById('b2bForm').addEventListener('submit', (event) => event.preventDefault());
+
+      window.addEventListener('pagehide', () => {
+        if (heroInterval) clearInterval(heroInterval);
+      });
+
+      createHeroCarousel();
+      renderPage();
+      updateHeroCarousel();
+      restartHeroCarousel();
+    </script>
+  </body>
+</html>

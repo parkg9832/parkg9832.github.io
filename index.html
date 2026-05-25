@@ -91,7 +91,7 @@
             <p id="productsKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-mokdaOrange"></p>
             <h2 id="productsTitle" class="text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-6xl md:text-7xl"></h2>
           </div>
-          <div id="productsGrid" class="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-0 py-12 sm:px-6 md:grid-cols-3 md:gap-16"></div>
+          <div id="productsGrid" class="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-0 py-10 sm:px-6 md:grid-cols-3 md:gap-10"></div>
         </div>
       </section>
 
@@ -582,12 +582,12 @@
             (item, index) => `
               <article data-reveal data-reveal-delay="${index * 120}" class="min-w-0 text-center">
                 <h3 class="break-keep text-3xl font-black tracking-tight ${item.titleClass}">${item.name}</h3>
-                <div class="mt-7 flex h-[380px] w-full items-center justify-center">
-                  <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[340px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out hover:-translate-y-3" loading="lazy" />
+                <div class="mt-2 flex h-[340px] w-full items-center justify-center">
+                  <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[320px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out hover:-translate-y-3" loading="lazy" />
                 </div>
-                <div class="mx-auto mt-5 w-full max-w-none overflow-visible px-0 text-center text-[8px] leading-5 tracking-tight text-neutral-500 sm:text-[10px] md:w-max md:text-[10px] lg:text-[11px] xl:text-xs">
-                  <span class="block whitespace-nowrap font-normal">${item.line1}</span>
-                  <span class="mt-1 block whitespace-nowrap font-bold text-neutral-700">${item.line2}</span>
+                <div class="mx-auto mt-2 w-full max-w-none overflow-visible px-0 text-center text-[8px] leading-5 tracking-tight text-neutral-900 sm:text-[10px] md:w-max md:text-[10px] lg:text-[11px] xl:text-xs">
+                  <span class="block whitespace-nowrap font-medium">${item.line1}</span>
+                  <span class="mt-0.5 block whitespace-nowrap font-extrabold text-neutral-950">${item.line2}</span>
                 </div>
               </article>
             `

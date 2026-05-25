@@ -290,7 +290,8 @@
 
       const localizedProducts = [
         {
-          name: 'ORIGINAL',
+          koreanName: '오리지널 소스',
+          name: 'Original',
           titleClass: 'text-red-600',
           line1: 'El toque fresco del jalapeño en el picante del Gochujang.',
           line2: 'Sabor auténtico de Corea en cada bocado.',
@@ -298,7 +299,8 @@
           alt: 'Salsa MOKDA Original',
         },
         {
-          name: 'PARA CARNE',
+          koreanName: '고기 전용 소스',
+          name: 'Para Carne',
           titleClass: 'text-yellow-500',
           line1: 'Salsa tradicional coreana para BBQ con un toque umami profundo.',
           line2: 'El sabor tostado y picante ideal para tu carne asada.',
@@ -306,7 +308,8 @@
           alt: 'Salsa MOKDA Para Carne',
         },
         {
-          name: 'SOY SAUCE',
+          koreanName: '간장 데리야끼 소스',
+          name: 'Soy Sauce',
           titleClass: 'text-[#2d1a11]',
           line1: 'Dulce, salado y lleno de umami que te atrapa.',
           line2: 'Perfecta para arroz, carne o frituras. Va con todo.',
@@ -581,6 +584,7 @@
           .map(
             (item, index) => `
               <article data-reveal data-reveal-delay="${index * 120}" class="min-w-0 text-center">
+                <h4 class="mb-0.5 break-keep text-sm font-semibold text-neutral-800 sm:text-base">${item.koreanName}</h4>
                 <h3 class="break-keep text-3xl font-black tracking-tight ${item.titleClass}">${item.name}</h3>
                 <div class="mt-2 flex h-[340px] w-full items-center justify-center">
                   <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[320px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out hover:-translate-y-3" loading="lazy" />

@@ -52,6 +52,25 @@
         display: none;
       }
 
+      .custom-scrollbar {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.55) rgba(255, 255, 255, 0.12);
+      }
+
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -68,20 +87,20 @@
   <body class="bg-white text-neutral-950 antialiased">
     <main class="min-h-screen overflow-hidden bg-white">
       <header class="fixed inset-x-0 top-0 z-50 border-b border-neutral-950/5 bg-white/90 backdrop-blur">
-        <nav class="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
+        <nav class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-8">
           <a href="#top" class="inline-flex items-center" aria-label="MOKDA home">
-            <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-8 w-auto sm:h-9" />
+            <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
           </a>
-          <div class="flex items-center rounded-full bg-stone-100 p-1" aria-label="Language switcher">
-            <button id="langES" type="button" class="h-10 rounded-full px-4 text-sm font-black transition-colors">ES</button>
-            <button id="langKR" type="button" class="h-10 rounded-full px-4 text-sm font-black transition-colors">KR</button>
-            <button id="langEN" type="button" class="h-10 rounded-full px-4 text-sm font-black transition-colors">EN</button>
+          <div class="flex items-center rounded-full bg-stone-100 p-0.5 sm:p-1" aria-label="Language switcher">
+            <button id="langES" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">ES</button>
+            <button id="langKR" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">KR</button>
+            <button id="langEN" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">EN</button>
           </div>
         </nav>
       </header>
 
-      <section id="top" class="relative mt-20 h-[calc(100vh-5rem)] min-h-[620px] overflow-hidden bg-neutral-950 text-white">
-        <div id="heroSlides" class="relative h-full w-full overflow-hidden"></div>
+      <section id="top" class="relative mt-16 h-[calc(100vh-4rem)] min-h-[560px] overflow-hidden bg-neutral-950 text-white sm:mt-20 sm:h-[calc(100vh-5rem)] sm:min-h-[620px]">
+        <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar"></div>
         <div id="heroIndicators" class="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3"></div>
       </section>
 
@@ -124,7 +143,7 @@
           <div data-reveal>
             <p id="mapKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-white/70"></p>
             <h2 id="mapTitle" class="break-keep text-balance text-5xl font-black leading-none tracking-tight sm:text-6xl md:text-7xl"></h2>
-            <div id="storeList" class="no-scrollbar mt-10 max-h-[380px] overflow-y-auto rounded-3xl border border-white/20 bg-white/10 p-5 pb-7 backdrop-blur-md"></div>
+            <div id="storeList" class="custom-scrollbar mt-8 max-h-[300px] overflow-y-auto overflow-x-hidden rounded-3xl border border-white/20 bg-white/10 p-4 backdrop-blur-md md:mt-10 md:max-h-[400px] md:p-5"></div>
           </div>
           <div data-reveal data-reveal-delay="120" class="relative min-h-[460px] w-full overflow-hidden rounded-3xl bg-white shadow-2xl shadow-orange-950/20">
             <iframe
@@ -465,6 +484,7 @@
       let language = 'ES';
       let currentSlide = 0;
       let heroInterval = null;
+      let heroScrollTimer = null;
       let selectedStoreId = null;
       let mapTransitionTimer = null;
 
@@ -507,7 +527,7 @@
         document.getElementById('heroSlides').innerHTML = heroSlides
           .map(
             (slide, index) => `
-              <div data-hero-slide="${index}" class="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-[1200ms] ease-in-out">
+              <div data-hero-slide="${index}" class="relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
                 <img src="${slide.mobileImage}" alt="" class="absolute inset-0 block h-full w-full object-cover md:hidden" />
                 <img src="${slide.desktopImage}" alt="" class="absolute inset-0 hidden h-full w-full object-cover md:block" />
                 <div class="absolute inset-0 z-10 bg-black/65 md:bg-black/60"></div>
@@ -529,6 +549,26 @@
           .join('');
       }
 
+      function bindHeroScroll() {
+        const scroller = document.getElementById('heroSlides');
+        scroller.addEventListener(
+          'scroll',
+          () => {
+            if (window.matchMedia('(min-width: 768px)').matches) return;
+            clearTimeout(heroScrollTimer);
+            heroScrollTimer = setTimeout(() => {
+              const nextSlide = Math.round(scroller.scrollLeft / scroller.clientWidth);
+              if (nextSlide !== currentSlide && nextSlide >= 0 && nextSlide < heroSlides.length) {
+                currentSlide = nextSlide;
+                updateHeroCarousel(false);
+                restartHeroCarousel();
+              }
+            }, 80);
+          },
+          { passive: true }
+        );
+      }
+
       function renderHeroText() {
         document.querySelectorAll('[data-hero-slide]').forEach((slide) => {
           const index = Number(slide.getAttribute('data-hero-slide'));
@@ -538,11 +578,11 @@
         });
       }
 
-      function updateHeroCarousel() {
+      function updateHeroCarousel(syncScroll = true) {
         document.querySelectorAll('[data-hero-slide]').forEach((slide) => {
           const isActive = Number(slide.getAttribute('data-hero-slide')) === currentSlide;
-          slide.className = `absolute inset-0 h-full w-full transition-opacity duration-[1200ms] ease-in-out ${
-            isActive ? 'z-10 opacity-100' : 'z-0 opacity-0 pointer-events-none'
+          slide.className = `relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 ${
+            isActive ? 'md:z-10 md:opacity-100' : 'md:z-0 md:opacity-0 md:pointer-events-none'
           }`;
         });
         document.querySelectorAll('[data-hero-indicator]').forEach((indicator) => {
@@ -552,6 +592,11 @@
             isActive ? 'w-10 bg-mokdaOrange' : 'w-2.5 bg-white/55 hover:bg-white'
           }`;
         });
+
+        const scroller = document.getElementById('heroSlides');
+        if (syncScroll && !window.matchMedia('(min-width: 768px)').matches && scroller) {
+          scroller.scrollTo({ left: scroller.clientWidth * currentSlide, behavior: 'smooth' });
+        }
       }
 
       function setHeroSlide(index) {
@@ -573,8 +618,8 @@
           const button = document.getElementById(`lang${lang}`);
           button.className =
             language === lang
-              ? 'h-10 rounded-full bg-mokdaOrange px-4 text-sm font-black text-white transition-colors'
-              : 'h-10 rounded-full px-4 text-sm font-black text-neutral-500 transition-colors hover:text-neutral-950';
+              ? 'h-8 rounded-full bg-mokdaOrange px-3 text-xs font-black text-white transition-colors sm:h-10 sm:px-4 sm:text-sm'
+              : 'h-8 rounded-full px-3 text-xs font-black text-neutral-500 transition-colors hover:text-neutral-950 sm:h-10 sm:px-4 sm:text-sm';
           button.setAttribute('aria-pressed', String(language === lang));
         });
       }
@@ -589,9 +634,9 @@
                 <div class="mt-2 flex h-[340px] w-full items-center justify-center">
                   <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[320px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out hover:-translate-y-3" loading="lazy" />
                 </div>
-                <div class="mx-auto mt-2 w-full max-w-none overflow-visible px-0 text-center text-[8px] leading-5 tracking-tight text-neutral-900 sm:text-[10px] md:w-max md:text-[10px] lg:text-[11px] xl:text-xs">
-                  <span class="block whitespace-nowrap font-medium">${item.line1}</span>
-                  <span class="mt-0.5 block whitespace-nowrap font-extrabold text-neutral-950">${item.line2}</span>
+                <div class="mx-auto mt-2 w-full max-w-[320px] overflow-visible px-2 text-center text-sm leading-6 text-neutral-900 sm:max-w-none sm:px-0 sm:text-[10px] sm:leading-5 sm:tracking-tight md:w-max md:text-[10px] lg:text-[11px] xl:text-xs">
+                  <span class="block font-medium md:whitespace-nowrap">${item.line1}</span>
+                  <span class="mt-0.5 block font-extrabold text-neutral-950 md:whitespace-nowrap">${item.line2}</span>
                 </div>
               </article>
             `
@@ -601,26 +646,28 @@
 
       function renderStores() {
         document.getElementById('storeList').innerHTML = `
-          <div class="space-y-2 pb-2">
+          <div class="divide-y divide-white/20">
             ${stores
               .map((store) => {
                 const isSelected = selectedStoreId === store.id;
                 const cardClass = isSelected
-                  ? 'block w-full cursor-pointer rounded-2xl border border-white bg-white p-4 text-left shadow-md translate-x-2 transition-all duration-300'
-                  : 'block w-full cursor-pointer rounded-2xl border border-transparent p-4 text-left transition-all duration-300 hover:translate-x-2 hover:bg-white/20';
+                  ? 'block w-full cursor-pointer rounded-2xl bg-white p-3 text-left shadow-md transition-all duration-300 md:p-4'
+                  : 'block w-full cursor-pointer rounded-2xl p-3 text-left transition-all duration-300 hover:bg-white/20 md:p-4';
                 const nameClass = isSelected ? 'text-neutral-950' : 'text-white';
                 const addressClass = isSelected ? 'text-neutral-600' : 'text-white/75';
                 const tagClass = isSelected
-                  ? 'rounded-full bg-mokdaOrange px-3 py-1 text-xs font-black uppercase tracking-wide text-white'
-                  : 'rounded-full bg-white/15 px-3 py-1 text-xs font-black uppercase tracking-wide text-white';
+                  ? 'rounded-full bg-mokdaOrange px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs'
+                  : 'rounded-full bg-white/15 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs';
                 return `
-                  <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">
-                    <span class="flex flex-wrap items-center gap-3">
-                      <span class="break-keep text-xl font-black ${nameClass}">${store.name}</span>
-                      <span class="${tagClass}">${store.tag}</span>
-                    </span>
-                    <span class="mt-2 block text-pretty text-sm font-bold leading-6 ${addressClass}">${store.address}</span>
-                  </button>
+                  <div class="py-3 first:pt-0 last:pb-0">
+                    <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">
+                      <span class="flex flex-wrap items-center gap-2 md:gap-3">
+                        <span class="break-keep text-base font-bold ${nameClass} md:text-lg">${store.name}</span>
+                        <span class="${tagClass}">${store.tag}</span>
+                      </span>
+                      <span class="mt-1.5 block text-pretty text-xs font-semibold leading-5 ${addressClass} md:text-sm md:leading-6">${store.address}</span>
+                    </button>
+                  </div>
                 `;
               })
               .join('')}
@@ -734,6 +781,7 @@
       });
 
       createHeroCarousel();
+      bindHeroScroll();
       renderPage();
       updateHeroCarousel();
       restartHeroCarousel();

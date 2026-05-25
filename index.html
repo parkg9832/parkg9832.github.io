@@ -288,6 +288,33 @@
         },
       ];
 
+      const localizedProducts = [
+        {
+          name: 'ORIGINAL',
+          titleClass: 'text-red-600',
+          line1: 'El toque fresco del jalapeño en el picante del Gochujang.',
+          line2: 'Sabor auténtico de Corea en cada bocado.',
+          image: 'assets/bottle-original.png.png',
+          alt: 'Salsa MOKDA Original',
+        },
+        {
+          name: 'PARA CARNE',
+          titleClass: 'text-amber-700',
+          line1: 'Salsa tradicional coreana para BBQ con un toque umami profundo.',
+          line2: 'El sabor tostado y picante ideal para tu carne asada.',
+          image: 'assets/bottle-ssamjang.png.png',
+          alt: 'Salsa MOKDA Para Carne',
+        },
+        {
+          name: 'SOY SAUCE',
+          titleClass: 'text-neutral-900',
+          line1: 'Dulce, salado y lleno de umami que te atrapa.',
+          line2: 'Perfecta para arroz, carne o frituras. Va con todo.',
+          image: 'assets/bottle-sweetsoy.png.png',
+          alt: 'Salsa MOKDA Soy Sauce',
+        },
+      ];
+
       const content = {
         EN: {
           story: {
@@ -302,11 +329,7 @@
           products: {
             kicker: 'SAUCE LINEUP',
             title: 'MOKDA FLAVORS',
-            items: [
-              { name: 'ORIGINAL', description: 'Gochujang and jalapeño. Bold, balanced, addictive.', image: 'assets/bottle-original.png.png', alt: 'MOKDA Original sauce' },
-              { name: 'SSAMJANG', description: 'A Korean classic built for grilled meat and street food.', image: 'assets/bottle-ssamjang.png.png', alt: 'MOKDA Ssamjang sauce' },
-              { name: 'SWEET SOY', description: 'Garlic, sesame, and sweet-savory comfort in one bottle.', image: 'assets/bottle-sweetsoy.png.png', alt: 'MOKDA Sweet Soy sauce' },
-            ],
+            items: localizedProducts,
           },
           map: {
             kicker: 'LATAM ROUTE',
@@ -340,11 +363,7 @@
           products: {
             kicker: 'SAUCE LINEUP',
             title: 'MOKDA FLAVORS',
-            items: [
-              { name: 'ORIGINAL', description: 'Gochujang y jalapeño. El match perfecto.', image: 'assets/bottle-original.png.png', alt: 'Salsa MOKDA Original' },
-              { name: 'SSAMJANG', description: 'El alma gemela de tu carne asada.', image: 'assets/bottle-ssamjang.png.png', alt: 'Salsa MOKDA Ssamjang' },
-              { name: 'SWEET SOY', description: 'Ajo y sésamo al máximo.', image: 'assets/bottle-sweetsoy.png.png', alt: 'Salsa MOKDA Sweet Soy' },
-            ],
+            items: localizedProducts,
           },
           map: {
             kicker: 'RUTA LATAM',
@@ -378,11 +397,7 @@
           products: {
             kicker: 'SAUCE LINEUP',
             title: 'MOKDA FLAVORS',
-            items: [
-              { name: 'ORIGINAL', description: '오리지널 고추장 & 할라피뇨.', image: 'assets/bottle-original.png.png', alt: 'MOKDA 오리지널 소스' },
-              { name: 'SSAMJANG', description: '오직 고기만을 위한 한국의 대표 소스.', image: 'assets/bottle-ssamjang.png.png', alt: 'MOKDA 쌈장 소스' },
-              { name: 'SWEET SOY', description: '마늘과 참깨가 듬뿍 들어간 단짠의 정석.', image: 'assets/bottle-sweetsoy.png.png', alt: 'MOKDA 스위트 소이 소스' },
-            ],
+            items: localizedProducts,
           },
           map: {
             kicker: 'LATAM ROUTE',
@@ -570,8 +585,11 @@
                   <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[340px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-500 ease-out hover:-translate-y-3" loading="lazy" />
                 </div>
                 <div class="mt-8">
-                  <h3 class="break-keep text-3xl font-black tracking-tight text-neutral-950">${item.name}</h3>
-                  <p class="mx-auto mt-4 max-w-xs break-keep text-pretty text-base font-semibold leading-7 text-neutral-500">${item.description}</p>
+                  <h3 class="break-keep text-3xl font-black tracking-tight ${item.titleClass}">${item.name}</h3>
+                  <div class="mx-auto mt-4 max-w-sm break-keep text-pretty text-base leading-7 text-neutral-500">
+                    <p class="font-normal">${item.line1}</p>
+                    <p class="mt-1 font-bold text-neutral-700">${item.line2}</p>
+                  </div>
                 </div>
               </article>
             `

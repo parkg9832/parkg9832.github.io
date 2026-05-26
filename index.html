@@ -71,6 +71,42 @@
         border-radius: 4px;
       }
 
+      .ambient-layer {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .ambient-float {
+        position: absolute;
+        z-index: -10;
+        opacity: 0.16;
+        transform-origin: center;
+        animation: ambient-drift var(--float-duration, 18s) ease-in-out infinite alternate;
+        animation-delay: var(--float-delay, 0s);
+        filter: drop-shadow(0 12px 20px rgba(239, 95, 24, 0.12));
+      }
+
+      .ambient-float.is-soft {
+        opacity: 0.11;
+      }
+
+      @keyframes ambient-drift {
+        0% {
+          transform: translate3d(0, 0, 0) rotate(var(--rotate-start, 0deg));
+        }
+
+        50% {
+          transform: translate3d(var(--float-x, 18px), var(--float-y, -22px), 0) rotate(var(--rotate-mid, 8deg));
+        }
+
+        100% {
+          transform: translate3d(calc(var(--float-x, 18px) * -0.65), calc(var(--float-y, -22px) * 0.85), 0) rotate(var(--rotate-end, -6deg));
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -81,11 +117,55 @@
           transform: none;
           transition: none;
         }
+
+        .ambient-float {
+          animation: none;
+        }
       }
     </style>
   </head>
   <body class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:18px_18px] text-neutral-950 antialiased">
-    <main class="min-h-screen overflow-hidden bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:18px_18px]">
+    <main class="relative min-h-screen overflow-hidden bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:18px_18px]">
+      <div class="ambient-layer" aria-hidden="true">
+        <svg class="ambient-float left-[5%] top-[18%] h-14 w-14 text-lime-600 md:h-20 md:w-20" style="--float-duration: 22s; --float-delay: -4s; --float-x: 26px; --float-y: -30px; --rotate-start: -18deg; --rotate-mid: 10deg; --rotate-end: 24deg" viewBox="0 0 64 64" fill="none">
+          <path d="M31.7 7.2C18.3 9.4 9 20.3 9 33.1c0 13.2 10.7 23.7 24 23.7 11.6 0 21.4-8.1 23.7-19.1-3.6 3.1-8.3 5-13.5 5-12.2 0-22.1-9.8-22.1-21.8 0-5.2 1.8-9.9 4.9-13.7Z" fill="currentColor" />
+          <path d="M33.5 15.2c8.9 1.1 15.7 8.6 15.7 17.6 0 1.8-.3 3.5-.8 5.1" stroke="#166534" stroke-width="4" stroke-linecap="round" />
+          <circle cx="30" cy="29" r="2.6" fill="#F8FAFC" />
+          <circle cx="38" cy="33" r="2.1" fill="#F8FAFC" />
+          <circle cx="29" cy="39" r="1.8" fill="#F8FAFC" />
+        </svg>
+        <svg class="ambient-float right-[8%] top-[28%] h-12 w-12 text-red-500 md:h-16 md:w-16" style="--float-duration: 18s; --float-delay: -9s; --float-x: -18px; --float-y: -28px; --rotate-start: 12deg; --rotate-mid: -14deg; --rotate-end: 8deg" viewBox="0 0 64 64" fill="none">
+          <path d="M18 12 30 22 17 30 9 20Z" fill="currentColor" />
+          <path d="M42 10 54 18 45 30 34 20Z" fill="#EF5F18" />
+          <path d="M30 38 43 47 30 56 19 47Z" fill="#B91C1C" />
+          <circle cx="49" cy="42" r="4" fill="#FBBF24" />
+          <circle cx="16" cy="48" r="3" fill="#EF5F18" />
+        </svg>
+        <svg class="ambient-float is-soft left-[7%] top-[58%] h-16 w-16 text-neutral-900 md:h-24 md:w-24" style="--float-duration: 26s; --float-delay: -12s; --float-x: 22px; --float-y: 20px; --rotate-start: 0deg; --rotate-mid: 12deg; --rotate-end: -10deg" viewBox="0 0 80 80" fill="none">
+          <path d="M16 18h30v10H26v34H16V18Z" fill="currentColor" />
+          <path d="M50 18h12v44H50V18Z" fill="currentColor" />
+          <path d="M29 45h28v10H29V45Z" fill="#EF5F18" />
+        </svg>
+        <svg class="ambient-float right-[13%] top-[63%] h-10 w-10 text-amber-500 md:h-14 md:w-14" style="--float-duration: 20s; --float-delay: -6s; --float-x: -24px; --float-y: 16px; --rotate-start: 24deg; --rotate-mid: 2deg; --rotate-end: -18deg" viewBox="0 0 64 64" fill="none">
+          <ellipse cx="32" cy="32" rx="21" ry="12" fill="currentColor" />
+          <path d="M14 31c9-12 25-13 36 0" stroke="#78350F" stroke-width="4" stroke-linecap="round" />
+          <circle cx="25" cy="33" r="2" fill="#FFFBEB" />
+          <circle cx="34" cy="31" r="2" fill="#FFFBEB" />
+          <circle cx="41" cy="35" r="1.8" fill="#FFFBEB" />
+        </svg>
+        <svg class="ambient-float left-[18%] bottom-[14%] h-12 w-12 text-red-600 md:h-16 md:w-16" style="--float-duration: 24s; --float-delay: -16s; --float-x: 30px; --float-y: -18px; --rotate-start: -30deg; --rotate-mid: 18deg; --rotate-end: 32deg" viewBox="0 0 64 64" fill="none">
+          <path d="M12 42c13-25 30-31 43-18-8 3-13 10-15 20-8-5-17-5-28-2Z" fill="currentColor" />
+          <path d="M43 21c3-6 7-8 12-8" stroke="#166534" stroke-width="5" stroke-linecap="round" />
+          <path d="M20 40c8-8 15-12 23-13" stroke="#FEE2E2" stroke-width="3" stroke-linecap="round" />
+        </svg>
+        <svg class="ambient-float is-soft right-[5%] bottom-[10%] h-20 w-20 text-mokdaOrange md:h-28 md:w-28" style="--float-duration: 30s; --float-delay: -20s; --float-x: -28px; --float-y: -24px; --rotate-start: 8deg; --rotate-mid: -8deg; --rotate-end: 16deg" viewBox="0 0 96 96" fill="none">
+          <path d="M18 24h60v12H18V24Z" fill="currentColor" />
+          <path d="M18 60h60v12H18V60Z" fill="currentColor" />
+          <path d="M24 18h12v60H24V18Z" fill="currentColor" />
+          <path d="M60 18h12v60H60V18Z" fill="currentColor" />
+          <circle cx="48" cy="48" r="8" fill="#EF5F18" />
+        </svg>
+      </div>
       <header class="fixed inset-x-0 top-0 z-50 border-b border-neutral-950/5 bg-white/90 backdrop-blur">
         <nav class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-8">
           <a href="#top" class="inline-flex items-center" aria-label="MOKDA home">

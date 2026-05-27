@@ -87,17 +87,30 @@
   </head>
   <body class="bg-white text-neutral-950 antialiased">
     <main class="min-h-screen overflow-hidden bg-white">
-      <header class="fixed inset-x-0 top-0 z-50 border-b border-neutral-950/5 bg-white/90 backdrop-blur">
+      <header class="fixed inset-x-0 top-0 z-[80] border-b border-neutral-950/5 bg-white/90 backdrop-blur-md">
         <nav class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-          <a href="#top" class="inline-flex items-center" aria-label="MOKDA home">
-            <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
-          </a>
-          <div class="flex items-center rounded-full bg-stone-100 p-0.5 sm:p-1" aria-label="Language switcher">
+          <div class="flex items-center gap-3">
+            <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full text-neutral-950 transition hover:bg-stone-100" aria-label="Open navigation menu">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              </svg>
+            </button>
+            <a href="#top" class="inline-flex items-center" aria-label="MOKDA home">
+              <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
+            </a>
+          </div>
+          <div class="fixed right-4 top-4 z-[90] flex items-center rounded-full bg-stone-100 p-0.5 shadow-sm sm:p-1" aria-label="Language switcher">
             <button id="langES" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">ES</button>
             <button id="langKR" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">KR</button>
             <button id="langEN" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">EN</button>
           </div>
         </nav>
+        <div id="mobile-menu" class="absolute left-0 top-16 z-[85] hidden w-full border-b border-neutral-950/5 bg-white shadow-md sm:top-20">
+          <div class="mx-auto flex w-full max-w-6xl flex-col px-4 py-5 sm:px-6 lg:px-8">
+            <a href="about.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-mokdaOrange">About us</a>
+            <a href="products.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-mokdaOrange">Salsa Coreana</a>
+          </div>
+        </div>
       </header>
 
       <section id="top" class="relative mt-16 h-[calc(100vh-4rem)] min-h-[560px] overflow-hidden bg-neutral-950 text-white sm:mt-20 sm:h-[calc(100vh-5rem)] sm:min-h-[620px]">
@@ -160,13 +173,12 @@
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d28000000!2d-75.0!3d-10.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr"
               width="100%"
               height="100%"
-              style="border: 0; position: absolute; inset: 0"
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="MOKDA LATAM map"
               data-map-src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d28000000!2d-75.0!3d-10.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sko!2skr"
-              class="h-full w-full rounded-3xl"
+              class="absolute inset-0 h-full w-full rounded-3xl border-0"
             ></iframe>
           </div>
         </div>
@@ -845,6 +857,14 @@
         language = 'KR';
         renderPage();
       });
+
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
 
       document.getElementById('b2bForm').addEventListener('submit', (event) => event.preventDefault());
 

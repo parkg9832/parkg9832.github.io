@@ -706,17 +706,17 @@
         document.getElementById('productsGrid').innerHTML = items
           .map(
             (item, index) => `
-              <article data-reveal data-reveal-delay="${index * 120}" class="flex min-w-0 flex-col items-center rounded-xl p-4 text-center transition-shadow duration-300 hover:shadow-md">
+              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="flex min-w-0 flex-col items-center text-center">
                 <h4 class="mb-0 break-keep text-xs font-normal leading-tight text-gray-500">${item.koreanName}</h4>
                 <h3 class="mt-0 break-keep text-3xl font-black leading-tight tracking-tight ${item.titleClass}">${item.name}</h3>
                 <div class="mt-1 flex h-[300px] w-full items-center justify-center md:h-[320px]">
-                  <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[280px] w-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out hover:-translate-y-2 hover:drop-shadow-[0_15px_15px_rgba(0,0,0,0.15)] md:max-h-[300px]" loading="lazy" />
+                  <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[280px] w-auto cursor-pointer object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-transform duration-300 hover:scale-105 md:max-h-[300px]" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-1 w-full max-w-[240px] overflow-visible px-0 text-center text-xs leading-relaxed tracking-tight text-neutral-600 sm:text-xs md:text-sm">
                   <span class="block font-medium">${item.line1}</span>
                   <span class="mt-0.5 block font-extrabold text-neutral-950">${item.line2}</span>
                 </div>
-              </article>
+              </a>
             `
           )
           .join('');

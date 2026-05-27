@@ -197,7 +197,7 @@
               <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1">KR</button>
               <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2">EN</button>
             </div>
-            <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 hover:text-black transition-colors hover:bg-stone-100" aria-label="Open navigation menu">
+            <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-white transition-colors duration-300 hover:bg-white/20" aria-label="Open navigation menu">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
               </svg>
@@ -1027,14 +1027,23 @@
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const header = document.getElementById('main-header');
+        const menuBtn = document.getElementById('menu-toggle');
         if (header) {
           const handleScroll = () => {
-            if (window.scrollY > 50) {
+            if (window.scrollY > 10) {
               header.classList.remove('bg-transparent');
               header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+              if (menuBtn) {
+                menuBtn.classList.remove('text-white');
+                menuBtn.classList.add('text-gray-800');
+              }
             } else {
-              header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+              header.classList.remove('bg-white', 'bg-white/90', 'backdrop-blur-md', 'shadow-sm');
               header.classList.add('bg-transparent');
+              if (menuBtn) {
+                menuBtn.classList.remove('text-gray-800');
+                menuBtn.classList.add('text-white');
+              }
             }
           };
           handleScroll();

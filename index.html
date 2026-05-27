@@ -204,7 +204,7 @@
             </button>
           </div>
         </div>
-        <div id="mobile-menu" class="absolute left-0 top-16 z-50 hidden w-full border-b border-neutral-950/5 bg-white/90 backdrop-blur-md shadow-md">
+        <div id="mobile-menu" class="absolute left-0 top-16 z-50 w-full border-b border-neutral-950/5 bg-white/90 backdrop-blur-md shadow-md overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 invisible">
           <div class="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-5 md:px-8">
             <a href="about.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-orange-600">About us</a>
             <a href="products.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-orange-600">Salsa Coreana</a>
@@ -989,7 +989,12 @@
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuToggle && mobileMenu) {
         menuToggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
+          mobileMenu.classList.toggle('max-h-0');
+          mobileMenu.classList.toggle('opacity-0');
+          mobileMenu.classList.toggle('invisible');
+          mobileMenu.classList.toggle('max-h-64');
+          mobileMenu.classList.toggle('opacity-100');
+          mobileMenu.classList.toggle('visible');
         });
       }
 

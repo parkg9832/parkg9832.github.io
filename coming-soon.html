@@ -38,16 +38,81 @@
         </div>
       </div>
     </header>
-    <main class="flex h-screen items-center justify-center px-6">
+    <main class="flex h-screen items-center justify-center px-6 bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px]">
       <div class="text-center">
-        <p class="text-sm font-black uppercase tracking-[0.3em] text-orange-600">MOKDA</p>
-        <h1 class="mt-5 break-keep text-3xl font-black tracking-tight sm:text-5xl">상세 페이지 준비중입니다.</h1>
-        <a href="products.html" class="mt-8 inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-colors hover:bg-yellow-500">
+        <p class="text-sm font-black uppercase tracking-[0.35em] text-orange-600">MOKDA</p>
+        <h1 id="comingSoonTitle" class="mt-5 break-keep text-3xl font-black tracking-tight sm:text-5xl">상세 페이지 준비중입니다.</h1>
+        <a id="backLink" href="products.html" class="mt-8 inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-colors hover:bg-yellow-500">
           이전으로 돌아가기
         </a>
       </div>
     </main>
     <script>
+      let language = localStorage.getItem('mokdaLanguage') || 'ES';
+
+      const content = {
+        ES: {
+          title: "MOKDA | Próximamente",
+          headline: "La página de detalles está en preparación.",
+          btn: "Volver atrás"
+        },
+        EN: {
+          title: "MOKDA | Coming Soon",
+          headline: "Detail page is under construction.",
+          btn: "Go Back"
+        },
+        KR: {
+          title: "MOKDA | 준비중",
+          headline: "상세 페이지 준비중입니다.",
+          btn: "이전으로 돌아가기"
+        }
+      };
+
+      function renderLanguageButtons() {
+        ['ES', 'KR', 'EN'].forEach((lang) => {
+          const button = document.getElementById(`lang${lang}`);
+          if (button) {
+            button.className =
+              language === lang
+                ? 'h-8 rounded-full bg-orange-600 px-3 text-xs font-black text-white transition-colors sm:h-10 sm:px-4 sm:text-sm'
+                : 'h-8 rounded-full px-3 text-xs font-black text-neutral-500 transition-colors hover:text-neutral-950 sm:h-10 sm:px-4 sm:text-sm';
+            button.setAttribute('aria-pressed', String(language === lang));
+          }
+        });
+      }
+
+      function renderPage() {
+        const t = content[language];
+        document.title = t.title;
+        document.documentElement.lang = language === 'KR' ? 'ko' : language.toLowerCase();
+        
+        const headline = document.getElementById('comingSoonTitle');
+        if (headline) headline.textContent = t.headline;
+        
+        const backLink = document.getElementById('backLink');
+        if (backLink) backLink.textContent = t.btn;
+        
+        renderLanguageButtons();
+      }
+
+      document.getElementById('langEN').addEventListener('click', () => {
+        language = 'EN';
+        localStorage.setItem('mokdaLanguage', 'EN');
+        renderPage();
+      });
+
+      document.getElementById('langES').addEventListener('click', () => {
+        language = 'ES';
+        localStorage.setItem('mokdaLanguage', 'ES');
+        renderPage();
+      });
+
+      document.getElementById('langKR').addEventListener('click', () => {
+        language = 'KR';
+        localStorage.setItem('mokdaLanguage', 'KR');
+        renderPage();
+      });
+
       const menuToggle = document.getElementById('menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuToggle && mobileMenu) {
@@ -55,6 +120,8 @@
           mobileMenu.classList.toggle('hidden');
         });
       }
+
+      renderPage();
     </script>
   </body>
 </html>

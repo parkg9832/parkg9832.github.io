@@ -512,8 +512,11 @@
           koreanName: 'Gochujang',
           name: 'Original',
           titleClass: 'text-red-600',
-          line1: 'El toque fresco del jalapeño en el picante del Gochujang.',
-          line2: 'Sabor auténtico de Corea en cada bocado.',
+          desc: {
+            ES: { line1: 'El toque fresco del jalapéño en el picante del Gochujang.', line2: 'Sabor auténtico de Corea en cada bocado.' },
+            EN: { line1: 'The fresh kick of jalapeño meets the bold spice of Gochujang.', line2: 'Authentic taste of Korea in every bite.' },
+            KR: { line1: '고추장의 매콤함과 할라피뇨의 상큼함이 만난 소스.', line2: '' },
+          },
           image: 'assets/bottle-original.png.png',
           alt: 'Salsa MOKDA Original',
         },
@@ -521,8 +524,11 @@
           koreanName: 'Ssamjang',
           name: 'Para Carne',
           titleClass: 'text-yellow-500',
-          line1: 'Salsa tradicional coreana para BBQ con un toque umami profundo.',
-          line2: 'El sabor tostado y picante ideal para tu carne asada.',
+          desc: {
+            ES: { line1: 'Salsa tradicional coreana para BBQ con un toque umami profundo.', line2: 'El sabor tostado y picante ideal para tu carne asada.' },
+            EN: { line1: 'Traditional Korean BBQ sauce with deep umami flavor.', line2: 'Formulated for meats and grilling.' },
+            KR: { line1: '깊은 감칠맛을 더한 전통 한국식 바베큐 디핑 소스.', line2: '' },
+          },
           image: 'assets/bottle-ssamjang.png.png',
           alt: 'Salsa MOKDA Para Carne',
         },
@@ -530,8 +536,11 @@
           koreanName: 'Ganjang',
           name: 'Soy Sauce',
           titleClass: 'text-[#2d1a11]',
-          line1: 'Dulce, salado y lleno de umami que te atrapa.',
-          line2: 'Perfecta para arroz, carne o frituras. Va con todo.',
+          desc: {
+            ES: { line1: 'Dulce, salado y lleno de umami que te atrapa.', line2: 'Perfecta para arroz, carne o frituras. Va con todo.' },
+            EN: { line1: 'Sweet, savory, and addictive umami.', line2: 'A clean daily sauce for fusion menus.' },
+            KR: { line1: '달콤 짭조름하고 중독성 있는 감칠맛.', line2: '(미출시)' },
+          },
           image: 'assets/bottle-sweetsoy.png.png',
           alt: 'Salsa MOKDA Soy Sauce',
         },
@@ -841,9 +850,12 @@
       }
 
       function renderProducts(items) {
+        const lang = language;
         document.getElementById('productsGrid').innerHTML = items
           .map(
-            (item, index) => `
+            (item, index) => {
+              const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
+              return `
               <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="flex min-w-0 flex-col items-center text-center">
                 <h4 class="mb-0 break-keep text-xs font-normal leading-tight text-gray-500">${item.koreanName}</h4>
                 <h3 class="mt-0 break-keep text-3xl font-black leading-tight tracking-tight ${item.titleClass}">${item.name}</h3>
@@ -851,11 +863,12 @@
                   <img src="${item.image}" alt="${item.alt}" class="h-full max-h-[280px] w-auto cursor-pointer object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)] transition-transform duration-300 hover:scale-105 md:max-h-[300px]" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-1 w-full max-w-[240px] overflow-visible px-0 text-center text-xs leading-relaxed tracking-tight text-neutral-600 sm:text-xs md:text-sm">
-                  <span class="block font-medium">${item.line1}</span>
-                  <span class="mt-0.5 block font-extrabold text-neutral-950">${item.line2}</span>
+                  <span class="block font-medium">${d.line1}</span>
+                  <span class="mt-0.5 block font-extrabold text-neutral-950">${d.line2}</span>
                 </div>
               </a>
-            `
+            `;
+            }
           )
           .join('');
       }

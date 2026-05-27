@@ -87,25 +87,27 @@
   </head>
   <body class="bg-white text-neutral-950 antialiased">
     <main class="min-h-screen overflow-hidden bg-white">
-      <header class="fixed top-0 left-0 w-full z-50 bg-white shadow-sm h-16">
-        <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8 py-3">
-          <div class="flex items-center gap-4">
-            <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-neutral-950 transition hover:bg-stone-100" aria-label="Open navigation menu">
-              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
-              </svg>
-            </button>
+      <header class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm h-16 transition-all">
+        <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
+          <div class="flex items-center">
             <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
               <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
             </a>
           </div>
-          <div class="flex items-center gap-2 rounded-full bg-stone-100 p-0.5 shadow-sm sm:p-1" aria-label="Language switcher">
-            <button id="langES" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">ES</button>
-            <button id="langKR" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">KR</button>
-            <button id="langEN" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">EN</button>
+          <div class="flex items-center gap-4 md:gap-6">
+            <div class="flex items-center gap-2 rounded-full bg-stone-100 p-0.5 shadow-sm sm:p-1" aria-label="Language switcher">
+              <button id="langES" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">ES</button>
+              <button id="langKR" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">KR</button>
+              <button id="langEN" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">EN</button>
+            </div>
+            <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 hover:text-black transition-colors hover:bg-stone-100" aria-label="Open navigation menu">
+              <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              </svg>
+            </button>
           </div>
         </div>
-        <div id="mobile-menu" class="absolute left-0 top-16 z-50 hidden w-full border-b border-neutral-950/5 bg-white shadow-md">
+        <div id="mobile-menu" class="absolute left-0 top-16 z-50 hidden w-full border-b border-neutral-950/5 bg-white/90 backdrop-blur-md shadow-md">
           <div class="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-5 md:px-8">
             <a href="about.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-orange-600">About us</a>
             <a href="products.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-orange-600">Salsa Coreana</a>

@@ -40,10 +40,11 @@
           </a>
         </div>
         <div class="flex items-center gap-4 md:gap-6">
-          <div class="flex items-center gap-2 rounded-full bg-stone-100 p-0.5 shadow-sm sm:p-1" aria-label="Language switcher">
-            <button id="langES" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">ES</button>
-            <button id="langKR" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">KR</button>
-            <button id="langEN" type="button" class="h-8 rounded-full px-3 text-xs font-black transition-colors sm:h-10 sm:px-4 sm:text-sm">EN</button>
+          <div id="lang-selector" class="relative flex items-center bg-stone-100 rounded-full p-1 cursor-pointer w-fit shadow-sm" aria-label="Language switcher">
+            <div id="lang-bg" class="absolute left-1 top-1 bottom-1 w-10 sm:w-12 bg-mokdaOrange rounded-full transition-transform duration-300 ease-in-out"></div>
+            <button id="langES" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="0">ES</button>
+            <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1">KR</button>
+            <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2">EN</button>
           </div>
           <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 hover:text-black transition-colors hover:bg-stone-100" aria-label="Open navigation menu">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -344,13 +345,21 @@
       }
 
       function renderLanguageButtons() {
+        const bg = document.getElementById('lang-bg');
+        const langMap = { ES: 0, KR: 1, EN: 2 };
+        const index = langMap[language] !== undefined ? langMap[language] : 0;
+        
+        if (bg) {
+          bg.style.transform = `translateX(${index * 100}%)`;
+        }
+
         ['ES', 'KR', 'EN'].forEach((lang) => {
           const button = document.getElementById(`lang${lang}`);
           if (button) {
             button.className =
               language === lang
-                ? 'h-8 rounded-full bg-mokdaOrange px-3 text-xs font-black text-white transition-colors sm:h-10 sm:px-4 sm:text-sm'
-                : 'h-8 rounded-full px-3 text-xs font-black text-neutral-500 transition-colors hover:text-neutral-950 sm:h-10 sm:px-4 sm:text-sm';
+                ? 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-white transition-colors duration-300'
+                : 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-500 hover:text-neutral-950 transition-colors duration-300';
             button.setAttribute('aria-pressed', String(language === lang));
           }
         });

@@ -31,7 +31,7 @@
   </head>
   <body class="bg-white text-neutral-950 antialiased">
     <header class="fixed inset-x-0 top-0 z-50 border-b border-neutral-950/5 bg-white/90 backdrop-blur">
-      <nav class="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
+      <nav class="mx-auto flex h-16 w-full max-w-screen-xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
         <a href="index.html#top" class="inline-flex items-center" aria-label="MOKDA home">
           <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
         </a>
@@ -40,96 +40,82 @@
     </header>
 
     <main class="pt-16 sm:pt-20">
-      <section class="border-b border-neutral-950/10 bg-white py-20 sm:py-28">
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+      <section class="bg-white py-20 sm:py-28">
+        <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <p class="mb-5 text-sm font-black uppercase tracking-[0.34em] text-mokdaOrange">Product Story</p>
-          <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-            <h1 class="break-keep text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-7xl md:text-8xl">
-              MOKDA PREMIUM LINEUP
-            </h1>
-            <p class="max-w-2xl text-pretty text-lg font-semibold leading-relaxed text-neutral-600 sm:text-xl">
-              Korean sauce depth, bottled for Latin American kitchens, restaurants, and everyday tables.
-            </p>
-          </div>
+          <h1 class="max-w-5xl break-keep text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-7xl md:text-8xl">
+            MOKDA PREMIUM LINEUP
+          </h1>
+          <p class="mt-8 max-w-2xl text-pretty text-lg font-semibold leading-relaxed text-gray-600 sm:text-xl">
+            Korean sauce depth, bottled for Latin American kitchens, restaurants, and everyday tables.
+          </p>
         </div>
       </section>
 
-      <section class="bg-white py-20 sm:py-28">
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div class="mb-14 flex flex-wrap gap-3 border-b border-neutral-950/10 pb-8">
-            <span class="rounded-full bg-neutral-950 px-5 py-2 text-sm font-black uppercase tracking-wide text-white">All</span>
-            <span class="rounded-full border border-neutral-200 px-5 py-2 text-sm font-bold uppercase tracking-wide text-neutral-600">Gochujang</span>
-            <span class="rounded-full border border-neutral-200 px-5 py-2 text-sm font-bold uppercase tracking-wide text-neutral-600">BBQ</span>
-            <span class="rounded-full border border-neutral-200 px-5 py-2 text-sm font-bold uppercase tracking-wide text-neutral-600">Soy</span>
-          </div>
+      <section class="bg-white pb-24">
+        <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
+          <article class="flex flex-col items-center justify-between gap-8 py-16 md:flex-row">
+            <div class="order-2 w-full md:order-1 md:w-5/12">
+              <p class="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-mokdaOrange">Gochujang & Jalapeño</p>
+              <h2 class="mb-4 text-3xl font-bold tracking-tight text-red-600 md:text-5xl">Original</h2>
+              <p class="mb-8 text-gray-600">
+                El toque fresco del jalapeño en el picante del Gochujang. Sabor auténtico de Corea en cada bocado.
+              </p>
+              <a href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-colors hover:bg-yellow-500">상품보기 ↗</a>
+            </div>
+            <div class="order-1 flex w-full justify-center md:order-2 md:w-6/12">
+              <img
+                src="assets/bottle-original.png.png"
+                alt="Salsa MOKDA Original"
+                class="w-full max-w-md object-contain transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </article>
 
-          <div class="grid grid-cols-1 gap-x-12 gap-y-20 md:grid-cols-3">
-            <article class="group">
-              <a href="index.html#b2b" class="block text-center">
-                <div class="flex h-[380px] items-center justify-center">
-                  <img
-                    src="assets/bottle-original.png.png"
-                    alt="Salsa MOKDA Original"
-                    class="max-h-[340px] w-auto object-contain drop-shadow-[0_28px_42px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="mt-8 border-t border-neutral-950/10 pt-7 text-left">
-                  <p class="text-xs font-bold uppercase tracking-[0.26em] text-neutral-400">Gochujang & Jalapeño</p>
-                  <h2 class="mt-3 text-4xl font-black leading-none tracking-tight text-red-600">Original</h2>
-                  <p class="mt-5 text-base font-semibold leading-relaxed text-neutral-600">
-                    El toque fresco del jalapeño en el picante del Gochujang. Sabor auténtico de Corea en cada bocado.
-                  </p>
-                </div>
-              </a>
-            </article>
+          <article class="flex flex-col items-center justify-between gap-8 bg-gray-50 px-6 py-16 rounded-[4rem] md:flex-row-reverse md:px-14">
+            <div class="order-2 w-full md:order-2 md:w-5/12">
+              <p class="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-mokdaOrange">BBQ & Umami</p>
+              <h2 class="mb-4 text-3xl font-bold tracking-tight text-yellow-500 md:text-5xl">Para Carne</h2>
+              <p class="mb-8 text-gray-600">
+                Salsa tradicional coreana para BBQ con un toque umami profundo. Diseñada para carnes y parrilla.
+              </p>
+              <a href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-colors hover:bg-yellow-500">상품보기 ↗</a>
+            </div>
+            <div class="order-1 flex w-full justify-center md:order-1 md:w-6/12">
+              <img
+                src="assets/bottle-ssamjang.png.png"
+                alt="Salsa MOKDA Para Carne"
+                class="w-full max-w-md object-contain transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </article>
 
-            <article class="group">
-              <a href="index.html#b2b" class="block text-center">
-                <div class="flex h-[380px] items-center justify-center">
-                  <img
-                    src="assets/bottle-ssamjang.png.png"
-                    alt="Salsa MOKDA Para Carne"
-                    class="max-h-[340px] w-auto object-contain drop-shadow-[0_28px_42px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="mt-8 border-t border-neutral-950/10 pt-7 text-left">
-                  <p class="text-xs font-bold uppercase tracking-[0.26em] text-neutral-400">BBQ & Umami</p>
-                  <h2 class="mt-3 text-4xl font-black leading-none tracking-tight text-yellow-500">Para Carne</h2>
-                  <p class="mt-5 text-base font-semibold leading-relaxed text-neutral-600">
-                    Salsa tradicional coreana para BBQ con un toque umami profundo. Diseñada para carnes y parrilla.
-                  </p>
-                </div>
-              </a>
-            </article>
-
-            <article class="group">
-              <a href="index.html#b2b" class="block text-center">
-                <div class="flex h-[380px] items-center justify-center">
-                  <img
-                    src="assets/bottle-sweetsoy.png.png"
-                    alt="Salsa MOKDA Soy Sauce"
-                    class="max-h-[340px] w-auto object-contain drop-shadow-[0_28px_42px_rgba(0,0,0,0.08)] transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                </div>
-                <div class="mt-8 border-t border-neutral-950/10 pt-7 text-left">
-                  <p class="text-xs font-bold uppercase tracking-[0.26em] text-neutral-400">Savory Garlic & Sesame</p>
-                  <h2 class="mt-3 text-4xl font-black leading-none tracking-tight text-[#2d1a11]">Soy Sauce</h2>
-                  <p class="mt-5 text-base font-semibold leading-relaxed text-neutral-600">
-                    Dulce, salado y lleno de umami que te atrapa. A clean daily sauce for fusion menus.
-                  </p>
-                </div>
-              </a>
-            </article>
-          </div>
+          <article class="flex flex-col items-center justify-between gap-8 py-16 md:flex-row">
+            <div class="order-2 w-full md:order-1 md:w-5/12">
+              <p class="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-mokdaOrange">Savory Garlic & Sesame</p>
+              <h2 class="mb-4 text-3xl font-bold tracking-tight text-[#2d1a11] md:text-5xl">Soy Sauce</h2>
+              <p class="mb-8 text-gray-600">
+                Dulce, salado y lleno de umami que te atrapa. A clean daily sauce for fusion menus.
+              </p>
+              <a href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-colors hover:bg-yellow-500">상품보기 ↗</a>
+            </div>
+            <div class="order-1 flex w-full justify-center md:order-2 md:w-6/12">
+              <img
+                src="assets/bottle-sweetsoy.png.png"
+                alt="Salsa MOKDA Soy Sauce"
+                class="w-full max-w-md object-contain transition-transform duration-300 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </article>
         </div>
       </section>
     </main>
 
     <footer class="bg-neutral-950 py-12 text-white">
-      <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto flex w-full max-w-screen-xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
         <a href="index.html#top" class="inline-flex items-center" aria-label="MOKDA home">
           <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-7 w-auto brightness-0 invert" />
         </a>

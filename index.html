@@ -516,18 +516,21 @@
           name: 'MOKDA Seoul Market',
           address: 'Av. Insurgentes Sur 1458, CDMX',
           tag: 'Open',
+          mapUrl: 'https://www.google.com/maps/embed?q=Casa+Mokda%2C+Mexico+City&t=m&z=15',
         },
         {
           id: 'peru',
           name: 'K-Food Corner Lima',
           address: 'Av. José Larco 812, Miraflores',
           tag: 'Open',
+          mapUrl: 'https://www.google.com/maps/embed?q=K-Food+Corner+Lima%2C+Miraflores&t=m&z=15',
         },
         {
           id: 'colombia',
           name: 'Casa Corea Gourmet',
           address: 'Cra. 13 #82-19, Bogotá',
           tag: 'Soon',
+          mapUrl: 'https://www.google.com/maps/embed?q=Rte.+Coreano%2C+Bogota&t=m&z=15',
         },
       ];
 
@@ -732,12 +735,7 @@
                   <div class="border-b border-white/20 py-3 first:pt-0 last:border-b-0 last:pb-0">
                     <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">
                       <span class="flex flex-wrap items-center gap-2 md:gap-3">
-                        <span class="inline-flex items-center gap-2">
-                          <svg class="h-5 w-5 shrink-0 fill-orange-500" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2.5c-3.86 0-7 3.08-7 6.88 0 4.78 5.44 10.48 6.45 11.5.3.3.8.3 1.1 0C13.56 19.86 19 14.16 19 9.38c0-3.8-3.14-6.88-7-6.88Zm0 9.55a2.68 2.68 0 1 1 0-5.36 2.68 2.68 0 0 1 0 5.36Z" />
-                          </svg>
-                          <span class="break-keep text-base font-bold ${nameClass} md:text-lg">${store.name}</span>
-                        </span>
+                        <span class="break-keep text-base font-bold ${nameClass} md:text-lg">${store.name}</span>
                         <span class="${tagClass}">${store.tag}</span>
                       </span>
                       <span class="mt-1.5 block text-pretty text-xs font-semibold leading-5 ${addressClass} md:text-sm md:leading-6">${store.address}</span>
@@ -753,6 +751,13 @@
       function selectStore(id) {
         selectedStoreId = id;
         renderStores();
+        const store = stores.find((item) => item.id === id);
+        const frame = document.getElementById('mapFrame');
+        if (store?.mapUrl && frame) {
+          frame.src = store.mapUrl;
+          frame.dataset.mapSrc = store.mapUrl;
+          frame.title = `${store.name} map`;
+        }
       }
 
       function renderReels() {

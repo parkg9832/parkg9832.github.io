@@ -91,115 +91,70 @@
       </div>
     </header>
 
-    <main>
+    <main class="animate-fade-in-up" style="animation-delay:0ms;">
 
-      <!-- ═══════════════════════════ CINEMATIC HERO ═══════════════════════════ -->
-      <section class="relative flex min-h-screen items-end overflow-hidden bg-neutral-950">
+      <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+      <section class="relative flex items-center justify-center overflow-hidden bg-neutral-950" style="min-height:50vh;">
         <img
           src="assets/assetshero-1-desktop.jpg.png"
           alt=""
           aria-hidden="true"
-          class="absolute inset-0 h-full w-full object-cover opacity-70"
+          class="absolute inset-0 h-full w-full object-cover opacity-60"
         />
-        <!-- gradient overlay — bottom heavy for text legibility -->
-        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
 
-        <!-- hero copy -->
-        <div class="relative w-full max-w-screen-xl mx-auto px-6 pt-28 pb-20 lg:px-8 lg:pt-36 lg:pb-28">
-          <p id="heroKicker" class="mb-6 text-sm font-black uppercase tracking-[0.34em] text-mokdaOrange animate-fade-in-up">BRAND ESSENCE</p>
-          <h1 id="heroTitle" class="max-w-5xl break-keep text-balance font-black leading-none tracking-tight text-white animate-fade-in-up delay-200"
-              style="font-size: clamp(2.8rem, 7vw, 6rem);">
+        <!-- hero copy — centered -->
+        <div class="relative text-center w-full max-w-screen-xl mx-auto px-6 pt-40 pb-20 lg:px-8">
+          <p id="heroKicker" class="mb-5 text-xs font-black uppercase tracking-[0.34em] text-mokdaOrange animate-fade-in-up">BRAND ESSENCE</p>
+          <h1 id="heroTitle" class="break-keep text-balance font-black leading-none tracking-tight text-white animate-fade-in-up delay-200"
+              style="font-size: clamp(2.6rem, 6vw, 5.5rem);">
             Comer Corea,<br/>
             <span class="text-mokdaOrange">한국을 먹다</span>
           </h1>
-          <p id="heroSubtitle" class="mt-8 max-w-2xl text-lg font-semibold leading-relaxed text-white/80 animate-fade-in-up delay-500">
-            No vendemos solo salsas. Embotellamos la energía de Seúl para tu mesa latina.
-          </p>
-          <!-- scroll cue -->
-          <div class="mt-14 flex items-center gap-3 animate-fade-in-up delay-800">
-            <div class="h-px w-12 bg-white/40"></div>
-            <span class="text-xs font-black uppercase tracking-widest text-white/50">Scroll</span>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════ FOUNDER STORY ═══════════════════════════ -->
+      <section class="bg-[#FFFBF7]">
+        <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out mx-auto max-w-3xl px-6 py-24 text-center lg:px-8 lg:py-32">
+          <p id="storyKicker" class="mb-6 text-xs font-black uppercase tracking-[0.28em] text-mokdaOrange">Brand Story</p>
+          <h2 id="storyTitle" class="mb-10 text-3xl font-black leading-tight tracking-tight text-gray-900 md:text-5xl">
+            유학생의 주방에서<br/>시작된 이야기
+          </h2>
+          <div id="storyBody" class="space-y-6 text-lg leading-loose text-gray-700">
+            <p>2024년, 가방 하나 들고 남미로 떠난 청년이 있었습니다. 각자의 음식을 나눠 먹던 그 작은 주방에서, 청년은 깨달았습니다.</p>
+            <p class="text-gray-900 font-bold text-xl">"문화를 경험하는 가장 쉬운 방법은 함께 먹는 것이다."</p>
+            <p>한국을 사랑하는 그들과, 남미를 사랑하는 한국인들을 위해 — MOKDA의 이야기는 그렇게 시작됐습니다.</p>
           </div>
         </div>
       </section>
 
-      <!-- ═══════════════════════════ FOUNDER STORY (PARALLAX) ═══════════════════════════ -->
-      <section
-        class="parallax-bg relative overflow-hidden"
-        style="background-image: url('assets/assetshero-2-desktop.jpg.png');"
-      >
-        <div class="absolute inset-0 bg-black/70"></div>
-        <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out relative mx-auto max-w-screen-xl px-6 py-32 lg:px-8">
-          <div class="max-w-3xl">
-            <p id="storyKicker" class="mb-6 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">Brand Story</p>
-            <h2 id="storyTitle" class="mb-10 text-4xl font-black leading-tight tracking-tight text-white md:text-6xl">
-              유학생의 주방에서<br/>시작된 이야기
-            </h2>
-            <div id="storyBody" class="space-y-6 text-lg font-medium leading-relaxed text-white/75">
-              <p>2024년, 가방 하나 들고 남미로 떠난 청년이 있었습니다. 각자의 음식을 나눠 먹던 그 작은 주방에서, 청년은 깨달았습니다.</p>
-              <p class="text-white font-bold text-xl">"문화를 경험하는 가장 쉬운 방법은 함께 먹는 것이다."</p>
-              <p>한국을 사랑하는 그들과, 남미를 사랑하는 한국인들을 위해 — MOKDA의 이야기는 그렇게 시작됐습니다.</p>
+      <!-- ═══════════════════════════ CORE VALUES ═══════════════════════════ -->
+      <section class="bg-white py-24 lg:py-32">
+        <div class="mx-auto max-w-screen-xl px-6 lg:px-8">
+          <div class="mb-4">
+            <p id="valuesKicker" class="text-xs font-black uppercase tracking-[0.28em] text-mokdaOrange">Core Values</p>
+          </div>
+          <h2 id="valuesTitle" class="text-3xl font-black tracking-tight text-neutral-950 md:text-4xl leading-tight mb-0">
+            MOKDA를 선택해야 하는 세 가지 이유.
+          </h2>
+
+          <div class="grid md:grid-cols-3 gap-12 mt-16 reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out">
+            <div class="border-t-2 border-orange-500 pt-6">
+              <span class="block text-5xl font-light text-orange-200 mb-4">01</span>
+              <h3 id="val1Title" class="text-xl font-bold text-gray-900 mb-3">진정성 있는 감칠맛</h3>
+              <p id="val1Desc" class="text-gray-600 leading-relaxed">라틴 입맛에 딱 맞춘 전통 한국 발효 소스의 정수.</p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══════════════════════════ VISION & MISSION GRID ═══════════════════════════ -->
-      <section class="bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-28">
-        <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out mx-auto max-w-screen-xl px-6 lg:px-8">
-          <div class="mb-16 max-w-2xl">
-            <p id="valuesKicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">Core Values</p>
-            <h2 id="valuesTitle" class="text-4xl font-black tracking-tight text-neutral-950 md:text-5xl leading-tight">
-              Tres razones para<br/>elegir MOKDA.
-            </h2>
-          </div>
-          <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-
-            <!-- Card 01 -->
-            <article class="value-card group relative overflow-hidden bg-white border border-neutral-100 p-8 cursor-default">
-              <div class="mb-6 flex items-center justify-between">
-                <span class="text-5xl font-black text-mokdaOrange/20 select-none group-hover:text-mokdaOrange/40 transition-colors duration-300">01</span>
-                <div class="h-10 w-10 rounded-full bg-mokdaOrange/10 flex items-center justify-center group-hover:bg-mokdaOrange/20 transition-colors duration-300">
-                  <svg class="h-5 w-5 text-mokdaOrange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.95 5.66-.7-.7M6.41 6.41l-.7-.7m12.02 0-.7.7M6.41 17.59l-.7.7" />
-                  </svg>
-                </div>
-              </div>
-              <h3 id="val1Title" class="mb-3 text-xl font-black tracking-tight text-neutral-950">Sabor Auténtico</h3>
-              <p id="val1Desc" class="text-base leading-relaxed text-gray-500">Fermentación tradicional coreana con el toque exacto para el paladar latino.</p>
-              <div class="absolute bottom-0 left-0 h-1 w-0 bg-mokdaOrange group-hover:w-full transition-all duration-500"></div>
-            </article>
-
-            <!-- Card 02 -->
-            <article class="value-card group relative overflow-hidden bg-neutral-950 border border-neutral-900 p-8 cursor-default">
-              <div class="mb-6 flex items-center justify-between">
-                <span class="text-5xl font-black text-white/10 select-none group-hover:text-mokdaOrange/40 transition-colors duration-300">02</span>
-                <div class="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-mokdaOrange/20 transition-colors duration-300">
-                  <svg class="h-5 w-5 text-mokdaOrange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
-                  </svg>
-                </div>
-              </div>
-              <h3 id="val2Title" class="mb-3 text-xl font-black tracking-tight text-white">Fusión Latina</h3>
-              <p id="val2Desc" class="text-base leading-relaxed text-white/50">Tus tacos, asados, bowls, snacks. MOKDA no compite, eleva tu comida de todos los días.</p>
-              <div class="absolute bottom-0 left-0 h-1 w-0 bg-mokdaOrange group-hover:w-full transition-all duration-500"></div>
-            </article>
-
-            <!-- Card 03 -->
-            <article class="value-card group relative overflow-hidden bg-white border border-neutral-100 p-8 cursor-default">
-              <div class="mb-6 flex items-center justify-between">
-                <span class="text-5xl font-black text-mokdaOrange/20 select-none group-hover:text-mokdaOrange/40 transition-colors duration-300">03</span>
-                <div class="h-10 w-10 rounded-full bg-mokdaOrange/10 flex items-center justify-center group-hover:bg-mokdaOrange/20 transition-colors duration-300">
-                  <svg class="h-5 w-5 text-mokdaOrange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0" />
-                  </svg>
-                </div>
-              </div>
-              <h3 id="val3Title" class="mb-3 text-xl font-black tracking-tight text-neutral-950">Socios de Tendencia</h3>
-              <p id="val3Desc" class="text-base leading-relaxed text-gray-500">Calidad constante y una marca vibrante para que tu negocio surfee la ola del K-Culture con nosotros.</p>
-              <div class="absolute bottom-0 left-0 h-1 w-0 bg-mokdaOrange group-hover:w-full transition-all duration-500"></div>
-            </article>
-
+            <div class="border-t-2 border-orange-500 pt-6">
+              <span class="block text-5xl font-light text-orange-200 mb-4">02</span>
+              <h3 id="val2Title" class="text-xl font-bold text-gray-900 mb-3">경계 없는 미식 매치</h3>
+              <p id="val2Desc" class="text-gray-600 leading-relaxed">타코, 아사도, 보울, 스낵 어디든. MOKDA는 경쟁하지 않고 당신의 일상을 더 맛있게 만듭니다.</p>
+            </div>
+            <div class="border-t-2 border-orange-500 pt-6">
+              <span class="block text-5xl font-light text-orange-200 mb-4">03</span>
+              <h3 id="val3Title" class="text-xl font-bold text-gray-900 mb-3">독보적인 K-Sauce의 기준</h3>
+              <p id="val3Desc" class="text-gray-600 leading-relaxed">일관된 품질과 강렬한 브랜드 파워로 K-컬쳐의 물결을 함께 탑니다.</p>
+            </div>
           </div>
         </div>
       </section>

@@ -148,15 +148,15 @@
           <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
         </svg>
         <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:px-8">
-          <div data-reveal>
+          <div>
             <p id="mapKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-white/70"></p>
             <h2 id="mapTitle" class="break-keep text-balance text-5xl font-black leading-none tracking-tight sm:text-6xl md:text-7xl"></h2>
             <div id="storeList" class="custom-scrollbar mt-8 max-h-[300px] overflow-y-auto overflow-x-hidden rounded-3xl border border-white/20 bg-white/10 p-4 backdrop-blur-md md:mt-10 md:max-h-[400px] md:p-5"></div>
           </div>
-          <div data-reveal data-reveal-delay="120" class="relative min-h-[460px] w-full overflow-hidden rounded-3xl bg-white shadow-2xl shadow-orange-950/20">
+          <div class="relative min-h-[460px] w-full overflow-hidden rounded-3xl bg-white shadow-2xl shadow-orange-950/20">
             <iframe
               id="mapFrame"
-              src="https://maps.google.com/maps?q=Latin%20America&t=&z=4&ie=UTF8&iwloc=&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3153.0134449845347!2d-78.4735237!3d13.111812!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA2JzQyLjUiTiA3OMKwMjgnMjQuNyJX!5e0!3m2!1sko!2skr!4v1683262626343!5m2!1sko!2skr"
               width="100%"
               height="100%"
               style="border: 0; position: absolute; inset: 0"
@@ -164,8 +164,8 @@
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="MOKDA LATAM map"
-              data-map-src="https://maps.google.com/maps?q=Latin%20America&t=&z=4&ie=UTF8&iwloc=&output=embed"
-              class="h-full w-full rounded-3xl opacity-100 transition-opacity duration-500"
+              data-map-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3153.0134449845347!2d-78.4735237!3d13.111812!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDA2JzQyLjUiTiA3OMKwMjgnMjQuNyJX!5e0!3m2!1sko!2skr!4v1683262626343!5m2!1sko!2skr"
+              class="h-full w-full rounded-3xl"
             ></iframe>
           </div>
         </div>
@@ -516,21 +516,18 @@
           name: 'MOKDA Seoul Market',
           address: 'Av. Insurgentes Sur 1458, CDMX',
           tag: 'Open',
-          mapUrl: 'https://maps.google.com/maps?q=Av.%20Insurgentes%20Sur%201458%2C%20Mexico%20City&t=&z=4&ie=UTF8&iwloc=&output=embed',
         },
         {
           id: 'peru',
           name: 'K-Food Corner Lima',
           address: 'Av. José Larco 812, Miraflores',
           tag: 'Open',
-          mapUrl: 'https://maps.google.com/maps?q=Av.%20Jose%20Larco%20812%2C%20Miraflores%2C%20Lima%2C%20Peru&t=&z=4&ie=UTF8&iwloc=&output=embed',
         },
         {
           id: 'colombia',
           name: 'Casa Corea Gourmet',
           address: 'Cra. 13 #82-19, Bogotá',
           tag: 'Soon',
-          mapUrl: 'https://maps.google.com/maps?q=Cra.%2013%20%2382-19%2C%20Bogota%2C%20Colombia&t=&z=4&ie=UTF8&iwloc=&output=embed',
         },
       ];
 
@@ -554,7 +551,6 @@
       let heroInterval = null;
       let heroScrollTimer = null;
       let selectedStoreId = null;
-      let mapTransitionTimer = null;
 
       const revealObserver =
         'IntersectionObserver' in window
@@ -736,7 +732,12 @@
                   <div class="border-b border-white/20 py-3 first:pt-0 last:border-b-0 last:pb-0">
                     <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">
                       <span class="flex flex-wrap items-center gap-2 md:gap-3">
-                        <span class="break-keep text-base font-bold ${nameClass} md:text-lg">${store.name}</span>
+                        <span class="inline-flex items-center gap-2">
+                          <svg class="h-5 w-5 flex-none fill-orange-500" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2.5c-3.86 0-7 3.08-7 6.88 0 4.78 5.44 10.48 6.45 11.5.3.3.8.3 1.1 0C13.56 19.86 19 14.16 19 9.38c0-3.8-3.14-6.88-7-6.88Zm0 9.55a2.68 2.68 0 1 1 0-5.36 2.68 2.68 0 0 1 0 5.36Z" />
+                          </svg>
+                          <span class="break-keep text-base font-bold ${nameClass} md:text-lg">${store.name}</span>
+                        </span>
                         <span class="${tagClass}">${store.tag}</span>
                       </span>
                       <span class="mt-1.5 block text-pretty text-xs font-semibold leading-5 ${addressClass} md:text-sm md:leading-6">${store.address}</span>
@@ -752,20 +753,6 @@
       function selectStore(id) {
         selectedStoreId = id;
         renderStores();
-        const store = stores.find((item) => item.id === id);
-        const frame = document.getElementById('mapFrame');
-        const nextSrc = store?.mapUrl || 'https://maps.google.com/maps?q=Latin%20America&t=&z=4&ie=UTF8&iwloc=&output=embed';
-        if (frame.dataset.mapSrc === nextSrc) return;
-        clearTimeout(mapTransitionTimer);
-        frame.classList.remove('opacity-100');
-        frame.classList.add('opacity-0');
-        mapTransitionTimer = setTimeout(() => {
-          frame.src = nextSrc;
-          frame.dataset.mapSrc = nextSrc;
-          frame.title = store ? `${store.name} map` : 'MOKDA LATAM map';
-          frame.classList.remove('opacity-0');
-          frame.classList.add('opacity-100');
-        }, 250);
       }
 
       function renderReels() {

@@ -157,16 +157,16 @@
 
       /* Fade In Up */
       @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(30px); }
+        from { opacity: 0; transform: translateY(40px); }
         to { opacity: 1; transform: translateY(0); }
       }
       .animate-fade-in-up {
-        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: fadeInUp 1.2s ease-out forwards;
         opacity: 0;
       }
-      .delay-100 { animation-delay: 100ms; }
-      .delay-300 { animation-delay: 300ms; }
+      .delay-200 { animation-delay: 200ms; }
       .delay-500 { animation-delay: 500ms; }
+      .delay-800 { animation-delay: 800ms; }
 
       /* Marquee */
       @keyframes marquee {
@@ -228,19 +228,19 @@
 
       <section class="bg-orange-500 text-white py-4 overflow-hidden relative">
         <div class="animate-marquee">
-          <div class="flex items-center space-x-8 px-4 text-lg md:text-2xl font-bold uppercase tracking-widest shrink-0">
-            <span>Sabor Auténtico</span><span>•</span>
-            <span>Calidad Premium</span><span>•</span>
-            <span>Hecho en Corea</span><span>•</span>
-            <span>Pasión Latina</span><span>•</span>
-            <span>MOKDA</span><span>•</span>
+          <div class="flex items-center space-x-8 px-4 text-xl md:text-3xl font-medium italic tracking-wide text-white/95 shrink-0">
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
           </div>
-          <div class="flex items-center space-x-8 px-4 text-lg md:text-2xl font-bold uppercase tracking-widest shrink-0">
-            <span>Sabor Auténtico</span><span>•</span>
-            <span>Calidad Premium</span><span>•</span>
-            <span>Hecho en Corea</span><span>•</span>
-            <span>Pasión Latina</span><span>•</span>
-            <span>MOKDA</span><span>•</span>
+          <div class="flex items-center space-x-8 px-4 text-xl md:text-3xl font-medium italic tracking-wide text-white/95 shrink-0">
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
+            <span>Corea, más cerca de ti</span><span class="text-orange-200">✦</span>
           </div>
         </div>
       </section>
@@ -735,9 +735,9 @@
                 <div class="absolute inset-0 z-10 bg-black/65 md:bg-black/60"></div>
                 <div class="relative z-20 mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
                   <p data-hero-kicker class="mb-5 text-xs font-black uppercase tracking-[0.34em] text-mokdaOrange [text-shadow:_0_3px_8px_rgba(0,0,0,0.9)] sm:text-sm"></p>
-                  <h1 data-hero-title class="max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] [text-shadow:_0_6px_24px_rgba(0,0,0,0.9)] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-100"></h1>
-                  <p data-hero-subtitle class="mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-relaxed text-white/85 [text-shadow:_0_3px_12px_rgba(0,0,0,0.75)] sm:text-xl animate-fade-in-up delay-300"></p>
-                  <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-black text-white shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-500"></a>
+                  <h1 data-hero-title class="max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] [text-shadow:_0_6px_24px_rgba(0,0,0,0.9)] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
+                  <p data-hero-subtitle class="mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-relaxed text-white/85 [text-shadow:_0_3px_12px_rgba(0,0,0,0.75)] sm:text-xl animate-fade-in-up delay-500"></p>
+                  <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-black text-white shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-800"></a>
                 </div>
               </div>
             `

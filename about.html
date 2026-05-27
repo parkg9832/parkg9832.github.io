@@ -27,7 +27,7 @@
     <style>
       @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
+        to   { opacity: 1; transform: translateY(0); }
       }
       .animate-fade-in-up {
         animation: fadeInUp 1.2s ease-out forwards;
@@ -40,10 +40,28 @@
       body {
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       }
+
+      /* Parallax */
+      .parallax-bg {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+      }
+
+      /* Value card hover */
+      .value-card {
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+      .value-card:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 24px 48px -8px rgba(0,0,0,0.12);
+      }
     </style>
     <link rel="icon" type="image/png" href="./assets/Favicon.png" />
   </head>
   <body class="bg-white text-neutral-950 antialiased">
+
+    <!-- ═══════════════════════════ HEADER ═══════════════════════════ -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
       <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
         <div class="flex items-center">
@@ -52,20 +70,20 @@
           </a>
         </div>
         <div class="flex items-center gap-4 md:gap-6">
-          <div id="lang-selector" class="relative flex items-center bg-stone-100 rounded-full p-1 cursor-pointer w-fit shadow-sm" aria-label="Language switcher">
+          <div id="lang-selector" class="relative flex items-center bg-white/20 backdrop-blur-sm rounded-full p-1 cursor-pointer w-fit shadow-sm" aria-label="Language switcher">
             <div id="lang-bg" class="absolute left-1 top-1 bottom-1 w-10 sm:w-12 bg-mokdaOrange rounded-full transition-transform duration-300 ease-in-out"></div>
             <button id="langES" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="0">ES</button>
             <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1">KR</button>
             <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2">EN</button>
           </div>
-          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 hover:text-black transition-colors hover:bg-stone-100" aria-label="Open navigation menu">
+          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-white hover:text-white transition-colors hover:bg-white/20" aria-label="Open navigation menu">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
             </svg>
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="absolute left-0 top-16 z-50 w-full border-b border-neutral-950/5 bg-white/90 backdrop-blur-md shadow-md overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 invisible">
+      <div id="mobile-menu" class="absolute left-0 top-20 z-50 w-full border-b border-neutral-950/5 bg-white/90 backdrop-blur-md shadow-md overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 invisible">
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-5 md:px-8">
           <a href="about.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-orange-600">About us</a>
           <a href="products.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-orange-600">Salsa Coreana</a>
@@ -73,150 +91,230 @@
       </div>
     </header>
 
-    <main class="pt-20">
-      <section class="relative flex min-h-[60vh] items-center overflow-hidden bg-neutral-950">
-        <img src="assets/story-vibe.png" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover opacity-55" />
-        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20"></div>
-        <div class="relative mx-auto w-full max-w-screen-xl px-6 py-24 lg:px-8">
-          <p id="heroKicker" class="mb-6 text-sm font-black uppercase tracking-[0.34em] text-mokdaOrange">Nuestra identidad</p>
-          <h1 id="heroTitle" class="max-w-5xl break-keep text-balance text-5xl font-bold leading-none tracking-tight text-white md:text-7xl animate-fade-in-up delay-200">
-            Salsa coreana creada para la energía de Latinoamérica.
+    <main>
+
+      <!-- ═══════════════════════════ CINEMATIC HERO ═══════════════════════════ -->
+      <section class="relative flex min-h-screen items-end overflow-hidden bg-neutral-950">
+        <img
+          src="assets/assetshero-1-desktop.jpg.png"
+          alt=""
+          aria-hidden="true"
+          class="absolute inset-0 h-full w-full object-cover opacity-70"
+        />
+        <!-- gradient overlay — bottom heavy for text legibility -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+
+        <!-- hero copy -->
+        <div class="relative w-full max-w-screen-xl mx-auto px-6 pb-20 lg:px-8 lg:pb-28">
+          <p id="heroKicker" class="mb-6 text-sm font-black uppercase tracking-[0.34em] text-mokdaOrange animate-fade-in-up">BRAND ESSENCE</p>
+          <h1 id="heroTitle" class="max-w-5xl break-keep text-balance font-black leading-none tracking-tight text-white animate-fade-in-up delay-200"
+              style="font-size: clamp(2.8rem, 7vw, 6rem);">
+            Comer Corea,<br/>
+            <span class="text-mokdaOrange">한국을 먹다</span>
           </h1>
           <p id="heroSubtitle" class="mt-8 max-w-2xl text-lg font-semibold leading-relaxed text-white/80 animate-fade-in-up delay-500">
-            MOKDA conecta la depth de la cocina coreana con mesas latinas que celebran sabor, compartir y movement.
+            No vendemos solo salsas. Embotellamos la energía de Seúl para tu mesa latina.
           </p>
+          <!-- scroll cue -->
+          <div class="mt-14 flex items-center gap-3 animate-fade-in-up delay-800">
+            <div class="h-px w-12 bg-white/40"></div>
+            <span class="text-xs font-black uppercase tracking-widest text-white/50">Scroll</span>
+          </div>
         </div>
       </section>
 
-      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-24">
-        <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out mx-auto grid max-w-screen-lg grid-cols-1 gap-16 px-6 md:grid-cols-2">
-          <div>
-            <p id="storyKicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">Brand Story</p>
-            <h2 id="storyTitle" class="text-balance text-4xl font-black leading-tight tracking-tight text-neutral-950 md:text-6xl">
-              De Corea al ritmo cotidiano de LATAM.
+      <!-- ═══════════════════════════ FOUNDER STORY (PARALLAX) ═══════════════════════════ -->
+      <section
+        class="parallax-bg relative overflow-hidden"
+        style="background-image: url('assets/assetshero-2-desktop.jpg.png');"
+      >
+        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out relative mx-auto max-w-screen-xl px-6 py-32 lg:px-8">
+          <div class="max-w-3xl">
+            <p id="storyKicker" class="mb-6 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">Brand Story</p>
+            <h2 id="storyTitle" class="mb-10 text-4xl font-black leading-tight tracking-tight text-white md:text-6xl">
+              유학생의 주방에서<br/>시작된 이야기
+            </h2>
+            <div id="storyBody" class="space-y-6 text-lg font-medium leading-relaxed text-white/75">
+              <p>2024년, 가방 하나 들고 남미로 떠난 청년이 있었습니다. 각자의 음식을 나눠 먹던 그 작은 주방에서, 청년은 깨달았습니다.</p>
+              <p class="text-white font-bold text-xl">"문화를 경험하는 가장 쉬운 방법은 함께 먹는 것이다."</p>
+              <p>한국을 사랑하는 그들과, 남미를 사랑하는 한국인들을 위해 — MOKDA의 이야기는 그렇게 시작됐습니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════════════ VISION & MISSION GRID ═══════════════════════════ -->
+      <section class="bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-28">
+        <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out mx-auto max-w-screen-xl px-6 lg:px-8">
+          <div class="mb-16 max-w-2xl">
+            <p id="valuesKicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">Core Values</p>
+            <h2 id="valuesTitle" class="text-4xl font-black tracking-tight text-neutral-950 md:text-5xl leading-tight">
+              Tres razones para<br/>elegir MOKDA.
             </h2>
           </div>
-          <div id="storyBody" class="space-y-6 text-lg leading-relaxed text-gray-600">
-            <p>
-              MOKDA nace para que una salsa coreana no se sienta lejana, sino lista para entrar en tacos, parrillas, bowls, snacks y cocinas profesionales.
-            </p>
-            <p>
-              Nuestra visión es llevar sabores con carácter coreano a formatos simples, generosos y fáciles de compartir. Diseñamos cada botella pensando en consumidores curiosos y en socios B2B que buscan diferenciar su portafolio.
-            </p>
-            <p>
-              No vendemos solo picante. Construimos un puente entre herencia, fermentación, dulzor, umami y la calidez de las mesas latinoamericanas.
-            </p>
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+
+            <!-- Card 01 -->
+            <article class="value-card group relative overflow-hidden bg-white border border-neutral-100 p-8 cursor-default">
+              <div class="mb-6 flex items-center justify-between">
+                <span class="text-5xl font-black text-mokdaOrange/20 select-none group-hover:text-mokdaOrange/40 transition-colors duration-300">01</span>
+                <div class="h-10 w-10 rounded-full bg-mokdaOrange/10 flex items-center justify-center group-hover:bg-mokdaOrange/20 transition-colors duration-300">
+                  <svg class="h-5 w-5 text-mokdaOrange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m14.95 5.66-.7-.7M6.41 6.41l-.7-.7m12.02 0-.7.7M6.41 17.59l-.7.7" />
+                  </svg>
+                </div>
+              </div>
+              <h3 id="val1Title" class="mb-3 text-xl font-black tracking-tight text-neutral-950">Sabor Auténtico</h3>
+              <p id="val1Desc" class="text-base leading-relaxed text-gray-500">Fermentación tradicional coreana con el toque exacto para el paladar latino.</p>
+              <div class="absolute bottom-0 left-0 h-1 w-0 bg-mokdaOrange group-hover:w-full transition-all duration-500"></div>
+            </article>
+
+            <!-- Card 02 -->
+            <article class="value-card group relative overflow-hidden bg-neutral-950 border border-neutral-900 p-8 cursor-default">
+              <div class="mb-6 flex items-center justify-between">
+                <span class="text-5xl font-black text-white/10 select-none group-hover:text-mokdaOrange/40 transition-colors duration-300">02</span>
+                <div class="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-mokdaOrange/20 transition-colors duration-300">
+                  <svg class="h-5 w-5 text-mokdaOrange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
+                  </svg>
+                </div>
+              </div>
+              <h3 id="val2Title" class="mb-3 text-xl font-black tracking-tight text-white">Fusión Latina</h3>
+              <p id="val2Desc" class="text-base leading-relaxed text-white/50">Tus tacos, asados, bowls, snacks. MOKDA no compite, eleva tu comida de todos los días.</p>
+              <div class="absolute bottom-0 left-0 h-1 w-0 bg-mokdaOrange group-hover:w-full transition-all duration-500"></div>
+            </article>
+
+            <!-- Card 03 -->
+            <article class="value-card group relative overflow-hidden bg-white border border-neutral-100 p-8 cursor-default">
+              <div class="mb-6 flex items-center justify-between">
+                <span class="text-5xl font-black text-mokdaOrange/20 select-none group-hover:text-mokdaOrange/40 transition-colors duration-300">03</span>
+                <div class="h-10 w-10 rounded-full bg-mokdaOrange/10 flex items-center justify-center group-hover:bg-mokdaOrange/20 transition-colors duration-300">
+                  <svg class="h-5 w-5 text-mokdaOrange" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0" />
+                  </svg>
+                </div>
+              </div>
+              <h3 id="val3Title" class="mb-3 text-xl font-black tracking-tight text-neutral-950">Socios de Tendencia</h3>
+              <p id="val3Desc" class="text-base leading-relaxed text-gray-500">Calidad constante y una marca vibrante para que tu negocio surfee la ola del K-Culture con nosotros.</p>
+              <div class="absolute bottom-0 left-0 h-1 w-0 bg-mokdaOrange group-hover:w-full transition-all duration-500"></div>
+            </article>
+
           </div>
         </div>
       </section>
 
-      <section class="bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-24">
+      <!-- ═══════════════════════════ BI / CI — VISUAL IDENTITY ═══════════════════════════ -->
+      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-28">
         <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out mx-auto max-w-screen-xl px-6 lg:px-8">
-          <div class="mb-14 max-w-3xl">
-            <p id="valuesKicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">Core Values</p>
-            <h2 id="valuesTitle" class="text-4xl font-black tracking-tight text-neutral-950 md:text-6xl">Tres principios para crecer con confianza.</h2>
+
+          <!-- Section header -->
+          <div class="mb-16 max-w-2xl">
+            <p id="biciKicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">BI / CI</p>
+            <h2 id="biciTitle" class="text-4xl font-black tracking-tight text-neutral-950 md:text-5xl leading-tight">
+              Una identidad entre<br/>herencia coreana y pasión latina.
+            </h2>
           </div>
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
-            <article class="bg-white p-8 border border-neutral-100">
-              <p class="mb-8 text-5xl font-black text-mokdaOrange">01</p>
-              <h3 id="val1Title" class="mb-4 text-2xl font-black tracking-tight text-neutral-950">Sabor con raíz</h3>
-              <p id="val1Desc" class="text-lg leading-relaxed text-gray-600">
-                Conservamos el carácter coreano: gochujang, soja, ajo, sésamo y capas de umami reconocibles.
-              </p>
-            </article>
-            <article class="bg-white p-8 border border-neutral-100">
-              <p class="mb-8 text-5xl font-black text-mokdaOrange">02</p>
-              <h3 id="val2Title" class="mb-4 text-2xl font-black tracking-tight text-neutral-950">Adaptación local</h3>
-              <p id="val2Desc" class="text-lg leading-relaxed text-gray-600">
-                Pensamos cada uso para LATAM: parrilla, botanas, bowls, tacos, retail moderno y canales HORECA.
-              </p>
-            </article>
-            <article class="bg-white p-8 border border-neutral-100">
-              <p class="mb-8 text-5xl font-black text-mokdaOrange">03</p>
-              <h3 id="val3Title" class="mb-4 text-2xl font-black tracking-tight text-neutral-950">Confianza B2B</h3>
-              <p id="val3Desc" class="text-lg leading-relaxed text-gray-600">
-                Construimos una marca clara para distribuidores, restaurantes y compradores que necesitan consistencia.
-              </p>
-            </article>
+
+          <!-- 2-col grid: Logo | Color -->
+          <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+
+            <!-- Logo block -->
+            <div class="group relative overflow-hidden bg-neutral-950 p-10 flex flex-col justify-between min-h-[380px]">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs font-black uppercase tracking-[0.24em] text-white/40 mb-2">Symbol Mark</p>
+                  <h3 id="biciCard1Title" class="text-2xl font-black tracking-tight text-white leading-tight">
+                    당신의 주방에서<br/>펼쳐질 첫 번째 영감
+                  </h3>
+                </div>
+                <!-- Favicon logo -->
+                <img src="assets/Favicon.png" alt="MOKDA symbol" class="h-16 w-16 object-contain opacity-90 group-hover:scale-110 transition-transform duration-500" />
+              </div>
+              <div class="mt-8">
+                <img src="assets/assetlogo-1-.png" alt="MOKDA wordmark" class="h-8 w-auto opacity-80 mb-6" />
+                <p id="biciCard1Desc" class="text-sm leading-relaxed text-white/50">
+                  La silueta de la botella en nuestra 'A' demuestra que MOKDA será el primer ingrediente de cada receta K. El wordmark tipográfico simboliza confianza inquebrantable y calidad consistente.
+                </p>
+              </div>
+              <div class="absolute bottom-0 left-0 h-1 w-0 bg-mokdaOrange group-hover:w-full transition-all duration-500"></div>
+            </div>
+
+            <!-- Color block -->
+            <div class="flex flex-col gap-4">
+              <!-- Orange chip -->
+              <div class="group relative overflow-hidden flex-1 min-h-[180px] bg-[#f96324] p-8 flex flex-col justify-between">
+                <div>
+                  <p class="text-xs font-black uppercase tracking-[0.24em] text-white/60 mb-1">MOKDA Orange · #F96324</p>
+                  <h3 class="text-2xl font-black text-white">Burning Orange</h3>
+                </div>
+                <p id="biciCard2Desc" class="text-sm text-white/70 leading-relaxed mt-4">
+                  Inspirado en la pasión latina y el jalapeño. Energía, Trendy y Fresca.
+                </p>
+                <div class="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-white/10 translate-x-8 translate-y-8"></div>
+              </div>
+              <!-- Green chip -->
+              <div class="group relative overflow-hidden flex-1 min-h-[180px] bg-[#2e7d32] p-8 flex flex-col justify-between">
+                <div>
+                  <p class="text-xs font-black uppercase tracking-[0.24em] text-white/60 mb-1">MOKDA Green · #2E7D32</p>
+                  <h3 id="biciCard2Title" class="text-2xl font-black text-white">Dip Green</h3>
+                </div>
+                <p id="biciCard3Desc" class="text-sm text-white/70 leading-relaxed mt-4">
+                  El verde del jalapeño fresco. Naturaleza, frescura y uso cotidiano.
+                </p>
+                <div class="absolute bottom-0 right-0 h-24 w-24 rounded-full bg-white/10 translate-x-8 translate-y-8"></div>
+              </div>
+            </div>
+
           </div>
+
+          <!-- Tagline bar -->
+          <div class="mt-8 bg-mokdaOrange px-10 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <p id="biciDesc" class="text-white font-black text-lg">Burning Orange &amp; Dip Green</p>
+            <p class="text-white/70 text-sm font-medium max-w-lg">Inspirados en la pasión latina y el jalapeño. Energía, Trendy y Fresca.</p>
+          </div>
+
         </div>
       </section>
 
-      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-24">
-        <div class="reveal-target opacity-0 translate-y-10 transition-all duration-[800ms] ease-out mx-auto max-w-screen-xl px-6 lg:px-8">
-          <div class="grid grid-cols-1 gap-16 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-            <div>
-              <p id="biciKicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">BI / CI</p>
-              <h2 id="biciTitle" class="text-4xl font-black tracking-tight text-neutral-950 md:text-6xl">Una identidad entre herencia coreana y pasión latina.</h2>
-              <p id="biciDesc" class="mt-8 text-lg leading-relaxed text-gray-600">
-                El sistema visual de MOKDA usa color, tipografía y empaque para expresar una marca cercana, enérgica y confiable.
-              </p>
-            </div>
-            <div class="space-y-12">
-              <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <div class="min-h-44 bg-[#f96324] p-6 text-white shadow-lg shadow-orange-500/10">
-                  <p class="text-sm font-black uppercase tracking-[0.24em] text-white/75">MOKDA Orange</p>
-                  <p class="mt-14 text-3xl font-black">#F96324</p>
-                </div>
-                <div class="min-h-44 bg-[#2e7d32] p-6 text-white shadow-lg shadow-green-500/10">
-                  <p class="text-sm font-black uppercase tracking-[0.24em] text-white/75">MOKDA Green</p>
-                  <p class="mt-14 text-3xl font-black">#2E7D32</p>
-                </div>
-              </div>
-              <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
-                <article class="border border-neutral-200 p-6 bg-white">
-                  <h3 id="biciCard1Title" class="mb-4 text-xl font-black tracking-tight text-neutral-950">Herencia</h3>
-                  <p id="biciCard1Desc" class="leading-relaxed text-gray-600">Motivos inspirados en la cocina coreana, la fermentación y el respeto por el origen.</p>
-                </article>
-                <article class="border border-neutral-200 p-6 bg-white">
-                  <h3 id="biciCard2Title" class="mb-4 text-xl font-black tracking-tight text-neutral-950">Energía</h3>
-                  <p id="biciCard2Desc" class="leading-relaxed text-gray-600">El naranja comunica apetito, impulso y presencia en anaquel sin depender de exceso visual.</p>
-                </article>
-                <article class="border border-neutral-200 p-6 bg-white">
-                  <h3 id="biciCard3Title" class="mb-4 text-xl font-black tracking-tight text-neutral-950">Frescura</h3>
-                  <p id="biciCard3Desc" class="leading-relaxed text-gray-600">El verde equilibra el picante con una sensación de naturalidad y uso cotidiano.</p>
-                </article>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
-      <section id="socialBanner" class="bg-mokdaOrange py-6 text-white">
-        <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-center text-center gap-6 px-4">
-          <div class="flex flex-col items-center">
-            <h2 class="mb-4 text-2xl font-black tracking-tight uppercase">SÍGUENOS</h2>
-            <div class="flex items-center gap-6">
-              <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
-                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-                  <circle cx="12" cy="12" r="4"></circle>
-                  <circle cx="17.5" cy="6.5" r="1" class="fill-current stroke-none"></circle>
-                </svg>
-              </a>
-              <a href="https://www.tiktok.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-current md:h-10 md:w-10">
-                  <path d="M16.55 3c.24 2.08 1.42 3.55 3.45 4.13v3.16a7.45 7.45 0 0 1-3.36-.86v5.91c0 3.48-2.31 5.66-5.63 5.66-3.03 0-5.01-1.88-5.01-4.72 0-3.12 2.42-4.95 5.77-4.62v3.22c-1.49-.27-2.42.29-2.42 1.31 0 .85.66 1.42 1.63 1.42 1.1 0 1.82-.69 1.82-2.17V3h3.75Z"></path>
-                </svg>
-              </a>
-              <a href="https://www.threads.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" aria-label="Threads" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
-                  <path d="M17.6 10.8c-.28-3.24-2.18-5.04-5.32-5.04-3.63 0-5.91 2.45-5.91 6.24 0 3.97 2.36 6.24 5.91 6.24 2.84 0 4.73-1.38 5.35-3.54.54-1.9-.64-3.34-2.86-3.51-2.17-.17-3.53.76-3.53 2.18 0 1.04.82 1.72 2.05 1.72 1.33 0 2.13-.72 2.13-1.85 0-2.28-2.21-3.69-5.13-3.24"></path>
-                  <path d="M19.28 8.08C18.12 4.84 15.72 3 12.2 3 7.22 3 4 6.55 4 12s3.22 9 8.2 9c3.65 0 6.24-1.93 7.3-5.14"></path>
-                </svg>
-              </a>
-            </div>
+    <!-- ═══════════════════════════ SOCIAL BANNER ═══════════════════════════ -->
+    <section id="socialBanner" class="bg-neutral-950 py-8 text-white border-t border-white/5">
+      <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-center text-center gap-6 px-4">
+        <div class="flex flex-col items-center">
+          <h2 class="mb-4 text-2xl font-black tracking-tight uppercase">SÍGUENOS</h2>
+          <div class="flex items-center gap-6">
+            <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
+                <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                <circle cx="12" cy="12" r="4"></circle>
+                <circle cx="17.5" cy="6.5" r="1" class="fill-current stroke-none"></circle>
+              </svg>
+            </a>
+            <a href="https://www.tiktok.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-current md:h-10 md:w-10">
+                <path d="M16.55 3c.24 2.08 1.42 3.55 3.45 4.13v3.16a7.45 7.45 0 0 1-3.36-.86v5.91c0 3.48-2.31 5.66-5.63 5.66-3.03 0-5.01-1.88-5.01-4.72 0-3.12 2.42-4.95 5.77-4.62v3.22c-1.49-.27-2.42.29-2.42 1.31 0 .85.66 1.42 1.63 1.42 1.1 0 1.82-.69 1.82-2.17V3h3.75Z"></path>
+              </svg>
+            </a>
+            <a href="https://www.threads.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" aria-label="Threads" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
+                <path d="M17.6 10.8c-.28-3.24-2.18-5.04-5.32-5.04-3.63 0-5.91 2.45-5.91 6.24 0 3.97 2.36 6.24 5.91 6.24 2.84 0 4.73-1.38 5.35-3.54.54-1.9-.64-3.34-2.86-3.51-2.17-.17-3.53.76-3.53 2.18 0 1.04.82 1.72 2.05 1.72 1.33 0 2.13-.72 2.13-1.85 0-2.28-2.21-3.69-5.13-3.24"></path>
+                <path d="M19.28 8.08C18.12 4.84 15.72 3 12.2 3 7.22 3 4 6.55 4 12s3.22 9 8.2 9c3.65 0 6.24-1.93 7.3-5.14"></path>
+              </svg>
+            </a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <footer class="bg-neutral-950 py-12 text-white">
-        <div class="mx-auto flex w-full max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8">
-          <p class="text-center text-sm font-semibold text-white/60"></p>
-        </div>
-      </footer>
+    <footer class="bg-neutral-950 py-8 text-white border-t border-white/5">
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8">
+        <p class="text-center text-sm font-semibold text-white/40"></p>
+      </div>
+    </footer>
 
+    <!-- ═══════════════════════════ SCRIPTS ═══════════════════════════ -->
     <script>
       let language = localStorage.getItem('mokdaLanguage') || 'ES';
 
@@ -224,102 +322,66 @@
         ES: {
           title: "MOKDA | About Us",
           hero: {
-            kicker: "Nuestra identidad",
-            title: "Salsa coreana creada para la energía de Latinoamérica.",
-            subtitle: "MOKDA conecta la profundidad de la cocina coreana con mesas latinas que celebran sabor, compartir y movimiento."
+            kicker: "BRAND ESSENCE",
+            title: "Comer Corea, 한국을 먹다",
+            subtitle: "No vendemos solo salsas. Embotellamos la energía de Seúl para tu mesa latina."
           },
           story: {
             kicker: "Brand Story",
-            title: "De Corea al ritmo cotidiano de LATAM.",
+            title: "Una historia que nació en la cocina de un estudiante.",
             body: [
-              "MOKDA nace para que una salsa coreana no se sienta lejana, sino lista para entrar en tacos, parrillas, bowls, snacks y cocinas profesionales.",
-              "Nuestra visión es llevar sabores con carácter coreano a formatos simples, generosos y fáciles de compartir. Diseñamos cada botella pensando en consumidores curiosos y en socios B2B que buscan diferenciar su portafolio.",
-              "No vendemos solo picante. Construimos un puente entre herencia, fermentación, dulzor, umami y la calidez de las mesas latinoamericanas."
+              "En 2024, un joven coreano partió a Sudamérica con solo una maleta. En esa pequeña cocina donde todos compartían su comida, se dio cuenta:",
+              '"La forma más fácil de experimentar una cultura es comer juntos."',
+              "Para quienes aman Corea y para los coreanos que aman Latinoamérica — así comenzó la historia de MOKDA."
             ]
           },
           values: {
             kicker: "Core Values",
-            title: "Tres principios para crecer con confianza.",
-            val1: {
-              title: "Sabor con raíz",
-              desc: "Conservamos el carácter coreano: gochujang, soja, ajo, sésamo y capas de umami reconocibles."
-            },
-            val2: {
-              title: "Adaptación local",
-              desc: "Pensamos cada uso para LATAM: parrilla, botanas, bowls, tacos, retail moderno y canales HORECA."
-            },
-            val3: {
-              title: "Confianza B2B",
-              desc: "Construimos una marca clara para distribuidores, restaurantes y compradores que necesitan consistencia."
-            }
+            title: "Tres razones para elegir MOKDA.",
+            val1: { title: "Sabor Auténtico", desc: "Fermentación tradicional coreana con el toque exacto para el paladar latino." },
+            val2: { title: "Fusión Latina",   desc: "Tus tacos, asados, bowls, snacks. MOKDA no compite, eleva tu comida de todos los días." },
+            val3: { title: "Socios de Tendencia", desc: "Calidad constante y una marca vibrante para que tu negocio surfee la ola del K-Culture con nosotros." }
           },
           bici: {
             kicker: "BI / CI",
             title: "Una identidad entre herencia coreana y pasión latina.",
-            desc: "El sistema visual de MOKDA usa color, tipografía y empaque para expresar una marca cercana, enérgica y confiable.",
-            card1: {
-              title: "Herencia",
-              desc: "Motivos inspirados en la cocina coreana, la fermentación y el respeto por el origen."
-            },
-            card2: {
-              title: "Energía",
-              desc: "El naranja comunica apetito, impulso y presencia en anaquel sin depender de exceso visual."
-            },
-            card3: {
-              title: "Frescura",
-              desc: "El verde equilibra el picante con una sensación de naturalidad y uso cotidiano."
-            }
+            desc: "Burning Orange & Dip Green",
+            card1: { title: "Tu Primera Inspiración", desc: "La silueta de la botella en nuestra 'A' demuestra que MOKDA será el primer ingrediente de cada receta K. El wordmark tipográfico simboliza confianza inquebrantable y calidad consistente." },
+            card2: { title: "Dip Green", desc: "Inspirados en la pasión latina y el jalapeño. Energía, Trendy y Fresca." },
+            card3: { title: "Dip Green", desc: "El verde del jalapeño fresco. Naturaleza, frescura y uso cotidiano." }
           },
           footer: "© 2026 MOKDA. Todos los derechos reservados."
         },
         EN: {
           title: "MOKDA | About Us",
           hero: {
-            kicker: "Our Identity",
-            title: "Korean Sauce Crafted for the Energy of Latin America.",
-            subtitle: "MOKDA connects the depth of Korean cuisine with Latin tables that celebrate flavor, sharing, and movement."
+            kicker: "BRAND ESSENCE",
+            title: "Comer Corea, 한국을 먹다",
+            subtitle: "We don't just sell sauces. We bottle Seoul's energy for your Latin table."
           },
           story: {
             kicker: "Brand Story",
-            title: "From Korea to the Daily Rhythm of LATAM.",
+            title: "A story born in a student's kitchen.",
             body: [
-              "MOKDA was born so that a Korean sauce doesn't feel distant, but ready to join tacos, grills, bowls, snacks, and professional kitchens.",
-              "Our vision is to bring Korean-style flavors into simple, generous, and easy-to-share formats. We design every bottle with curious consumers and B2B partners in mind who want to differentiate their portfolio.",
-              "We don't just sell heat. We build a bridge between heritage, fermentation, sweetness, umami, and the warmth of Latin American tables."
+              "In 2024, a young Korean left for South America with just one bag. In a small shared kitchen where everyone cooked their own food, he realized:",
+              '"The easiest way to experience a culture is to eat together."',
+              "For those who love Korea and Koreans who love Latin America — that's how MOKDA began."
             ]
           },
           values: {
             kicker: "Core Values",
-            title: "Three Principles to Grow with Confidence.",
-            val1: {
-              title: "Rooted Flavor",
-              desc: "We preserve the Korean character: recognizable gochujang, soy, garlic, sesame, and rich layers of umami."
-            },
-            val2: {
-              title: "Local Adaptation",
-              desc: "We design every use for LATAM: grills, snacks, bowls, tacos, modern retail, and HORECA channels."
-            },
-            val3: {
-              title: "B2B Trust",
-              desc: "We build a clear brand for distributors, restaurants, and buyers who require absolute consistency."
-            }
+            title: "Three reasons to choose MOKDA.",
+            val1: { title: "Authentic Flavor",    desc: "Traditional Korean fermentation with the perfect touch for the Latin palate." },
+            val2: { title: "Latin Fusion",        desc: "Your tacos, asados, bowls, snacks. MOKDA doesn't compete — it elevates your everyday food." },
+            val3: { title: "Trend Partners",      desc: "Consistent quality and a vibrant brand so your business rides the K-Culture wave with us." }
           },
           bici: {
             kicker: "BI / CI",
-            title: "An Identity Between Korean Heritage and Latin Passion.",
-            desc: "MOKDA's visual system uses color, typography, and packaging to express a close, energetic, and reliable brand.",
-            card1: {
-              title: "Heritage",
-              desc: "Motifs inspired by Korean cuisine, fermentation, and deep respect for the origin."
-            },
-            card2: {
-              title: "Energy",
-              desc: "Orange communicates appetite, momentum, and shelf presence without relying on visual clutter."
-            },
-            card3: {
-              title: "Freshness",
-              desc: "Green balances the spice with a sense of naturalness and comfortable everyday use."
-            }
+            title: "An identity between Korean heritage and Latin passion.",
+            desc: "Burning Orange & Dip Green",
+            card1: { title: "Your First Inspiration",  desc: "The bottle silhouette in our 'A' proves MOKDA will be the first ingredient of every K-recipe. The typographic wordmark symbolizes unwavering trust and consistent quality." },
+            card2: { title: "Dip Green", desc: "Inspired by Latin passion and jalapeño. Energy, Trendy and Fresh." },
+            card3: { title: "Dip Green", desc: "The green of fresh jalapeño. Nature, freshness, and everyday use." }
           },
           footer: "© 2026 MOKDA. All rights reserved."
         },
@@ -327,50 +389,32 @@
           title: "MOKDA | 회사 소개",
           hero: {
             kicker: "BRAND ESSENCE",
-            title: "유학생의 주방에서 시작된 이야기",
-            subtitle: "2024년, 가방 하나 들고 남미로 떠난 청년이 있었습니다. 각자의 음식을 나눠 먹던 그 작은 주방에서, 청년은 깨달았습니다. 문화를 경험하는 가장 쉬운 방법은 함께 먹는 것이라고. 한국을 사랑하는 그들과, 남미를 사랑하는 한국인들을 위해 — MOKDA의 이야기는 그렇게 시작됐습니다."
+            title: "Comer Corea, 한국을 먹다",
+            subtitle: "단순히 소스를 만드는 것이 아닙니다. 서울의 에너지를 당신의 라틴 식탁을 위해 병에 담았습니다."
           },
           story: {
             kicker: "브랜드 스토리",
-            title: "한국에서 출발해 LATAM의 일상 속으로.",
+            title: "유학생의 주방에서 시작된 이야기",
             body: [
-              "MOKDA는 한국의 소스가 낯선 이국식에 머무르지 않고, 타코, 그릴, 보울, 스낵 그리고 전문 레스토랑의 주방까지 자연스럽게 어우러질 수 있도록 탄생했습니다.",
-              "저희의 비전은 진짜 한국 소스의 매력을 간편하고 풍성하며 나누기 쉬운 형태로 전하는 것입니다. 새로운 미식을 즐기는 소비자들과 차별화된 라인업이 필요한 B2B 파트너 모두를 위해 한 병 한 병 정성껏 디자인합니다.",
-              "단순히 매운맛을 파는 것이 아닙니다. 발효, 단맛, 짠맛, 감칠맛이 어우러진 한국의 헤리티지와 라틴아메리카 식탁 고유의 따뜻하고 즐거운 미식 문화를 잇는 다리를 놓습니다."
+              "2024년, 가방 하나 들고 남미로 떠난 청년이 있었습니다. 각자의 음식을 나눠 먹던 그 작은 주방에서, 청년은 깨달았습니다.",
+              '"문화를 경험하는 가장 쉬운 방법은 함께 먹는 것이다."',
+              "한국을 사랑하는 그들과, 남미를 사랑하는 한국인들을 위해 — MOKDA의 이야기는 그렇게 시작됐습니다."
             ]
           },
           values: {
             kicker: "핵심 가치",
-            title: "신뢰 속에서 성장하기 위한 세 가지 원칙.",
-            val1: {
-              title: "한국을 경험하는 가장 쉬운 방법",
-              desc: "먹는 행위는 단순한 소비가 아니라 문화를 직관적으로 느끼는 여정입니다. 식탁 위 작은 한국, 살사 코레아나와 함께 새로운 미식 세계관에 몰입해 보세요."
-            },
-            val2: {
-              title: "경계 없는 미식 매치",
-              desc: "현지 식재료와 자연스럽게 어우러지면서도 소스만으로 한국의 최신 미식 트렌드를 즉각 느끼게 합니다. 타코, 아사도, 스낵 등 당신의 일상에 힙한 한국의 맛을 더합니다."
-            },
-            val3: {
-              title: "독보적인 K-Sauce의 기준",
-              desc: "라틴 아메리카에서 K-Sauce 하면 가장 먼저 떠오르는 독보적인 브랜드로 나아갑니다. 일관된 품질과 신뢰를 바탕으로 강력한 브랜드 팬덤을 빌드업합니다."
-            }
+            title: "MOKDA를 선택해야 하는 세 가지 이유.",
+            val1: { title: "진정성 있는 감칠맛", desc: "라틴 입맛에 딱 맞춘 전통 한국 발효 소스의 정수." },
+            val2: { title: "경계 없는 미식 매치", desc: "타코, 아사도, 보울, 스낵 어디든. MOKDA는 경쟁하지 않고, 당신의 일상을 더 맛있게 만듭니다." },
+            val3: { title: "독보적인 K-Sauce의 기준", desc: "일관된 품질과 강렬한 브랜드 파워로 K-컬쳐의 물결을 함께 탑니다." }
           },
           bici: {
             kicker: "BI / CI 브랜드 비주얼",
             title: "한국의 헤리티지와 라틴의 열정을 담은 디자인.",
-            desc: "MOKDA의 비주얼 시스템은 컬러, 타이포그래피, 패키징을 통해 친근하고 에너지 넘치며 신뢰할 수 있는 브랜드 아이덴티티를 전달합니다.",
-            card1: {
-              title: "당신의 주방에서 펼쳐질 첫 번째 영감",
-              desc: "알파벳의 시작인 'A' 속에 설계된 소스 보틀의 실루엣은 MOKDA가 모든 K-레시피의 첫 단추가 될 것임을 증명합니다. 단단한 타이포그래피 워드마크는 흔들리지 않는 신뢰성과 일관된 품질을 상징합니다."
-            },
-            card2: {
-              title: "Burning Orange & Dip Green",
-              desc: "중남미의 뜨거운 열정과 할라피뇨의 색상을 모티브로 탄생했습니다. 시선을 사로잡는 강렬한 미식 에너지, 일상 속에 자연스럽게 스며드는 신선한 그린 컬러가 완벽한 조화를 이룹니다."
-            },
-            card3: {
-              title: "내추럴한 신선함 (Freshness)",
-              desc: "그린 컬러는 매콤한 소스의 맛에 자연스러움과 편안한 일상적 사용감을 완벽하게 매칭합니다."
-            }
+            desc: "Burning Orange & Dip Green",
+            card1: { title: "당신의 주방에서 펼쳐질 첫 번째 영감", desc: "'A' 속에 설계된 소스 보틀의 실루엣은 MOKDA가 모든 K-레시피의 첫 단추가 될 것임을 증명합니다. 단단한 워드마크는 흔들리지 않는 신뢰성과 일관된 품질을 상징합니다." },
+            card2: { title: "Dip Green", desc: "중남미의 열정과 할라피뇨의 색상을 모티브로. 강렬한 미식 에너지, 신선한 그린의 완벽한 조화." },
+            card3: { title: "Dip Green", desc: "신선한 할라피뇨의 그린. 자연스러움, 신선함, 일상적 사용감." }
           },
           footer: "© 2026 MOKDA. 모든 권리 보유."
         }
@@ -385,18 +429,13 @@
         const bg = document.getElementById('lang-bg');
         const langMap = { ES: 0, KR: 1, EN: 2 };
         const index = langMap[language] !== undefined ? langMap[language] : 0;
-        
-        if (bg) {
-          bg.style.transform = `translateX(${index * 100}%)`;
-        }
-
+        if (bg) bg.style.transform = `translateX(${index * 100}%)`;
         ['ES', 'KR', 'EN'].forEach((lang) => {
           const button = document.getElementById(`lang${lang}`);
           if (button) {
-            button.className =
-              language === lang
-                ? 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-white transition-colors duration-300'
-                : 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-500 hover:text-neutral-950 transition-colors duration-300';
+            button.className = language === lang
+              ? 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-white transition-colors duration-300'
+              : 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-500 hover:text-neutral-950 transition-colors duration-300';
             button.setAttribute('aria-pressed', String(language === lang));
           }
         });
@@ -406,101 +445,77 @@
         const t = content[language];
         document.title = t.title;
         document.documentElement.lang = language === 'KR' ? 'ko' : language.toLowerCase();
-        
-        setText('heroKicker', t.hero.kicker);
-        setText('heroTitle', t.hero.title);
+
+        setText('heroKicker',  t.hero.kicker);
+        setText('heroTitle',   t.hero.title);
         setText('heroSubtitle', t.hero.subtitle);
-        
+
         setText('storyKicker', t.story.kicker);
-        setText('storyTitle', t.story.title);
-        
+        setText('storyTitle',  t.story.title);
         const storyBody = document.getElementById('storyBody');
         if (storyBody) {
-          storyBody.innerHTML = t.story.body.map(p => `<p class="leading-relaxed text-gray-600">${p}</p>`).join('');
+          storyBody.innerHTML = t.story.body.map((p, i) =>
+            i === 1
+              ? `<p class="text-white font-bold text-xl">${p}</p>`
+              : `<p class="leading-relaxed text-white/75">${p}</p>`
+          ).join('');
         }
-        
+
         setText('valuesKicker', t.values.kicker);
-        setText('valuesTitle', t.values.title);
-        
-        setText('val1Title', t.values.val1.title);
-        setText('val1Desc', t.values.val1.desc);
-        setText('val2Title', t.values.val2.title);
-        setText('val2Desc', t.values.val2.desc);
-        setText('val3Title', t.values.val3.title);
-        setText('val3Desc', t.values.val3.desc);
-        
-        setText('biciKicker', t.bici.kicker);
-        setText('biciTitle', t.bici.title);
-        setText('biciDesc', t.bici.desc);
-        
-        setText('biciCard1Title', t.bici.card1.title);
-        setText('biciCard1Desc', t.bici.card1.desc);
-        setText('biciCard2Title', t.bici.card2.title);
-        setText('biciCard2Desc', t.bici.card2.desc);
-        setText('biciCard3Title', t.bici.card3.title);
-        setText('biciCard3Desc', t.bici.card3.desc);
-        
+        setText('valuesTitle',  t.values.title);
+        setText('val1Title', t.values.val1.title); setText('val1Desc', t.values.val1.desc);
+        setText('val2Title', t.values.val2.title); setText('val2Desc', t.values.val2.desc);
+        setText('val3Title', t.values.val3.title); setText('val3Desc', t.values.val3.desc);
+
+        setText('biciKicker',    t.bici.kicker);
+        setText('biciTitle',     t.bici.title);
+        setText('biciDesc',      t.bici.desc);
+        setText('biciCard1Title', t.bici.card1.title); setText('biciCard1Desc', t.bici.card1.desc);
+        setText('biciCard2Title', t.bici.card2.title); setText('biciCard2Desc', t.bici.card2.desc);
+        setText('biciCard3Desc',  t.bici.card3.desc);
+
         const footerText = document.querySelector('footer p');
         if (footerText) footerText.textContent = t.footer;
-        
+
         renderLanguageButtons();
       }
 
-      document.getElementById('langEN').addEventListener('click', () => {
-        language = 'EN';
-        localStorage.setItem('mokdaLanguage', 'EN');
-        renderPage();
-      });
-
-      document.getElementById('langES').addEventListener('click', () => {
-        language = 'ES';
-        localStorage.setItem('mokdaLanguage', 'ES');
-        renderPage();
-      });
-
-      document.getElementById('langKR').addEventListener('click', () => {
-        language = 'KR';
-        localStorage.setItem('mokdaLanguage', 'KR');
-        renderPage();
+      ['EN','ES','KR'].forEach(lang => {
+        document.getElementById(`lang${lang}`).addEventListener('click', () => {
+          language = lang;
+          localStorage.setItem('mokdaLanguage', lang);
+          renderPage();
+        });
       });
 
       const menuToggle = document.getElementById('menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
       if (menuToggle && mobileMenu) {
         menuToggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('max-h-0');
-          mobileMenu.classList.toggle('opacity-0');
-          mobileMenu.classList.toggle('invisible');
-          mobileMenu.classList.toggle('max-h-64');
-          mobileMenu.classList.toggle('opacity-100');
-          mobileMenu.classList.toggle('visible');
+          ['max-h-0','opacity-0','invisible','max-h-64','opacity-100','visible'].forEach(c => mobileMenu.classList.toggle(c));
         });
       }
 
       renderPage();
 
+      // Scroll Reveal
       document.addEventListener('DOMContentLoaded', () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.remove('opacity-0', 'translate-y-10');
-              entry.target.classList.add('opacity-100', 'translate-y-0');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-target').forEach(el => {
-          observer.observe(el);
-        });
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.remove('opacity-0', 'translate-y-10');
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.12 });
+          document.querySelectorAll('.reveal-target').forEach(el => observer.observe(el));
+        }
       });
     </script>
+
+    <!-- Dynamic Transparent Header -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const header = document.getElementById('main-header');
@@ -509,9 +524,14 @@
             if (window.scrollY > 50) {
               header.classList.remove('bg-transparent');
               header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
+              // hamburger icon: switch to dark
+              const menuBtn = document.getElementById('menu-toggle');
+              if (menuBtn) { menuBtn.classList.remove('text-white', 'hover:bg-white/20'); menuBtn.classList.add('text-gray-800', 'hover:bg-stone-100'); }
             } else {
               header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
               header.classList.add('bg-transparent');
+              const menuBtn = document.getElementById('menu-toggle');
+              if (menuBtn) { menuBtn.classList.add('text-white', 'hover:bg-white/20'); menuBtn.classList.remove('text-gray-800', 'hover:bg-stone-100'); }
             }
           };
           handleScroll();
@@ -519,5 +539,6 @@
         }
       });
     </script>
+
   </body>
 </html>

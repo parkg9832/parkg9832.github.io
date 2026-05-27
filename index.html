@@ -181,65 +181,65 @@
         </div>
       </section>
 
-      <section id="b2b" class="bg-white py-20 sm:py-28">
+      <section id="b2b" class="bg-stone-50 py-20 sm:py-28">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-10 max-w-3xl text-center">
             <p id="b2bKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-mokdaOrange"></p>
             <h2 id="b2bTitle" class="break-keep text-balance text-4xl font-black leading-none tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
             <p id="b2bDescription" class="mx-auto mt-6 max-w-2xl break-keep text-pretty text-lg font-semibold leading-relaxed text-neutral-600 sm:text-xl"></p>
           </div>
-          <form id="b2bForm" data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl rounded-3xl bg-stone-50 p-6 shadow-sm ring-1 ring-neutral-950/10 sm:p-8">
+          <form id="b2bForm" data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl rounded-2xl border border-gray-100 bg-white p-8 shadow-2xl shadow-orange-900/5 md:p-12">
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
-                <span id="companyLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <span id="companyLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
                 <input
                   id="companyInput"
                   type="text"
                   name="company"
                   required
                   autocomplete="organization"
-                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                  class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"
                 />
               </label>
               <label class="block">
-                <span id="nameLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <span id="nameLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
                 <input
                   id="nameInput"
                   type="text"
                   name="name"
                   required
                   autocomplete="name"
-                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                  class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"
                 />
               </label>
               <label class="block">
-                <span id="emailLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <span id="emailLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
                 <input
                   id="emailInput"
                   type="email"
                   name="email"
                   required
                   autocomplete="email"
-                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                  class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"
                 />
               </label>
               <label class="block">
-                <span id="countryLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <span id="countryLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
                 <select
                   id="countrySelect"
                   name="country"
                   required
-                  class="h-12 w-full rounded-2xl border border-neutral-200 bg-white px-4 text-base font-semibold text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                  class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"
                 ></select>
               </label>
               <label class="block sm:col-span-2">
-                <span id="messageLabel" class="mb-2 block text-sm font-black text-neutral-950"></span>
+                <span id="messageLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
                 <textarea
                   id="messageInput"
                   name="message"
                   rows="6"
                   required
-                  class="w-full resize-none rounded-2xl border border-neutral-200 bg-white px-4 py-3 text-base font-semibold leading-7 text-neutral-950 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-orange-500/15"
+                  class="w-full resize-none rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"
                 ></textarea>
               </label>
             </div>
@@ -247,8 +247,13 @@
               <button
                 id="submitButton"
                 type="submit"
-                class="rounded-full bg-mokdaOrange px-9 py-4 text-sm font-black uppercase tracking-wide text-white transition hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-500/25"
-              ></button>
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-mokdaOrange px-9 py-4 text-sm font-black uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-orange-500/25"
+              >
+                <span id="submitButtonText"></span>
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M5 12h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
             </div>
           </form>
         </div>
@@ -795,7 +800,7 @@
         setText('countryLabel', fields.country[0]);
         setText('messageLabel', fields.message[0]);
         setPlaceholder('messageInput', fields.message[1]);
-        setText('submitButton', fields.submit);
+        setText('submitButtonText', fields.submit);
         document.getElementById('countrySelect').innerHTML = `
           <option value="" selected disabled>${fields.country[1]}</option>
           ${countries.map(([value, labels]) => `<option value="${value}">${labels[language]}</option>`).join('')}

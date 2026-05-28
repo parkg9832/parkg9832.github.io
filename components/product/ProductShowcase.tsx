@@ -4,6 +4,16 @@ import { useLanguage } from '@/app/LanguageContext';
 import { translations } from '@/translations';
 import { ProductCard } from './ProductCard';
 
+export interface Product {
+  category: string;
+  title: string;
+  titleColor: string;
+  imageUrl: string;
+  descLine1: string;
+  descLine2: string;
+}
+
+
 export function ProductShowcase() {
   const { lang } = useLanguage();
   const t = translations[lang];

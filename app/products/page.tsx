@@ -3,111 +3,66 @@
 import Link from 'next/link';
 import { useLanguage } from '@/app/LanguageContext';
 import { Header } from '@/components/layout/Header';
+import { translations } from '@/translations';
 
 export default function ProductsPage() {
   const { lang } = useLanguage();
+  const t = translations[lang];
 
-  // Specific content copy for products subpage matching the original design
-  const subpageContent = {
+  // Map subpage general copy dynamically by locale
+  const subpageGeneralCopy = {
     es: {
       kicker: 'Historia del Producto',
       headline: 'LÍNEA PREMIUM MOKDA',
       subtitle: 'La profundidad de la salsa coreana, embotellada para cocinas, restaurantes y mesas de América Latina.',
-      items: [
-        {
-          kicker: 'Gochujang & Jalapeño',
-          name: 'Original',
-          desc: 'El toque fresco del jalapeño en el picante del Gochujang. Sabor auténtico de Corea en cada bocado.',
-          btn: 'Ver Producto ↗',
-          color: 'text-red-600',
-          image: '/assets/bottle-original.png.png',
-        },
-        {
-          kicker: 'BBQ & Umami',
-          name: 'Para Carne',
-          desc: 'Salsa tradicional coreana para BBQ con un toque umami profundo. Diseñada para carnes y parrilla.',
-          btn: 'Ver Producto ↗',
-          color: 'text-yellow-500',
-          image: '/assets/bottle-ssamjang.png.png',
-        },
-        {
-          kicker: 'Savory Garlic & Sesame',
-          name: 'Soy Sauce',
-          desc: 'Dulce, salado y lleno de umami que te atrapa. Una salsa limpia para menús de fusión cotidianos.',
-          btn: 'Ver Producto ↗',
-          color: 'text-[#2d1a11]',
-          image: '/assets/bottle-sweetsoy.png.png',
-        },
-      ],
+      btnText: 'Ver Producto ↗',
       footer: '© 2026 MOKDA. Todos los derechos reservados.',
     },
     en: {
       kicker: 'Product Story',
       headline: 'MOKDA PREMIUM LINEUP',
       subtitle: 'Korean sauce depth, bottled for Latin American kitchens, restaurants, and everyday tables.',
-      items: [
-        {
-          kicker: 'Gochujang & Jalapeño',
-          name: 'Original',
-          desc: 'The fresh kick of jalapeño meets the bold spice of Gochujang. Authentic taste of Korea in every bite.',
-          btn: 'View Product ↗',
-          color: 'text-red-600',
-          image: '/assets/bottle-original.png.png',
-        },
-        {
-          kicker: 'BBQ & Umami',
-          name: 'Para Carne',
-          desc: 'Traditional Korean BBQ sauce with deep umami flavor. Formulated for meats and grilling.',
-          btn: 'View Product ↗',
-          color: 'text-yellow-500',
-          image: '/assets/bottle-ssamjang.png.png',
-        },
-        {
-          kicker: 'Savory Garlic & Sesame',
-          name: 'Soy Sauce',
-          desc: 'Sweet, savory, and addictive umami. A clean daily sauce for fusion menus.',
-          btn: 'View Product ↗',
-          color: 'text-[#2d1a11]',
-          image: '/assets/bottle-sweetsoy.png.png',
-        },
-      ],
+      btnText: 'View Product ↗',
       footer: '© 2026 MOKDA. All rights reserved.',
     },
     ko: {
       kicker: 'Product Story',
       headline: '프리미엄 라인업',
       subtitle: '라틴아메리카의 일상 식탁에 딱 맞춘 트렌디한 한국의 소스 맛.',
-      items: [
-        {
-          kicker: 'Gochujang',
-          name: 'Original',
-          desc: '고추장의 매콤함과 할라피뇨의 상큼함이 만난 소스.',
-          btn: '상품보기 ↗',
-          color: 'text-red-600',
-          image: '/assets/bottle-original.png.png',
-        },
-        {
-          kicker: 'Ssamjang',
-          name: 'Para Carne',
-          desc: '깊은 감칠맛을 더한 전통 한국식 바베큐 디핑 소스.',
-          btn: '상품보기 ↗',
-          color: 'text-yellow-500',
-          image: '/assets/bottle-ssamjang.png.png',
-        },
-        {
-          kicker: 'Ganjang',
-          name: 'Soy Sauce',
-          desc: '달콤 짭조름하고 중독성 있는 감칠맛. (미출시)',
-          btn: '상품보기 ↗',
-          color: 'text-[#2d1a11]',
-          image: '/assets/bottle-sweetsoy.png.png',
-        },
-      ],
+      btnText: '상품보기 ↗',
       footer: '© 2026 MOKDA. 모든 권리 보유.',
     },
   };
 
-  const currentContent = subpageContent[lang] || subpageContent.es;
+  const copy = subpageGeneralCopy[lang] || subpageGeneralCopy.es;
+
+  // Fully bind products content to translations.ts global dictionary
+  const productsList = [
+    {
+      kicker: t.products.items.original.category,
+      name: t.products.items.original.title,
+      desc: `${t.products.items.original.descLine1} ${t.products.items.original.descLine2}`,
+      btn: copy.btnText,
+      color: 'text-red-600',
+      image: '/assets/bottle-original.png.png',
+    },
+    {
+      kicker: t.products.items.ssamjang.category,
+      name: t.products.items.ssamjang.title,
+      desc: `${t.products.items.ssamjang.descLine1} ${t.products.items.ssamjang.descLine2}`,
+      btn: copy.btnText,
+      color: 'text-yellow-500',
+      image: '/assets/bottle-ssamjang.png.png',
+    },
+    {
+      kicker: t.products.items.soySauce.category,
+      name: t.products.items.soySauce.title,
+      desc: `${t.products.items.soySauce.descLine1} ${t.products.items.soySauce.descLine2}`,
+      btn: copy.btnText,
+      color: 'text-[#2d1a11]',
+      image: '/assets/bottle-sweetsoy.png.png',
+    },
+  ];
 
   return (
     <main className="min-h-screen bg-white text-neutral-950">
@@ -118,13 +73,13 @@ export default function ProductsPage() {
       <section className="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] pt-32 pb-14 sm:py-20 sm:pt-40">
         <div className="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <p className="mb-5 text-sm font-black uppercase tracking-[0.34em] text-[#ef5f18]">
-            {currentContent.kicker}
+            {copy.kicker}
           </p>
           <h1 className="max-w-5xl break-keep text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-7xl md:text-8xl">
-            {currentContent.headline}
+            {copy.headline}
           </h1>
           <p className="mt-8 max-w-2xl text-pretty text-lg font-semibold leading-relaxed text-gray-600 sm:text-xl">
-            {currentContent.subtitle}
+            {copy.subtitle}
           </p>
         </div>
       </section>
@@ -132,7 +87,7 @@ export default function ProductsPage() {
       {/* Product Showcase alternated layout */}
       <section className="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] pb-16">
         <div className="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          {currentContent.items.map((item, idx) => {
+          {productsList.map((item, idx) => {
             const isEven = idx % 2 === 0;
             return (
               <article
@@ -226,7 +181,7 @@ export default function ProductsPage() {
       <footer className="bg-neutral-950 py-12 text-white border-t border-neutral-800">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8">
           <p className="text-center text-sm font-semibold text-white/60">
-            {currentContent.footer}
+            {copy.footer}
           </p>
         </div>
       </footer>

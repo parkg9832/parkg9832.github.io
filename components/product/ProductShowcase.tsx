@@ -16,7 +16,7 @@ const products: Product[] = [
     titleColor: 'text-red-600',
     imageUrl: '/assets/bottle-original.png.png',
     descLine1: '할라페뇨의 산뜻함을 더한,',
-    descLine2: '깔끔하게 올라오는 한국식 매콤함.',
+    descLine2: '깔끔하게 올라오는 한국식 매콤함',
   },
   {
     category: '쌈장 바비큐 소스',
@@ -24,7 +24,7 @@ const products: Product[] = [
     titleColor: 'text-yellow-500',
     imageUrl: '/assets/bottle-ssamjang.png.png',
     descLine1: '고기와 그릴 요리에 맞춘,',
-    descLine2: '깊고 진한 감칠맛의 바비큐 소스.',
+    descLine2: '깊고 진한 감칠맛의 바비큐 소스',
   },
   {
     category: '간장 베이스 소스',
@@ -32,7 +32,7 @@ const products: Product[] = [
     titleColor: 'text-[#2d1a11]',
     imageUrl: '/assets/bottle-sweetsoy.png.png',
     descLine1: '달콤함과 짭짤함이 균형 잡힌,',
-    descLine2: '매일 쓰기 좋은 퓨전 데일리 소스.',
+    descLine2: '매일 쓰기 좋은 퓨전 데일리 소스',
   },
 ];
 

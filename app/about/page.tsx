@@ -2,7 +2,7 @@
 
 import { Header } from '@/components/layout/Header';
 import { AboutContact } from '@/components/about/AboutContact';
-import { AboutFeatures } from '@/components/about/AboutFeatures';
+import { BrandLogo } from '@/components/about/BrandLogo';
 import { AboutHero } from '@/components/about/AboutHero';
 import { BrandStory } from '@/components/about/BrandStory';
 import { ProductShowcase } from '@/components/product/ProductShowcase';
@@ -13,8 +13,8 @@ export default function AboutPage() {
       <Header />
       <AboutHero />
       <BrandStory />
+      <BrandLogo />
       <ProductShowcase />
-      <AboutFeatures />
       <AboutContact />
     </main>
   );

@@ -254,7 +254,7 @@
               <h2 id="storyTitle" class="break-keep text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-6xl"></h2>
             </div>
             <div class="md:flex md:items-center md:pt-8">
-              <div id="storyBody" class="space-y-6 break-keep text-pretty text-lg font-semibold text-neutral-600"></div>
+              <div id="storyBody" class="flex flex-col justify-center space-y-5 break-keep text-gray-700 leading-relaxed md:text-lg"></div>
             </div>
           </div>
 
@@ -632,12 +632,12 @@
         KR: {
           story: {
             kicker: 'OUR STORY',
-            title: '소스가 아닌 문화를 만듭니다',
+            title: '소스가 아닌 문화를<br />만듭니다',
             body: [
-              'MOKDA는 한국을 더 쉽고 가깝게 전하는 브랜드입니다.',
-              '한국을 가장 쉽고 가깝게 만나는 방법은 무엇일까요?',
-              '음식은 문화를 이어주는 가장 멋진 수단입니다.',
-              '타코, 그릴, 밥, 스낵처럼 익숙한 음식과 만날 때 한국은 더 가깝고, 더 일상적인 경험이 됩니다.',
+              'MOKDA는 한국을 더 쉽고 가깝게 경험하게 하는 브랜드입니다.<br />한국의 맛은 낯설고 특별한 음식 안에만 머물 필요가 없습니다.',
+              '타코, 그릴, 밥, 스낵처럼 익숙한 음식과 만날 때<br />한국은 더 자연스럽고 일상적인 문화가 됩니다.',
+              'MOKDA는 한 병의 소스에<br />한국 로컬의 재료와 지금의 감각을 담아<br />남미의 식탁 위에 새로운 한국의 경험을 제안합니다.',
+              '우리는 단순히 소스를 만드는 것이 아니라,<br />한국을 즐기는 새로운 방식을 만듭니다.',
             ],
           },
           products: {
@@ -977,8 +977,8 @@
         document.documentElement.lang = language === 'KR' ? 'ko' : language.toLowerCase();
         renderHeroText();
         setText('storyKicker', t.story.kicker);
-        setText('storyTitle', t.story.title);
-        document.getElementById('storyBody').innerHTML = t.story.body.map((paragraph) => `<p class="leading-relaxed text-neutral-600">${paragraph}</p>`).join('');
+        document.getElementById('storyTitle').innerHTML = t.story.title;
+        document.getElementById('storyBody').innerHTML = t.story.body.map((paragraph) => `<p class="break-keep leading-relaxed">${paragraph}</p>`).join('');
         setText('productsKicker', t.products.kicker);
         setText('productsTitle', t.products.title);
         renderProducts(t.products.items);

@@ -1,4 +1,15 @@
+'use client';
+
+import { useLanguage } from '@/app/LanguageContext';
+import { translations } from '@/translations';
+
 export function AboutHero() {
+  const { lang } = useLanguage();
+  const t = translations[lang];
+
+  // Split title by <br /> to style the second part in orange
+  const titleParts = t.hero.title.split('<br />');
+
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-neutral-950 px-5 py-28 text-center text-white sm:px-8">
       <picture className="absolute inset-0">
@@ -17,9 +28,13 @@ export function AboutHero() {
           MOKDA Brand Essence
         </p>
         <h1 className="break-keep text-balance text-6xl font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
-          Comer Corea,
-          <br />
-          <span className="text-[#ef5f18]">한국을 먹다</span>
+          {titleParts[0]}
+          {titleParts.length > 1 && (
+            <>
+              <br />
+              <span className="text-[#ef5f18]">{titleParts[1]}</span>
+            </>
+          )}
         </h1>
       </div>
     </section>

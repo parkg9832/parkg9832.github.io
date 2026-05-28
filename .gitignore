@@ -29,3 +29,8 @@ node_modules/
 .next/
 out/
 tsconfig.tsbuildinfo
+
+# Local and temporary workspaces
+Organized_Workspace/
+.git-local/
+

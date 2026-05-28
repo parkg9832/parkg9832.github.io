@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/app/LanguageContext';
 import { translations } from '@/translations';
+import { motion } from 'framer-motion';
 
 export function BrandLogo() {
   const { lang } = useLanguage();
@@ -51,7 +52,13 @@ export function BrandLogo() {
         {/* 3-Column Grid */}
         <div className="grid gap-6 lg:grid-cols-[0.95fr_1.1fr_0.95fr] lg:items-center">
           {/* Motive Card */}
-          <article className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-neutral-950/5 h-full flex flex-col justify-center">
+          <motion.article 
+            className="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-neutral-950/5 h-full flex flex-col justify-center"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
             <p className="mb-4 text-sm font-black uppercase tracking-[0.24em] text-[#ef5f18]">
               {currentCopy.motiveKicker}
             </p>
@@ -61,32 +68,50 @@ export function BrandLogo() {
             <p className="mt-5 break-keep text-base font-semibold leading-7 text-gray-500">
               {currentCopy.motiveDesc}
             </p>
-          </article>
+          </motion.article>
 
           {/* Central Logo Box */}
-          <div className="flex min-h-[360px] flex-col items-center justify-center rounded-[2.5rem] bg-white p-10 shadow-xl shadow-neutral-950/5 ring-1 ring-neutral-950/5 h-full">
+          <motion.div 
+            className="flex min-h-[360px] flex-col items-center justify-center rounded-[2.5rem] bg-white p-10 shadow-xl shadow-neutral-950/5 ring-1 ring-neutral-950/5 h-full"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, margin: "-100px" }}
+          >
             <img src="/assets/Favicon.png" alt="MOKDA symbol" className="h-28 w-28 object-contain transition-transform duration-300 hover:scale-110" />
             <img src="/assets/assetlogo-1-.png" alt="MOKDA wordmark" className="mt-10 h-10 w-auto object-contain" />
-          </div>
+          </motion.div>
 
           {/* Color Identity Card */}
           <article className="grid gap-4 h-full">
-            <div className="rounded-[2rem] bg-[#ef5f18] p-8 text-white shadow-md">
+            <motion.div 
+              className="rounded-[2rem] bg-[#ef5f18] p-8 text-white shadow-md"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <p className="text-xs font-black uppercase tracking-[0.24em] text-white/70">
                 Burning Orange · #ef5f18
               </p>
               <h3 className="mt-3 text-3xl font-black">
                 {currentCopy.orangeTitle}
               </h3>
-            </div>
-            <div className="rounded-[2rem] bg-[#02674f] p-8 text-white shadow-md">
+            </motion.div>
+            <motion.div 
+              className="rounded-[2rem] bg-[#02674f] p-8 text-white shadow-md"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
               <p className="text-xs font-black uppercase tracking-[0.24em] text-white/70">
                 Dip Green · #02674f
               </p>
               <h3 className="mt-3 text-3xl font-black">
                 {currentCopy.greenTitle}
               </h3>
-            </div>
+            </motion.div>
           </article>
         </div>
       </div>

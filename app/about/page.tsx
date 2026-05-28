@@ -1,5 +1,6 @@
 'use client';
 
+// MOKDA About Us page with dynamic translations
 import { Header } from '@/components/layout/Header';
 import { AboutContact } from '@/components/about/AboutContact';
 import { BrandLogo } from '@/components/about/BrandLogo';

@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { Product } from './ProductShowcase';
 
 type ProductCardProps = {
@@ -7,11 +6,7 @@ type ProductCardProps = {
 
 export function ProductCard({ product }: ProductCardProps) {
   return (
-    <Link
-      href={product.href}
-      className="group flex min-w-0 flex-col items-center px-4 py-8 text-center no-underline transition-transform duration-300 hover:-translate-y-1 sm:px-6"
-      aria-label={`View ${product.title} products`}
-    >
+    <article className="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
       <p className="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">
         {product.category}
       </p>
@@ -23,7 +18,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <img
           src={product.imageUrl}
           alt={product.title}
-          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-300 hover:scale-105"
         />
       </div>
 
@@ -33,6 +28,6 @@ export function ProductCard({ product }: ProductCardProps) {
       <p className="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">
         {product.descLine2}
       </p>
-    </Link>
+    </article>
   );
 }

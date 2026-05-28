@@ -30,7 +30,6 @@ node_modules/
 out/
 tsconfig.tsbuildinfo
 
-# Local and temporary workspaces
+# Local archives / scratch workspaces
 Organized_Workspace/
 .git-local/
-

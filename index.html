@@ -302,16 +302,6 @@
         </div>
       </section>
 
-      <section id="sns" class="hidden bg-stone-50 py-24">
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto max-w-3xl text-center">
-            <p class="mb-4 text-sm font-black uppercase tracking-wide text-mokdaOrange">JOIN THE VIBE</p>
-            <h2 class="text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">@mokda_official</h2>
-          </div>
-          <div id="reelsGrid" class="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3"></div>
-        </div>
-      </section>
-
       <section id="partnership" class="bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-20 sm:py-28">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-10 max-w-3xl text-center">
@@ -690,12 +680,6 @@
         },
       ];
 
-      const reels = [
-        { id: 'r1', label: 'PLAY', title: 'Salsa coreana exclusiva para LATAM', image: 'assets/reel-1.png', url: 'https://www.instagram.com/p/DXD19vTiayF/' },
-        { id: 'r2', label: 'PLAY', title: '¿Quién es este chico coreano?', image: 'assets/reel-2.png', url: 'https://www.instagram.com/p/DXF9UGyktLN/?img_index=1' },
-        { id: 'r3', label: 'PLAY', title: 'Diario de salsa de un chico coreano', image: 'assets/reel-3.png', url: 'https://www.instagram.com/p/DXNkM21krdC/?img_index=1' },
-      ];
-
       const countries = [
         ['Mexico', { EN: 'Mexico', ES: 'México', KR: '멕시코' }],
         ['Peru', { EN: 'Peru', ES: 'Perú', KR: '페루' }],
@@ -930,31 +914,6 @@
         }
       }
 
-      function renderReels() {
-        document.getElementById('reelsGrid').innerHTML = reels
-          .map(
-            (reel, index) => `
-              <a
-                href="${reel.url}"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open ${reel.title} on Instagram"
-                data-reveal
-                data-reveal-delay="${index * 120}"
-                class="group relative aspect-[9/16] overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-neutral-950/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <img src="${reel.image}" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                <div class="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/70"></div>
-                <div class="relative z-10 flex h-full flex-col justify-between p-5">
-                  <div class="grid h-11 w-11 place-items-center rounded-full bg-white text-[10px] font-black text-neutral-950 transition-transform duration-300 group-hover:scale-110">${reel.label}</div>
-                  <h3 class="break-keep text-pretty text-2xl font-black leading-tight tracking-tight text-white sm:text-3xl">${reel.title}</h3>
-                </div>
-              </a>
-            `
-          )
-          .join('');
-      }
-
       function renderForm(fields) {
         setText('companyLabel', fields.company[0]);
         setPlaceholder('companyInput', fields.company[1]);
@@ -985,7 +944,6 @@
         setText('mapKicker', t.map.kicker);
         setText('mapTitle', t.map.title);
         renderStores();
-        renderReels();
         setText('b2bKicker', t.b2b.kicker);
         setText('b2bTitle', t.b2b.title);
         setText('b2bDescription', t.b2b.description);

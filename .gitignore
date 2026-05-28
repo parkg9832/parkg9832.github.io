@@ -28,6 +28,7 @@ ehthumbs_vista.db
 node_modules/
 .next/
 out/
+_next/
 tsconfig.tsbuildinfo
 
 # Local archives / scratch workspaces

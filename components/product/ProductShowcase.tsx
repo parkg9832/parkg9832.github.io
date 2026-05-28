@@ -9,6 +9,7 @@ export interface Product {
   title: string;
   titleColor: string;
   imageUrl: string;
+  href: string;
   descLine1: string;
   descLine2: string;
 }
@@ -23,16 +24,19 @@ export function ProductShowcase() {
       ...t.products.items.original,
       titleColor: 'text-red-600',
       imageUrl: '/assets/bottle-original.png.png',
+      href: '/products/',
     },
     {
       ...t.products.items.ssamjang,
       titleColor: 'text-yellow-500',
       imageUrl: '/assets/bottle-ssamjang.png.png',
+      href: '/products/',
     },
     {
       ...t.products.items.soySauce,
       titleColor: 'text-[#2d1a11]',
       imageUrl: '/assets/bottle-sweetsoy.png.png',
+      href: '/products/',
     },
   ];
 

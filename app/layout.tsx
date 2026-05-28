@@ -5,6 +5,11 @@ import { LanguageProvider } from './LanguageContext';
 export const metadata: Metadata = {
   title: 'MOKDA | Korean Sauce for LATAM',
   description: 'MOKDA brings Korean sauce culture to Latin American tables.',
+  icons: {
+    icon: '/assets/Favicon.png',
+    shortcut: '/assets/Favicon.png',
+    apple: '/assets/Favicon.png',
+  },
 };
 
 export default function RootLayout({

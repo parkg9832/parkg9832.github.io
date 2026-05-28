@@ -2,16 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { Locale, translations } from '@/translations';
+import { Locale } from '@/translations';
 import { useLanguage } from '@/app/LanguageContext';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
   const { lang, changeLanguage } = useLanguage();
-  const t = translations[lang];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +23,6 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => !prev);
-  };
-
   const getLangIndex = (currentLang: Locale) => {
     const indices: Record<Locale, number> = { es: 0, ko: 1, en: 2 };
     return indices[currentLang] ?? 0;
@@ -41,7 +33,6 @@ export function Header() {
     ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-neutral-100'
     : 'bg-transparent';
   
-  const textColorClass = isScrolled ? 'text-neutral-900' : 'text-white';
   const logoSrc = '/assets/assetlogo-1-.png';
 
   return (
@@ -57,28 +48,7 @@ export function Header() {
           </Link>
         </div>
 
-        {/* Navigation & Language switcher */}
-        <div className="flex items-center gap-4 md:gap-8">
-          {/* Desktop Nav */}
-          <nav className={`hidden items-center gap-8 text-sm font-black lg:flex ${textColorClass}`}>
-            <Link
-              href="/about"
-              className={`transition-colors duration-300 hover:text-[#ef5f18] ${
-                pathname === '/about' ? 'text-[#ef5f18]' : ''
-              }`}
-            >
-              {t.nav.about}
-            </Link>
-            <Link
-              href="/products"
-              className={`transition-colors duration-300 hover:text-[#ef5f18] ${
-                pathname === '/products' ? 'text-[#ef5f18]' : ''
-              }`}
-            >
-              {t.nav.products}
-            </Link>
-          </nav>
-
+        <div className="flex items-center">
           {/* Language Switcher */}
           <div
             id="lang-selector"
@@ -118,52 +88,6 @@ export function Header() {
               EN
             </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMobileMenu}
-            type="button"
-            className={`inline-flex h-10 w-10 items-center justify-center rounded-full p-2 transition-colors duration-300 ${
-              isScrolled
-                ? 'text-neutral-800 hover:bg-neutral-100'
-                : 'text-white hover:bg-white/10'
-            }`}
-            aria-label="Open navigation menu"
-          >
-            <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M4 7h16M4 12h16M4 17h16"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Dropdown Menu */}
-      <div
-        id="mobile-menu"
-        className={`absolute left-0 top-20 z-50 w-full border-b border-neutral-950/5 bg-white/95 backdrop-blur-md shadow-md overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-64 opacity-100 visible' : 'max-h-0 opacity-0 invisible'
-        }`}
-      >
-        <div className="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-5 md:px-8">
-          <Link
-            href="/about"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-[#ef5f18]"
-          >
-            {t.nav.about}
-          </Link>
-          <Link
-            href="/products"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-[#ef5f18]"
-          >
-            {t.nav.products}
-          </Link>
         </div>
       </div>
     </header>

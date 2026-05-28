@@ -6,6 +6,7 @@ import { useLanguage } from '@/app/LanguageContext';
 import { translations } from '@/translations';
 import { Header } from '@/components/layout/Header';
 import { ProductShowcase } from '@/components/product/ProductShowcase';
+import { Footer } from '@/components/layout/Footer';
 
 export default function HomePage() {
   const { lang } = useLanguage();
@@ -114,12 +115,6 @@ export default function HomePage() {
       tag: 'Soon',
       mapUrl: 'https://maps.google.com/maps?q=Cra.+13+%2382-19,+Bogot%C3%A1&t=&z=14&ie=UTF8&iwloc=&output=embed',
     },
-  ];
-
-  const reels = [
-    { id: 'r1', label: 'PLAY', title: 'Salsa coreana exclusiva para LATAM', image: '/assets/reel-1.png', url: 'https://www.instagram.com/p/DXD19vTiayF/' },
-    { id: 'r2', label: 'PLAY', title: '¿Quién es este chico coreano?', image: '/assets/reel-2.png', url: 'https://www.instagram.com/p/DXF9UGyktLN/?img_index=1' },
-    { id: 'r3', label: 'PLAY', title: 'Diario de salsa de un chico coreano', image: '/assets/reel-3.png', url: 'https://www.instagram.com/p/DXNkM21krdC/?img_index=1' },
   ];
 
   const countries = {
@@ -409,43 +404,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SNS / Instagram Reels Showcase */}
-      <section className="bg-stone-50 py-24">
-        <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-4 text-sm font-black uppercase tracking-wide text-[#ef5f18]">JOIN THE VIBE</p>
-            <h2 className="text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">@mokda_official</h2>
-          </div>
-          <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-3">
-            {reels.map((reel) => (
-              <a
-                key={reel.id}
-                href={reel.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block aspect-[3/4] w-full overflow-hidden rounded-3xl bg-neutral-900 shadow-xl shadow-neutral-950/5 transition-all duration-300 hover:-translate-y-1"
-              >
-                <img
-                  src={reel.image}
-                  alt={reel.title}
-                  className="h-full w-full object-cover opacity-90 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-100"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <span className="inline-flex items-center rounded-full bg-white/20 px-3 py-1 text-xs font-black uppercase tracking-wider text-white backdrop-blur-md">
-                    {reel.label}
-                  </span>
-                  <h3 className="mt-3 text-lg font-bold text-white group-hover:text-yellow-400">
-                    {reel.title}
-                  </h3>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* B2B / Partnership Section */}
       <section id="partnership" className="bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-20 sm:py-28">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -526,14 +484,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-neutral-950 py-12 text-white border-t border-neutral-900">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8">
-          <p className="text-center text-sm font-semibold text-white/60">
-            {currentB2b.footer}
-          </p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

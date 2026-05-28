@@ -7,6 +7,7 @@ import { BrandLogo } from '@/components/about/BrandLogo';
 import { AboutHero } from '@/components/about/AboutHero';
 import { BrandStory } from '@/components/about/BrandStory';
 import { ProductShowcase } from '@/components/product/ProductShowcase';
+import { Footer } from '@/components/layout/Footer';
 
 export default function AboutPage() {
   return (
@@ -17,6 +18,7 @@ export default function AboutPage() {
       <BrandLogo />
       <ProductShowcase />
       <AboutContact />
+      <Footer />
     </main>
   );
 }

@@ -71,12 +71,43 @@
         border-radius: 4px;
       }
 
+      [data-map-fill],
+      [data-map-wave] {
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      [data-map-content] {
+        opacity: 0;
+        transform: translateY(2rem);
+        transition: opacity 650ms ease-out 280ms, transform 650ms ease-out 280ms;
+      }
+
+      #map.map-visible [data-map-fill],
+      #map.map-visible [data-map-wave] {
+        transform: scaleX(1);
+      }
+
+      #map.map-visible [data-map-content] {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
         }
 
         [data-reveal] {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+
+        [data-map-fill],
+        [data-map-wave],
+        [data-map-content] {
           opacity: 1;
           transform: none;
           transition: none;
@@ -203,11 +234,12 @@
         </div>
       </section>
 
-      <section id="map" class="relative bg-mokdaOrange py-20 text-white sm:py-28">
-        <svg class="pointer-events-none absolute -top-12 left-0 h-12 w-full text-mokdaOrange md:-top-20 md:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+      <section id="map" class="relative isolate bg-white py-20 text-white sm:py-28">
+        <div data-map-fill class="absolute inset-0 z-0 bg-mokdaOrange" aria-hidden="true"></div>
+        <svg data-map-wave class="pointer-events-none absolute -top-12 left-0 h-12 w-full text-mokdaOrange md:-top-20 md:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
           <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
         </svg>
-        <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:px-8">
+        <div data-map-content class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:px-8">
           <div class="flex h-full flex-col">
             <p id="mapKicker" class="mb-4 text-sm font-black uppercase tracking-wide text-white/70"></p>
             <h2 id="mapTitle" class="break-keep text-balance text-5xl font-black leading-none tracking-tight sm:text-6xl md:text-7xl"></h2>
@@ -659,8 +691,28 @@
                 });
               },
               { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-            )
+          )
           : null;
+
+      const mapSection = document.getElementById('map');
+      if (mapSection) {
+        if ('IntersectionObserver' in window) {
+          const mapObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('map-visible');
+                  mapObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.22, rootMargin: '0px 0px -12% 0px' }
+          );
+          mapObserver.observe(mapSection);
+        } else {
+          mapSection.classList.add('map-visible');
+        }
+      }
 
       function bindReveal() {
         document.querySelectorAll('[data-reveal]:not([data-reveal-bound])').forEach((element) => {

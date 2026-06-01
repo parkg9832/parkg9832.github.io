@@ -71,11 +71,14 @@
         border-radius: 4px;
       }
 
-      [data-map-fill],
+      [data-map-fill] {
+        clip-path: circle(0% at 50% 50%);
+        transition: clip-path 1050ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
       [data-map-wave] {
-        transform: scaleX(0);
-        transform-origin: center;
-        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+        opacity: 0;
+        transition: opacity 420ms ease-out 520ms;
       }
 
       [data-map-content] {
@@ -84,9 +87,12 @@
         transition: opacity 650ms ease-out 280ms, transform 650ms ease-out 280ms;
       }
 
-      #map.map-visible [data-map-fill],
+      #map.map-visible [data-map-fill] {
+        clip-path: circle(150% at 50% 50%);
+      }
+
       #map.map-visible [data-map-wave] {
-        transform: scaleX(1);
+        opacity: 1;
       }
 
       #map.map-visible [data-map-content] {
@@ -108,6 +114,7 @@
         [data-map-fill],
         [data-map-wave],
         [data-map-content] {
+          clip-path: none;
           opacity: 1;
           transform: none;
           transition: none;

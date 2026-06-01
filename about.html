@@ -61,15 +61,19 @@
   <body class="bg-white text-neutral-950 antialiased">
     <header id="main-header" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
-        <a href="index.html" class="inline-flex items-center" aria-label="MOKDA home">
-          <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
-        </a>
+        <div class="flex items-center">
+          <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
+            <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
+          </a>
+        </div>
 
         <div class="flex items-center gap-4 md:gap-6">
-          <nav class="hidden items-center gap-8 text-sm font-black text-white lg:flex">
-            <a href="about.html" class="transition-colors duration-300 hover:text-mokdaOrange">About us</a>
-            <a href="products.html" class="transition-colors duration-300 hover:text-mokdaOrange">Salsa Coreana</a>
-          </nav>
+          <div id="lang-selector" class="relative flex w-fit cursor-pointer items-center rounded-full bg-stone-100 p-1 shadow-sm" aria-label="Language switcher">
+            <div id="lang-bg" class="absolute bottom-1 left-1 top-1 w-10 rounded-full bg-mokdaOrange transition-transform duration-300 ease-in-out sm:w-12"></div>
+            <button id="langES" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="0">ES</button>
+            <button id="langKR" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="1">KR</button>
+            <button id="langEN" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="2">EN</button>
+          </div>
           <button
             id="menu-toggle"
             type="button"
@@ -85,7 +89,7 @@
 
       <div
         id="mobile-menu"
-        class="invisible absolute left-0 top-20 z-50 max-h-0 w-full overflow-hidden border-b border-neutral-950/5 bg-white/95 opacity-0 shadow-md backdrop-blur-md transition-all duration-300 ease-in-out"
+        class="invisible absolute left-0 top-16 z-50 max-h-0 w-full overflow-hidden border-b border-neutral-950/5 bg-white/90 opacity-0 shadow-md backdrop-blur-md transition-all duration-300 ease-in-out"
       >
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col px-4 py-5 md:px-8">
           <a href="about.html" class="py-3 text-lg font-black tracking-tight text-neutral-950 transition hover:text-mokdaOrange">About us</a>
@@ -246,6 +250,43 @@
     </footer>
 
     <script>
+      let language = localStorage.getItem('mokdaLanguage') || 'ES';
+
+      function renderLanguageButtons() {
+        const bg = document.getElementById('lang-bg');
+        const langMap = { ES: 0, KR: 1, EN: 2 };
+        const index = langMap[language] !== undefined ? langMap[language] : 0;
+
+        if (bg) {
+          bg.style.transform = `translateX(${index * 100}%)`;
+        }
+
+        ['ES', 'KR', 'EN'].forEach((lang) => {
+          const button = document.getElementById(`lang${lang}`);
+          if (button) {
+            button.className =
+              language === lang
+                ? 'lang-btn relative z-10 h-8 w-10 text-center text-xs font-black text-white transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm'
+                : 'lang-btn relative z-10 h-8 w-10 text-center text-xs font-black text-neutral-500 transition-colors duration-300 hover:text-neutral-950 sm:h-10 sm:w-12 sm:text-sm';
+            button.setAttribute('aria-pressed', String(language === lang));
+          }
+        });
+      }
+
+      ['ES', 'KR', 'EN'].forEach((lang) => {
+        const button = document.getElementById(`lang${lang}`);
+        if (button) {
+          button.addEventListener('click', () => {
+            language = lang;
+            localStorage.setItem('mokdaLanguage', lang);
+            document.documentElement.lang = lang === 'KR' ? 'ko' : lang.toLowerCase();
+            renderLanguageButtons();
+          });
+        }
+      });
+
+      renderLanguageButtons();
+
       const menuToggle = document.getElementById('menu-toggle');
       const mobileMenu = document.getElementById('mobile-menu');
 
@@ -269,19 +310,11 @@
           header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
           menuToggle.classList.remove('text-white');
           menuToggle.classList.add('text-gray-800');
-          header.querySelectorAll('nav a').forEach((item) => {
-            item.classList.remove('text-white');
-            item.classList.add('text-neutral-950');
-          });
         } else {
           header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
           header.classList.add('bg-transparent');
           menuToggle.classList.remove('text-gray-800');
           menuToggle.classList.add('text-white');
-          header.querySelectorAll('nav a').forEach((item) => {
-            item.classList.remove('text-neutral-950');
-            item.classList.add('text-white');
-          });
         }
       };
 

@@ -52,7 +52,7 @@ export const translations: Record<Locale, Translations> = {
       products: 'Products',
     },
     hero: {
-      title: 'Comer Corea,<br />한국을 먹다',
+      title: 'Comer Corea<br />한국을 먹다',
     },
     products: {
       kicker: 'LINE UP',
@@ -117,7 +117,7 @@ export const translations: Record<Locale, Translations> = {
       products: 'Products',
     },
     hero: {
-      title: 'Comer Corea,<br />Taste Korea',
+      title: 'Comer Corea<br />한국을 먹다',
     },
     products: {
       kicker: 'LINE UP',
@@ -182,7 +182,7 @@ export const translations: Record<Locale, Translations> = {
       products: 'Productos',
     },
     hero: {
-      title: 'Comer Corea,<br />Saborea Corea',
+      title: 'Comer Corea<br />한국을 먹다',
     },
     products: {
       kicker: 'LINE UP',

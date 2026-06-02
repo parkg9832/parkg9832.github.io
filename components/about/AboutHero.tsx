@@ -17,7 +17,7 @@ export function AboutHero() {
           MOKDA Brand Essence
         </p>
         <h1 className="break-keep text-balance text-6xl font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
-          Comer Corea,
+          Comer Corea
           <br />
           <span className="text-[#ef5f18]">한국을 먹다</span>
         </h1>

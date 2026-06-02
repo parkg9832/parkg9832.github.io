@@ -7,22 +7,22 @@ type ProductCardProps = {
 export function ProductCard({ product }: ProductCardProps) {
   const pairingMap: Record<string, string[]> = {
     Original: [
-      '/assets/pairing-photos/red-chili.jpg',
-      '/assets/pairing-photos/jalapeno.jpg',
-      '/assets/pairing-photos/taco.jpg',
-      '/assets/pairing-photos/fries.jpg',
+      '/assets/pairing-photos/red-chili.png',
+      '/assets/pairing-photos/jalapeno.png',
+      '/assets/pairing-photos/taco.png',
+      '/assets/pairing-photos/fries.png',
     ],
     'Para Carne': [
-      '/assets/pairing-photos/pork-belly.jpg',
-      '/assets/pairing-photos/asado.jpg',
-      '/assets/pairing-photos/lomo-saltado.jpg',
-      '/assets/pairing-photos/pollo-brasa.jpg',
+      '/assets/pairing-photos/pork-belly.png',
+      '/assets/pairing-photos/asado.png',
+      '/assets/pairing-photos/lomo-saltado.png',
+      '/assets/pairing-photos/pollo-brasa.png',
     ],
     'Soy Sauce': [
-      '/assets/pairing-photos/bbq.jpg',
-      '/assets/pairing-photos/chicken-wings.jpg',
-      '/assets/pairing-photos/rice-bowl.jpg',
-      '/assets/pairing-photos/salad.jpg',
+      '/assets/pairing-photos/bbq.png',
+      '/assets/pairing-photos/chicken-wings.png',
+      '/assets/pairing-photos/rice-bowl.png',
+      '/assets/pairing-photos/salad.png',
     ],
   };
   const shapeMap: Record<string, string> = {

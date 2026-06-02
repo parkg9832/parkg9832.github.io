@@ -346,14 +346,15 @@
           <div class="relative min-h-[420px] w-full overflow-hidden rounded-3xl bg-white shadow-2xl shadow-orange-950/20 lg:mt-12 lg:min-h-0">
             <iframe
               id="mapFrame"
-              src="https://maps.google.com/maps?q=Latin%20America&t=&z=3&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
               width="100%"
               height="100%"
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
               title="MOKDA LATAM map"
-              data-map-src="https://maps.google.com/maps?q=Latin%20America&t=&z=3&ie=UTF8&iwloc=&output=embed"
+              data-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
+              data-default-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&output=embed"
               class="pointer-events-none absolute inset-0 h-full w-full rounded-3xl border-0"
             ></iframe>
           </div>
@@ -558,7 +559,7 @@
       const localizedProducts = [
         {
           category: {
-            ES: 'Salsa gochujang original',
+            ES: 'Salsa Guchujang',
             EN: 'Original gochujang sauce',
             KR: '오리지널 고추장 소스',
           },
@@ -567,7 +568,7 @@
           titleClass: 'text-red-600',
           desc: {
             ES: { line1: 'El toque fresco del jalapeño en el picante del gochujang,', line2: 'un sabor coreano limpio y adictivo' },
-            EN: { line1: 'The fresh kick of jalapeño meets bold gochujang,', line2: 'a clean Korean heat for every bite.' },
+            EN: { line1: 'The fresh kick of jalapeño meets bold gochujang,', line2: 'a clean Korean heat for every bite' },
             KR: { line1: '할라페뇨의 산뜻함을 더한,', line2: '깔끔하게 올라오는 한국식 매콤함' },
           },
           image: 'assets/bottle-original.png.png',
@@ -582,7 +583,7 @@
         },
         {
           category: {
-            ES: 'Salsa ssamjang para carne',
+            ES: 'Salsa Ssamjang',
             EN: 'Ssamjang BBQ sauce',
             KR: '쌈장 바비큐 소스',
           },
@@ -606,7 +607,7 @@
         },
         {
           category: {
-            ES: 'Salsa base ganjang',
+            ES: 'Salsa Ganjang',
             EN: 'Ganjang base sauce',
             KR: '간장 베이스 소스',
           },
@@ -614,7 +615,7 @@
           name: 'Soy Sauce',
           titleClass: 'text-[#2d1a11]',
           desc: {
-            ES: { line1: 'Dulce, salada y llena de umami,', line2: 'una salsa diaria para menús de fusión.' },
+            ES: { line1: 'Dulce, salada y llena de umami,', line2: 'una salsa diaria para menús de fusión' },
             EN: { line1: 'Sweet, savory, and full of umami,', line2: 'a daily sauce for fusion menus' },
             KR: { line1: '달콤함과 짭짤함이 균형 잡힌,', line2: '매일 쓰기 좋은 퓨전 데일리 소스' },
           },
@@ -798,6 +799,59 @@
       let heroScrollTimer = null;
       let selectedStoreId = null;
 
+      const mapLocales = { ES: 'es', KR: 'ko', EN: 'en' };
+      const validationMessages = {
+        ES: {
+          valueMissing: 'Completa este campo',
+          typeMismatch: 'Ingresa un correo válido',
+        },
+        KR: {
+          valueMissing: '이 입력란을 작성하세요',
+          typeMismatch: '올바른 이메일 주소를 입력하세요',
+        },
+        EN: {
+          valueMissing: 'Please fill out this field',
+          typeMismatch: 'Please enter a valid email address',
+        },
+      };
+
+      function localizeMapUrl(url) {
+        const locale = mapLocales[language] || 'es';
+        const separator = url.includes('?') ? '&' : '?';
+        return `${url.replace(/([?&])hl=[^&]*/g, '')}${separator}hl=${locale}`;
+      }
+
+      function syncMapFrame() {
+        const frame = document.getElementById('mapFrame');
+        if (!frame) return;
+        const store = selectedStoreId ? stores.find((item) => item.id === selectedStoreId) : null;
+        const baseUrl = store?.mapUrl || frame.dataset.defaultMapSrc || frame.dataset.mapSrc;
+        if (!baseUrl) return;
+        frame.src = localizeMapUrl(baseUrl);
+        frame.dataset.mapSrc = frame.src;
+      }
+
+      function getValidationMessage(input) {
+        const messages = validationMessages[language] || validationMessages.ES;
+        if (input.validity.valueMissing) return messages.valueMissing;
+        if (input.validity.typeMismatch) return messages.typeMismatch;
+        return '';
+      }
+
+      function bindLocalizedValidation() {
+        ['companyInput', 'nameInput', 'emailInput', 'countrySelect', 'messageInput'].forEach((id) => {
+          const input = document.getElementById(id);
+          if (!input) return;
+          input.addEventListener('invalid', () => {
+            input.setCustomValidity('');
+            input.setCustomValidity(getValidationMessage(input));
+          });
+          ['input', 'change'].forEach((eventName) => {
+            input.addEventListener(eventName, () => input.setCustomValidity(''));
+          });
+        });
+      }
+
       const revealObserver =
         'IntersectionObserver' in window
           ? new IntersectionObserver(
@@ -980,7 +1034,7 @@
               const pairings = Array.isArray(item.pairings) ? item.pairings : (item.pairings ? (item.pairings[lang] || item.pairings['ES']) : []);
               return `
               <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
-                <p class="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">${category}</p>
+                <p class="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">${category}</p>
                 <h3 class="mb-6 break-keep text-2xl font-bold leading-tight ${item.titleClass}">${item.name}</h3>
                 <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
                   <span class="product-pop-shape ${item.shapeClass || ''}" aria-hidden="true"></span>
@@ -988,7 +1042,7 @@
                   <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-6 w-full max-w-[280px] text-center">
-                  <span class="block break-keep text-sm font-normal leading-relaxed text-gray-600">${d.line1}</span>
+                  <span class="block break-keep text-sm font-medium leading-relaxed text-slate-800">${d.line1}</span>
                   <span class="mt-1 block break-keep text-base font-bold leading-relaxed text-gray-900">${d.line2}</span>
                 </div>
               </a>
@@ -1036,8 +1090,8 @@
         const store = stores.find((item) => item.id === id);
         const frame = document.getElementById('mapFrame');
         if (store?.mapUrl && frame) {
-          frame.src = store.mapUrl;
-          frame.dataset.mapSrc = store.mapUrl;
+          frame.src = localizeMapUrl(store.mapUrl);
+          frame.dataset.mapSrc = frame.src;
           const storeName = typeof store.name === 'string' ? store.name : (store.name[language] || store.name.ES);
           frame.title = `${storeName} map`;
         }
@@ -1058,6 +1112,9 @@
           <option value="" selected disabled>${fields.country[1]}</option>
           ${countries.map(([value, labels]) => `<option value="${value}">${labels[language]}</option>`).join('')}
         `;
+        ['companyInput', 'nameInput', 'emailInput', 'countrySelect', 'messageInput'].forEach((id) => {
+          document.getElementById(id)?.setCustomValidity('');
+        });
       }
 
       function renderPage() {
@@ -1073,6 +1130,7 @@
         setText('mapKicker', t.map.kicker);
         setText('mapTitle', t.map.title);
         renderStores();
+        syncMapFrame();
         setText('b2bKicker', t.b2b.kicker);
         setText('b2bTitle', t.b2b.title);
         setText('b2bDescription', t.b2b.description);
@@ -1121,6 +1179,7 @@
 
       createHeroCarousel();
       bindHeroScroll();
+      bindLocalizedValidation();
       renderPage();
       updateHeroCarousel();
       restartHeroCarousel();

@@ -35,7 +35,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article className="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
-      <p className="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">
+      <p className="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">
         {product.category}
       </p>
       <h3 className={`mb-6 break-keep text-2xl font-bold leading-tight ${product.titleColor}`}>
@@ -60,7 +60,7 @@ export function ProductCard({ product }: ProductCardProps) {
         />
       </div>
 
-      <p className="mt-6 break-keep text-sm font-normal leading-relaxed text-gray-600">
+      <p className="mt-6 break-keep text-sm font-medium leading-relaxed text-slate-800">
         {product.descLine1}
       </p>
       <p className="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">

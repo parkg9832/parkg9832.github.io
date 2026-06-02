@@ -71,119 +71,6 @@
         border-radius: 4px;
       }
 
-      .product-pairing-card .product-bottle {
-        transition: transform 320ms ease, filter 320ms ease;
-      }
-
-      .product-pop-shape {
-        position: absolute;
-        z-index: 4;
-        height: 8.2rem;
-        opacity: 0;
-        pointer-events: none;
-        right: 18%;
-        top: 10%;
-        transform: rotate(-10deg) scale(0.72);
-        transition: opacity 260ms ease, transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
-        width: 8.2rem;
-      }
-
-      .product-pop-shape::before {
-        background: var(--pop-color, #ef5f18);
-        clip-path: polygon(50% 0%, 60% 17%, 78% 9%, 82% 29%, 100% 33%, 88% 50%, 100% 67%, 82% 71%, 78% 91%, 60% 83%, 50% 100%, 40% 83%, 22% 91%, 18% 71%, 0% 67%, 12% 50%, 0% 33%, 18% 29%, 22% 9%, 40% 17%);
-        content: '';
-        display: block;
-        height: 100%;
-        width: 100%;
-      }
-
-      .product-pop-shape.is-original {
-        --pop-color: #ef3b2d;
-      }
-
-      .product-pop-shape.is-ssamjang {
-        --pop-color: #111111;
-        right: 14%;
-      }
-
-      .product-pop-shape.is-soy {
-        --pop-color: #f0b45a;
-      }
-
-      .product-pairing-card:hover .product-bottle,
-      .product-pairing-card:focus-visible .product-bottle,
-      .product-pairing-card:focus-within .product-bottle {
-        filter: drop-shadow(0 18px 22px rgba(15, 23, 42, 0.16));
-        transform: scale(1.06);
-      }
-
-      .product-pairing-illustration {
-        position: absolute;
-        z-index: 20;
-        height: 5rem;
-        filter: drop-shadow(0 16px 16px rgba(15, 23, 42, 0.18));
-        object-fit: contain;
-        opacity: 0;
-        pointer-events: none;
-        transform: translate3d(0, 14px, 0) rotate(var(--pairing-rotate, 0deg)) scale(0.86);
-        transition: opacity 260ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-        width: 5rem;
-      }
-
-      .product-pairing-illustration:nth-of-type(1) {
-        left: 6%;
-        top: 15%;
-        transition-delay: 30ms;
-        --pairing-rotate: -12deg;
-      }
-
-      .product-pairing-illustration:nth-of-type(2) {
-        right: 3%;
-        top: 31%;
-        transition-delay: 80ms;
-        --pairing-rotate: 10deg;
-      }
-
-      .product-pairing-illustration:nth-of-type(3) {
-        bottom: 12%;
-        left: 7%;
-        transition-delay: 130ms;
-        --pairing-rotate: 8deg;
-      }
-
-      .product-pairing-illustration:nth-of-type(4) {
-        bottom: 16%;
-        right: 4%;
-        transition-delay: 180ms;
-        --pairing-rotate: -8deg;
-      }
-
-      .product-pairing-card:hover .product-pairing-illustration,
-      .product-pairing-card:focus-visible .product-pairing-illustration,
-      .product-pairing-card:focus-within .product-pairing-illustration {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-      }
-
-      .product-pairing-card:hover .product-pop-shape,
-      .product-pairing-card:focus-visible .product-pop-shape,
-      .product-pairing-card:focus-within .product-pop-shape {
-        opacity: 1;
-        transform: rotate(-10deg) scale(1);
-      }
-
-      @media (hover: none) {
-        .product-pairing-illustration {
-          opacity: 1;
-          transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-        }
-
-        .product-pop-shape {
-          opacity: 1;
-          transform: rotate(-10deg) scale(1);
-        }
-      }
-
       [data-map-fill] {
         clip-path: circle(0% at 50% 50%);
         transition: clip-path 5500ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -234,11 +121,12 @@
         animation: marquee 20s linear infinite;
       }
     </style>
+    <link rel="stylesheet" href="./assets/product-pairings.css" />
     <link rel="icon" type="image/png" href="./assets/Favicon.png" />
   </head>
   <body class="bg-white text-neutral-950 antialiased">
     <main class="min-h-screen overflow-hidden bg-white">
-      <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
+      <header id="main-header" data-menu-initial="light" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
         <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
           <div class="flex items-center">
             <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -1158,19 +1046,6 @@
         renderPage();
       });
 
-      const menuToggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('max-h-0');
-          mobileMenu.classList.toggle('opacity-0');
-          mobileMenu.classList.toggle('invisible');
-          mobileMenu.classList.toggle('max-h-64');
-          mobileMenu.classList.toggle('opacity-100');
-          mobileMenu.classList.toggle('visible');
-        });
-      }
-
       document.getElementById('b2bForm').addEventListener('submit', (event) => event.preventDefault());
 
       window.addEventListener('pagehide', () => {
@@ -1184,32 +1059,6 @@
       updateHeroCarousel();
       restartHeroCarousel();
     </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const header = document.getElementById('main-header');
-        const menuBtn = document.getElementById('menu-toggle');
-        if (header) {
-          const handleScroll = () => {
-            if (window.scrollY > 10) {
-              header.classList.remove('bg-transparent');
-              header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-              if (menuBtn) {
-                menuBtn.classList.remove('text-white');
-                menuBtn.classList.add('text-gray-800');
-              }
-            } else {
-              header.classList.remove('bg-white', 'bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-              header.classList.add('bg-transparent');
-              if (menuBtn) {
-                menuBtn.classList.remove('text-gray-800');
-                menuBtn.classList.add('text-white');
-              }
-            }
-          };
-          handleScroll();
-          window.addEventListener('scroll', handleScroll);
-        }
-      });
-    </script>
+    <script src="./assets/site-header.js"></script>
   </body>
 </html>

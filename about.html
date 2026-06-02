@@ -45,116 +45,6 @@
         transform: translateY(0);
       }
 
-      .product-pairing-card .product-bottle {
-        transition: transform 320ms ease, filter 320ms ease;
-      }
-
-      .product-pop-shape {
-        position: absolute;
-        z-index: 4;
-        height: 8.2rem;
-        opacity: 0;
-        pointer-events: none;
-        right: 18%;
-        top: 10%;
-        transform: rotate(-10deg) scale(0.72);
-        transition: opacity 260ms ease, transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
-        width: 8.2rem;
-      }
-
-      .product-pop-shape::before {
-        background: var(--pop-color, #ef5f18);
-        clip-path: polygon(50% 0%, 60% 17%, 78% 9%, 82% 29%, 100% 33%, 88% 50%, 100% 67%, 82% 71%, 78% 91%, 60% 83%, 50% 100%, 40% 83%, 22% 91%, 18% 71%, 0% 67%, 12% 50%, 0% 33%, 18% 29%, 22% 9%, 40% 17%);
-        content: '';
-        display: block;
-        height: 100%;
-        width: 100%;
-      }
-
-      .product-pop-shape.is-original {
-        --pop-color: #ef3b2d;
-      }
-
-      .product-pop-shape.is-ssamjang {
-        --pop-color: #111111;
-        right: 14%;
-      }
-
-      .product-pop-shape.is-soy {
-        --pop-color: #f0b45a;
-      }
-
-      .product-pairing-card:hover .product-bottle,
-      .product-pairing-card:focus-within .product-bottle {
-        filter: drop-shadow(0 18px 22px rgba(15, 23, 42, 0.16));
-        transform: scale(1.06);
-      }
-
-      .product-pairing-illustration {
-        position: absolute;
-        z-index: 20;
-        height: 5rem;
-        filter: drop-shadow(0 16px 16px rgba(15, 23, 42, 0.18));
-        object-fit: contain;
-        opacity: 0;
-        pointer-events: none;
-        transform: translate3d(0, 14px, 0) rotate(var(--pairing-rotate, 0deg)) scale(0.86);
-        transition: opacity 260ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-        width: 5rem;
-      }
-
-      .product-pairing-illustration:nth-of-type(1) {
-        left: 6%;
-        top: 15%;
-        transition-delay: 30ms;
-        --pairing-rotate: -12deg;
-      }
-
-      .product-pairing-illustration:nth-of-type(2) {
-        right: 3%;
-        top: 31%;
-        transition-delay: 80ms;
-        --pairing-rotate: 10deg;
-      }
-
-      .product-pairing-illustration:nth-of-type(3) {
-        bottom: 12%;
-        left: 7%;
-        transition-delay: 130ms;
-        --pairing-rotate: 8deg;
-      }
-
-      .product-pairing-illustration:nth-of-type(4) {
-        bottom: 16%;
-        right: 4%;
-        transition-delay: 180ms;
-        --pairing-rotate: -8deg;
-      }
-
-      .product-pairing-card:hover .product-pairing-illustration,
-      .product-pairing-card:focus-within .product-pairing-illustration {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-      }
-
-      .product-pairing-card:hover .product-pop-shape,
-      .product-pairing-card:focus-within .product-pop-shape {
-        opacity: 1;
-        transform: rotate(-10deg) scale(1);
-      }
-
-      @media (hover: none) {
-        .product-pairing-illustration {
-          opacity: 1;
-          transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-        }
-
-        .product-pop-shape {
-          opacity: 1;
-          transform: rotate(-10deg) scale(1);
-        }
-      }
-
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -167,10 +57,11 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="./assets/product-pairings.css" />
     <link rel="icon" type="image/png" href="./assets/Favicon.png" />
   </head>
   <body class="bg-white text-neutral-950 antialiased">
-    <header id="main-header" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
+    <header id="main-header" data-menu-initial="light" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <div class="flex items-center">
           <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -663,40 +554,6 @@
 
       renderPage();
 
-      const menuToggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-
-      if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('max-h-0');
-          mobileMenu.classList.toggle('opacity-0');
-          mobileMenu.classList.toggle('invisible');
-          mobileMenu.classList.toggle('max-h-64');
-          mobileMenu.classList.toggle('opacity-100');
-          mobileMenu.classList.toggle('visible');
-        });
-      }
-
-      const header = document.getElementById('main-header');
-      const handleScroll = () => {
-        if (!header || !menuToggle) return;
-
-        if (window.scrollY > 10) {
-          header.classList.remove('bg-transparent');
-          header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-          menuToggle.classList.remove('text-white');
-          menuToggle.classList.add('text-gray-800');
-        } else {
-          header.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-          header.classList.add('bg-transparent');
-          menuToggle.classList.remove('text-gray-800');
-          menuToggle.classList.add('text-white');
-        }
-      };
-
-      handleScroll();
-      window.addEventListener('scroll', handleScroll, { passive: true });
-
       const revealObserver =
         'IntersectionObserver' in window
           ? new IntersectionObserver(
@@ -717,5 +574,6 @@
         else element.classList.add('is-visible');
       });
     </script>
+    <script src="./assets/site-header.js"></script>
   </body>
 </html>

@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="./assets/Favicon.png" />
   </head>
   <body class="bg-white text-neutral-950 antialiased">
-    <header id="main-header" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
+    <header id="main-header" data-menu-initial="dark" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
       <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
         <div class="flex items-center">
           <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -27,7 +27,7 @@
             <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1">KR</button>
             <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2">EN</button>
           </div>
-          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-white transition-colors duration-300 hover:bg-white/20" aria-label="Open navigation menu">
+          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 transition-colors duration-300 hover:bg-neutral-950/5" aria-label="Open navigation menu">
             <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
             </svg>
@@ -165,47 +165,8 @@
         renderPage();
       });
 
-      const menuToggle = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', () => {
-          mobileMenu.classList.toggle('max-h-0');
-          mobileMenu.classList.toggle('opacity-0');
-          mobileMenu.classList.toggle('invisible');
-          mobileMenu.classList.toggle('max-h-64');
-          mobileMenu.classList.toggle('opacity-100');
-          mobileMenu.classList.toggle('visible');
-        });
-      }
-
       renderPage();
     </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const header = document.getElementById('main-header');
-        const menuBtn = document.getElementById('menu-toggle');
-        if (header) {
-          const handleScroll = () => {
-            if (window.scrollY > 10) {
-              header.classList.remove('bg-transparent');
-              header.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-              if (menuBtn) {
-                menuBtn.classList.remove('text-white');
-                menuBtn.classList.add('text-gray-800');
-              }
-            } else {
-              header.classList.remove('bg-white', 'bg-white/90', 'backdrop-blur-md', 'shadow-sm');
-              header.classList.add('bg-transparent');
-              if (menuBtn) {
-                menuBtn.classList.remove('text-gray-800');
-                menuBtn.classList.add('text-white');
-              }
-            }
-          };
-          handleScroll();
-          window.addEventListener('scroll', handleScroll);
-        }
-      });
-    </script>
+    <script src="./assets/site-header.js"></script>
   </body>
 </html>

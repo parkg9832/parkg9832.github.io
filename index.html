@@ -71,6 +71,71 @@
         border-radius: 4px;
       }
 
+      .product-pairing-card .product-bottle {
+        transition: transform 320ms ease, filter 320ms ease;
+      }
+
+      .product-pairing-card:hover .product-bottle,
+      .product-pairing-card:focus-visible .product-bottle,
+      .product-pairing-card:focus-within .product-bottle {
+        filter: drop-shadow(0 18px 22px rgba(15, 23, 42, 0.16));
+        transform: scale(1.06);
+      }
+
+      .product-pairing-illustration {
+        position: absolute;
+        z-index: 20;
+        height: 4.4rem;
+        filter: drop-shadow(0 14px 16px rgba(15, 23, 42, 0.16));
+        opacity: 0;
+        pointer-events: none;
+        transform: translate3d(0, 14px, 0) rotate(var(--pairing-rotate, 0deg)) scale(0.86);
+        transition: opacity 260ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+        width: 4.4rem;
+      }
+
+      .product-pairing-illustration:nth-child(1) {
+        left: 4%;
+        top: 16%;
+        transition-delay: 30ms;
+        --pairing-rotate: -12deg;
+      }
+
+      .product-pairing-illustration:nth-child(2) {
+        right: 7%;
+        top: 30%;
+        transition-delay: 80ms;
+        --pairing-rotate: 10deg;
+      }
+
+      .product-pairing-illustration:nth-child(3) {
+        bottom: 13%;
+        left: 9%;
+        transition-delay: 130ms;
+        --pairing-rotate: 8deg;
+      }
+
+      .product-pairing-illustration:nth-child(4) {
+        bottom: 18%;
+        right: 8%;
+        transition-delay: 180ms;
+        --pairing-rotate: -8deg;
+      }
+
+      .product-pairing-card:hover .product-pairing-illustration,
+      .product-pairing-card:focus-visible .product-pairing-illustration,
+      .product-pairing-card:focus-within .product-pairing-illustration {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
+      }
+
+      @media (hover: none) {
+        .product-pairing-illustration {
+          opacity: 1;
+          transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
+        }
+      }
+
       [data-map-fill] {
         clip-path: circle(0% at 50% 50%);
         transition: clip-path 5500ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -459,6 +524,7 @@
           },
           image: 'assets/bottle-original.png.png',
           alt: 'Salsa MOKDA Original',
+          pairings: ['chile', 'jalapeno', 'chicken', 'taco'],
         },
         {
           category: {
@@ -476,6 +542,7 @@
           },
           image: 'assets/bottle-ssamjang.png.png',
           alt: 'Salsa MOKDA Para Carne',
+          pairings: ['grill', 'steak', 'burger', 'corn'],
         },
         {
           category: {
@@ -493,8 +560,22 @@
           },
           image: 'assets/bottle-sweetsoy.png.png',
           alt: 'Salsa MOKDA Soy Sauce',
+          pairings: ['rice', 'chicken', 'garlic', 'vegetables'],
         },
       ];
+      const pairingAssets = {
+        chile: 'assets/pairings/noto-hot-pepper.svg',
+        jalapeno: 'assets/pairings/noto-bell-pepper.svg',
+        chicken: 'assets/pairings/noto-poultry-leg.svg',
+        taco: 'assets/pairings/noto-taco.svg',
+        grill: 'assets/pairings/noto-cut-of-meat.svg',
+        steak: 'assets/pairings/noto-cut-of-meat.svg',
+        burger: 'assets/pairings/noto-hamburger.svg',
+        corn: 'assets/pairings/noto-ear-corn.svg',
+        rice: 'assets/pairings/noto-cooked-rice.svg',
+        garlic: 'assets/pairings/noto-garlic.svg',
+        vegetables: 'assets/pairings/noto-leafy-green.svg',
+      };
       const content = {
         EN: {
           story: {
@@ -843,12 +924,17 @@
             (item, index) => {
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
+              const pairings = Array.isArray(item.pairings) ? item.pairings : (item.pairings ? (item.pairings[lang] || item.pairings['ES']) : []);
               return `
-              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
+              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
                 <p class="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">${category}</p>
                 <h3 class="mb-6 break-keep text-2xl font-bold leading-tight ${item.titleClass}">${item.name}</h3>
-                <div class="flex h-64 w-full items-center justify-center sm:h-72">
-                  <img src="${item.image}" alt="${item.alt}" class="h-full w-full cursor-pointer object-contain transition-transform duration-300 hover:scale-105" loading="lazy" />
+                <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
+                  ${pairings.map((pairing) => {
+                    const asset = pairingAssets[pairing];
+                    return asset ? `<img src="${asset}" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />` : '';
+                  }).join('')}
+                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-6 w-full max-w-[280px] text-center">
                   <span class="block break-keep text-sm font-normal leading-relaxed text-gray-600">${d.line1}</span>

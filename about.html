@@ -45,6 +45,69 @@
         transform: translateY(0);
       }
 
+      .product-pairing-card .product-bottle {
+        transition: transform 320ms ease, filter 320ms ease;
+      }
+
+      .product-pairing-card:hover .product-bottle,
+      .product-pairing-card:focus-within .product-bottle {
+        filter: drop-shadow(0 18px 22px rgba(15, 23, 42, 0.16));
+        transform: scale(1.06);
+      }
+
+      .product-pairing-illustration {
+        position: absolute;
+        z-index: 20;
+        height: 4.4rem;
+        filter: drop-shadow(0 14px 16px rgba(15, 23, 42, 0.16));
+        opacity: 0;
+        pointer-events: none;
+        transform: translate3d(0, 14px, 0) rotate(var(--pairing-rotate, 0deg)) scale(0.86);
+        transition: opacity 260ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+        width: 4.4rem;
+      }
+
+      .product-pairing-illustration:nth-child(1) {
+        left: 4%;
+        top: 16%;
+        transition-delay: 30ms;
+        --pairing-rotate: -12deg;
+      }
+
+      .product-pairing-illustration:nth-child(2) {
+        right: 7%;
+        top: 30%;
+        transition-delay: 80ms;
+        --pairing-rotate: 10deg;
+      }
+
+      .product-pairing-illustration:nth-child(3) {
+        bottom: 13%;
+        left: 9%;
+        transition-delay: 130ms;
+        --pairing-rotate: 8deg;
+      }
+
+      .product-pairing-illustration:nth-child(4) {
+        bottom: 18%;
+        right: 8%;
+        transition-delay: 180ms;
+        --pairing-rotate: -8deg;
+      }
+
+      .product-pairing-card:hover .product-pairing-illustration,
+      .product-pairing-card:focus-within .product-pairing-illustration {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
+      }
+
+      @media (hover: none) {
+        .product-pairing-illustration {
+          opacity: 1;
+          transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -183,31 +246,43 @@
         </div>
 
         <div class="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
-          <article data-reveal class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
+          <article data-reveal class="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
             <p id="product-original-category" class="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">오리지널 고추장 소스</p>
             <h3 class="mb-6 break-keep text-2xl font-bold leading-tight text-red-600">Original</h3>
-            <div class="flex h-64 w-full items-center justify-center sm:h-72">
-              <img src="assets/bottle-original.png.png" alt="MOKDA Original" class="h-full w-full object-contain transition-transform duration-300 hover:scale-105" />
+            <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
+              <img src="assets/pairings/noto-hot-pepper.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-bell-pepper.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-poultry-leg.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-taco.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/bottle-original.png.png" alt="MOKDA Original" class="product-bottle relative z-10 h-full w-full object-contain" />
             </div>
             <p id="product-original-line-1" class="mt-6 break-keep text-sm font-normal leading-relaxed text-gray-600">할라페뇨의 산뜻함을 더한,</p>
             <p id="product-original-line-2" class="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">깔끔하게 올라오는 한국식 매콤함</p>
           </article>
 
-          <article data-reveal class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
+          <article data-reveal class="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
             <p id="product-ssamjang-category" class="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">쌈장 바비큐 소스</p>
             <h3 class="mb-6 break-keep text-2xl font-bold leading-tight text-yellow-500">Para Carne</h3>
-            <div class="flex h-64 w-full items-center justify-center sm:h-72">
-              <img src="assets/bottle-ssamjang.png.png" alt="MOKDA Para Carne" class="h-full w-full object-contain transition-transform duration-300 hover:scale-105" />
+            <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
+              <img src="assets/pairings/noto-cut-of-meat.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-poultry-leg.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-hamburger.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-ear-corn.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/bottle-ssamjang.png.png" alt="MOKDA Para Carne" class="product-bottle relative z-10 h-full w-full object-contain" />
             </div>
             <p id="product-ssamjang-line-1" class="mt-6 break-keep text-sm font-normal leading-relaxed text-gray-600">고기와 그릴 요리에 맞춘,</p>
             <p id="product-ssamjang-line-2" class="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">깊고 진한 감칠맛의 바비큐 소스</p>
           </article>
 
-          <article data-reveal class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
+          <article data-reveal class="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
             <p id="product-soy-category" class="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">간장 베이스 소스</p>
             <h3 class="mb-6 break-keep text-2xl font-bold leading-tight text-[#2d1a11]">Soy Sauce</h3>
-            <div class="flex h-64 w-full items-center justify-center sm:h-72">
-              <img src="assets/bottle-sweetsoy.png.png" alt="MOKDA Soy Sauce" class="h-full w-full object-contain transition-transform duration-300 hover:scale-105" />
+            <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
+              <img src="assets/pairings/noto-cooked-rice.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-poultry-leg.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-garlic.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairings/noto-leafy-green.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/bottle-sweetsoy.png.png" alt="MOKDA Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain" />
             </div>
             <p id="product-soy-line-1" class="mt-6 break-keep text-sm font-normal leading-relaxed text-gray-600">달콤함과 짭짤함이 균형 잡힌,</p>
             <p id="product-soy-line-2" class="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">매일 쓰기 좋은 퓨전 데일리 소스</p>

@@ -32,6 +32,41 @@
         transition: transform 320ms ease, filter 320ms ease;
       }
 
+      .product-pop-shape {
+        position: absolute;
+        z-index: 4;
+        height: 8.2rem;
+        opacity: 0;
+        pointer-events: none;
+        right: 18%;
+        top: 10%;
+        transform: rotate(-10deg) scale(0.72);
+        transition: opacity 260ms ease, transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+        width: 8.2rem;
+      }
+
+      .product-pop-shape::before {
+        background: var(--pop-color, #ef5f18);
+        clip-path: polygon(50% 0%, 60% 17%, 78% 9%, 82% 29%, 100% 33%, 88% 50%, 100% 67%, 82% 71%, 78% 91%, 60% 83%, 50% 100%, 40% 83%, 22% 91%, 18% 71%, 0% 67%, 12% 50%, 0% 33%, 18% 29%, 22% 9%, 40% 17%);
+        content: '';
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+
+      .product-pop-shape.is-original {
+        --pop-color: #ef3b2d;
+      }
+
+      .product-pop-shape.is-ssamjang {
+        --pop-color: #111111;
+        right: 14%;
+      }
+
+      .product-pop-shape.is-soy {
+        --pop-color: #f0b45a;
+      }
+
       .product-pairing-card:hover .product-bottle,
       .product-pairing-card:focus-within .product-bottle {
         filter: drop-shadow(0 18px 22px rgba(15, 23, 42, 0.16));
@@ -41,37 +76,41 @@
       .product-pairing-illustration {
         position: absolute;
         z-index: 20;
-        height: 4.4rem;
+        border: 3px solid #ffffff;
+        border-radius: 44% 56% 48% 52%;
+        box-shadow: 0 16px 28px rgba(15, 23, 42, 0.2);
+        height: 4.9rem;
         filter: drop-shadow(0 14px 16px rgba(15, 23, 42, 0.16));
+        object-fit: cover;
         opacity: 0;
         pointer-events: none;
         transform: translate3d(0, 14px, 0) rotate(var(--pairing-rotate, 0deg)) scale(0.86);
         transition: opacity 260ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-        width: 4.4rem;
+        width: 4.9rem;
       }
 
-      .product-pairing-illustration:nth-child(1) {
+      .product-pairing-illustration:nth-of-type(1) {
         left: 5%;
         top: 18%;
         transition-delay: 30ms;
         --pairing-rotate: -12deg;
       }
 
-      .product-pairing-illustration:nth-child(2) {
+      .product-pairing-illustration:nth-of-type(2) {
         right: 4%;
         top: 38%;
         transition-delay: 80ms;
         --pairing-rotate: 10deg;
       }
 
-      .product-pairing-illustration:nth-child(3) {
+      .product-pairing-illustration:nth-of-type(3) {
         bottom: 14%;
         left: 10%;
         transition-delay: 130ms;
         --pairing-rotate: 8deg;
       }
 
-      .product-pairing-illustration:nth-child(4) {
+      .product-pairing-illustration:nth-of-type(4) {
         bottom: 18%;
         right: 8%;
         transition-delay: 180ms;
@@ -84,15 +123,21 @@
         transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
       }
 
-      .product-pairing-compact .product-pairing-illustration:nth-child(1) {
+      .product-pairing-card:hover .product-pop-shape,
+      .product-pairing-card:focus-within .product-pop-shape {
+        opacity: 1;
+        transform: rotate(-10deg) scale(1);
+      }
+
+      .product-pairing-compact .product-pairing-illustration:nth-of-type(1) {
         left: 18%;
       }
 
-      .product-pairing-compact .product-pairing-illustration:nth-child(2) {
+      .product-pairing-compact .product-pairing-illustration:nth-of-type(2) {
         right: 12%;
       }
 
-      .product-pairing-compact .product-pairing-illustration:nth-child(3) {
+      .product-pairing-compact .product-pairing-illustration:nth-of-type(3) {
         left: 22%;
       }
 
@@ -100,6 +145,11 @@
         .product-pairing-illustration {
           opacity: 1;
           transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
+        }
+
+        .product-pop-shape {
+          opacity: 1;
+          transform: rotate(-10deg) scale(1);
         }
       }
     </style>
@@ -160,10 +210,11 @@
               <a id="prod1Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-yellow-500">상품보기 ↗</a>
             </div>
             <div class="product-pairing-compact relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
-              <img src="assets/pairings/noto-hot-pepper.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-bell-pepper.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-poultry-leg.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-taco.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <span class="product-pop-shape is-original" aria-hidden="true"></span>
+              <img src="assets/pairing-photos/red-chili.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/jalapeno.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/taco.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/fries.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
               <img
                 src="assets/bottle-original.png.png"
                 alt="Salsa MOKDA Original"
@@ -175,10 +226,11 @@
 
           <article class="product-pairing-card reveal-target opacity-0 translate-x-10 transition-all duration-[800ms] ease-out delay-[200ms] flex flex-col items-center justify-between gap-6 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] px-6 py-8 rounded-[3rem] rounded-tl-[6rem] rounded-br-[6rem] md:flex-row md:px-14 md:rounded-tl-[12rem] md:rounded-br-[10rem] md:rounded-tr-[3rem] md:rounded-bl-[3rem]">
             <div class="product-pairing-compact relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
-              <img src="assets/pairings/noto-cut-of-meat.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-poultry-leg.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-hamburger.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-ear-corn.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <span class="product-pop-shape is-ssamjang" aria-hidden="true"></span>
+              <img src="assets/pairing-photos/pork-belly.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/asado.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/lomo-saltado.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/pollo-brasa.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
               <img
                 src="assets/bottle-ssamjang.png.png"
                 alt="Salsa MOKDA Para Carne"
@@ -206,10 +258,11 @@
               <a id="prod3Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-yellow-500">상품보기 ↗</a>
             </div>
             <div class="product-pairing-compact relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
-              <img src="assets/pairings/noto-cooked-rice.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-poultry-leg.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-garlic.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
-              <img src="assets/pairings/noto-leafy-green.svg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <span class="product-pop-shape is-soy" aria-hidden="true"></span>
+              <img src="assets/pairing-photos/bbq.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/chicken-wings.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/rice-bowl.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
+              <img src="assets/pairing-photos/salad.jpg" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />
               <img
                 src="assets/bottle-sweetsoy.png.png"
                 alt="Salsa MOKDA Soy Sauce"

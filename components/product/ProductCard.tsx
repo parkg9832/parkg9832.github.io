@@ -7,25 +7,31 @@ type ProductCardProps = {
 export function ProductCard({ product }: ProductCardProps) {
   const pairingMap: Record<string, string[]> = {
     Original: [
-      '/assets/pairings/noto-hot-pepper.svg',
-      '/assets/pairings/noto-bell-pepper.svg',
-      '/assets/pairings/noto-poultry-leg.svg',
-      '/assets/pairings/noto-taco.svg',
+      '/assets/pairing-photos/red-chili.jpg',
+      '/assets/pairing-photos/jalapeno.jpg',
+      '/assets/pairing-photos/taco.jpg',
+      '/assets/pairing-photos/fries.jpg',
     ],
     'Para Carne': [
-      '/assets/pairings/noto-cut-of-meat.svg',
-      '/assets/pairings/noto-poultry-leg.svg',
-      '/assets/pairings/noto-hamburger.svg',
-      '/assets/pairings/noto-ear-corn.svg',
+      '/assets/pairing-photos/pork-belly.jpg',
+      '/assets/pairing-photos/asado.jpg',
+      '/assets/pairing-photos/lomo-saltado.jpg',
+      '/assets/pairing-photos/pollo-brasa.jpg',
     ],
     'Soy Sauce': [
-      '/assets/pairings/noto-cooked-rice.svg',
-      '/assets/pairings/noto-poultry-leg.svg',
-      '/assets/pairings/noto-garlic.svg',
-      '/assets/pairings/noto-leafy-green.svg',
+      '/assets/pairing-photos/bbq.jpg',
+      '/assets/pairing-photos/chicken-wings.jpg',
+      '/assets/pairing-photos/rice-bowl.jpg',
+      '/assets/pairing-photos/salad.jpg',
     ],
   };
+  const shapeMap: Record<string, string> = {
+    Original: 'is-original',
+    'Para Carne': 'is-ssamjang',
+    'Soy Sauce': 'is-soy',
+  };
   const pairings = pairingMap[product.title] || [];
+  const shapeClass = shapeMap[product.title] || '';
 
   return (
     <article className="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
@@ -37,6 +43,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </h3>
 
       <div className="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
+        <span className={`product-pop-shape ${shapeClass}`} aria-hidden="true" />
         {pairings.map((pairing) => (
           <img
             key={pairing}

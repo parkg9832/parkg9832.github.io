@@ -75,6 +75,41 @@
         transition: transform 320ms ease, filter 320ms ease;
       }
 
+      .product-pop-shape {
+        position: absolute;
+        z-index: 4;
+        height: 8.2rem;
+        opacity: 0;
+        pointer-events: none;
+        right: 18%;
+        top: 10%;
+        transform: rotate(-10deg) scale(0.72);
+        transition: opacity 260ms ease, transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+        width: 8.2rem;
+      }
+
+      .product-pop-shape::before {
+        background: var(--pop-color, #ef5f18);
+        clip-path: polygon(50% 0%, 60% 17%, 78% 9%, 82% 29%, 100% 33%, 88% 50%, 100% 67%, 82% 71%, 78% 91%, 60% 83%, 50% 100%, 40% 83%, 22% 91%, 18% 71%, 0% 67%, 12% 50%, 0% 33%, 18% 29%, 22% 9%, 40% 17%);
+        content: '';
+        display: block;
+        height: 100%;
+        width: 100%;
+      }
+
+      .product-pop-shape.is-original {
+        --pop-color: #ef3b2d;
+      }
+
+      .product-pop-shape.is-ssamjang {
+        --pop-color: #111111;
+        right: 14%;
+      }
+
+      .product-pop-shape.is-soy {
+        --pop-color: #f0b45a;
+      }
+
       .product-pairing-card:hover .product-bottle,
       .product-pairing-card:focus-visible .product-bottle,
       .product-pairing-card:focus-within .product-bottle {
@@ -85,37 +120,41 @@
       .product-pairing-illustration {
         position: absolute;
         z-index: 20;
-        height: 4.4rem;
+        border: 3px solid #ffffff;
+        border-radius: 44% 56% 48% 52%;
+        box-shadow: 0 16px 28px rgba(15, 23, 42, 0.2);
+        height: 4.9rem;
         filter: drop-shadow(0 14px 16px rgba(15, 23, 42, 0.16));
+        object-fit: cover;
         opacity: 0;
         pointer-events: none;
         transform: translate3d(0, 14px, 0) rotate(var(--pairing-rotate, 0deg)) scale(0.86);
         transition: opacity 260ms ease, transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
-        width: 4.4rem;
+        width: 4.9rem;
       }
 
-      .product-pairing-illustration:nth-child(1) {
-        left: 4%;
-        top: 16%;
+      .product-pairing-illustration:nth-of-type(1) {
+        left: 6%;
+        top: 13%;
         transition-delay: 30ms;
         --pairing-rotate: -12deg;
       }
 
-      .product-pairing-illustration:nth-child(2) {
-        right: 7%;
-        top: 30%;
+      .product-pairing-illustration:nth-of-type(2) {
+        right: 6%;
+        top: 34%;
         transition-delay: 80ms;
         --pairing-rotate: 10deg;
       }
 
-      .product-pairing-illustration:nth-child(3) {
-        bottom: 13%;
-        left: 9%;
+      .product-pairing-illustration:nth-of-type(3) {
+        bottom: 12%;
+        left: 7%;
         transition-delay: 130ms;
         --pairing-rotate: 8deg;
       }
 
-      .product-pairing-illustration:nth-child(4) {
+      .product-pairing-illustration:nth-of-type(4) {
         bottom: 18%;
         right: 8%;
         transition-delay: 180ms;
@@ -129,10 +168,22 @@
         transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
       }
 
+      .product-pairing-card:hover .product-pop-shape,
+      .product-pairing-card:focus-visible .product-pop-shape,
+      .product-pairing-card:focus-within .product-pop-shape {
+        opacity: 1;
+        transform: rotate(-10deg) scale(1);
+      }
+
       @media (hover: none) {
         .product-pairing-illustration {
           opacity: 1;
           transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
+        }
+
+        .product-pop-shape {
+          opacity: 1;
+          transform: rotate(-10deg) scale(1);
         }
       }
 
@@ -524,7 +575,13 @@
           },
           image: 'assets/bottle-original.png.png',
           alt: 'Salsa MOKDA Original',
-          pairings: ['chile', 'jalapeno', 'chicken', 'taco'],
+          shapeClass: 'is-original',
+          pairings: [
+            'assets/pairing-photos/red-chili.jpg',
+            'assets/pairing-photos/jalapeno.jpg',
+            'assets/pairing-photos/taco.jpg',
+            'assets/pairing-photos/fries.jpg',
+          ],
         },
         {
           category: {
@@ -542,7 +599,13 @@
           },
           image: 'assets/bottle-ssamjang.png.png',
           alt: 'Salsa MOKDA Para Carne',
-          pairings: ['grill', 'steak', 'burger', 'corn'],
+          shapeClass: 'is-ssamjang',
+          pairings: [
+            'assets/pairing-photos/pork-belly.jpg',
+            'assets/pairing-photos/asado.jpg',
+            'assets/pairing-photos/lomo-saltado.jpg',
+            'assets/pairing-photos/pollo-brasa.jpg',
+          ],
         },
         {
           category: {
@@ -560,22 +623,15 @@
           },
           image: 'assets/bottle-sweetsoy.png.png',
           alt: 'Salsa MOKDA Soy Sauce',
-          pairings: ['rice', 'chicken', 'garlic', 'vegetables'],
+          shapeClass: 'is-soy',
+          pairings: [
+            'assets/pairing-photos/bbq.jpg',
+            'assets/pairing-photos/chicken-wings.jpg',
+            'assets/pairing-photos/rice-bowl.jpg',
+            'assets/pairing-photos/salad.jpg',
+          ],
         },
       ];
-      const pairingAssets = {
-        chile: 'assets/pairings/noto-hot-pepper.svg',
-        jalapeno: 'assets/pairings/noto-bell-pepper.svg',
-        chicken: 'assets/pairings/noto-poultry-leg.svg',
-        taco: 'assets/pairings/noto-taco.svg',
-        grill: 'assets/pairings/noto-cut-of-meat.svg',
-        steak: 'assets/pairings/noto-cut-of-meat.svg',
-        burger: 'assets/pairings/noto-hamburger.svg',
-        corn: 'assets/pairings/noto-ear-corn.svg',
-        rice: 'assets/pairings/noto-cooked-rice.svg',
-        garlic: 'assets/pairings/noto-garlic.svg',
-        vegetables: 'assets/pairings/noto-leafy-green.svg',
-      };
       const content = {
         EN: {
           story: {
@@ -930,10 +986,8 @@
                 <p class="mb-1 break-keep text-sm font-semibold leading-tight text-gray-500">${category}</p>
                 <h3 class="mb-6 break-keep text-2xl font-bold leading-tight ${item.titleClass}">${item.name}</h3>
                 <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-                  ${pairings.map((pairing) => {
-                    const asset = pairingAssets[pairing];
-                    return asset ? `<img src="${asset}" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />` : '';
-                  }).join('')}
+                  <span class="product-pop-shape ${item.shapeClass || ''}" aria-hidden="true"></span>
+                  ${pairings.map((pairing) => `<img src="${pairing}" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />`).join('')}
                   <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-6 w-full max-w-[280px] text-center">

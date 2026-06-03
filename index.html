@@ -924,7 +924,7 @@
               <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
                 <p class="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">${category}</p>
                 <h3 class="mb-6 break-keep text-2xl font-bold leading-tight ${item.titleClass}">${item.name}</h3>
-                <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
+                <div class="product-pairing-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
                   <span class="product-pop-shape ${item.shapeClass || ''}" aria-hidden="true"></span>
                   ${pairings.map((pairing) => `<img src="${pairing}" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />`).join('')}
                   <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain" loading="lazy" />

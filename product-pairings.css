@@ -27,15 +27,16 @@
 
 .product-pop-shape {
   background: var(--pop-color, #ef5f18);
-  border-radius: 999px;
-  bottom: 15%;
-  height: 0.42rem;
-  left: 50%;
+  border-radius: 58% 42% 48% 52% / 44% 54% 46% 56%;
+  height: 7.3rem;
+  left: auto;
   opacity: 0;
-  transform: translateX(-50%) rotate(-5deg) scaleX(0.72);
-  transition: opacity 300ms ease, transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
-  width: 40%;
-  z-index: 3;
+  right: 12%;
+  top: 15%;
+  transform: rotate(-10deg) scale(0.78);
+  transition: opacity 320ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: 8.9rem;
+  z-index: 4;
 }
 
 .product-pop-shape.is-original {
@@ -57,7 +58,9 @@
 }
 
 .product-pairing-illustration {
-  filter: drop-shadow(0 14px 16px rgba(15, 23, 42, 0.16));
+  filter:
+    drop-shadow(var(--pair-outline-x, 0) var(--pair-outline-y, 0) 0 var(--pair-outline, transparent))
+    drop-shadow(0 16px 16px rgba(15, 23, 42, 0.17));
   height: var(--pair-size, 4.9rem);
   object-fit: contain;
   opacity: 0;
@@ -77,6 +80,9 @@
   --enter-y: 1.1rem;
   --pairing-rotate: -15deg;
   --pair-size: 5.6rem;
+  --pair-outline: var(--accent-outline, transparent);
+  --pair-outline-x: 0.14rem;
+  --pair-outline-y: 0.14rem;
 }
 
 .product-pairing-illustration:nth-of-type(2) {
@@ -127,8 +133,8 @@
 .product-pairing-card:hover .product-pop-shape,
 .product-pairing-card:focus-visible .product-pop-shape,
 .product-pairing-card:focus-within .product-pop-shape {
-  opacity: 0.72;
-  transform: translateX(-50%) rotate(-5deg) scaleX(1);
+  opacity: 0.88;
+  transform: rotate(-8deg) scale(1);
 }
 
 .product-pairing-card:hover .product-pairing-illustration,
@@ -160,93 +166,105 @@
 }
 
 .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1) {
-  left: 5%;
-  top: 18%;
-  --pair-size: 5.35rem;
+  left: 8%;
+  top: 33%;
+  --accent-outline: #ef3b2d;
+  --pair-size: 7.2rem;
   --pairing-rotate: -17deg;
+  z-index: 24;
 }
 
 .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(2) {
-  right: 6%;
+  right: 9%;
   top: 25%;
-  --pair-size: 4.75rem;
+  --pair-size: 3.9rem;
   --pairing-rotate: 11deg;
 }
 
 .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(3) {
-  bottom: 15%;
-  left: 9%;
-  --pair-size: 5.15rem;
+  bottom: 17%;
+  left: 8%;
+  --pair-size: 3.7rem;
   --pairing-rotate: 6deg;
 }
 
 .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(4) {
-  bottom: 19%;
-  right: 11%;
-  --pair-size: 4rem;
+  bottom: 18%;
+  right: 12%;
+  --pair-size: 3.4rem;
   --pairing-rotate: -7deg;
 }
 
 .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(1) {
-  left: 7%;
-  top: 18%;
-  --pair-size: 5.05rem;
+  left: 9%;
+  top: 27%;
+  --pair-size: 3.7rem;
   --pairing-rotate: 8deg;
 }
 
 .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(2) {
-  right: 4%;
-  top: 23%;
-  --pair-size: 5.45rem;
+  right: 7%;
+  top: 33%;
+  --accent-outline: #111111;
+  --pair-outline: #111111;
+  --pair-outline-x: 0.13rem;
+  --pair-outline-y: 0.13rem;
+  --pair-size: 7rem;
   --pairing-rotate: 8deg;
+  z-index: 24;
 }
 
 .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(3) {
-  bottom: 15%;
-  left: 8%;
-  --pair-size: 4.6rem;
+  bottom: 17%;
+  left: 10%;
+  --pair-size: 3.5rem;
   --pairing-rotate: -5deg;
 }
 
 .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(4) {
   bottom: 14%;
-  right: 10%;
-  --pair-size: 5.05rem;
+  right: 11%;
+  --pair-size: 3.9rem;
   --pairing-rotate: -10deg;
 }
 
 .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(1) {
-  left: 5%;
-  top: 17%;
-  --pair-size: 5.4rem;
+  left: 8%;
+  top: 25%;
+  --pair-size: 3.9rem;
   --pairing-rotate: -9deg;
 }
 
 .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(2) {
-  right: 5%;
-  top: 23%;
-  --pair-size: 4.9rem;
+  right: 7%;
+  top: 33%;
+  --accent-outline: #e0a23e;
+  --pair-outline: #e0a23e;
+  --pair-outline-x: 0.13rem;
+  --pair-outline-y: 0.13rem;
+  --pair-size: 6.6rem;
   --pairing-rotate: 12deg;
+  z-index: 24;
 }
 
 .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(3) {
-  bottom: 15%;
-  left: 6%;
-  --pair-size: 4.85rem;
+  bottom: 17%;
+  left: 9%;
+  --pair-size: 3.6rem;
   --pairing-rotate: 4deg;
 }
 
 .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(4) {
   bottom: 16%;
-  right: 7%;
-  --pair-size: 4.75rem;
+  right: 12%;
+  --pair-size: 3.7rem;
   --pairing-rotate: -4deg;
 }
 
 @media (hover: none) {
   .product-pop-shape {
-    opacity: 0.5;
-    transform: translateX(-50%) rotate(-5deg) scaleX(1);
+    opacity: 0.82;
+    transform: rotate(-8deg) scale(1);
   }
 
   .product-pairing-illustration {
@@ -271,10 +289,11 @@
   }
 
   .product-pop-shape {
-    bottom: 16%;
-    height: 0.34rem;
-    opacity: 0.42;
-    width: 36%;
+    height: clamp(4.95rem, 20vw, 6.05rem);
+    opacity: 0.86;
+    right: 13%;
+    top: 24%;
+    width: clamp(5.9rem, 24vw, 7rem);
   }
 
   .product-pairing-card .product-bottle {
@@ -282,7 +301,9 @@
   }
 
   .product-pairing-illustration {
-    filter: drop-shadow(0 10px 12px rgba(15, 23, 42, 0.13));
+    filter:
+      drop-shadow(var(--pair-outline-x, 0) var(--pair-outline-y, 0) 0 var(--pair-outline, transparent))
+      drop-shadow(0 10px 12px rgba(15, 23, 42, 0.13));
     height: var(--mobile-pair-size, clamp(2.8rem, 12.6vw, 3.6rem));
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
@@ -318,74 +339,74 @@
   }
 
   .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1) {
-    left: 8%;
-    top: 20%;
-    --mobile-pair-size: clamp(3.55rem, 16vw, 4.2rem);
+    left: 6%;
+    top: 35%;
+    --mobile-pair-size: clamp(4.7rem, 21vw, 5.45rem);
   }
 
   .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(2) {
-    right: 9%;
-    top: 27%;
-    --mobile-pair-size: clamp(3rem, 13.4vw, 3.6rem);
+    right: 7%;
+    top: 25%;
+    --mobile-pair-size: clamp(2.65rem, 12vw, 3.05rem);
   }
 
   .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(3) {
-    bottom: 16%;
-    left: 17%;
-    --mobile-pair-size: clamp(3.35rem, 15vw, 4rem);
+    bottom: 17%;
+    left: 15%;
+    --mobile-pair-size: clamp(2.5rem, 11.5vw, 2.95rem);
   }
 
   .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(4) {
-    bottom: 18%;
-    right: 19%;
-    --mobile-pair-size: clamp(2.7rem, 12vw, 3.25rem);
+    bottom: 19%;
+    right: 15%;
+    --mobile-pair-size: clamp(2.35rem, 10.6vw, 2.75rem);
   }
 
   .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(1) {
-    left: 9%;
-    top: 19%;
-    --mobile-pair-size: clamp(3.15rem, 14vw, 3.75rem);
+    left: 8%;
+    top: 24%;
+    --mobile-pair-size: clamp(2.55rem, 11.5vw, 3rem);
   }
 
   .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(2) {
-    right: 8%;
-    top: 25%;
-    --mobile-pair-size: clamp(3.45rem, 15.5vw, 4.15rem);
+    right: 4%;
+    top: 36%;
+    --mobile-pair-size: clamp(4.55rem, 20vw, 5.25rem);
   }
 
   .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(3) {
     bottom: 18%;
-    left: 16%;
-    --mobile-pair-size: clamp(2.8rem, 12.4vw, 3.4rem);
+    left: 13%;
+    --mobile-pair-size: clamp(2.45rem, 11vw, 2.85rem);
   }
 
   .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(4) {
     bottom: 16%;
-    right: 17%;
-    --mobile-pair-size: clamp(3.1rem, 13.8vw, 3.7rem);
+    right: 16%;
+    --mobile-pair-size: clamp(2.7rem, 12.2vw, 3.1rem);
   }
 
   .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(1) {
     left: 8%;
-    top: 18%;
-    --mobile-pair-size: clamp(3.55rem, 16vw, 4.2rem);
+    top: 24%;
+    --mobile-pair-size: clamp(2.7rem, 12.2vw, 3.1rem);
   }
 
   .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(2) {
-    right: 9%;
-    top: 25%;
-    --mobile-pair-size: clamp(3.1rem, 13.8vw, 3.65rem);
+    right: 5%;
+    top: 36%;
+    --mobile-pair-size: clamp(4.1rem, 18.5vw, 4.85rem);
   }
 
   .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(3) {
     bottom: 17%;
-    left: 15%;
-    --mobile-pair-size: clamp(3rem, 13.4vw, 3.55rem);
+    left: 12%;
+    --mobile-pair-size: clamp(2.55rem, 11.6vw, 3rem);
   }
 
   .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(4) {
     bottom: 17%;
-    right: 16%;
-    --mobile-pair-size: clamp(2.85rem, 12.8vw, 3.4rem);
+    right: 15%;
+    --mobile-pair-size: clamp(2.45rem, 11vw, 2.9rem);
   }
 }

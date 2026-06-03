@@ -60,6 +60,7 @@
 .product-pairing-illustration {
   filter:
     drop-shadow(var(--pair-outline-x, 0) var(--pair-outline-y, 0) 0 var(--pair-outline, transparent))
+    drop-shadow(var(--pair-outline-x-2, 0) var(--pair-outline-y-2, 0) 0 var(--pair-outline, transparent))
     drop-shadow(0 16px 16px rgba(15, 23, 42, 0.17));
   height: var(--pair-size, 4.9rem);
   object-fit: contain;
@@ -168,7 +169,9 @@
 .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1) {
   left: 8%;
   top: 33%;
-  --accent-outline: #ef3b2d;
+  --accent-outline: #02674f;
+  --pair-outline-x-2: -0.12rem;
+  --pair-outline-y-2: 0.08rem;
   --pair-size: 7.2rem;
   --pairing-rotate: -17deg;
   z-index: 24;
@@ -207,8 +210,10 @@
   top: 33%;
   --accent-outline: #111111;
   --pair-outline: #111111;
-  --pair-outline-x: 0.13rem;
-  --pair-outline-y: 0.13rem;
+  --pair-outline-x: 0.16rem;
+  --pair-outline-y: 0.15rem;
+  --pair-outline-x-2: -0.1rem;
+  --pair-outline-y-2: 0.08rem;
   --pair-size: 7rem;
   --pairing-rotate: 8deg;
   z-index: 24;
@@ -240,8 +245,10 @@
   top: 33%;
   --accent-outline: #e0a23e;
   --pair-outline: #e0a23e;
-  --pair-outline-x: 0.13rem;
-  --pair-outline-y: 0.13rem;
+  --pair-outline-x: 0.16rem;
+  --pair-outline-y: 0.15rem;
+  --pair-outline-x-2: -0.1rem;
+  --pair-outline-y-2: 0.08rem;
   --pair-size: 6.6rem;
   --pairing-rotate: 12deg;
   z-index: 24;
@@ -303,6 +310,7 @@
   .product-pairing-illustration {
     filter:
       drop-shadow(var(--pair-outline-x, 0) var(--pair-outline-y, 0) 0 var(--pair-outline, transparent))
+      drop-shadow(var(--pair-outline-x-2, 0) var(--pair-outline-y-2, 0) 0 var(--pair-outline, transparent))
       drop-shadow(0 10px 12px rgba(15, 23, 42, 0.13));
     height: var(--mobile-pair-size, clamp(2.8rem, 12.6vw, 3.6rem));
     opacity: 1;

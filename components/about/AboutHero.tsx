@@ -2,11 +2,13 @@ export function AboutHero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-neutral-950 px-5 py-28 text-center text-white sm:px-8">
       <picture className="absolute inset-0">
-        <source media="(min-width: 768px)" srcSet="/assets/assetshero-1-desktop.jpg.png" />
+        <source media="(min-width: 768px)" srcSet="/assets/assetshero-1-desktop.webp" />
         <img
-          src="/assets/assetshero-1-mobile.jpg.png"
+          src="/assets/assetshero-1-mobile.webp"
           alt=""
           className="h-full w-full object-cover"
+          loading="eager"
+          fetchPriority="high"
         />
       </picture>
       <div className="absolute inset-0 bg-black/55" />

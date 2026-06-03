@@ -30,7 +30,7 @@ export function BrandStory() {
 
         <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-full shadow-lg">
           <img
-            src="/assets/story-vibe.png"
+            src="/assets/story-vibe.webp"
             alt="Brand Story"
             className="h-full w-full object-cover"
           />

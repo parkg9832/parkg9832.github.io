@@ -98,8 +98,8 @@
 
       /* Marquee */
       @keyframes marquee {
-        0% { transform: translateX(0%); }
-        100% { transform: translateX(-50%); } /* 내용물을 2배로 만들어 -50% 이동 시 끊김 방지 */
+        0% { transform: translateX(-50%); }
+        100% { transform: translateX(0%); }
       }
       .animate-marquee {
         display: flex;
@@ -107,7 +107,7 @@
         animation: marquee 20s linear infinite;
       }
     </style>
-    <link rel="icon" type="image/png" href="./assets/Favicon.png" />
+    <link rel="icon" type="image/webp" href="./assets/Favicon.webp" />
   </head>
   <body class="bg-white text-neutral-950 antialiased">
     <main class="min-h-screen overflow-hidden bg-white">
@@ -115,7 +115,7 @@
         <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
           <div class="flex items-center">
             <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
-              <img src="assets/assetlogo-1-.png" alt="MOKDA" class="h-6 w-auto sm:h-9" />
+              <img src="assets/assetlogo-1.webp" alt="MOKDA" class="h-6 w-auto sm:h-9" />
             </a>
           </div>
           <div class="flex items-center gap-4 md:gap-6">
@@ -188,7 +188,7 @@
 
           <div class="group relative h-[260px] w-full cursor-pointer overflow-hidden rounded-2xl shadow-xl shadow-neutral-950/10 sm:h-[320px] md:h-[380px]">
             <img
-              src="./assets/story-vibe.png"
+              src="./assets/story-vibe.webp"
               alt=""
               aria-hidden="true"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -353,8 +353,8 @@
 
       const heroSlides = [
         {
-          desktopImage: 'assets/assetshero-1-desktop.jpg.png',
-          mobileImage: 'assets/assetshero-1-mobile.jpg.png',
+          desktopImage: 'assets/assetshero-1-desktop.webp',
+          mobileImage: 'assets/assetshero-1-mobile.webp',
           href: '#products',
           copy: {
             EN: {
@@ -378,8 +378,8 @@
           },
         },
         {
-          desktopImage: 'assets/assetshero-2-desktop.jpg.png',
-          mobileImage: 'assets/assetshero-2-mobile.jpg.png',
+          desktopImage: 'assets/assetshero-2-desktop.webp',
+          mobileImage: 'assets/assetshero-2-mobile.webp',
           href: '#map',
           copy: {
             EN: {
@@ -403,8 +403,8 @@
           },
         },
         {
-          desktopImage: 'assets/assetshero-3-desktop.jpg.png',
-          mobileImage: 'assets/assetshero-3-mobile.jpg.png',
+          desktopImage: 'assets/assetshero-3-desktop.webp',
+          mobileImage: 'assets/assetshero-3-mobile.webp',
           href: '#partnership',
           copy: {
             EN: {
@@ -444,7 +444,7 @@
             EN: { line1: 'The fresh kick of jalapeño meets bold gochujang,', line2: 'a clean Korean heat for every bite' },
             KR: { line1: '할라페뇨의 산뜻함을 더한,', line2: '깔끔하게 올라오는 한국식 매콤함' },
           },
-          image: 'assets/bottle-original.png.png',
+          image: 'assets/bottle-original.webp',
           alt: 'Salsa MOKDA Original',
         },
         {
@@ -461,7 +461,7 @@
             EN: { line1: 'Deep umami built for meat and grilling,', line2: 'with the roasted depth of ssamjang' },
             KR: { line1: '고기와 그릴 요리에 맞춘,', line2: '깊고 진한 감칠맛의 바비큐 소스' },
           },
-          image: 'assets/bottle-ssamjang.png.png',
+          image: 'assets/bottle-ssamjang.webp',
           alt: 'Salsa MOKDA Para Carne',
         },
         {
@@ -478,7 +478,7 @@
             EN: { line1: 'Sweet, savory, and full of umami,', line2: 'a daily sauce for fusion menus' },
             KR: { line1: '달콤함과 짭짤함이 균형 잡힌,', line2: '매일 쓰기 좋은 퓨전 데일리 소스' },
           },
-          image: 'assets/bottle-sweetsoy.png.png',
+          image: 'assets/bottle-sweetsoy.webp',
           alt: 'Salsa MOKDA Soy Sauce',
         },
       ];
@@ -744,8 +744,10 @@
           .map(
             (slide, index) => `
               <div data-hero-slide="${index}" class="relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
-                <img src="${slide.mobileImage}" alt="" class="absolute inset-0 block h-full w-full object-cover md:hidden" />
-                <img src="${slide.desktopImage}" alt="" class="absolute inset-0 hidden h-full w-full object-cover md:block" />
+                <picture class="absolute inset-0 block h-full w-full">
+                  <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
+                  <img src="${slide.mobileImage}" alt="" class="h-full w-full object-cover" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
+                </picture>
                 <div class="absolute inset-0 z-10 bg-black/65 md:bg-black/60"></div>
                 <div class="relative z-20 mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-4 pt-28 pb-20 sm:px-6 lg:px-8 lg:pt-36 lg:pb-28">
                   <p data-hero-kicker class="mb-5 text-xs font-black uppercase tracking-[0.34em] text-mokdaOrange [text-shadow:_0_3px_8px_rgba(0,0,0,0.9)] sm:text-sm"></p>

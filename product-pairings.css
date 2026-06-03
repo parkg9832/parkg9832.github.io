@@ -12,13 +12,13 @@
 
 .product-pairing-stage::before {
   background:
-    radial-gradient(ellipse at center, rgba(15, 23, 42, 0.18), transparent 68%),
-    linear-gradient(90deg, transparent, rgba(239, 95, 24, 0.16), transparent);
+    radial-gradient(ellipse at center, rgba(15, 23, 42, 0.13), transparent 68%),
+    linear-gradient(90deg, transparent, rgba(239, 95, 24, 0.11), transparent);
   border-radius: 999px;
   bottom: 10%;
   height: 1rem;
   left: 50%;
-  opacity: 0.52;
+  opacity: 0.44;
   transform: translateX(-50%) rotate(-2deg);
   transition: opacity 360ms ease, transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
   width: 48%;
@@ -34,7 +34,7 @@
   opacity: 0;
   transform: translateX(-50%) rotate(-5deg) scaleX(0.72);
   transition: opacity 300ms ease, transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
-  width: 46%;
+  width: 40%;
   z-index: 3;
 }
 
@@ -52,69 +52,68 @@
 
 .product-pairing-card .product-bottle {
   filter:
-    drop-shadow(0 22px 24px rgba(15, 23, 42, 0.18))
-    drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+    drop-shadow(0 24px 24px rgba(15, 23, 42, 0.17));
   transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms ease;
 }
 
 .product-pairing-illustration {
-  filter:
-    drop-shadow(0 0 1px rgba(255, 255, 255, 1))
-    drop-shadow(0 0 6px rgba(255, 255, 255, 0.95))
-    drop-shadow(0 14px 16px rgba(15, 23, 42, 0.18));
-  height: 5.35rem;
+  filter: drop-shadow(0 14px 16px rgba(15, 23, 42, 0.16));
+  height: var(--pair-size, 4.9rem);
   object-fit: contain;
   opacity: 0;
   pointer-events: none;
   position: absolute;
   transform: translate3d(var(--enter-x, 0), var(--enter-y, 1rem), 0) rotate(var(--pairing-rotate, 0deg)) scale(0.84);
   transition: opacity 280ms ease, transform 460ms cubic-bezier(0.16, 1, 0.3, 1), filter 360ms ease;
-  width: 5.35rem;
+  width: var(--pair-size, 4.9rem);
   z-index: 20;
 }
 
 .product-pairing-illustration:nth-of-type(1) {
-  left: var(--pair-1-left, 8%);
-  top: var(--pair-1-top, 19%);
+  left: var(--pair-1-left, 4%);
+  top: var(--pair-1-top, 16%);
   transition-delay: 35ms;
   --enter-x: 1.2rem;
   --enter-y: 1.1rem;
   --pairing-rotate: -15deg;
+  --pair-size: 5.6rem;
 }
 
 .product-pairing-illustration:nth-of-type(2) {
-  right: var(--pair-2-right, 7%);
-  top: var(--pair-2-top, 27%);
+  right: var(--pair-2-right, 4%);
+  top: var(--pair-2-top, 22%);
   transition-delay: 85ms;
   --enter-x: -1.2rem;
   --enter-y: 1rem;
   --pairing-rotate: 12deg;
+  --pair-size: 5rem;
 }
 
 .product-pairing-illustration:nth-of-type(3) {
-  bottom: var(--pair-3-bottom, 17%);
-  left: var(--pair-3-left, 12%);
+  bottom: var(--pair-3-bottom, 15%);
+  left: var(--pair-3-left, 10%);
   transition-delay: 135ms;
   --enter-x: 1rem;
   --enter-y: -0.9rem;
   --pairing-rotate: 8deg;
+  --pair-size: 4.55rem;
 }
 
 .product-pairing-illustration:nth-of-type(4) {
-  bottom: var(--pair-4-bottom, 19%);
-  right: var(--pair-4-right, 12%);
+  bottom: var(--pair-4-bottom, 14%);
+  right: var(--pair-4-right, 9%);
   transition-delay: 185ms;
   --enter-x: -1rem;
   --enter-y: -0.8rem;
   --pairing-rotate: -10deg;
+  --pair-size: 4.1rem;
 }
 
 .product-pairing-card:hover .product-bottle,
 .product-pairing-card:focus-visible .product-bottle,
 .product-pairing-card:focus-within .product-bottle {
   filter:
-    drop-shadow(0 30px 30px rgba(15, 23, 42, 0.22))
-    drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+    drop-shadow(0 30px 30px rgba(15, 23, 42, 0.22));
   transform: translateY(-0.35rem) scale(1.055) rotate(-1deg);
 }
 
@@ -140,29 +139,113 @@
 }
 
 .product-page {
-  --pair-1-left: 5%;
-  --pair-1-top: 19%;
-  --pair-2-right: 5%;
-  --pair-2-top: 29%;
-  --pair-3-bottom: 18%;
-  --pair-4-bottom: 20%;
+  --pair-1-left: -1%;
+  --pair-1-top: 17%;
+  --pair-2-right: 0%;
+  --pair-2-top: 24%;
+  --pair-3-bottom: 15%;
+  --pair-4-bottom: 14%;
 }
 
 .product-pairing-compact .product-pairing-illustration:nth-of-type(1) {
-  left: 4%;
+  left: -2%;
 }
 
 .product-pairing-compact .product-pairing-illustration:nth-of-type(2) {
-  right: 4%;
+  right: -1%;
 }
 
 .product-pairing-compact .product-pairing-illustration:nth-of-type(3) {
+  left: 5%;
+}
+
+.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1) {
+  left: 5%;
+  top: 18%;
+  --pair-size: 5.35rem;
+  --pairing-rotate: -17deg;
+}
+
+.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(2) {
+  right: 6%;
+  top: 25%;
+  --pair-size: 4.75rem;
+  --pairing-rotate: 11deg;
+}
+
+.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(3) {
+  bottom: 15%;
+  left: 9%;
+  --pair-size: 5.15rem;
+  --pairing-rotate: 6deg;
+}
+
+.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(4) {
+  bottom: 19%;
+  right: 11%;
+  --pair-size: 4rem;
+  --pairing-rotate: -7deg;
+}
+
+.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(1) {
+  left: 7%;
+  top: 18%;
+  --pair-size: 5.05rem;
+  --pairing-rotate: 8deg;
+}
+
+.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(2) {
+  right: 4%;
+  top: 23%;
+  --pair-size: 5.45rem;
+  --pairing-rotate: 8deg;
+}
+
+.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(3) {
+  bottom: 15%;
   left: 8%;
+  --pair-size: 4.6rem;
+  --pairing-rotate: -5deg;
+}
+
+.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(4) {
+  bottom: 14%;
+  right: 10%;
+  --pair-size: 5.05rem;
+  --pairing-rotate: -10deg;
+}
+
+.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(1) {
+  left: 5%;
+  top: 17%;
+  --pair-size: 5.4rem;
+  --pairing-rotate: -9deg;
+}
+
+.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(2) {
+  right: 5%;
+  top: 23%;
+  --pair-size: 4.9rem;
+  --pairing-rotate: 12deg;
+}
+
+.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(3) {
+  bottom: 15%;
+  left: 6%;
+  --pair-size: 4.85rem;
+  --pairing-rotate: 4deg;
+}
+
+.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(4) {
+  bottom: 16%;
+  right: 7%;
+  --pair-size: 4.75rem;
+  --pairing-rotate: -4deg;
 }
 
 @media (hover: none) {
   .product-pop-shape {
-    opacity: 0.68;
+    opacity: 0.5;
     transform: translateX(-50%) rotate(-5deg) scaleX(1);
   }
 
@@ -183,14 +266,15 @@
   .product-pairing-stage::before {
     bottom: 11%;
     height: 0.72rem;
-    opacity: 0.5;
-    width: 46%;
+    opacity: 0.36;
+    width: 42%;
   }
 
   .product-pop-shape {
     bottom: 16%;
     height: 0.34rem;
-    width: 42%;
+    opacity: 0.42;
+    width: 36%;
   }
 
   .product-pairing-card .product-bottle {
@@ -198,33 +282,110 @@
   }
 
   .product-pairing-illustration {
-    height: clamp(3rem, 14vw, 3.85rem);
+    filter: drop-shadow(0 10px 12px rgba(15, 23, 42, 0.13));
+    height: var(--mobile-pair-size, clamp(2.8rem, 12.6vw, 3.6rem));
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-    width: clamp(3rem, 14vw, 3.85rem);
+    width: var(--mobile-pair-size, clamp(2.8rem, 12.6vw, 3.6rem));
   }
 
   .product-pairing-compact .product-pairing-illustration:nth-of-type(1),
   .product-pairing-illustration:nth-of-type(1) {
-    left: 0;
-    top: 24%;
+    left: -2%;
+    top: 18%;
+    --mobile-pair-size: clamp(3.5rem, 16vw, 4.35rem);
   }
 
   .product-pairing-compact .product-pairing-illustration:nth-of-type(2),
   .product-pairing-illustration:nth-of-type(2) {
-    right: 0;
-    top: 30%;
+    right: -2%;
+    top: 26%;
+    --mobile-pair-size: clamp(3rem, 13.8vw, 3.85rem);
   }
 
   .product-pairing-compact .product-pairing-illustration:nth-of-type(3),
   .product-pairing-illustration:nth-of-type(3) {
-    bottom: 17%;
+    bottom: 15%;
     left: 4%;
+    --mobile-pair-size: clamp(2.85rem, 13vw, 3.55rem);
   }
 
   .product-pairing-compact .product-pairing-illustration:nth-of-type(4),
   .product-pairing-illustration:nth-of-type(4) {
-    bottom: 18%;
+    bottom: 14%;
     right: 5%;
+    --mobile-pair-size: clamp(2.55rem, 11.8vw, 3.25rem);
+  }
+
+  .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1) {
+    left: 8%;
+    top: 20%;
+    --mobile-pair-size: clamp(3.55rem, 16vw, 4.2rem);
+  }
+
+  .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(2) {
+    right: 9%;
+    top: 27%;
+    --mobile-pair-size: clamp(3rem, 13.4vw, 3.6rem);
+  }
+
+  .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(3) {
+    bottom: 16%;
+    left: 17%;
+    --mobile-pair-size: clamp(3.35rem, 15vw, 4rem);
+  }
+
+  .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(4) {
+    bottom: 18%;
+    right: 19%;
+    --mobile-pair-size: clamp(2.7rem, 12vw, 3.25rem);
+  }
+
+  .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(1) {
+    left: 9%;
+    top: 19%;
+    --mobile-pair-size: clamp(3.15rem, 14vw, 3.75rem);
+  }
+
+  .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(2) {
+    right: 8%;
+    top: 25%;
+    --mobile-pair-size: clamp(3.45rem, 15.5vw, 4.15rem);
+  }
+
+  .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(3) {
+    bottom: 18%;
+    left: 16%;
+    --mobile-pair-size: clamp(2.8rem, 12.4vw, 3.4rem);
+  }
+
+  .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(4) {
+    bottom: 16%;
+    right: 17%;
+    --mobile-pair-size: clamp(3.1rem, 13.8vw, 3.7rem);
+  }
+
+  .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(1) {
+    left: 8%;
+    top: 18%;
+    --mobile-pair-size: clamp(3.55rem, 16vw, 4.2rem);
+  }
+
+  .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(2) {
+    right: 9%;
+    top: 25%;
+    --mobile-pair-size: clamp(3.1rem, 13.8vw, 3.65rem);
+  }
+
+  .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(3) {
+    bottom: 17%;
+    left: 15%;
+    --mobile-pair-size: clamp(3rem, 13.4vw, 3.55rem);
+  }
+
+  .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(4) {
+    bottom: 17%;
+    right: 16%;
+    --mobile-pair-size: clamp(2.85rem, 12.8vw, 3.4rem);
   }
 }

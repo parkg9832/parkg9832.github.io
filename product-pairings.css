@@ -12,272 +12,112 @@
 
 .product-pairing-stage::before {
   background:
-    radial-gradient(ellipse at center, rgba(15, 23, 42, 0.13), transparent 68%),
-    linear-gradient(90deg, transparent, rgba(239, 95, 24, 0.11), transparent);
+    radial-gradient(ellipse at center, rgba(15, 23, 42, 0.14), transparent 70%),
+    linear-gradient(90deg, transparent, rgba(239, 95, 24, 0.1), transparent);
   border-radius: 999px;
-  bottom: 10%;
-  height: 1rem;
+  bottom: 9%;
+  height: 0.9rem;
   left: 50%;
-  opacity: 0.44;
+  opacity: 0.42;
   transform: translateX(-50%) rotate(-2deg);
-  transition: opacity 360ms ease, transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
-  width: 48%;
+  width: 46%;
   z-index: 1;
 }
 
 .product-pop-shape {
   background: var(--pop-color, #ef5f18);
-  border-radius: 58% 42% 48% 52% / 44% 54% 46% 56%;
-  height: 7.3rem;
-  left: auto;
-  opacity: 0;
-  right: 12%;
-  top: 15%;
-  transform: rotate(-10deg) scale(0.78);
-  transition: opacity 320ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 34% 66% 38% 62% / 58% 36% 64% 42%;
+  height: 8.2rem;
+  opacity: 0.86;
+  right: 16%;
+  top: 18%;
+  transform: rotate(-10deg);
   width: 8.9rem;
-  z-index: 4;
+  z-index: 2;
+}
+
+.product-pop-shape::before {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 42%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 8px);
+  border-radius: inherit;
+  content: '';
+  inset: 0;
+  position: absolute;
 }
 
 .product-pop-shape.is-original {
-  --pop-color: #ef3b2d;
+  --pop-color: #e7352d;
 }
 
 .product-pop-shape.is-ssamjang {
-  --pop-color: #111111;
+  --pop-color: #b7772d;
 }
 
 .product-pop-shape.is-soy {
-  --pop-color: #e0a23e;
+  --pop-color: #3a2117;
 }
 
 .product-pairing-card .product-bottle {
-  filter:
-    drop-shadow(0 24px 24px rgba(15, 23, 42, 0.17));
-  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms ease;
-}
-
-.product-pairing-illustration {
-  filter:
-    drop-shadow(var(--pair-outline-x, 0) var(--pair-outline-y, 0) 0 var(--pair-outline, transparent))
-    drop-shadow(var(--pair-outline-x-2, 0) var(--pair-outline-y-2, 0) 0 var(--pair-outline, transparent))
-    drop-shadow(0 16px 16px rgba(15, 23, 42, 0.17));
-  height: var(--pair-size, 4.9rem);
-  object-fit: contain;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  transform: translate3d(var(--enter-x, 0), var(--enter-y, 1rem), 0) rotate(var(--pairing-rotate, 0deg)) scale(0.84);
-  transition: opacity 280ms ease, transform 460ms cubic-bezier(0.16, 1, 0.3, 1), filter 360ms ease;
-  width: var(--pair-size, 4.9rem);
-  z-index: 20;
-}
-
-.product-pairing-illustration:nth-of-type(1) {
-  left: var(--pair-1-left, 4%);
-  top: var(--pair-1-top, 16%);
-  transition-delay: 35ms;
-  --enter-x: 1.2rem;
-  --enter-y: 1.1rem;
-  --pairing-rotate: -15deg;
-  --pair-size: 5.6rem;
-  --pair-outline: var(--accent-outline, transparent);
-  --pair-outline-x: 0.14rem;
-  --pair-outline-y: 0.14rem;
-}
-
-.product-pairing-illustration:nth-of-type(2) {
-  right: var(--pair-2-right, 4%);
-  top: var(--pair-2-top, 22%);
-  transition-delay: 85ms;
-  --enter-x: -1.2rem;
-  --enter-y: 1rem;
-  --pairing-rotate: 12deg;
-  --pair-size: 5rem;
-}
-
-.product-pairing-illustration:nth-of-type(3) {
-  bottom: var(--pair-3-bottom, 15%);
-  left: var(--pair-3-left, 10%);
-  transition-delay: 135ms;
-  --enter-x: 1rem;
-  --enter-y: -0.9rem;
-  --pairing-rotate: 8deg;
-  --pair-size: 4.55rem;
-}
-
-.product-pairing-illustration:nth-of-type(4) {
-  bottom: var(--pair-4-bottom, 14%);
-  right: var(--pair-4-right, 9%);
-  transition-delay: 185ms;
-  --enter-x: -1rem;
-  --enter-y: -0.8rem;
-  --pairing-rotate: -10deg;
-  --pair-size: 4.1rem;
+  filter: drop-shadow(0 24px 24px rgba(15, 23, 42, 0.17));
+  transition: filter 360ms ease, transform 360ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .product-pairing-card:hover .product-bottle,
 .product-pairing-card:focus-visible .product-bottle,
 .product-pairing-card:focus-within .product-bottle {
+  filter: drop-shadow(0 30px 30px rgba(15, 23, 42, 0.21));
+  transform: translateY(-0.28rem) scale(1.035);
+}
+
+.product-pairing-illustration {
+  display: none;
   filter:
-    drop-shadow(0 30px 30px rgba(15, 23, 42, 0.22));
-  transform: translateY(-0.35rem) scale(1.055) rotate(-1deg);
+    drop-shadow(var(--food-outline-x, 0) var(--food-outline-y, 0) 0 var(--food-outline, transparent))
+    drop-shadow(0 16px 16px rgba(15, 23, 42, 0.18));
+  height: var(--food-size, 7rem);
+  object-fit: contain;
+  pointer-events: none;
+  position: absolute;
+  transform: rotate(var(--food-rotate, 0deg));
+  width: var(--food-size, 7rem);
+  z-index: 24;
 }
 
-.product-pairing-card:hover .product-pairing-stage::before,
-.product-pairing-card:focus-visible .product-pairing-stage::before,
-.product-pairing-card:focus-within .product-pairing-stage::before {
-  opacity: 0.72;
-  transform: translateX(-50%) rotate(-2deg) scaleX(1.12);
-}
-
-.product-pairing-card:hover .product-pop-shape,
-.product-pairing-card:focus-visible .product-pop-shape,
-.product-pairing-card:focus-within .product-pop-shape {
-  opacity: 0.88;
-  transform: rotate(-8deg) scale(1);
-}
-
-.product-pairing-card:hover .product-pairing-illustration,
-.product-pairing-card:focus-visible .product-pairing-illustration,
-.product-pairing-card:focus-within .product-pairing-illustration {
-  opacity: 1;
-  transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-}
-
-.product-page {
-  --pair-1-left: -1%;
-  --pair-1-top: 17%;
-  --pair-2-right: 0%;
-  --pair-2-top: 24%;
-  --pair-3-bottom: 15%;
-  --pair-4-bottom: 14%;
-}
-
-.product-pairing-compact .product-pairing-illustration:nth-of-type(1) {
-  left: -2%;
-}
-
-.product-pairing-compact .product-pairing-illustration:nth-of-type(2) {
-  right: -1%;
-}
-
-.product-pairing-compact .product-pairing-illustration:nth-of-type(3) {
-  left: 5%;
+.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1),
+.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(2),
+.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(2) {
+  display: block;
 }
 
 .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1) {
-  left: 8%;
-  top: 33%;
-  --accent-outline: #02674f;
-  --pair-outline-x-2: -0.12rem;
-  --pair-outline-y-2: 0.08rem;
-  --pair-size: 7.2rem;
-  --pairing-rotate: -17deg;
-  z-index: 24;
-}
-
-.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(2) {
-  right: 9%;
-  top: 25%;
-  --pair-size: 3.9rem;
-  --pairing-rotate: 11deg;
-}
-
-.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(3) {
-  bottom: 17%;
-  left: 8%;
-  --pair-size: 3.7rem;
-  --pairing-rotate: 6deg;
-}
-
-.product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(4) {
-  bottom: 18%;
-  right: 12%;
-  --pair-size: 3.4rem;
-  --pairing-rotate: -7deg;
-}
-
-.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(1) {
-  left: 9%;
-  top: 27%;
-  --pair-size: 3.7rem;
-  --pairing-rotate: 8deg;
+  bottom: 19%;
+  left: 7%;
+  --food-outline: #e7352d;
+  --food-outline-x: 0.13rem;
+  --food-outline-y: 0.13rem;
+  --food-rotate: -15deg;
+  --food-size: 7.8rem;
 }
 
 .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(2) {
-  right: 7%;
-  top: 33%;
-  --accent-outline: #111111;
-  --pair-outline: #111111;
-  --pair-outline-x: 0.16rem;
-  --pair-outline-y: 0.15rem;
-  --pair-outline-x-2: -0.1rem;
-  --pair-outline-y-2: 0.08rem;
-  --pair-size: 7rem;
-  --pairing-rotate: 8deg;
-  z-index: 24;
-}
-
-.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(3) {
-  bottom: 17%;
-  left: 10%;
-  --pair-size: 3.5rem;
-  --pairing-rotate: -5deg;
-}
-
-.product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(4) {
-  bottom: 14%;
-  right: 11%;
-  --pair-size: 3.9rem;
-  --pairing-rotate: -10deg;
-}
-
-.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(1) {
-  left: 8%;
-  top: 25%;
-  --pair-size: 3.9rem;
-  --pairing-rotate: -9deg;
+  bottom: 24%;
+  right: 5%;
+  --food-outline: #b7772d;
+  --food-outline-x: 0.13rem;
+  --food-outline-y: 0.13rem;
+  --food-rotate: 7deg;
+  --food-size: 7.4rem;
 }
 
 .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(2) {
+  bottom: 23%;
   right: 7%;
-  top: 33%;
-  --accent-outline: #e0a23e;
-  --pair-outline: #e0a23e;
-  --pair-outline-x: 0.16rem;
-  --pair-outline-y: 0.15rem;
-  --pair-outline-x-2: -0.1rem;
-  --pair-outline-y-2: 0.08rem;
-  --pair-size: 6.6rem;
-  --pairing-rotate: 12deg;
-  z-index: 24;
-}
-
-.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(3) {
-  bottom: 17%;
-  left: 9%;
-  --pair-size: 3.6rem;
-  --pairing-rotate: 4deg;
-}
-
-.product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(4) {
-  bottom: 16%;
-  right: 12%;
-  --pair-size: 3.7rem;
-  --pairing-rotate: -4deg;
-}
-
-@media (hover: none) {
-  .product-pop-shape {
-    opacity: 0.82;
-    transform: rotate(-8deg) scale(1);
-  }
-
-  .product-pairing-illustration {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-  }
+  --food-outline: #3a2117;
+  --food-outline-x: 0.13rem;
+  --food-outline-y: 0.13rem;
+  --food-rotate: 10deg;
+  --food-size: 7rem;
 }
 
 @media (max-width: 767px) {
@@ -289,132 +129,40 @@
   }
 
   .product-pairing-stage::before {
-    bottom: 11%;
+    bottom: 10%;
     height: 0.72rem;
-    opacity: 0.36;
     width: 42%;
   }
 
   .product-pop-shape {
-    height: clamp(4.95rem, 20vw, 6.05rem);
-    opacity: 0.86;
-    right: 13%;
-    top: 24%;
-    width: clamp(5.9rem, 24vw, 7rem);
+    height: clamp(5.5rem, 22vw, 6.4rem);
+    right: 17%;
+    top: 23%;
+    width: clamp(6.2rem, 25vw, 7.4rem);
   }
 
-  .product-pairing-card .product-bottle {
-    transform: none !important;
-  }
-
-  .product-pairing-illustration {
-    filter:
-      drop-shadow(var(--pair-outline-x, 0) var(--pair-outline-y, 0) 0 var(--pair-outline, transparent))
-      drop-shadow(var(--pair-outline-x-2, 0) var(--pair-outline-y-2, 0) 0 var(--pair-outline, transparent))
-      drop-shadow(0 10px 12px rgba(15, 23, 42, 0.13));
-    height: var(--mobile-pair-size, clamp(2.8rem, 12.6vw, 3.6rem));
-    opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-    width: var(--mobile-pair-size, clamp(2.8rem, 12.6vw, 3.6rem));
-  }
-
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(1),
-  .product-pairing-illustration:nth-of-type(1) {
-    left: -2%;
-    top: 18%;
-    --mobile-pair-size: clamp(3.5rem, 16vw, 4.35rem);
-  }
-
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(2),
-  .product-pairing-illustration:nth-of-type(2) {
-    right: -2%;
-    top: 26%;
-    --mobile-pair-size: clamp(3rem, 13.8vw, 3.85rem);
-  }
-
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(3),
-  .product-pairing-illustration:nth-of-type(3) {
-    bottom: 15%;
-    left: 4%;
-    --mobile-pair-size: clamp(2.85rem, 13vw, 3.55rem);
-  }
-
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(4),
-  .product-pairing-illustration:nth-of-type(4) {
-    bottom: 14%;
-    right: 5%;
-    --mobile-pair-size: clamp(2.55rem, 11.8vw, 3.25rem);
+  .product-pairing-card .product-bottle,
+  .product-pairing-card:hover .product-bottle,
+  .product-pairing-card:focus-visible .product-bottle,
+  .product-pairing-card:focus-within .product-bottle {
+    transform: none;
   }
 
   .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(1) {
+    bottom: 20%;
     left: 6%;
-    top: 35%;
-    --mobile-pair-size: clamp(4.7rem, 21vw, 5.45rem);
-  }
-
-  .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(2) {
-    right: 7%;
-    top: 25%;
-    --mobile-pair-size: clamp(2.65rem, 12vw, 3.05rem);
-  }
-
-  .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(3) {
-    bottom: 17%;
-    left: 15%;
-    --mobile-pair-size: clamp(2.5rem, 11.5vw, 2.95rem);
-  }
-
-  .product-pairing-stage:has(.is-original) .product-pairing-illustration:nth-of-type(4) {
-    bottom: 19%;
-    right: 15%;
-    --mobile-pair-size: clamp(2.35rem, 10.6vw, 2.75rem);
-  }
-
-  .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(1) {
-    left: 8%;
-    top: 24%;
-    --mobile-pair-size: clamp(2.55rem, 11.5vw, 3rem);
+    --food-size: clamp(5.35rem, 23vw, 6.4rem);
   }
 
   .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(2) {
+    bottom: 25%;
     right: 4%;
-    top: 36%;
-    --mobile-pair-size: clamp(4.55rem, 20vw, 5.25rem);
-  }
-
-  .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(3) {
-    bottom: 18%;
-    left: 13%;
-    --mobile-pair-size: clamp(2.45rem, 11vw, 2.85rem);
-  }
-
-  .product-pairing-stage:has(.is-ssamjang) .product-pairing-illustration:nth-of-type(4) {
-    bottom: 16%;
-    right: 16%;
-    --mobile-pair-size: clamp(2.7rem, 12.2vw, 3.1rem);
-  }
-
-  .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(1) {
-    left: 8%;
-    top: 24%;
-    --mobile-pair-size: clamp(2.7rem, 12.2vw, 3.1rem);
+    --food-size: clamp(5.1rem, 22vw, 6.2rem);
   }
 
   .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(2) {
+    bottom: 24%;
     right: 5%;
-    top: 36%;
-    --mobile-pair-size: clamp(4.1rem, 18.5vw, 4.85rem);
-  }
-
-  .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(3) {
-    bottom: 17%;
-    left: 12%;
-    --mobile-pair-size: clamp(2.55rem, 11.6vw, 3rem);
-  }
-
-  .product-pairing-stage:has(.is-soy) .product-pairing-illustration:nth-of-type(4) {
-    bottom: 17%;
-    right: 15%;
-    --mobile-pair-size: clamp(2.45rem, 11vw, 2.9rem);
+    --food-size: clamp(4.85rem, 21vw, 5.9rem);
   }
 }

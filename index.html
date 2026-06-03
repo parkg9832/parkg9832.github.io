@@ -107,7 +107,6 @@
         animation: marquee 20s linear infinite;
       }
     </style>
-    <link rel="stylesheet" href="./product-pairings.css" />
     <link rel="icon" type="image/png" href="./assets/Favicon.png" />
   </head>
   <body class="bg-white text-neutral-950 antialiased">
@@ -205,7 +204,7 @@
       </section>
 
       <section id="map" class="relative isolate scroll-mt-20 bg-white py-12 text-white sm:py-20">
-        <div data-map-fill class="absolute inset-x-0 -top-12 bottom-0 z-0 text-mokdaOrange md:-top-20" aria-hidden="true">
+        <div class="absolute inset-x-0 -top-12 bottom-0 z-0 text-mokdaOrange md:-top-20" aria-hidden="true">
           <svg class="pointer-events-none h-12 w-full md:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
             <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
           </svg>
@@ -447,10 +446,6 @@
           },
           image: 'assets/bottle-original.png.png',
           alt: 'Salsa MOKDA Original',
-          shapeClass: 'is-original',
-          pairings: [
-            'assets/pairing-photos/red-chili.png',
-          ],
         },
         {
           category: {
@@ -468,10 +463,6 @@
           },
           image: 'assets/bottle-ssamjang.png.png',
           alt: 'Salsa MOKDA Para Carne',
-          shapeClass: 'is-ssamjang',
-          pairings: [
-            'assets/pairing-photos/asado.png',
-          ],
         },
         {
           category: {
@@ -489,10 +480,6 @@
           },
           image: 'assets/bottle-sweetsoy.png.png',
           alt: 'Salsa MOKDA Soy Sauce',
-          shapeClass: 'is-soy',
-          pairings: [
-            'assets/pairing-photos/chicken-wings.png',
-          ],
         },
       ];
       const content = {
@@ -876,14 +863,11 @@
             (item, index) => {
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
-              const pairings = Array.isArray(item.pairings) ? item.pairings : (item.pairings ? (item.pairings[lang] || item.pairings['ES']) : []);
               return `
-              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
+              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
                 <p class="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">${category}</p>
                 <h3 class="mb-6 break-keep text-2xl font-bold leading-tight ${item.titleClass}">${item.name}</h3>
-                <div class="product-pairing-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-                  <span class="product-pop-shape ${item.shapeClass || ''}" aria-hidden="true"></span>
-                  ${pairings.map((pairing) => `<img src="${pairing}" alt="" class="product-pairing-illustration" aria-hidden="true" loading="lazy" />`).join('')}
+                <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
                   <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-6 w-full max-w-[280px] text-center">

@@ -5,36 +5,8 @@ type ProductCardProps = {
 };
 
 export function ProductCard({ product }: ProductCardProps) {
-  const pairingMap: Record<string, string[]> = {
-    Original: [
-      '/assets/pairing-photos/red-chili.png',
-      '/assets/pairing-photos/jalapeno.png',
-      '/assets/pairing-photos/taco.png',
-      '/assets/pairing-photos/fries.png',
-    ],
-    'Para Carne': [
-      '/assets/pairing-photos/pork-belly.png',
-      '/assets/pairing-photos/asado.png',
-      '/assets/pairing-photos/lomo-saltado.png',
-      '/assets/pairing-photos/pollo-brasa.png',
-    ],
-    'Soy Sauce': [
-      '/assets/pairing-photos/bbq.png',
-      '/assets/pairing-photos/chicken-wings.png',
-      '/assets/pairing-photos/rice-bowl.png',
-      '/assets/pairing-photos/salad.png',
-    ],
-  };
-  const shapeMap: Record<string, string> = {
-    Original: 'is-original',
-    'Para Carne': 'is-ssamjang',
-    'Soy Sauce': 'is-soy',
-  };
-  const pairings = pairingMap[product.title] || [];
-  const shapeClass = shapeMap[product.title] || '';
-
   return (
-    <article className="product-pairing-card flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
+    <article className="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
       <p className="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">
         {product.category}
       </p>
@@ -43,16 +15,6 @@ export function ProductCard({ product }: ProductCardProps) {
       </h3>
 
       <div className="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-        <span className={`product-pop-shape ${shapeClass}`} aria-hidden="true" />
-        {pairings.map((pairing) => (
-          <img
-            key={pairing}
-            src={pairing}
-            alt=""
-            className="product-pairing-illustration"
-            aria-hidden="true"
-          />
-        ))}
         <img
           src={product.imageUrl}
           alt={product.title}

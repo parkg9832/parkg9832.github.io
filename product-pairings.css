@@ -130,3 +130,50 @@
     transform: rotate(-10deg) scale(1);
   }
 }
+
+@media (max-width: 767px) {
+  [data-reveal],
+  .reveal-target {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .product-pairing-card {
+    overflow: hidden;
+  }
+
+  .product-pairing-card .product-bottle {
+    transform: none !important;
+  }
+
+  .product-pairing-illustration {
+    height: 4.15rem;
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
+    width: 4.15rem;
+  }
+
+  .product-pop-shape {
+    height: 6.8rem;
+    opacity: 1;
+    transform: rotate(-10deg) scale(1);
+    width: 6.8rem;
+  }
+
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(1) {
+    left: 8%;
+  }
+
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(2) {
+    right: 4%;
+  }
+
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(3) {
+    left: 10%;
+  }
+
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(4) {
+    right: 8%;
+  }
+}

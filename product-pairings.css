@@ -1,16 +1,10 @@
-.product-pairing-card .product-bottle {
-  filter:
-    drop-shadow(0 24px 28px rgba(15, 23, 42, 0.16))
-    drop-shadow(0 0 12px rgba(255, 255, 255, 0.72));
-  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms ease;
-}
-
 .product-pairing-stage {
   isolation: isolate;
+  overflow: visible;
 }
 
 .product-pairing-stage::before,
-.product-pairing-stage::after {
+.product-pop-shape {
   content: '';
   pointer-events: none;
   position: absolute;
@@ -18,71 +12,30 @@
 
 .product-pairing-stage::before {
   background:
-    radial-gradient(circle at 34% 26%, rgba(255, 255, 255, 0.72), transparent 26%),
-    linear-gradient(135deg, rgba(239, 95, 24, 0.2), rgba(255, 211, 92, 0.3));
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 42% 58% 48% 52% / 54% 42% 58% 46%;
-  box-shadow: 0 26px 50px rgba(15, 23, 42, 0.1);
-  height: 72%;
-  inset: 14% auto auto 50%;
-  opacity: 0.72;
-  transform: translateX(-50%) rotate(-8deg) scale(0.86);
-  transition: opacity 420ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
-  width: 62%;
+    radial-gradient(ellipse at center, rgba(15, 23, 42, 0.18), transparent 68%),
+    linear-gradient(90deg, transparent, rgba(239, 95, 24, 0.16), transparent);
+  border-radius: 999px;
+  bottom: 10%;
+  height: 1rem;
+  left: 50%;
+  opacity: 0.52;
+  transform: translateX(-50%) rotate(-2deg);
+  transition: opacity 360ms ease, transform 460ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: 48%;
   z-index: 1;
 }
 
-.product-pairing-stage::after {
-  background: currentColor;
-  border-radius: 999px;
-  height: 0.44rem;
-  left: 50%;
-  opacity: 0.2;
-  top: 83%;
-  transform: translateX(-50%) rotate(-4deg);
-  width: 42%;
-  z-index: 2;
-}
-
-.product-pairing-stage:has(.is-original)::before,
-.product-pairing-stage:has(.is-original)::after {
-  color: #ef3b2d;
-}
-
-.product-pairing-stage:has(.is-ssamjang)::before,
-.product-pairing-stage:has(.is-ssamjang)::after {
-  color: #111111;
-}
-
-.product-pairing-stage:has(.is-soy)::before,
-.product-pairing-stage:has(.is-soy)::after {
-  color: #d89434;
-}
-
 .product-pop-shape {
-  position: absolute;
-  z-index: 5;
-  height: 8.8rem;
-  opacity: 0;
-  pointer-events: none;
-  right: 14%;
-  top: 9%;
-  transform: rotate(-14deg) scale(0.74);
-  transition: opacity 320ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
-  width: 8.8rem;
-}
-
-.product-pop-shape::before {
   background: var(--pop-color, #ef5f18);
-  border-radius: 42% 58% 48% 52% / 54% 38% 62% 46%;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
-    0 18px 26px rgba(15, 23, 42, 0.1);
-  content: '';
-  display: block;
-  height: 100%;
-  transform: skew(-4deg);
-  width: 100%;
+  border-radius: 999px;
+  bottom: 15%;
+  height: 0.42rem;
+  left: 50%;
+  opacity: 0;
+  transform: translateX(-50%) rotate(-5deg) scaleX(0.72);
+  transition: opacity 300ms ease, transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  width: 46%;
+  z-index: 3;
 }
 
 .product-pop-shape.is-original {
@@ -91,85 +44,92 @@
 
 .product-pop-shape.is-ssamjang {
   --pop-color: #111111;
-  right: 14%;
 }
 
 .product-pop-shape.is-soy {
-  --pop-color: #f0b45a;
+  --pop-color: #e0a23e;
+}
+
+.product-pairing-card .product-bottle {
+  filter:
+    drop-shadow(0 22px 24px rgba(15, 23, 42, 0.18))
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms ease;
+}
+
+.product-pairing-illustration {
+  filter:
+    drop-shadow(0 0 1px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.95))
+    drop-shadow(0 14px 16px rgba(15, 23, 42, 0.18));
+  height: 5.35rem;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transform: translate3d(var(--enter-x, 0), var(--enter-y, 1rem), 0) rotate(var(--pairing-rotate, 0deg)) scale(0.84);
+  transition: opacity 280ms ease, transform 460ms cubic-bezier(0.16, 1, 0.3, 1), filter 360ms ease;
+  width: 5.35rem;
+  z-index: 20;
+}
+
+.product-pairing-illustration:nth-of-type(1) {
+  left: var(--pair-1-left, 8%);
+  top: var(--pair-1-top, 19%);
+  transition-delay: 35ms;
+  --enter-x: 1.2rem;
+  --enter-y: 1.1rem;
+  --pairing-rotate: -15deg;
+}
+
+.product-pairing-illustration:nth-of-type(2) {
+  right: var(--pair-2-right, 7%);
+  top: var(--pair-2-top, 27%);
+  transition-delay: 85ms;
+  --enter-x: -1.2rem;
+  --enter-y: 1rem;
+  --pairing-rotate: 12deg;
+}
+
+.product-pairing-illustration:nth-of-type(3) {
+  bottom: var(--pair-3-bottom, 17%);
+  left: var(--pair-3-left, 12%);
+  transition-delay: 135ms;
+  --enter-x: 1rem;
+  --enter-y: -0.9rem;
+  --pairing-rotate: 8deg;
+}
+
+.product-pairing-illustration:nth-of-type(4) {
+  bottom: var(--pair-4-bottom, 19%);
+  right: var(--pair-4-right, 12%);
+  transition-delay: 185ms;
+  --enter-x: -1rem;
+  --enter-y: -0.8rem;
+  --pairing-rotate: -10deg;
 }
 
 .product-pairing-card:hover .product-bottle,
 .product-pairing-card:focus-visible .product-bottle,
 .product-pairing-card:focus-within .product-bottle {
   filter:
-    drop-shadow(0 30px 32px rgba(15, 23, 42, 0.2))
-    drop-shadow(0 0 18px rgba(255, 255, 255, 0.82));
-  transform: scale(1.055) rotate(-1.2deg);
+    drop-shadow(0 30px 30px rgba(15, 23, 42, 0.22))
+    drop-shadow(0 0 12px rgba(255, 255, 255, 0.95));
+  transform: translateY(-0.35rem) scale(1.055) rotate(-1deg);
 }
 
 .product-pairing-card:hover .product-pairing-stage::before,
 .product-pairing-card:focus-visible .product-pairing-stage::before,
 .product-pairing-card:focus-within .product-pairing-stage::before {
-  opacity: 1;
-  transform: translateX(-50%) rotate(-5deg) scale(1);
+  opacity: 0.72;
+  transform: translateX(-50%) rotate(-2deg) scaleX(1.12);
 }
 
-.product-pairing-card:hover .product-pairing-stage::after,
-.product-pairing-card:focus-visible .product-pairing-stage::after,
-.product-pairing-card:focus-within .product-pairing-stage::after {
-  opacity: 0.34;
-  transform: translateX(-50%) rotate(-4deg) scaleX(1.1);
-}
-
-.product-pairing-illustration {
-  position: absolute;
-  z-index: 20;
-  height: 5.3rem;
-  filter:
-    drop-shadow(0 0 7px rgba(255, 255, 255, 0.95))
-    drop-shadow(0 13px 16px rgba(15, 23, 42, 0.2));
-  object-fit: contain;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate3d(var(--pairing-x, 0), var(--pairing-y, 16px), 0) rotate(var(--pairing-rotate, 0deg)) scale(0.82);
-  transition: opacity 320ms ease, transform 520ms cubic-bezier(0.16, 1, 0.3, 1), filter 420ms ease;
-  width: 5.3rem;
-}
-
-.product-pairing-illustration:nth-of-type(1) {
-  left: var(--pair-1-left, 7%);
-  top: var(--pair-1-top, 20%);
-  transition-delay: 30ms;
-  --pairing-rotate: -16deg;
-  --pairing-x: 18px;
-  --pairing-y: 18px;
-}
-
-.product-pairing-illustration:nth-of-type(2) {
-  right: var(--pair-2-right, 5%);
-  top: var(--pair-2-top, 30%);
-  transition-delay: 80ms;
-  --pairing-rotate: 13deg;
-  --pairing-x: -18px;
-  --pairing-y: 18px;
-}
-
-.product-pairing-illustration:nth-of-type(3) {
-  bottom: var(--pair-3-bottom, 19%);
-  left: var(--pair-3-left, 12%);
-  transition-delay: 130ms;
-  --pairing-rotate: 10deg;
-  --pairing-x: 16px;
-  --pairing-y: -12px;
-}
-
-.product-pairing-illustration:nth-of-type(4) {
-  bottom: var(--pair-4-bottom, 18%);
-  right: var(--pair-4-right, 11%);
-  transition-delay: 180ms;
-  --pairing-rotate: -12deg;
-  --pairing-x: -16px;
-  --pairing-y: -12px;
+.product-pairing-card:hover .product-pop-shape,
+.product-pairing-card:focus-visible .product-pop-shape,
+.product-pairing-card:focus-within .product-pop-shape {
+  opacity: 0.72;
+  transform: translateX(-50%) rotate(-5deg) scaleX(1);
 }
 
 .product-pairing-card:hover .product-pairing-illustration,
@@ -179,19 +139,13 @@
   transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
 }
 
-.product-pairing-card:hover .product-pop-shape,
-.product-pairing-card:focus-visible .product-pop-shape,
-.product-pairing-card:focus-within .product-pop-shape {
-  opacity: 1;
-  transform: rotate(-8deg) scale(1);
-}
-
 .product-page {
-  --pair-1-left: 3%;
-  --pair-1-top: 18%;
-  --pair-2-right: 2%;
+  --pair-1-left: 5%;
+  --pair-1-top: 19%;
+  --pair-2-right: 5%;
   --pair-2-top: 29%;
   --pair-3-bottom: 18%;
+  --pair-4-bottom: 20%;
 }
 
 .product-pairing-compact .product-pairing-illustration:nth-of-type(1) {
@@ -207,14 +161,14 @@
 }
 
 @media (hover: none) {
+  .product-pop-shape {
+    opacity: 0.68;
+    transform: translateX(-50%) rotate(-5deg) scaleX(1);
+  }
+
   .product-pairing-illustration {
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-  }
-
-  .product-pop-shape {
-    opacity: 1;
-    transform: rotate(-8deg) scale(1);
   }
 }
 
@@ -226,61 +180,51 @@
     transition: none !important;
   }
 
-  .product-pairing-card {
-    overflow: visible;
+  .product-pairing-stage::before {
+    bottom: 11%;
+    height: 0.72rem;
+    opacity: 0.5;
+    width: 46%;
+  }
+
+  .product-pop-shape {
+    bottom: 16%;
+    height: 0.34rem;
+    width: 42%;
   }
 
   .product-pairing-card .product-bottle {
     transform: none !important;
   }
 
-  .product-pairing-stage::before {
-    height: 68%;
-    opacity: 0.94;
-    top: 16%;
-    transform: translateX(-50%) rotate(-5deg) scale(1);
-    width: 68%;
-  }
-
-  .product-pairing-stage::after {
-    opacity: 0.3;
-    top: 84%;
-    width: 46%;
-  }
-
   .product-pairing-illustration {
-    height: clamp(3.25rem, 15vw, 4.15rem);
+    height: clamp(3rem, 14vw, 3.85rem);
     opacity: 1;
     transform: translate3d(0, 0, 0) rotate(var(--pairing-rotate, 0deg)) scale(1);
-    width: clamp(3.25rem, 15vw, 4.15rem);
+    width: clamp(3rem, 14vw, 3.85rem);
   }
 
-  .product-pop-shape {
-    height: clamp(5.5rem, 22vw, 6.8rem);
-    opacity: 1;
-    right: 16%;
-    top: 16%;
-    transform: rotate(-8deg) scale(1);
-    width: clamp(5.5rem, 22vw, 6.8rem);
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(1),
+  .product-pairing-illustration:nth-of-type(1) {
+    left: 0;
+    top: 24%;
   }
 
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(1) {
-    left: 1%;
-    top: 22%;
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(2),
+  .product-pairing-illustration:nth-of-type(2) {
+    right: 0;
+    top: 30%;
   }
 
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(2) {
-    right: 1%;
-    top: 32%;
-  }
-
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(3) {
-    bottom: 16%;
-    left: 3%;
-  }
-
-  .product-pairing-compact .product-pairing-illustration:nth-of-type(4) {
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(3),
+  .product-pairing-illustration:nth-of-type(3) {
     bottom: 17%;
+    left: 4%;
+  }
+
+  .product-pairing-compact .product-pairing-illustration:nth-of-type(4),
+  .product-pairing-illustration:nth-of-type(4) {
+    bottom: 18%;
     right: 5%;
   }
 }

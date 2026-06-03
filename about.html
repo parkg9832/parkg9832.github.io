@@ -35,9 +35,9 @@
       }
 
       [data-reveal] {
-        opacity: 0;
-        transform: translateY(2rem);
-        transition: opacity 700ms ease-out, transform 700ms ease-out;
+        opacity: 1;
+        transform: none;
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
       }
 
       [data-reveal].is-visible {
@@ -100,7 +100,7 @@
     </header>
 
     <main class="overflow-hidden bg-white">
-      <section class="relative flex min-h-screen items-center justify-center overflow-hidden bg-neutral-950 px-5 py-28 text-center text-white sm:px-8">
+      <section class="relative flex min-h-[560px] items-center justify-center overflow-hidden bg-neutral-950 px-5 py-24 text-center text-white sm:min-h-screen sm:px-8 sm:py-28">
         <picture class="absolute inset-0">
           <source media="(min-width: 768px)" srcset="assets/assetshero-1-desktop.jpg.png" />
           <img src="assets/assetshero-1-mobile.jpg.png" alt="" class="h-full w-full object-cover" />
@@ -108,9 +108,9 @@
         <div class="absolute inset-0 bg-black/55"></div>
         <div class="absolute inset-x-0 bottom-0 h-28 rounded-t-[50%] bg-white"></div>
 
-        <div class="relative z-10 mx-auto max-w-5xl pt-20">
-          <p id="hero-kicker" class="mb-6 text-xs font-black uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm">MOKDA Brand Essence</p>
-          <h1 class="break-keep text-balance text-6xl font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
+        <div class="relative z-10 mx-auto max-w-5xl pt-14 sm:pt-20">
+          <p id="hero-kicker" class="mb-4 text-[10px] font-black uppercase tracking-[0.3em] text-mokdaOrange sm:mb-6 sm:text-sm">MOKDA Brand Essence</p>
+          <h1 class="break-keep text-balance text-[3.15rem] font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
             <span id="hero-line-1">Comer Corea</span><br />
             <span id="hero-line-2" class="text-mokdaOrange">한국을 먹다</span>
           </h1>
@@ -118,11 +118,11 @@
       </section>
 
       <section class="bg-white">
-        <div data-reveal class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-16 md:grid-cols-2 md:py-24">
+        <div data-reveal class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-4 py-14 md:grid-cols-2 md:gap-12 md:py-20">
           <div>
-            <p id="story-kicker" class="mb-4 text-sm font-semibold uppercase tracking-widest text-gray-500">Brand Story</p>
-            <h2 id="story-title" class="mb-8 break-keep text-3xl font-bold leading-tight text-neutral-950 md:text-4xl">남미로 떠난 한국인 청년</h2>
-            <div id="story-body" class="space-y-4 text-gray-700">
+            <p id="story-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Brand Story</p>
+            <h2 id="story-title" class="mb-6 break-keep text-balance text-3xl font-black leading-[1.08] text-neutral-950 md:text-4xl">남미로 떠난 한국인 청년</h2>
+            <div id="story-body" class="space-y-3 text-sm font-medium leading-7 text-gray-700 sm:text-base sm:leading-8">
               <p class="break-keep leading-relaxed">2024년 봄, 가방 하나메고 남미로 간 청년의 이야기입니다.</p>
               <p class="break-keep leading-relaxed">남미에 특별한 연고가 있었던 건 아니었습니다. 오래전 다큐멘터리에서 본 지구 반대편의 남미가 계속 마음에 남았고, 한국에서도 타코, 엠빠나다, 살사 같은 남미 음식을 자주 찾아 먹을 만큼 그 문화가 좋았습니다.</p>
               <p class="break-keep leading-relaxed">그곳에서 살아가며 많은 친구들을 만났습니다. 말도 잘 통하지 않고, 살아온 환경도 달랐지만 이상하게도 음식 앞에서는 금방 가까워졌습니다.</p>
@@ -138,96 +138,96 @@
           </div>
         </div>
       </section>
-      <section class="bg-neutral-50 px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-40">
+      <section class="bg-neutral-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div class="mx-auto max-w-7xl">
-          <div data-reveal class="mb-16 text-center">
-            <p id="logo-kicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-neutral-500">Brand Logo</p>
-            <h2 id="logo-title" class="break-keep text-balance text-5xl font-black leading-tight tracking-tight text-neutral-950 sm:text-6xl lg:text-7xl">
+          <div data-reveal class="mb-10 text-center sm:mb-12">
+            <p id="logo-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.24em] text-neutral-500 sm:text-sm">Brand Logo</p>
+            <h2 id="logo-title" class="break-keep text-balance text-4xl font-black leading-[1.05] tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
               한국의 헤리티지와<br />
               라틴의 열정을 담은 디자인
             </h2>
           </div>
 
-          <div class="grid gap-6 lg:grid-cols-[0.95fr_1.1fr_0.95fr] lg:items-center">
-            <article data-reveal class="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-neutral-950/5">
-              <p id="motive-kicker" class="mb-4 text-sm font-black uppercase tracking-[0.24em] text-mokdaOrange">Motive</p>
-              <h3 id="motive-title" class="break-keep text-3xl font-black leading-tight text-neutral-950">당신의 주방에서 펼쳐질 첫 번째 영감</h3>
-              <p id="motive-body" class="mt-5 break-keep text-base font-semibold leading-7 text-neutral-600">
+          <div class="grid gap-5 lg:grid-cols-[0.95fr_1.1fr_0.95fr] lg:items-center">
+            <article data-reveal class="rounded-[1.25rem] bg-white p-6 shadow-sm ring-1 ring-neutral-950/5 sm:p-7">
+              <p id="motive-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Motive</p>
+              <h3 id="motive-title" class="break-keep text-2xl font-black leading-tight text-neutral-950 sm:text-3xl">당신의 주방에서 펼쳐질 첫 번째 영감</h3>
+              <p id="motive-body" class="mt-4 break-keep text-sm font-semibold leading-7 text-neutral-600 sm:text-base">
                 로고 속 보틀 실루엣은 MOKDA가 모든 K-레시피의 첫 단추가 될 수 있다는 의미를 담고 있습니다.
               </p>
             </article>
 
-            <div data-reveal class="flex min-h-[360px] flex-col items-center justify-center rounded-[2.5rem] bg-white p-10 shadow-xl shadow-neutral-950/5 ring-1 ring-neutral-950/5">
+            <div data-reveal class="flex min-h-[280px] flex-col items-center justify-center rounded-[1.5rem] bg-white p-8 shadow-xl shadow-neutral-950/5 ring-1 ring-neutral-950/5 sm:min-h-[320px] sm:p-10">
               <img src="assets/Favicon.png" alt="MOKDA symbol" class="h-28 w-28 object-contain" />
               <img src="assets/assetlogo-1-.png" alt="MOKDA wordmark" class="mt-10 h-10 w-auto object-contain" />
             </div>
 
             <article data-reveal class="grid gap-4">
-              <div class="rounded-[2rem] bg-mokdaOrange p-8 text-white">
-                <p class="text-sm font-black uppercase tracking-[0.24em] text-white/70">Burning Orange · #ef5f18</p>
-                <h3 id="orange-title" class="mt-3 text-3xl font-black">열정과 매운맛의 에너지</h3>
+              <div class="rounded-[1.25rem] bg-mokdaOrange p-6 text-white sm:p-7">
+                <p class="text-xs font-black uppercase tracking-[0.22em] text-white/70 sm:text-sm">Burning Orange · #ef5f18</p>
+                <h3 id="orange-title" class="mt-3 text-2xl font-black leading-tight sm:text-3xl">열정과 매운맛의 에너지</h3>
               </div>
-              <div class="rounded-[2rem] bg-mokdaGreen p-8 text-white">
-                <p class="text-sm font-black uppercase tracking-[0.24em] text-white/70">Dip Green · #02674f</p>
-                <h3 id="green-title" class="mt-3 text-3xl font-black">신선함과 일상성의 균형</h3>
+              <div class="rounded-[1.25rem] bg-mokdaGreen p-6 text-white sm:p-7">
+                <p class="text-xs font-black uppercase tracking-[0.22em] text-white/70 sm:text-sm">Dip Green · #02674f</p>
+                <h3 id="green-title" class="mt-3 text-2xl font-black leading-tight sm:text-3xl">신선함과 일상성의 균형</h3>
               </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-        <div data-reveal class="mx-auto mb-14 max-w-3xl text-center">
-          <p id="products-kicker" class="mb-3 break-keep text-sm font-bold uppercase tracking-[0.24em] text-gray-500">Salsa Coreana</p>
-          <h2 id="products-title" class="break-keep text-4xl font-black leading-tight tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">MOKDA Sauce Lineup</h2>
+      <section class="bg-white px-4 py-16 sm:px-6 sm:py-[5.5rem] lg:px-8">
+        <div data-reveal class="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
+          <p id="products-kicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-gray-500 sm:text-sm">Salsa Coreana</p>
+          <h2 id="products-title" class="break-keep text-3xl font-black leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">MOKDA Sauce Lineup</h2>
         </div>
 
-        <div class="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
-          <article data-reveal class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
-            <p id="product-original-category" class="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">오리지널 고추장 소스</p>
-            <h3 class="mb-6 break-keep text-2xl font-bold leading-tight text-red-600">Original</h3>
+        <div class="mx-auto grid max-w-5xl grid-cols-1 gap-7 md:grid-cols-3">
+          <article data-reveal class="flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5">
+            <p id="product-original-category" class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">오리지널 고추장 소스</p>
+            <h3 class="mb-4 break-keep text-2xl font-black leading-tight text-red-600">Original</h3>
             <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-              <img src="assets/bottle-original.png.png" alt="MOKDA Original" class="product-bottle relative z-10 h-full w-full object-contain" />
+              <img src="assets/bottle-original.png.png" alt="MOKDA Original" class="product-bottle relative z-10 h-full w-full object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)]" />
             </div>
-            <p id="product-original-line-1" class="mt-6 break-keep text-sm font-medium leading-relaxed text-slate-800">할라페뇨의 산뜻함을 더한,</p>
-            <p id="product-original-line-2" class="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">깔끔하게 올라오는 한국식 매콤함</p>
+            <p id="product-original-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">할라페뇨의 산뜻함을 더한,</p>
+            <p id="product-original-line-2" class="mt-1 break-keep text-[15px] font-black leading-6 text-gray-950">깔끔하게 올라오는 한국식 매콤함</p>
           </article>
 
-          <article data-reveal class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
-            <p id="product-ssamjang-category" class="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">쌈장 바비큐 소스</p>
-            <h3 class="mb-6 break-keep text-2xl font-bold leading-tight text-yellow-500">Para Carne</h3>
+          <article data-reveal class="flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5">
+            <p id="product-ssamjang-category" class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">쌈장 바비큐 소스</p>
+            <h3 class="mb-4 break-keep text-2xl font-black leading-tight text-yellow-500">Para Carne</h3>
             <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-              <img src="assets/bottle-ssamjang.png.png" alt="MOKDA Para Carne" class="product-bottle relative z-10 h-full w-full object-contain" />
+              <img src="assets/bottle-ssamjang.png.png" alt="MOKDA Para Carne" class="product-bottle relative z-10 h-full w-full object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)]" />
             </div>
-            <p id="product-ssamjang-line-1" class="mt-6 break-keep text-sm font-medium leading-relaxed text-slate-800">고기와 그릴 요리에 맞춘,</p>
-            <p id="product-ssamjang-line-2" class="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">깊고 진한 감칠맛의 바비큐 소스</p>
+            <p id="product-ssamjang-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">고기와 그릴 요리에 맞춘,</p>
+            <p id="product-ssamjang-line-2" class="mt-1 break-keep text-[15px] font-black leading-6 text-gray-950">깊고 진한 감칠맛의 바비큐 소스</p>
           </article>
 
-          <article data-reveal class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
-            <p id="product-soy-category" class="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">간장 베이스 소스</p>
-            <h3 class="mb-6 break-keep text-2xl font-bold leading-tight text-[#2d1a11]">Soy Sauce</h3>
+          <article data-reveal class="flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5">
+            <p id="product-soy-category" class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">간장 베이스 소스</p>
+            <h3 class="mb-4 break-keep text-2xl font-black leading-tight text-[#2d1a11]">Soy Sauce</h3>
             <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-              <img src="assets/bottle-sweetsoy.png.png" alt="MOKDA Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain" />
+              <img src="assets/bottle-sweetsoy.png.png" alt="MOKDA Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)]" />
             </div>
-            <p id="product-soy-line-1" class="mt-6 break-keep text-sm font-medium leading-relaxed text-slate-800">달콤함과 짭짤함이 균형 잡힌,</p>
-            <p id="product-soy-line-2" class="mt-1 break-keep text-base font-bold leading-relaxed text-gray-900">매일 쓰기 좋은 퓨전 데일리 소스</p>
+            <p id="product-soy-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">달콤함과 짭짤함이 균형 잡힌,</p>
+            <p id="product-soy-line-2" class="mt-1 break-keep text-[15px] font-black leading-6 text-gray-950">매일 쓰기 좋은 퓨전 데일리 소스</p>
           </article>
         </div>
       </section>
 
-      <section id="partnership" class="scroll-mt-20 bg-neutral-950 px-5 py-24 text-white sm:px-8 sm:py-32 lg:px-12">
-        <div data-reveal class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+      <section id="partnership" class="scroll-mt-20 bg-neutral-950 px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12">
+        <div data-reveal class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>
-            <p id="partnership-kicker" class="mb-5 text-sm font-black uppercase tracking-[0.28em] text-mokdaOrange">Partnership</p>
-            <h2 id="partnership-title" class="break-keep text-balance text-5xl font-black leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+            <p id="partnership-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Partnership</p>
+            <h2 id="partnership-title" class="break-keep text-balance text-4xl font-black leading-[1.04] tracking-tight sm:text-5xl lg:text-6xl">
               남미 식탁에<br />K-Sauce를 올릴 시간
             </h2>
           </div>
           <div>
-            <p id="partnership-body" class="break-keep text-xl font-semibold leading-9 text-white/75">
+            <p id="partnership-body" class="break-keep text-base font-semibold leading-8 text-white/75 sm:text-lg">
               유통, 리테일, 콜라보, 인플루언서 협업까지<br class="hidden md:block" />MOKDA는 라틴 아메리카 시장에 맞춘 파트너십을 준비합니다
             </p>
-            <a id="partnership-cta" href="/#partnership" class="mt-10 inline-flex rounded-full bg-mokdaOrange px-8 py-4 text-sm font-black uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-neutral-950">
+            <a id="partnership-cta" href="/#partnership" class="mt-7 inline-flex rounded-full bg-mokdaOrange px-7 py-3.5 text-sm font-black uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-neutral-950">
               Start partnership
             </a>
           </div>

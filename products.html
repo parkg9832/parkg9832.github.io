@@ -34,6 +34,12 @@
           transition: none !important;
         }
       }
+      @media (min-width: 768px) {
+        .reveal-target {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
     </style>
     <link rel="icon" type="image/png" href="./assets/Favicon.png" />
   </head>
@@ -67,73 +73,73 @@
       </div>
     </header>
 
-    <main class="pt-24">
-      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-14 sm:py-20">
+    <main class="pt-20">
+      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-12 sm:py-16">
         <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <p id="pageKicker" class="mb-5 text-sm font-black uppercase tracking-[0.34em] text-mokdaOrange">Product Story</p>
-          <h1 id="pageTitle" class="max-w-5xl break-keep text-balance text-5xl font-black leading-none tracking-tight text-neutral-950 sm:text-7xl md:text-8xl">
+          <p id="pageKicker" class="mb-4 text-xs font-black uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm">Product Story</p>
+          <h1 id="pageTitle" class="max-w-5xl break-keep text-balance text-4xl font-black leading-[0.98] tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">
             MOKDA PREMIUM LINEUP
           </h1>
-          <p id="pageSubtitle" class="mt-8 max-w-2xl text-pretty text-lg font-semibold leading-relaxed text-gray-600 sm:text-xl">
+          <p id="pageSubtitle" class="mt-6 max-w-2xl text-pretty text-base font-semibold leading-7 text-gray-600 sm:text-lg sm:leading-8">
             Korean sauce depth, bottled for Latin American kitchens, restaurants, and everyday tables.
           </p>
         </div>
       </section>
 
-      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] pb-16">
+      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] pb-12 sm:pb-16">
         <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <article class="reveal-target opacity-0 -translate-x-10 transition-all duration-[800ms] ease-out flex flex-col-reverse items-center justify-between gap-6 py-8 md:flex-row">
+          <article class="reveal-target flex flex-col-reverse items-center justify-between gap-7 py-10 transition-all duration-[800ms] ease-out md:flex-row md:py-12">
             <div class="w-full md:w-1/2">
-              <p id="prod1Kicker" class="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-mokdaOrange">Gochujang & Jalapeño</p>
-              <h2 id="prod1Title" class="mb-4 text-3xl font-bold tracking-tight text-red-600 md:text-5xl">Original</h2>
-              <p id="prod1Desc" class="mb-8 text-gray-600">
+              <p id="prod1Kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Gochujang & Jalapeño</p>
+              <h2 id="prod1Title" class="mb-3 text-3xl font-black tracking-tight text-red-600 md:text-5xl">Original</h2>
+              <p id="prod1Desc" class="mb-6 max-w-xl text-sm font-medium leading-7 text-gray-600 sm:text-base">
                 El toque fresco del jalapeño en el picante del Gochujang. Sabor auténtico de Corea en cada bocado.
               </p>
-              <a id="prod1Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-yellow-500">상품보기 ↗</a>
+              <a id="prod1Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-black text-black transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-lg">상품보기 ↗</a>
             </div>
             <div class="relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
               <img
                 src="assets/bottle-original.png.png"
                 alt="Salsa MOKDA Original"
-                class="product-bottle relative z-10 w-full max-w-sm max-h-[300px] object-contain"
+                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs object-contain drop-shadow-[0_20px_18px_rgba(15,23,42,0.14)] sm:max-h-[315px] md:max-w-sm"
                 loading="lazy"
               />
             </div>
           </article>
 
-          <article class="reveal-target opacity-0 translate-x-10 transition-all duration-[800ms] ease-out delay-[200ms] flex flex-col items-center justify-between gap-6 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] px-6 py-8 rounded-[3rem] rounded-tl-[6rem] rounded-br-[6rem] md:flex-row md:px-14 md:rounded-tl-[12rem] md:rounded-br-[10rem] md:rounded-tr-[3rem] md:rounded-bl-[3rem]">
+          <article class="reveal-target flex flex-col items-center justify-between gap-7 rounded-[2rem] bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] px-5 py-10 transition-all duration-[800ms] ease-out md:flex-row md:px-12 md:py-12">
             <div class="relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
               <img
                 src="assets/bottle-ssamjang.png.png"
                 alt="Salsa MOKDA Para Carne"
-                class="product-bottle relative z-10 w-full max-w-sm max-h-[300px] object-contain"
+                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs object-contain drop-shadow-[0_20px_18px_rgba(15,23,42,0.14)] sm:max-h-[315px] md:max-w-sm"
                 loading="lazy"
               />
             </div>
             <div class="w-full md:w-1/2">
-              <p id="prod2Kicker" class="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-mokdaOrange">Ssamjang</p>
-              <h2 id="prod2Title" class="mb-4 text-3xl font-bold tracking-tight text-yellow-500 md:text-5xl">Para Carne</h2>
-              <p id="prod2Desc" class="mb-8 text-gray-600">
+              <p id="prod2Kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ssamjang</p>
+              <h2 id="prod2Title" class="mb-3 text-3xl font-black tracking-tight text-yellow-500 md:text-5xl">Para Carne</h2>
+              <p id="prod2Desc" class="mb-6 max-w-xl text-sm font-medium leading-7 text-gray-600 sm:text-base">
                 Salsa tradicional coreana para BBQ con un toque umami profundo. Diseñada para carnes y parrilla.
               </p>
-              <a id="prod2Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-yellow-500">상품보기 ↗</a>
+              <a id="prod2Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-black text-black transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-lg">상품보기 ↗</a>
             </div>
           </article>
 
-          <article class="reveal-target opacity-0 -translate-x-10 transition-all duration-[800ms] ease-out delay-[400ms] flex flex-col-reverse items-center justify-between gap-6 py-8 md:flex-row">
+          <article class="reveal-target flex flex-col-reverse items-center justify-between gap-7 py-10 transition-all duration-[800ms] ease-out md:flex-row md:py-12">
             <div class="w-full md:w-1/2">
-              <p id="prod3Kicker" class="mb-4 text-sm font-bold uppercase tracking-[0.24em] text-mokdaOrange">Ganjang</p>
-              <h2 id="prod3Title" class="mb-4 text-3xl font-bold tracking-tight text-[#2d1a11] md:text-5xl">Soy Sauce</h2>
-              <p id="prod3Desc" class="mb-8 text-gray-600">
+              <p id="prod3Kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ganjang</p>
+              <h2 id="prod3Title" class="mb-3 text-3xl font-black tracking-tight text-[#2d1a11] md:text-5xl">Soy Sauce</h2>
+              <p id="prod3Desc" class="mb-6 max-w-xl text-sm font-medium leading-7 text-gray-600 sm:text-base">
                 Dulce, salado y lleno de umami que te atrapa. A clean daily sauce for fusion menus.
               </p>
-              <a id="prod3Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2 font-semibold text-black transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:bg-yellow-500">상품보기 ↗</a>
+              <a id="prod3Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-black text-black transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-lg">상품보기 ↗</a>
             </div>
             <div class="relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
               <img
                 src="assets/bottle-sweetsoy.png.png"
                 alt="Salsa MOKDA Soy Sauce"
-                class="product-bottle relative z-10 w-full max-w-sm max-h-[300px] object-contain"
+                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs object-contain drop-shadow-[0_20px_18px_rgba(15,23,42,0.14)] sm:max-h-[315px] md:max-w-sm"
                 loading="lazy"
               />
             </div>

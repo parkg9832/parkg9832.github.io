@@ -33,9 +33,9 @@
       }
 
       [data-reveal] {
-        opacity: 0;
-        transform: translateY(2.5rem);
-        transition: opacity 700ms ease-out, transform 700ms ease-out;
+        opacity: 1;
+        transform: none;
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
         transition-delay: var(--reveal-delay, 0ms);
       }
 
@@ -140,22 +140,22 @@
         </div>
       </header>
 
-      <section id="top" class="relative h-screen min-h-[560px] overflow-hidden bg-neutral-950 text-white sm:min-h-[620px]">
+      <section id="top" class="relative h-[92vh] min-h-[520px] overflow-hidden bg-neutral-950 text-white sm:h-screen sm:min-h-[620px]">
         <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar"></div>
         <div id="heroIndicators" class="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3"></div>
       </section>
 
-      <section id="products" class="scroll-mt-20 bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-14 sm:py-20 lg:py-24">
+      <section id="products" class="scroll-mt-20 bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
-            <p id="productsKicker" class="mb-3 break-keep text-sm font-bold uppercase tracking-[0.24em] text-mokdaOrange"></p>
-            <h2 id="productsTitle" class="break-keep text-balance text-4xl font-black leading-tight tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
+          <div data-reveal class="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
+            <p id="productsKicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
+            <h2 id="productsTitle" class="break-keep text-balance text-3xl font-black leading-[1.02] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
           </div>
-          <div id="productsGrid" class="mx-auto grid max-w-6xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6"></div>
+          <div id="productsGrid" class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-7"></div>
         </div>
       </section>
 
-      <section class="bg-orange-500 text-white py-4 overflow-hidden relative">
+      <section class="bg-orange-500 text-white py-3 overflow-hidden relative sm:py-4">
         <div class="animate-marquee">
           <div class="flex items-center space-x-16 px-4 text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-white shrink-0 [font-family:'Syne',sans-serif]">
             <span>Corea, más cerca de ti</span>
@@ -174,19 +174,19 @@
         </div>
       </section>
 
-      <section id="story" class="scroll-mt-20 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-14 sm:py-20">
+      <section id="story" class="scroll-mt-20 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-12 sm:py-16 lg:py-20">
         <div data-reveal class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 animate-fade-in-up delay-200">
-          <div class="mb-10 grid grid-cols-1 gap-8 md:grid-cols-2 md:items-center">
+          <div class="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 md:items-center md:gap-10">
             <div>
-              <p id="storyKicker" class="mb-5 text-sm font-black uppercase tracking-wide text-mokdaOrange"></p>
-              <h2 id="storyTitle" class="break-keep text-4xl font-bold leading-tight tracking-tight text-neutral-950 md:text-6xl"></h2>
+              <p id="storyKicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
+              <h2 id="storyTitle" class="break-keep text-balance text-3xl font-black leading-[1.05] tracking-tight text-neutral-950 sm:text-4xl md:text-5xl"></h2>
             </div>
             <div class="md:flex md:items-center">
-              <div id="storyBody" class="flex flex-col justify-center space-y-5 break-keep text-gray-700 leading-relaxed md:text-lg"></div>
+              <div id="storyBody" class="flex flex-col justify-center space-y-3 break-keep text-sm font-medium leading-7 text-gray-700 sm:text-base md:text-[17px] md:leading-8"></div>
             </div>
           </div>
 
-          <div class="group relative h-[300px] w-full cursor-pointer overflow-hidden rounded-2xl shadow-xl shadow-neutral-950/10 md:h-[420px]">
+          <div class="group relative h-[260px] w-full cursor-pointer overflow-hidden rounded-2xl shadow-xl shadow-neutral-950/10 sm:h-[320px] md:h-[380px]">
             <img
               src="./assets/story-vibe.png"
               alt=""
@@ -203,20 +203,20 @@
         </div>
       </section>
 
-      <section id="map" class="relative isolate scroll-mt-20 bg-white py-12 text-white sm:py-20">
+      <section id="map" class="relative isolate scroll-mt-20 bg-white py-10 text-white sm:py-16">
         <div class="absolute inset-x-0 -top-12 bottom-0 z-0 text-mokdaOrange md:-top-20" aria-hidden="true">
           <svg class="pointer-events-none h-12 w-full md:h-20" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
             <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
           </svg>
           <div class="h-full bg-mokdaOrange"></div>
         </div>
-        <div class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-7 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:gap-10 lg:px-8">
+        <div class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:gap-10 lg:px-8">
           <div class="flex h-full flex-col">
-            <p id="mapKicker" class="mb-3 text-xs font-black uppercase tracking-wide text-white/70 sm:mb-4 sm:text-sm"></p>
-            <h2 id="mapTitle" class="break-keep text-balance text-4xl font-black leading-none tracking-tight sm:text-6xl md:text-7xl"></h2>
-            <div id="storeList" class="custom-scrollbar mt-6 max-h-[250px] overflow-y-auto overflow-x-hidden rounded-[1.5rem] border border-white/20 bg-white/10 p-3 backdrop-blur-md sm:rounded-3xl md:mt-10 md:max-h-[400px] md:p-5 lg:flex-1 lg:max-h-none"></div>
+            <p id="mapKicker" class="mb-2 text-xs font-black uppercase tracking-[0.18em] text-white/70 sm:mb-3 sm:text-sm"></p>
+            <h2 id="mapTitle" class="break-keep text-balance text-4xl font-black leading-[0.95] tracking-tight sm:text-6xl md:text-7xl"></h2>
+            <div id="storeList" class="custom-scrollbar mt-5 max-h-[240px] overflow-y-auto overflow-x-hidden rounded-[1.25rem] border border-white/20 bg-white/10 p-3 backdrop-blur-md sm:rounded-3xl md:mt-8 md:max-h-[360px] md:p-5 lg:flex-1 lg:max-h-none"></div>
           </div>
-          <div class="relative min-h-[340px] w-full overflow-hidden rounded-[1.5rem] bg-white shadow-2xl shadow-orange-950/20 sm:min-h-[420px] sm:rounded-3xl lg:mt-12 lg:min-h-0">
+          <div class="relative min-h-[300px] w-full overflow-hidden rounded-[1.25rem] bg-white shadow-2xl shadow-orange-950/20 sm:min-h-[380px] sm:rounded-3xl lg:mt-10 lg:min-h-0">
             <iframe
               id="mapFrame"
               src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
@@ -234,14 +234,14 @@
         </div>
       </section>
 
-      <section id="partnership" class="scroll-mt-20 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-12 sm:py-20">
+      <section id="partnership" class="scroll-mt-20 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] py-12 sm:py-16 lg:py-20">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-8 max-w-3xl text-center">
-            <p id="b2bKicker" class="mb-3 text-sm font-black uppercase tracking-wide text-mokdaOrange"></p>
-            <h2 id="b2bTitle" class="break-keep text-balance text-4xl font-black leading-none tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
-            <p id="b2bDescription" class="mx-auto mt-4 max-w-2xl break-keep text-pretty text-lg font-semibold leading-relaxed text-neutral-600 sm:text-xl"></p>
+          <div data-reveal class="mx-auto mb-7 max-w-3xl text-center">
+            <p id="b2bKicker" class="mb-2 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
+            <h2 id="b2bTitle" class="break-keep text-balance text-3xl font-black leading-[1.03] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
+            <p id="b2bDescription" class="mx-auto mt-3 max-w-2xl break-keep text-pretty text-base font-semibold leading-7 text-neutral-600 sm:text-lg sm:leading-8"></p>
           </div>
-          <form id="b2bForm" data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl rounded-2xl border border-gray-100 bg-white p-5 shadow-2xl shadow-orange-900/5 sm:p-8 md:p-12">
+          <form id="b2bForm" data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl rounded-2xl border border-gray-100 bg-white p-5 shadow-2xl shadow-orange-900/5 sm:p-7 md:p-10">
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
                 <span id="companyLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
@@ -864,15 +864,15 @@
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
               return `
-              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="flex min-w-0 flex-col items-center px-4 py-8 text-center sm:px-6">
-                <p class="mb-1 break-keep text-sm font-bold leading-tight text-slate-700">${category}</p>
-                <h3 class="mb-6 break-keep text-2xl font-bold leading-tight ${item.titleClass}">${item.name}</h3>
+              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="group flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5 sm:py-8">
+                <p class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">${category}</p>
+                <h3 class="mb-4 break-keep text-2xl font-black leading-tight ${item.titleClass}">${item.name}</h3>
                 <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain" loading="lazy" />
+                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-[1.03]" loading="lazy" />
                 </div>
-                <div class="mx-auto mt-6 w-full max-w-[280px] text-center">
-                  <span class="block break-keep text-sm font-medium leading-relaxed text-slate-800">${d.line1}</span>
-                  <span class="mt-1 block break-keep text-base font-bold leading-relaxed text-gray-900">${d.line2}</span>
+                <div class="mx-auto mt-5 w-full max-w-[270px] text-center">
+                  <span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>
+                  <span class="mt-1 block break-keep text-[15px] font-black leading-6 text-gray-950">${d.line2}</span>
                 </div>
               </a>
             `;

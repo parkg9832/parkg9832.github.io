@@ -216,24 +216,6 @@
         </div>
       </section>
 
-      <section id="partnership" class="scroll-mt-20 bg-neutral-50 px-5 py-14 text-neutral-950 sm:px-8 sm:py-20 lg:px-12">
-        <div data-reveal class="mx-auto grid max-w-7xl gap-6 rounded-[1.5rem] bg-white p-6 shadow-xl shadow-neutral-950/5 ring-1 ring-neutral-950/5 sm:p-8 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:p-10">
-          <div>
-            <p id="partnership-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Partnership</p>
-            <h2 id="partnership-title" class="break-keep text-balance text-3xl font-black leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
-              남미 식탁에<br />K-Sauce를 올릴 시간
-            </h2>
-          </div>
-          <div>
-            <p id="partnership-body" class="break-keep text-base font-semibold leading-8 text-neutral-600 sm:text-lg">
-              유통, 리테일, 콜라보, 인플루언서 협업까지<br class="hidden md:block" />MOKDA는 라틴 아메리카 시장에 맞춘 파트너십을 준비합니다
-            </p>
-            <a id="partnership-cta" href="/#partnership" class="mt-7 inline-flex rounded-full bg-mokdaOrange px-7 py-3.5 text-sm font-black uppercase tracking-wide text-white shadow-lg shadow-orange-900/15 transition-all duration-300 hover:-translate-y-0.5 hover:bg-neutral-950">
-              Start partnership
-            </a>
-          </div>
-        </div>
-      </section>
     </main>
 
     <section id="socialBanner" class="bg-mokdaOrange py-6 text-white">
@@ -317,12 +299,6 @@
             soyLine1: '달콤함과 짭짤함이 균형 잡힌,',
             soyLine2: '매일 쓰기 좋은 퓨전 데일리 소스',
           },
-          partnership: {
-            kicker: 'Partnership',
-            title: '남미 식탁에<br />K-Sauce를 올릴 시간',
-            body: '유통, 리테일, 콜라보, 인플루언서 협업까지<br class="hidden md:block" />MOKDA는 라틴 아메리카 시장에 맞춘 파트너십을 준비합니다',
-            cta: 'Start partnership',
-          },
           footer: {
             title: 'SÍGUENOS',
             copy: '© 2026 MOKDA. Todos los derechos reservados.',
@@ -372,12 +348,6 @@
             soyCategory: 'Salsa Ganjang',
             soyLine1: 'Un equilibrio entre dulzor y notas saladas,',
             soyLine2: 'una salsa fusión de uso diario',
-          },
-          partnership: {
-            kicker: 'Alianzas',
-            title: 'Es momento de llevar<br />K-Sauce a las mesas de Sudamérica',
-            body: 'Desde distribución y canal minorista hasta colaboraciones con creadores de contenido,<br class="hidden md:block" />MOKDA prepara alianzas pensadas para el mercado latinoamericano',
-            cta: 'Iniciar alianza',
           },
           footer: {
             title: 'SÍGUENOS',
@@ -429,12 +399,6 @@
             soyLine1: 'Balanced between sweetness and savory depth,',
             soyLine2: 'an everyday fusion sauce for daily use',
           },
-          partnership: {
-            kicker: 'Partnership',
-            title: 'It is time to bring<br />K-Sauce to South American tables',
-            body: 'From distribution and retail to collaborations and influencer partnerships,<br class="hidden md:block" />MOKDA is preparing partnerships built for the Latin American market',
-            cta: 'Start partnership',
-          },
           footer: {
             title: 'SÍGUENOS',
             copy: '© 2026 MOKDA. All rights reserved.',
@@ -485,10 +449,6 @@
         setText('product-soy-category', copy.products.soyCategory);
         setText('product-soy-line-1', copy.products.soyLine1);
         setText('product-soy-line-2', copy.products.soyLine2);
-        setText('partnership-kicker', copy.partnership.kicker);
-        setHTML('partnership-title', copy.partnership.title);
-        setHTML('partnership-body', copy.partnership.body);
-        setText('partnership-cta', copy.partnership.cta);
         setText('footer-title', copy.footer.title);
         setText('footer-copy', copy.footer.copy);
         renderLanguageButtons();

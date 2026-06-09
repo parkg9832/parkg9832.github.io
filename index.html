@@ -287,6 +287,15 @@
                 ></select>
               </label>
               <label class="block sm:col-span-2">
+                <span id="purposeLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
+                <select
+                  id="purposeSelect"
+                  name="purpose"
+                  required
+                  class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"
+                ></select>
+              </label>
+              <label class="block sm:col-span-2">
                 <span id="messageLabel" class="mb-2 block text-sm font-semibold text-gray-700"></span>
                 <textarea
                   id="messageInput"
@@ -506,16 +515,19 @@
             title: 'MOKDA SPOT in LATAM',
           },
           b2b: {
-            kicker: 'WHOLESALE / B2B INQUIRY',
-            title: 'Business Partnership',
-            description: 'Looking for a trend-forward product?',
+            kicker: 'PROTOTYPE / B2B PARTNERSHIP',
+            title: 'B2B Partnership',
+            description: 'Prototype launch is planned for August 2026. We are now receiving early inquiries from LATAM distribution and retail partners.',
             fields: {
               company: ['Company', 'Company name'],
               name: ['Contact Name', 'Your full name'],
               email: ['Business Email', 'you@email.com'],
               country: ['Market', 'Select your country'],
-              message: ['Business Needs', 'Tell us about your channel, volume, or partnership request'],
-              submit: 'Send Business Inquiry',
+              purpose: ['Inquiry Type', 'Select inquiry type', ['Prototype information', 'Distribution or wholesale', 'Retail listing', 'HORECA / Restaurants', 'Collaboration or influencer']],
+              message: ['Partnership Details', 'Tell us about your channel, expected volume, or partnership proposal'],
+              submit: 'Request B2B Information',
+              required: 'Please complete this field',
+              emailError: 'Please enter a valid business email',
             },
           },
           footer: '© 2026 MOKDA. All rights reserved.',
@@ -542,16 +554,19 @@
             title: 'MOKDA SPOT en LATAM',
           },
           b2b: {
-            kicker: 'VENTAS MAYORISTAS / CONSULTA B2B',
-            title: 'Alianzas Comerciales / B2B',
-            description: '¿Buscas un producto en tendencia?',
+            kicker: 'PROTOTIPOS / ALIANZA B2B',
+            title: 'Alianzas B2B',
+            description: 'El lanzamiento de prototipos está previsto para agosto de 2026. Ya recibimos consultas iniciales de socios de distribución y retail en LATAM.',
             fields: {
               company: ['Empresa', 'Nombre de la empresa'],
               name: ['Contacto', 'Nombre completo'],
               email: ['Correo corporativo', 'tu@email.com'],
               country: ['Mercado', 'Selecciona un país'],
-              message: ['Necesidad comercial', 'Cuéntanos sobre tu canal, volumen o propuesta de alianza'],
-              submit: 'Enviar Consulta B2B',
+              purpose: ['Tipo de consulta', 'Selecciona el tipo de consulta', ['Información de prototipos', 'Distribución o venta mayorista', 'Retail', 'HORECA / Restaurantes', 'Colaboración o influencer']],
+              message: ['Detalles de alianza', 'Cuéntanos sobre tu canal, volumen estimado o propuesta de alianza'],
+              submit: 'Solicitar información B2B',
+              required: 'Completa este campo',
+              emailError: 'Ingresa un correo corporativo válido',
             },
           },
           footer: '© 2026 MOKDA. Todos los derechos reservados.',
@@ -578,16 +593,19 @@
             title: 'MOKDA SPOT in LATAM',
           },
           b2b: {
-            kicker: 'B2B Partnership',
-            title: '비즈니스 파트너십',
-            description: '트렌디한 제품을 찾으시나요?',
+            kicker: '시제품 / B2B 파트너십',
+            title: 'B2B 파트너십',
+            description: '2026년 8월 시제품 출시 예정입니다. LATAM 유통·리테일 파트너의 사전 문의를 받고 있습니다.',
             fields: {
               company: ['회사명', '회사명을 입력해주세요'],
               name: ['담당자명', '성함을 입력해주세요'],
               email: ['비즈니스 이메일', '이메일을 입력해주세요'],
               country: ['진출 국가', '국가를 선택해주세요'],
-              message: ['문의 내용', '유통 채널, 예상 물량, 파트너십 제안을 알려주세요'],
-              submit: 'B2B 문의 보내기',
+              purpose: ['문의 목적', '문의 목적을 선택해주세요', ['시제품 정보', '유통·도매', '리테일 입점', 'HORECA / 레스토랑', '협업·인플루언서']],
+              message: ['파트너십 상세', '유통 채널, 예상 물량, 파트너십 제안을 알려주세요'],
+              submit: 'B2B 자료 문의하기',
+              required: '이 항목을 입력해주세요',
+              emailError: '올바른 비즈니스 이메일을 입력해주세요',
             },
           },
           footer: '© 2026 MOKDA. 모든 권리 보유.',
@@ -942,6 +960,7 @@
         setText('emailLabel', fields.email[0]);
         setPlaceholder('emailInput', fields.email[1]);
         setText('countryLabel', fields.country[0]);
+        setText('purposeLabel', fields.purpose[0]);
         setText('messageLabel', fields.message[0]);
         setPlaceholder('messageInput', fields.message[1]);
         setText('submitButtonText', fields.submit);
@@ -949,8 +968,23 @@
           <option value="" selected disabled>${fields.country[1]}</option>
           ${countries.map(([value, labels]) => `<option value="${value}">${labels[language]}</option>`).join('')}
         `;
-        ['companyInput', 'nameInput', 'emailInput', 'countrySelect', 'messageInput'].forEach((id) => {
-          document.getElementById(id)?.setCustomValidity('');
+        document.getElementById('purposeSelect').innerHTML = `
+          <option value="" selected disabled>${fields.purpose[1]}</option>
+          ${fields.purpose[2].map((label) => `<option value="${label}">${label}</option>`).join('')}
+        `;
+        ['companyInput', 'nameInput', 'emailInput', 'countrySelect', 'purposeSelect', 'messageInput'].forEach((id) => {
+          const field = document.getElementById(id);
+          if (!field) return;
+          field.setCustomValidity('');
+          field.oninvalid = () => {
+            if (field.validity.typeMismatch) {
+              field.setCustomValidity(fields.emailError || fields.required);
+              return;
+            }
+            field.setCustomValidity(fields.required);
+          };
+          field.oninput = () => field.setCustomValidity('');
+          field.onchange = () => field.setCustomValidity('');
         });
       }
 

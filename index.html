@@ -150,6 +150,7 @@
           <div data-reveal class="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
             <p id="productsKicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
             <h2 id="productsTitle" class="break-keep text-balance text-3xl font-black leading-[1.02] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
+            <p id="productsStatus" class="mx-auto mt-4 max-w-xl break-keep text-sm font-bold leading-6 text-slate-600 sm:text-base"></p>
           </div>
           <div id="productsGrid" class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-7"></div>
         </div>
@@ -497,6 +498,7 @@
           products: {
             kicker: 'JANG TRIO LINEUP',
             title: 'KOREA FLAVORS',
+            status: 'Lineup in development. Prototype launch planned for August 2026.',
             items: localizedProducts,
           },
           map: {
@@ -532,6 +534,7 @@
           products: {
             kicker: 'LÍNEA PREMIUM DE SALSAS',
             title: 'SABORES DE COREA',
+            status: 'Línea en desarrollo. Prototipos previstos para agosto de 2026.',
             items: localizedProducts,
           },
           map: {
@@ -567,6 +570,7 @@
           products: {
             kicker: 'LINE UP',
             title: 'KOREA FLAVORS',
+            status: '현재 개발 중인 라인업입니다. 2026년 8월 시제품 출시 예정입니다.',
             items: localizedProducts,
           },
           map: {
@@ -959,6 +963,7 @@
         document.getElementById('storyBody').innerHTML = t.story.body.map((paragraph) => `<p class="break-keep leading-relaxed">${paragraph}</p>`).join('');
         setText('productsKicker', t.products.kicker);
         setText('productsTitle', t.products.title);
+        setText('productsStatus', t.products.status);
         renderProducts(t.products.items);
         setText('mapKicker', t.map.kicker);
         setText('mapTitle', t.map.title);

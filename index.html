@@ -411,19 +411,22 @@
             EN: {
               kicker: 'MOKDA BRAND ESSENCE',
               title: 'Comer Corea',
-              subtitle: '한국을 먹다 / The Korea you love, closer to your table',
+              titleLine2: '한국을 먹다',
+              subtitle: 'The Korea you love, closer to your table',
               button: 'Explore Lineup',
             },
             ES: {
               kicker: 'ESENCIA DE MARCA MOKDA',
               title: 'Comer Corea',
-              subtitle: '한국을 먹다 / La Corea que amas, más cerca de tu mesa',
+              titleLine2: '한국을 먹다',
+              subtitle: 'La Corea que amas, más cerca de tu mesa',
               button: 'Explorar Línea',
             },
             KR: {
               kicker: 'MOKDA BRAND ESSENCE',
               title: 'Comer Corea',
-              subtitle: '한국을 먹다 / 좋아하는 한국을, 내 식탁 가까이',
+              titleLine2: '한국을 먹다',
+              subtitle: '좋아하는 한국을, 내 식탁 가까이',
               button: '라인업 보기',
             },
           },
@@ -859,8 +862,19 @@
           const index = Number(slide.getAttribute('data-hero-slide'));
           const copy = heroSlides[index].copy[language];
           const link = slide.querySelector('[data-hero-link]');
+          const title = slide.querySelector('[data-hero-title]');
           slide.querySelector('[data-hero-kicker]').textContent = copy.kicker;
-          slide.querySelector('[data-hero-title]').textContent = copy.title;
+          title.textContent = '';
+          const titleLine1 = document.createElement('span');
+          titleLine1.className = 'block';
+          titleLine1.textContent = copy.title;
+          title.appendChild(titleLine1);
+          if (copy.titleLine2) {
+            const titleLine2 = document.createElement('span');
+            titleLine2.className = 'mt-1 block text-[0.78em] leading-[0.9] text-mokdaOrange md:mt-2';
+            titleLine2.textContent = copy.titleLine2;
+            title.appendChild(titleLine2);
+          }
           slide.querySelector('[data-hero-subtitle]').textContent = copy.subtitle;
           link.textContent = copy.button;
           link.setAttribute('href', heroSlides[index].href);

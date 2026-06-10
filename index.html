@@ -517,6 +517,7 @@
           },
           image: 'assets/bottle-ssamjang.webp',
           alt: 'MOKDA Salsa Ssamjang Para Carne',
+          imageClass: '-translate-y-1 scale-x-[1.18] scale-y-[1.09] group-hover:-translate-y-2 group-hover:scale-x-[1.21] group-hover:scale-y-[1.12]',
         },
         {
           category: {
@@ -944,13 +945,14 @@
             (item, index) => {
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
+              const imageClass = item.imageClass || 'group-hover:scale-[1.03]';
               return `
               <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="group flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5 sm:py-8">
                 <p class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">${category}</p>
                 <h3 class="mb-4 break-keep text-2xl font-black leading-tight ${item.titleClass}">${item.name}</h3>
                 <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
                   <span class="absolute h-48 w-48 rounded-full bg-white/60 blur-3xl"></span>
-                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)] transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-[1.03]" loading="lazy" />
+                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)] transition-transform duration-300 group-hover:-translate-y-1 ${imageClass}" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-5 w-full max-w-[270px] text-center">
                   <span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>

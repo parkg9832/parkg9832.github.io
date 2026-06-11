@@ -7,6 +7,9 @@ export interface Product {
   imageUrl: string;
   descLine1: string;
   descLine2: string;
+  bottleShadow?: string;
+  stageShadow?: string;
+  stageGlow?: string;
 }
 
 const products: Product[] = [
@@ -40,10 +43,10 @@ export function ProductShowcase() {
   return (
     <section className="bg-white px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
       <div className="mx-auto mb-14 max-w-3xl text-center">
-        <p className="mb-3 break-keep text-sm font-bold uppercase tracking-[0.24em] text-gray-500">
+        <p className="mb-3 break-keep text-sm font-extrabold uppercase tracking-[0.24em] text-gray-500">
           Salsa Coreana
         </p>
-        <h2 className="break-keep text-4xl font-black leading-tight tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
+        <h2 className="break-keep text-4xl font-extrabold leading-tight tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
           MOKDA Sauce Lineup
         </h2>
       </div>

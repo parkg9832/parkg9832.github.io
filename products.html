@@ -71,6 +71,47 @@
           transform: none !important;
         }
       }
+
+      .surface-depth {
+        box-shadow:
+          0 24px 56px rgba(92, 45, 17, 0.1),
+          0 8px 18px rgba(23, 23, 23, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      }
+
+      .product-stage {
+        isolation: isolate;
+      }
+
+      .product-stage::before {
+        position: absolute;
+        inset: 8% 10%;
+        z-index: 0;
+        border-radius: 999px;
+        background: radial-gradient(circle at 50% 42%, var(--stage-glow, rgba(239, 95, 24, 0.1)), transparent 62%);
+        content: "";
+        filter: blur(18px);
+      }
+
+      .product-stage::after {
+        position: absolute;
+        left: 50%;
+        bottom: 6%;
+        z-index: 0;
+        width: 58%;
+        height: 12%;
+        border-radius: 999px;
+        background: radial-gradient(ellipse, var(--stage-shadow, rgba(92, 45, 17, 0.22)) 0%, rgba(92, 45, 17, 0.08) 48%, transparent 72%);
+        content: "";
+        filter: blur(12px);
+        transform: translateX(-50%);
+      }
+
+      .product-bottle {
+        filter:
+          drop-shadow(0 22px 18px var(--bottle-shadow, rgba(92, 45, 17, 0.18)))
+          drop-shadow(0 4px 3px rgba(2, 103, 79, 0.08));
+      }
     </style>
     <link rel="icon" type="image/webp" href="./assets/Favicon.webp" />
   </head>
@@ -105,75 +146,75 @@
     </header>
 
     <main class="pt-20">
-      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-12 sm:py-16">
+      <section class="bg-[#fbfaf7] bg-[radial-gradient(rgba(239,95,24,0.08)_1px,transparent_1px)] [background-size:22px_22px] py-12 sm:py-16">
         <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <p id="pageKicker" class="mb-4 text-xs font-black uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm">Historia del Producto</p>
-          <h1 id="pageTitle" class="max-w-5xl break-keep text-balance text-4xl font-black leading-[0.98] tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">
+          <p id="pageKicker" class="mb-4 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm">Historia del Producto</p>
+          <h1 id="pageTitle" class="max-w-5xl break-keep text-balance text-4xl font-extrabold leading-[0.98] tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">
             SALSA COREANA
           </h1>
           <p id="pageSubtitle" class="mt-6 max-w-2xl text-pretty text-base font-semibold leading-7 text-slate-700 sm:text-lg sm:leading-8">
             Un sabor de salsa coreana en tendencia, pensado para las mesas cotidianas de América Latina.
           </p>
-          <p id="pageStatus" class="mt-4 max-w-2xl break-keep text-sm font-black leading-6 text-mokdaOrange sm:text-base">
+          <p id="pageStatus" class="mt-4 max-w-2xl break-keep text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">
             Línea en desarrollo. Prototipos previstos para agosto de 2026.
           </p>
         </div>
       </section>
 
-      <section class="bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] pb-12 sm:pb-16">
+      <section class="bg-white pb-12 sm:pb-16">
         <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <article class="reveal-target flex flex-col-reverse items-center justify-between gap-7 py-10 transition-all duration-[800ms] ease-out md:flex-row md:py-12">
             <div class="w-full md:w-1/2">
-              <p id="prod1Kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Gochujang</p>
-              <h2 id="prod1Title" class="mb-3 text-3xl font-black tracking-tight text-red-600 md:text-5xl">Original</h2>
+              <p id="prod1Kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Gochujang</p>
+              <h2 id="prod1Title" class="mb-3 text-3xl font-extrabold tracking-tight text-red-600 md:text-5xl">Original</h2>
               <p id="prod1Desc" class="mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
                 Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.
               </p>
-              <a id="prod1Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-black text-black transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-lg">Ver Producto ↗</a>
+              <a id="prod1Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-extrabold text-black shadow-[0_12px_24px_rgba(176,117,21,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-[0_16px_30px_rgba(176,117,21,0.24)]">Ver Producto ↗</a>
             </div>
-            <div class="relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
+            <div class="product-stage relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2" style="--bottle-shadow:rgba(126,38,18,0.22);--stage-shadow:rgba(126,38,18,0.24);--stage-glow:rgba(239,95,24,0.12);">
               <img
                 src="assets/bottle-original.webp"
                 alt="MOKDA Salsa Guchujang Original"
-                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs -translate-y-1 scale-x-[1.18] scale-y-[1.09] object-contain drop-shadow-[0_20px_18px_rgba(15,23,42,0.14)] sm:max-h-[315px] md:max-w-sm"
+                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs -translate-y-1 scale-x-[1.18] scale-y-[1.09] object-contain sm:max-h-[315px] md:max-w-sm"
                 loading="lazy"
               />
             </div>
           </article>
 
-          <article class="reveal-target flex flex-col items-center justify-between gap-7 rounded-[2rem] bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] px-5 py-10 transition-all duration-[800ms] ease-out md:flex-row md:px-12 md:py-12">
-            <div class="relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
+          <article class="surface-depth reveal-target flex flex-col items-center justify-between gap-7 rounded-[2rem] bg-stone-50 px-5 py-10 transition-all duration-[800ms] ease-out md:flex-row md:px-12 md:py-12">
+            <div class="product-stage relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2" style="--bottle-shadow:rgba(126,74,24,0.2);--stage-shadow:rgba(126,74,24,0.23);--stage-glow:rgba(214,143,54,0.12);">
               <img
                 src="assets/bottle-ssamjang.webp"
                 alt="MOKDA Salsa Ssamjang Para Carne"
-                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs object-contain drop-shadow-[0_20px_18px_rgba(15,23,42,0.14)] sm:max-h-[315px] md:max-w-sm"
+                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs object-contain sm:max-h-[315px] md:max-w-sm"
                 loading="lazy"
               />
             </div>
             <div class="w-full md:w-1/2">
-              <p id="prod2Kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ssamjang</p>
-              <h2 id="prod2Title" class="mb-3 text-3xl font-black tracking-tight text-yellow-500 md:text-5xl">Para Carne</h2>
+              <p id="prod2Kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ssamjang</p>
+              <h2 id="prod2Title" class="mb-3 text-3xl font-extrabold tracking-tight text-yellow-500 md:text-5xl">Para Carne</h2>
               <p id="prod2Desc" class="mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
                 Una salsa coreana tradicional estilo BBQ para dip, con umami profundo.
               </p>
-              <a id="prod2Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-black text-black transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-lg">Ver Producto ↗</a>
+              <a id="prod2Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-extrabold text-black shadow-[0_12px_24px_rgba(176,117,21,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-[0_16px_30px_rgba(176,117,21,0.24)]">Ver Producto ↗</a>
             </div>
           </article>
 
           <article class="reveal-target flex flex-col-reverse items-center justify-between gap-7 py-10 transition-all duration-[800ms] ease-out md:flex-row md:py-12">
             <div class="w-full md:w-1/2">
-              <p id="prod3Kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ganjang</p>
-              <h2 id="prod3Title" class="mb-3 text-3xl font-black tracking-tight text-[#2d1a11] md:text-5xl">Soy Sauce</h2>
+              <p id="prod3Kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ganjang</p>
+              <h2 id="prod3Title" class="mb-3 text-3xl font-extrabold tracking-tight text-[#2d1a11] md:text-5xl">Soy Sauce</h2>
               <p id="prod3Desc" class="mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
                 Umami dulce, salado y adictivo. (Aún no disponible)
               </p>
-              <a id="prod3Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-black text-black transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-lg">Ver Producto ↗</a>
+              <a id="prod3Link" href="coming-soon.html" class="inline-flex items-center justify-center rounded-full bg-yellow-400 px-6 py-2.5 text-sm font-extrabold text-black shadow-[0_12px_24px_rgba(176,117,21,0.18)] transition-all duration-300 hover:-translate-y-1 hover:bg-yellow-500 hover:shadow-[0_16px_30px_rgba(176,117,21,0.24)]">Ver Producto ↗</a>
             </div>
-            <div class="relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2">
+            <div class="product-stage relative mx-auto flex w-full max-w-md justify-center overflow-visible md:w-1/2" style="--bottle-shadow:rgba(50,24,15,0.22);--stage-shadow:rgba(50,24,15,0.24);--stage-glow:rgba(2,103,79,0.1);">
               <img
                 src="assets/bottle-sweetsoy.webp"
                 alt="MOKDA Salsa Ganjang Soy Sauce"
-                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs object-contain drop-shadow-[0_20px_18px_rgba(15,23,42,0.14)] sm:max-h-[315px] md:max-w-sm"
+                class="product-bottle relative z-10 max-h-[285px] w-full max-w-xs object-contain sm:max-h-[315px] md:max-w-sm"
                 loading="lazy"
               />
             </div>
@@ -216,8 +257,9 @@
         </div>
       </footer>
 
+    <script src="./site-i18n.js"></script>
     <script>
-      let language = localStorage.getItem('mokdaLanguage') || 'ES';
+      let language = window.MOKDA_I18N.getLanguage();
 
       const content = {
         ES: {
@@ -306,30 +348,13 @@
       }
 
       function renderLanguageButtons() {
-        const bg = document.getElementById('lang-bg');
-        const langMap = { ES: 0, KR: 1, EN: 2 };
-        const index = langMap[language] !== undefined ? langMap[language] : 0;
-        
-        if (bg) {
-          bg.style.transform = `translateX(${index * 100}%)`;
-        }
-
-        ['ES', 'KR', 'EN'].forEach((lang) => {
-          const button = document.getElementById(`lang${lang}`);
-          if (button) {
-            button.className =
-              language === lang
-                ? 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-white transition-colors duration-300'
-                : 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-500 hover:text-neutral-950 transition-colors duration-300';
-            button.setAttribute('aria-pressed', String(language === lang));
-          }
-        });
+        window.MOKDA_I18N.syncLanguageButtons(language);
       }
 
       function renderPage() {
         const t = content[language];
         document.title = t.title;
-        document.documentElement.lang = language === 'KR' ? 'ko' : language.toLowerCase();
+        document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
         
         setText('pageKicker', t.kicker);
         setText('pageTitle', t.headline);
@@ -357,21 +382,8 @@
         renderLanguageButtons();
       }
 
-      document.getElementById('langEN').addEventListener('click', () => {
-        language = 'EN';
-        localStorage.setItem('mokdaLanguage', 'EN');
-        renderPage();
-      });
-
-      document.getElementById('langES').addEventListener('click', () => {
-        language = 'ES';
-        localStorage.setItem('mokdaLanguage', 'ES');
-        renderPage();
-      });
-
-      document.getElementById('langKR').addEventListener('click', () => {
-        language = 'KR';
-        localStorage.setItem('mokdaLanguage', 'KR');
+      window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
+        language = nextLanguage;
         renderPage();
       });
 

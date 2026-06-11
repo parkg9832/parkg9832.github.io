@@ -16,7 +16,7 @@ export function BrandStory() {
           <p className="mb-4 text-sm font-semibold uppercase tracking-widest text-gray-500">
             Brand Story
           </p>
-          <h2 className="mb-8 break-keep text-3xl font-bold leading-tight text-neutral-950 md:text-4xl">
+          <h2 className="mb-8 break-keep text-3xl font-extrabold leading-tight text-neutral-950 md:text-4xl">
             남미로 떠난 한국인 청년
           </h2>
           <div className="space-y-4 text-gray-700">
@@ -28,7 +28,7 @@ export function BrandStory() {
           </div>
         </div>
 
-        <div className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-full shadow-lg">
+        <div className="surface-depth relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-full">
           <img
             src="/assets/story-vibe.webp"
             alt="Brand Story"

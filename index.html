@@ -148,6 +148,69 @@
         width: max-content;
         animation: marquee 20s linear infinite;
       }
+
+      .hero-kicker-shadow {
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.52);
+      }
+
+      .hero-title-shadow {
+        text-shadow: 0 5px 18px rgba(0, 0, 0, 0.58);
+      }
+
+      .hero-copy-shadow {
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+      }
+
+      .surface-depth {
+        box-shadow:
+          0 24px 56px rgba(92, 45, 17, 0.1),
+          0 8px 18px rgba(23, 23, 23, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      }
+
+      .product-card {
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+
+      .product-card:hover {
+        box-shadow:
+          0 22px 48px rgba(92, 45, 17, 0.08),
+          0 8px 18px rgba(23, 23, 23, 0.04);
+      }
+
+      .product-stage {
+        isolation: isolate;
+      }
+
+      .product-stage::before {
+        position: absolute;
+        inset: 8% 10%;
+        z-index: 0;
+        border-radius: 999px;
+        background: radial-gradient(circle at 50% 42%, var(--stage-glow, rgba(239, 95, 24, 0.1)), transparent 62%);
+        content: "";
+        filter: blur(18px);
+      }
+
+      .product-stage::after {
+        position: absolute;
+        left: 50%;
+        bottom: 7%;
+        z-index: 0;
+        width: 56%;
+        height: 13%;
+        border-radius: 999px;
+        background: radial-gradient(ellipse, var(--stage-shadow, rgba(92, 45, 17, 0.22)) 0%, rgba(92, 45, 17, 0.08) 48%, transparent 72%);
+        content: "";
+        filter: blur(12px);
+        transform: translateX(-50%);
+      }
+
+      .product-bottle {
+        filter:
+          drop-shadow(0 22px 18px var(--bottle-shadow, rgba(92, 45, 17, 0.18)))
+          drop-shadow(0 4px 3px rgba(2, 103, 79, 0.08));
+      }
     </style>
     <link rel="icon" type="image/webp" href="./assets/Favicon.webp" />
   </head>
@@ -187,11 +250,11 @@
         <div id="heroIndicators" class="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3"></div>
       </section>
 
-      <section id="products" class="scroll-mt-20 bg-white bg-[radial-gradient(rgba(229,231,235,0.45)_1px,transparent_1px)] [background-size:20px_20px] py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
+      <section id="products" class="scroll-mt-20 bg-[#fbfaf7] bg-[radial-gradient(rgba(239,95,24,0.08)_1px,transparent_1px)] [background-size:22px_22px] py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
             <p id="productsKicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
-            <h2 id="productsTitle" class="break-keep text-balance text-3xl font-black leading-[1.02] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
+            <h2 id="productsTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.02] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
             <p id="productsStatus" class="mx-auto mt-4 max-w-xl break-keep text-sm font-bold leading-6 text-slate-600 sm:text-base"></p>
           </div>
           <div id="productsGrid" class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-7"></div>
@@ -217,19 +280,19 @@
         </div>
       </section>
 
-      <section id="story" class="scroll-mt-20 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] pb-20 pt-12 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
+      <section id="story" class="scroll-mt-20 bg-stone-50 pb-20 pt-12 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
         <div data-reveal class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 animate-fade-in-up delay-200">
           <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-start md:gap-14 lg:gap-20">
             <div class="md:pt-1">
-              <p id="storyKicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
-              <h2 id="storyTitle" class="break-keep text-balance text-3xl font-black leading-[1.05] tracking-tight text-neutral-950 sm:text-4xl md:text-5xl"></h2>
+              <p id="storyKicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
+              <h2 id="storyTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.05] tracking-tight text-neutral-950 sm:text-4xl md:text-5xl"></h2>
             </div>
             <div class="md:flex md:justify-end">
               <div id="storyBody" class="flex max-w-[590px] flex-col space-y-3 break-keep text-sm font-medium leading-7 text-gray-700 sm:text-base md:text-[17px] md:leading-8"></div>
             </div>
           </div>
 
-          <div class="group relative h-[260px] w-full cursor-pointer overflow-hidden rounded-2xl shadow-xl shadow-neutral-950/10 sm:h-[320px] md:h-[380px]">
+          <div class="surface-depth group relative h-[260px] w-full cursor-pointer overflow-hidden rounded-2xl sm:h-[320px] md:h-[380px]">
             <img
               src="./assets/story-vibe.webp"
               alt=""
@@ -255,11 +318,11 @@
         </div>
         <div class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:gap-8 lg:px-8">
           <div class="flex h-full flex-col pt-2 sm:pt-3 lg:pt-4">
-            <p id="mapKicker" class="mb-3 text-xs font-black uppercase tracking-[0.2em] text-white/75 sm:text-sm"></p>
+            <p id="mapKicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-white/75 sm:text-sm"></p>
             <h2 id="mapTitle" class="break-keep text-balance text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"></h2>
             <div id="storeList" class="custom-scrollbar mt-5 max-h-[250px] overflow-y-auto overflow-x-hidden rounded-[1.25rem] border border-white/20 bg-white/10 p-3 backdrop-blur-md sm:rounded-3xl md:mt-7 md:max-h-[340px] md:p-5 lg:flex-1 lg:max-h-none"></div>
           </div>
-          <div class="relative min-h-[280px] w-full overflow-hidden rounded-[1.25rem] bg-white shadow-2xl shadow-orange-950/20 sm:min-h-[360px] sm:rounded-3xl lg:mt-8 lg:min-h-0">
+          <div class="surface-depth relative min-h-[280px] w-full overflow-hidden rounded-[1.25rem] bg-white sm:min-h-[360px] sm:rounded-3xl lg:mt-8 lg:min-h-0">
             <iframe
               id="mapFrame"
               src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
@@ -277,18 +340,18 @@
         </div>
       </section>
 
-      <section id="partnership" class="scroll-mt-20 bg-stone-50 bg-[radial-gradient(rgba(229,231,235,0.35)_1px,transparent_1px)] [background-size:20px_20px] pb-10 pt-24 sm:pb-12 sm:pt-28 lg:pb-12 lg:pt-32">
+      <section id="partnership" class="scroll-mt-20 bg-[#fbfaf7] pb-10 pt-24 sm:pb-12 sm:pt-28 lg:pb-12 lg:pt-32">
         <div class="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-7 w-full max-w-[860px] text-center">
-            <p id="b2bKicker" class="mb-2 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
-            <h2 id="b2bTitle" class="break-keep text-balance text-3xl font-black leading-[1.03] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
+            <p id="b2bKicker" class="mb-2 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
+            <h2 id="b2bTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.03] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
             <p id="b2bDescription" class="mx-auto mt-3 max-w-[430px] break-keep text-pretty text-[15px] font-semibold leading-7 text-neutral-600 sm:max-w-2xl sm:text-lg sm:leading-8"></p>
           </div>
-          <form id="b2bForm" data-reveal data-reveal-delay="120" class="mx-auto w-full max-w-[860px] rounded-2xl border border-gray-100 bg-white p-5 shadow-2xl shadow-orange-900/5 sm:p-7 md:p-10">
+          <form id="b2bForm" data-reveal data-reveal-delay="120" class="surface-depth mx-auto w-full max-w-[860px] rounded-2xl border border-orange-100/60 bg-white p-5 sm:p-7 md:p-10">
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
-                <span id="companyLabel" class="mb-2 block text-sm font-black text-[#057a5f]"></span>
+                <span id="companyLabel" class="mb-2 block text-sm font-bold text-[#057a5f]"></span>
                 <input
                   id="companyInput"
                   type="text"
@@ -299,7 +362,7 @@
                 />
               </label>
               <label class="block">
-                <span id="nameLabel" class="mb-2 block text-sm font-black text-[#057a5f]"></span>
+                <span id="nameLabel" class="mb-2 block text-sm font-bold text-[#057a5f]"></span>
                 <input
                   id="nameInput"
                   type="text"
@@ -310,7 +373,7 @@
                 />
               </label>
               <label class="block">
-                <span id="emailLabel" class="mb-2 block text-sm font-black text-[#057a5f]"></span>
+                <span id="emailLabel" class="mb-2 block text-sm font-bold text-[#057a5f]"></span>
                 <input
                   id="emailInput"
                   type="email"
@@ -321,7 +384,7 @@
                 />
               </label>
               <label class="block">
-                <span id="countryLabel" class="mb-2 block text-sm font-black text-[#057a5f]"></span>
+                <span id="countryLabel" class="mb-2 block text-sm font-bold text-[#057a5f]"></span>
                 <select
                   id="countrySelect"
                   name="country"
@@ -330,7 +393,7 @@
                 ></select>
               </label>
               <label class="block sm:col-span-2">
-                <span id="purposeLabel" class="mb-2 block text-sm font-black text-[#057a5f]"></span>
+                <span id="purposeLabel" class="mb-2 block text-sm font-bold text-[#057a5f]"></span>
                 <select
                   id="purposeSelect"
                   name="purpose"
@@ -339,7 +402,7 @@
                 ></select>
               </label>
               <label class="block sm:col-span-2">
-                <span id="messageLabel" class="mb-2 block text-sm font-black text-[#057a5f]"></span>
+                <span id="messageLabel" class="mb-2 block text-sm font-bold text-[#057a5f]"></span>
                 <textarea
                   id="messageInput"
                   name="message"
@@ -353,7 +416,7 @@
               <button
                 id="submitButton"
                 type="submit"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-mokdaOrange px-9 py-4 text-sm font-black uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-orange-500/25"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-mokdaOrange px-9 py-4 text-sm font-extrabold uppercase tracking-wide text-white shadow-[0_14px_28px_rgba(130,48,13,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-[0_18px_36px_rgba(130,48,13,0.26)] focus:outline-none focus:ring-4 focus:ring-orange-500/25"
               >
                 <span id="submitButtonText"></span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -401,6 +464,7 @@
       </footer>
     </main>
 
+    <script src="./site-i18n.js"></script>
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
@@ -503,6 +567,9 @@
           },
           image: 'assets/bottle-original.webp',
           alt: 'MOKDA Salsa Guchujang Original',
+          shadow: 'rgba(126,38,18,0.22)',
+          stageShadow: 'rgba(126,38,18,0.24)',
+          stageGlow: 'rgba(239,95,24,0.12)',
         },
         {
           category: {
@@ -521,6 +588,9 @@
           image: 'assets/bottle-ssamjang.webp',
           alt: 'MOKDA Salsa Ssamjang Para Carne',
           imageClass: '-translate-y-1 scale-x-[1.18] scale-y-[1.09] group-hover:-translate-y-2 group-hover:scale-x-[1.21] group-hover:scale-y-[1.12]',
+          shadow: 'rgba(126,74,24,0.2)',
+          stageShadow: 'rgba(126,74,24,0.23)',
+          stageGlow: 'rgba(214,143,54,0.12)',
         },
         {
           category: {
@@ -538,6 +608,9 @@
           },
           image: 'assets/bottle-sweetsoy.webp',
           alt: 'MOKDA Salsa Ganjang Soy Sauce',
+          shadow: 'rgba(50,24,15,0.22)',
+          stageShadow: 'rgba(50,24,15,0.24)',
+          stageGlow: 'rgba(2,103,79,0.1)',
         },
       ];
       const content = {
@@ -717,7 +790,7 @@
         ['Other', { EN: 'Other', ES: 'Otro', KR: '기타' }],
       ];
 
-      let language = localStorage.getItem('mokdaLanguage') || 'ES';
+      let language = window.MOKDA_I18N.getLanguage();
       let currentSlide = 0;
       let heroInterval = null;
       let heroScrollTimer = null;
@@ -820,12 +893,12 @@
                   <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
                   <img src="${slide.mobileImage}" alt="" class="h-full w-full object-cover" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                 </picture>
-                <div class="absolute inset-0 z-10 bg-black/70 md:bg-black/65"></div>
+                <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/68 via-black/38 to-black/18 md:from-black/62 md:via-black/32 md:to-black/10"></div>
                 <div class="relative z-20 mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-4 pt-28 pb-20 sm:px-6 lg:px-8 lg:pt-36 lg:pb-28">
-                  <p data-hero-kicker class="mb-5 text-xs font-black uppercase tracking-[0.34em] text-mokdaOrange [text-shadow:_0_3px_8px_rgba(0,0,0,0.9)] sm:text-sm"></p>
-                  <h1 data-hero-title class="max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] [text-shadow:_0_6px_24px_rgba(0,0,0,0.9)] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
-                  <p data-hero-subtitle class="mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-relaxed text-white/90 [text-shadow:_0_3px_12px_rgba(0,0,0,0.8)] sm:text-xl animate-fade-in-up delay-500"></p>
-                  <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-black text-white shadow-lg shadow-black/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-800"></a>
+                  <p data-hero-kicker class="hero-kicker-shadow mb-5 text-xs font-extrabold uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
+                  <h1 data-hero-title class="hero-title-shadow max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
+                  <p data-hero-subtitle class="hero-copy-shadow mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-relaxed text-white/90 sm:text-xl animate-fade-in-up delay-500"></p>
+                  <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-extrabold text-white shadow-[0_14px_28px_rgba(130,48,13,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-[0_18px_36px_rgba(130,48,13,0.28)] focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-800"></a>
                 </div>
               </div>
             `
@@ -921,24 +994,7 @@
       }
 
       function renderLanguageButtons() {
-        const bg = document.getElementById('lang-bg');
-        const langMap = { ES: 0, KR: 1, EN: 2 };
-        const index = langMap[language] !== undefined ? langMap[language] : 0;
-        
-        if (bg) {
-          bg.style.transform = `translateX(${index * 100}%)`;
-        }
-
-        ['ES', 'KR', 'EN'].forEach((lang) => {
-          const button = document.getElementById(`lang${lang}`);
-          if (button) {
-            button.className =
-              language === lang
-                ? 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-white transition-colors duration-300'
-                : 'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-500 hover:text-neutral-950 transition-colors duration-300';
-            button.setAttribute('aria-pressed', String(language === lang));
-          }
-        });
+        window.MOKDA_I18N.syncLanguageButtons(language);
       }
 
       function renderProducts(items) {
@@ -950,16 +1006,15 @@
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
               const imageClass = item.imageClass || 'group-hover:scale-[1.03]';
               return `
-              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="group flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5 sm:py-8">
-                <p class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">${category}</p>
-                <h3 class="mb-4 break-keep text-2xl font-black leading-tight ${item.titleClass}">${item.name}</h3>
-                <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-                  <span class="absolute h-48 w-48 rounded-full bg-white/60 blur-3xl"></span>
-                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)] transition-transform duration-300 group-hover:-translate-y-1 ${imageClass}" loading="lazy" />
+              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-card group flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5 sm:py-8">
+                <p class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">${category}</p>
+                <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight ${item.titleClass}">${item.name}</h3>
+                <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:${item.shadow || 'rgba(92,45,17,0.18)'};--stage-shadow:${item.stageShadow || 'rgba(92,45,17,0.22)'};--stage-glow:${item.stageGlow || 'rgba(239,95,24,0.1)'};">
+                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain transition-transform duration-300 group-hover:-translate-y-1 ${imageClass}" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-5 w-full max-w-[270px] text-center">
                   <span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>
-                  <span class="mt-1 block break-keep text-[15px] font-black leading-6 text-gray-950">${d.line2}</span>
+                  <span class="mt-1 block break-keep text-[15px] font-extrabold leading-6 text-gray-950">${d.line2}</span>
                 </div>
               </a>
             `;
@@ -1144,7 +1199,7 @@
 
       function renderPage() {
         const t = content[language];
-        document.documentElement.lang = language === 'KR' ? 'ko' : language.toLowerCase();
+        document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
         renderHeroText();
         setText('storyKicker', t.story.kicker);
         document.getElementById('storyTitle').innerHTML = t.story.title;
@@ -1166,21 +1221,8 @@
         bindReveal();
       }
 
-      document.getElementById('langEN').addEventListener('click', () => {
-        language = 'EN';
-        localStorage.setItem('mokdaLanguage', 'EN');
-        renderPage();
-      });
-
-      document.getElementById('langES').addEventListener('click', () => {
-        language = 'ES';
-        localStorage.setItem('mokdaLanguage', 'ES');
-        renderPage();
-      });
-
-      document.getElementById('langKR').addEventListener('click', () => {
-        language = 'KR';
-        localStorage.setItem('mokdaLanguage', 'KR');
+      window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
+        language = nextLanguage;
         renderPage();
       });
 

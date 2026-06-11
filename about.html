@@ -110,6 +110,65 @@
           animation: none;
         }
       }
+
+      .hero-kicker-shadow {
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.52);
+      }
+
+      .hero-title-shadow {
+        text-shadow: 0 5px 18px rgba(0, 0, 0, 0.58);
+      }
+
+      .surface-depth {
+        box-shadow:
+          0 24px 56px rgba(92, 45, 17, 0.1),
+          0 8px 18px rgba(23, 23, 23, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.75);
+      }
+
+      .product-card {
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+
+      .product-card:hover {
+        box-shadow:
+          0 22px 48px rgba(92, 45, 17, 0.08),
+          0 8px 18px rgba(23, 23, 23, 0.04);
+      }
+
+      .product-stage {
+        isolation: isolate;
+      }
+
+      .product-stage::before {
+        position: absolute;
+        inset: 8% 10%;
+        z-index: 0;
+        border-radius: 999px;
+        background: radial-gradient(circle at 50% 42%, var(--stage-glow, rgba(239, 95, 24, 0.1)), transparent 62%);
+        content: "";
+        filter: blur(18px);
+      }
+
+      .product-stage::after {
+        position: absolute;
+        left: 50%;
+        bottom: 7%;
+        z-index: 0;
+        width: 56%;
+        height: 13%;
+        border-radius: 999px;
+        background: radial-gradient(ellipse, var(--stage-shadow, rgba(92, 45, 17, 0.22)) 0%, rgba(92, 45, 17, 0.08) 48%, transparent 72%);
+        content: "";
+        filter: blur(12px);
+        transform: translateX(-50%);
+      }
+
+      .product-bottle {
+        filter:
+          drop-shadow(0 22px 18px var(--bottle-shadow, rgba(92, 45, 17, 0.18)))
+          drop-shadow(0 4px 3px rgba(2, 103, 79, 0.08));
+      }
     </style>
     <link rel="icon" type="image/webp" href="./assets/Favicon.webp" />
   </head>
@@ -159,7 +218,7 @@
           <source media="(min-width: 768px)" srcset="assets/assetshero-3-desktop.webp" />
           <img src="assets/assetshero-3-mobile.webp" alt="" class="h-full w-full object-cover" loading="eager" fetchpriority="high" />
         </picture>
-        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/62 via-black/38 to-black/18"></div>
         <div class="absolute inset-x-0 bottom-[-1px] h-14 text-neutral-50 sm:h-20" aria-hidden="true">
           <svg class="h-full w-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path fill="currentColor" d="M0,78 C180,42 340,42 520,70 C700,98 880,102 1200,58 L1200,120 L0,120 Z"></path>
@@ -167,8 +226,8 @@
         </div>
 
         <div class="hero-reveal relative z-10 mx-auto max-w-5xl pt-14 sm:pt-20">
-          <p id="hero-kicker" class="mb-4 text-[10px] font-black uppercase tracking-[0.3em] text-mokdaOrange [text-shadow:_0_3px_10px_rgba(0,0,0,0.75)] sm:mb-6 sm:text-sm">Esencia de Marca MOKDA</p>
-          <h1 class="break-keep text-balance text-[3.15rem] font-black leading-[0.9] tracking-tight [text-shadow:_0_5px_20px_rgba(0,0,0,0.72)] sm:text-7xl md:text-8xl lg:text-9xl">
+          <p id="hero-kicker" class="hero-kicker-shadow mb-4 text-[10px] font-extrabold uppercase tracking-[0.3em] text-mokdaOrange sm:mb-6 sm:text-sm">Esencia de Marca MOKDA</p>
+          <h1 class="hero-title-shadow break-keep text-balance text-[3.15rem] font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
             <span id="hero-line-1">Comer Corea</span><br />
             <span id="hero-line-2" class="text-mokdaOrange">한국을 먹다</span>
           </h1>
@@ -177,8 +236,8 @@
 
       <section id="story" class="bg-neutral-50 px-5 py-14 sm:px-8 sm:py-20 lg:px-12">
         <div data-reveal class="mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-6 lg:grid-cols-[0.94fr_1.06fr] lg:gap-8">
-          <article class="flex h-full flex-col justify-center rounded-[1.25rem] bg-white p-6 shadow-sm ring-1 ring-neutral-950/5 sm:p-8 lg:p-10">
-            <p id="story-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Historia de Marca</p>
+          <article class="surface-depth flex h-full flex-col justify-center rounded-[1.25rem] bg-white p-6 ring-1 ring-neutral-950/5 sm:p-8 lg:p-10">
+            <p id="story-kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Historia de Marca</p>
             <h2 id="story-title" class="mb-5 break-keep text-balance text-3xl font-black leading-[1.08] text-neutral-950 sm:text-4xl">Un joven coreano que llegó a América del Sur</h2>
             <div id="story-body" class="space-y-3 text-sm font-medium leading-7 text-neutral-600 sm:text-base sm:leading-8">
               <p class="break-keep leading-relaxed">MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a América del Sur con una sola maleta.</p>
@@ -188,7 +247,7 @@
             </div>
           </article>
 
-          <div class="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.25rem] bg-white shadow-xl shadow-neutral-950/5 ring-1 ring-neutral-950/5 sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[430px]">
+          <div class="surface-depth relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.25rem] bg-white ring-1 ring-neutral-950/5 sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[430px]">
             <img src="assets/story-vibe.webp" alt="Brand Story" class="h-full w-full object-cover" loading="lazy" />
           </div>
         </div>
@@ -196,23 +255,23 @@
       <section id="logo" class="bg-neutral-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div class="mx-auto max-w-7xl">
           <div data-reveal class="mb-10 text-center sm:mb-12">
-            <p id="logo-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Logo de Marca</p>
-            <h2 id="logo-title" class="break-keep text-balance text-4xl font-black leading-[1.05] tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
+            <p id="logo-kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Logo de Marca</p>
+            <h2 id="logo-title" class="break-keep text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
               Un diseño que contiene la herencia coreana<br />
               y la pasión latina
             </h2>
           </div>
 
           <div class="grid gap-5 lg:grid-cols-[0.95fr_1.1fr_0.95fr] lg:items-center">
-            <article data-reveal class="rounded-[1.25rem] bg-white p-6 shadow-sm ring-1 ring-neutral-950/5 sm:p-7">
-              <p id="motive-kicker" class="mb-3 text-xs font-black uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Motivo</p>
-              <h3 id="motive-title" class="break-keep text-2xl font-black leading-tight text-neutral-950 sm:text-3xl">La primera inspiración que nace en tu cocina</h3>
+            <article data-reveal class="surface-depth rounded-[1.25rem] bg-white p-6 ring-1 ring-neutral-950/5 sm:p-7">
+              <p id="motive-kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Motivo</p>
+              <h3 id="motive-title" class="break-keep text-2xl font-extrabold leading-tight text-neutral-950 sm:text-3xl">La primera inspiración que nace en tu cocina</h3>
               <p id="motive-body" class="mt-4 break-keep text-sm font-semibold leading-7 text-neutral-600 sm:text-base">
                 La silueta de la botella en el logo expresa que MOKDA puede ser el primer paso para cualquier receta K.
               </p>
             </article>
 
-            <div data-reveal class="flex min-h-[280px] flex-col items-center justify-center rounded-[1.5rem] bg-white p-8 shadow-xl shadow-neutral-950/5 ring-1 ring-neutral-950/5 sm:min-h-[320px] sm:p-10">
+            <div data-reveal class="surface-depth flex min-h-[280px] flex-col items-center justify-center rounded-[1.5rem] bg-white p-8 ring-1 ring-neutral-950/5 sm:min-h-[320px] sm:p-10">
               <img src="assets/Favicon.webp" alt="MOKDA symbol" class="h-28 w-28 object-contain" />
               <img src="assets/assetlogo-1.webp" alt="MOKDA wordmark" class="mt-10 h-10 w-auto object-contain" />
             </div>
@@ -233,39 +292,39 @@
 
       <section id="products" class="bg-white px-4 py-16 sm:px-6 sm:py-[5.5rem] lg:px-8">
         <div data-reveal class="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
-          <p id="products-kicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Salsa Coreana</p>
-          <h2 id="products-title" class="break-keep text-3xl font-black leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">Línea de Salsas MOKDA</h2>
+          <p id="products-kicker" class="mb-2 break-keep text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Salsa Coreana</p>
+          <h2 id="products-title" class="break-keep text-3xl font-extrabold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">Línea de Salsas MOKDA</h2>
         </div>
 
         <div class="mx-auto grid max-w-5xl grid-cols-1 gap-7 md:grid-cols-3">
-          <article data-reveal class="flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5">
-            <p id="product-original-category" class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Guchujang</p>
-            <h3 class="mb-4 break-keep text-2xl font-black leading-tight text-red-600">Original</h3>
-            <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-              <img src="assets/bottle-original.webp" alt="MOKDA Salsa Guchujang Original" class="product-bottle relative z-10 h-full w-full object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)]" />
+          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5">
+            <p id="product-original-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Guchujang</p>
+            <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-red-600">Original</h3>
+            <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(126,38,18,0.22);--stage-shadow:rgba(126,38,18,0.24);--stage-glow:rgba(239,95,24,0.12);">
+              <img src="assets/bottle-original.webp" alt="MOKDA Salsa Guchujang Original" class="product-bottle relative z-10 h-full w-full object-contain" />
             </div>
             <p id="product-original-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Con la frescura del jalapeño,</p>
-            <p id="product-original-line-2" class="mt-1 break-keep text-[15px] font-black leading-6 text-gray-950">un picante coreano fresco y equilibrado</p>
+            <p id="product-original-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">un picante coreano fresco y equilibrado</p>
           </article>
 
-          <article data-reveal class="flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5">
-            <p id="product-ssamjang-category" class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ssamjang</p>
-            <h3 class="mb-4 break-keep text-2xl font-black leading-tight text-yellow-500">Para Carne</h3>
-            <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-              <img src="assets/bottle-ssamjang.webp" alt="MOKDA Salsa Ssamjang Para Carne" class="product-bottle relative z-10 h-full w-full -translate-y-1 scale-x-[1.18] scale-y-[1.09] object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)]" />
+          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5">
+            <p id="product-ssamjang-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ssamjang</p>
+            <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-yellow-500">Para Carne</h3>
+            <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(126,74,24,0.2);--stage-shadow:rgba(126,74,24,0.23);--stage-glow:rgba(214,143,54,0.12);">
+              <img src="assets/bottle-ssamjang.webp" alt="MOKDA Salsa Ssamjang Para Carne" class="product-bottle relative z-10 h-full w-full -translate-y-1 scale-x-[1.18] scale-y-[1.09] object-contain" />
             </div>
             <p id="product-ssamjang-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Pensada para carnes a la parrilla,</p>
-            <p id="product-ssamjang-line-2" class="mt-1 break-keep text-[15px] font-black leading-6 text-gray-950">una salsa para parrilla con umami profundo e intenso</p>
+            <p id="product-ssamjang-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">una salsa para parrilla con umami profundo e intenso</p>
           </article>
 
-          <article data-reveal class="flex min-w-0 flex-col items-center px-3 py-7 text-center sm:px-5">
-            <p id="product-soy-category" class="mb-1 break-keep text-xs font-black uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ganjang</p>
-            <h3 class="mb-4 break-keep text-2xl font-black leading-tight text-[#2d1a11]">Soy Sauce</h3>
-            <div class="relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72">
-              <img src="assets/bottle-sweetsoy.webp" alt="MOKDA Salsa Ganjang Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain drop-shadow-[0_18px_18px_rgba(15,23,42,0.14)]" />
+          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5">
+            <p id="product-soy-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ganjang</p>
+            <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-[#2d1a11]">Soy Sauce</h3>
+            <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(50,24,15,0.22);--stage-shadow:rgba(50,24,15,0.24);--stage-glow:rgba(2,103,79,0.1);">
+              <img src="assets/bottle-sweetsoy.webp" alt="MOKDA Salsa Ganjang Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain" />
             </div>
             <p id="product-soy-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Un equilibrio entre dulzor y notas saladas,</p>
-            <p id="product-soy-line-2" class="mt-1 break-keep text-[15px] font-black leading-6 text-gray-950">una salsa fusión de uso diario</p>
+            <p id="product-soy-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">una salsa fusión de uso diario</p>
           </article>
         </div>
       </section>
@@ -306,6 +365,7 @@
       </div>
     </footer>
 
+    <script src="./site-i18n.js"></script>
     <script>
       const pageCopy = {
         KR: {
@@ -512,38 +572,15 @@
         renderLanguageButtons();
       }
 
-      let language = localStorage.getItem('mokdaLanguage') || 'ES';
+      let language = window.MOKDA_I18N.getLanguage();
 
       function renderLanguageButtons() {
-        const bg = document.getElementById('lang-bg');
-        const langMap = { ES: 0, KR: 1, EN: 2 };
-        const index = langMap[language] !== undefined ? langMap[language] : 0;
-
-        if (bg) {
-          bg.style.transform = `translateX(${index * 100}%)`;
-        }
-
-        ['ES', 'KR', 'EN'].forEach((lang) => {
-          const button = document.getElementById(`lang${lang}`);
-          if (button) {
-            button.className =
-              language === lang
-                ? 'lang-btn relative z-10 h-8 w-10 text-center text-xs font-black text-white transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm'
-                : 'lang-btn relative z-10 h-8 w-10 text-center text-xs font-black text-neutral-500 transition-colors duration-300 hover:text-neutral-950 sm:h-10 sm:w-12 sm:text-sm';
-            button.setAttribute('aria-pressed', String(language === lang));
-          }
-        });
+        window.MOKDA_I18N.syncLanguageButtons(language);
       }
 
-      ['ES', 'KR', 'EN'].forEach((lang) => {
-        const button = document.getElementById(`lang${lang}`);
-        if (button) {
-          button.addEventListener('click', () => {
-            language = lang;
-            localStorage.setItem('mokdaLanguage', lang);
-            renderPage();
-          });
-        }
+      window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
+        language = nextLanguage;
+        renderPage();
       });
 
       renderPage();

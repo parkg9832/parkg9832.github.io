@@ -15,7 +15,17 @@ body {
 }
 
 .hero-title-shadow {
-  text-shadow: 0 5px 18px rgba(0, 0, 0, 0.58);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.42);
+}
+
+.hero-title-accent {
+  text-shadow: none;
+}
+
+.hero-readable-panel {
+  background:
+    radial-gradient(circle at 34% 48%, rgba(0, 0, 0, 0.5), transparent 46%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.34) 48%, transparent 100%);
 }
 
 .surface-depth {
@@ -26,13 +36,11 @@ body {
 }
 
 .product-card {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  box-shadow: none;
 }
 
 .product-card:hover {
-  box-shadow:
-    0 22px 48px rgba(92, 45, 17, 0.08),
-    0 8px 18px rgba(23, 23, 23, 0.04);
+  box-shadow: none;
 }
 
 .product-stage {

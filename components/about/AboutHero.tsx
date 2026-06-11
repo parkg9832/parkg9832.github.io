@@ -11,7 +11,8 @@ export function AboutHero() {
           fetchPriority="high"
         />
       </picture>
-      <div className="absolute inset-0 bg-gradient-to-r from-black/62 via-black/38 to-black/18" />
+      <div className="absolute inset-0 bg-black/18" />
+      <div className="hero-readable-panel absolute inset-y-0 left-0 w-full" />
       <div className="absolute inset-x-0 bottom-0 h-28 rounded-t-[50%] bg-white" />
 
       <div className="relative z-10 mx-auto max-w-5xl pt-20">

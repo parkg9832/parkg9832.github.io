@@ -154,11 +154,21 @@
       }
 
       .hero-title-shadow {
-        text-shadow: 0 5px 18px rgba(0, 0, 0, 0.58);
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.42);
+      }
+
+      .hero-title-accent {
+        text-shadow: none;
       }
 
       .hero-copy-shadow {
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+      }
+
+      .hero-readable-panel {
+        background:
+          radial-gradient(circle at 34% 48%, rgba(0, 0, 0, 0.5), transparent 46%),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.34) 48%, transparent 100%);
       }
 
       .surface-depth {
@@ -169,13 +179,11 @@
       }
 
       .product-card {
-        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+        box-shadow: none;
       }
 
       .product-card:hover {
-        box-shadow:
-          0 22px 48px rgba(92, 45, 17, 0.08),
-          0 8px 18px rgba(23, 23, 23, 0.04);
+        box-shadow: none;
       }
 
       .product-stage {
@@ -893,7 +901,8 @@
                   <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
                   <img src="${slide.mobileImage}" alt="" class="h-full w-full object-cover" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                 </picture>
-                <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/68 via-black/38 to-black/18 md:from-black/62 md:via-black/32 md:to-black/10"></div>
+                <div class="absolute inset-0 z-10 bg-black/18"></div>
+                <div class="hero-readable-panel absolute inset-y-0 left-0 z-10 w-full md:w-[68%]"></div>
                 <div class="relative z-20 mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-4 pt-28 pb-20 sm:px-6 lg:px-8 lg:pt-36 lg:pb-28">
                   <p data-hero-kicker class="hero-kicker-shadow mb-5 text-xs font-extrabold uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
                   <h1 data-hero-title class="hero-title-shadow max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
@@ -948,7 +957,7 @@
           title.appendChild(titleLine1);
           if (copy.titleLine2) {
             const titleLine2 = document.createElement('span');
-            titleLine2.className = 'mt-1 block text-[0.78em] leading-[0.9] text-mokdaOrange md:mt-2';
+            titleLine2.className = 'hero-title-accent mt-1 block text-[0.78em] leading-[0.9] text-mokdaOrange md:mt-2';
             titleLine2.textContent = copy.titleLine2;
             title.appendChild(titleLine2);
           }

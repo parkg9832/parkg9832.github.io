@@ -116,7 +116,17 @@
       }
 
       .hero-title-shadow {
-        text-shadow: 0 5px 18px rgba(0, 0, 0, 0.58);
+        text-shadow: 0 3px 10px rgba(0, 0, 0, 0.42);
+      }
+
+      .hero-title-accent {
+        text-shadow: none;
+      }
+
+      .hero-readable-panel {
+        background:
+          radial-gradient(circle at 50% 48%, rgba(0, 0, 0, 0.42), transparent 48%),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.22) 58%, transparent 100%);
       }
 
       .surface-depth {
@@ -127,13 +137,11 @@
       }
 
       .product-card {
-        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+        box-shadow: none;
       }
 
       .product-card:hover {
-        box-shadow:
-          0 22px 48px rgba(92, 45, 17, 0.08),
-          0 8px 18px rgba(23, 23, 23, 0.04);
+        box-shadow: none;
       }
 
       .product-stage {
@@ -218,7 +226,8 @@
           <source media="(min-width: 768px)" srcset="assets/assetshero-3-desktop.webp" />
           <img src="assets/assetshero-3-mobile.webp" alt="" class="h-full w-full object-cover" loading="eager" fetchpriority="high" />
         </picture>
-        <div class="absolute inset-0 bg-gradient-to-r from-black/62 via-black/38 to-black/18"></div>
+        <div class="absolute inset-0 bg-black/18"></div>
+        <div class="hero-readable-panel absolute inset-y-0 left-0 w-full"></div>
         <div class="absolute inset-x-0 bottom-[-1px] h-14 text-neutral-50 sm:h-20" aria-hidden="true">
           <svg class="h-full w-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path fill="currentColor" d="M0,78 C180,42 340,42 520,70 C700,98 880,102 1200,58 L1200,120 L0,120 Z"></path>
@@ -229,7 +238,7 @@
           <p id="hero-kicker" class="hero-kicker-shadow mb-4 text-[10px] font-extrabold uppercase tracking-[0.3em] text-mokdaOrange sm:mb-6 sm:text-sm">Esencia de Marca MOKDA</p>
           <h1 class="hero-title-shadow break-keep text-balance text-[3.15rem] font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
             <span id="hero-line-1">Comer Corea</span><br />
-            <span id="hero-line-2" class="text-mokdaOrange">한국을 먹다</span>
+            <span id="hero-line-2" class="hero-title-accent text-mokdaOrange">한국을 먹다</span>
           </h1>
         </div>
       </section>

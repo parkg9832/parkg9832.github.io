@@ -22,12 +22,6 @@ body {
   text-shadow: none;
 }
 
-.hero-readable-panel {
-  background:
-    radial-gradient(circle at 34% 48%, rgba(0, 0, 0, 0.5), transparent 46%),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.34) 48%, transparent 100%);
-}
-
 .surface-depth {
   box-shadow:
     0 24px 56px rgba(92, 45, 17, 0.1),

@@ -165,12 +165,6 @@
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
       }
 
-      .hero-readable-panel {
-        background:
-          radial-gradient(circle at 34% 48%, rgba(0, 0, 0, 0.5), transparent 46%),
-          linear-gradient(90deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.34) 48%, transparent 100%);
-      }
-
       .surface-depth {
         box-shadow:
           0 24px 56px rgba(92, 45, 17, 0.1),
@@ -595,7 +589,7 @@
           },
           image: 'assets/bottle-ssamjang.webp',
           alt: 'MOKDA Salsa Ssamjang Para Carne',
-          imageClass: '-translate-y-1 scale-x-[1.18] scale-y-[1.09] group-hover:-translate-y-2 group-hover:scale-x-[1.21] group-hover:scale-y-[1.12]',
+          imageClass: '-translate-y-1 scale-x-[1.18] scale-y-[1.09] hover:-translate-y-2 hover:scale-x-[1.21] hover:scale-y-[1.12]',
           shadow: 'rgba(126,74,24,0.2)',
           stageShadow: 'rgba(126,74,24,0.23)',
           stageGlow: 'rgba(214,143,54,0.12)',
@@ -901,8 +895,7 @@
                   <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
                   <img src="${slide.mobileImage}" alt="" class="h-full w-full object-cover" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                 </picture>
-                <div class="absolute inset-0 z-10 bg-black/18"></div>
-                <div class="hero-readable-panel absolute inset-y-0 left-0 z-10 w-full md:w-[68%]"></div>
+                <div class="absolute inset-0 z-10 bg-black/45 md:bg-black/42"></div>
                 <div class="relative z-20 mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-4 pt-28 pb-20 sm:px-6 lg:px-8 lg:pt-36 lg:pb-28">
                   <p data-hero-kicker class="hero-kicker-shadow mb-5 text-xs font-extrabold uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
                   <h1 data-hero-title class="hero-title-shadow max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
@@ -1013,13 +1006,13 @@
             (item, index) => {
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
-              const imageClass = item.imageClass || 'group-hover:scale-[1.03]';
+              const imageClass = item.imageClass || 'hover:scale-[1.03]';
               return `
-              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-card group flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5 sm:py-8">
+              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5 sm:py-8">
                 <p class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">${category}</p>
                 <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight ${item.titleClass}">${item.name}</h3>
                 <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:${item.shadow || 'rgba(92,45,17,0.18)'};--stage-shadow:${item.stageShadow || 'rgba(92,45,17,0.22)'};--stage-glow:${item.stageGlow || 'rgba(239,95,24,0.1)'};">
-                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain transition-transform duration-300 group-hover:-translate-y-1 ${imageClass}" loading="lazy" />
+                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain transition-transform duration-300 hover:-translate-y-1 ${imageClass}" loading="lazy" />
                 </div>
                 <div class="mx-auto mt-5 w-full max-w-[270px] text-center">
                   <span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>

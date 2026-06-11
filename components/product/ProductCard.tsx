@@ -31,7 +31,7 @@ export function ProductCard({ product }: ProductCardProps) {
   } as CSSProperties;
 
   return (
-    <article className="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-4 py-8 text-center transition-all duration-300 hover:-translate-y-1 sm:px-6">
+    <article className="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-4 py-8 text-center transition-all duration-300 sm:px-6">
       <p className="mb-1 break-keep text-sm font-extrabold leading-tight text-slate-700">
         {product.category}
       </p>
@@ -46,7 +46,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <img
           src={product.imageUrl}
           alt={product.title}
-          className="product-bottle relative z-10 h-full w-full object-contain"
+          className="product-bottle relative z-10 h-full w-full object-contain transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.03]"
         />
       </div>
 

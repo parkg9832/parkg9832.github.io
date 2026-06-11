@@ -123,12 +123,6 @@
         text-shadow: none;
       }
 
-      .hero-readable-panel {
-        background:
-          radial-gradient(circle at 50% 48%, rgba(0, 0, 0, 0.42), transparent 48%),
-          linear-gradient(90deg, rgba(0, 0, 0, 0.44), rgba(0, 0, 0, 0.22) 58%, transparent 100%);
-      }
-
       .surface-depth {
         box-shadow:
           0 24px 56px rgba(92, 45, 17, 0.1),
@@ -226,8 +220,7 @@
           <source media="(min-width: 768px)" srcset="assets/assetshero-3-desktop.webp" />
           <img src="assets/assetshero-3-mobile.webp" alt="" class="h-full w-full object-cover" loading="eager" fetchpriority="high" />
         </picture>
-        <div class="absolute inset-0 bg-black/18"></div>
-        <div class="hero-readable-panel absolute inset-y-0 left-0 w-full"></div>
+        <div class="absolute inset-0 bg-black/45"></div>
         <div class="absolute inset-x-0 bottom-[-1px] h-14 text-neutral-50 sm:h-20" aria-hidden="true">
           <svg class="h-full w-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
             <path fill="currentColor" d="M0,78 C180,42 340,42 520,70 C700,98 880,102 1200,58 L1200,120 L0,120 Z"></path>
@@ -306,31 +299,31 @@
         </div>
 
         <div class="mx-auto grid max-w-5xl grid-cols-1 gap-7 md:grid-cols-3">
-          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5">
+          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5">
             <p id="product-original-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Guchujang</p>
             <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-red-600">Original</h3>
             <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(126,38,18,0.22);--stage-shadow:rgba(126,38,18,0.24);--stage-glow:rgba(239,95,24,0.12);">
-              <img src="assets/bottle-original.webp" alt="MOKDA Salsa Guchujang Original" class="product-bottle relative z-10 h-full w-full object-contain" />
+              <img src="assets/bottle-original.webp" alt="MOKDA Salsa Guchujang Original" class="product-bottle relative z-10 h-full w-full object-contain transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.03]" />
             </div>
             <p id="product-original-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Con la frescura del jalapeño,</p>
             <p id="product-original-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">un picante coreano fresco y equilibrado</p>
           </article>
 
-          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5">
+          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5">
             <p id="product-ssamjang-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ssamjang</p>
             <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-yellow-500">Para Carne</h3>
             <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(126,74,24,0.2);--stage-shadow:rgba(126,74,24,0.23);--stage-glow:rgba(214,143,54,0.12);">
-              <img src="assets/bottle-ssamjang.webp" alt="MOKDA Salsa Ssamjang Para Carne" class="product-bottle relative z-10 h-full w-full -translate-y-1 scale-x-[1.18] scale-y-[1.09] object-contain" />
+              <img src="assets/bottle-ssamjang.webp" alt="MOKDA Salsa Ssamjang Para Carne" class="product-bottle relative z-10 h-full w-full -translate-y-1 scale-x-[1.18] scale-y-[1.09] object-contain transition-transform duration-300 hover:-translate-y-2 hover:scale-x-[1.21] hover:scale-y-[1.12]" />
             </div>
             <p id="product-ssamjang-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Pensada para carnes a la parrilla,</p>
             <p id="product-ssamjang-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">una salsa para parrilla con umami profundo e intenso</p>
           </article>
 
-          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 hover:-translate-y-1 sm:px-5">
+          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5">
             <p id="product-soy-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ganjang</p>
             <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-[#2d1a11]">Soy Sauce</h3>
             <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(50,24,15,0.22);--stage-shadow:rgba(50,24,15,0.24);--stage-glow:rgba(2,103,79,0.1);">
-              <img src="assets/bottle-sweetsoy.webp" alt="MOKDA Salsa Ganjang Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain" />
+              <img src="assets/bottle-sweetsoy.webp" alt="MOKDA Salsa Ganjang Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.03]" />
             </div>
             <p id="product-soy-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Un equilibrio entre dulzor y notas saladas,</p>
             <p id="product-soy-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">una salsa fusión de uso diario</p>

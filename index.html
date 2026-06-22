@@ -263,6 +263,30 @@
         </div>
       </section>
 
+      <section id="why" class="scroll-mt-20 bg-white py-16 sm:py-20 lg:py-24">
+        <div class="mx-auto grid w-full max-w-6xl grid-cols-1 gap-9 px-4 sm:px-6 md:grid-cols-[0.9fr_1.1fr] md:items-start lg:gap-16 lg:px-8">
+          <div data-reveal>
+            <p id="whyKicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
+            <h2 id="whyTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.05] tracking-tight text-neutral-950 sm:text-5xl"></h2>
+          </div>
+          <div data-reveal data-reveal-delay="120" class="space-y-6">
+            <div id="whyBody" class="space-y-4 break-keep text-[15px] font-semibold leading-7 text-neutral-700 sm:text-lg sm:leading-8"></div>
+            <div id="whyPoints" class="grid grid-cols-1 gap-3 sm:grid-cols-2"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="how-to-use" class="scroll-mt-20 bg-[#fbfaf7] py-16 sm:py-20 lg:py-24">
+        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div data-reveal class="mx-auto mb-9 max-w-2xl text-center">
+            <p id="useKicker" class="mb-2 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
+            <h2 id="useTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.05] tracking-tight text-neutral-950 sm:text-5xl"></h2>
+            <p id="useDescription" class="mx-auto mt-4 max-w-xl break-keep text-[15px] font-semibold leading-7 text-neutral-600 sm:text-lg sm:leading-8"></p>
+          </div>
+          <div id="useGrid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4"></div>
+        </div>
+      </section>
+
       <section class="bg-orange-500 text-white py-3 overflow-hidden relative sm:py-4">
         <div class="animate-marquee">
           <div class="flex items-center space-x-16 px-4 text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-white shrink-0 [font-family:'Syne',sans-serif]">
@@ -311,34 +335,16 @@
         </div>
       </section>
 
-      <section id="map" class="relative isolate scroll-mt-20 bg-white pb-7 pt-8 text-white sm:pb-10 sm:pt-12 lg:pb-12">
-        <div class="absolute inset-x-0 -top-8 bottom-0 z-0 text-mokdaOrange md:-top-12" aria-hidden="true">
-          <svg class="pointer-events-none h-10 w-full md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-            <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
-          </svg>
-          <div class="h-full bg-mokdaOrange"></div>
-        </div>
-        <div class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:gap-8 lg:px-8">
-          <div class="flex h-full flex-col pt-2 sm:pt-3 lg:pt-4">
-            <p id="mapKicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-white/75 sm:text-sm"></p>
-            <h2 id="mapTitle" class="break-keep text-balance text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"></h2>
-            <div id="storeList" class="custom-scrollbar mt-5 max-h-[250px] overflow-y-auto overflow-x-hidden rounded-[1.25rem] border border-white/20 bg-white/10 p-3 backdrop-blur-md sm:rounded-3xl md:mt-7 md:max-h-[340px] md:p-5 lg:flex-1 lg:max-h-none"></div>
+      <section id="sample-test" class="relative isolate scroll-mt-20 bg-mokdaOrange py-16 text-white sm:py-20 lg:py-24">
+        <div class="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.18)_1px,transparent_1px)] [background-size:24px_24px]" aria-hidden="true"></div>
+        <div class="relative z-10 mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div data-reveal class="mb-9 max-w-3xl">
+            <p id="sampleKicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-white/75 sm:text-sm"></p>
+            <h2 id="sampleTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl"></h2>
+            <p id="sampleDescription" class="mt-4 max-w-2xl break-keep text-[15px] font-semibold leading-7 text-white/85 sm:text-lg sm:leading-8"></p>
           </div>
-          <div class="surface-depth relative min-h-[280px] w-full overflow-hidden rounded-[1.25rem] bg-white sm:min-h-[360px] sm:rounded-3xl lg:mt-8 lg:min-h-0">
-            <iframe
-              id="mapFrame"
-              src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
-              width="100%"
-              height="100%"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Mapa de MOKDA en América Latina"
-              data-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
-              data-default-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&output=embed"
-              class="pointer-events-none absolute inset-0 h-full w-full rounded-3xl border-0"
-            ></iframe>
-          </div>
+          <div id="sampleStats" class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-3"></div>
+          <div id="sampleQuotes" class="grid grid-cols-1 gap-4 md:grid-cols-3"></div>
         </div>
       </section>
 
@@ -478,50 +484,50 @@
           href: '#products',
           copy: {
             EN: {
-              kicker: 'MOKDA BRAND ESSENCE',
-              title: 'Comer Corea',
-              titleLine2: '한국을 먹다',
-              subtitle: 'The Korea you love, closer to your table',
+              kicker: 'SALSA COREANA FOR LATIN AMERICA',
+              title: 'Real Korean Flavor',
+              titleLine2: 'for everyday food',
+              subtitle: 'Made easier for tacos, meat, fried food and snacks. MOKDA is a K-sauce brand designed exclusively for Latin America.',
               button: 'Explore Lineup',
             },
             ES: {
-              kicker: 'ESENCIA DE MARCA MOKDA',
-              title: 'Comer Corea',
-              titleLine2: '한국을 먹다',
-              subtitle: 'La Corea que amas, más cerca de tu mesa',
-              button: 'Explorar Línea',
+              kicker: 'SALSA COREANA PARA AMÉRICA LATINA',
+              title: 'Sabor real de Corea',
+              titleLine2: 'más fácil',
+              subtitle: 'Para tacos, carnes, frituras y snacks. MOKDA es una marca de K-sauces creada exclusivamente para América Latina.',
+              button: 'Ver productos',
             },
             KR: {
-              kicker: 'MOKDA BRAND ESSENCE',
-              title: 'Comer Corea',
-              titleLine2: '한국을 먹다',
-              subtitle: '좋아하는 한국을, 내 식탁 가까이',
-              button: '라인업 보기',
+              kicker: 'SALSA COREANA FOR LATIN AMERICA',
+              title: '진짜 한국의 맛을',
+              titleLine2: '더 쉽게',
+              subtitle: '타코, 고기, 튀김, 스낵에. MOKDA는 오직 라틴아메리카 시장을 위해 설계한 K-소스 브랜드입니다.',
+              button: '제품 라인업 보기',
             },
           },
         },
         {
           desktopImage: 'assets/assetshero-2-desktop.webp',
           mobileImage: 'assets/assetshero-2-mobile.webp',
-          href: '#map',
+          href: '#sample-test',
           copy: {
             EN: {
-              kicker: 'KOREA NEAR ME',
-              title: 'MOKDA Across Latin America',
-              subtitle: 'Find official retailers and dining spots near you where you can experience the taste of MOKDA.',
-              button: 'View Spots Map',
+              kicker: 'SAMPLE TEST RESULT',
+              title: '96% Very Satisfied',
+              subtitle: 'In the first sample test, 48 out of 50 participants reported high satisfaction with MOKDA.',
+              button: 'View Test Result',
             },
             ES: {
-              kicker: 'PUNTOS OFICIALES',
-              title: 'MOKDA en América Latina',
-              subtitle: 'Encuentra puntos de venta oficiales y restaurantes aliados donde ya puedes vivir la experiencia MOKDA.',
-              button: 'Ver mapa de puntos',
+              kicker: 'RESULTADO DE PRUEBA',
+              title: '96% muy satisfechos',
+              subtitle: 'En la primera prueba de muestra, 48 de 50 participantes mostraron alta satisfacción con MOKDA.',
+              button: 'Ver resultado',
             },
             KR: {
-              kicker: 'MOKDA SPOT',
-              title: '라틴아메리카 전역에서 만나는 MOKDA',
-              subtitle: '지금 가장 핫한 현지 공식 판매처에서 한국의 맛을 직접 경험해보세요.',
-              button: '스팟 지도 보기',
+              kicker: '1차 샘플 테스트 결과',
+              title: '96% 매우 만족',
+              subtitle: '1차 샘플 테스트에서 50명 중 48명이 MOKDA에 매우 만족했습니다.',
+              button: '테스트 결과 보기',
             },
           },
         },
@@ -532,20 +538,20 @@
           copy: {
             EN: {
               kicker: 'B2B PARTNERSHIP',
-              title: 'Partner with MOKDA for Success',
-              subtitle: 'K-Culture is a new global trend.\nMOKDA offers tailored B2B partnerships.',
+              title: 'Partner with MOKDA',
+              subtitle: 'We are looking for LATAM distribution, retail and restaurant partners.',
               button: 'Contact B2B',
             },
             ES: {
               kicker: 'ALIANZA B2B',
-              title: 'Alianzas para negocios exitosos',
-              subtitle: 'K-Culture es una nueva tendencia global.\nMOKDA ofrece alianzas B2B a la medida.',
-              button: 'Iniciar Consulta B2B',
+              title: 'Alíate con MOKDA',
+              subtitle: 'Buscamos socios de distribución, retail y restaurantes en América Latina.',
+              button: 'Consulta B2B',
             },
             KR: {
               kicker: 'B2B 파트너십',
-              title: '성공적인 비즈니스를 위한 파트너십',
-              subtitle: '새로운 글로벌 트렌드 K-컬쳐,\nMOKDA의 맞춤형 B2B 파트너십을 제안합니다.',
+              title: 'LATAM 파트너를 찾고 있습니다',
+              subtitle: 'MOKDA는 유통, 리테일, 레스토랑 파트너와 함께 라틴아메리카 시장 진출을 준비합니다.',
               button: '비즈니스 문의하기',
             },
           },
@@ -563,9 +569,14 @@
           name: 'Original',
           titleClass: 'text-red-600',
           desc: {
-            ES: { line1: 'Con la frescura del jalapeño,', line2: 'un picante coreano fresco y equilibrado' },
-            EN: { line1: 'Brightened with the freshness of jalapeño,', line2: 'a clean Korean heat that rises smoothly' },
-            KR: { line1: '할라페뇨의 산뜻함을 더한,', line2: '깔끔하게 올라오는 한국식 매콤함' },
+            ES: { line1: 'Salsa chili coreana,', line2: 'dulce, picante y llena de umami' },
+            EN: { line1: 'Korean sweet-spicy chili sauce,', line2: 'balanced with savory umami' },
+            KR: { line1: '한국식 매콤달콤 칠리 소스', line2: '타코, 치킨, 튀김, 스낵에' },
+          },
+          uses: {
+            ES: ['Tacos', 'Pollo', 'Frituras', 'Snacks'],
+            EN: ['Tacos', 'Chicken', 'Fried food', 'Snacks'],
+            KR: ['타코', '치킨', '튀김', '스낵'],
           },
           image: 'assets/bottle-original.webp',
           alt: 'MOKDA Salsa Guchujang Original',
@@ -583,9 +594,14 @@
           name: 'Para Carne',
           titleClass: 'text-yellow-500',
           desc: {
-            ES: { line1: 'Pensada para carnes a la parrilla,', line2: 'una salsa para parrilla con umami profundo e intenso' },
-            EN: { line1: 'Designed for meats and grilled dishes,', line2: 'a barbecue sauce with deep, rich umami' },
-            KR: { line1: '고기와 그릴 요리에 맞춘,', line2: '깊고 진한 감칠맛의 바비큐 소스' },
+            ES: { line1: 'Dip coreano para carnes asadas,', line2: 'profundo, intenso y fácil de combinar' },
+            EN: { line1: 'Korean dip sauce for grilled meat,', line2: 'deep, rich and easy to pair' },
+            KR: { line1: '구운 고기에 찍어 먹는', line2: '한국식 딥 소스' },
+          },
+          uses: {
+            ES: ['BBQ', 'Steak', 'Samgyeopsal', 'Tacos'],
+            EN: ['BBQ', 'Steak', 'Samgyeopsal', 'Tacos'],
+            KR: ['바비큐', '스테이크', '삼겹살', '타코'],
           },
           image: 'assets/bottle-ssamjang.webp',
           alt: 'MOKDA Salsa Ssamjang Para Carne',
@@ -604,9 +620,14 @@
           name: 'Soy Sauce',
           titleClass: 'text-[#2d1a11]',
           desc: {
-            ES: { line1: 'Un equilibrio entre dulzor y notas saladas,', line2: 'una salsa fusión de uso diario' },
-            EN: { line1: 'Balanced between sweetness and savory depth,', line2: 'an everyday fusion sauce' },
-            KR: { line1: '달콤함과 짭짤함이 균형 잡힌,', line2: '매일 쓰기 좋은 퓨전 소스' },
+            ES: { line1: 'Lanzamiento previsto', line2: 'segundo semestre de 2027' },
+            EN: { line1: 'Planned launch', line2: 'second half of 2027' },
+            KR: { line1: '2027년 하반기', line2: '출시 예정' },
+          },
+          availability: {
+            ES: 'En desarrollo',
+            EN: 'In development',
+            KR: '개발 예정',
           },
           image: 'assets/bottle-sweetsoy.webp',
           alt: 'MOKDA Salsa Ganjang Soy Sauce',
@@ -619,28 +640,63 @@
         EN: {
           story: {
             kicker: 'OUR STORY',
-            title: 'We Make Culture, Not Just Sauce',
+            title: 'Comer Corea,<br />Eat Korea',
             body: [
-              'MOKDA is a Korean word that means “to eat.”',
-              'The easiest way to experience a culture<br />is to taste its food.',
-              "MOKDA captures Korea's local ingredients and today's sensibility in one bottle,<br />bringing a new taste of Korea to Latin American tables.",
-              'We are not simply making sauce.<br />We are creating a new way to enjoy Korea.',
+              'We want people to experience Korea through food, not through long explanations.',
+              'What we make is not just sauce.<br />It is a way to add Korea to everyday Latin American food.',
+              'MOKDA connects Korea and Latin America through K-sauces.',
             ],
           },
           products: {
-            kicker: 'JANG TRIO LINEUP',
-            title: 'KOREA FLAVORS',
-            status: 'Lineup in development. Prototype launch planned for August 2026.',
+            kicker: 'PRODUCT LINEUP',
+            title: 'K-Sauces for Everyday Food',
+            status: 'Original and Para Carne lead the lineup. Soy Sauce is planned for the second half of 2027.',
             items: localizedProducts,
+          },
+          why: {
+            kicker: 'WHY MOKDA',
+            title: 'Does every K-Food product taste truly Korean?',
+            body: [
+              'Interest in K-Food is growing across Latin America, but real Korean flavor is still not easy to find in everyday food.',
+              'Between imitation products that only look Korean and K-restaurants with a high price barrier, MOKDA aims to make real Korean flavor easier to enjoy.',
+              'On tacos, meat, fried food and snacks. MOKDA is a K-sauce brand that naturally adds Korea to everyday Latin American food.',
+            ],
+            points: ['Based on Korean jang flavors', 'Made for Latin American daily food', 'Original / Para Carne focused lineup', 'Real Korean flavor beyond restaurant occasions'],
+          },
+          use: {
+            kicker: 'HOW TO USE',
+            title: 'Add one spoon to familiar food',
+            description: 'MOKDA is designed to make Korean flavor easy to try with food people already love.',
+            items: [
+              ['Taco', 'Original'],
+              ['Grilled Meat', 'Para Carne'],
+              ['Fried Chicken', 'Original'],
+              ['Snacks', 'Original / Soy Sauce'],
+            ],
+          },
+          sample: {
+            kicker: 'FIRST SAMPLE TEST',
+            title: 'Real response before launch',
+            description: 'MOKDA tested the first samples and confirmed strong market potential before launch.',
+            stats: [
+              ['48 / 50', 'Very satisfied participants'],
+              ['96%', 'Very satisfied response rate'],
+              ['90%+', 'Purchase intention'],
+            ],
+            quotes: [
+              ['“It tastes clearly Korean, but still works naturally with tacos and meat.”', 'Ana M. / Sample test participant, alias'],
+              ['“It was new, but not difficult. I kept dipping more.”', 'Carlos R. / Sample test participant, alias'],
+              ['“It is not just spicy. The umami makes the food better.”', 'Lucía G. / Sample test participant, alias'],
+            ],
           },
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT in LATAM',
           },
           b2b: {
-            kicker: 'PROTOTYPE / B2B PARTNERSHIP',
-            title: 'B2B Partnership',
-            description: 'Prototype launch is planned for August 2026. We are now receiving early inquiries from LATAM distribution and retail partners.',
+            kicker: 'B2B PARTNERSHIP',
+            title: 'Looking for LATAM partners',
+            description: 'MOKDA is preparing to enter Latin America, starting with Mexico and Peru. Leave an inquiry for product materials, sample information or distribution collaboration.',
             fields: {
               company: ['Company', 'Company name'],
               name: ['Contact Name', 'Your full name'],
@@ -658,28 +714,63 @@
         ES: {
           story: {
             kicker: 'NUESTRA HISTORIA',
-            title: 'Creamos cultura, no solo salsa',
+            title: 'Comer Corea,<br />한국을 먹다',
             body: [
-              'MOKDA es una palabra coreana que significa “comer”.',
-              'La forma más fácil de experimentar una cultura<br />es probar su comida.',
-              'MOKDA reúne ingredientes locales de Corea y la sensibilidad actual en una sola botella,<br />para ofrecer un nuevo sabor de Corea en las mesas de América Latina.',
-              'No solo hacemos salsa.<br />Creamos una nueva forma de disfrutar Corea.',
+              'Queremos que Corea se entienda por la comida, no por largas explicaciones.',
+              'Lo que hacemos no es solo salsa.<br />Es una forma de sumar Corea a la comida diaria de América Latina.',
+              'MOKDA conecta Corea y América Latina a través de K-sauces.',
             ],
           },
           products: {
-            kicker: 'LÍNEA PREMIUM DE SALSAS',
-            title: 'SABORES DE COREA',
-            status: 'Línea en desarrollo. Prototipos previstos para agosto de 2026.',
+            kicker: 'LÍNEA DE PRODUCTOS',
+            title: 'K-sauces para la comida diaria',
+            status: 'Original y Para Carne lideran la línea. Soy Sauce está prevista para el segundo semestre de 2027.',
             items: localizedProducts,
+          },
+          why: {
+            kicker: 'WHY MOKDA',
+            title: '¿Todo lo que dice K-Food sabe realmente a Corea?',
+            body: [
+              'En América Latina crece el interés por el K-Food, pero todavía no es fácil encontrar el sabor real de Corea en la comida de todos los días.',
+              'Entre productos de imitación que solo parecen coreanos y K-restaurants con una barrera de precio alta, MOKDA busca acercar el sabor real de Corea de una forma más fácil.',
+              'En tacos, carnes, frituras y snacks. MOKDA es una marca de K-sauces que suma Corea de forma natural a la comida diaria de América Latina.',
+            ],
+            points: ['Base de sabores jang coreanos', 'Pensada para comida diaria latinoamericana', 'Línea centrada en Original / Para Carne', 'Sabor coreano real más allá del restaurante'],
+          },
+          use: {
+            kicker: 'CÓMO USAR',
+            title: 'Una cucharada sobre comida conocida',
+            description: 'MOKDA está pensada para que el sabor coreano sea fácil de probar con comidas que ya gustan.',
+            items: [
+              ['Taco', 'Original'],
+              ['Carne asada', 'Para Carne'],
+              ['Pollo frito', 'Original'],
+              ['Snacks', 'Original / Soy Sauce'],
+            ],
+          },
+          sample: {
+            kicker: 'PRIMERA PRUEBA DE MUESTRA',
+            title: 'Respuesta real antes del lanzamiento',
+            description: 'MOKDA realizó una primera prueba de muestra y confirmó un fuerte potencial antes del lanzamiento.',
+            stats: [
+              ['48 / 50', 'Participantes muy satisfechos'],
+              ['96%', 'Tasa de muy satisfechos'],
+              ['90%+', 'Intención de compra'],
+            ],
+            quotes: [
+              ['“Tiene un sabor claramente coreano, pero combina natural con tacos y carne.”', 'Ana M. / Participante de prueba, alias'],
+              ['“Es un sabor nuevo, pero no se siente difícil. Dan ganas de seguir probando.”', 'Carlos R. / Participante de prueba, alias'],
+              ['“No es solo picante. Tiene umami y hace que la comida sepa mejor.”', 'Lucía G. / Participante de prueba, alias'],
+            ],
           },
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT en LATAM',
           },
           b2b: {
-            kicker: 'PROTOTIPOS / ALIANZA B2B',
-            title: 'Alianzas B2B',
-            description: 'El lanzamiento de prototipos está previsto para agosto de 2026. Ya recibimos consultas iniciales de socios de distribución y retail en LATAM.',
+            kicker: 'ALIANZA B2B',
+            title: 'Buscamos socios en LATAM',
+            description: 'MOKDA prepara su entrada a América Latina, empezando por México y Perú. Déjanos tu consulta para materiales de producto, información de muestras o colaboración de distribución.',
             fields: {
               company: ['Empresa', 'Nombre de la empresa'],
               name: ['Contacto', 'Nombre completo'],
@@ -697,28 +788,63 @@
         KR: {
           story: {
             kicker: 'OUR STORY',
-            title: '소스가 아닌 문화를<br />만듭니다',
+            title: 'Comer Corea,<br />한국을 먹다',
             body: [
-              'MOKDA는 “먹다”라는 뜻의 한국어입니다.',
-              '문화를 경험하는 가장 쉬운 방법은<br />그 문화의 음식을 먹는 것입니다.',
-              'MOKDA는 한국의 현지 재료와 지금의 감성을 한 병에 담아,<br />라틴 아메리카의 식탁 위에서 새로운 한국의 맛을 선사합니다.',
-              '우리는 단순한 소스를 만드는 것이 아닙니다.<br />한국을 즐기는 새로운 방식을 만들어 갑니다.',
+              '우리는 한국을 길게 설명하기보다,<br />음식으로 더 쉽게 경험하게 만들고 싶습니다.',
+              '우리가 만드는 것은 단순한 소스가 아니라,<br />라틴아메리카의 일상 음식에 한국을 더하는 방식입니다.',
+              'MOKDA는 한국과 라틴아메리카를 소스로 연결하는 K-소스 브랜드입니다.',
             ],
           },
           products: {
-            kicker: 'LINE UP',
-            title: 'KOREA FLAVORS',
-            status: '현재 개발 중인 라인업입니다. 2026년 8월 시제품 출시 예정입니다.',
+            kicker: 'PRODUCT LINEUP',
+            title: '일상 음식에 더하는 K-소스',
+            status: 'Original과 Para Carne를 중심으로 전개하며, Soy Sauce는 2027년 하반기 출시 예정입니다.',
             items: localizedProducts,
+          },
+          why: {
+            kicker: 'WHY MOKDA',
+            title: 'K-Food라고 해서 모두 진짜 한국의 맛일까요?',
+            body: [
+              '라틴아메리카에서 K-Food에 대한 관심은 커지고 있지만, 진짜 한국의 맛을 일상에서 쉽게 만나기는 아직 어렵습니다.',
+              '한국식처럼 보이는 모방 제품, 가격 부담이 큰 K-레스토랑 사이에서 MOKDA는 진짜 한국의 맛을 더 쉽게 전하고자 합니다.',
+              '타코에, 고기에, 튀김에, 스낵에. MOKDA는 라틴아메리카의 일상 음식에 한국을 자연스럽게 더하는 K-소스 브랜드입니다.',
+            ],
+            points: ['한국의 장맛을 기반으로 한 K-소스', '라틴아메리카 음식에 바로 쓰기 쉬운 소스', 'Original / Para Carne 중심의 실사용 라인업', '일상 음식에 더하는 진짜 한국의 맛'],
+          },
+          use: {
+            kicker: 'HOW TO USE',
+            title: '익숙한 음식에 한 스푼',
+            description: '익숙한 음식에 한 스푼만 더해도 한국의 맛을 쉽게 경험할 수 있습니다.',
+            items: [
+              ['Taco', 'Original'],
+              ['Grilled Meat', 'Para Carne'],
+              ['Fried Chicken', 'Original'],
+              ['Snacks', 'Original / Soy Sauce'],
+            ],
+          },
+          sample: {
+            kicker: '1차 샘플 테스트 결과',
+            title: '출시 전 확인한 실제 반응',
+            description: 'MOKDA는 출시 전 1차 샘플 테스트를 통해 라틴아메리카 시장에서의 가능성을 확인했습니다.',
+            stats: [
+              ['48 / 50', '매우 만족 응답'],
+              ['96%', '매우 만족 응답률'],
+              ['90%+', '구매 의향'],
+            ],
+            quotes: [
+              ['“한국적인 맛이 확실한데, 타코나 고기에도 자연스럽게 어울렸어요.”', 'Ana M. / 테스트 참여자, 가명'],
+              ['“처음 먹어보는 맛인데 부담스럽지 않았고, 계속 찍어 먹게 되는 맛이었어요.”', 'Carlos R. / 테스트 참여자, 가명'],
+              ['“매운맛만 강한 소스가 아니라 감칠맛이 있어서 음식이 더 맛있어졌어요.”', 'Lucía G. / 테스트 참여자, 가명'],
+            ],
           },
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT in LATAM',
           },
           b2b: {
-            kicker: '시제품 / B2B 파트너십',
-            title: 'B2B 파트너십',
-            description: '2026년 8월 시제품 출시 예정입니다. LATAM 유통·리테일 파트너의 사전 문의를 받고 있습니다.',
+            kicker: 'B2B PARTNERSHIP',
+            title: 'LATAM 유통·리테일·레스토랑 파트너를 찾고 있습니다',
+            description: 'MOKDA는 멕시코와 페루를 중심으로 라틴아메리카 시장 진출을 준비하고 있습니다. 제품 자료, 시제품 정보, 유통 협업 문의를 남겨주세요.',
             fields: {
               company: ['회사명', '회사명을 입력해주세요'],
               name: ['담당자명', '성함을 입력해주세요'],
@@ -1007,6 +1133,8 @@
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
               const imageClass = item.imageClass || 'hover:scale-[1.03]';
+              const uses = item.uses ? (item.uses[lang] || item.uses.ES || []) : [];
+              const availability = item.availability ? (item.availability[lang] || item.availability.ES) : '';
               return `
               <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5 sm:py-8">
                 <p class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">${category}</p>
@@ -1018,14 +1146,83 @@
                   <span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>
                   <span class="mt-1 block break-keep text-[15px] font-extrabold leading-6 text-gray-950">${d.line2}</span>
                 </div>
+                ${
+                  uses.length
+                    ? `<div class="mt-4 flex max-w-[285px] flex-wrap items-center justify-center gap-2">${uses
+                        .map((use) => `<span class="rounded-full bg-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-wide text-[#057a5f] shadow-sm">${use}</span>`)
+                        .join('')}</div>`
+                    : availability
+                      ? `<div class="mt-4 rounded-full bg-white px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wide text-[#057a5f] shadow-sm">${availability}</div>`
+                      : ''
+                }
               </a>
             `;
             }
           )
           .join('');
       }
+
+      function renderWhy(section) {
+        setText('whyKicker', section.kicker);
+        setText('whyTitle', section.title);
+        document.getElementById('whyBody').innerHTML = section.body.map((paragraph) => `<p>${paragraph}</p>`).join('');
+        document.getElementById('whyPoints').innerHTML = section.points
+          .map(
+            (point) => `
+              <div data-reveal class="rounded-2xl border border-orange-100 bg-[#fbfaf7] p-5">
+                <p class="break-keep text-sm font-extrabold leading-6 text-neutral-950">${point}</p>
+              </div>
+            `
+          )
+          .join('');
+      }
+
+      function renderUse(section) {
+        setText('useKicker', section.kicker);
+        setText('useTitle', section.title);
+        setText('useDescription', section.description);
+        document.getElementById('useGrid').innerHTML = section.items
+          .map(
+            ([food, sauce], index) => `
+              <div data-reveal data-reveal-delay="${index * 90}" class="surface-depth rounded-2xl bg-white p-5 text-center">
+                <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.18em] text-mokdaOrange">${food}</p>
+                <p class="break-keep text-2xl font-black tracking-tight text-neutral-950">${sauce}</p>
+              </div>
+            `
+          )
+          .join('');
+      }
+
+      function renderSample(section) {
+        setText('sampleKicker', section.kicker);
+        setText('sampleTitle', section.title);
+        setText('sampleDescription', section.description);
+        document.getElementById('sampleStats').innerHTML = section.stats
+          .map(
+            ([value, label], index) => `
+              <div data-reveal data-reveal-delay="${index * 90}" class="rounded-2xl bg-white/15 p-5 backdrop-blur-md">
+                <p class="text-4xl font-black tracking-tight text-white sm:text-5xl">${value}</p>
+                <p class="mt-2 break-keep text-sm font-bold leading-6 text-white/82">${label}</p>
+              </div>
+            `
+          )
+          .join('');
+        document.getElementById('sampleQuotes').innerHTML = section.quotes
+          .map(
+            ([quote, byline], index) => `
+              <figure data-reveal data-reveal-delay="${index * 120}" class="rounded-2xl bg-white p-5 text-neutral-950">
+                <blockquote class="break-keep text-[15px] font-extrabold leading-7">${quote}</blockquote>
+                <figcaption class="mt-4 break-keep text-xs font-bold leading-5 text-neutral-500">${byline}</figcaption>
+              </figure>
+            `
+          )
+          .join('');
+      }
+
       function renderStores() {
-        document.getElementById('storeList').innerHTML = `
+        const storeList = document.getElementById('storeList');
+        if (!storeList) return;
+        storeList.innerHTML = `
           <div>
             ${stores
               .map((store) => {
@@ -1210,10 +1407,13 @@
         setText('productsTitle', t.products.title);
         setText('productsStatus', t.products.status);
         renderProducts(t.products.items);
+        renderWhy(t.why);
+        renderUse(t.use);
         setText('mapKicker', t.map.kicker);
         setText('mapTitle', t.map.title);
         renderStores();
         syncMapFrame();
+        renderSample(t.sample);
         setText('b2bKicker', t.b2b.kicker);
         setText('b2bTitle', t.b2b.title);
         setText('b2bDescription', t.b2b.description);

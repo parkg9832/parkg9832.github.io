@@ -130,46 +130,38 @@
           inset 0 1px 0 rgba(255, 255, 255, 0.75);
       }
 
-      .product-card {
-        box-shadow: none;
-      }
-
-      .product-card:hover {
-        box-shadow: none;
-      }
-
-      .product-stage {
-        isolation: isolate;
-      }
-
-      .product-stage::before {
+      .timeline-list::before {
         position: absolute;
-        inset: 8% 10%;
-        z-index: 0;
-        border-radius: 999px;
-        background: radial-gradient(circle at 50% 42%, var(--stage-glow, rgba(239, 95, 24, 0.1)), transparent 62%);
+        top: 0.75rem;
+        bottom: 0.75rem;
+        left: 0.4rem;
+        width: 1px;
+        background: rgba(23, 23, 23, 0.14);
         content: "";
-        filter: blur(18px);
       }
 
-      .product-stage::after {
+      .timeline-item::before {
         position: absolute;
-        left: 50%;
-        bottom: 7%;
-        z-index: 0;
-        width: 56%;
-        height: 13%;
+        top: 0.65rem;
+        left: 0;
+        z-index: 1;
+        width: 0.8rem;
+        height: 0.8rem;
+        border: 3px solid #fffaf5;
         border-radius: 999px;
-        background: radial-gradient(ellipse, var(--stage-shadow, rgba(92, 45, 17, 0.22)) 0%, rgba(92, 45, 17, 0.08) 48%, transparent 72%);
+        background: #ef5f18;
+        box-shadow: 0 0 0 1px rgba(239, 95, 24, 0.28);
         content: "";
-        filter: blur(12px);
-        transform: translateX(-50%);
       }
 
-      .product-bottle {
-        filter:
-          drop-shadow(0 22px 18px var(--bottle-shadow, rgba(92, 45, 17, 0.18)))
-          drop-shadow(0 4px 3px rgba(2, 103, 79, 0.08));
+      @media (min-width: 768px) {
+        .timeline-list::before {
+          left: 13.75rem;
+        }
+
+        .timeline-item::before {
+          left: 13.35rem;
+        }
       }
     </style>
     <link rel="icon" type="image/webp" href="./assets/Favicon.webp" />
@@ -292,42 +284,59 @@
         </div>
       </section>
 
-      <section id="products" class="bg-white px-4 py-16 sm:px-6 sm:py-[5.5rem] lg:px-8">
-        <div data-reveal class="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
-          <p id="products-kicker" class="mb-2 break-keep text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Salsa Coreana</p>
-          <h2 id="products-title" class="break-keep text-3xl font-extrabold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">Línea de Salsas MOKDA</h2>
-        </div>
+      <section id="history" class="bg-[#fffaf5] px-4 py-16 sm:px-6 sm:py-[6.5rem] lg:px-8">
+        <div class="mx-auto max-w-6xl">
+          <div data-reveal class="mb-12 max-w-3xl sm:mb-16">
+            <p id="history-kicker" class="mb-3 break-keep text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Nuestra trayectoria</p>
+            <h2 id="history-title" class="break-keep text-3xl font-extrabold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">De Corea a América Latina</h2>
+            <p id="history-intro" class="mt-5 max-w-2xl text-base font-medium leading-7 text-neutral-600 sm:text-lg sm:leading-8">MOKDA avanza paso a paso, validando el mercado y construyendo una base sólida para llevar nuevas salsas coreanas a América Latina.</p>
+          </div>
 
-        <div class="mx-auto grid max-w-5xl grid-cols-1 gap-7 md:grid-cols-3">
-          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5">
-            <p id="product-original-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Guchujang</p>
-            <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-red-600">Original</h3>
-            <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(126,38,18,0.22);--stage-shadow:rgba(126,38,18,0.24);--stage-glow:rgba(239,95,24,0.12);">
-              <img src="assets/bottle-original.webp" alt="MOKDA Salsa Guchujang Original" class="product-bottle relative z-10 h-full w-full object-contain transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.03]" />
-            </div>
-            <p id="product-original-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Con la frescura del jalapeño,</p>
-            <p id="product-original-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">un picante coreano fresco y equilibrado</p>
-          </article>
-
-          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5">
-            <p id="product-ssamjang-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ssamjang</p>
-            <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-yellow-500">Para Carne</h3>
-            <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(126,74,24,0.2);--stage-shadow:rgba(126,74,24,0.23);--stage-glow:rgba(214,143,54,0.12);">
-              <img src="assets/bottle-ssamjang.webp" alt="MOKDA Salsa Ssamjang Para Carne" class="product-bottle relative z-10 h-full w-full -translate-y-1 scale-x-[1.18] scale-y-[1.09] object-contain transition-transform duration-300 hover:-translate-y-2 hover:scale-x-[1.21] hover:scale-y-[1.12]" />
-            </div>
-            <p id="product-ssamjang-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Pensada para carnes a la parrilla,</p>
-            <p id="product-ssamjang-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">una salsa para parrilla con umami profundo e intenso</p>
-          </article>
-
-          <article data-reveal class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5">
-            <p id="product-soy-category" class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">Salsa Ganjang</p>
-            <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight text-[#2d1a11]">Soy Sauce</h3>
-            <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:rgba(50,24,15,0.22);--stage-shadow:rgba(50,24,15,0.24);--stage-glow:rgba(2,103,79,0.1);">
-              <img src="assets/bottle-sweetsoy.webp" alt="MOKDA Salsa Ganjang Soy Sauce" class="product-bottle relative z-10 h-full w-full object-contain transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.03]" />
-            </div>
-            <p id="product-soy-line-1" class="mt-5 break-keep text-sm font-medium leading-6 text-slate-700">Un equilibrio entre dulzor y notas saladas,</p>
-            <p id="product-soy-line-2" class="mt-1 break-keep text-[15px] font-extrabold leading-6 text-gray-950">una salsa fusión de uso diario</p>
-          </article>
+          <div id="timeline-list" class="timeline-list relative space-y-9 md:space-y-0">
+            <article data-reveal class="timeline-item relative grid gap-3 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-8 md:pl-0">
+              <time class="text-xl font-black tracking-tight text-mokdaOrange">2024.11</time>
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-mokdaGreen">Validación de mercado</p>
+                <h3 class="mt-2 text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Presentación de Salsa Coreana en Lima, Perú</h3>
+                <p class="mt-3 max-w-3xl text-sm font-medium leading-6 text-neutral-600 sm:text-base sm:leading-7">Validamos el potencial del mercado local mediante una presentación y degustación de producto.</p>
+              </div>
+            </article>
+            <article data-reveal class="timeline-item relative grid gap-3 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-8 md:pl-0">
+              <time class="text-xl font-black tracking-tight text-mokdaOrange">2025.04</time>
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-mokdaGreen">Impulso empresarial</p>
+                <h3 class="mt-2 text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Seleccionada para el programa HINT de Gimje</h3>
+                <p class="mt-3 max-w-3xl text-sm font-medium leading-6 text-neutral-600 sm:text-base sm:leading-7">Programa de apoyo para emprendimientos en etapa inicial.</p>
+                <span class="mt-4 inline-flex rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-neutral-700 ring-1 ring-neutral-950/10">Financiación: ₩15 millones</span>
+              </div>
+            </article>
+            <article data-reveal class="timeline-item relative grid gap-3 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-8 md:pl-0">
+              <time class="text-xl font-black tracking-tight text-mokdaOrange">2026.05</time>
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-mokdaGreen">Innovación regional</p>
+                <h3 class="mt-2 text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Seleccionada como Joven Innovador de Jeonbuk</h3>
+                <p class="mt-3 max-w-3xl text-sm font-medium leading-6 text-neutral-600 sm:text-base sm:leading-7">Programa regional de apoyo para jóvenes emprendedores innovadores.</p>
+                <span class="mt-4 inline-flex rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-neutral-700 ring-1 ring-neutral-950/10">Financiación: ₩13,5 millones</span>
+              </div>
+            </article>
+            <article data-reveal class="timeline-item relative grid gap-3 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-8 md:pl-0">
+              <time class="text-xl font-black tracking-tight text-mokdaOrange">2026.05</time>
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-mokdaGreen">Contenido y marca</p>
+                <h3 class="mt-2 text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Seleccionada por Jeonbuk Content Korea Lab</h3>
+                <p class="mt-3 max-w-3xl text-sm font-medium leading-6 text-neutral-600 sm:text-base sm:leading-7">Programa de apoyo para emprendimientos en etapa inicial.</p>
+                <span class="mt-4 inline-flex rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-neutral-700 ring-1 ring-neutral-950/10">Financiación: ₩12 millones</span>
+              </div>
+            </article>
+            <article data-reveal class="timeline-item relative grid gap-3 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:py-8 md:pl-0">
+              <time class="text-xl font-black tracking-tight text-mokdaOrange">2026.06.15</time>
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-mokdaGreen">Inicio oficial</p>
+                <h3 class="mt-2 text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Registro empresarial completado en Corea del Sur</h3>
+                <p class="mt-3 max-w-3xl text-sm font-medium leading-6 text-neutral-600 sm:text-base sm:leading-7">Establecimos la base operativa para desarrollar MOKDA como una marca global de alimentos y bebidas.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -402,18 +411,17 @@
             orange: '열정과 매운맛의 에너지',
             green: '신선함과 일상성의 균형',
           },
-          products: {
-            kicker: 'Salsa Coreana',
-            title: 'MOKDA Sauce Lineup',
-            originalCategory: '오리지널 고추장 소스',
-            originalLine1: '할라페뇨의 산뜻함을 더한,',
-            originalLine2: '깔끔하게 올라오는 한국식 매콤함',
-            ssamjangCategory: '쌈장 바비큐 소스',
-            ssamjangLine1: '고기와 그릴 요리에 맞춘,',
-            ssamjangLine2: '깊고 진한 감칠맛의 바비큐 소스',
-            soyCategory: '간장 베이스 소스',
-            soyLine1: '달콤함과 짭짤함이 균형 잡힌,',
-            soyLine2: '매일 쓰기 좋은 퓨전 소스',
+          history: {
+            kicker: 'Our Journey',
+            title: '한국에서 라틴아메리카로',
+            intro: 'MOKDA는 현지 시장을 검증하고 글로벌 F&B 브랜드의 기반을 구축하며 한 단계씩 성장하고 있습니다.',
+            items: [
+              { date: '2024.11', category: '시장 검증', title: '페루 리마에서 Salsa Coreana 제품 시연', description: '현지 소비자 대상 제품 시연과 시식을 통해 시장 진출 가능성을 검증했습니다.' },
+              { date: '2025.04', category: '사업화 기반', title: '김제시 예비창업지원사업 ‘힌트’ 선정', description: '초기 사업화를 위한 지원 프로그램에 선정되었습니다.', funding: '사업화 지원금 1,500만원' },
+              { date: '2026.05', category: '지역 혁신', title: '전북 ‘시군청년혁신가’ 선정', description: '혁신적인 청년 창업가를 지원하는 전북 예비창업지원사업에 선정되었습니다.', funding: '사업화 지원금 1,350만원' },
+              { date: '2026.05', category: '콘텐츠·브랜드', title: '전북콘텐츠코리아랩 예비창업지원사업 선정', description: '콘텐츠 기반 브랜드 사업화를 위한 지원 프로그램에 선정되었습니다.', funding: '사업화 지원금 1,200만원' },
+              { date: '2026.06.15', category: '공식 출범', title: '대한민국 사업자 등록 완료', description: 'MOKDA를 글로벌 F&B 브랜드로 전개하기 위한 공식 사업 기반을 구축했습니다.' },
+            ],
           },
           footer: {
             title: 'SÍGUENOS',
@@ -452,18 +460,17 @@
             orange: 'Energía, pasión y toque picante',
             green: 'Equilibrio entre frescura y uso cotidiano',
           },
-          products: {
-            kicker: 'Salsa Coreana',
-            title: 'Línea de Salsas MOKDA',
-            originalCategory: 'Salsa Guchujang',
-            originalLine1: 'Con la frescura del jalapeño,',
-            originalLine2: 'un picante coreano fresco y equilibrado',
-            ssamjangCategory: 'Salsa Ssamjang',
-            ssamjangLine1: 'Pensada para carnes a la parrilla,',
-            ssamjangLine2: 'una salsa para parrilla con umami profundo e intenso',
-            soyCategory: 'Salsa Ganjang',
-            soyLine1: 'Un equilibrio entre dulzor y notas saladas,',
-            soyLine2: 'una salsa fusión de uso diario',
+          history: {
+            kicker: 'Nuestra trayectoria',
+            title: 'De Corea a América Latina',
+            intro: 'MOKDA avanza paso a paso, validando el mercado y construyendo una base sólida para llevar nuevas salsas coreanas a América Latina.',
+            items: [
+              { date: '2024.11', category: 'Validación de mercado', title: 'Presentación de Salsa Coreana en Lima, Perú', description: 'Validamos el potencial del mercado local mediante una presentación y degustación de producto.' },
+              { date: '2025.04', category: 'Impulso empresarial', title: 'Seleccionada para el programa HINT de Gimje', description: 'Programa de apoyo para emprendimientos en etapa inicial.', funding: 'Financiación: ₩15 millones' },
+              { date: '2026.05', category: 'Innovación regional', title: 'Seleccionada como Joven Innovador de Jeonbuk', description: 'Programa regional de apoyo para jóvenes emprendedores innovadores.', funding: 'Financiación: ₩13,5 millones' },
+              { date: '2026.05', category: 'Contenido y marca', title: 'Seleccionada por Jeonbuk Content Korea Lab', description: 'Programa de apoyo para emprendimientos en etapa inicial.', funding: 'Financiación: ₩12 millones' },
+              { date: '2026.06.15', category: 'Inicio oficial', title: 'Registro empresarial completado en Corea del Sur', description: 'Establecimos la base operativa para desarrollar MOKDA como una marca global de alimentos y bebidas.' },
+            ],
           },
           footer: {
             title: 'SÍGUENOS',
@@ -502,18 +509,17 @@
             orange: 'The energy of passion and spice',
             green: 'Balance of freshness and everyday ease',
           },
-          products: {
-            kicker: 'Korean Sauce',
-            title: 'MOKDA Sauce Lineup',
-            originalCategory: 'Original gochujang sauce',
-            originalLine1: 'Brightened with the freshness of jalapeño,',
-            originalLine2: 'a clean Korean heat that rises smoothly',
-            ssamjangCategory: 'Ssamjang barbecue sauce',
-            ssamjangLine1: 'Designed for meats and grilled dishes,',
-            ssamjangLine2: 'a barbecue sauce with deep, rich umami',
-            soyCategory: 'Soy sauce base',
-            soyLine1: 'Balanced between sweetness and savory depth,',
-            soyLine2: 'an everyday fusion sauce',
+          history: {
+            kicker: 'Our Journey',
+            title: 'From Korea to Latin America',
+            intro: 'MOKDA is growing step by step—validating the market and building a solid foundation to bring new Korean sauces to Latin America.',
+            items: [
+              { date: '2024.11', category: 'Market validation', title: 'Salsa Coreana product showcase in Lima, Peru', description: 'We tested local market potential through a product presentation and tasting.' },
+              { date: '2025.04', category: 'Business development', title: 'Selected for the Gimje HINT startup program', description: 'An early-stage business development support program.', funding: 'Funding: KRW 15 million' },
+              { date: '2026.05', category: 'Regional innovation', title: 'Selected as a Jeonbuk Youth Innovator', description: 'A regional program supporting innovative young entrepreneurs.', funding: 'Funding: KRW 13.5 million' },
+              { date: '2026.05', category: 'Content and brand', title: 'Selected by Jeonbuk Content Korea Lab', description: 'An early-stage startup support program for content-driven businesses.', funding: 'Funding: KRW 12 million' },
+              { date: '2026.06.15', category: 'Official launch', title: 'Business registration completed in South Korea', description: 'We established the operating foundation to develop MOKDA as a global food and beverage brand.' },
+            ],
           },
           footer: {
             title: 'SÍGUENOS',
@@ -558,17 +564,27 @@
         setText('motive-body', copy.logo.motiveBody);
         setText('orange-title', copy.logo.orange);
         setText('green-title', copy.logo.green);
-        setText('products-kicker', copy.products.kicker);
-        setText('products-title', copy.products.title);
-        setText('product-original-category', copy.products.originalCategory);
-        setText('product-original-line-1', copy.products.originalLine1);
-        setText('product-original-line-2', copy.products.originalLine2);
-        setText('product-ssamjang-category', copy.products.ssamjangCategory);
-        setText('product-ssamjang-line-1', copy.products.ssamjangLine1);
-        setText('product-ssamjang-line-2', copy.products.ssamjangLine2);
-        setText('product-soy-category', copy.products.soyCategory);
-        setText('product-soy-line-1', copy.products.soyLine1);
-        setText('product-soy-line-2', copy.products.soyLine2);
+        setText('history-kicker', copy.history.kicker);
+        setText('history-title', copy.history.title);
+        setText('history-intro', copy.history.intro);
+        setHTML(
+          'timeline-list',
+          copy.history.items
+            .map(
+              (item, index) => `
+                <article class="timeline-item relative grid gap-3 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 ${index < copy.history.items.length - 1 ? 'md:border-b md:border-neutral-950/10' : ''} md:py-8 md:pl-0">
+                  <time class="text-xl font-black tracking-tight text-mokdaOrange">${item.date}</time>
+                  <div>
+                    <p class="text-xs font-extrabold uppercase tracking-[0.18em] text-mokdaGreen">${item.category}</p>
+                    <h3 class="mt-2 text-xl font-black leading-tight text-neutral-950 sm:text-2xl">${item.title}</h3>
+                    <p class="mt-3 max-w-3xl text-sm font-medium leading-6 text-neutral-600 sm:text-base sm:leading-7">${item.description}</p>
+                    ${item.funding ? `<span class="mt-4 inline-flex rounded-full bg-white px-3 py-1.5 text-xs font-extrabold text-neutral-700 ring-1 ring-neutral-950/10">${item.funding}</span>` : ''}
+                  </div>
+                </article>
+              `,
+            )
+            .join(''),
+        );
         setText('footer-title', copy.footer.title);
         setText('footer-copy', copy.footer.copy);
         renderLanguageButtons();

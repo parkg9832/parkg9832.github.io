@@ -187,10 +187,7 @@
       }
 
       .surface-depth {
-        box-shadow:
-          0 24px 56px rgba(92, 45, 17, 0.1),
-          0 8px 18px rgba(23, 23, 23, 0.05),
-          inset 0 1px 0 rgba(255, 255, 255, 0.75);
+        box-shadow: none;
       }
 
       .product-card {
@@ -263,18 +260,18 @@
         <div id="heroIndicators" class="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3"></div>
       </section>
 
-      <section id="products" class="scroll-mt-20 bg-[#fbfaf7] bg-[radial-gradient(rgba(239,95,24,0.08)_1px,transparent_1px)] [background-size:22px_22px] py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
+      <section id="products" class="scroll-mt-20 bg-[#fbfaf7] py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
+          <div data-reveal class="mb-8 max-w-2xl text-left sm:mb-10">
             <p id="productsKicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
             <h2 id="productsTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.02] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
-            <p id="productsStatus" class="mx-auto mt-4 max-w-xl break-keep text-sm font-bold leading-6 text-slate-600 sm:text-base"></p>
+            <p id="productsStatus" class="mt-4 max-w-xl break-keep text-sm font-bold leading-6 text-neutral-600 sm:text-base"></p>
           </div>
           <div id="productsGrid" class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-7"></div>
         </div>
       </section>
 
-      <section class="bg-orange-500 text-white py-3 overflow-hidden relative sm:py-4">
+      <section class="bg-mokdaOrange text-white py-3 overflow-hidden relative sm:py-4">
         <div class="animate-marquee">
           <div class="flex items-center space-x-16 px-4 text-3xl md:text-5xl font-extrabold uppercase tracking-tight text-white shrink-0 [font-family:'Syne',sans-serif]">
             <span>Corea, más cerca de ti</span>
@@ -293,7 +290,7 @@
         </div>
       </section>
 
-      <section id="story" class="scroll-mt-20 bg-stone-50 pb-20 pt-12 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
+      <section id="story" class="scroll-mt-20 bg-white pb-20 pt-12 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
         <div data-reveal class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 animate-fade-in-up delay-200">
           <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-start md:gap-14 lg:gap-20">
             <div class="md:pt-1">
@@ -354,13 +351,13 @@
       </section>
 
       <section id="partnership" class="scroll-mt-20 bg-[#fbfaf7] pb-10 pt-24 sm:pb-12 sm:pt-28 lg:pb-12 lg:pt-32">
-        <div class="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-7 w-full max-w-[860px] text-center">
+        <div class="mx-auto flex w-full max-w-6xl flex-col items-stretch px-4 sm:px-6 lg:px-8">
+          <div data-reveal class="mb-7 w-full max-w-[860px] text-left">
             <p id="b2bKicker" class="mb-2 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
             <h2 id="b2bTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.03] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
-            <p id="b2bDescription" class="mx-auto mt-3 max-w-[430px] break-keep text-pretty text-[15px] font-semibold leading-7 text-neutral-600 sm:max-w-2xl sm:text-lg sm:leading-8"></p>
+            <p id="b2bDescription" class="mt-3 max-w-2xl break-keep text-pretty text-[15px] font-semibold leading-7 text-neutral-600 sm:text-lg sm:leading-8"></p>
           </div>
-          <form id="b2bForm" data-reveal data-reveal-delay="120" class="surface-depth mx-auto w-full max-w-[860px] rounded-2xl border border-orange-100/60 bg-white p-5 sm:p-7 md:p-10">
+          <form id="b2bForm" data-reveal data-reveal-delay="120" class="surface-depth w-full max-w-[860px] rounded-2xl border border-neutral-200 bg-white p-5 sm:p-7 md:p-10">
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
@@ -429,7 +426,7 @@
               <button
                 id="submitButton"
                 type="submit"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-mokdaOrange px-9 py-4 text-sm font-extrabold uppercase tracking-wide text-white shadow-[0_14px_28px_rgba(130,48,13,0.2)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-700 hover:shadow-[0_18px_36px_rgba(130,48,13,0.26)] focus:outline-none focus:ring-4 focus:ring-orange-500/25"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-mokdaOrange px-9 py-4 text-sm font-extrabold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"
               >
                 <span id="submitButtonText"></span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -572,7 +569,7 @@
           },
           koreanName: 'Gochujang',
           name: 'Original',
-          titleClass: 'text-red-600',
+          titleClass: 'text-neutral-950',
           desc: {
             ES: { line1: 'Con la frescura del jalapeño,', line2: 'un picante coreano fresco y equilibrado' },
             EN: { line1: 'Brightened with the freshness of jalapeño,', line2: 'a clean Korean heat that rises smoothly' },
@@ -592,7 +589,7 @@
           },
           koreanName: 'Ssamjang',
           name: 'Para Carne',
-          titleClass: 'text-yellow-500',
+          titleClass: 'text-neutral-950',
           desc: {
             ES: { line1: 'Pensada para carnes a la parrilla,', line2: 'una salsa para parrilla con umami profundo e intenso' },
             EN: { line1: 'Designed for meats and grilled dishes,', line2: 'a barbecue sauce with deep, rich umami' },
@@ -613,7 +610,7 @@
           },
           koreanName: 'Ganjang',
           name: 'Soy Sauce',
-          titleClass: 'text-[#2d1a11]',
+          titleClass: 'text-neutral-950',
           desc: {
             ES: { line1: 'Un equilibrio entre dulzor y notas saladas,', line2: 'una salsa fusión de uso diario' },
             EN: { line1: 'Balanced between sweetness and savory depth,', line2: 'an everyday fusion sauce' },
@@ -911,7 +908,7 @@
                   <p data-hero-kicker class="hero-kicker-shadow mb-5 text-xs font-extrabold uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
                   <h1 data-hero-title class="hero-title-shadow max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
                   <p data-hero-subtitle class="hero-copy-shadow mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-relaxed text-white/90 sm:text-xl animate-fade-in-up delay-500"></p>
-                  <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-extrabold text-white shadow-[0_14px_28px_rgba(130,48,13,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-orange-600 hover:shadow-[0_18px_36px_rgba(130,48,13,0.28)] focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-800"></a>
+                  <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-extrabold text-white transition-colors duration-300 hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-800"></a>
                 </div>
               </div>
             `
@@ -1044,13 +1041,13 @@
                 const storeName = typeof store.name === 'string' ? store.name : (store.name[language] || store.name.ES);
                 const storeAddress = typeof store.address === 'string' ? store.address : (store.address[language] || store.address.ES);
                 const cardClass = isSelected
-                  ? 'block w-full cursor-pointer rounded-2xl bg-white p-2 text-left shadow-md transition-all duration-300 md:p-4'
+                  ? 'block w-full cursor-pointer rounded-2xl bg-white p-2 text-left transition-all duration-300 md:p-4'
                   : 'block w-full cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 hover:bg-white/20 md:p-4';
                 const nameClass = isSelected ? 'text-neutral-950' : 'text-white';
                 const addressClass = isSelected ? 'text-neutral-600' : 'text-white/75';
                 const tagClass = isSelected
-                  ? 'rounded-full bg-[#02674f] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs'
-                  : 'rounded-full bg-[#02674f] px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white shadow-sm shadow-black/10 md:text-xs';
+                  ? 'rounded-full bg-neutral-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs'
+                  : 'rounded-full bg-neutral-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs';
                 return `
                   <div class="border-b border-white/20 py-1.5 first:pt-0 last:border-b-0 last:pb-0 md:py-3">
                     <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">

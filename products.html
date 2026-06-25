@@ -104,16 +104,6 @@
         isolation: isolate;
       }
 
-      .product-stage::before {
-        position: absolute;
-        inset: 8% 10%;
-        z-index: 0;
-        border-radius: 999px;
-        background: radial-gradient(circle at 50% 42%, var(--stage-glow, rgba(239, 95, 24, 0.1)), transparent 62%);
-        content: "";
-        filter: blur(18px);
-      }
-
       .product-stage::after {
         position: absolute;
         left: 50%;
@@ -167,7 +157,7 @@
     </header>
 
     <main class="pt-20">
-      <section class="bg-white py-12 sm:py-16">
+      <section class="bg-[#fbfaf7] bg-[radial-gradient(rgba(239,95,24,0.08)_1px,transparent_1px)] [background-size:22px_22px] py-12 sm:py-16">
         <div class="mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <p id="pageKicker" class="mb-4 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm">Historia del Producto</p>
           <h1 id="pageTitle" class="max-w-5xl break-keep text-balance text-4xl font-extrabold leading-[0.98] tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">

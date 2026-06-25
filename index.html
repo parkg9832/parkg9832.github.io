@@ -205,16 +205,6 @@
         isolation: isolate;
       }
 
-      .product-stage::before {
-        position: absolute;
-        inset: 8% 10%;
-        z-index: 0;
-        border-radius: 999px;
-        background: radial-gradient(circle at 50% 42%, var(--stage-glow, rgba(239, 95, 24, 0.1)), transparent 62%);
-        content: "";
-        filter: blur(18px);
-      }
-
       .product-stage::after {
         position: absolute;
         left: 50%;
@@ -273,7 +263,7 @@
         <div id="heroIndicators" class="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3"></div>
       </section>
 
-      <section id="products" class="scroll-mt-20 bg-white py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
+      <section id="products" class="scroll-mt-20 bg-[#fbfaf7] bg-[radial-gradient(rgba(239,95,24,0.08)_1px,transparent_1px)] [background-size:22px_22px] py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-8 max-w-2xl text-center sm:mb-10">
             <p id="productsKicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>

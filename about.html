@@ -130,38 +130,8 @@
           inset 0 1px 0 rgba(255, 255, 255, 0.75);
       }
 
-      .timeline-list::before {
-        position: absolute;
-        top: 0.75rem;
-        bottom: 0.75rem;
-        left: 0.4rem;
-        width: 1px;
-        background: rgba(23, 23, 23, 0.14);
-        content: "";
-      }
-
-      .timeline-item::before {
-        position: absolute;
-        top: 0.65rem;
-        left: 0;
-        z-index: 1;
-        width: 0.8rem;
-        height: 0.8rem;
-        border: 3px solid #fffaf5;
-        border-radius: 999px;
-        background: #ef5f18;
-        box-shadow: 0 0 0 1px rgba(239, 95, 24, 0.28);
-        content: "";
-      }
-
-      @media (min-width: 768px) {
-        .timeline-list::before {
-          left: 13.75rem;
-        }
-
-        .timeline-item::before {
-          left: 13.35rem;
-        }
+      .history-row + .history-row {
+        border-top: 1px solid rgba(23, 23, 23, 0.18);
       }
     </style>
     <link rel="icon" type="image/webp" href="./assets/Favicon.webp" />
@@ -291,26 +261,26 @@
             <h2 id="history-title" class="break-keep text-3xl font-extrabold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">De Corea a América Latina</h2>
           </div>
 
-          <div id="timeline-list" class="timeline-list relative space-y-9 md:space-y-0">
-            <article data-reveal class="timeline-item relative grid gap-2 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-7 md:pl-0">
-              <time class="text-xl font-black tracking-tight text-mokdaOrange">2024.11</time>
-              <h3 class="text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Presentación de Salsa Coreana en Lima, Perú</h3>
+          <div id="timeline-list">
+            <article data-reveal class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+              <time class="text-2xl font-black tracking-tight text-neutral-950">2026</time>
+              <div class="space-y-5">
+                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Jóvenes Innovadores, Jeonbuk (₩13,5 millones)</p>
+                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Content Korea Lab, Jeonbuk (₩12 millones)</p>
+                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Registro empresarial, Corea</p>
+              </div>
             </article>
-            <article data-reveal class="timeline-item relative grid gap-2 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-7 md:pl-0">
-              <time class="text-xl font-black tracking-tight text-mokdaOrange">2025.04</time>
-              <h3 class="text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Selección en HINT, programa de apoyo a emprendimientos de la ciudad de Gimje (₩15 millones)</h3>
+            <article data-reveal class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+              <time class="text-2xl font-black tracking-tight text-neutral-950">2025</time>
+              <div class="space-y-5">
+                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa HINT, Gimje (₩15 millones)</p>
+              </div>
             </article>
-            <article data-reveal class="timeline-item relative grid gap-2 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-7 md:pl-0">
-              <time class="text-xl font-black tracking-tight text-mokdaOrange">2026.05</time>
-              <h3 class="text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Selección en el programa Jóvenes Innovadores de la provincia de Jeonbuk (₩13,5 millones)</h3>
-            </article>
-            <article data-reveal class="timeline-item relative grid gap-2 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:border-b md:border-neutral-950/10 md:py-7 md:pl-0">
-              <time class="text-xl font-black tracking-tight text-mokdaOrange">2026.05</time>
-              <h3 class="text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Selección por el Laboratorio de Contenidos de la provincia de Jeonbuk (₩12 millones)</h3>
-            </article>
-            <article data-reveal class="timeline-item relative grid gap-2 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 md:py-7 md:pl-0">
-              <time class="text-xl font-black tracking-tight text-mokdaOrange">2026.06.15</time>
-              <h3 class="text-xl font-black leading-tight text-neutral-950 sm:text-2xl">Registro empresarial completado en Corea del Sur</h3>
+            <article data-reveal class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+              <time class="text-2xl font-black tracking-tight text-neutral-950">2024</time>
+              <div class="space-y-5">
+                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Presentación de Salsa Coreana, Lima, Perú</p>
+              </div>
             </article>
           </div>
         </div>
@@ -390,12 +360,10 @@
           history: {
             kicker: 'Our Journey',
             title: '한국에서 라틴아메리카로',
-            items: [
-              { date: '2024.11', title: '페루 리마에서 Salsa Coreana 제품 시연' },
-              { date: '2025.04', title: '김제시 예비창업지원사업 ‘힌트’ 선정 (사업화 지원금 1,500만원)' },
-              { date: '2026.05', title: '전북 예비창업지원사업 ‘시군청년혁신가’ 선정 (사업화 지원금 1,350만원)' },
-              { date: '2026.05', title: '전북콘텐츠코리아랩 예비창업지원사업 선정 (사업화 지원금 1,200만원)' },
-              { date: '2026.06.15', title: '대한민국 사업자 등록 완료' },
+            years: [
+              { year: '2026', items: ['전북 시군청년혁신가 선정 (사업화 지원금 1,350만원)', '전북콘텐츠코리아랩 선정 (사업화 지원금 1,200만원)', '대한민국 사업자 등록'] },
+              { year: '2025', items: ['김제시 HINT 선정 (사업화 지원금 1,500만원)'] },
+              { year: '2024', items: ['Salsa Coreana 제품 시연, 페루 리마'] },
             ],
           },
           footer: {
@@ -438,12 +406,10 @@
           history: {
             kicker: 'Nuestra trayectoria',
             title: 'De Corea a América Latina',
-            items: [
-              { date: '2024.11', title: 'Presentación de Salsa Coreana en Lima, Perú' },
-              { date: '2025.04', title: 'Selección en HINT, programa de apoyo a emprendimientos de la ciudad de Gimje (₩15 millones)' },
-              { date: '2026.05', title: 'Selección en el programa Jóvenes Innovadores de la provincia de Jeonbuk (₩13,5 millones)' },
-              { date: '2026.05', title: 'Selección por el Laboratorio de Contenidos de la provincia de Jeonbuk (₩12 millones)' },
-              { date: '2026.06.15', title: 'Registro empresarial completado en Corea del Sur' },
+            years: [
+              { year: '2026', items: ['Selección — Jóvenes Innovadores, Jeonbuk (₩13,5 millones)', 'Selección — Content Korea Lab, Jeonbuk (₩12 millones)', 'Registro empresarial, Corea'] },
+              { year: '2025', items: ['Selección — Programa HINT, Gimje (₩15 millones)'] },
+              { year: '2024', items: ['Presentación de Salsa Coreana, Lima, Perú'] },
             ],
           },
           footer: {
@@ -486,12 +452,10 @@
           history: {
             kicker: 'Our Journey',
             title: 'From Korea to Latin America',
-            items: [
-              { date: '2024.11', title: 'Salsa Coreana product showcase in Lima, Peru' },
-              { date: '2025.04', title: "Selected for HINT, Gimje City's startup support program (KRW 15 million)" },
-              { date: '2026.05', title: "Selected for Jeonbuk Province's Young Innovators program (KRW 13.5 million)" },
-              { date: '2026.05', title: 'Selected by the Jeonbuk Province Content Korea Lab (KRW 12 million)' },
-              { date: '2026.06.15', title: 'Business registration completed in South Korea' },
+            years: [
+              { year: '2026', items: ['Selected — Young Innovators, Jeonbuk (KRW 13.5 million)', 'Selected — Content Korea Lab, Jeonbuk (KRW 12 million)', 'Business registration, Korea'] },
+              { year: '2025', items: ['Selected — HINT Program, Gimje (KRW 15 million)'] },
+              { year: '2024', items: ['Salsa Coreana product showcase, Lima, Peru'] },
             ],
           },
           footer: {
@@ -541,12 +505,14 @@
         setText('history-title', copy.history.title);
         setHTML(
           'timeline-list',
-          copy.history.items
+          copy.history.years
             .map(
-              (item, index) => `
-                <article class="timeline-item relative grid gap-2 pl-8 md:grid-cols-[11rem_1fr] md:gap-16 ${index < copy.history.items.length - 1 ? 'md:border-b md:border-neutral-950/10' : ''} md:py-7 md:pl-0">
-                  <time class="text-xl font-black tracking-tight text-mokdaOrange">${item.date}</time>
-                  <h3 class="text-xl font-black leading-tight text-neutral-950 sm:text-2xl">${item.title}</h3>
+              (group) => `
+                <article class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+                  <time class="text-2xl font-black tracking-tight text-neutral-950">${group.year}</time>
+                  <div class="space-y-5">
+                    ${group.items.map((item) => `<p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">${item}</p>`).join('')}
+                  </div>
                 </article>
               `,
             )

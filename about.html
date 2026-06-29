@@ -89,20 +89,24 @@
 
       [data-reveal] {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(30px);
         transition:
-          opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
-          transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+          opacity 860ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 860ms cubic-bezier(0.22, 1, 0.36, 1);
         transition-delay: var(--reveal-delay, 0ms);
+      }
+
+      [data-reveal='scale'] {
+        transform: translateY(20px) scale(0.985);
       }
 
       [data-reveal].is-visible {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
 
       .hero-reveal {
-        animation: heroReveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: heroReveal 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
       }
 
       @keyframes heroReveal {
@@ -147,13 +151,36 @@
 
       .surface-depth {
         box-shadow:
-          0 24px 56px rgba(92, 45, 17, 0.1),
-          0 8px 18px rgba(23, 23, 23, 0.05),
+          0 18px 46px rgba(92, 45, 17, 0.08),
+          0 6px 16px rgba(23, 23, 23, 0.04),
           inset 0 1px 0 rgba(255, 255, 255, 0.75);
       }
 
+      .about-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(90deg, rgba(239, 95, 24, 0.045) 0 1px, transparent 1px 100%),
+          linear-gradient(180deg, rgba(239, 95, 24, 0.035) 0 1px, transparent 1px 100%);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(180deg, transparent, #000 18%, #000 72%, transparent);
+        opacity: 0.45;
+      }
+
+      .editorial-rule {
+        height: 1px;
+        background: linear-gradient(90deg, rgba(239, 95, 24, 0.85), rgba(23, 23, 23, 0.14), transparent);
+      }
+
       .history-row + .history-row {
-        border-top: 1px solid rgba(23, 23, 23, 0.18);
+        border-top: 1px solid rgba(23, 23, 23, 0.12);
       }
     </style>
     <link rel="icon" type="image/webp" href="./assets/Favicon.webp" />
@@ -199,33 +226,30 @@
     </header>
 
     <main class="overflow-hidden bg-white">
-      <section class="relative flex min-h-[560px] items-center justify-center overflow-hidden bg-neutral-950 px-5 py-24 text-center text-white sm:min-h-screen sm:px-8 sm:py-28">
+      <section class="relative flex min-h-[620px] items-center justify-center overflow-hidden bg-neutral-950 px-5 py-28 text-center text-white sm:min-h-screen sm:px-8 sm:py-32">
         <picture class="absolute inset-0">
           <source media="(min-width: 768px)" srcset="assets/assetshero-3-desktop.webp" />
           <img src="assets/assetshero-3-mobile.webp" alt="" class="h-full w-full object-cover" loading="eager" fetchpriority="high" />
         </picture>
-        <div class="absolute inset-0 bg-black/45"></div>
-        <div class="absolute inset-x-0 bottom-[-1px] h-14 text-neutral-50 sm:h-20" aria-hidden="true">
-          <svg class="h-full w-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path fill="currentColor" d="M0,78 C180,42 340,42 520,70 C700,98 880,102 1200,58 L1200,120 L0,120 Z"></path>
-          </svg>
-        </div>
+        <div class="absolute inset-0 bg-black/42"></div>
+        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
 
         <div class="hero-reveal relative z-10 mx-auto max-w-5xl pt-14 sm:pt-20">
           <p id="hero-kicker" class="hero-kicker-shadow mb-4 text-[10px] font-extrabold uppercase tracking-[0.3em] text-mokdaOrange sm:mb-6 sm:text-sm">Esencia de Marca MOKDA</p>
-          <h1 class="hero-title-shadow break-keep text-balance text-[3.15rem] font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
+          <h1 class="hero-title-shadow break-keep text-balance text-[3.25rem] font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
             <span id="hero-line-1">Comer Corea</span><br />
             <span id="hero-line-2" class="hero-title-accent text-mokdaOrange">한국을 먹다</span>
           </h1>
         </div>
       </section>
 
-      <section id="story" class="bg-neutral-50 px-5 py-14 sm:px-8 sm:py-20 lg:px-12">
-        <div data-reveal class="mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-6 lg:grid-cols-[0.94fr_1.06fr] lg:gap-8">
-          <article class="surface-depth flex h-full flex-col justify-center rounded-[1.25rem] bg-white p-6 ring-1 ring-neutral-950/5 sm:p-8 lg:p-10">
+      <section id="story" class="about-section bg-neutral-50 px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+        <div class="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-7 lg:min-h-[680px] lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
+          <article data-reveal class="surface-depth flex h-full flex-col justify-center rounded-[1.75rem] bg-white p-7 ring-1 ring-neutral-950/5 sm:p-9 lg:p-12">
             <p id="story-kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Historia de Marca</p>
-            <h2 id="story-title" class="mb-5 break-keep text-balance text-3xl font-black leading-[1.08] text-neutral-950 sm:text-4xl">Un joven coreano que llegó a América del Sur</h2>
-            <div id="story-body" class="space-y-3 text-sm font-medium leading-7 text-neutral-600 sm:text-base sm:leading-8">
+            <h2 id="story-title" class="mb-6 break-keep text-balance text-4xl font-black leading-[1.02] text-neutral-950 sm:text-5xl lg:text-6xl">Un joven coreano que llegó a América del Sur</h2>
+            <div class="editorial-rule mb-7 w-full max-w-sm"></div>
+            <div id="story-body" class="space-y-4 text-sm font-medium leading-7 text-neutral-600 sm:text-base sm:leading-8">
               <p class="break-keep leading-relaxed">MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a América del Sur con una sola maleta.</p>
               <p class="break-keep leading-relaxed">No tenía un vínculo especial con la región, pero la comida y la cultura de América del Sur, que conocí por primera vez en un documental, se quedaron en mi memoria. Incluso en Corea buscaba tacos, empanadas y salsas porque me atraía esa energía cálida.</p>
               <p class="break-keep leading-relaxed">Al convivir con amigos sudamericanos, entendí que la comida no es solo sabor. Es una forma directa de acercarse a una cultura y a las personas que la viven.</p>
@@ -233,41 +257,42 @@
             </div>
           </article>
 
-          <div class="surface-depth relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.25rem] bg-white ring-1 ring-neutral-950/5 sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[430px]">
+          <div data-reveal="scale" style="--reveal-delay: 120ms" class="surface-depth relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] bg-white ring-1 ring-neutral-950/5 sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[560px]">
             <img src="assets/story-vibe.webp" alt="Brand Story" class="h-full w-full object-cover" loading="lazy" />
+            <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/28 to-transparent"></div>
           </div>
         </div>
       </section>
-      <section id="logo" class="bg-neutral-50 px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+      <section id="logo" class="bg-[#fbfaf7] px-5 py-16 sm:px-8 sm:py-28 lg:px-12">
         <div class="mx-auto max-w-7xl">
-          <div data-reveal class="mb-10 text-center sm:mb-12">
+          <div data-reveal class="mb-12 max-w-4xl sm:mb-14">
             <p id="logo-kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Logo de Marca</p>
-            <h2 id="logo-title" class="break-keep text-balance text-4xl font-extrabold leading-[1.05] tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
+            <h2 id="logo-title" class="break-keep text-balance text-4xl font-extrabold leading-[1.04] tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
               Un diseño que contiene la herencia coreana<br />
               y la pasión latina
             </h2>
           </div>
 
-          <div class="grid gap-5 lg:grid-cols-[0.95fr_1.1fr_0.95fr] lg:items-center">
-            <article data-reveal class="surface-depth rounded-[1.25rem] bg-white p-6 ring-1 ring-neutral-950/5 sm:p-7">
+          <div class="grid gap-5 lg:grid-cols-[0.9fr_1.2fr_0.9fr] lg:items-stretch">
+            <article data-reveal class="surface-depth flex flex-col justify-center rounded-[1.5rem] bg-white p-7 ring-1 ring-neutral-950/5 sm:min-h-[300px] sm:p-8">
               <p id="motive-kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Motivo</p>
-              <h3 id="motive-title" class="break-keep text-2xl font-extrabold leading-tight text-neutral-950 sm:text-3xl">La primera inspiración que nace en tu cocina</h3>
-              <p id="motive-body" class="mt-4 break-keep text-sm font-semibold leading-7 text-neutral-600 sm:text-base">
+              <h3 id="motive-title" class="break-keep text-2xl font-extrabold leading-tight text-neutral-950 sm:text-4xl">La primera inspiración que nace en tu cocina</h3>
+              <p id="motive-body" class="mt-5 break-keep text-sm font-semibold leading-7 text-neutral-600 sm:text-base">
                 La silueta de la botella en el logo expresa que MOKDA puede ser el primer paso para cualquier receta K.
               </p>
             </article>
 
-            <div data-reveal class="surface-depth flex min-h-[280px] flex-col items-center justify-center rounded-[1.5rem] bg-white p-8 ring-1 ring-neutral-950/5 sm:min-h-[320px] sm:p-10">
-              <img src="assets/Favicon.webp" alt="MOKDA symbol" class="h-28 w-28 object-contain" />
-              <img src="assets/assetlogo-1.webp" alt="MOKDA wordmark" class="mt-10 h-10 w-auto object-contain" />
+            <div data-reveal="scale" style="--reveal-delay: 120ms" class="surface-depth flex min-h-[260px] flex-col items-center justify-center rounded-[1.75rem] bg-white p-10 ring-1 ring-neutral-950/5 sm:min-h-[400px] sm:p-12">
+              <img src="assets/Favicon.webp" alt="MOKDA symbol" class="h-32 w-32 object-contain sm:h-36 sm:w-36" />
+              <img src="assets/assetlogo-1.webp" alt="MOKDA wordmark" class="mt-12 h-10 w-auto object-contain sm:h-12" />
             </div>
 
-            <article data-reveal class="grid gap-4">
-              <div class="rounded-[1.25rem] bg-mokdaOrange p-6 text-white sm:p-7">
+            <article data-reveal style="--reveal-delay: 220ms" class="grid gap-4">
+              <div class="flex min-h-[150px] flex-col justify-end rounded-[1.5rem] bg-mokdaOrange p-7 text-white sm:min-h-[190px] sm:p-8">
                 <p class="text-xs font-black uppercase tracking-[0.22em] text-white/70 sm:text-sm">Burning Orange · #ef5f18</p>
                 <h3 id="orange-title" class="mt-3 text-2xl font-black leading-tight sm:text-3xl">Energía, pasión y toque picante</h3>
               </div>
-              <div class="rounded-[1.25rem] bg-mokdaGreen p-6 text-white sm:p-7">
+              <div class="flex min-h-[150px] flex-col justify-end rounded-[1.5rem] bg-mokdaGreen p-7 text-white sm:min-h-[190px] sm:p-8">
                 <p class="text-xs font-black uppercase tracking-[0.22em] text-white/70 sm:text-sm">Dip Green · #02674f</p>
                 <h3 id="green-title" class="mt-3 text-2xl font-black leading-tight sm:text-3xl">Equilibrio entre frescura y uso cotidiano</h3>
               </div>
@@ -276,15 +301,15 @@
         </div>
       </section>
 
-      <section id="history" class="bg-[#fffaf5] px-4 py-16 sm:px-6 sm:py-[6.5rem] lg:px-8">
-        <div class="mx-auto max-w-6xl">
-          <div data-reveal class="mb-10 max-w-3xl sm:mb-12">
+      <section id="history" class="about-section bg-[#fffaf5] px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <div class="relative z-10 mx-auto max-w-6xl">
+          <div data-reveal class="mb-12 max-w-3xl sm:mb-14">
             <p id="history-kicker" class="mb-3 break-keep text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Nuestra trayectoria</p>
             <h2 id="history-title" class="break-keep text-3xl font-extrabold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">De Corea a América Latina</h2>
           </div>
 
-          <div id="timeline-list">
-            <article data-reveal class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+          <div id="timeline-list" class="rounded-[1.75rem] bg-white/70 px-5 ring-1 ring-neutral-950/5 backdrop-blur sm:px-8">
+            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
               <time class="text-2xl font-black tracking-tight text-neutral-950">2026</time>
               <div class="space-y-5">
                 <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa de apoyo a emprendimientos HINT, Gimje (₩15 millones)</p>
@@ -293,56 +318,16 @@
                 <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Registro empresarial, Corea</p>
               </div>
             </article>
-            <article data-reveal class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
               <time class="text-2xl font-black tracking-tight text-neutral-950">2025</time>
               <div class="space-y-5">
                 <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Desarrollo inicial de Salsa Coreana</p>
               </div>
             </article>
-            <article data-reveal class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
               <time class="text-2xl font-black tracking-tight text-neutral-950">2024</time>
               <div class="space-y-5">
                 <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Presentación de Salsa Coreana, Lima, Perú</p>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="network" class="bg-white px-4 py-16 sm:px-6 sm:py-[6.5rem] lg:px-8">
-        <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div data-reveal class="max-w-xl">
-            <p id="network-kicker" class="mb-3 break-keep text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Red de colaboración</p>
-            <h2 id="network-title" class="break-keep text-3xl font-extrabold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">Aliados y personas que crecen con MOKDA</h2>
-            <p id="network-desc" class="mt-6 break-keep text-base font-semibold leading-8 text-neutral-600 sm:text-lg">
-              Un espacio para presentar a socios, colaboradores y personas que acompañan la expansión de MOKDA.
-            </p>
-          </div>
-
-          <div data-reveal class="grid gap-4 sm:grid-cols-2">
-            <article class="rounded-[1.5rem] bg-[#fbfaf7] p-6 ring-1 ring-neutral-950/5 sm:p-7">
-              <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange">Partners</p>
-              <h3 id="network-partners-title" class="break-keep text-2xl font-extrabold tracking-tight text-neutral-950 sm:text-3xl">Aliados</h3>
-              <p id="network-partners-note" class="mt-3 min-h-[4rem] break-keep text-sm font-semibold leading-7 text-neutral-600">
-                Empresas, instituciones y socios de distribución.
-              </p>
-              <div class="mt-7 grid gap-3">
-                <div data-network-partner-slot class="rounded-2xl border border-dashed border-neutral-300 bg-white px-5 py-4 text-sm font-extrabold text-neutral-400">Logo / nombre</div>
-                <div data-network-partner-slot class="rounded-2xl border border-dashed border-neutral-300 bg-white px-5 py-4 text-sm font-extrabold text-neutral-400">Logo / nombre</div>
-                <div data-network-partner-slot class="rounded-2xl border border-dashed border-neutral-300 bg-white px-5 py-4 text-sm font-extrabold text-neutral-400">Logo / nombre</div>
-              </div>
-            </article>
-
-            <article class="rounded-[1.5rem] bg-neutral-950 p-6 text-white sm:p-7">
-              <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-white/50">People</p>
-              <h3 id="network-people-title" class="break-keep text-2xl font-extrabold tracking-tight sm:text-3xl">Personas</h3>
-              <p id="network-people-note" class="mt-3 min-h-[4rem] break-keep text-sm font-semibold leading-7 text-white/65">
-                Equipo, asesores y colaboradores.
-              </p>
-              <div class="mt-7 grid gap-3">
-                <div data-network-people-slot class="rounded-2xl border border-dashed border-white/20 bg-white/5 px-5 py-4 text-sm font-extrabold text-white/40">Nombre / rol</div>
-                <div data-network-people-slot class="rounded-2xl border border-dashed border-white/20 bg-white/5 px-5 py-4 text-sm font-extrabold text-white/40">Nombre / rol</div>
-                <div data-network-people-slot class="rounded-2xl border border-dashed border-white/20 bg-white/5 px-5 py-4 text-sm font-extrabold text-white/40">Nombre / rol</div>
               </div>
             </article>
           </div>
@@ -429,17 +414,6 @@
               { year: '2024', items: ['Salsa Coreana 제품 시연, 페루 리마'] },
             ],
           },
-          network: {
-            kicker: 'Collaboration Network',
-            title: 'MOKDA와 함께하는 협력사와 사람들',
-            desc: 'MOKDA의 성장을 함께 만들어가는 협력사, 기관, 유통 파트너와 사람들을 소개하는 공간입니다.',
-            partnersTitle: '협력사',
-            partnersNote: '기업, 기관, 유통 파트너를 정리합니다.',
-            peopleTitle: '함께하는 사람들',
-            peopleNote: '팀, 자문, 협업 인력을 정리합니다.',
-            partnerSlot: '로고 / 이름',
-            peopleSlot: '이름 / 역할',
-          },
           footer: {
             title: 'SÍGUENOS',
             copy: '© 2026 MOKDA. 모든 권리 보유.',
@@ -486,17 +460,6 @@
               { year: '2024', items: ['Presentación de Salsa Coreana, Lima, Perú'] },
             ],
           },
-          network: {
-            kicker: 'Red de colaboración',
-            title: 'Aliados y personas que crecen con MOKDA',
-            desc: 'Un espacio para presentar a socios, instituciones, aliados de distribución y personas que acompañan la expansión de MOKDA.',
-            partnersTitle: 'Aliados',
-            partnersNote: 'Empresas, instituciones y socios de distribución.',
-            peopleTitle: 'Personas',
-            peopleNote: 'Equipo, asesores y colaboradores.',
-            partnerSlot: 'Logo / nombre',
-            peopleSlot: 'Nombre / rol',
-          },
           footer: {
             title: 'SÍGUENOS',
             copy: '© 2026 MOKDA. Todos los derechos reservados.',
@@ -542,17 +505,6 @@
               { year: '2025', items: ['Initial development of Salsa Coreana'] },
               { year: '2024', items: ['Salsa Coreana product showcase, Lima, Peru'] },
             ],
-          },
-          network: {
-            kicker: 'Collaboration Network',
-            title: 'Partners and people growing with MOKDA',
-            desc: 'A space to present the partners, institutions, distribution allies, and people supporting MOKDA’s expansion.',
-            partnersTitle: 'Partners',
-            partnersNote: 'Companies, institutions, and distribution partners.',
-            peopleTitle: 'People',
-            peopleNote: 'Team members, advisors, and collaborators.',
-            partnerSlot: 'Logo / name',
-            peopleSlot: 'Name / role',
           },
           footer: {
             title: 'SÍGUENOS',
@@ -604,7 +556,7 @@
           copy.history.years
             .map(
               (group) => `
-                <article class="history-row grid gap-5 py-9 md:grid-cols-[6rem_1fr] md:gap-10">
+                <article class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
                   <time class="text-2xl font-black tracking-tight text-neutral-950">${group.year}</time>
                   <div class="space-y-5">
                     ${group.items.map((item) => `<p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">${item}</p>`).join('')}
@@ -614,19 +566,6 @@
             )
             .join(''),
         );
-        setText('network-kicker', copy.network.kicker);
-        setText('network-title', copy.network.title);
-        setText('network-desc', copy.network.desc);
-        setText('network-partners-title', copy.network.partnersTitle);
-        setText('network-partners-note', copy.network.partnersNote);
-        setText('network-people-title', copy.network.peopleTitle);
-        setText('network-people-note', copy.network.peopleNote);
-        document.querySelectorAll('[data-network-partner-slot]').forEach((element) => {
-          element.textContent = copy.network.partnerSlot;
-        });
-        document.querySelectorAll('[data-network-people-slot]').forEach((element) => {
-          element.textContent = copy.network.peopleSlot;
-        });
         setText('footer-title', copy.footer.title);
         setText('footer-copy', copy.footer.copy);
         renderLanguageButtons();
@@ -641,6 +580,7 @@
       window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
         language = nextLanguage;
         renderPage();
+        refreshRevealTargets();
       });
 
       renderPage();
@@ -660,10 +600,15 @@
             )
           : null;
 
-      document.querySelectorAll('[data-reveal]').forEach((element) => {
-        if (revealObserver) revealObserver.observe(element);
-        else element.classList.add('is-visible');
-      });
+      function refreshRevealTargets() {
+        document.querySelectorAll('[data-reveal]').forEach((element) => {
+          if (element.classList.contains('is-visible')) return;
+          if (revealObserver) revealObserver.observe(element);
+          else element.classList.add('is-visible');
+        });
+      }
+
+      refreshRevealTargets();
     </script>
     <script src="./site-header.js"></script>
   </body>

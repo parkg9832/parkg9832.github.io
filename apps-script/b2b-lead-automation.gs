@@ -1,3 +1,14 @@
+const SERVICE_NAME = 'MOKDA B2B';
+const TIME_ZONE = 'Asia/Seoul';
+
+const SCRIPT_PROPERTY_KEYS = {
+  sheetId: 'SHEET_ID',
+  chatWebhookUrl: 'CHAT_WEBHOOK_URL',
+  notificationEmail: 'NOTIFICATION_EMAIL',
+};
+
+const REQUIRED_PAYLOAD_FIELDS = ['company', 'name', 'email', 'country', 'purpose', 'message'];
+
 const SHEET_HEADERS = [
   'Received At',
   'Page Language',
@@ -11,21 +22,44 @@ const SHEET_HEADERS = [
   'Partnership Details ES',
   'Page URL',
   'User Agent',
+  'Inquiry Type KO',
+  'Partnership Details KO',
 ];
 
 function doGet() {
+  const chatWebhookUrl = getOptionalProperty(SCRIPT_PROPERTY_KEYS.chatWebhookUrl);
+
   return jsonResponse({
     ok: true,
-    service: 'MOKDA B2B lead automation',
+    service: `${SERVICE_NAME} lead automation`,
     message: 'Ready to receive B2B inquiries.',
+    notification: {
+      hasChatWebhookUrl: Boolean(chatWebhookUrl),
+      chatWebhookUrlLooksValid: isGoogleChatWebhookUrl(chatWebhookUrl),
+      hasNotificationEmail: Boolean(getOptionalProperty(SCRIPT_PROPERTY_KEYS.notificationEmail)),
+    },
+    sheet: getSheetStatus(),
   });
+}
+
+function testEmailNotification() {
+  const notificationEmail = getRequiredProperty(SCRIPT_PROPERTY_KEYS.notificationEmail);
+
+  MailApp.sendEmail({
+    to: notificationEmail,
+    subject: `[${SERVICE_NAME}] Email notification test`,
+    body: `${SERVICE_NAME} email notification is working.`,
+    name: SERVICE_NAME,
+  });
+
+  return `Sent test email to ${notificationEmail}`;
 }
 
 function doPost(event) {
   try {
     const payload = parsePayload(event);
 
-    if (payload.website) {
+    if (payload && typeof payload === 'object' && !Array.isArray(payload) && payload.website) {
       return jsonResponse({ ok: true, skipped: true });
     }
 
@@ -35,6 +69,8 @@ function doPost(event) {
     const sourceLanguage = getSourceLanguage(language);
     const inquiryTypeEs = translateToSpanish(payload.purpose, sourceLanguage);
     const messageEs = translateToSpanish(payload.message, sourceLanguage);
+    const inquiryTypeKo = translateToKorean(payload.purpose, sourceLanguage);
+    const messageKo = translateToKorean(payload.message, sourceLanguage);
     const receivedAt = new Date();
 
     appendLead([
@@ -50,9 +86,11 @@ function doPost(event) {
       messageEs,
       payload.pageUrl || '',
       payload.userAgent || '',
+      inquiryTypeKo,
+      messageKo,
     ]);
 
-    notifyGoogleChat({
+    const notification = notifyLead({
       receivedAt,
       language,
       company: payload.company,
@@ -61,12 +99,14 @@ function doPost(event) {
       country: payload.country,
       purpose: payload.purpose,
       purposeEs: inquiryTypeEs,
+      purposeKo: inquiryTypeKo,
       message: payload.message,
       messageEs,
+      messageKo,
       pageUrl: payload.pageUrl || '',
     });
 
-    return jsonResponse({ ok: true });
+    return jsonResponse({ ok: true, notification });
   } catch (error) {
     console.error(error);
     return jsonResponse({ ok: false, error: String(error.message || error) });
@@ -78,12 +118,19 @@ function parsePayload(event) {
     throw new Error('Missing request body');
   }
 
-  return JSON.parse(event.postData.contents);
+  try {
+    return JSON.parse(event.postData.contents);
+  } catch (error) {
+    throw new Error('Invalid JSON request body');
+  }
 }
 
 function validatePayload(payload) {
-  const requiredFields = ['company', 'name', 'email', 'country', 'purpose', 'message'];
-  const missing = requiredFields.filter((field) => !String(payload[field] || '').trim());
+  if (!payload || typeof payload !== 'object' || Array.isArray(payload)) {
+    throw new Error('Request body must be a JSON object');
+  }
+
+  const missing = REQUIRED_PAYLOAD_FIELDS.filter((field) => !String(payload[field] || '').trim());
 
   if (missing.length) {
     throw new Error(`Missing required fields: ${missing.join(', ')}`);
@@ -95,7 +142,7 @@ function validatePayload(payload) {
 }
 
 function appendLead(row) {
-  const sheetId = getRequiredProperty('SHEET_ID');
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
 
@@ -106,6 +153,8 @@ function appendLead(row) {
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(SHEET_HEADERS);
       sheet.setFrozenRows(1);
+    } else {
+      ensureSheetHeaders(sheet);
     }
 
     sheet.appendRow(row);
@@ -114,45 +163,157 @@ function appendLead(row) {
   }
 }
 
-function notifyGoogleChat(lead) {
-  const webhookUrl = getRequiredProperty('CHAT_WEBHOOK_URL');
-  const timestamp = Utilities.formatDate(lead.receivedAt, 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss');
-  const text = [
-    '📩 MOKDA B2B 문의 접수',
-    '',
-    `시간: ${timestamp} KST`,
-    `회사: ${lead.company}`,
-    `담당자: ${lead.name}`,
-    `이메일: ${lead.email}`,
-    `시장: ${lead.country}`,
-    `문의 유형: ${lead.purposeEs}`,
-    '',
-    '스페인어 번역:',
-    lead.messageEs,
-    '',
-    `원문 언어: ${lead.language}`,
-    `원문: ${lead.message}`,
-    lead.pageUrl ? `페이지: ${lead.pageUrl}` : '',
-  ]
-    .filter(Boolean)
-    .join('\n');
+function getSheetStatus() {
+  try {
+    const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+    const spreadsheet = SpreadsheetApp.openById(sheetId);
+    const sheet = spreadsheet.getSheets()[0];
 
-  UrlFetchApp.fetch(webhookUrl, {
+    return {
+      ok: true,
+      name: sheet.getName(),
+      lastRow: sheet.getLastRow(),
+      lastColumn: sheet.getLastColumn(),
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      error: String(error.message || error),
+    };
+  }
+}
+
+function notifyLead(lead) {
+  const webhookUrl = getOptionalProperty(SCRIPT_PROPERTY_KEYS.chatWebhookUrl);
+  const notificationEmail = getOptionalProperty(SCRIPT_PROPERTY_KEYS.notificationEmail);
+
+  try {
+    if (isGoogleChatWebhookUrl(webhookUrl)) {
+      notifyGoogleChatWebhook(lead, webhookUrl);
+      return { channel: 'google_chat', ok: true };
+    }
+
+    if (webhookUrl) {
+      console.warn('CHAT_WEBHOOK_URL is not a Google Chat incoming webhook URL. Falling back to email if configured.');
+    }
+
+    if (notificationEmail) {
+      return tryNotifyEmail(lead, notificationEmail);
+    }
+
+    console.warn('No notification channel configured. Add CHAT_WEBHOOK_URL or NOTIFICATION_EMAIL.');
+    return { channel: 'none', ok: false, error: 'Missing NOTIFICATION_EMAIL and valid CHAT_WEBHOOK_URL' };
+  } catch (error) {
+    console.error(`Notification failed: ${error.message || error}`);
+
+    if (notificationEmail) {
+      return tryNotifyEmail(lead, notificationEmail);
+    }
+
+    return { channel: 'none', ok: false, error: String(error.message || error) };
+  }
+}
+
+function tryNotifyEmail(lead, email) {
+  try {
+    notifyEmail(lead, email);
+    return { channel: 'email', ok: true };
+  } catch (error) {
+    console.error(`Email notification failed: ${error.message || error}`);
+    return { channel: 'email', ok: false, error: String(error.message || error) };
+  }
+}
+
+function notifyGoogleChatWebhook(lead, webhookUrl) {
+  const timestamp = Utilities.formatDate(lead.receivedAt, TIME_ZONE, 'yyyy-MM-dd HH:mm:ss');
+  const body = formatLeadNotification(lead, timestamp);
+
+  const response = UrlFetchApp.fetch(webhookUrl, {
     method: 'post',
     contentType: 'application/json; charset=utf-8',
-    payload: JSON.stringify({ text }),
+    payload: JSON.stringify({ text: body }),
     muteHttpExceptions: true,
+  });
+
+  const statusCode = response.getResponseCode();
+  if (statusCode < 200 || statusCode >= 300) {
+    throw new Error(`Google Chat webhook returned HTTP ${statusCode}: ${response.getContentText()}`);
+  }
+}
+
+function notifyEmail(lead, email) {
+  const timestamp = Utilities.formatDate(lead.receivedAt, TIME_ZONE, 'yyyy-MM-dd HH:mm:ss');
+  const subject = `[${SERVICE_NAME} 문의] ${lead.company} - ${lead.country}`;
+  const body = formatLeadNotification(lead, timestamp);
+
+  MailApp.sendEmail({
+    to: email,
+    subject,
+    body,
+    name: SERVICE_NAME,
   });
 }
 
+function formatLeadNotification(lead, timestamp) {
+  return [
+    `${SERVICE_NAME} 문의가 접수되었습니다.`,
+    '',
+    `접수 시간: ${timestamp} KST`,
+    `회사: ${lead.company}`,
+    `담당자: ${lead.name}`,
+    `이메일: ${lead.email}`,
+    `희망 시장: ${lead.country}`,
+    `문의 유형: ${lead.purposeKo}`,
+    '',
+    '[한국어 번역]',
+    lead.messageKo,
+    '',
+    '[스페인어 번역]',
+    lead.messageEs,
+    '',
+    `[원문 - ${lead.language}]`,
+    lead.message,
+    '',
+    lead.pageUrl ? `제출 페이지: ${lead.pageUrl}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+}
+
+function ensureSheetHeaders(sheet) {
+  const currentHeaders = sheet.getRange(1, 1, 1, Math.max(sheet.getLastColumn(), SHEET_HEADERS.length)).getValues()[0];
+  const needsUpdate = SHEET_HEADERS.some((header, index) => currentHeaders[index] !== header);
+
+  if (needsUpdate) {
+    sheet.getRange(1, 1, 1, SHEET_HEADERS.length).setValues([SHEET_HEADERS]);
+  }
+}
+
+function isGoogleChatWebhookUrl(value) {
+  return /^https:\/\/chat\.googleapis\.com\/v1\/spaces\/[^/]+\/messages\?/.test(String(value || ''));
+}
+
 function translateToSpanish(value, sourceLanguage) {
+  return safeTranslate(value, sourceLanguage, 'es');
+}
+
+function translateToKorean(value, sourceLanguage) {
+  return safeTranslate(value, sourceLanguage, 'ko');
+}
+
+function safeTranslate(value, sourceLanguage, targetLanguage) {
   const text = String(value || '').trim();
 
-  if (!text || sourceLanguage === 'es') {
+  if (!text || sourceLanguage === targetLanguage) {
     return text;
   }
 
-  return LanguageApp.translate(text, sourceLanguage, 'es');
+  try {
+    return LanguageApp.translate(text, sourceLanguage, targetLanguage);
+  } catch (error) {
+    console.warn(`Translation failed (${sourceLanguage} -> ${targetLanguage}): ${error.message || error}`);
+    return text;
+  }
 }
 
 function getSourceLanguage(language) {
@@ -169,6 +330,10 @@ function getRequiredProperty(key) {
   }
 
   return value;
+}
+
+function getOptionalProperty(key) {
+  return String(PropertiesService.getScriptProperties().getProperty(key) || '').trim();
 }
 
 function jsonResponse(payload) {

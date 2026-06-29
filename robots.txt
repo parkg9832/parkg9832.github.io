@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parkg9832.github.io/sitemap.xml
+Sitemap: https://www.mokda.kr/sitemap.xml

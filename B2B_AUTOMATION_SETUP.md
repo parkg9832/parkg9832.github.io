@@ -17,7 +17,11 @@
 ```text
 SHEET_ID=1TnIel1nX5ITVIKynQQrdPG0B5Kx-6q9YOABV3KliJ20
 CHAT_WEBHOOK_URL=YOUR_GOOGLE_CHAT_INCOMING_WEBHOOK_URL
+NOTIFICATION_EMAIL=YOUR_EMAIL_FOR_B2B_ALERTS
 ```
+
+If Google Chat webhook management is restricted, leave `CHAT_WEBHOOK_URL` empty or remove it, then set only `NOTIFICATION_EMAIL`.
+The script will still save every lead to Google Sheets and send the alert by email.
 
 6. `배포` > `새 배포` > `웹 앱`으로 배포합니다.
 
@@ -27,7 +31,7 @@ CHAT_WEBHOOK_URL=YOUR_GOOGLE_CHAT_INCOMING_WEBHOOK_URL
 ```
 
 7. 배포 후 생성되는 Web App URL을 복사합니다.
-8. `b2b-config.js`에 붙여넣습니다.
+8. `b2b-config.js`와 `../MOKDA_Web_Current/b2b-config.js`에 같은 URL을 붙여넣습니다.
 
 ```js
 window.MOKDA_B2B_WEB_APP_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL';
@@ -45,4 +49,5 @@ Webhook URL은 반드시 Apps Script의 `CHAT_WEBHOOK_URL` 속성에만 넣습�
 2. 웹사이트가 Apps Script Web App으로 데이터를 보냅니다.
 3. Apps Script가 원문을 Google Sheet에 저장합니다.
 4. KR/EN 입력은 스페인어로 자동 번역합니다.
-5. Google Chat으로 문의 요약과 스페인어 번역본을 알림으로 보냅니다.
+5. 번역이 실패해도 문의 원문은 저장되며, 알림은 가능한 채널로 전송합니다.
+6. Google Chat 또는 이메일로 문의 요약과 번역본을 알림으로 보냅니다.

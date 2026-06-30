@@ -35,7 +35,7 @@
       mobileMenu.classList.toggle('max-h-0');
       mobileMenu.classList.toggle('opacity-0');
       mobileMenu.classList.toggle('invisible');
-      mobileMenu.classList.toggle('max-h-64');
+      mobileMenu.classList.toggle('max-h-40');
       mobileMenu.classList.toggle('opacity-100');
       mobileMenu.classList.toggle('visible');
     });

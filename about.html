@@ -149,6 +149,30 @@
         text-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
       }
 
+      .hero-title-field {
+        isolation: isolate;
+      }
+
+      .hero-title-field::before {
+        content: '';
+        position: absolute;
+        inset: -2.25rem -3rem -2rem;
+        z-index: -1;
+        border-radius: 999px;
+        background:
+          radial-gradient(ellipse at center, rgba(0, 0, 0, 0.62) 0%, rgba(0, 0, 0, 0.42) 42%, rgba(0, 0, 0, 0.12) 68%, transparent 78%);
+        filter: blur(2px);
+      }
+
+      @media (max-width: 640px) {
+        .hero-title-field::before {
+          inset: -1.25rem -1rem -1.25rem;
+          border-radius: 2rem;
+          background:
+            radial-gradient(ellipse at center, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.46) 48%, rgba(0, 0, 0, 0.1) 74%, transparent 86%);
+        }
+      }
+
       .surface-depth {
         box-shadow:
           0 14px 34px rgba(92, 45, 17, 0.055),
@@ -255,11 +279,11 @@
         <div class="absolute inset-0 bg-black/42"></div>
         <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 via-black/20 to-transparent"></div>
 
-        <div class="hero-reveal relative z-10 mx-auto max-w-5xl pt-14 sm:pt-20">
+        <div class="hero-reveal hero-title-field relative z-10 mx-auto max-w-5xl pt-14 sm:pt-20">
           <p id="hero-kicker" class="hero-kicker-shadow mb-4 text-[10px] font-extrabold uppercase tracking-[0.3em] text-mokdaOrange sm:mb-6 sm:text-sm">Esencia de Marca MOKDA</p>
           <h1 class="hero-title-shadow break-keep text-balance text-[3.25rem] font-black leading-[0.9] tracking-tight sm:text-7xl md:text-8xl lg:text-9xl">
             <span id="hero-line-1" class="block">Comer Corea</span>
-            <span id="hero-line-2" class="mt-6 inline-flex rounded-full bg-black/70 px-5 py-2.5 text-[0.42em] font-extrabold leading-none tracking-[-0.03em] text-white shadow-[0_12px_30px_rgba(0,0,0,0.38)] backdrop-blur-[3px] sm:mt-7 sm:text-[0.32em] md:mt-8 md:text-[0.24em]">한국을 먹다</span>
+            <span id="hero-line-2" class="hero-title-accent mt-4 block text-[0.56em] font-black leading-[0.92] tracking-[-0.05em] text-white drop-shadow-[0_5px_14px_rgba(0,0,0,0.72)] sm:mt-5 sm:text-[0.48em] md:mt-6 md:text-[0.44em]">한국을 먹다</span>
           </h1>
         </div>
       </section>

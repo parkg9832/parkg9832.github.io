@@ -80,18 +80,17 @@
       .font-medium {
         font-weight: 400 !important;
       }
-      @media (max-width: 767px) {
-        .reveal-target {
-          opacity: 1 !important;
-          transform: none !important;
-          transition: none !important;
-        }
+      .reveal-target {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 860ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 860ms cubic-bezier(0.22, 1, 0.36, 1);
       }
-      @media (min-width: 768px) {
-        .reveal-target {
-          opacity: 1 !important;
-          transform: none !important;
-        }
+
+      .reveal-target.opacity-100 {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .surface-depth {
@@ -123,6 +122,29 @@
         filter:
           drop-shadow(0 22px 18px var(--bottle-shadow, rgba(92, 45, 17, 0.18)))
           drop-shadow(0 4px 3px rgba(2, 103, 79, 0.08));
+      }
+
+      .product-feature {
+        position: relative;
+      }
+
+      .product-feature::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 20;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--feature-accent, #ef5f18), rgba(239, 95, 24, 0));
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal-target {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
       }
     </style>
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
@@ -182,10 +204,10 @@
 
       <section class="bg-white py-12 sm:py-16 lg:py-20">
         <div class="mx-auto flex w-full max-w-screen-xl flex-col gap-7 px-4 sm:px-6 lg:gap-8 lg:px-8">
-          <article class="reveal-target grid overflow-hidden rounded-[1.5rem] bg-[#fbfaf7] ring-1 ring-neutral-950/5 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]">
+          <article class="product-feature reveal-target grid overflow-hidden rounded-[1.5rem] bg-[#fbfaf7] ring-1 ring-neutral-950/5 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]" style="--feature-accent:#ef3b1f;">
             <div class="flex flex-col justify-center px-6 py-9 sm:px-8 md:min-h-[430px] lg:px-10">
               <p id="prod1Kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Gochujang</p>
-              <h2 id="prod1Title" class="mb-3 text-3xl font-extrabold tracking-tight text-neutral-950 md:text-5xl">Original</h2>
+              <h2 id="prod1Title" class="mb-3 text-3xl font-extrabold tracking-tight text-[#ef3b1f] md:text-5xl">Original</h2>
               <p id="prod1Desc" class="mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
                 Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.
               </p>
@@ -198,10 +220,10 @@
             </div>
           </article>
 
-          <article class="reveal-target grid overflow-hidden rounded-[1.5rem] bg-white ring-1 ring-neutral-950/10 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]">
+          <article class="product-feature reveal-target grid overflow-hidden rounded-[1.5rem] bg-white ring-1 ring-neutral-950/10 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]" style="--feature-accent:#d99a00;">
             <div class="flex flex-col justify-center px-6 py-9 sm:px-8 md:min-h-[430px] lg:px-10">
               <p id="prod2Kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ssamjang</p>
-              <h2 id="prod2Title" class="mb-3 text-3xl font-extrabold tracking-tight text-neutral-950 md:text-5xl">Para Carne</h2>
+              <h2 id="prod2Title" class="mb-3 text-3xl font-extrabold tracking-tight text-[#d99a00] md:text-5xl">Para Carne</h2>
               <p id="prod2Desc" class="mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
                 Una salsa coreana tradicional estilo BBQ para dip, con umami profundo.
               </p>
@@ -214,10 +236,10 @@
             </div>
           </article>
 
-          <article class="reveal-target grid overflow-hidden rounded-[1.5rem] bg-[#fbfaf7] ring-1 ring-neutral-950/5 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]">
+          <article class="product-feature reveal-target grid overflow-hidden rounded-[1.5rem] bg-[#fbfaf7] ring-1 ring-neutral-950/5 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]" style="--feature-accent:#21140f;">
             <div class="flex flex-col justify-center px-6 py-9 sm:px-8 md:min-h-[430px] lg:px-10">
               <p id="prod3Kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ganjang</p>
-              <h2 id="prod3Title" class="mb-3 text-3xl font-extrabold tracking-tight text-neutral-950 md:text-5xl">Soy Sauce</h2>
+              <h2 id="prod3Title" class="mb-3 text-3xl font-extrabold tracking-tight text-[#21140f] md:text-5xl">Soy Sauce</h2>
               <p id="prod3Desc" class="mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
                 Umami dulce, salado y adictivo. (Aún no disponible)
               </p>

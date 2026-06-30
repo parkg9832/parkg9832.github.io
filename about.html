@@ -151,8 +151,8 @@
 
       .surface-depth {
         box-shadow:
-          0 18px 46px rgba(92, 45, 17, 0.08),
-          0 6px 16px rgba(23, 23, 23, 0.04),
+          0 14px 34px rgba(92, 45, 17, 0.055),
+          0 4px 12px rgba(23, 23, 23, 0.035),
           inset 0 1px 0 rgba(255, 255, 255, 0.75);
       }
 
@@ -166,12 +166,10 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background:
-          linear-gradient(90deg, rgba(239, 95, 24, 0.045) 0 1px, transparent 1px 100%),
-          linear-gradient(180deg, rgba(239, 95, 24, 0.035) 0 1px, transparent 1px 100%);
-        background-size: 44px 44px;
-        mask-image: linear-gradient(180deg, transparent, #000 18%, #000 72%, transparent);
-        opacity: 0.45;
+        background: radial-gradient(circle at 18% 14%, rgba(239, 95, 24, 0.12), transparent 24rem),
+          radial-gradient(circle at 86% 68%, rgba(239, 95, 24, 0.08), transparent 26rem);
+        mask-image: linear-gradient(180deg, transparent, #000 12%, #000 84%, transparent);
+        opacity: 0.75;
       }
 
       .editorial-rule {
@@ -181,6 +179,27 @@
 
       .history-row + .history-row {
         border-top: 1px solid rgba(23, 23, 23, 0.12);
+      }
+
+      .history-item {
+        position: relative;
+        padding-left: 1.15rem;
+      }
+
+      .history-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.78em;
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: 999px;
+        background: #ef5f18;
+      }
+
+      .editorial-emphasis {
+        color: #ef5f18;
+        font-weight: 800;
       }
     </style>
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
@@ -245,13 +264,13 @@
         </div>
       </section>
 
-      <section id="story" class="about-section bg-neutral-50 px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
-        <div class="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-7 lg:min-h-[680px] lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
-          <article data-reveal class="surface-depth flex h-full flex-col justify-center rounded-[1.75rem] bg-white p-7 ring-1 ring-neutral-950/5 sm:p-9 lg:p-12">
+      <section id="story" class="about-section bg-[#fbfaf7] px-5 py-20 sm:px-8 sm:py-28 lg:px-12">
+        <div class="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:min-h-[640px] lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <article data-reveal class="flex h-full flex-col justify-center lg:pr-8">
             <p id="story-kicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.24em] text-mokdaOrange sm:text-sm">Historia de Marca</p>
             <h2 id="story-title" class="mb-6 break-keep text-balance text-4xl font-black leading-[1.02] text-neutral-950 sm:text-5xl lg:text-6xl">Un joven coreano que llegó a América del Sur</h2>
             <div class="editorial-rule mb-7 w-full max-w-sm"></div>
-            <div id="story-body" class="space-y-4 text-sm font-medium leading-7 text-neutral-600 sm:text-base sm:leading-8">
+            <div id="story-body" class="space-y-4 text-sm font-medium leading-7 text-neutral-700 sm:text-base sm:leading-8">
               <p class="break-keep leading-relaxed">MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a América del Sur con una sola maleta.</p>
               <p class="break-keep leading-relaxed">No tenía un vínculo especial con la región, pero la comida y la cultura de América del Sur, que conocí por primera vez en un documental, se quedaron en mi memoria. Incluso en Corea buscaba tacos, empanadas y salsas porque me atraía esa energía cálida.</p>
               <p class="break-keep leading-relaxed">Al convivir con amigos sudamericanos, entendí que la comida no es solo sabor. Es una forma directa de acercarse a una cultura y a las personas que la viven.</p>
@@ -259,7 +278,7 @@
             </div>
           </article>
 
-          <div data-reveal="scale" style="--reveal-delay: 120ms" class="surface-depth relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] bg-white ring-1 ring-neutral-950/5 sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[560px]">
+          <div data-reveal="scale" style="--reveal-delay: 120ms" class="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[2rem] bg-white ring-1 ring-neutral-950/5 sm:aspect-[16/10] lg:aspect-auto lg:h-full lg:min-h-[540px]">
             <img src="assets/story-vibe.webp" alt="Brand Story" class="h-full w-full object-cover" loading="lazy" />
             <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/28 to-transparent"></div>
           </div>
@@ -294,8 +313,8 @@
                 <p class="text-xs font-black uppercase tracking-[0.22em] text-white/70 sm:text-sm">Burning Orange · #ef5f18</p>
                 <h3 id="orange-title" class="mt-3 text-2xl font-black leading-tight sm:text-3xl">Energía, pasión y toque picante</h3>
               </div>
-              <div class="flex min-h-[150px] flex-col justify-end rounded-[1.5rem] bg-mokdaGreen p-7 text-white sm:min-h-[190px] sm:p-8">
-                <p class="text-xs font-black uppercase tracking-[0.22em] text-white/70 sm:text-sm">Dip Green · #02674f</p>
+              <div class="flex min-h-[150px] flex-col justify-end rounded-[1.5rem] bg-neutral-950 p-7 text-white sm:min-h-[190px] sm:p-8">
+                <p class="text-xs font-black uppercase tracking-[0.22em] text-white/70 sm:text-sm">Deep Black · editorial tone</p>
                 <h3 id="green-title" class="mt-3 text-2xl font-black leading-tight sm:text-3xl">Equilibrio entre frescura y uso cotidiano</h3>
               </div>
             </article>
@@ -303,33 +322,33 @@
         </div>
       </section>
 
-      <section id="history" class="about-section bg-[#fffaf5] px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+      <section id="history" class="about-section bg-white px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div class="relative z-10 mx-auto max-w-6xl">
           <div data-reveal class="mb-12 max-w-3xl sm:mb-14">
             <p id="history-kicker" class="mb-3 break-keep text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Nuestra trayectoria</p>
             <h2 id="history-title" class="break-keep text-3xl font-extrabold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">De Corea a América Latina</h2>
           </div>
 
-          <div id="timeline-list" class="rounded-[1.75rem] bg-white/70 px-5 ring-1 ring-neutral-950/5 backdrop-blur sm:px-8">
-            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
-              <time class="text-2xl font-black tracking-tight text-neutral-950">2026</time>
+          <div id="timeline-list" class="border-y border-neutral-950/15">
+            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-16">
+              <time class="text-3xl font-black tracking-tight text-neutral-950 sm:text-4xl">2026</time>
               <div class="space-y-5">
-                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa de apoyo a emprendimientos HINT, Gimje (₩15 millones)</p>
-                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa Jóvenes Innovadores, Jeonbuk (₩13,5 millones)</p>
-                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa de apoyo a startups de contenido, Jeonbuk (₩12 millones)</p>
-                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Registro empresarial, Corea</p>
+                <p class="history-item text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa de apoyo a emprendimientos HINT, Gimje (₩15 millones)</p>
+                <p class="history-item text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa Jóvenes Innovadores, Jeonbuk (₩13,5 millones)</p>
+                <p class="history-item text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Selección — Programa de apoyo a startups de contenido, Jeonbuk (₩12 millones)</p>
+                <p class="history-item text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Registro empresarial, Corea</p>
               </div>
             </article>
-            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
-              <time class="text-2xl font-black tracking-tight text-neutral-950">2025</time>
+            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-16">
+              <time class="text-3xl font-black tracking-tight text-neutral-950 sm:text-4xl">2025</time>
               <div class="space-y-5">
-                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Desarrollo inicial de Salsa Coreana</p>
+                <p class="history-item text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Desarrollo inicial de Salsa Coreana</p>
               </div>
             </article>
-            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
-              <time class="text-2xl font-black tracking-tight text-neutral-950">2024</time>
+            <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-16">
+              <time class="text-3xl font-black tracking-tight text-neutral-950 sm:text-4xl">2024</time>
               <div class="space-y-5">
-                <p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Presentación de Salsa Coreana, Lima, Perú</p>
+                <p class="history-item text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">Presentación de Salsa Coreana, Lima, Perú</p>
               </div>
             </article>
           </div>
@@ -395,7 +414,7 @@
               '2024년 봄, 가방 하나를 들고 남미로 떠난 한 한국 청년의 이야기에서 MOKDA는 시작되었습니다.',
               '특별한 연고는 없었지만, 다큐멘터리로 처음 마주한 남미의 음식과 문화는 오래 마음에 남았습니다. 한국에서도 타코, 엠빠나다, 살사를 찾아 먹을 만큼 그 따뜻한 에너지에 끌렸습니다.',
               '남미에서 만난 친구들과 식탁을 나누며 깨달았습니다. 음식은 단순한 맛이 아니라, 서로의 문화와 사람을 가장 빠르게 이해하는 언어였습니다.',
-              'MOKDA는 한국의 로컬 재료와 오늘의 한국적인 감각을 담아, 남미의 식탁에 한국을 조금 더 가까이 전하고자 합니다.',
+              'MOKDA는 한국의 로컬 재료와 오늘의 한국적인 감각을 담아, <span class="editorial-emphasis">남미의 식탁에 한국을 조금 더 가까이</span> 전하고자 합니다.',
             ],
           },
           logo: {
@@ -441,7 +460,7 @@
               'MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a América del Sur con una sola maleta.',
               'No tenía un vínculo especial con la región, pero la comida y la cultura de América del Sur, que conocí por primera vez en un documental, se quedaron en mi memoria. Incluso en Corea buscaba tacos, empanadas y salsas porque me atraía esa energía cálida.',
               'Al convivir con amigos sudamericanos, entendí que la comida no es solo sabor. Es una forma directa de acercarse a una cultura y a las personas que la viven.',
-              'Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA quiere acercar Corea a las mesas de América Latina.',
+              'Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA quiere <span class="editorial-emphasis">acercar Corea a las mesas de América Latina</span>.',
             ],
           },
           logo: {
@@ -487,7 +506,7 @@
               'MOKDA began in the spring of 2024, from the journey of a young Korean who arrived in South America with a single bag.',
               'I had no special connection to the region, but its food and culture had stayed with me for years. Even in Korea, I kept looking for tacos, empanadas, and salsa because I was drawn to that warm, shared energy.',
               'Living with South American friends taught me that food is more than flavor. It is one of the most direct ways to understand a culture and the people behind it.',
-              "With Korean ingredients, a young Korean perspective, and the sensibility of today's Korea, MOKDA brings Korea a little closer to Latin American tables.",
+              "With Korean ingredients, a young Korean perspective, and the sensibility of today's Korea, MOKDA <span class=\"editorial-emphasis\">brings Korea closer to Latin American tables</span>.",
             ],
           },
           logo: {
@@ -558,10 +577,10 @@
           copy.history.years
             .map(
               (group) => `
-                <article class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-12">
-                  <time class="text-2xl font-black tracking-tight text-neutral-950">${group.year}</time>
+                <article data-reveal class="history-row grid gap-5 py-10 md:grid-cols-[7rem_1fr] md:gap-16">
+                  <time class="text-3xl font-black tracking-tight text-neutral-950 sm:text-4xl">${group.year}</time>
                   <div class="space-y-5">
-                    ${group.items.map((item) => `<p class="text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">${item}</p>`).join('')}
+                    ${group.items.map((item) => `<p class="history-item text-lg font-semibold leading-7 text-neutral-950 sm:text-xl">${item}</p>`).join('')}
                   </div>
                 </article>
               `,

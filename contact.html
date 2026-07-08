@@ -121,6 +121,7 @@
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
           <a id="nav-about" href="about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Sobre nosotros</a>
           <a id="nav-products" href="products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Salsa Coreana</a>
+          <a id="nav-qna" href="qna.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Q&A</a>
           <a id="nav-contact" href="contact.html" class="py-2 text-base font-extrabold text-mokdaOrange transition hover:text-orange-700 sm:text-sm">Contacto</a>
         </div>
       </div>
@@ -294,7 +295,7 @@
       const content = {
         ES: {
           title: 'MOKDA | Contacto',
-          nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', contact: 'Contacto' },
+          nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
           hero: {
             kicker: 'Contacto MOKDA',
             title: 'Hablemos de Salsa Coreana.',
@@ -333,7 +334,7 @@
         },
         EN: {
           title: 'MOKDA | Contact',
-          nav: { about: 'About us', products: 'Korean Sauce', contact: 'Contact' },
+          nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
           hero: {
             kicker: 'Contact MOKDA',
             title: 'Let’s talk Korean sauce.',
@@ -372,7 +373,7 @@
         },
         KR: {
           title: 'MOKDA | 문의',
-          nav: { about: '브랜드 소개', products: 'Salsa Coreana', contact: '문의' },
+          nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
           hero: {
             kicker: 'MOKDA Contact',
             title: '한국 소스 협업을 이야기해보세요.',
@@ -621,6 +622,7 @@
         document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
         setText('nav-about', t.nav.about);
         setText('nav-products', t.nav.products);
+        setText('nav-qna', t.nav.qna);
         setText('nav-contact', t.nav.contact);
         setText('pageKicker', t.hero.kicker);
         setText('pageTitle', t.hero.title);

@@ -75,10 +75,10 @@
         content: "";
         display: block;
         width: 72px;
-        height: 4px;
-        margin-top: 22px;
+        height: 3px;
+        margin-top: 18px;
         border-radius: 999px;
-        background: linear-gradient(90deg, #ef5f18, rgba(239, 95, 24, 0));
+        background: #ef5f18;
       }
 
       .qna-answer {
@@ -124,7 +124,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
   </head>
-  <body class="bg-[#fbfaf7] text-neutral-950 antialiased">
+  <body class="bg-[#f7f3eb] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -154,39 +154,40 @@
       </div>
     </header>
 
-    <main class="overflow-hidden bg-[#fbfaf7]">
-      <section class="relative overflow-hidden px-4 pb-10 pt-28 sm:px-6 sm:pb-14 sm:pt-32 lg:px-8">
-        <div aria-hidden="true" class="absolute inset-0">
-          <div class="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_16%_8%,rgba(239,95,24,0.18),transparent_34%),radial-gradient(circle_at_86%_18%,rgba(2,103,79,0.12),transparent_32%)]"></div>
-        </div>
-        <div class="relative z-10 mx-auto w-full max-w-6xl">
-          <div data-reveal class="editorial-accent max-w-3xl">
-            <p id="pageKicker" class="mb-3 text-xs font-extrabold uppercase text-mokdaOrange sm:text-sm"></p>
-            <h1 id="pageTitle" class="break-keep text-balance text-5xl font-black leading-[0.96] text-neutral-950 sm:text-7xl lg:text-8xl"></h1>
-            <p id="pageDescription" class="mt-5 max-w-2xl text-pretty text-base font-semibold leading-7 text-neutral-600 sm:text-lg sm:leading-8"></p>
+    <main class="overflow-hidden bg-[#f7f3eb]">
+      <section class="border-b border-neutral-950/10 bg-[#f7f3eb] px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-32 lg:px-8">
+        <div class="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-[1fr_20rem] lg:items-end">
+          <div data-reveal class="editorial-accent max-w-2xl">
+            <p id="pageKicker" class="mb-4 text-[11px] font-extrabold uppercase text-mokdaOrange sm:text-xs"></p>
+            <h1 id="pageTitle" class="break-keep text-balance text-4xl font-black leading-tight text-neutral-950 sm:text-5xl lg:text-6xl"></h1>
+            <p id="pageDescription" class="mt-4 max-w-xl text-pretty text-sm font-semibold leading-6 text-neutral-600 sm:text-base sm:leading-7"></p>
           </div>
+          <aside data-reveal data-reveal-delay="90" class="hidden border-l-4 border-mokdaOrange bg-white px-5 py-5 shadow-[0_8px_28px_rgba(23,23,23,0.06)] lg:block">
+            <p id="heroNoteKicker" class="mb-2 text-[11px] font-extrabold uppercase text-neutral-400"></p>
+            <p id="heroNoteText" class="text-sm font-semibold leading-6 text-neutral-700"></p>
+          </aside>
         </div>
       </section>
 
-      <section class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+      <section class="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div class="mx-auto w-full max-w-6xl">
-          <div data-reveal class="mb-6 grid gap-4 rounded-[1.5rem] bg-neutral-950 p-5 text-white sm:grid-cols-[1fr_auto] sm:items-end sm:p-7">
+          <div data-reveal class="mb-8 flex flex-col gap-4 border-b border-neutral-950/15 pb-6 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p id="boardKicker" class="mb-2 text-xs font-bold uppercase text-mokdaOrange"></p>
-              <h2 id="boardTitle" class="text-3xl font-black leading-tight sm:text-4xl"></h2>
-              <p id="boardDescription" class="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/65"></p>
+              <p id="boardKicker" class="mb-2 text-[11px] font-bold uppercase text-mokdaOrange"></p>
+              <h2 id="boardTitle" class="text-2xl font-black leading-tight text-neutral-950 sm:text-3xl"></h2>
+              <p id="boardDescription" class="mt-2 max-w-2xl text-sm font-semibold leading-6 text-neutral-600"></p>
             </div>
-            <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center rounded-full bg-mokdaOrange px-6 py-3 text-sm font-extrabold text-white transition-colors hover:bg-orange-700"></a>
+            <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center bg-mokdaOrange px-5 py-3 text-sm font-extrabold text-white transition-colors hover:bg-orange-700"></a>
           </div>
 
-          <div data-reveal data-reveal-delay="60" class="mb-5 flex w-full flex-wrap gap-2 rounded-full bg-white p-1 ring-1 ring-neutral-950/10 sm:w-fit">
-            <button id="faqTab" type="button" class="rounded-full bg-neutral-950 px-5 py-2 text-sm font-black text-white"></button>
-            <a id="contactTab" href="contact.html" class="rounded-full px-5 py-2 text-sm font-black text-neutral-500 transition hover:bg-orange-50 hover:text-mokdaOrange"></a>
+          <div data-reveal data-reveal-delay="60" class="mb-6 flex border-b border-neutral-950/10">
+            <button id="faqTab" type="button" class="border-b-2 border-mokdaOrange px-4 py-3 text-sm font-black text-neutral-950"></button>
+            <a id="contactTab" href="contact.html" class="border-b-2 border-transparent px-4 py-3 text-sm font-black text-neutral-500 transition hover:text-mokdaOrange"></a>
           </div>
 
-          <div data-reveal data-reveal-delay="90" class="mb-5 flex flex-wrap gap-2" id="categoryFilters"></div>
+          <div data-reveal data-reveal-delay="90" class="mb-5 flex flex-wrap items-center gap-x-5 gap-y-3" id="categoryFilters"></div>
 
-          <div id="qnaList" class="overflow-hidden rounded-[1.5rem] bg-white ring-1 ring-neutral-950/5"></div>
+          <div id="qnaList" class="border-y border-neutral-950/15 bg-white"></div>
         </div>
       </section>
 
@@ -374,6 +375,8 @@
             kicker: 'Q&A MOKDA',
             title: 'Preguntas sobre MOKDA.',
             description: 'Consulta las preguntas frecuentes sobre Salsa Coreana, productos, distribución y colaboración.',
+            noteKicker: 'Áreas de consulta',
+            noteText: 'Producto, distribución, retail, HORECA, exportación y colaboración de marca.',
           },
           board: {
             kicker: 'FAQ / Q&A',
@@ -397,6 +400,8 @@
             kicker: 'MOKDA Q&A',
             title: 'Questions about MOKDA.',
             description: 'Find answers about Salsa Coreana, products, distribution, export, and collaboration.',
+            noteKicker: 'Inquiry Areas',
+            noteText: 'Product, distribution, retail, HORECA, export, and brand collaboration.',
           },
           board: {
             kicker: 'FAQ / Q&A',
@@ -420,6 +425,8 @@
             kicker: 'MOKDA Q&A',
             title: 'MOKDA에 대해 궁금한 점.',
             description: 'Salsa Coreana, 제품, 유통, 수출, 협업과 관련된 자주 묻는 질문을 확인하세요.',
+            noteKicker: '문의 범위',
+            noteText: '제품, 유통, 리테일, HORECA, 수출, 브랜드 협업 관련 문의를 확인할 수 있습니다.',
           },
           board: {
             kicker: 'FAQ / Q&A',
@@ -499,7 +506,7 @@
               <button
                 type="button"
                 data-category="${category}"
-                class="rounded-full px-4 py-2 text-xs font-black transition-colors ${active ? 'bg-mokdaOrange text-white' : 'bg-white text-neutral-600 ring-1 ring-neutral-950/10 hover:text-neutral-950'}"
+                class="border-b-2 px-0 py-2 text-xs font-black transition-colors ${active ? 'border-mokdaOrange text-mokdaOrange' : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-950'}"
               >
                 ${copy.categories[category]}
               </button>
@@ -529,18 +536,23 @@
           .map((item, index) => {
             const localized = item[language] || item.ES;
             const itemId = `qna-${index}`;
-            const isFirst = index === 0;
             return `
-              <article data-reveal data-reveal-delay="${index * 70}" class="qna-item ${isFirst ? 'is-open' : ''} border-b border-neutral-100 last:border-b-0">
-                <button type="button" class="flex w-full items-center gap-4 px-4 py-5 text-left sm:px-6 sm:py-6" aria-expanded="${isFirst}" aria-controls="${itemId}">
-                  <span class="hidden w-10 shrink-0 text-xs font-black text-neutral-400 sm:block">${String(index + 1).padStart(2, '0')}</span>
-                  <span class="shrink-0 rounded-full bg-orange-50 px-3 py-1 text-[11px] font-black text-mokdaOrange">${copy.categories[item.category]}</span>
-                  <span class="min-w-0 flex-1 text-base font-black leading-6 text-neutral-950 sm:text-lg">${localized.question}</span>
-                  <span class="qna-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-neutral-950 text-xl leading-none text-white">+</span>
+              <article class="qna-item border-b border-neutral-950/10 last:border-b-0">
+                <button type="button" class="grid w-full grid-cols-[1fr_2rem] gap-4 px-0 py-5 text-left sm:grid-cols-[4rem_8rem_1fr_2rem] sm:items-center sm:px-2 sm:py-6" aria-expanded="false" aria-controls="${itemId}">
+                  <span class="hidden text-xs font-black text-neutral-400 sm:block">${String(index + 1).padStart(2, '0')}</span>
+                  <span class="hidden text-xs font-black text-mokdaOrange sm:block">${copy.categories[item.category]}</span>
+                  <span class="min-w-0">
+                    <span class="mb-2 flex items-center gap-3 sm:hidden">
+                      <span class="text-xs font-black text-neutral-400">${String(index + 1).padStart(2, '0')}</span>
+                      <span class="text-xs font-black text-mokdaOrange">${copy.categories[item.category]}</span>
+                    </span>
+                    <span class="block text-base font-black leading-6 text-neutral-950 sm:text-lg">${localized.question}</span>
+                  </span>
+                  <span class="qna-icon flex h-8 w-8 shrink-0 items-center justify-center border border-neutral-950/20 text-xl leading-none text-neutral-950">+</span>
                 </button>
                 <div id="${itemId}" class="qna-answer">
                   <div class="min-h-0 overflow-hidden">
-                    <p class="px-4 pb-6 pl-4 text-sm font-semibold leading-7 text-neutral-600 sm:px-6 sm:pl-[8.5rem] sm:text-base">${localized.answer}</p>
+                    <p class="border-t border-neutral-950/5 pb-6 pt-5 text-sm font-semibold leading-7 text-neutral-600 sm:ml-[12rem] sm:pr-16 sm:text-base">${localized.answer}</p>
                   </div>
                 </div>
               </article>
@@ -596,6 +608,8 @@
         setText('pageKicker', t.hero.kicker);
         setText('pageTitle', t.hero.title);
         setText('pageDescription', t.hero.description);
+        setText('heroNoteKicker', t.hero.noteKicker);
+        setText('heroNoteText', t.hero.noteText);
         setText('boardKicker', t.board.kicker);
         setText('boardTitle', t.board.title);
         setText('boardDescription', t.board.description);

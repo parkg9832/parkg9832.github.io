@@ -75,10 +75,10 @@
         content: "";
         display: block;
         width: 72px;
-        height: 4px;
-        margin-top: 22px;
+        height: 3px;
+        margin-top: 18px;
         border-radius: 999px;
-        background: linear-gradient(90deg, #ef5f18, rgba(239, 95, 24, 0));
+        background: #ef5f18;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -97,7 +97,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
   </head>
-  <body class="bg-[#fbfaf7] text-neutral-950 antialiased">
+  <body class="bg-[#f7f3eb] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -127,66 +127,66 @@
       </div>
     </header>
 
-    <main class="overflow-hidden bg-[#fbfaf7]">
-      <section class="relative overflow-hidden px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8">
-        <div aria-hidden="true" class="absolute inset-0">
-          <div class="absolute inset-x-0 top-0 h-[38rem] bg-[radial-gradient(circle_at_20%_10%,rgba(239,95,24,0.18),transparent_34%),radial-gradient(circle_at_80%_18%,rgba(2,103,79,0.12),transparent_32%)]"></div>
-        </div>
-        <div class="relative z-10 mx-auto w-full max-w-6xl">
-          <div data-reveal class="editorial-accent max-w-3xl">
-            <p id="pageKicker" class="mb-3 text-xs font-extrabold uppercase text-mokdaOrange sm:text-sm"></p>
-            <h1 id="pageTitle" class="break-keep text-balance text-4xl font-black leading-[1.02] text-neutral-950 sm:text-6xl lg:text-7xl"></h1>
-            <p id="pageDescription" class="mt-5 max-w-2xl text-pretty text-base font-semibold leading-7 text-neutral-600 sm:text-lg sm:leading-8"></p>
+    <main class="overflow-hidden bg-[#f7f3eb]">
+      <section class="border-b border-neutral-950/10 bg-[#f7f3eb] px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-32 lg:px-8">
+        <div class="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-[1fr_20rem] lg:items-end">
+          <div data-reveal class="editorial-accent max-w-2xl">
+            <p id="pageKicker" class="mb-4 text-[11px] font-extrabold uppercase text-mokdaOrange sm:text-xs"></p>
+            <h1 id="pageTitle" class="break-keep text-balance text-4xl font-black leading-tight text-neutral-950 sm:text-5xl lg:text-6xl"></h1>
+            <p id="pageDescription" class="mt-4 max-w-xl text-pretty text-sm font-semibold leading-6 text-neutral-600 sm:text-base sm:leading-7"></p>
           </div>
+          <aside data-reveal data-reveal-delay="90" class="hidden border-l-4 border-mokdaOrange bg-white px-5 py-5 shadow-[0_8px_28px_rgba(23,23,23,0.06)] lg:block">
+            <p id="responseKicker" class="mb-2 text-[11px] font-extrabold uppercase text-neutral-400"></p>
+            <p id="responseText" class="text-sm font-semibold leading-6 text-neutral-700"></p>
+          </aside>
         </div>
       </section>
 
-      <section class="px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <div class="mx-auto grid w-full max-w-6xl gap-7 lg:grid-cols-[0.74fr_1.26fr] lg:items-start">
-          <aside data-reveal class="grid gap-4">
-            <div class="rounded-[1.5rem] bg-neutral-950 p-6 text-white sm:p-7">
-              <p id="responseKicker" class="mb-3 text-xs font-extrabold uppercase text-mokdaOrange"></p>
-              <h2 id="responseTitle" class="text-3xl font-black leading-tight"></h2>
-              <p id="responseText" class="mt-4 text-sm font-semibold leading-6 text-white/65"></p>
+      <section class="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.44fr_0.56fr] lg:items-start">
+          <aside data-reveal class="order-2 grid gap-6 lg:order-1">
+            <div class="border-b border-neutral-950/15 pb-6">
+              <p id="responseTitleKicker" class="mb-2 text-[11px] font-bold uppercase text-mokdaOrange"></p>
+              <h2 id="responseTitle" class="text-2xl font-black leading-tight text-neutral-950 sm:text-3xl"></h2>
             </div>
-            <div id="contactSteps" class="grid gap-3"></div>
+            <div id="contactSteps" class="grid gap-0 border-y border-neutral-950/15"></div>
           </aside>
 
-          <form id="contactForm" data-reveal data-reveal-delay="120" class="rounded-[1.5rem] border border-neutral-200 bg-white p-5 sm:p-7 md:p-9">
+          <form id="contactForm" data-reveal data-reveal-delay="120" class="order-1 border border-neutral-950/15 bg-white p-5 sm:p-7 md:p-8 lg:order-2">
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
                 <span id="companyLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500" />
+                <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
               </label>
               <label class="block">
                 <span id="nameLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500" />
+                <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
               </label>
               <label class="block">
                 <span id="emailLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="emailInput" type="email" name="email" required autocomplete="email" class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500" />
+                <input id="emailInput" type="email" name="email" required autocomplete="email" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
               </label>
               <label class="block">
                 <span id="whatsappLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500" />
+                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
               </label>
               <label class="block">
                 <span id="countryLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <select id="countrySelect" name="country" required class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"></select>
+                <select id="countrySelect" name="country" required class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none"></select>
               </label>
               <label class="block">
                 <span id="purposeLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <select id="purposeSelect" name="purpose" required class="w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"></select>
+                <select id="purposeSelect" name="purpose" required class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none"></select>
               </label>
               <label class="block sm:col-span-2">
                 <span id="messageLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <textarea id="messageInput" name="message" rows="7" required class="w-full resize-none rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-orange-500 focus:bg-white focus:ring-2 focus:ring-orange-500"></textarea>
+                <textarea id="messageInput" name="message" rows="7" required class="w-full resize-none border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none"></textarea>
               </label>
             </div>
             <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p id="privacyNote" class="max-w-md text-xs font-semibold leading-5 text-neutral-500"></p>
-              <button id="submitButton" type="submit" class="inline-flex items-center justify-center gap-2 rounded-full bg-mokdaOrange px-8 py-4 text-sm font-extrabold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25">
+              <button id="submitButton" type="submit" class="inline-flex items-center justify-center gap-2 bg-mokdaOrange px-8 py-4 text-sm font-extrabold uppercase text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none">
                 <span id="submitButtonText"></span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M5 12h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -530,8 +530,8 @@
         document.getElementById('contactSteps').innerHTML = steps
           .map(
             ([number, label], index) => `
-              <div data-reveal data-reveal-delay="${(index + 1) * 90}" class="flex items-center gap-4 rounded-2xl bg-white p-4 ring-1 ring-neutral-950/5">
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mokdaOrange text-xs font-black text-white">${number}</span>
+              <div data-reveal data-reveal-delay="${(index + 1) * 90}" class="grid grid-cols-[3rem_1fr] items-center gap-4 border-b border-neutral-950/10 py-4 last:border-b-0">
+                <span class="text-xs font-black text-mokdaOrange">${number}</span>
                 <p class="text-sm font-bold leading-5 text-neutral-800">${label}</p>
               </div>
             `
@@ -628,6 +628,7 @@
         setText('pageTitle', t.hero.title);
         setText('pageDescription', t.hero.description);
         setText('responseKicker', t.response.kicker);
+        setText('responseTitleKicker', t.response.kicker);
         setText('responseTitle', t.response.title);
         setText('responseText', t.response.text);
         setText('socialTitle', t.social);

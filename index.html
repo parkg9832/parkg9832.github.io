@@ -488,7 +488,7 @@
       </section>
 
       <footer class="bg-neutral-950 py-12 text-white">
-        <div id="footerText" class="mx-auto grid w-full max-w-6xl gap-8 px-4 text-sm text-white/65 sm:px-6 md:grid-cols-[0.9fr_1.4fr] lg:px-8"></div>
+        <div id="footerText" class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8"></div>
       </footer>
     </main>
 
@@ -957,24 +957,28 @@
         if (!element) return;
 
         element.innerHTML = `
-          <div class="space-y-3">
-            <p class="text-xl font-black tracking-tight text-white">MOKDA</p>
-            <p class="font-semibold text-white/75">${footer.copyright}</p>
-          </div>
-          <div class="grid gap-6 md:grid-cols-2">
-            <section class="space-y-3">
-              <h2 class="text-xs font-black uppercase tracking-[0.22em] text-white">${footer.businessTitle}</h2>
-              <dl class="space-y-2">
-                <div><dt class="font-bold text-white/90">${footer.companyLabel}</dt><dd>${footer.company}</dd></div>
-                <div><dt class="font-bold text-white/90">${footer.ceoLabel}</dt><dd>${footer.ceo}</dd></div>
-                <div><dt class="font-bold text-white/90">${footer.registrationLabel}</dt><dd>${footer.registration}</dd></div>
-                <div><dt class="font-bold text-white/90">${footer.addressLabel}</dt><dd>${footer.address}</dd></div>
-              </dl>
-            </section>
-            <section class="space-y-3">
-              <h2 class="text-xs font-black uppercase tracking-[0.22em] text-white">${footer.ipTitle}</h2>
-              <p class="leading-6">${footer.ip}</p>
-            </section>
+          <div class="space-y-8">
+            <div class="flex border-b border-white/10 pb-7">
+              <p class="text-2xl font-black tracking-tight text-white">MOKDA</p>
+            </div>
+            <div class="grid gap-8 text-xs leading-5 text-white/55 lg:grid-cols-[1.45fr_0.9fr]">
+              <section>
+                <h2 class="mb-4 text-[11px] font-black uppercase tracking-[0.24em] text-white/80">${footer.businessTitle}</h2>
+                <dl class="grid gap-x-8 gap-y-3 sm:grid-cols-2">
+                  <div><dt class="font-bold text-white/80">${footer.companyLabel}</dt><dd>${footer.company}</dd></div>
+                  <div><dt class="font-bold text-white/80">${footer.ceoLabel}</dt><dd>${footer.ceo}</dd></div>
+                  <div><dt class="font-bold text-white/80">${footer.registrationLabel}</dt><dd>${footer.registration}</dd></div>
+                  <div><dt class="font-bold text-white/80">${footer.addressLabel}</dt><dd>${footer.address}</dd></div>
+                </dl>
+              </section>
+              <section class="lg:justify-self-end lg:text-right">
+                <h2 class="mb-4 text-[11px] font-black uppercase tracking-[0.24em] text-white/80">${footer.ipTitle}</h2>
+                <p class="max-w-md leading-5 text-white/55 lg:max-w-sm">${footer.ip}</p>
+              </section>
+            </div>
+            <div class="border-t border-white/10 pt-5 text-[11px] font-semibold text-white/35">
+              ${footer.copyright}
+            </div>
           </div>
         `;
       }

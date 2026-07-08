@@ -83,38 +83,108 @@
     </section>
 
     <footer class="bg-neutral-950 py-12 text-white">
-      <div class="mx-auto flex w-full max-w-6xl items-center justify-center px-4 sm:px-6 lg:px-8">
-        <p class="text-center text-sm font-semibold text-white/60"></p>
-      </div>
+      <div id="footerText" class="mx-auto grid w-full max-w-6xl gap-8 px-4 text-sm text-white/65 sm:px-6 md:grid-cols-[0.9fr_1.4fr] lg:px-8"></div>
     </footer>
 
     <script src="./site-i18n.js"></script>
     <script>
       let language = window.MOKDA_I18N.getLanguage();
 
+      const sharedFooterCopy = {
+        ES: {
+          businessTitle: 'Información de la empresa',
+          companyLabel: 'Empresa',
+          company: '먹다(MOKDA)',
+          ceoLabel: 'Representante',
+          ceo: 'Park Gyeom',
+          registrationLabel: 'Registro comercial',
+          registration: '161-07-03392',
+          addressLabel: 'Dirección',
+          address: '2F, E:DA Gimje Youth Space, 44 Nambuk 10-gil, Gimje-si, Jeonbuk State, República de Corea',
+          ipTitle: 'Propiedad intelectual',
+          ip: 'El nombre de marca, nombres de productos, diseños de empaque y materiales relacionados de MOKDA están en proceso de protección de marca e IP.',
+          copyright: '© 2026 MOKDA. Todos los derechos reservados.',
+        },
+        EN: {
+          businessTitle: 'Business Information',
+          companyLabel: 'Company',
+          company: '먹다(MOKDA)',
+          ceoLabel: 'CEO',
+          ceo: 'Park Gyeom',
+          registrationLabel: 'Business Registration No.',
+          registration: '161-07-03392',
+          addressLabel: 'Address',
+          address: '2F, E:DA Gimje Youth Space, 44 Nambuk 10-gil, Gimje-si, Jeonbuk State, Republic of Korea',
+          ipTitle: 'Intellectual Property',
+          ip: 'MOKDA brand name, product names, package designs, and related materials are under trademark and IP protection process.',
+          copyright: '© 2026 MOKDA. All rights reserved.',
+        },
+        KR: {
+          businessTitle: '회사 정보',
+          companyLabel: '상호',
+          company: '먹다(MOKDA)',
+          ceoLabel: '대표',
+          ceo: '박겸',
+          registrationLabel: '사업자등록번호',
+          registration: '161-07-03392',
+          addressLabel: '주소',
+          address: '전북특별자치도 김제시 남북10길 44, 김제청년공간 E:DA(이다) 2층 입주공간(신풍동)',
+          ipTitle: '지식재산권',
+          ip: 'MOKDA의 브랜드명, 제품명, 패키지 디자인 및 관련 자료는 상표권 및 지식재산권 보호 절차를 진행 중입니다.',
+          copyright: '© 2026 MOKDA. 모든 권리 보유.',
+        },
+      };
+
       const content = {
         ES: {
           title: "MOKDA | Próximamente",
           headline: "La página de detalles está en preparación.",
           btn: "Volver atrás",
-          footer: "© 2026 MOKDA. Todos los derechos reservados."
+          footer: sharedFooterCopy.ES
         },
         EN: {
           title: "MOKDA | Coming Soon",
           headline: "Detail page is under construction.",
           btn: "Go Back",
-          footer: "© 2026 MOKDA. All rights reserved."
+          footer: sharedFooterCopy.EN
         },
         KR: {
           title: "MOKDA | 준비중",
           headline: "상세 페이지 준비중입니다.",
           btn: "이전으로 돌아가기",
-          footer: "© 2026 MOKDA. 모든 권리 보유."
+          footer: sharedFooterCopy.KR
         }
       };
 
       function renderLanguageButtons() {
         window.MOKDA_I18N.syncLanguageButtons(language);
+      }
+
+      function renderFooter(footer) {
+        const element = document.getElementById('footerText');
+        if (!element) return;
+
+        element.innerHTML = `
+          <div class="space-y-3">
+            <p class="text-xl font-black tracking-tight text-white">MOKDA</p>
+            <p class="font-semibold text-white/75">${footer.copyright}</p>
+          </div>
+          <div class="grid gap-6 md:grid-cols-2">
+            <section class="space-y-3">
+              <h2 class="text-xs font-black uppercase tracking-[0.22em] text-white">${footer.businessTitle}</h2>
+              <dl class="space-y-2">
+                <div><dt class="font-bold text-white/90">${footer.companyLabel}</dt><dd>${footer.company}</dd></div>
+                <div><dt class="font-bold text-white/90">${footer.ceoLabel}</dt><dd>${footer.ceo}</dd></div>
+                <div><dt class="font-bold text-white/90">${footer.registrationLabel}</dt><dd>${footer.registration}</dd></div>
+                <div><dt class="font-bold text-white/90">${footer.addressLabel}</dt><dd>${footer.address}</dd></div>
+              </dl>
+            </section>
+            <section class="space-y-3">
+              <h2 class="text-xs font-black uppercase tracking-[0.22em] text-white">${footer.ipTitle}</h2>
+              <p class="leading-6">${footer.ip}</p>
+            </section>
+          </div>
+        `;
       }
 
       function renderPage() {
@@ -128,8 +198,7 @@
         const backLink = document.getElementById('backLink');
         if (backLink) backLink.textContent = t.btn;
 
-        const footerText = document.querySelector('footer p');
-        if (footerText) footerText.textContent = t.footer;
+        renderFooter(t.footer);
         
         renderLanguageButtons();
       }

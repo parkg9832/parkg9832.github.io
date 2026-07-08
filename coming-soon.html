@@ -94,13 +94,13 @@
         ES: {
           businessTitle: 'Información de la empresa',
           companyLabel: 'Empresa',
-          company: '먹다(MOKDA)',
+          company: 'MOKDA',
           ceoLabel: 'Representante',
-          ceo: 'Park Gyeom',
+          ceo: 'Park Gyeom (Pablo Park)',
           registrationLabel: 'Registro comercial',
           registration: '161-07-03392',
           addressLabel: 'Dirección',
-          address: '2F, E:DA Gimje Youth Space, 44 Nambuk 10-gil, Gimje-si, Jeonbuk State, República de Corea',
+          address: '44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, República de Corea',
           ipTitle: 'Propiedad intelectual',
           ip: 'El nombre de marca, nombres de productos, diseños de empaque y materiales relacionados de MOKDA están en proceso de protección de marca e IP.',
           copyright: '© 2026 MOKDA. Todos los derechos reservados.',
@@ -108,13 +108,13 @@
         EN: {
           businessTitle: 'Business Information',
           companyLabel: 'Company',
-          company: '먹다(MOKDA)',
+          company: 'MOKDA',
           ceoLabel: 'CEO',
-          ceo: 'Park Gyeom',
+          ceo: 'Park Gyeom (Pablo Park)',
           registrationLabel: 'Business Registration No.',
           registration: '161-07-03392',
           addressLabel: 'Address',
-          address: '2F, E:DA Gimje Youth Space, 44 Nambuk 10-gil, Gimje-si, Jeonbuk State, Republic of Korea',
+          address: '44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, Republic of Korea',
           ipTitle: 'Intellectual Property',
           ip: 'MOKDA brand name, product names, package designs, and related materials are under trademark and IP protection process.',
           copyright: '© 2026 MOKDA. All rights reserved.',
@@ -122,9 +122,9 @@
         KR: {
           businessTitle: '회사 정보',
           companyLabel: '상호',
-          company: '먹다(MOKDA)',
+          company: 'MOKDA',
           ceoLabel: '대표',
-          ceo: '박겸',
+          ceo: '박겸(Pablo Park)',
           registrationLabel: '사업자등록번호',
           registration: '161-07-03392',
           addressLabel: '주소',
@@ -165,35 +165,37 @@
         if (!element) return;
 
         element.innerHTML = `
-          <div class="space-y-7">
-            <div class="border-b border-white/10 pb-5">
+          <div class="space-y-6">
+            <div>
               <p class="text-2xl font-black tracking-tight text-white">MOKDA</p>
             </div>
-            <section>
-              <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.businessTitle}</h2>
-              <dl class="grid border-t border-white/10 text-xs leading-5 text-white/60 sm:grid-cols-2 lg:grid-cols-[0.75fr_0.75fr_0.85fr_1.65fr]">
-                <div class="border-b border-white/10 py-3 sm:pr-6">
+            <div class="grid gap-7 text-xs leading-5 text-white/60 lg:grid-cols-[1.45fr_0.9fr]">
+              <section>
+                <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.businessTitle}</h2>
+                <dl class="grid gap-x-7 gap-y-3 sm:grid-cols-2">
+                <div>
                   <dt class="mb-1 font-bold text-white/40">${footer.companyLabel}</dt>
                   <dd class="font-semibold text-white/75">${footer.company}</dd>
                 </div>
-                <div class="border-b border-white/10 py-3 sm:pr-6">
+                <div>
                   <dt class="mb-1 font-bold text-white/40">${footer.ceoLabel}</dt>
                   <dd class="font-semibold text-white/75">${footer.ceo}</dd>
                 </div>
-                <div class="border-b border-white/10 py-3 sm:pr-6">
+                <div>
                   <dt class="mb-1 font-bold text-white/40">${footer.registrationLabel}</dt>
                   <dd class="font-semibold text-white/75">${footer.registration}</dd>
                 </div>
-                <div class="border-b border-white/10 py-3">
+                <div>
                   <dt class="mb-1 font-bold text-white/40">${footer.addressLabel}</dt>
                   <dd class="text-white/65">${footer.address}</dd>
                 </div>
               </dl>
-            </section>
-            <section class="grid gap-2 border-b border-white/10 pb-5 text-xs leading-5 text-white/55 sm:grid-cols-[12rem_1fr] sm:gap-6">
-              <h2 class="text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.ipTitle}</h2>
-              <p class="max-w-3xl">${footer.ip}</p>
-            </section>
+              </section>
+              <section class="lg:max-w-md lg:justify-self-end">
+                <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.ipTitle}</h2>
+                <p class="text-white/55">${footer.ip}</p>
+              </section>
+            </div>
             <div class="text-[11px] font-semibold text-white/35">
               ${footer.copyright}
             </div>

@@ -2,15 +2,6 @@
 
 이번 리디자인에서 제품 병은 기존 MOKDA 제품컷을 사용한다. 아래 프롬프트는 음식, 소스 질감, 배경 화보용이다.
 
-## hero-mokda-salsa-corea.png
-- 용도: 초기 생성 히어로 후보. 실제 MOKDA 라벨이 아닌 병이 포함되어 최종 히어로에는 사용하지 않는다.
-- 화면 비율: 2:1 wide
-- 배경색: warm cream beige
-- 피사체: Korean red-orange sauce, nachos, fried chicken, potato chips, lime, sesame
-- 분위기: modern global F&B campaign, clean studio lighting, appetizing sauce texture
-- 피해야 할 요소: fake brand labels, unreadable labels, cartoon look, SaaS gradient, decorative HTML-like graphics
-- 파일명: `assets/images/hero-mokda-salsa-corea.png`
-
 ## sauce-texture-red-orange.png
 - 용도: 메인 Hero 배경 및 소스 질감 강조 섹션
 - 화면 비율: 2:1 wide
@@ -49,4 +40,3 @@
 - 분위기: Korea and Latin America connected through food, modern F&B editorial photography
 - 피해야 할 요소: tourist poster, flags, palace imagery, hanbok, fake product labels, overly traditional decoration
 - 파일명: `assets/images/brand-story-kfood-latin-table.png`
-

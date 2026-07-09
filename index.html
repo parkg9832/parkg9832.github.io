@@ -190,6 +190,41 @@
         text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
       }
 
+      .hero-food-backdrop {
+        object-position: center bottom;
+      }
+
+      .hero-product-lockup {
+        filter: drop-shadow(0 28px 24px rgba(72, 28, 10, 0.22));
+      }
+
+      .hero-product-lockup img {
+        filter: drop-shadow(0 24px 20px rgba(72, 28, 10, 0.28));
+      }
+
+      .hero-soft-copy .hero-kicker-shadow,
+      .hero-soft-copy .hero-title-shadow,
+      .hero-soft-copy .hero-title-accent,
+      .hero-soft-copy .hero-copy-shadow {
+        text-shadow: none;
+      }
+
+      .product-photo-card {
+        box-shadow: 0 22px 60px rgba(67, 24, 9, 0.08);
+      }
+
+      .product-photo-card:hover {
+        box-shadow: 0 26px 70px rgba(67, 24, 9, 0.14);
+      }
+
+      .product-food-image {
+        object-position: center center;
+      }
+
+      .sauce-texture-panel img {
+        object-position: center center;
+      }
+
       .surface-depth {
         box-shadow: none;
       }
@@ -239,6 +274,20 @@
           drop-shadow(0 22px 18px var(--bottle-shadow, rgba(92, 45, 17, 0.18)))
           drop-shadow(0 4px 3px rgba(2, 103, 79, 0.08));
       }
+
+      @media (max-width: 767px) {
+        .hero-food-backdrop {
+          object-position: 58% bottom;
+        }
+
+        .hero-product-lockup {
+          transform: translateY(4%);
+        }
+
+        .product-food-image {
+          object-position: center top;
+        }
+      }
     </style>
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
@@ -277,19 +326,31 @@
         </div>
       </header>
 
-      <section id="top" class="relative h-[92vh] min-h-[520px] overflow-hidden bg-neutral-950 text-white sm:h-screen sm:min-h-[620px]">
+      <section id="top" class="relative h-[92vh] min-h-[560px] overflow-hidden bg-[#f7ddc2] text-white sm:h-screen sm:min-h-[660px]">
         <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar"></div>
         <div id="heroIndicators" class="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3"></div>
       </section>
 
-      <section id="products" class="scroll-mt-20 bg-[#fbfaf7] py-14 sm:py-[4.5rem] lg:py-[5.5rem]">
+      <section id="products" class="scroll-mt-20 bg-[#fbf0e1] py-16 sm:py-24 lg:py-28">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="editorial-accent mb-8 max-w-2xl text-left sm:mb-10">
+          <div data-reveal class="editorial-accent mb-10 max-w-3xl text-left sm:mb-14">
             <p id="productsKicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
-            <h2 id="productsTitle" class="break-keep text-balance text-3xl font-extrabold leading-[1.02] tracking-tight text-neutral-950 sm:text-5xl md:text-6xl"></h2>
-            <p id="productsStatus" class="mt-4 max-w-xl break-keep text-sm font-bold leading-6 text-neutral-600 sm:text-base"></p>
+            <h2 id="productsTitle" class="break-keep text-balance text-4xl font-extrabold leading-[0.96] tracking-tight text-neutral-950 sm:text-6xl md:text-7xl"></h2>
+            <p id="productsStatus" class="mt-5 max-w-xl break-keep text-sm font-bold leading-6 text-neutral-700 sm:text-base"></p>
           </div>
-          <div id="productsGrid" class="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-7"></div>
+          <div id="productsGrid" class="mx-auto grid max-w-6xl grid-cols-1 gap-7 md:grid-cols-2 lg:gap-8"></div>
+        </div>
+      </section>
+
+      <section class="sauce-texture-panel bg-[#331606] px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
+        <div data-reveal class="mx-auto h-[260px] max-w-6xl overflow-hidden rounded-[1.35rem] sm:h-[360px] lg:h-[460px]">
+          <img
+            src="assets/images/sauce-texture-red-orange.png"
+            alt=""
+            aria-hidden="true"
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
         </div>
       </section>
 
@@ -312,7 +373,7 @@
         </div>
       </section>
 
-      <section id="story" class="scroll-mt-20 bg-white pb-20 pt-12 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
+      <section id="story" class="scroll-mt-20 bg-[#fff8ef] pb-20 pt-12 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
         <div data-reveal class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 animate-fade-in-up delay-200">
           <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-start md:gap-14 lg:gap-20">
             <div class="md:pt-1">
@@ -324,14 +385,18 @@
             </div>
           </div>
 
-          <div class="surface-depth group relative h-[260px] w-full cursor-pointer overflow-hidden rounded-2xl sm:h-[320px] md:h-[380px]">
+          <div class="surface-depth group relative h-[280px] w-full cursor-pointer overflow-hidden rounded-[1.35rem] sm:h-[360px] md:h-[440px]">
             <img
-              src="./assets/story-vibe-wide-v2.jpg"
+              src="./assets/images/brand-story-kfood-latin-table.png"
               alt=""
               aria-hidden="true"
               class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
+            <div class="pointer-events-none absolute bottom-5 left-1/2 z-10 hidden -translate-x-1/2 items-end gap-2 md:flex">
+              <img src="assets/bottle-original.webp" alt="" aria-hidden="true" class="h-[210px] w-auto object-contain drop-shadow-[0_18px_18px_rgba(40,16,8,0.28)] lg:h-[250px]" loading="lazy" />
+              <img src="assets/bottle-ssamjang.webp" alt="" aria-hidden="true" class="h-[194px] w-auto object-contain drop-shadow-[0_18px_18px_rgba(40,16,8,0.28)] lg:h-[230px]" loading="lazy" />
+            </div>
             <a href="about.html" class="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-500 no-underline group-hover:opacity-100" aria-label="About MOKDA">
               <span class="text-xl font-medium tracking-wide text-white md:text-3xl">
                 Sobre nosotros <span class="ml-1">&gt;</span>
@@ -501,8 +566,9 @@
 
       const heroSlides = [
         {
-          desktopImage: 'assets/assetshero-1-desktop.webp',
-          mobileImage: 'assets/assetshero-1-mobile.webp',
+          desktopImage: 'assets/images/sauce-texture-red-orange.png',
+          mobileImage: 'assets/images/sauce-texture-red-orange.png',
+          theme: 'soft',
           href: '#products',
           copy: {
             EN: {
@@ -596,6 +662,9 @@
             KR: { line1: '할라페뇨의 산뜻함을 더한,', line2: '깔끔하게 올라오는 한국식 매콤함' },
           },
           image: 'assets/bottle-original.webp',
+          foodImage: 'assets/product-food-original-v1.jpg',
+          textureImage: 'assets/images/original-nachos-chicken-chips.png',
+          panelTone: '#ef5f18',
           alt: 'MOKDA Salsa Guchujang Original',
           shadow: 'rgba(126,38,18,0.22)',
           stageShadow: 'rgba(126,38,18,0.24)',
@@ -616,6 +685,9 @@
             KR: { line1: '닭고기, 소고기, 돼지고기와 구운 고기에 어울리는,', line2: '깊고 진한 감칠맛의 한국식 소스' },
           },
           image: 'assets/bottle-ssamjang.webp',
+          foodImage: 'assets/product-food-paracarne-v1.jpg',
+          textureImage: 'assets/images/para-carnes-grilled-meat.png',
+          panelTone: '#381607',
           alt: 'MOKDA Salsa Ssamjang Para Carnes',
           imageClass: '-translate-y-1 scale-x-[1.18] scale-y-[1.09] hover:-translate-y-2 hover:scale-x-[1.21] hover:scale-y-[1.12]',
           shadow: 'rgba(126,74,24,0.2)',
@@ -637,6 +709,7 @@
             KR: { line1: '달콤함과 짭짤함이 균형 잡힌,', line2: '매일 쓰기 좋은 퓨전 소스' },
           },
           image: 'assets/bottle-sweetsoy.webp',
+          featured: false,
           alt: 'MOKDA Salsa Ganjang Soy Sauce',
           shadow: 'rgba(50,24,15,0.22)',
           stageShadow: 'rgba(50,24,15,0.24)',
@@ -1005,21 +1078,33 @@
       function createHeroCarousel() {
         document.getElementById('heroSlides').innerHTML = heroSlides
           .map(
-            (slide, index) => `
-              <div data-hero-slide="${index}" class="relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
+            (slide, index) => {
+              const isSoft = slide.theme === 'soft';
+              return `
+              <div data-hero-slide="${index}" data-hero-theme="${slide.theme || 'dark'}" class="relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
                 <picture class="absolute inset-0 block h-full w-full">
                   <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
-                  <img src="${slide.mobileImage}" alt="" class="h-full w-full object-cover" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
+                  <img src="${slide.mobileImage}" alt="" class="h-full w-full object-cover ${isSoft ? 'hero-food-backdrop' : ''}" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                 </picture>
-                <div class="absolute inset-0 z-10 bg-black/45 md:bg-black/42"></div>
-                <div class="relative z-20 mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-4 pt-28 pb-20 sm:px-6 lg:px-8 lg:pt-36 lg:pb-28">
+                ${
+                  isSoft
+                    ? '<div class="absolute inset-0 z-10 bg-gradient-to-r from-[#f8ddbf]/95 via-[#f8ddbf]/68 to-[#f8ddbf]/8"></div><div class="absolute inset-x-0 bottom-0 z-10 h-36 bg-gradient-to-t from-[#f7ddc2] to-transparent"></div>'
+                    : '<div class="absolute inset-0 z-10 bg-black/45 md:bg-black/42"></div>'
+                }
+                ${
+                  isSoft
+                    ? '<div class="hero-product-lockup absolute bottom-8 right-3 z-20 flex w-[42%] max-w-[230px] items-end justify-center gap-1 md:right-[5%] md:w-[34%] md:max-w-[430px] md:gap-2 lg:right-[8%]"><img src="assets/bottle-original.webp" alt="" aria-hidden="true" class="h-[190px] w-auto object-contain sm:h-[230px] md:h-[330px] lg:h-[405px]" /><img src="assets/bottle-ssamjang.webp" alt="" aria-hidden="true" class="h-[172px] w-auto object-contain sm:h-[208px] md:h-[300px] lg:h-[372px]" /></div>'
+                    : ''
+                }
+                <div class="relative z-20 mx-auto flex h-full w-full max-w-6xl flex-col justify-center px-4 pt-28 pb-20 sm:px-6 lg:px-8 lg:pt-36 lg:pb-28 ${isSoft ? 'hero-soft-copy md:max-w-[52rem]' : ''}">
                   <p data-hero-kicker class="hero-kicker-shadow mb-5 text-xs font-extrabold uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
-                  <h1 data-hero-title class="hero-title-shadow max-w-5xl break-keep text-balance text-5xl font-black leading-[0.9] tracking-tight text-white [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
-                  <p data-hero-subtitle class="hero-copy-shadow mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-relaxed text-white/90 sm:text-xl animate-fade-in-up delay-500"></p>
+                  <h1 data-hero-title class="hero-title-shadow max-w-5xl break-keep text-balance text-5xl font-black leading-[0.88] tracking-tight ${isSoft ? 'text-mokdaOrange' : 'text-white'} [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-7xl md:text-8xl lg:text-9xl animate-fade-in-up delay-200"></h1>
+                  <p data-hero-subtitle class="hero-copy-shadow mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-relaxed ${isSoft ? 'text-[#321608]' : 'text-white/90'} sm:text-xl animate-fade-in-up delay-500"></p>
                   <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-extrabold text-white transition-colors duration-300 hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-800"></a>
                 </div>
               </div>
-            `
+            `;
+            }
           )
           .join('');
 
@@ -1118,21 +1203,28 @@
       function renderProducts(items) {
         const lang = language;
         document.getElementById('productsGrid').innerHTML = items
+          .filter((item) => item.featured !== false)
           .map(
             (item, index) => {
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
               const imageClass = item.imageClass || 'hover:scale-[1.03]';
               return `
-              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-card flex min-w-0 flex-col items-center rounded-[1.25rem] px-3 py-7 text-center transition-all duration-300 sm:px-5 sm:py-8">
-                <p class="mb-1 break-keep text-xs font-extrabold uppercase leading-tight tracking-[0.08em] text-slate-600 sm:text-sm">${category}</p>
-                <h3 class="mb-4 break-keep text-2xl font-extrabold leading-tight ${item.titleClass}">${item.name}</h3>
-                <div class="product-stage relative flex h-64 w-full items-center justify-center overflow-visible sm:h-72" style="--bottle-shadow:${item.shadow || 'rgba(92,45,17,0.18)'};--stage-shadow:${item.stageShadow || 'rgba(92,45,17,0.22)'};--stage-glow:${item.stageGlow || 'rgba(239,95,24,0.1)'};">
-                  <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain transition-transform duration-300 hover:-translate-y-1 ${imageClass}" loading="lazy" />
+              <a href="products.html" data-reveal data-reveal-delay="${index * 120}" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.35rem] bg-white text-left transition-all duration-300">
+                <div class="relative h-[320px] overflow-hidden bg-[#f5d9b8] sm:h-[380px] lg:h-[430px]">
+                  <img src="${item.foodImage || item.textureImage || item.image}" alt="" aria-hidden="true" class="product-food-image h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/8 to-transparent"></div>
+                  <div class="product-stage absolute bottom-0 right-2 flex h-[74%] w-[46%] items-end justify-center overflow-visible sm:right-5" style="--bottle-shadow:${item.shadow || 'rgba(92,45,17,0.18)'};--stage-shadow:${item.stageShadow || 'rgba(92,45,17,0.22)'};--stage-glow:${item.stageGlow || 'rgba(239,95,24,0.1)'};">
+                    <img src="${item.image}" alt="${item.alt}" class="product-bottle relative z-10 h-full w-full cursor-pointer object-contain transition-transform duration-300 group-hover:-translate-y-2 ${imageClass}" loading="lazy" />
+                  </div>
+                  <div class="absolute bottom-5 left-5 right-[46%] sm:bottom-7 sm:left-7">
+                    <p class="mb-2 break-keep text-[11px] font-extrabold uppercase leading-tight tracking-[0.12em] text-white/80 sm:text-xs">${category}</p>
+                    <h3 class="break-keep text-3xl font-extrabold leading-[0.95] text-white sm:text-4xl">${item.name}</h3>
+                  </div>
                 </div>
-                <div class="mx-auto mt-5 w-full max-w-[270px] text-center">
+                <div class="px-5 py-6 sm:px-7 sm:py-7">
                   <span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>
-                  <span class="mt-1 block break-keep text-[15px] font-extrabold leading-6 text-gray-950">${d.line2}</span>
+                  <span class="mt-1 block break-keep text-[15px] font-extrabold leading-6 text-gray-950 sm:text-base">${d.line2}</span>
                 </div>
               </a>
             `;

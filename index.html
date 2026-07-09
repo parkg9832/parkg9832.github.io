@@ -191,10 +191,13 @@
       }
 
       .hero-sauce-plate {
-        box-shadow: 0 34px 80px rgba(78, 31, 10, 0.16);
+        overflow: visible;
+        -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 70%, transparent 88%);
+        mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 70%, transparent 88%);
       }
 
       .hero-sauce-plate img {
+        filter: drop-shadow(0 34px 42px rgba(78, 31, 10, 0.18));
         object-position: center center;
       }
 
@@ -226,6 +229,16 @@
 
       .sauce-texture-panel img {
         object-position: center center;
+      }
+
+      .salsa-cutout {
+        -webkit-mask-image: radial-gradient(ellipse at center, #000 52%, rgba(0, 0, 0, 0.94) 68%, transparent 88%);
+        mask-image: radial-gradient(ellipse at center, #000 52%, rgba(0, 0, 0, 0.94) 68%, transparent 88%);
+      }
+
+      .story-image-fade {
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 22%, #000 100%);
       }
 
       .surface-depth {
@@ -301,24 +314,19 @@
         <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar"></div>
       </section>
 
-      <section id="story" class="brand-grid-bg scroll-mt-20 bg-[#321506] py-16 text-[#f8dfc4] sm:py-24 lg:py-28">
-        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:px-8">
-          <div data-reveal class="grid gap-8">
-            <p id="storyKicker" class="mb-5 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm"></p>
-            <h2 id="storyTitle" class="max-w-[680px] break-keep text-balance text-5xl font-extrabold leading-[0.92] tracking-tight text-mokdaOrange sm:text-7xl lg:text-[5.8rem]"></h2>
-            <div id="storyBody" class="max-w-[620px] break-keep text-pretty text-base font-semibold leading-8 text-[#f7dfc6]/90 sm:text-lg sm:leading-8"></div>
-            <a href="about.html" class="inline-flex w-fit items-center rounded-full border border-[#f8dfc4]/30 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4] transition hover:border-mokdaOrange hover:bg-mokdaOrange hover:text-white">
-              Sobre nosotros
-              <span class="ml-2">-&gt;</span>
-            </a>
-          </div>
-          <div data-reveal data-reveal-delay="140" class="relative min-h-[360px] overflow-hidden rounded-[2rem] bg-[#f7ddc2] sm:min-h-[480px] lg:min-h-[620px]">
-            <img src="./assets/images/brand-story-kfood-latin-table.png" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/80 via-[#321506]/16 to-transparent"></div>
-            <div class="absolute bottom-8 right-7 hidden max-w-sm text-right text-5xl font-extrabold leading-none text-white/90 sm:block lg:text-7xl">
-              MOKDA
-            </div>
-          </div>
+      <section id="salsa-corea" class="brand-grid-bg scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-center text-[#f8dfc4] sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <div data-reveal class="mx-auto flex max-w-6xl flex-col items-center">
+          <p class="mb-5 text-xs font-extrabold uppercase tracking-[0.32em] text-mokdaOrange sm:text-sm">Salsa Corea</p>
+          <h2 class="max-w-5xl text-6xl font-extrabold uppercase leading-[0.86] tracking-tight text-mokdaOrange sm:text-8xl lg:text-[8.8rem]">
+            Corea,<br />más cerca<br />de ti
+          </h2>
+          <p class="mt-8 max-w-2xl break-keep text-base font-semibold leading-8 text-[#f8dfc4]/82 sm:text-lg">
+            Salsa Corea es la primera línea de MOKDA: una forma directa de acercar sabores coreanos a comidas cotidianas.
+          </p>
+          <a href="#products" class="mt-8 inline-flex w-fit items-center rounded-full border border-[#f8dfc4]/30 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-[#f8dfc4] transition hover:border-mokdaOrange hover:bg-mokdaOrange hover:text-white">
+            Ver línea
+            <span class="ml-2">-&gt;</span>
+          </a>
         </div>
       </section>
 
@@ -332,75 +340,64 @@
             <p id="productsStatus" class="max-w-xl break-keep text-sm font-bold leading-6 text-[#321506]/70 sm:text-lg sm:leading-8 lg:justify-self-end"></p>
           </div>
           <div id="productsGrid" class="grid grid-cols-1 gap-8 lg:grid-cols-3"></div>
-          <div data-reveal class="mt-10 rounded-[1.5rem] bg-[#321506] px-5 py-8 text-[#f8dfc4] sm:px-8 sm:py-10">
-            <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange">Salsa Corea</p>
-                <h3 class="text-4xl font-extrabold leading-none tracking-tight sm:text-6xl">Línea de productos</h3>
-              </div>
-              <p class="max-w-md text-sm font-semibold leading-6 text-[#f8dfc4]/70">Tres salsas coreanas de la primera línea de productos de MOKDA.</p>
+        </div>
+      </section>
+
+      <section id="product-line" class="overflow-hidden bg-[#321506] px-5 py-12 text-center text-[#f8dfc4] sm:px-8 sm:py-16 lg:px-12">
+        <div data-reveal class="mx-auto max-w-7xl">
+          <div class="mx-auto mb-6 flex max-w-4xl flex-col items-center gap-3">
+            <div>
+              <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange">Salsa Corea</p>
+              <h3 class="text-4xl font-extrabold leading-none tracking-tight sm:text-6xl">Línea de productos</h3>
             </div>
-            <div class="grid grid-cols-3 items-end gap-4">
-              <div class="flex min-h-[220px] items-end justify-center rounded-[1rem] bg-[#f7ddc2] p-5 sm:min-h-[300px]">
-                <img src="assets/bottle-original.webp" alt="Salsa Corea Original" class="h-48 w-auto object-contain drop-shadow-[0_18px_16px_rgba(50,21,6,0.22)] sm:h-64" loading="lazy" />
-              </div>
-              <div class="flex min-h-[220px] items-end justify-center rounded-[1rem] bg-[#f7ddc2] p-5 sm:min-h-[300px]">
-                <img src="assets/bottle-ssamjang.webp" alt="Salsa Corea Para Carnes" class="h-44 w-auto object-contain drop-shadow-[0_18px_16px_rgba(50,21,6,0.22)] sm:h-60" loading="lazy" />
-              </div>
-              <div class="flex min-h-[220px] items-end justify-center rounded-[1rem] bg-[#f7ddc2] p-5 sm:min-h-[300px]">
-                <img src="assets/bottle-sweetsoy.webp" alt="Salsa Corea Soy Sauce" class="h-48 w-auto object-contain drop-shadow-[0_18px_16px_rgba(50,21,6,0.22)] sm:h-64" loading="lazy" />
-              </div>
-            </div>
+            <p class="max-w-xl text-sm font-semibold leading-6 text-[#f8dfc4]/70">Tres salsas coreanas de la primera línea de productos de MOKDA.</p>
+          </div>
+          <div class="relative mt-4 grid min-h-[270px] grid-cols-3 items-end gap-2 border-t border-[#f8dfc4]/12 pt-6 sm:min-h-[360px] sm:gap-6 lg:min-h-[420px]">
+            <div class="pointer-events-none absolute inset-x-3 bottom-8 h-10 rounded-full bg-black/25 blur-2xl sm:bottom-10"></div>
+            <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
+              <img src="assets/bottle-original.webp" alt="Salsa Corea Original" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(0,0,0,0.36)] sm:h-72 lg:h-80" loading="lazy" />
+              <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4]/78 sm:text-sm">Original</figcaption>
+            </figure>
+            <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
+              <img src="assets/bottle-ssamjang.webp" alt="Salsa Corea Para Carnes" class="h-48 w-auto object-contain drop-shadow-[0_24px_18px_rgba(0,0,0,0.36)] sm:h-64 lg:h-72" loading="lazy" />
+              <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4]/78 sm:text-sm">Para Carnes</figcaption>
+            </figure>
+            <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
+              <img src="assets/bottle-sweetsoy.webp" alt="Salsa Corea Soy Sauce" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(0,0,0,0.36)] sm:h-72 lg:h-80" loading="lazy" />
+              <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4]/78 sm:text-sm">Soy Sauce</figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      <section class="sauce-texture-panel bg-[#321506] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div data-reveal class="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch">
-          <div class="min-h-[320px] overflow-hidden rounded-[1.5rem] bg-[#f7ddc2] sm:min-h-[500px]">
-            <img
-              src="assets/images/sauce-texture-red-orange.png"
-              alt=""
-              aria-hidden="true"
-              class="h-full w-full object-cover"
-              loading="lazy"
-            />
+      <section id="story" class="brand-grid-bg relative scroll-mt-20 overflow-hidden bg-[#321506] py-16 text-[#f8dfc4] sm:py-24 lg:py-32">
+        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+          <div data-reveal class="relative z-10 grid gap-8">
+            <p id="storyKicker" class="mb-5 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm"></p>
+            <h2 id="storyTitle" class="max-w-[720px] break-keep text-balance text-5xl font-extrabold leading-[0.92] tracking-tight text-mokdaOrange sm:text-7xl lg:text-[5.8rem]"></h2>
+            <div id="storyBody" class="max-w-[620px] break-keep text-pretty text-base font-semibold leading-8 text-[#f7dfc6]/90 sm:text-lg sm:leading-8"></div>
+            <a href="about.html" class="inline-flex w-fit items-center rounded-full border border-[#f8dfc4]/30 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4] transition hover:border-mokdaOrange hover:bg-mokdaOrange hover:text-white">
+              Sobre nosotros
+              <span class="ml-2">-&gt;</span>
+            </a>
           </div>
-          <div class="flex min-h-[320px] flex-col justify-between rounded-[1.5rem] border border-[#f8dfc4]/12 bg-[#421b08] p-7 text-[#f8dfc4] sm:p-10">
-            <p class="text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange">Salsa Corea</p>
-            <div class="mt-12 text-5xl font-extrabold uppercase leading-[0.88] tracking-tight text-mokdaOrange sm:text-7xl lg:text-8xl">
-              Corea,<br />más cerca<br />de ti
-            </div>
-            <div class="mt-10 max-w-md text-base font-semibold leading-8 text-[#f8dfc4]/78 sm:text-lg">
-              Salsa Corea es la primera línea de MOKDA: una forma directa de acercar sabores coreanos a comidas cotidianas.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="bg-mokdaOrange text-white py-2 overflow-hidden relative sm:py-3">
-        <div class="animate-marquee">
-          <div class="flex items-center space-x-16 px-4 text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white shrink-0 [font-family:'Syne',sans-serif]">
-            <span>Corea, más cerca de ti</span>
-            <span>Salsa Corea</span>
-          </div>
-          <div class="flex items-center space-x-16 px-4 text-2xl md:text-4xl font-extrabold uppercase tracking-tight text-white shrink-0 [font-family:'Syne',sans-serif]">
-            <span>Corea, más cerca de ti</span>
-            <span>Salsa Corea</span>
+          <div data-reveal data-reveal-delay="140" class="story-image-fade relative min-h-[360px] overflow-hidden sm:min-h-[520px] lg:-mr-28 lg:min-h-[690px]">
+            <img src="./assets/images/brand-story-kfood-latin-table.png" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/70 via-transparent to-transparent"></div>
           </div>
         </div>
       </section>
 
       <section class="bg-[#f7ddc2] py-16 sm:py-24 lg:py-28">
-        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div data-reveal>
+        <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div data-reveal class="mx-auto mb-10 max-w-3xl text-center">
             <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange">FAQ / Q&A</p>
-            <h2 class="max-w-xl text-5xl font-extrabold leading-[0.9] tracking-tight text-[#321506] sm:text-7xl">Preguntas frecuentes</h2>
+            <h2 class="text-5xl font-extrabold leading-[0.9] tracking-tight text-[#321506] sm:text-7xl">Preguntas frecuentes</h2>
             <a href="qna.html" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#d84f12]">
               Ver Q&A <span class="ml-2">-&gt;</span>
             </a>
           </div>
-          <div data-reveal data-reveal-delay="120" class="divide-y divide-[#321506]/14 border-y border-[#321506]/14">
+          <div data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl divide-y divide-[#321506]/14 border-y border-[#321506]/14">
             <details class="group py-6" open>
               <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-left">
                 <span class="text-lg font-extrabold text-[#321506]">¿Qué significa MOKDA?</span>
@@ -429,43 +426,6 @@
               </span>
               <span class="rounded-full border border-[#f8dfc4]/30 px-5 py-3 text-sm font-extrabold">-&gt;</span>
             </a>
-          </div>
-        </div>
-      </section>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <section id="map" class="relative isolate scroll-mt-20 bg-[#321506] pb-7 pt-8 text-white sm:pb-10 sm:pt-12 lg:pb-12">
-        <div class="absolute inset-x-0 -top-8 bottom-0 z-0 text-mokdaOrange md:-top-12" aria-hidden="true">
-          <svg class="pointer-events-none block h-10 w-full md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-            <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
-          </svg>
-          <div class="-mt-px h-[calc(100%+1px)] bg-mokdaOrange"></div>
-        </div>
-        <div class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:gap-8 lg:px-8">
-          <div class="flex h-full flex-col pt-2 sm:pt-3 lg:pt-4">
-            <p id="mapKicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-white/75 sm:text-sm"></p>
-            <h2 id="mapTitle" class="break-keep text-balance text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"></h2>
-            <div id="storeList" class="custom-scrollbar mt-5 max-h-[250px] overflow-y-auto overflow-x-hidden rounded-[1.25rem] border border-white/20 bg-white/10 p-3 backdrop-blur-md sm:rounded-3xl md:mt-7 md:max-h-[340px] md:p-5 lg:flex-1 lg:max-h-none"></div>
-          </div>
-          <div class="surface-depth relative min-h-[280px] w-full overflow-hidden rounded-[1.25rem] bg-white sm:min-h-[360px] sm:rounded-3xl lg:mt-8 lg:min-h-0">
-            <iframe
-              id="mapFrame"
-              src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
-              width="100%"
-              height="100%"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Mapa de MOKDA en América Latina"
-              data-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
-              data-default-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&output=embed"
-              class="pointer-events-none absolute inset-0 h-full w-full rounded-3xl border-0"
-            ></iframe>
           </div>
         </div>
       </section>
@@ -556,6 +516,37 @@
             </div>
             <p id="formStatus" class="mt-4 min-h-6 text-center text-sm font-bold"></p>
           </form>
+        </div>
+      </section>
+
+      <section id="map" class="relative isolate scroll-mt-20 bg-[#321506] pb-7 pt-8 text-white sm:pb-10 sm:pt-12 lg:pb-12">
+        <div class="absolute inset-x-0 -top-8 bottom-0 z-0 text-mokdaOrange md:-top-12" aria-hidden="true">
+          <svg class="pointer-events-none block h-10 w-full md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+            <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
+          </svg>
+          <div class="-mt-px h-[calc(100%+1px)] bg-mokdaOrange"></div>
+        </div>
+        <div class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:gap-8 lg:px-8">
+          <div class="flex h-full flex-col pt-2 sm:pt-3 lg:pt-4">
+            <p id="mapKicker" class="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-white/75 sm:text-sm"></p>
+            <h2 id="mapTitle" class="break-keep text-balance text-4xl font-black leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"></h2>
+            <div id="storeList" class="custom-scrollbar mt-5 max-h-[250px] overflow-y-auto overflow-x-hidden rounded-[1.25rem] border border-white/20 bg-white/10 p-3 backdrop-blur-md sm:rounded-3xl md:mt-7 md:max-h-[340px] md:p-5 lg:flex-1 lg:max-h-none"></div>
+          </div>
+          <div class="surface-depth relative min-h-[280px] w-full overflow-hidden rounded-[1.25rem] bg-white sm:min-h-[360px] sm:rounded-3xl lg:mt-8 lg:min-h-0">
+            <iframe
+              id="mapFrame"
+              src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
+              width="100%"
+              height="100%"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mapa de MOKDA en América Latina"
+              data-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&hl=es&output=embed"
+              data-default-map-src="https://maps.google.com/maps?ll=-12,-72&z=3&t=m&output=embed"
+              class="pointer-events-none absolute inset-0 h-full w-full rounded-3xl border-0"
+            ></iframe>
+          </div>
         </div>
       </section>
 
@@ -1117,13 +1108,13 @@
               return `
               <div data-hero-slide="${index}" data-hero-theme="${slide.theme || 'soft'}" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
                 <div class="absolute inset-0 bg-[#f7ddc2]"></div>
-                <div class="hero-sauce-plate absolute bottom-5 left-1/2 z-10 h-[230px] w-[86%] -translate-x-1/2 overflow-hidden rounded-[1.5rem] bg-[#f7ddc2] sm:bottom-10 sm:h-[330px] md:left-auto md:right-[5vw] md:top-1/2 md:h-[58vh] md:w-[38vw] md:-translate-y-1/2 md:translate-x-0 lg:right-[7vw]">
+                <div class="hero-sauce-plate absolute bottom-1 left-1/2 z-10 h-[290px] w-[105%] -translate-x-1/2 sm:bottom-4 sm:h-[390px] md:left-auto md:right-[-2vw] md:top-1/2 md:h-[72vh] md:w-[52vw] md:-translate-y-1/2 md:translate-x-0 lg:right-[1vw]">
                   <picture class="block h-full w-full">
                     <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
-                    <img src="${slide.mobileImage}" alt="" class="h-full w-full object-cover" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
+                    <img src="${slide.mobileImage}" alt="" class="h-full w-full object-contain" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                   </picture>
                 </div>
-                <div class="relative z-20 mx-auto flex h-full w-full max-w-7xl flex-col justify-center px-4 pt-24 pb-[250px] sm:px-6 sm:pb-[360px] md:pb-20 lg:px-8 lg:pt-36 lg:pb-28">
+                <div class="relative z-20 mx-auto flex h-full w-full max-w-7xl flex-col justify-center px-4 pt-24 pb-[285px] sm:px-6 sm:pb-[410px] md:pb-20 lg:px-8 lg:pt-36 lg:pb-28">
                   <p data-hero-kicker class="mb-5 text-xs font-extrabold uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
                   <h1 data-hero-title class="max-w-[760px] break-keep text-balance text-6xl font-extrabold leading-[0.82] tracking-tight text-mokdaOrange [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-8xl md:text-[7.2rem] lg:text-[8.6rem] animate-fade-in-up delay-200"></h1>
                   <p data-hero-subtitle class="mt-6 max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl animate-fade-in-up delay-500"></p>

@@ -22,14 +22,14 @@
     <meta property="og:image" content="https://www.mokda.kr/assets/og-mokda.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="MOKDA Comer Corea hero image with Korean sauce bottles" />
+    <meta property="og:image:alt" content="MOKDA Comer Corea hero image with Korean sauce and Latin snacks" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="MOKDA | Salsa Coreana Premium (salsacoreana) | Comer Corea" />
     <meta name="twitter:description" content="MOKDA (Comer Corea) es una marca premium de salsa coreana (salsacoreana) y condimentos. MOKDA acerca los sabores auténticos de Corea a las mesas de América Latina." />
     <meta name="twitter:image" content="https://www.mokda.kr/assets/og-mokda.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Urbanist:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="application/ld+json">
       {
@@ -82,6 +82,52 @@
       h2,
       h3 {
         letter-spacing: -0.04em;
+      }
+
+      .display-latin {
+        font-family: 'Archivo Black', 'Arial Black', 'Noto Sans', sans-serif;
+        font-weight: 900 !important;
+        letter-spacing: -0.065em;
+      }
+
+      .display-korean {
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400 !important;
+        letter-spacing: -0.04em;
+      }
+
+      .condensed-label {
+        font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
+        letter-spacing: 0.18em;
+      }
+
+      .brand-text-link {
+        position: relative;
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: 'Archivo Black', 'Noto Sans', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .brand-text-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -0.4rem;
+        height: 2px;
+        background: currentColor;
+        transform-origin: left;
+        transform: scaleX(0.38);
+        transition: transform 260ms ease;
+      }
+
+      .brand-text-link:hover::after {
+        transform: scaleX(1);
       }
 
       .font-black,
@@ -181,8 +227,8 @@
 
       .hero-sauce-plate {
         overflow: visible;
-        -webkit-mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 70%, transparent 88%);
-        mask-image: radial-gradient(ellipse at center, #000 58%, rgba(0, 0, 0, 0.9) 70%, transparent 88%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 100%);
       }
 
       .hero-sauce-plate img {
@@ -305,14 +351,14 @@
 
       <section id="salsa-corea" class="brand-grid-bg scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-center text-[#f8dfc4] sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div data-reveal class="mx-auto flex max-w-6xl flex-col items-center">
-          <p class="mb-5 text-xs font-extrabold uppercase tracking-[0.32em] text-mokdaOrange sm:text-sm">Salsa Corea</p>
-          <h2 class="max-w-5xl text-6xl font-extrabold uppercase leading-[0.86] tracking-tight text-mokdaOrange sm:text-8xl lg:text-[8.8rem]">
+          <p class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl">Salsa Corea</p>
+          <h2 class="display-latin max-w-5xl text-6xl uppercase leading-[0.82] text-mokdaOrange sm:text-8xl lg:text-[9.6rem]">
             Corea,<br />más cerca<br />de ti
           </h2>
           <p class="mt-8 max-w-2xl break-keep text-base font-semibold leading-8 text-[#f8dfc4]/82 sm:text-lg">
             Salsa Corea es la primera línea de MOKDA: una forma directa de acercar sabores coreanos a comidas cotidianas.
           </p>
-          <a href="#products" class="mt-8 inline-flex w-fit items-center rounded-full border border-[#f8dfc4]/30 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.14em] text-[#f8dfc4] transition hover:border-mokdaOrange hover:bg-mokdaOrange hover:text-white">
+          <a href="#products" class="brand-text-link mt-8 text-[#f8dfc4]">
             Ver línea
             <span class="ml-2">-&gt;</span>
           </a>
@@ -323,8 +369,8 @@
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mb-12 grid grid-cols-1 gap-7 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
             <div class="editorial-accent">
-            <p id="productsKicker" class="mb-2 break-keep text-xs font-bold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm"></p>
-              <h2 id="productsTitle" class="break-keep text-balance text-5xl font-extrabold leading-[0.9] tracking-tight text-neutral-950 sm:text-7xl lg:text-8xl"></h2>
+            <p id="productsKicker" class="condensed-label mb-2 break-keep text-base uppercase text-mokdaOrange sm:text-xl"></p>
+              <h2 id="productsTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.82] text-neutral-950 sm:text-8xl lg:text-[8.4rem]"></h2>
             </div>
             <p id="productsStatus" class="max-w-xl break-keep text-sm font-bold leading-6 text-[#321506]/70 sm:text-lg sm:leading-8 lg:justify-self-end"></p>
           </div>
@@ -336,8 +382,8 @@
         <div data-reveal class="mx-auto max-w-7xl">
           <div class="mx-auto mb-6 flex max-w-4xl flex-col items-center gap-3">
             <div>
-              <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange">Salsa Corea</p>
-              <h3 class="text-4xl font-extrabold leading-none tracking-tight sm:text-6xl">Línea de productos</h3>
+              <p class="condensed-label mb-3 text-base uppercase text-mokdaOrange">Salsa Corea</p>
+              <h3 class="display-latin text-5xl uppercase leading-none sm:text-7xl">Línea de productos</h3>
             </div>
             <p class="max-w-xl text-sm font-semibold leading-6 text-[#f8dfc4]/70">Tres salsas coreanas de la primera línea de productos de MOKDA.</p>
           </div>
@@ -362,10 +408,10 @@
       <section id="story" class="brand-grid-bg relative scroll-mt-20 overflow-hidden bg-[#321506] py-16 text-[#f8dfc4] sm:py-24 lg:py-32">
         <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
           <div data-reveal class="relative z-10 grid gap-8">
-            <p id="storyKicker" class="mb-5 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm"></p>
-            <h2 id="storyTitle" class="max-w-[720px] break-keep text-balance text-5xl font-extrabold leading-[0.92] tracking-tight text-mokdaOrange sm:text-7xl lg:text-[5.8rem]"></h2>
+            <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
+            <h2 id="storyTitle" class="display-korean max-w-[720px] break-keep text-balance text-5xl leading-[0.96] text-mokdaOrange sm:text-7xl lg:text-[5.8rem]"></h2>
             <div id="storyBody" class="max-w-[620px] break-keep text-pretty text-base font-semibold leading-8 text-[#f7dfc6]/90 sm:text-lg sm:leading-8"></div>
-            <a href="about.html" class="inline-flex w-fit items-center rounded-full border border-[#f8dfc4]/30 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4] transition hover:border-mokdaOrange hover:bg-mokdaOrange hover:text-white">
+            <a href="about.html" class="brand-text-link text-[#f8dfc4]">
               Sobre nosotros
               <span class="ml-2">-&gt;</span>
             </a>
@@ -380,9 +426,9 @@
       <section class="bg-[#f7ddc2] py-16 sm:py-24 lg:py-28">
         <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-10 max-w-3xl text-center">
-            <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange">FAQ / Q&A</p>
-            <h2 class="text-5xl font-extrabold leading-[0.9] tracking-tight text-[#321506] sm:text-7xl">Preguntas frecuentes</h2>
-            <a href="qna.html" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-6 py-3 text-sm font-extrabold text-white transition hover:bg-[#d84f12]">
+            <p class="condensed-label mb-4 text-base uppercase text-mokdaOrange">FAQ / Q&A</p>
+            <h2 class="display-latin text-5xl uppercase leading-[0.86] text-[#321506] sm:text-7xl">Preguntas frecuentes</h2>
+            <a href="qna.html" class="brand-text-link mx-auto mt-8 text-mokdaOrange">
               Ver Q&A <span class="ml-2">-&gt;</span>
             </a>
           </div>
@@ -495,7 +541,7 @@
               <button
                 id="submitButton"
                 type="submit"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-mokdaOrange px-9 py-4 text-sm font-extrabold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"
+                class="inline-flex items-center justify-center gap-3 bg-mokdaOrange px-10 py-4 text-sm font-extrabold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"
               >
                 <span id="submitButtonText"></span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -579,8 +625,8 @@
 
       const heroSlides = [
         {
-          desktopImage: 'assets/images/sauce-texture-red-orange.png',
-          mobileImage: 'assets/images/sauce-texture-red-orange.png',
+          desktopImage: 'assets/images/hero-mokda-sauce-pour-v2.png',
+          mobileImage: 'assets/images/hero-mokda-sauce-pour-v2.png',
           theme: 'soft',
           href: '#products',
           copy: {
@@ -1097,17 +1143,19 @@
               return `
               <div data-hero-slide="${index}" data-hero-theme="${slide.theme || 'soft'}" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
                 <div class="absolute inset-0 bg-[#f7ddc2]"></div>
-                <div class="hero-sauce-plate absolute bottom-1 left-1/2 z-10 h-[290px] w-[105%] -translate-x-1/2 sm:bottom-4 sm:h-[390px] md:left-auto md:right-[-2vw] md:top-1/2 md:h-[72vh] md:w-[52vw] md:-translate-y-1/2 md:translate-x-0 lg:right-[1vw]">
+                <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-3rem] md:left-auto md:right-[-5vw] md:h-[68vh] md:w-[72vw] md:translate-x-0 lg:right-[-2vw] lg:h-[70vh]">
                   <picture class="block h-full w-full">
                     <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
-                    <img src="${slide.mobileImage}" alt="" class="h-full w-full object-contain" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
+                    <img src="${slide.mobileImage}" alt="" class="h-full w-full object-contain object-bottom" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                   </picture>
                 </div>
-                <div class="relative z-20 mx-auto flex h-full w-full max-w-7xl flex-col justify-center px-4 pt-24 pb-[285px] sm:px-6 sm:pb-[410px] md:pb-20 lg:px-8 lg:pt-36 lg:pb-28">
-                  <p data-hero-kicker class="mb-5 text-xs font-extrabold uppercase tracking-[0.34em] text-mokdaOrange sm:text-sm"></p>
-                  <h1 data-hero-title class="max-w-[760px] break-keep text-balance text-6xl font-extrabold leading-[0.82] tracking-tight text-mokdaOrange [font-family:Urbanist,ui-sans-serif,system-ui] sm:text-8xl md:text-[7.2rem] lg:text-[8.6rem] animate-fade-in-up delay-200"></h1>
-                  <p data-hero-subtitle class="mt-6 max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl animate-fade-in-up delay-500"></p>
-                  <a data-hero-link href="#products" class="mt-8 inline-flex w-fit items-center rounded-full bg-mokdaOrange px-7 py-3 text-sm font-extrabold text-white transition-colors duration-300 hover:bg-orange-600 focus:outline-none focus:ring-4 focus:ring-orange-300/40 animate-fade-in-up delay-800"></a>
+                <div class="relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 pt-28 pb-[340px] sm:px-6 sm:pb-[455px] md:pt-28 md:pb-[35vh] lg:px-8">
+                  <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-mokdaOrange sm:text-xl md:mb-2"></p>
+                  <h1 data-hero-title class="display-latin mx-auto max-w-[1180px] text-center text-[5rem] uppercase leading-[0.78] text-mokdaOrange sm:text-[8rem] md:text-[10rem] lg:text-[13.2rem] xl:text-[15rem] animate-fade-in-up delay-200"></h1>
+                  <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
+                    <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl animate-fade-in-up delay-500"></p>
+                    <a data-hero-link href="#products" class="brand-text-link text-[#321506] animate-fade-in-up delay-800"></a>
+                  </div>
                 </div>
               </div>
             `;
@@ -1160,7 +1208,7 @@
           title.appendChild(titleLine1);
           if (copy.titleLine2) {
             const titleLine2 = document.createElement('span');
-            titleLine2.className = 'mt-3 block text-[0.42em] leading-[0.95] text-[#321506] md:mt-4';
+            titleLine2.className = 'display-korean mt-3 block text-[0.36em] leading-[0.95] text-[#321506] md:mt-4';
             titleLine2.textContent = copy.titleLine2;
             title.appendChild(titleLine2);
           }
@@ -1224,12 +1272,12 @@
                   <img src="${item.foodImage || item.textureImage || item.image}" alt="" aria-hidden="true" class="product-food-image h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/6 to-transparent"></div>
                   <div class="absolute bottom-5 left-5 right-5 sm:bottom-7 sm:left-7">
-                    <p class="mb-2 break-keep text-[11px] font-extrabold uppercase leading-tight tracking-[0.12em] text-white/80 sm:text-xs">${category}</p>
-                    <h3 class="break-keep text-3xl font-extrabold leading-[0.95] text-white sm:text-4xl">${item.name}</h3>
+                    <p class="condensed-label mb-2 break-keep text-sm uppercase leading-tight text-white/80 sm:text-base">${category}</p>
+                    <h3 class="display-latin break-keep text-4xl uppercase leading-[0.88] text-white sm:text-5xl">${item.name}</h3>
                   </div>
                 </div>
                 <div class="min-h-[150px] px-5 py-6 sm:px-7 sm:py-7">
-                  <p class="mb-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-mokdaOrange">Salsa Corea line</p>
+                  <p class="condensed-label mb-4 text-sm uppercase text-mokdaOrange">Salsa Corea line</p>
                   <span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>
                   <span class="mt-1 block break-keep text-[15px] font-extrabold leading-6 text-gray-950 sm:text-base">${d.line2}</span>
                 </div>

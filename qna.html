@@ -133,9 +133,9 @@
         <div class="flex items-center gap-4 md:gap-6">
           <div id="lang-selector" class="relative flex w-fit cursor-pointer items-center rounded-full bg-stone-100 p-1 shadow-sm" aria-label="Language switcher">
             <div id="lang-bg" class="absolute bottom-1 left-1 top-1 w-10 rounded-full bg-mokdaOrange transition-transform duration-300 ease-in-out sm:w-12"></div>
-            <button id="langES" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="0">ES</button>
-            <button id="langKR" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="1">KR</button>
-            <button id="langEN" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="2">EN</button>
+            <button id="langES" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="0" translate="no">ES</button>
+            <button id="langKR" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="1" translate="no">KR</button>
+            <button id="langEN" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="2" translate="no">EN</button>
           </div>
           <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 transition-colors duration-300 hover:bg-neutral-950/5" aria-label="Open navigation menu">
             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -191,10 +191,10 @@
         </div>
       </section>
 
-      <section id="socialBanner" class="bg-mokdaOrange py-6 text-white">
+      <section id="socialBanner" class="relative z-20 min-h-[170px] scroll-mt-24 bg-mokdaOrange py-12 text-white sm:py-14">
         <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-6 px-4 text-center">
           <div class="flex flex-col items-center">
-            <h2 id="socialTitle" class="mb-4 text-2xl font-black uppercase">SÍGUENOS</h2>
+            <h2 id="socialTitle" class="mb-4 text-3xl font-black uppercase leading-tight tracking-[0.08em]">SNS</h2>
             <div class="flex items-center gap-6">
               <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
@@ -224,7 +224,7 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js"></script>
+    <script src="./site-i18n.js?v=20260710"></script>
     <script>
       let language = window.MOKDA_I18N.getLanguage();
       let activeCategory = 'ALL';
@@ -390,7 +390,7 @@
           },
           categories: { ALL: 'ALL', GENERAL: 'GENERAL', PRODUCT: 'PRODUCTO', B2B: 'B2B', EXPORT: 'EXPORTACIÓN' },
           empty: 'No hay preguntas en esta categoría.',
-          social: 'SÍGUENOS',
+          social: 'SNS',
           footer: sharedFooterCopy.ES,
         },
         EN: {
@@ -415,7 +415,7 @@
           },
           categories: { ALL: 'ALL', GENERAL: 'GENERAL', PRODUCT: 'PRODUCT', B2B: 'B2B', EXPORT: 'EXPORT' },
           empty: 'No questions in this category.',
-          social: 'FOLLOW US',
+          social: 'SNS',
           footer: sharedFooterCopy.EN,
         },
         KR: {
@@ -440,7 +440,7 @@
           },
           categories: { ALL: 'ALL', GENERAL: 'GENERAL', PRODUCT: 'PRODUCT', B2B: 'B2B', EXPORT: 'EXPORT' },
           empty: '이 카테고리에 등록된 질문이 없습니다.',
-          social: 'SÍGUENOS',
+          social: 'SNS',
           footer: sharedFooterCopy.KR,
         },
       };

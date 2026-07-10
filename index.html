@@ -324,9 +324,9 @@
           <div class="flex items-center gap-4 md:gap-6">
             <div id="lang-selector" class="relative flex items-center bg-stone-100 rounded-full p-1 cursor-pointer w-fit shadow-sm" aria-label="Language switcher">
               <div id="lang-bg" class="absolute left-1 top-1 bottom-1 w-10 sm:w-12 bg-mokdaOrange rounded-full transition-transform duration-300 ease-in-out"></div>
-              <button id="langES" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="0">ES</button>
-              <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1">KR</button>
-              <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2">EN</button>
+              <button id="langES" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="0" translate="no">ES</button>
+              <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1" translate="no">KR</button>
+              <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2" translate="no">EN</button>
             </div>
             <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-white transition-colors duration-300 hover:bg-white/20" aria-label="Open navigation menu">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -619,7 +619,7 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js"></script>
+    <script src="./site-i18n.js?v=20260710"></script>
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);

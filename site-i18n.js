@@ -41,6 +41,8 @@
       if (!button) return;
 
       const isActive = normalized === lang;
+      button.textContent = lang;
+      button.setAttribute('translate', 'no');
       button.className = isActive ? ACTIVE_BUTTON_CLASS : INACTIVE_BUTTON_CLASS;
       button.setAttribute('aria-pressed', String(isActive));
     });

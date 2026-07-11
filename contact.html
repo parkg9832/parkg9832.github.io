@@ -24,7 +24,7 @@
     <meta name="twitter:image" content="https://www.mokda.kr/assets/og-mokda.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Urbanist:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -46,6 +46,30 @@
         font-family: 'Noto Sans', 'Noto Sans KR', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         font-weight: 400;
         letter-spacing: 0;
+      }
+
+      .display-latin {
+        font-family: 'Archivo Black', 'Arial Black', 'Noto Sans', sans-serif;
+        font-weight: 900 !important;
+        letter-spacing: -0.065em;
+      }
+
+      .display-korean {
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400 !important;
+        letter-spacing: -0.04em;
+      }
+
+      .condensed-label {
+        font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
+        letter-spacing: 0.18em;
+      }
+
+      .brand-grid-bg {
+        background-image:
+          linear-gradient(rgba(248, 223, 196, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(248, 223, 196, 0.055) 1px, transparent 1px);
+        background-size: 64px 64px;
       }
 
       .font-black,
@@ -71,16 +95,6 @@
         transform: translateY(0);
       }
 
-      .editorial-accent::after {
-        content: "";
-        display: block;
-        width: 72px;
-        height: 3px;
-        margin-top: 18px;
-        border-radius: 999px;
-        background: #ef5f18;
-      }
-
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -97,7 +111,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
   </head>
-  <body class="bg-[#f7f3eb] text-neutral-950 antialiased">
+  <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -127,61 +141,61 @@
       </div>
     </header>
 
-    <main class="overflow-hidden bg-[#f7f3eb]">
-      <section class="border-b border-neutral-950/10 bg-[#f7f3eb] px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-32 lg:px-8">
-        <div class="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-[1fr_20rem] lg:items-end">
-          <div data-reveal class="editorial-accent max-w-2xl">
-            <p id="pageKicker" class="mb-4 text-[11px] font-extrabold uppercase text-mokdaOrange sm:text-xs"></p>
-            <h1 id="pageTitle" class="break-keep text-balance text-4xl font-black leading-tight text-neutral-950 sm:text-5xl lg:text-6xl"></h1>
-            <p id="pageDescription" class="mt-4 max-w-xl text-pretty text-sm font-semibold leading-6 text-neutral-600 sm:text-base sm:leading-7"></p>
+    <main class="overflow-hidden bg-[#f7ddc2]">
+      <section class="brand-grid-bg bg-[#321506] px-4 pb-16 pt-32 text-[#f8dfc4] sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24">
+        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1fr_22rem] lg:items-end">
+          <div data-reveal class="max-w-4xl">
+            <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
+            <h1 id="pageTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.86] text-mokdaOrange sm:text-8xl lg:text-[7rem]"></h1>
+            <p id="pageDescription" class="mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
           </div>
-          <aside data-reveal data-reveal-delay="90" class="hidden border-l-4 border-mokdaOrange bg-white px-5 py-5 shadow-[0_8px_28px_rgba(23,23,23,0.06)] lg:block">
-            <p id="responseKicker" class="mb-2 text-[11px] font-extrabold uppercase text-neutral-400"></p>
-            <p id="responseText" class="text-sm font-semibold leading-6 text-neutral-700"></p>
+          <aside data-reveal data-reveal-delay="90" class="border-t border-[#f8dfc4]/25 pt-5 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+            <p id="responseKicker" class="condensed-label mb-2 text-base uppercase text-mokdaOrange"></p>
+            <p id="responseText" class="text-sm font-semibold leading-6 text-[#f8dfc4]/70"></p>
           </aside>
         </div>
       </section>
 
-      <section class="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.44fr_0.56fr] lg:items-start">
+      <section class="bg-[#f7ddc2] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
           <aside data-reveal class="order-2 grid gap-6 lg:order-1">
-            <div class="border-b border-neutral-950/15 pb-6">
-              <p id="responseTitleKicker" class="mb-2 text-[11px] font-bold uppercase text-mokdaOrange"></p>
-              <h2 id="responseTitle" class="text-2xl font-black leading-tight text-neutral-950 sm:text-3xl"></h2>
+            <div class="border-b border-[#321506]/18 pb-7">
+              <p id="responseTitleKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange"></p>
+              <h2 id="responseTitle" class="display-latin text-4xl uppercase leading-[0.9] text-[#321506] sm:text-5xl"></h2>
             </div>
-            <div id="contactSteps" class="grid gap-0 border-y border-neutral-950/15"></div>
+            <div id="contactSteps" class="grid gap-0 border-y border-[#321506]/18"></div>
           </aside>
 
-          <form id="contactForm" data-reveal data-reveal-delay="120" class="order-1 border border-neutral-950/15 bg-white p-5 sm:p-7 md:p-8 lg:order-2">
+          <form id="contactForm" data-reveal data-reveal-delay="120" class="order-1 border border-[#321506]/12 bg-[#fff8ef] p-5 shadow-[0_28px_80px_rgba(67,24,9,0.10)] sm:p-7 md:p-10 lg:order-2">
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
                 <span id="companyLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
+                <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="nameLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
+                <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="emailLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="emailInput" type="email" name="email" required autocomplete="email" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
+                <input id="emailInput" type="email" name="email" required autocomplete="email" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="whatsappLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
+                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="countryLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <select id="countrySelect" name="country" required class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none"></select>
+                <select id="countrySelect" name="country" required class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
               </label>
               <label class="block">
                 <span id="purposeLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <select id="purposeSelect" name="purpose" required class="w-full border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none"></select>
+                <select id="purposeSelect" name="purpose" required class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
               </label>
               <label class="block sm:col-span-2">
                 <span id="messageLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <textarea id="messageInput" name="message" rows="7" required class="w-full resize-none border border-neutral-300 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none"></textarea>
+                <textarea id="messageInput" name="message" rows="7" required class="w-full resize-none border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
               </label>
             </div>
             <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -530,9 +544,9 @@
         document.getElementById('contactSteps').innerHTML = steps
           .map(
             ([number, label], index) => `
-              <div data-reveal data-reveal-delay="${(index + 1) * 90}" class="grid grid-cols-[3rem_1fr] items-center gap-4 border-b border-neutral-950/10 py-4 last:border-b-0">
+              <div data-reveal data-reveal-delay="${(index + 1) * 90}" class="grid grid-cols-[3rem_1fr] items-center gap-4 border-b border-[#321506]/12 py-5 last:border-b-0">
                 <span class="text-xs font-black text-mokdaOrange">${number}</span>
-                <p class="text-sm font-bold leading-5 text-neutral-800">${label}</p>
+                <p class="text-sm font-bold leading-5 text-[#321506]/78">${label}</p>
               </div>
             `
           )
@@ -632,6 +646,11 @@
         setText('responseTitle', t.response.title);
         setText('responseText', t.response.text);
         setText('socialTitle', t.social);
+        ['pageTitle', 'responseTitle'].forEach((id) => {
+          const heading = document.getElementById(id);
+          heading.classList.toggle('display-latin', language !== 'KR');
+          heading.classList.toggle('display-korean', language === 'KR');
+        });
         renderSteps(t.steps);
         renderForm(t.fields);
         renderFooter(t.footer);

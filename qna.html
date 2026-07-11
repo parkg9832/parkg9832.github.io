@@ -24,7 +24,7 @@
     <meta name="twitter:image" content="https://www.mokda.kr/assets/og-mokda.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Urbanist:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -46,6 +46,30 @@
         font-family: 'Noto Sans', 'Noto Sans KR', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         font-weight: 400;
         letter-spacing: 0;
+      }
+
+      .display-latin {
+        font-family: 'Archivo Black', 'Arial Black', 'Noto Sans', sans-serif;
+        font-weight: 900 !important;
+        letter-spacing: -0.065em;
+      }
+
+      .display-korean {
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400 !important;
+        letter-spacing: -0.04em;
+      }
+
+      .condensed-label {
+        font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
+        letter-spacing: 0.18em;
+      }
+
+      .brand-grid-bg {
+        background-image:
+          linear-gradient(rgba(50, 21, 6, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(50, 21, 6, 0.045) 1px, transparent 1px);
+        background-size: 64px 64px;
       }
 
       .font-black,
@@ -71,16 +95,6 @@
         transform: translateY(0);
       }
 
-      .editorial-accent::after {
-        content: "";
-        display: block;
-        width: 72px;
-        height: 3px;
-        margin-top: 18px;
-        border-radius: 999px;
-        background: #ef5f18;
-      }
-
       .qna-answer {
         display: grid;
         grid-template-rows: 0fr;
@@ -95,12 +109,16 @@
         opacity: 1;
       }
 
-      .qna-icon {
+      .qna-glyph {
         transition: transform 260ms ease;
       }
 
-      .qna-item.is-open .qna-icon {
+      .qna-item.is-open .qna-glyph {
         transform: rotate(45deg);
+      }
+
+      .qna-item.is-open .qna-icon {
+        background: #ef5f18;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -115,7 +133,7 @@
         }
 
         .qna-answer,
-        .qna-icon {
+        .qna-glyph {
           transition: none;
         }
       }
@@ -124,7 +142,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
   </head>
-  <body class="bg-[#f7f3eb] text-neutral-950 antialiased">
+  <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -154,40 +172,40 @@
       </div>
     </header>
 
-    <main class="overflow-hidden bg-[#f7f3eb]">
-      <section class="border-b border-neutral-950/10 bg-[#f7f3eb] px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-32 lg:px-8">
-        <div class="mx-auto grid w-full max-w-6xl gap-8 lg:grid-cols-[1fr_20rem] lg:items-end">
-          <div data-reveal class="editorial-accent max-w-2xl">
-            <p id="pageKicker" class="mb-4 text-[11px] font-extrabold uppercase text-mokdaOrange sm:text-xs"></p>
-            <h1 id="pageTitle" class="break-keep text-balance text-4xl font-black leading-tight text-neutral-950 sm:text-5xl lg:text-6xl"></h1>
-            <p id="pageDescription" class="mt-4 max-w-xl text-pretty text-sm font-semibold leading-6 text-neutral-600 sm:text-base sm:leading-7"></p>
+    <main class="overflow-hidden bg-[#f7ddc2]">
+      <section class="brand-grid-bg bg-[#321506] px-4 pb-16 pt-32 text-[#f8dfc4] sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24">
+        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1fr_22rem] lg:items-end">
+          <div data-reveal class="max-w-4xl">
+            <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
+            <h1 id="pageTitle" class="display-latin break-keep text-balance text-5xl uppercase leading-[0.86] text-mokdaOrange sm:text-8xl lg:text-[7rem]"></h1>
+            <p id="pageDescription" class="mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
           </div>
-          <aside data-reveal data-reveal-delay="90" class="hidden border-l-4 border-mokdaOrange bg-white px-5 py-5 shadow-[0_8px_28px_rgba(23,23,23,0.06)] lg:block">
-            <p id="heroNoteKicker" class="mb-2 text-[11px] font-extrabold uppercase text-neutral-400"></p>
-            <p id="heroNoteText" class="text-sm font-semibold leading-6 text-neutral-700"></p>
+          <aside data-reveal data-reveal-delay="90" class="border-t border-[#f8dfc4]/25 pt-5 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+            <p id="heroNoteKicker" class="condensed-label mb-2 text-base uppercase text-mokdaOrange"></p>
+            <p id="heroNoteText" class="text-sm font-semibold leading-6 text-[#f8dfc4]/70"></p>
           </aside>
         </div>
       </section>
 
-      <section class="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div class="mx-auto w-full max-w-6xl">
-          <div data-reveal class="mb-8 flex flex-col gap-4 border-b border-neutral-950/15 pb-6 sm:flex-row sm:items-end sm:justify-between">
+          <div data-reveal class="mb-9 flex flex-col gap-5 border-b border-[#321506]/20 pb-7 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p id="boardKicker" class="mb-2 text-[11px] font-bold uppercase text-mokdaOrange"></p>
-              <h2 id="boardTitle" class="text-2xl font-black leading-tight text-neutral-950 sm:text-3xl"></h2>
-              <p id="boardDescription" class="mt-2 max-w-2xl text-sm font-semibold leading-6 text-neutral-600"></p>
+              <p id="boardKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange"></p>
+              <h2 id="boardTitle" class="display-latin text-4xl uppercase leading-[0.9] text-[#321506] sm:text-6xl"></h2>
+              <p id="boardDescription" class="mt-4 max-w-2xl text-sm font-semibold leading-6 text-[#321506]/68 sm:text-base"></p>
             </div>
-            <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center bg-mokdaOrange px-5 py-3 text-sm font-extrabold text-white transition-colors hover:bg-orange-700"></a>
+            <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center bg-[#321506] px-6 py-3.5 text-sm font-extrabold uppercase text-[#f8dfc4] transition-colors hover:bg-mokdaOrange"></a>
           </div>
 
-          <div data-reveal data-reveal-delay="60" class="mb-6 flex border-b border-neutral-950/10">
-            <button id="faqTab" type="button" class="border-b-2 border-mokdaOrange px-4 py-3 text-sm font-black text-neutral-950"></button>
-            <a id="contactTab" href="contact.html" class="border-b-2 border-transparent px-4 py-3 text-sm font-black text-neutral-500 transition hover:text-mokdaOrange"></a>
+          <div data-reveal data-reveal-delay="60" class="mb-6 flex border-b border-[#321506]/16">
+            <button id="faqTab" type="button" class="border-b-[3px] border-mokdaOrange px-4 py-3 text-sm font-black text-[#321506]"></button>
+            <a id="contactTab" href="contact.html" class="border-b-[3px] border-transparent px-4 py-3 text-sm font-black text-[#321506]/48 transition hover:text-mokdaOrange"></a>
           </div>
 
           <div data-reveal data-reveal-delay="90" class="mb-5 flex flex-wrap items-center gap-x-5 gap-y-3" id="categoryFilters"></div>
 
-          <div id="qnaList" class="border-y border-neutral-950/15 bg-white"></div>
+          <div id="qnaList" class="overflow-hidden border border-[#321506]/16 bg-[#fff8ef] shadow-[0_22px_70px_rgba(67,24,9,0.08)]"></div>
         </div>
       </section>
 
@@ -506,7 +524,7 @@
               <button
                 type="button"
                 data-category="${category}"
-                class="border-b-2 px-0 py-2 text-xs font-black transition-colors ${active ? 'border-mokdaOrange text-mokdaOrange' : 'border-transparent text-neutral-500 hover:border-neutral-300 hover:text-neutral-950'}"
+                class="border-b-2 px-0 py-2 text-xs font-black transition-colors ${active ? 'border-mokdaOrange text-mokdaOrange' : 'border-transparent text-[#321506]/48 hover:border-[#321506]/30 hover:text-[#321506]'}"
               >
                 ${copy.categories[category]}
               </button>
@@ -537,22 +555,22 @@
             const localized = item[language] || item.ES;
             const itemId = `qna-${index}`;
             return `
-              <article class="qna-item border-b border-neutral-950/10 last:border-b-0">
-                <button type="button" class="grid w-full grid-cols-[1fr_2rem] gap-4 px-0 py-5 text-left sm:grid-cols-[4rem_8rem_1fr_2rem] sm:items-center sm:px-2 sm:py-6" aria-expanded="false" aria-controls="${itemId}">
-                  <span class="hidden text-xs font-black text-neutral-400 sm:block">${String(index + 1).padStart(2, '0')}</span>
+              <article class="qna-item border-b border-[#321506]/12 transition-colors last:border-b-0 hover:bg-white/60">
+                <button type="button" class="grid w-full grid-cols-[1fr_2.5rem] gap-4 px-5 py-6 text-left sm:grid-cols-[4rem_8rem_1fr_2.5rem] sm:items-center sm:px-7 sm:py-7" aria-expanded="false" aria-controls="${itemId}">
+                  <span class="hidden text-xs font-black text-[#321506]/35 sm:block">${String(index + 1).padStart(2, '0')}</span>
                   <span class="hidden text-xs font-black text-mokdaOrange sm:block">${copy.categories[item.category]}</span>
                   <span class="min-w-0">
                     <span class="mb-2 flex items-center gap-3 sm:hidden">
-                      <span class="text-xs font-black text-neutral-400">${String(index + 1).padStart(2, '0')}</span>
+                      <span class="text-xs font-black text-[#321506]/35">${String(index + 1).padStart(2, '0')}</span>
                       <span class="text-xs font-black text-mokdaOrange">${copy.categories[item.category]}</span>
                     </span>
-                    <span class="block text-base font-black leading-6 text-neutral-950 sm:text-lg">${localized.question}</span>
+                    <span class="block text-base font-black leading-6 text-[#321506] sm:text-lg">${localized.question}</span>
                   </span>
-                  <span class="qna-icon flex h-8 w-8 shrink-0 items-center justify-center border border-neutral-950/20 text-xl leading-none text-neutral-950">+</span>
+                  <span class="qna-icon flex h-10 w-10 shrink-0 items-center justify-center bg-[#321506] text-xl leading-none text-[#f8dfc4] transition-colors"><span class="qna-glyph">+</span></span>
                 </button>
                 <div id="${itemId}" class="qna-answer">
                   <div class="min-h-0 overflow-hidden">
-                    <p class="border-t border-neutral-950/5 pb-6 pt-5 text-sm font-semibold leading-7 text-neutral-600 sm:ml-[12rem] sm:pr-16 sm:text-base">${localized.answer}</p>
+                    <p class="border-t border-[#321506]/10 bg-white/70 px-5 pb-7 pt-6 text-sm font-semibold leading-7 text-[#321506]/70 sm:pl-[13rem] sm:pr-20 sm:text-base">${localized.answer}</p>
                   </div>
                 </div>
               </article>
@@ -617,6 +635,11 @@
         setText('faqTab', t.board.tabs.faq);
         setText('contactTab', t.board.tabs.contact);
         setText('socialTitle', t.social);
+        ['pageTitle', 'boardTitle'].forEach((id) => {
+          const heading = document.getElementById(id);
+          heading.classList.toggle('display-latin', language !== 'KR');
+          heading.classList.toggle('display-korean', language === 'KR');
+        });
         renderCategories(t);
         renderQnaList(t);
         renderFooter(t.footer);

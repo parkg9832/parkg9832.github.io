@@ -28,7 +28,7 @@
     <meta name="twitter:image" content="https://www.mokda.kr/assets/og-mokda.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Urbanist:wght@700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script type="application/ld+json">
       {
@@ -68,6 +68,41 @@
         letter-spacing: -0.04em;
       }
 
+      .display-latin {
+        font-family: 'Archivo Black', 'Arial Black', 'Noto Sans', sans-serif;
+        font-weight: 900 !important;
+        letter-spacing: -0.065em;
+      }
+
+      .display-korean {
+        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400 !important;
+        letter-spacing: -0.04em;
+      }
+
+      .condensed-label {
+        font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
+        letter-spacing: 0.18em;
+      }
+
+      .brand-text-link {
+        display: inline-flex;
+        width: fit-content;
+        align-items: center;
+        gap: 0.55rem;
+        border-bottom: 2px solid currentColor;
+        padding-bottom: 0.35rem;
+        font-family: 'Archivo Black', 'Noto Sans', sans-serif;
+        font-size: 0.78rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        transition: gap 260ms ease;
+      }
+
+      .brand-text-link:hover {
+        gap: 0.9rem;
+      }
+
       .font-black,
       .font-extrabold {
         font-weight: 700 !important;
@@ -93,44 +128,16 @@
         transform: translateY(0);
       }
 
-      .surface-depth {
-        box-shadow:
-          0 24px 56px rgba(92, 45, 17, 0.1),
-          0 8px 18px rgba(23, 23, 23, 0.05),
-          inset 0 1px 0 rgba(255, 255, 255, 0.75);
-      }
-
-      .product-stage {
-        isolation: isolate;
-      }
-
-      .product-stage::after {
-        position: absolute;
-        left: 50%;
-        bottom: 6%;
-        z-index: 0;
-        width: 58%;
-        height: 12%;
-        border-radius: 999px;
-        background: radial-gradient(ellipse, var(--stage-shadow, rgba(92, 45, 17, 0.22)) 0%, rgba(92, 45, 17, 0.08) 48%, transparent 72%);
-        content: "";
-        filter: blur(12px);
-        transform: translateX(-50%);
-      }
-
       .product-feature {
         position: relative;
       }
 
-      .product-feature::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 20;
-        width: 100%;
-        height: 5px;
-        background: linear-gradient(90deg, var(--feature-accent, #ef5f18), rgba(239, 95, 24, 0));
+      .product-feature img {
+        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .product-feature:hover img {
+        transform: scale(1.035);
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -145,7 +152,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
   </head>
-  <body class="product-page bg-white text-neutral-950 antialiased">
+  <body class="product-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
       <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
         <div class="flex items-center">
@@ -178,73 +185,64 @@
     </header>
 
     <main class="pt-20">
-      <section class="relative overflow-hidden bg-[#fbfaf7] py-12 sm:py-16">
-        <div aria-hidden="true" class="absolute inset-0">
-          <img src="./assets/products-banner-lifestyle-wide-v2.jpg" alt="" class="h-full w-full object-cover object-right opacity-[0.2] sm:opacity-100" />
-          <div class="absolute inset-0 bg-gradient-to-r from-[#fbfaf7] via-[#fbfaf7]/90 to-[#fbfaf7]/10"></div>
-          <div class="absolute inset-0 bg-gradient-to-b from-[#fbfaf7]/10 via-transparent to-[#fbfaf7]/25"></div>
-        </div>
-        <div class="relative z-10 mx-auto w-full max-w-screen-xl px-4 sm:px-6 lg:px-8">
-          <p id="pageKicker" class="mb-4 text-xs font-extrabold uppercase tracking-[0.28em] text-mokdaOrange sm:text-sm">Historia del Producto</p>
-          <h1 id="pageTitle" class="max-w-5xl break-keep text-balance text-4xl font-extrabold leading-[0.98] tracking-tight text-neutral-950 sm:text-6xl md:text-7xl">
-            SALSA COREANA
-          </h1>
-          <p id="pageSubtitle" class="mt-6 max-w-2xl text-pretty text-base font-semibold leading-7 text-slate-700 sm:text-lg sm:leading-8">
-            Un sabor de salsa coreana en tendencia, pensado para las mesas cotidianas de América Latina.
-          </p>
-          <p id="pageStatus" class="mt-4 max-w-2xl break-keep text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">
-            Línea en desarrollo. Prototipos previstos para agosto de 2026.
-          </p>
+      <section class="overflow-hidden bg-[#f7ddc2]">
+        <div class="mx-auto grid min-h-[650px] w-full max-w-[1600px] lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
+          <div class="relative z-10 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
+            <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl">Historia del Producto</p>
+            <h1 id="pageTitle" class="display-latin max-w-3xl break-keep text-balance text-6xl uppercase leading-[0.84] text-[#321506] sm:text-8xl lg:text-[7.4rem]">SALSA COREANA</h1>
+            <p id="pageSubtitle" class="mt-7 max-w-xl text-pretty text-base font-semibold leading-7 text-[#321506]/74 sm:text-lg sm:leading-8">Un sabor de salsa coreana en tendencia, pensado para las mesas cotidianas de América Latina.</p>
+            <p id="pageStatus" class="mt-4 max-w-xl break-keep text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">Línea en desarrollo. Prototipos previstos para agosto de 2026.</p>
+          </div>
+          <div class="relative min-h-[390px] overflow-hidden lg:min-h-full">
+            <img src="assets/images/original-nachos-chicken-chips.png" alt="Nachos, pollo frito y papas con salsa coreana Original" class="absolute inset-0 h-full w-full object-cover object-center" />
+            <div class="absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-[#f7ddc2] to-transparent lg:block"></div>
+          </div>
         </div>
       </section>
 
-      <section class="bg-white py-12 sm:py-16 lg:py-20">
-        <div class="mx-auto flex w-full max-w-screen-xl flex-col gap-7 px-4 sm:px-6 lg:gap-8 lg:px-8">
-          <article class="product-feature reveal-target grid overflow-hidden rounded-[1.5rem] bg-[#fbfaf7] ring-1 ring-neutral-950/5 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]" style="--feature-accent:#ef3b1f;">
-            <div class="relative flex flex-col justify-center overflow-hidden px-6 py-9 sm:px-8 md:min-h-[430px] lg:px-10">
-              <img src="assets/bottle-original.webp" alt="" aria-hidden="true" class="pointer-events-none absolute -right-8 top-1/2 hidden h-[118%] -translate-y-1/2 opacity-[0.13] blur-[1px] saturate-75 md:block" loading="lazy" />
-              <p id="prod1Kicker" class="relative z-10 mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Gochujang</p>
-              <h2 id="prod1Title" class="relative z-10 mb-3 text-3xl font-extrabold tracking-tight text-[#ef3b1f] md:text-5xl">Original</h2>
-              <p id="prod1Desc" class="relative z-10 mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
-                Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.
-              </p>
-              <a id="prod1Link" href="coming-soon.html" class="relative z-10 inline-flex self-start items-center justify-center rounded-full bg-mokdaOrange px-6 py-2.5 text-sm font-extrabold text-white transition-colors duration-300 hover:bg-orange-600">Ver Producto ↗</a>
-            </div>
-            <div class="relative min-h-[340px] overflow-hidden bg-orange-100 sm:min-h-[430px]">
-              <img src="assets/product-original-with-bottle.jpg" alt="MOKDA Original con nachos, tacos y carne asada" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
-            </div>
-          </article>
-
-          <article class="product-feature reveal-target grid overflow-hidden rounded-[1.5rem] bg-white ring-1 ring-neutral-950/10 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]" style="--feature-accent:#d99a00;">
-            <div class="relative flex flex-col justify-center overflow-hidden px-6 py-9 sm:px-8 md:min-h-[430px] lg:px-10">
-              <img src="assets/bottle-ssamjang.webp" alt="" aria-hidden="true" class="pointer-events-none absolute -right-8 top-1/2 hidden h-[118%] -translate-y-1/2 opacity-[0.13] blur-[1px] saturate-75 md:block" loading="lazy" />
-              <p id="prod2Kicker" class="relative z-10 mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ssamjang</p>
-              <h2 id="prod2Title" class="relative z-10 mb-3 text-3xl font-extrabold tracking-tight text-[#d99a00] md:text-5xl">Para Carnes</h2>
-              <p id="prod2Desc" class="relative z-10 mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
-                Ideal para pollo, res, cerdo y carnes asadas, con umami coreano profundo.
-              </p>
-              <a id="prod2Link" href="coming-soon.html" class="relative z-10 inline-flex self-start items-center justify-center rounded-full bg-mokdaOrange px-6 py-2.5 text-sm font-extrabold text-white transition-colors duration-300 hover:bg-orange-600">Ver Producto ↗</a>
-            </div>
-            <div class="relative min-h-[340px] overflow-hidden bg-amber-100 sm:min-h-[430px]">
-              <img src="assets/product-paracarne-with-bottle.jpg" alt="MOKDA Para Carnes con pollo a la brasa y carnes asadas" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
-            </div>
-          </article>
-
-          <article class="product-feature reveal-target grid overflow-hidden rounded-[1.5rem] bg-[#fbfaf7] ring-1 ring-neutral-950/5 transition-all duration-[800ms] ease-out md:grid-cols-[0.78fr_1.22fr]" style="--feature-accent:#21140f;">
-            <div class="relative flex flex-col justify-center overflow-hidden px-6 py-9 sm:px-8 md:min-h-[430px] lg:px-10">
-              <img src="assets/bottle-sweetsoy.webp" alt="" aria-hidden="true" class="pointer-events-none absolute -right-8 top-1/2 hidden h-[118%] -translate-y-1/2 opacity-[0.13] blur-[1px] saturate-75 md:block" loading="lazy" />
-              <p id="prod3Kicker" class="relative z-10 mb-3 text-xs font-extrabold uppercase tracking-[0.22em] text-mokdaOrange sm:text-sm">Ganjang</p>
-              <h2 id="prod3Title" class="relative z-10 mb-3 text-3xl font-extrabold tracking-tight text-[#21140f] md:text-5xl">Soy Sauce</h2>
-              <p id="prod3Desc" class="relative z-10 mb-6 max-w-xl text-sm font-semibold leading-7 text-slate-700 sm:text-base">
-                Umami dulce, salado y adictivo. (Aún no disponible)
-              </p>
-              <a id="prod3Link" href="coming-soon.html" class="relative z-10 inline-flex self-start items-center justify-center rounded-full bg-mokdaOrange px-6 py-2.5 text-sm font-extrabold text-white transition-colors duration-300 hover:bg-orange-600">Ver Producto ↗</a>
-            </div>
-            <div class="relative min-h-[340px] overflow-hidden bg-stone-100 sm:min-h-[430px]">
-              <img src="assets/product-soy-with-bottle.jpg" alt="MOKDA Soy Sauce con ensalada, bowl de arroz y verduras salteadas" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
-            </div>
-          </article>
+      <section class="bg-[#321506] px-5 py-8 text-[#f8dfc4] sm:px-8 sm:py-10">
+        <div class="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <p class="condensed-label text-base uppercase text-mokdaOrange sm:text-xl">MOKDA / Salsa Corea</p>
+          <p class="max-w-xl text-sm font-semibold leading-6 text-[#f8dfc4]/66">Original · Para Carnes · Soy Sauce</p>
         </div>
+      </section>
+
+      <section class="overflow-hidden">
+        <article class="product-feature grid bg-[#fff8ef] lg:grid-cols-2 lg:items-stretch">
+          <div class="relative min-h-[390px] overflow-hidden sm:min-h-[520px] lg:min-h-[650px]">
+            <img src="assets/images/original-nachos-chicken-chips.png" alt="Nachos, pollo frito y papas con salsa coreana Original" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
+          </div>
+          <div class="reveal-target flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
+            <p id="prod1Kicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">Gochujang</p>
+            <h2 id="prod1Title" class="display-latin text-6xl uppercase leading-[0.86] text-[#ef3b1f] sm:text-8xl">Original</h2>
+            <p id="prod1Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#321506]/72 sm:text-lg">Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.</p>
+            <a id="prod1Link" href="coming-soon.html" class="brand-text-link mt-8 text-mokdaOrange">Ver Producto ↗</a>
+          </div>
+        </article>
+
+        <article class="product-feature grid bg-[#321506] text-[#f8dfc4] lg:grid-cols-2 lg:items-stretch">
+          <div class="reveal-target order-2 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:order-1 lg:px-16 xl:px-24">
+            <p id="prod2Kicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">Ssamjang</p>
+            <h2 id="prod2Title" class="display-latin text-6xl uppercase leading-[0.86] text-[#f8dfc4] sm:text-8xl">Para Carnes</h2>
+            <p id="prod2Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#f8dfc4]/76 sm:text-lg">Ideal para pollo, res, cerdo y carnes asadas, con umami coreano profundo.</p>
+            <a id="prod2Link" href="coming-soon.html" class="brand-text-link mt-8 text-[#f8dfc4]">Ver Producto ↗</a>
+          </div>
+          <div class="relative order-1 min-h-[390px] overflow-hidden sm:min-h-[520px] lg:order-2 lg:min-h-[650px]">
+            <img src="assets/images/para-carnes-grilled-meat.png" alt="Pollo, cerdo y carne asada para Salsa Corea Para Carnes" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
+          </div>
+        </article>
+
+        <article class="product-feature grid bg-[#ef5f18] text-white lg:grid-cols-2 lg:items-stretch">
+          <div class="relative min-h-[390px] overflow-hidden sm:min-h-[520px] lg:min-h-[650px]">
+            <img src="assets/product-food-soy-v1.jpg" alt="Arroz, verduras y ensalada para Salsa Corea Soy Sauce" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
+          </div>
+          <div class="reveal-target flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
+            <p id="prod3Kicker" class="condensed-label mb-4 text-base uppercase text-[#321506]/65 sm:text-xl">Ganjang</p>
+            <h2 id="prod3Title" class="display-latin text-6xl uppercase leading-[0.86] text-white sm:text-8xl">Soy Sauce</h2>
+            <p id="prod3Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-white/80 sm:text-lg">Umami dulce, salado y adictivo. (Aún no disponible)</p>
+            <a id="prod3Link" href="coming-soon.html" class="brand-text-link mt-8 text-white">Ver Producto ↗</a>
+          </div>
+        </article>
       </section>
     </main>
 

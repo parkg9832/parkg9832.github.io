@@ -177,10 +177,10 @@
       </div>
       <div id="mobile-menu" class="absolute left-0 top-20 z-50 w-full overflow-hidden border-y border-white/30 bg-white/75 shadow-[0_10px_30px_rgba(23,23,23,0.08)] backdrop-blur-xl transition-all duration-300 ease-in-out max-h-0 opacity-0 invisible">
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
-          <a href="about.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Sobre nosotros</a>
-          <a href="products.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Salsa Coreana</a>
-          <a href="qna.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Q&A</a>
-          <a href="contact.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Contacto</a>
+          <a id="mobile-about-link" href="about.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Sobre nosotros</a>
+          <a id="mobile-products-link" href="products.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Salsa Coreana</a>
+          <a id="mobile-qna-link" href="qna.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Q&A</a>
+          <a id="mobile-contact-link" href="contact.html" class="py-2 text-base font-extrabold tracking-tight text-neutral-950 transition hover:text-orange-600 sm:text-sm">Contacto</a>
         </div>
       </div>
     </header>
@@ -285,6 +285,7 @@
 
       const content = {
         ES: {
+          nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
           title: "MOKDA | Línea Premium",
           kicker: "Historia del Producto",
           headline: "SALSA COREANA",
@@ -309,6 +310,7 @@
           }
         },
         EN: {
+          nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
           title: "MOKDA | Premium Lineup",
           kicker: "Product Story",
           headline: "SALSA COREANA",
@@ -333,6 +335,7 @@
           }
         },
         KR: {
+          nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
           title: "MOKDA | 프리미엄 라인업",
           kicker: "Product Story",
           headline: "SALSA COREANA",
@@ -371,6 +374,10 @@
         const t = content[language];
         document.title = t.title;
         document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
+        setText('mobile-about-link', t.nav.about);
+        setText('mobile-products-link', t.nav.products);
+        setText('mobile-qna-link', t.nav.qna);
+        setText('mobile-contact-link', t.nav.contact);
         
         setText('pageKicker', t.kicker);
         setText('pageTitle', t.headline);

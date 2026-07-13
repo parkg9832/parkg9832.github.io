@@ -9,8 +9,12 @@
 
   function setMenuTone(tone) {
     if (!menuToggle) return;
-    menuToggle.classList.remove('text-white', 'text-gray-800');
-    menuToggle.classList.add(tone === 'dark' ? 'text-gray-800' : 'text-white');
+    menuToggle.classList.remove('text-white', 'text-gray-800', 'bg-white/10', 'bg-neutral-950/5', 'ring-white/30', 'ring-neutral-950/10');
+    if (tone === 'dark') {
+      menuToggle.classList.add('text-gray-800', 'bg-neutral-950/5', 'ring-neutral-950/10');
+      return;
+    }
+    menuToggle.classList.add('text-white', 'bg-white/10', 'ring-white/30');
   }
 
   function setHeaderScrolled(isScrolled) {

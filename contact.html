@@ -113,7 +113,7 @@
     <link rel="apple-touch-icon" href="/favicon.png" />
   </head>
   <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
-    <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
+    <header id="main-header" data-menu-initial="light" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
           <img src="assets/assetlogo-1.webp" alt="MOKDA" class="h-6 w-auto sm:h-9" />
@@ -125,9 +125,9 @@
             <button id="langKR" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="1" translate="no">KR</button>
             <button id="langEN" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="2" translate="no">EN</button>
           </div>
-          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 transition-colors duration-300 hover:bg-neutral-950/5" aria-label="Open navigation menu">
+          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 p-2 text-white ring-1 ring-white/30 transition-all duration-300 hover:scale-105" aria-label="Open navigation menu">
             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
             </svg>
           </button>
         </div>
@@ -144,26 +144,23 @@
 
     <main class="overflow-hidden bg-[#f7ddc2]">
       <section class="brand-grid-bg bg-[#321506] px-4 pb-16 pt-32 text-[#f8dfc4] sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24">
-        <div class="mx-auto w-full max-w-6xl">
-          <div data-reveal class="max-w-4xl">
+        <div class="mx-auto w-full max-w-6xl text-center">
+          <div data-reveal class="mx-auto max-w-5xl">
             <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
             <h1 id="pageTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.86] text-mokdaOrange sm:text-8xl lg:text-[7rem]"></h1>
-            <p id="pageDescription" class="mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
+            <p id="pageDescription" class="mx-auto mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
           </div>
         </div>
       </section>
 
-      <section class="bg-[#f7ddc2] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
-          <aside data-reveal class="order-2 grid gap-6 lg:order-1">
-            <div class="border-b border-[#321506]/18 pb-7">
-              <p id="responseTitleKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange"></p>
-              <h2 id="responseTitle" class="display-latin text-4xl uppercase leading-[0.9] text-[#321506] sm:text-5xl"></h2>
-            </div>
-            <div id="contactSteps" class="grid gap-0 border-y border-[#321506]/18"></div>
-          </aside>
+      <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <div class="mx-auto w-full max-w-5xl">
+          <div data-reveal class="mx-auto mb-12 max-w-4xl text-center sm:mb-16">
+            <p id="responseTitleKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
+            <h2 id="responseTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl"></h2>
+          </div>
 
-          <form id="contactForm" data-reveal data-reveal-delay="120" class="order-1 border border-[#321506]/12 bg-[#fff8ef] p-5 shadow-[0_28px_80px_rgba(67,24,9,0.10)] sm:p-7 md:p-10 lg:order-2">
+          <form id="contactForm" data-reveal data-reveal-delay="120" class="border-y border-[#321506]/18 bg-[#fff8ef]/72 px-0 py-7 sm:px-8 sm:py-10 md:px-12 md:py-12">
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
@@ -272,11 +269,6 @@
             kicker: 'Proceso',
             title: 'Tu consulta llega directo al equipo.',
           },
-          steps: [
-            ['01', 'Selecciona el tipo de consulta'],
-            ['02', 'Comparte empresa, país y canal de contacto'],
-            ['03', 'MOKDA revisa la propuesta y responde'],
-          ],
           fields: {
             company: ['Empresa', 'Nombre de la empresa'],
             name: ['Nombre', 'Nombre completo'],
@@ -309,11 +301,6 @@
             kicker: 'Process',
             title: 'Your inquiry goes directly to the team.',
           },
-          steps: [
-            ['01', 'Choose the inquiry type'],
-            ['02', 'Share your company, market, and contact channel'],
-            ['03', 'MOKDA reviews the proposal and follows up'],
-          ],
           fields: {
             company: ['Company', 'Company name'],
             name: ['Name', 'Full name'],
@@ -346,11 +333,6 @@
             kicker: '문의 절차',
             title: '문의 내용은 팀에 바로 전달됩니다.',
           },
-          steps: [
-            ['01', '문의 유형을 선택합니다'],
-            ['02', '회사, 국가, 연락 채널을 남깁니다'],
-            ['03', 'MOKDA가 검토 후 회신합니다'],
-          ],
           fields: {
             company: ['회사', '회사명'],
             name: ['이름', '이름'],
@@ -442,19 +424,6 @@
           field.oninput = () => field.setCustomValidity('');
           field.onchange = () => field.setCustomValidity('');
         });
-      }
-
-      function renderSteps(steps) {
-        document.getElementById('contactSteps').innerHTML = steps
-          .map(
-            ([number, label], index) => `
-              <div data-reveal data-reveal-delay="${(index + 1) * 90}" class="grid grid-cols-[3rem_1fr] items-center gap-4 border-b border-[#321506]/12 py-5 last:border-b-0">
-                <span class="text-xs font-black text-mokdaOrange">${number}</span>
-                <p class="text-sm font-bold leading-5 text-[#321506]/78">${label}</p>
-              </div>
-            `
-          )
-          .join('');
       }
 
       function bindReveal() {
@@ -553,7 +522,6 @@
           heading.classList.toggle('display-latin', language !== 'KR');
           heading.classList.toggle('display-korean', language === 'KR');
         });
-        renderSteps(t.steps);
         renderForm(t.fields);
         window.MOKDA_FOOTER.render(language);
         renderLanguageButtons();

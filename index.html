@@ -875,7 +875,7 @@
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT in LATAM',
-            description: "Three priority markets for MOKDA's expansion across Latin America.",
+            description: "Five priority markets for MOKDA's expansion across Latin America.",
             listLabel: 'Open partner markets',
           },
           b2b: {
@@ -932,7 +932,7 @@
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT en LATAM',
-            description: 'Tres mercados prioritarios para la expansión de MOKDA en América Latina.',
+            description: 'Cinco mercados prioritarios para la expansión de MOKDA en América Latina.',
             listLabel: 'Mercados abiertos a socios',
           },
           b2b: {
@@ -989,7 +989,7 @@
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT in LATAM',
-            description: 'MOKDA가 라틴아메리카 진출을 준비하는 세 개의 우선 시장입니다.',
+            description: 'MOKDA가 라틴아메리카 진출을 준비하는 다섯 개의 우선 시장입니다.',
             listLabel: '파트너 모집 지역',
           },
           b2b: {
@@ -1011,60 +1011,80 @@
         },
       };
 
-      const stores = [
+      const partnerLabels = {
+        name: {
+          EN: 'Become a MOKDA Partner',
+          ES: 'Sé aliado MOKDA',
+          KR: 'MOKDA 파트너 모집',
+        },
+        tag: 'Open',
+      };
+
+      const partnerMarkets = [
         {
           id: 'mexico',
-          name: {
-            EN: 'Become a MOKDA Partner',
-            ES: 'Sé aliado MOKDA',
-            KR: 'MOKDA 파트너 모집',
-          },
+          value: 'Mexico',
+          country: { EN: 'Mexico', ES: 'México', KR: '멕시코' },
           address: {
             EN: 'Mexico City Center, Mexico',
             ES: 'Centro de Ciudad de México, México',
             KR: '멕시코시티 중심부, 멕시코',
           },
-          tag: 'Open',
-          mapUrl: 'https://maps.google.com/maps?q=Centro%20Hist%C3%B3rico%2C%20Ciudad%20de%20M%C3%A9xico%2C%20M%C3%A9xico&t=&z=12&ie=UTF8&iwloc=&output=embed',
+          mapQuery: 'Centro Histórico, Ciudad de México, México',
         },
         {
           id: 'peru',
-          name: {
-            EN: 'Become a MOKDA Partner',
-            ES: 'Sé aliado MOKDA',
-            KR: 'MOKDA 파트너 모집',
-          },
+          value: 'Peru',
+          country: { EN: 'Peru', ES: 'Perú', KR: '페루' },
           address: {
             EN: 'Lima City Center, Peru',
             ES: 'Centro de Lima, Perú',
             KR: '리마 중심부, 페루',
           },
-          tag: 'Open',
-          mapUrl: 'https://maps.google.com/maps?q=Centro%20de%20Lima%2C%20Lima%2C%20Per%C3%BA&t=&z=12&ie=UTF8&iwloc=&output=embed',
+          mapQuery: 'Centro de Lima, Lima, Perú',
         },
         {
           id: 'colombia',
-          name: {
-            EN: 'Become a MOKDA Partner',
-            ES: 'Sé aliado MOKDA',
-            KR: 'MOKDA 파트너 모집',
-          },
+          value: 'Colombia',
+          country: { EN: 'Colombia', ES: 'Colombia', KR: '콜롬비아' },
           address: {
             EN: 'Bogotá City Center, Colombia',
             ES: 'Centro de Bogotá, Colombia',
             KR: '보고타 중심부, 콜롬비아',
           },
-          tag: 'Open',
-          mapUrl: 'https://maps.google.com/maps?q=Plaza%20de%20Bol%C3%ADvar%2C%20Bogot%C3%A1%2C%20Colombia&t=&z=12&ie=UTF8&iwloc=&output=embed',
+          mapQuery: 'Plaza de Bolívar, Bogotá, Colombia',
+        },
+        {
+          id: 'chile',
+          value: 'Chile',
+          country: { EN: 'Chile', ES: 'Chile', KR: '칠레' },
+          address: {
+            EN: 'Santiago City Center, Chile',
+            ES: 'Centro de Santiago, Chile',
+            KR: '산티아고 중심부, 칠레',
+          },
+          mapQuery: 'Plaza de Armas, Santiago, Chile',
+        },
+        {
+          id: 'argentina',
+          value: 'Argentina',
+          country: { EN: 'Argentina', ES: 'Argentina', KR: '아르헨티나' },
+          address: {
+            EN: 'Buenos Aires City Center, Argentina',
+            ES: 'Centro de Buenos Aires, Argentina',
+            KR: '부에노스아이레스 중심부, 아르헨티나',
+          },
+          mapQuery: 'Plaza de Mayo, Buenos Aires, Argentina',
         },
       ];
 
+      const stores = partnerMarkets.map((market) => ({
+        ...market,
+        mapUrl: `https://maps.google.com/maps?q=${encodeURIComponent(market.mapQuery)}&t=&z=12&ie=UTF8&iwloc=&output=embed`,
+      }));
+
       const countries = [
-        ['Mexico', { EN: 'Mexico', ES: 'México', KR: '멕시코' }],
-        ['Peru', { EN: 'Peru', ES: 'Perú', KR: '페루' }],
-        ['Colombia', { EN: 'Colombia', ES: 'Colombia', KR: '콜롬비아' }],
-        ['Chile', { EN: 'Chile', ES: 'Chile', KR: '칠레' }],
-        ['Argentina', { EN: 'Argentina', ES: 'Argentina', KR: '아르헨티나' }],
+        ...partnerMarkets.map((market) => [market.value, market.country]),
         ['Other', { EN: 'Other', ES: 'Otro', KR: '기타' }],
       ];
 
@@ -1326,22 +1346,20 @@
             ${stores
               .map((store) => {
                 const isSelected = selectedStoreId === store.id;
-                const storeName = typeof store.name === 'string' ? store.name : (store.name[language] || store.name.ES);
-                const storeAddress = typeof store.address === 'string' ? store.address : (store.address[language] || store.address.ES);
+                const storeName = partnerLabels.name[language] || partnerLabels.name.ES;
+                const storeAddress = store.address[language] || store.address.ES;
                 const cardClass = isSelected
                   ? 'block w-full cursor-pointer rounded-lg bg-[#f8dfc4] p-4 text-left transition-all duration-300'
                   : 'block w-full cursor-pointer rounded-lg p-4 text-left transition-all duration-300 hover:bg-white/10';
                 const nameClass = isSelected ? 'text-[#321506]' : 'text-[#f8dfc4]';
                 const addressClass = isSelected ? 'text-[#321506]/65' : 'text-[#f8dfc4]/65';
-                const tagClass = isSelected
-                  ? 'rounded-full bg-mokdaOrange px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs'
-                  : 'rounded-full bg-mokdaOrange px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs';
+                const tagClass = 'rounded-full bg-mokdaOrange px-2.5 py-1 text-[10px] font-black uppercase text-white md:text-xs';
                 return `
                   <div class="border-b border-[#f8dfc4]/14 py-2 first:pt-0 last:border-b-0 last:pb-0">
                     <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">
                       <span class="flex flex-wrap items-center gap-2 md:gap-3">
                         <span class="break-keep text-base font-bold ${nameClass} md:text-lg">${storeName}</span>
-                        <span class="${tagClass}">${store.tag}</span>
+                        <span class="${tagClass}">${partnerLabels.tag}</span>
                       </span>
                       <span class="mt-1 block text-pretty text-xs font-semibold leading-4 ${addressClass} md:mt-1.5 md:text-sm md:leading-6">${storeAddress}</span>
                     </button>
@@ -1361,8 +1379,8 @@
         if (store?.mapUrl && frame) {
           frame.src = localizeMapUrl(store.mapUrl);
           frame.dataset.mapSrc = frame.src;
-          const storeName = typeof store.name === 'string' ? store.name : (store.name[language] || store.name.ES);
-          frame.title = `${storeName} map`;
+          const storeAddress = store.address[language] || store.address.ES;
+          frame.title = `${storeAddress} map`;
         }
       }
 

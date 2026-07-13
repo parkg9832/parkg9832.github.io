@@ -175,16 +175,12 @@
 
     <main class="overflow-hidden bg-[#f7ddc2]">
       <section class="brand-grid-bg bg-[#321506] px-4 pb-16 pt-32 text-[#f8dfc4] sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24">
-        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1fr_22rem] lg:items-end">
+        <div class="mx-auto w-full max-w-6xl">
           <div data-reveal class="max-w-4xl">
             <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
             <h1 id="pageTitle" class="display-latin break-keep text-balance text-5xl uppercase leading-[0.86] text-mokdaOrange sm:text-8xl lg:text-[7rem]"></h1>
             <p id="pageDescription" class="mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
           </div>
-          <aside data-reveal data-reveal-delay="90" class="border-t border-[#f8dfc4]/25 pt-5 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
-            <p id="heroNoteKicker" class="condensed-label mb-2 text-base uppercase text-mokdaOrange"></p>
-            <p id="heroNoteText" class="text-sm font-semibold leading-6 text-[#f8dfc4]/70"></p>
-          </aside>
         </div>
       </section>
 
@@ -350,8 +346,6 @@
             kicker: 'Q&A MOKDA',
             title: 'Preguntas sobre MOKDA.',
             description: 'Consulta las preguntas frecuentes sobre Salsa Coreana, productos, distribución y colaboración.',
-            noteKicker: 'Áreas de consulta',
-            noteText: 'Producto, distribución, retail, HORECA, exportación y colaboración de marca.',
           },
           board: {
             kicker: 'FAQ / Q&A',
@@ -374,8 +368,6 @@
             kicker: 'MOKDA Q&A',
             title: 'Questions about MOKDA.',
             description: 'Find answers about Salsa Coreana, products, distribution, export, and collaboration.',
-            noteKicker: 'Inquiry Areas',
-            noteText: 'Product, distribution, retail, HORECA, export, and brand collaboration.',
           },
           board: {
             kicker: 'FAQ / Q&A',
@@ -398,8 +390,6 @@
             kicker: 'MOKDA Q&A',
             title: 'MOKDA에 대해 궁금한 점.',
             description: 'Salsa Coreana, 제품, 유통, 수출, 협업과 관련된 자주 묻는 질문을 확인하세요.',
-            noteKicker: '문의 범위',
-            noteText: '제품, 유통, 리테일, HORECA, 수출, 브랜드 협업 관련 문의를 확인할 수 있습니다.',
           },
           board: {
             kicker: 'FAQ / Q&A',
@@ -537,8 +527,6 @@
         setText('pageKicker', t.hero.kicker);
         setText('pageTitle', t.hero.title);
         setText('pageDescription', t.hero.description);
-        setText('heroNoteKicker', t.hero.noteKicker);
-        setText('heroNoteText', t.hero.noteText);
         setText('boardKicker', t.board.kicker);
         setText('boardTitle', t.board.title);
         setText('boardDescription', t.board.description);

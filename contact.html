@@ -144,16 +144,12 @@
 
     <main class="overflow-hidden bg-[#f7ddc2]">
       <section class="brand-grid-bg bg-[#321506] px-4 pb-16 pt-32 text-[#f8dfc4] sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24">
-        <div class="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1fr_22rem] lg:items-end">
+        <div class="mx-auto w-full max-w-6xl">
           <div data-reveal class="max-w-4xl">
             <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
             <h1 id="pageTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.86] text-mokdaOrange sm:text-8xl lg:text-[7rem]"></h1>
             <p id="pageDescription" class="mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
           </div>
-          <aside data-reveal data-reveal-delay="90" class="border-t border-[#f8dfc4]/25 pt-5 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
-            <p id="responseKicker" class="condensed-label mb-2 text-base uppercase text-mokdaOrange"></p>
-            <p id="responseText" class="text-sm font-semibold leading-6 text-[#f8dfc4]/70"></p>
-          </aside>
         </div>
       </section>
 
@@ -275,7 +271,6 @@
           response: {
             kicker: 'Proceso',
             title: 'Tu consulta llega directo al equipo.',
-            text: 'La página está pensada para recibir propuestas claras sin exponer correo o WhatsApp públicamente.',
           },
           steps: [
             ['01', 'Selecciona el tipo de consulta'],
@@ -313,7 +308,6 @@
           response: {
             kicker: 'Process',
             title: 'Your inquiry goes directly to the team.',
-            text: 'This page keeps business inquiries organized without publishing email or WhatsApp publicly.',
           },
           steps: [
             ['01', 'Choose the inquiry type'],
@@ -351,7 +345,6 @@
           response: {
             kicker: '문의 절차',
             title: '문의 내용은 팀에 바로 전달됩니다.',
-            text: '이메일과 WhatsApp을 공개하지 않고도 바이어와 협업 문의를 정리해서 받을 수 있도록 구성했습니다.',
           },
           steps: [
             ['01', '문의 유형을 선택합니다'],
@@ -552,10 +545,8 @@
         setText('pageKicker', t.hero.kicker);
         setText('pageTitle', t.hero.title);
         setText('pageDescription', t.hero.description);
-        setText('responseKicker', t.response.kicker);
         setText('responseTitleKicker', t.response.kicker);
         setText('responseTitle', t.response.title);
-        setText('responseText', t.response.text);
         setText('socialTitle', t.social);
         ['pageTitle', 'responseTitle'].forEach((id) => {
           const heading = document.getElementById(id);

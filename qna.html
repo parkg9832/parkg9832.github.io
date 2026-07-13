@@ -82,6 +82,11 @@
         font-weight: 500 !important;
       }
 
+      .faq-question {
+        font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400 !important;
+      }
+
       [data-reveal] {
         opacity: 0;
         transform: translateY(28px);
@@ -193,7 +198,7 @@
               <p id="boardDescription" class="mt-5 max-w-2xl text-sm font-semibold leading-6 text-[#321506]/68 sm:text-base"></p>
             </div>
           </div>
-          <div id="qnaList" data-reveal data-reveal-delay="80" class="overflow-hidden border-y border-[#321506]/20 bg-[#fff8ef]/72"></div>
+          <div id="qnaList" data-reveal data-reveal-delay="80" class="overflow-hidden rounded-xl border border-[#321506]/20 bg-[#fff8ef]/72"></div>
           <div data-reveal data-reveal-delay="140" class="mt-10 text-center">
             <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center bg-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition-all hover:scale-[1.02] hover:bg-mokdaOrange"></a>
           </div>
@@ -381,7 +386,7 @@
               <article class="qna-item border-b border-[#321506]/14 transition-colors last:border-b-0 hover:bg-white/65">
                 <button type="button" class="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-4 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-7 sm:py-8" aria-expanded="false" aria-controls="${itemId}">
                   <span class="text-xs font-black text-mokdaOrange">${String(index + 1).padStart(2, '0')}</span>
-                  <span class="block min-w-0 break-keep text-base font-black leading-6 text-[#321506] sm:text-lg">${localized.question}</span>
+                  <span class="faq-question block min-w-0 break-keep text-xl leading-7 text-[#321506] sm:text-2xl sm:leading-8">${localized.question}</span>
                   <span class="qna-icon flex h-10 w-10 shrink-0 items-center justify-center bg-[#321506] text-xl leading-none text-[#f8dfc4] transition-colors"><span class="qna-glyph">+</span></span>
                 </button>
                 <div id="${itemId}" class="qna-answer">

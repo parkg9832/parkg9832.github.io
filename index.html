@@ -144,6 +144,11 @@
         font-weight: 400 !important;
       }
 
+      .faq-question {
+        font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 400 !important;
+      }
+
       [data-reveal] {
         opacity: 0;
         transform: translateY(28px);
@@ -432,11 +437,11 @@
               Ver Q&A <span class="ml-2">-&gt;</span>
             </a>
           </div>
-          <div data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl overflow-hidden border border-[#321506]/15 bg-[#fff8ef] shadow-[0_22px_70px_rgba(67,24,9,0.08)]">
+          <div data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl overflow-hidden rounded-xl border border-[#321506]/15 bg-[#fff8ef] shadow-[0_22px_70px_rgba(67,24,9,0.08)]">
             <details class="group border-b border-[#321506]/12 px-5 py-6 sm:px-7">
               <summary class="grid cursor-pointer list-none grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-center gap-3 text-center">
                 <span aria-hidden="true"></span>
-                <span class="text-lg font-extrabold text-[#321506]">¿Qué significa MOKDA?</span>
+                <span class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué significa MOKDA?</span>
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-[#321506] text-xl font-extrabold text-[#f8dfc4] transition-colors group-open:bg-mokdaOrange"><span class="transition-transform group-open:rotate-45">+</span></span>
               </summary>
               <p class="mt-5 border-t border-[#321506]/10 pt-5 text-center text-sm font-semibold leading-7 text-[#321506]/70">MOKDA viene de la expresión coreana “먹다”, que significa comer.</p>
@@ -444,7 +449,7 @@
             <details class="group border-b border-[#321506]/12 px-5 py-6 sm:px-7">
               <summary class="grid cursor-pointer list-none grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-center gap-3 text-center">
                 <span aria-hidden="true"></span>
-                <span class="text-lg font-extrabold text-[#321506]">¿Qué es Salsa Coreana?</span>
+                <span class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué es Salsa Coreana?</span>
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-[#321506] text-xl font-extrabold text-[#f8dfc4] transition-colors group-open:bg-mokdaOrange"><span class="transition-transform group-open:rotate-45">+</span></span>
               </summary>
               <p class="mt-5 border-t border-[#321506]/10 pt-5 text-center text-sm font-semibold leading-7 text-[#321506]/70">Es la primera línea de productos de MOKDA para acercar sabores coreanos a comidas cotidianas.</p>
@@ -452,7 +457,7 @@
             <details class="group px-5 py-6 sm:px-7">
               <summary class="grid cursor-pointer list-none grid-cols-[2.25rem_minmax(0,1fr)_2.25rem] items-center gap-3 text-center">
                 <span aria-hidden="true"></span>
-                <span class="text-lg font-extrabold text-[#321506]">¿MOKDA acepta consultas B2B?</span>
+                <span class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿MOKDA acepta consultas B2B?</span>
                 <span class="flex h-9 w-9 shrink-0 items-center justify-center bg-[#321506] text-xl font-extrabold text-[#f8dfc4] transition-colors group-open:bg-mokdaOrange"><span class="transition-transform group-open:rotate-45">+</span></span>
               </summary>
               <p class="mt-5 border-t border-[#321506]/10 pt-5 text-center text-sm font-semibold leading-7 text-[#321506]/70">Sí. Estamos recibiendo consultas de distribución, retail y colaboración para LATAM.</p>
@@ -468,7 +473,7 @@
             <h2 id="b2bTitle" class="display-latin break-keep text-balance text-5xl leading-[0.86] tracking-tight text-mokdaOrange sm:text-7xl md:text-8xl"></h2>
             <p id="b2bDescription" class="mx-auto mt-4 max-w-2xl break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/70 sm:text-lg sm:leading-8"></p>
           </div>
-          <form id="b2bForm" data-reveal data-reveal-delay="120" class="surface-depth w-full max-w-[920px] border border-[#f8dfc4]/18 bg-[#fff8ef] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.22)] sm:p-7 md:p-10">
+          <form id="b2bForm" data-reveal data-reveal-delay="120" class="surface-depth w-full max-w-[920px] rounded-xl border border-[#f8dfc4]/18 bg-[#fff8ef] p-5 shadow-[0_30px_90px_rgba(0,0,0,0.22)] sm:p-7 md:p-10">
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
               <label class="block">
@@ -550,7 +555,7 @@
         </div>
       </section>
 
-      <section id="map" class="relative isolate scroll-mt-20 bg-mokdaOrange pb-9 pt-8 text-white sm:pb-12 sm:pt-12 lg:pb-14">
+      <section id="map" class="relative isolate scroll-mt-20 bg-mokdaOrange pb-16 pt-16 text-white sm:pb-20 sm:pt-20 lg:pb-24 lg:pt-24">
         <div class="absolute inset-x-0 -top-8 bottom-0 z-0 text-mokdaOrange md:-top-12" aria-hidden="true">
           <svg class="pointer-events-none block h-10 w-full md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
             <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>

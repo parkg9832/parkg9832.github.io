@@ -149,6 +149,48 @@
         font-weight: 400 !important;
       }
 
+      .home-faq-item {
+        background: #f8dfc4;
+        transition:
+          background-color 240ms ease,
+          box-shadow 240ms ease;
+      }
+
+      .home-faq-item.is-open {
+        background: #fff1e3;
+        box-shadow: inset 5px 0 0 #ef5f18;
+      }
+
+      .home-faq-answer {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition:
+          grid-template-rows 600ms cubic-bezier(0.22, 1, 0.36, 1),
+          opacity 480ms ease;
+      }
+
+      .home-faq-item.is-open .home-faq-answer {
+        grid-template-rows: 1fr;
+        opacity: 1;
+      }
+
+      .home-faq-glyph {
+        transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .home-faq-item.is-open .home-faq-glyph {
+        transform: rotate(45deg);
+      }
+
+      .home-faq-icon {
+        transition: background-color 360ms ease;
+      }
+
+      .home-faq-item.is-open .home-faq-icon {
+        background: #ef5f18;
+      }
+
       [data-reveal] {
         opacity: 0;
         transform: translateY(28px);
@@ -198,6 +240,12 @@
         [data-reveal] {
           opacity: 1;
           transform: none;
+          transition: none;
+        }
+
+        .home-faq-answer,
+        .home-faq-glyph,
+        .home-faq-icon {
           transition: none;
         }
       }
@@ -434,31 +482,39 @@
               <span id="faqCta">Ver Q&A</span> <span class="ml-2">-&gt;</span>
             </a>
           </div>
-          <div data-reveal data-reveal-delay="120" class="mx-auto max-w-5xl border-y border-[#321506]/22">
-            <details data-home-faq class="group border-b border-[#321506]/16">
-              <summary class="grid cursor-pointer list-none grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8">
-                <span class="text-xs font-black text-mokdaOrange">01</span>
-                <span id="faqQuestion1" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué significa MOKDA?</span>
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4] transition-colors group-open:bg-mokdaOrange"><span class="transition-transform group-open:rotate-45">+</span></span>
-              </summary>
-              <p id="faqAnswer1" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">MOKDA viene de la expresión coreana “먹다”, que significa comer.</p>
-            </details>
-            <details data-home-faq class="group border-b border-[#321506]/16">
-              <summary class="grid cursor-pointer list-none grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8">
-                <span class="text-xs font-black text-mokdaOrange">02</span>
-                <span id="faqQuestion2" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué es Salsa Coreana?</span>
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4] transition-colors group-open:bg-mokdaOrange"><span class="transition-transform group-open:rotate-45">+</span></span>
-              </summary>
-              <p id="faqAnswer2" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">Es la primera línea de productos de MOKDA para acercar sabores coreanos a comidas cotidianas.</p>
-            </details>
-            <details data-home-faq class="group">
-              <summary class="grid cursor-pointer list-none grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8">
-                <span class="text-xs font-black text-mokdaOrange">03</span>
-                <span id="faqQuestion3" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿MOKDA acepta consultas?</span>
-                <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4] transition-colors group-open:bg-mokdaOrange"><span class="transition-transform group-open:rotate-45">+</span></span>
-              </summary>
-              <p id="faqAnswer3" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">Sí. Estamos recibiendo consultas generales y propuestas B2B para LATAM.</p>
-            </details>
+          <div data-reveal data-reveal-delay="120" class="mx-auto max-w-5xl rounded-[1.4rem] bg-[#321506] p-2 shadow-[0_24px_70px_rgba(50,21,6,0.16)] sm:p-3">
+            <div class="overflow-hidden rounded-[1rem]">
+              <article data-home-faq class="home-faq-item border-b border-[#321506]/16">
+                <button type="button" class="grid w-full cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8" aria-expanded="false" aria-controls="homeFaqAnswer1">
+                  <span class="text-xs font-black text-mokdaOrange">01</span>
+                  <span id="faqQuestion1" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué significa MOKDA?</span>
+                  <span class="home-faq-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4]"><span class="home-faq-glyph">+</span></span>
+                </button>
+                <div id="homeFaqAnswer1" class="home-faq-answer">
+                  <div class="min-h-0 overflow-hidden"><p id="faqAnswer1" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">MOKDA viene de la expresión coreana “먹다”, que significa comer.</p></div>
+                </div>
+              </article>
+              <article data-home-faq class="home-faq-item border-b border-[#321506]/16">
+                <button type="button" class="grid w-full cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8" aria-expanded="false" aria-controls="homeFaqAnswer2">
+                  <span class="text-xs font-black text-mokdaOrange">02</span>
+                  <span id="faqQuestion2" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué es Salsa Coreana?</span>
+                  <span class="home-faq-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4]"><span class="home-faq-glyph">+</span></span>
+                </button>
+                <div id="homeFaqAnswer2" class="home-faq-answer">
+                  <div class="min-h-0 overflow-hidden"><p id="faqAnswer2" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">Es la primera línea de productos de MOKDA para acercar sabores coreanos a comidas cotidianas.</p></div>
+                </div>
+              </article>
+              <article data-home-faq class="home-faq-item">
+                <button type="button" class="grid w-full cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8" aria-expanded="false" aria-controls="homeFaqAnswer3">
+                  <span class="text-xs font-black text-mokdaOrange">03</span>
+                  <span id="faqQuestion3" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿MOKDA acepta consultas?</span>
+                  <span class="home-faq-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4]"><span class="home-faq-glyph">+</span></span>
+                </button>
+                <div id="homeFaqAnswer3" class="home-faq-answer">
+                  <div class="min-h-0 overflow-hidden"><p id="faqAnswer3" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">Sí. Estamos recibiendo consultas generales y propuestas B2B para LATAM.</p></div>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -1496,12 +1552,18 @@
       renderPage();
       const homeFaqItems = Array.from(document.querySelectorAll('[data-home-faq]'));
       homeFaqItems.forEach((item) => {
-        item.open = false;
-        item.addEventListener('toggle', () => {
-          if (!item.open) return;
+        const button = item.querySelector('button');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          const willOpen = !item.classList.contains('is-open');
           homeFaqItems.forEach((otherItem) => {
-            if (otherItem !== item) otherItem.open = false;
+            otherItem.classList.remove('is-open');
+            const otherButton = otherItem.querySelector('button');
+            if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
           });
+          if (!willOpen) return;
+          item.classList.add('is-open');
+          button.setAttribute('aria-expanded', 'true');
         });
       });
       updateHeroCarousel();

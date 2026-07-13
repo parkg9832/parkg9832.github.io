@@ -555,20 +555,15 @@
         </div>
       </section>
 
-      <section id="map" class="relative isolate scroll-mt-20 bg-mokdaOrange pb-16 pt-16 text-white sm:pb-20 sm:pt-20 lg:pb-24 lg:pt-24">
-        <div class="absolute inset-x-0 -top-8 bottom-0 z-0 text-mokdaOrange md:-top-12" aria-hidden="true">
-          <svg class="pointer-events-none block h-10 w-full md:h-16" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
-            <path fill="currentColor" d="M0,80 C160,20 320,20 480,70 C640,120 800,120 960,62 C1080,18 1160,26 1200,42 L1200,120 L0,120 Z"></path>
-          </svg>
-          <div class="-mt-px h-[calc(100%+1px)] bg-mokdaOrange"></div>
-        </div>
-        <div class="relative z-10 mx-auto grid w-full max-w-6xl grid-cols-1 gap-5 px-4 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-stretch lg:gap-8 lg:px-8">
-          <div class="flex h-full flex-col pt-2 sm:pt-3 lg:pt-4">
-            <p id="mapKicker" class="condensed-label mb-3 text-base uppercase text-white/75 sm:text-xl"></p>
-            <h2 id="mapTitle" class="display-latin max-w-[520px] break-keep text-balance text-5xl leading-[0.88] tracking-tight sm:text-7xl md:text-8xl"></h2>
-            <div id="storeList" class="custom-scrollbar mt-5 max-h-[250px] overflow-y-auto overflow-x-hidden rounded-[1.25rem] border border-white/20 bg-white/10 p-3 backdrop-blur-md sm:rounded-3xl md:mt-7 md:max-h-[340px] md:p-5 lg:flex-1 lg:max-h-none"></div>
+      <section id="map" class="brand-grid-bg scroll-mt-20 bg-[#f7ddc2] px-4 py-16 text-[#321506] sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <div class="mx-auto w-full max-w-7xl">
+          <div data-reveal class="mx-auto mb-10 max-w-5xl text-center sm:mb-14">
+            <p id="mapKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
+            <h2 id="mapTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.84] text-[#321506] sm:text-8xl lg:text-[8rem]"></h2>
+            <p id="mapDescription" class="mx-auto mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-7 text-[#321506]/70 sm:text-lg sm:leading-8"></p>
           </div>
-          <div class="surface-depth relative min-h-[280px] w-full overflow-hidden rounded-[1.25rem] bg-white sm:min-h-[360px] sm:rounded-3xl lg:mt-8 lg:min-h-0">
+          <div class="grid grid-cols-1 gap-5 lg:grid-cols-[1.45fr_0.75fr] lg:items-stretch lg:gap-7">
+            <div data-reveal data-reveal-delay="100" class="surface-depth relative min-h-[340px] w-full overflow-hidden rounded-[1.25rem] bg-white sm:min-h-[460px] lg:min-h-[560px]">
             <iframe
               id="mapFrame"
               src="https://maps.google.com/maps?ll=4,-82&z=3&t=m&hl=es&output=embed"
@@ -581,8 +576,15 @@
               data-map-src="https://maps.google.com/maps?ll=4,-82&z=3&t=m&hl=es&output=embed"
               data-default-map-src="https://maps.google.com/maps?ll=4,-82&z=3&t=m&output=embed"
               data-mobile-map-src="https://maps.google.com/maps?ll=4,-82&z=2&t=m&output=embed"
-              class="pointer-events-none absolute inset-0 h-full w-full rounded-3xl border-0"
+              class="absolute inset-0 h-full w-full border-0"
             ></iframe>
+          </div>
+            <aside data-reveal data-reveal-delay="180" class="flex min-h-[360px] flex-col rounded-[1.25rem] bg-[#321506] p-5 text-[#f8dfc4] shadow-[0_26px_70px_rgba(67,24,9,0.16)] sm:p-7 lg:min-h-0 lg:p-8">
+              <div class="border-b border-[#f8dfc4]/18 pb-5">
+                <p id="mapListLabel" class="condensed-label text-base uppercase text-mokdaOrange sm:text-xl"></p>
+              </div>
+              <div id="storeList" class="mt-3 flex-1"></div>
+            </aside>
           </div>
         </div>
       </section>
@@ -815,6 +817,8 @@
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT in LATAM',
+            description: "Three priority markets for MOKDA's expansion across Latin America.",
+            listLabel: 'Open partner markets',
           },
           b2b: {
             kicker: 'PROTOTYPE / B2B PARTNERSHIP',
@@ -867,6 +871,8 @@
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT en LATAM',
+            description: 'Tres mercados prioritarios para la expansión de MOKDA en América Latina.',
+            listLabel: 'Mercados abiertos a socios',
           },
           b2b: {
             kicker: 'PROTOTIPOS / ALIANZA B2B',
@@ -919,6 +925,8 @@
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT in LATAM',
+            description: 'MOKDA가 라틴아메리카 진출을 준비하는 세 개의 우선 시장입니다.',
+            listLabel: '파트너 모집 지역',
           },
           b2b: {
             kicker: '시제품 / B2B 파트너십',
@@ -1247,22 +1255,22 @@
       }
       function renderStores() {
         document.getElementById('storeList').innerHTML = `
-          <div>
+          <div class="flex h-full flex-col justify-center">
             ${stores
               .map((store) => {
                 const isSelected = selectedStoreId === store.id;
                 const storeName = typeof store.name === 'string' ? store.name : (store.name[language] || store.name.ES);
                 const storeAddress = typeof store.address === 'string' ? store.address : (store.address[language] || store.address.ES);
                 const cardClass = isSelected
-                  ? 'block w-full cursor-pointer rounded-2xl bg-white p-2 text-left transition-all duration-300 md:p-4'
-                  : 'block w-full cursor-pointer rounded-2xl p-2 text-left transition-all duration-300 hover:bg-white/20 md:p-4';
-                const nameClass = isSelected ? 'text-neutral-950' : 'text-white';
-                const addressClass = isSelected ? 'text-neutral-600' : 'text-white/75';
+                  ? 'block w-full cursor-pointer rounded-lg bg-[#f8dfc4] p-4 text-left transition-all duration-300'
+                  : 'block w-full cursor-pointer rounded-lg p-4 text-left transition-all duration-300 hover:bg-white/10';
+                const nameClass = isSelected ? 'text-[#321506]' : 'text-[#f8dfc4]';
+                const addressClass = isSelected ? 'text-[#321506]/65' : 'text-[#f8dfc4]/65';
                 const tagClass = isSelected
-                  ? 'rounded-full bg-neutral-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs'
-                  : 'rounded-full bg-neutral-950 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs';
+                  ? 'rounded-full bg-mokdaOrange px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs'
+                  : 'rounded-full bg-mokdaOrange px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-white md:text-xs';
                 return `
-                  <div class="border-b border-white/20 py-1.5 first:pt-0 last:border-b-0 last:pb-0 md:py-3">
+                  <div class="border-b border-[#f8dfc4]/14 py-2 first:pt-0 last:border-b-0 last:pb-0">
                     <button type="button" onclick="selectStore('${store.id}')" aria-pressed="${isSelected}" class="${cardClass}">
                       <span class="flex flex-wrap items-center gap-2 md:gap-3">
                         <span class="break-keep text-base font-bold ${nameClass} md:text-lg">${storeName}</span>
@@ -1445,6 +1453,8 @@
         renderProducts(t.products.items);
         setText('mapKicker', t.map.kicker);
         setText('mapTitle', t.map.title);
+        setText('mapDescription', t.map.description);
+        setText('mapListLabel', t.map.listLabel);
         renderStores();
         syncMapFrame();
         setText('b2bKicker', t.b2b.kicker);

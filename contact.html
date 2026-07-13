@@ -154,10 +154,6 @@
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
               <label class="block">
-                <span id="companyLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
-              </label>
-              <label class="block">
                 <span id="nameLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
                 <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
@@ -166,14 +162,14 @@
                 <input id="emailInput" type="email" name="email" required autocomplete="email" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
-                <span id="whatsappLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
-              </label>
-              <label class="block">
                 <span id="countryLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
                 <select id="countrySelect" name="country" required class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
               </label>
               <label class="block">
+                <span id="whatsappLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
+                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+              </label>
+              <label class="block sm:col-span-2">
                 <span id="purposeLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
                 <select id="purposeSelect" name="purpose" required class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
               </label>
@@ -182,8 +178,7 @@
                 <textarea id="messageInput" name="message" rows="5" required class="w-full resize-none rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
               </label>
             </div>
-            <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p id="privacyNote" class="max-w-md text-xs font-semibold leading-5 text-neutral-500"></p>
+            <div class="mt-7 flex justify-center">
               <button id="submitButton" type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-mokdaOrange px-8 py-4 text-sm font-extrabold uppercase text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none">
                 <span id="submitButtonText"></span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -191,7 +186,7 @@
                 </svg>
               </button>
             </div>
-            <p id="formStatus" class="mt-4 min-h-6 text-sm font-bold"></p>
+            <p id="formStatus" class="mt-4 min-h-6 text-center text-sm font-bold"></p>
           </form>
         </div>
       </section>
@@ -253,20 +248,18 @@
           hero: {
             kicker: 'Contacto MOKDA',
             title: 'Hablemos de Salsa Coreana',
-            description: 'Para distribución, retail, HORECA, prensa o colaboración, deja tu mensaje y revisaremos la consulta con el equipo de MOKDA.',
+            description: '¿Tienes preguntas sobre Salsa Coreana, cómo usarla, su disponibilidad o una colaboración? Déjanos tu mensaje y el equipo de MOKDA lo revisará.',
           },
           fields: {
-            company: ['Empresa', 'Nombre de la empresa'],
             name: ['Nombre', 'Nombre completo'],
-            email: ['Correo corporativo', 'tu@email.com'],
+            email: ['Correo electrónico', 'tu@email.com'],
             whatsapp: ['WhatsApp', 'Opcional'],
             country: ['País / Mercado', 'Selecciona un país'],
-            purpose: ['Tipo de consulta', 'Selecciona el tipo de consulta', ['Distribución', 'Retail', 'Restaurante / HORECA', 'Prensa / Colaboración', 'Producto', 'Otro']],
-            message: ['Mensaje', 'Cuéntanos sobre tu canal, volumen estimado o propuesta'],
+            purpose: ['Tipo de consulta', 'Selecciona el tipo de consulta', ['Producto y forma de uso', 'Compra / Disponibilidad', 'Ingredientes / Alérgenos', 'Distribución / Retail', 'Restaurante / HORECA', 'Prensa / Colaboración', 'Otro']],
+            message: ['Mensaje', 'Cuéntanos tu pregunta o propuesta'],
             submit: 'Enviar consulta',
             required: 'Completa este campo.',
             emailError: 'Ingresa un correo válido.',
-            privacy: 'Usaremos estos datos solo para responder esta consulta.',
           },
           messages: {
             sending: 'Enviando consulta...',
@@ -281,20 +274,18 @@
           hero: {
             kicker: 'Contact MOKDA',
             title: 'Let’s talk Korean sauce',
-            description: 'For distribution, retail, HORECA, press, or collaboration inquiries, leave your message and the MOKDA team will review it.',
+            description: 'Have a question about Salsa Coreana, how to use it, availability, or a partnership? Leave us a message and the MOKDA team will review it.',
           },
           fields: {
-            company: ['Company', 'Company name'],
             name: ['Name', 'Full name'],
-            email: ['Business email', 'you@email.com'],
+            email: ['Email', 'you@email.com'],
             whatsapp: ['WhatsApp', 'Optional'],
             country: ['Country / Market', 'Select a country'],
-            purpose: ['Inquiry type', 'Select inquiry type', ['Distribution', 'Retail', 'Restaurant / HORECA', 'Press / Collaboration', 'Product', 'Other']],
-            message: ['Message', 'Tell us about your channel, estimated volume, or proposal'],
+            purpose: ['Inquiry type', 'Select inquiry type', ['Product and usage', 'Purchase / Availability', 'Ingredients / Allergens', 'Distribution / Retail', 'Restaurant / HORECA', 'Press / Collaboration', 'Other']],
+            message: ['Message', 'Tell us your question or proposal'],
             submit: 'Send inquiry',
             required: 'Please complete this field.',
             emailError: 'Please enter a valid email.',
-            privacy: 'We will use this information only to respond to this inquiry.',
           },
           messages: {
             sending: 'Sending inquiry...',
@@ -308,21 +299,19 @@
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
           hero: {
             kicker: 'MOKDA Contact',
-            title: '한국 소스 협업을 이야기해보세요',
-            description: '유통, 리테일, HORECA, 홍보, 협업 문의를 남겨주시면 MOKDA 팀이 내용을 확인합니다.',
+            title: 'MOKDA에 무엇이든 물어보세요',
+            description: 'Salsa Coreana 제품, 활용법, 구매 가능 여부부터 유통·협업까지 궁금한 내용을 남겨주세요. MOKDA 팀이 확인합니다.',
           },
           fields: {
-            company: ['회사', '회사명'],
-            name: ['이름', '이름'],
+            name: ['이름', '이름을 입력해주세요'],
             email: ['이메일', 'you@email.com'],
             whatsapp: ['WhatsApp', '선택 입력'],
             country: ['국가 / 시장', '국가 선택'],
-            purpose: ['문의 유형', '문의 유형 선택', ['유통', '리테일', '레스토랑 / HORECA', '홍보 / 협업', '제품', '기타']],
-            message: ['문의 내용', '채널, 예상 물량, 제안 내용을 적어주세요'],
+            purpose: ['문의 유형', '문의 유형 선택', ['제품 및 사용법', '구매 / 판매 여부', '원재료 / 알레르겐', '유통 / 리테일', '레스토랑 / HORECA', '홍보 / 협업', '기타']],
+            message: ['문의 내용', '궁금한 내용이나 제안을 적어주세요'],
             submit: '문의 보내기',
             required: '필수 항목입니다.',
             emailError: '올바른 이메일을 입력해주세요.',
-            privacy: '입력한 정보는 문의 회신 목적으로만 사용됩니다.',
           },
           messages: {
             sending: '문의 전송 중...',
@@ -351,7 +340,7 @@
         const status = document.getElementById('formStatus');
         if (!status) return;
         status.textContent = message || '';
-        status.className = 'mt-4 min-h-6 text-sm font-bold';
+        status.className = 'mt-4 min-h-6 text-center text-sm font-bold';
         if (type === 'success') status.classList.add('text-emerald-700');
         else if (type === 'error') status.classList.add('text-red-600');
         else if (type === 'pending') status.classList.add('text-neutral-500');
@@ -366,8 +355,6 @@
       }
 
       function renderForm(fields) {
-        setText('companyLabel', fields.company[0]);
-        setPlaceholder('companyInput', fields.company[1]);
         setText('nameLabel', fields.name[0]);
         setPlaceholder('nameInput', fields.name[1]);
         setText('emailLabel', fields.email[0]);
@@ -379,7 +366,6 @@
         setText('messageLabel', fields.message[0]);
         setPlaceholder('messageInput', fields.message[1]);
         setText('submitButtonText', fields.submit);
-        setText('privacyNote', fields.privacy);
         document.getElementById('countrySelect').innerHTML = `
           <option value="" selected disabled>${fields.country[1]}</option>
           ${countries.map(([value, labels]) => `<option value="${value}">${labels[language]}</option>`).join('')}
@@ -445,7 +431,7 @@
         const payload = {
           source: 'contact-page',
           language,
-          company: String(formData.get('company') || '').trim(),
+          company: '',
           name: String(formData.get('name') || '').trim(),
           email: String(formData.get('email') || '').trim(),
           whatsapp: String(formData.get('whatsapp') || '').trim(),

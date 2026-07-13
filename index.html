@@ -380,32 +380,29 @@
             </div>
           </div>
           <div id="productsGrid" class="grid grid-cols-1 gap-8 lg:grid-cols-3"></div>
-        </div>
-      </section>
-
-      <section id="product-line" class="overflow-hidden bg-[#321506] px-5 py-12 text-center text-[#f8dfc4] sm:px-8 sm:py-16 lg:px-12">
-        <div data-reveal class="mx-auto max-w-7xl">
-          <div class="mx-auto mb-6 flex max-w-4xl flex-col items-center gap-3">
-            <div>
-              <p class="condensed-label mb-3 text-base uppercase text-mokdaOrange">Salsa Coreana</p>
-              <h3 class="display-latin text-5xl uppercase leading-none sm:text-7xl">Línea de productos</h3>
+          <div id="product-line" data-reveal class="mt-20 border-t border-[#321506]/18 pt-12 text-center text-[#321506] sm:mt-28 sm:pt-16">
+            <div class="mx-auto mb-6 flex max-w-4xl flex-col items-center gap-3">
+              <div>
+                <p id="productLineKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange"></p>
+                <h3 id="productLineTitle" class="display-latin text-5xl uppercase leading-none sm:text-7xl"></h3>
+              </div>
+              <p id="productLineDescription" class="max-w-xl text-sm font-semibold leading-6 text-[#321506]/65"></p>
             </div>
-            <p class="max-w-xl text-sm font-semibold leading-6 text-[#f8dfc4]/70">Tres salsas coreanas de la primera línea de productos de MOKDA.</p>
-          </div>
-          <div class="relative mt-4 grid min-h-[270px] grid-cols-3 items-end gap-2 border-t border-[#f8dfc4]/12 pt-6 sm:min-h-[360px] sm:gap-6 lg:min-h-[420px]">
-            <div class="pointer-events-none absolute inset-x-3 bottom-8 h-10 rounded-full bg-black/25 blur-2xl sm:bottom-10"></div>
-            <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
-              <img src="assets/bottle-original.webp" alt="Salsa Coreana Original" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(0,0,0,0.36)] sm:h-72 lg:h-80" loading="lazy" />
-              <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4]/78 sm:text-sm">Original</figcaption>
-            </figure>
-            <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
-              <img src="assets/bottle-ssamjang.webp" alt="Salsa Coreana Para Carnes" class="h-56 w-auto object-contain drop-shadow-[0_24px_18px_rgba(0,0,0,0.36)] sm:h-[19rem] lg:h-[21rem]" loading="lazy" />
-              <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4]/78 sm:text-sm">Para Carnes</figcaption>
-            </figure>
-            <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
-              <img src="assets/bottle-sweetsoy.webp" alt="Salsa Coreana Soy Sauce" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(0,0,0,0.36)] sm:h-72 lg:h-80" loading="lazy" />
-              <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#f8dfc4]/78 sm:text-sm">Soy Sauce</figcaption>
-            </figure>
+            <div class="relative mt-4 grid min-h-[270px] grid-cols-3 items-end gap-2 pt-6 sm:min-h-[360px] sm:gap-6 lg:min-h-[420px]">
+              <div class="pointer-events-none absolute inset-x-[8%] bottom-8 h-10 rounded-full bg-[#321506]/14 blur-2xl sm:bottom-10"></div>
+              <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
+                <img src="assets/bottle-original.webp" alt="Salsa Coreana Original" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-72 lg:h-80" loading="lazy" />
+                <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#321506]/72 sm:text-sm">Original</figcaption>
+              </figure>
+              <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
+                <img src="assets/bottle-ssamjang.webp" alt="Salsa Coreana Para Carnes" class="h-56 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-[19rem] lg:h-[21rem]" loading="lazy" />
+                <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#321506]/72 sm:text-sm">Para Carnes</figcaption>
+              </figure>
+              <figure class="relative z-10 flex flex-col items-center justify-end gap-4">
+                <img src="assets/bottle-sweetsoy.webp" alt="Salsa Coreana Soy Sauce" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-72 lg:h-80" loading="lazy" />
+                <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#321506]/72 sm:text-sm">Soy Sauce</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
@@ -812,6 +809,9 @@
           products: {
             kicker: 'SALSA COREANA LINE UP',
             title: 'KOREA FLAVORS',
+            lineKicker: 'SALSA COREANA',
+            lineTitle: 'PRODUCT LINEUP',
+            lineDescription: "Three Korean sauces from MOKDA's first product line.",
             items: localizedProducts,
           },
           map: {
@@ -866,6 +866,9 @@
           products: {
             kicker: 'SALSA COREANA LINE UP',
             title: 'SABORES DE COREA',
+            lineKicker: 'SALSA COREANA',
+            lineTitle: 'LÍNEA DE PRODUCTOS',
+            lineDescription: 'Tres salsas coreanas de la primera línea de productos de MOKDA.',
             items: localizedProducts,
           },
           map: {
@@ -920,6 +923,9 @@
           products: {
             kicker: 'SALSA COREANA LINE UP',
             title: 'KOREA FLAVORS',
+            lineKicker: 'SALSA COREANA',
+            lineTitle: '제품 라인업',
+            lineDescription: 'MOKDA의 첫 번째 제품 라인을 구성하는 세 가지 한국 소스입니다.',
             items: localizedProducts,
           },
           map: {
@@ -1450,6 +1456,9 @@
         document.getElementById('storyBody').innerHTML = t.story.body.map((paragraph) => `<p class="break-keep leading-relaxed">${paragraph}</p>`).join('');
         setText('productsKicker', t.products.kicker);
         setText('productsTitle', t.products.title);
+        setText('productLineKicker', t.products.lineKicker);
+        setText('productLineTitle', t.products.lineTitle);
+        setText('productLineDescription', t.products.lineDescription);
         renderProducts(t.products.items);
         setText('mapKicker', t.map.kicker);
         setText('mapTitle', t.map.title);

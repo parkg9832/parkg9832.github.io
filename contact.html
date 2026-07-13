@@ -142,59 +142,49 @@
       </div>
     </header>
 
-    <main class="overflow-hidden bg-[#f7ddc2]">
+    <main class="overflow-hidden bg-[#321506]">
       <section class="brand-grid-bg bg-[#321506] px-4 pb-16 pt-32 text-[#f8dfc4] sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24">
-        <div class="mx-auto w-full max-w-6xl text-center">
-          <div data-reveal class="mx-auto max-w-5xl">
+        <div class="mx-auto w-full max-w-5xl text-center">
+          <div data-reveal class="mx-auto max-w-4xl">
             <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
             <h1 id="pageTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.86] text-mokdaOrange sm:text-8xl lg:text-[7rem]"></h1>
             <p id="pageDescription" class="mx-auto mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
           </div>
-        </div>
-      </section>
-
-      <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto w-full max-w-5xl">
-          <div data-reveal class="mx-auto mb-12 max-w-4xl text-center sm:mb-16">
-            <p id="responseTitleKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
-            <h2 id="responseTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl"></h2>
-          </div>
-
-          <form id="contactForm" data-reveal data-reveal-delay="120" class="rounded-xl border border-[#321506]/18 bg-[#fff8ef]/72 px-4 py-7 sm:px-8 sm:py-10 md:px-12 md:py-12">
+          <form id="contactForm" data-reveal data-reveal-delay="120" class="mt-10 rounded-xl border border-[#f8dfc4]/25 bg-[#fff8ef] px-4 py-7 text-left shadow-[0_30px_90px_rgba(0,0,0,0.2)] sm:mt-12 sm:px-8 sm:py-9 md:px-10 md:py-10">
             <input id="websiteInput" type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
-            <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
               <label class="block">
                 <span id="companyLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="nameLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="emailLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="emailInput" type="email" name="email" required autocomplete="email" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="emailInput" type="email" name="email" required autocomplete="email" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="whatsappLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="countryLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <select id="countrySelect" name="country" required class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
+                <select id="countrySelect" name="country" required class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
               </label>
               <label class="block">
                 <span id="purposeLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <select id="purposeSelect" name="purpose" required class="w-full border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
+                <select id="purposeSelect" name="purpose" required class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
               </label>
               <label class="block sm:col-span-2">
                 <span id="messageLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <textarea id="messageInput" name="message" rows="7" required class="w-full resize-none border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
+                <textarea id="messageInput" name="message" rows="5" required class="w-full resize-none rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
               </label>
             </div>
             <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <p id="privacyNote" class="max-w-md text-xs font-semibold leading-5 text-neutral-500"></p>
-              <button id="submitButton" type="submit" class="inline-flex items-center justify-center gap-2 bg-mokdaOrange px-8 py-4 text-sm font-extrabold uppercase text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none">
+              <button id="submitButton" type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-mokdaOrange px-8 py-4 text-sm font-extrabold uppercase text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none">
                 <span id="submitButtonText"></span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M5 12h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -262,12 +252,8 @@
           nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
           hero: {
             kicker: 'Contacto MOKDA',
-            title: 'Hablemos de Salsa Coreana.',
+            title: 'Hablemos de Salsa Coreana',
             description: 'Para distribución, retail, HORECA, prensa o colaboración, deja tu mensaje y revisaremos la consulta con el equipo de MOKDA.',
-          },
-          response: {
-            kicker: 'Proceso',
-            title: 'Tu consulta llega directo al equipo.',
           },
           fields: {
             company: ['Empresa', 'Nombre de la empresa'],
@@ -294,12 +280,8 @@
           nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
           hero: {
             kicker: 'Contact MOKDA',
-            title: 'Let’s talk Korean sauce.',
+            title: 'Let’s talk Korean sauce',
             description: 'For distribution, retail, HORECA, press, or collaboration inquiries, leave your message and the MOKDA team will review it.',
-          },
-          response: {
-            kicker: 'Process',
-            title: 'Your inquiry goes directly to the team.',
           },
           fields: {
             company: ['Company', 'Company name'],
@@ -326,12 +308,8 @@
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
           hero: {
             kicker: 'MOKDA Contact',
-            title: '한국 소스 협업을 이야기해보세요.',
+            title: '한국 소스 협업을 이야기해보세요',
             description: '유통, 리테일, HORECA, 홍보, 협업 문의를 남겨주시면 MOKDA 팀이 내용을 확인합니다.',
-          },
-          response: {
-            kicker: '문의 절차',
-            title: '문의 내용은 팀에 바로 전달됩니다.',
           },
           fields: {
             company: ['회사', '회사명'],
@@ -514,10 +492,8 @@
         setText('pageKicker', t.hero.kicker);
         setText('pageTitle', t.hero.title);
         setText('pageDescription', t.hero.description);
-        setText('responseTitleKicker', t.response.kicker);
-        setText('responseTitle', t.response.title);
         setText('socialTitle', t.social);
-        ['pageTitle', 'responseTitle'].forEach((id) => {
+        ['pageTitle'].forEach((id) => {
           const heading = document.getElementById(id);
           heading.classList.toggle('display-latin', language !== 'KR');
           heading.classList.toggle('display-korean', language === 'KR');

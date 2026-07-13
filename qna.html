@@ -201,13 +201,6 @@
 
       <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div class="mx-auto w-full max-w-6xl">
-          <div data-reveal class="mx-auto mb-12 max-w-4xl text-center sm:mb-16">
-            <div class="flex flex-col items-center">
-              <p id="boardKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange"></p>
-              <h2 id="boardTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl"></h2>
-              <p id="boardDescription" class="mt-5 max-w-2xl text-sm font-semibold leading-6 text-[#321506]/68 sm:text-base"></p>
-            </div>
-          </div>
           <div id="qnaList" data-reveal data-reveal-delay="80" class="rounded-[1.4rem] bg-[#321506] p-2 shadow-[0_24px_70px_rgba(50,21,6,0.18)] sm:p-3"></div>
           <div data-reveal data-reveal-delay="140" class="mt-10 text-center">
             <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center bg-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition-all hover:scale-[1.02] hover:bg-mokdaOrange"></a>
@@ -331,14 +324,11 @@
           title: 'MOKDA | Q&A',
           nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
           hero: {
-            kicker: 'MOKDA / Q&A',
-            title: 'De Corea a tu mesa',
-            description: 'Conoce la marca, la línea Salsa Coreana y cómo llevamos sabores coreanos a la vida cotidiana en América Latina.',
+            kicker: 'Q&A MOKDA',
+            title: 'Preguntas sobre MOKDA',
+            description: 'Consulta las preguntas frecuentes sobre Salsa Coreana, productos, distribución y colaboración.',
           },
           board: {
-            kicker: '5 RESPUESTAS CLAVE',
-            title: 'Preguntas frecuentes',
-            description: 'Información clara sobre productos, usos, disponibilidad y colaboración.',
             contact: 'Hacer una consulta',
           },
           social: 'SNS',
@@ -347,14 +337,11 @@
           title: 'MOKDA | Q&A',
           nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
           hero: {
-            kicker: 'MOKDA / Q&A',
-            title: 'From Korea to your table',
-            description: 'Meet the brand, discover the Salsa Coreana line, and see how Korean flavors fit into everyday food across Latin America.',
+            kicker: 'MOKDA Q&A',
+            title: 'Questions about MOKDA',
+            description: 'Find answers about Salsa Coreana, products, distribution, export, and collaboration.',
           },
           board: {
-            kicker: '5 KEY ANSWERS',
-            title: 'Frequently Asked Questions',
-            description: 'Clear information about products, uses, availability, and collaboration.',
             contact: 'Send an inquiry',
           },
           social: 'SNS',
@@ -363,14 +350,11 @@
           title: 'MOKDA | Q&A',
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
           hero: {
-            kicker: 'MOKDA / Q&A',
-            title: '한국에서 라틴의 식탁까지',
-            description: 'MOKDA와 Salsa Coreana, 그리고 한국의 맛을 라틴아메리카의 일상 음식에 연결하는 방식을 소개합니다.',
+            kicker: 'MOKDA Q&A',
+            title: 'MOKDA에 대해 궁금한 점',
+            description: 'Salsa Coreana, 제품, 유통, 수출, 협업과 관련된 자주 묻는 질문을 확인하세요.',
           },
           board: {
-            kicker: '핵심 답변 5가지',
-            title: '자주 묻는 질문',
-            description: '제품, 활용법, 판매 정보와 협업에 관한 핵심 내용을 확인하세요.',
             contact: '1:1 문의하기',
           },
           social: 'SNS',
@@ -465,16 +449,11 @@
         setText('pageKicker', t.hero.kicker);
         setText('pageTitle', t.hero.title);
         setText('pageDescription', t.hero.description);
-        setText('boardKicker', t.board.kicker);
-        setText('boardTitle', t.board.title);
-        setText('boardDescription', t.board.description);
         setText('boardContactLink', t.board.contact);
         setText('socialTitle', t.social);
-        ['pageTitle', 'boardTitle'].forEach((id) => {
-          const heading = document.getElementById(id);
-          heading.classList.toggle('display-latin', language !== 'KR');
-          heading.classList.toggle('display-korean', language === 'KR');
-        });
+        const pageTitle = document.getElementById('pageTitle');
+        pageTitle.classList.toggle('display-latin', language !== 'KR');
+        pageTitle.classList.toggle('display-korean', language === 'KR');
         renderQnaList();
         window.MOKDA_FOOTER.render(language);
         renderLanguageButtons();

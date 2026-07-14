@@ -130,8 +130,8 @@
       }
 
       .qna-item.is-open {
-        background: #fff1e3;
-        box-shadow: inset 5px 0 0 #ef5f18;
+        background: #fce7d2;
+        box-shadow: inset 3px 0 0 #ef5f18;
       }
 
       .qna-icon {
@@ -203,7 +203,7 @@
 
       <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div class="mx-auto w-full max-w-6xl">
-          <div id="qnaList" data-reveal data-reveal-delay="80" class="rounded-[1.4rem] bg-[#321506] p-2 shadow-[0_24px_70px_rgba(50,21,6,0.18)] sm:p-3"></div>
+          <div id="qnaList" data-reveal data-reveal-delay="80" class="overflow-hidden rounded-xl border border-[#321506]/20 bg-[#fff8ef] shadow-[0_24px_70px_rgba(50,21,6,0.12)]"></div>
           <div data-reveal data-reveal-delay="140" class="mt-10 text-center">
             <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center bg-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition-all hover:scale-[1.02] hover:bg-mokdaOrange"></a>
           </div>
@@ -379,15 +379,15 @@
             const localized = item[language] || item.ES;
             const itemId = `qna-${index}`;
             return `
-              <article class="qna-item border-b border-[#321506]/16 bg-[#f8dfc4] transition-all first:rounded-t-[1rem] last:rounded-b-[1rem] last:border-b-0 hover:bg-[#fff1e3]">
-                <button type="button" class="grid w-full grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3.25rem_minmax(0,1fr)_3.25rem] sm:px-4 sm:py-9" aria-expanded="false" aria-controls="${itemId}">
+              <article class="qna-item border-b border-[#321506]/14 bg-[#fff8ef] transition-colors last:border-b-0 hover:bg-[#f8dfc4]/55">
+                <button type="button" class="grid w-full grid-cols-[2rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-4 py-5 text-left sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:gap-5 sm:px-7 sm:py-7" aria-expanded="false" aria-controls="${itemId}">
                   <span class="text-xs font-black text-mokdaOrange">${String(index + 1).padStart(2, '0')}</span>
-                  <span class="faq-question block min-w-0 break-keep text-xl leading-7 text-[#321506] sm:text-2xl sm:leading-8">${localized.question}</span>
+                  <span class="faq-question block min-w-0 break-keep text-lg leading-7 text-[#321506] sm:text-xl sm:leading-8">${localized.question}</span>
                   <span class="qna-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl leading-none text-[#f8dfc4] transition-colors"><span class="qna-glyph">+</span></span>
                 </button>
                 <div id="${itemId}" class="qna-answer">
                   <div class="min-h-0 overflow-hidden">
-                    <p class="mx-auto max-w-3xl px-6 pb-9 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:px-10 sm:text-base sm:leading-8">${localized.answer}</p>
+                    <p class="max-w-4xl pb-6 pl-[4.25rem] pr-5 text-left text-[15px] font-semibold leading-7 text-[#321506]/76 sm:pb-8 sm:pl-[7.25rem] sm:pr-20 sm:text-base sm:leading-8">${localized.answer}</p>
                   </div>
                 </div>
               </article>

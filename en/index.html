@@ -32,7 +32,11 @@
     <meta name="twitter:image" content="https://www.mokda.kr/assets/og-mokda.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <link rel="preload" as="image" href="/assets/images/hero-mokda-sauce-pour-mobile.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/assets/images/hero-mokda-sauce-pour-cutout.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />
     <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
     <style>
       html {
@@ -371,14 +375,14 @@
               <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1" translate="no">KR</button>
               <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2" translate="no">EN</button>
             </div>
-            <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-white transition-colors duration-300 hover:bg-white/20" aria-label="Open navigation menu">
+            <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-white transition-colors duration-300 hover:bg-white/20" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
               </svg>
             </button>
           </div>
         </div>
-        <div id="mobile-menu" class="absolute left-0 top-20 z-50 w-full overflow-hidden border-y border-[#321506]/10 bg-[#f7ddc2] shadow-[0_10px_30px_rgba(23,23,23,0.08)] transition-all duration-300 ease-in-out max-h-0 opacity-0 invisible">
+        <div id="mobile-menu" class="absolute left-0 top-20 z-50 w-full overflow-hidden border-y border-[#321506]/10 bg-[#f7ddc2] shadow-[0_10px_30px_rgba(23,23,23,0.08)] transition-all duration-300 ease-in-out max-h-0 opacity-0 invisible" aria-hidden="true">
           <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
             <a id="mobile-about-link" href="/en/about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-orange-600 sm:text-sm">Sobre nosotros</a>
             <a id="mobile-products-link" href="/en/products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-orange-600 sm:text-sm">Salsa Coreana</a>
@@ -428,15 +432,15 @@
             <div class="relative mt-0 grid min-h-[224px] grid-cols-3 items-end gap-1 pt-1 sm:mt-4 sm:min-h-[360px] sm:gap-6 sm:pt-6 lg:min-h-[420px]">
               <div class="pointer-events-none absolute inset-x-[8%] bottom-8 h-10 rounded-full bg-[#321506]/14 blur-2xl sm:bottom-10"></div>
               <figure class="relative z-10 flex flex-col items-center justify-end gap-2 sm:gap-4">
-                <img src="assets/bottle-original.webp" alt="Salsa Coreana Original" class="h-48 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-72 lg:h-80" loading="lazy" />
+                <img src="assets/images/bottle-original-360.webp" alt="Salsa Coreana Original" class="h-48 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-72 lg:h-80" loading="lazy" />
                 <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#321506]/72 sm:text-sm">Original</figcaption>
               </figure>
               <figure class="relative z-10 flex flex-col items-center justify-end gap-2 sm:gap-4">
-                <img src="assets/bottle-ssamjang.webp" alt="Salsa Coreana Para Carnes" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-[19rem] lg:h-[21rem]" loading="lazy" />
+                <img src="assets/images/bottle-ssamjang-360.webp" alt="Salsa Coreana Para Carnes" class="h-52 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-[19rem] lg:h-[21rem]" loading="lazy" />
                 <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#321506]/72 sm:text-sm">Para Carnes</figcaption>
               </figure>
               <figure class="relative z-10 flex flex-col items-center justify-end gap-2 sm:gap-4">
-                <img src="assets/bottle-sweetsoy.webp" alt="Salsa Coreana Soy Sauce" class="h-48 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-72 lg:h-80" loading="lazy" />
+                <img src="assets/images/bottle-sweetsoy-360.webp" alt="Salsa Coreana Soy Sauce" class="h-48 w-auto object-contain drop-shadow-[0_24px_18px_rgba(50,21,6,0.25)] sm:h-72 lg:h-80" loading="lazy" />
                 <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#321506]/72 sm:text-sm">Soy Sauce</figcaption>
               </figure>
             </div>
@@ -593,8 +597,8 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260718"></script>
-    <script src="./site-footer.js?v=20260718"></script>
+    <script src="./site-i18n.js?v=20260718-2"></script>
+    <script src="./site-footer.js?v=20260718-2"></script>
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
@@ -696,9 +700,9 @@
             EN: { line1: 'Brightened with the freshness of jalapeño,', line2: 'a clean Korean heat that rises smoothly' },
             KR: { line1: '할라페뇨의 산뜻함을 더한,', line2: '깔끔하게 올라오는 한국식 매콤함' },
           },
-          image: 'assets/bottle-original.webp',
-          foodImage: 'assets/images/original-nachos-chicken-chips.webp',
-          textureImage: 'assets/images/original-nachos-chicken-chips.webp',
+          image: 'assets/images/bottle-original-360.webp',
+          foodImage: 'assets/images/original-nachos-chicken-chips-card.webp',
+          textureImage: 'assets/images/original-nachos-chicken-chips-card.webp',
           panelTone: '#ef5f18',
           alt: 'MOKDA Salsa Guchujang Original',
           shadow: 'rgba(126,38,18,0.22)',
@@ -719,9 +723,9 @@
             EN: { line1: 'Ideal for chicken, beef, pork, and grilled meats,', line2: 'a Korean sauce with deep, rich umami' },
             KR: { line1: '닭고기, 소고기, 돼지고기와 구운 고기에 어울리는,', line2: '깊고 진한 감칠맛의 한국식 소스' },
           },
-          image: 'assets/bottle-ssamjang.webp',
-          foodImage: 'assets/product-food-paracarne-v1.jpg',
-          textureImage: 'assets/product-food-paracarne-v1.jpg',
+          image: 'assets/images/bottle-ssamjang-360.webp',
+          foodImage: 'assets/images/para-carnes-grilled-meat-card.webp',
+          textureImage: 'assets/images/para-carnes-grilled-meat-card.webp',
           panelTone: '#381607',
           alt: 'MOKDA Salsa Ssamjang Para Carnes',
           imageClass: '-translate-y-1 scale-x-[1.18] scale-y-[1.09] hover:-translate-y-2 hover:scale-x-[1.21] hover:scale-y-[1.12]',
@@ -743,9 +747,9 @@
             EN: { line1: 'Balanced between sweetness and savory depth,', line2: 'an everyday fusion sauce' },
             KR: { line1: '달콤함과 짭짤함이 균형 잡힌,', line2: '매일 쓰기 좋은 퓨전 소스' },
           },
-          image: 'assets/bottle-sweetsoy.webp',
-          foodImage: 'assets/product-food-soy-v1.jpg',
-          textureImage: 'assets/product-food-soy-v1.jpg',
+          image: 'assets/images/bottle-sweetsoy-360.webp',
+          foodImage: 'assets/images/soy-sauce-rice-vegetables-card.webp',
+          textureImage: 'assets/images/soy-sauce-rice-vegetables-card.webp',
           alt: 'MOKDA Salsa Ganjang Soy Sauce',
           shadow: 'rgba(50,24,15,0.22)',
           stageShadow: 'rgba(50,24,15,0.24)',
@@ -1036,12 +1040,12 @@
                 <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-9rem] md:h-[55vh] md:w-[78vw] md:-translate-x-[56%] lg:bottom-[-9.5rem] lg:h-[58vh] lg:w-[76vw] lg:-translate-x-[54%] xl:w-[72vw]">
                   <picture class="block h-full w-full">
                     <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
-                    <img src="${slide.mobileImage}" alt="" class="h-full w-full object-contain object-bottom" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
+                    <img src="${slide.mobileImage}" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                   </picture>
                 </div>
                 <div class="relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 pt-28 pb-[340px] sm:px-6 sm:pb-[455px] md:pt-28 md:pb-[31vh] lg:px-8">
-                  <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-mokdaOrange sm:text-xl md:mb-2"></p>
-                  <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-mokdaOrange sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem] animate-fade-in-up delay-200"></h1>
+                  <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
+                  <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem] animate-fade-in-up delay-200"></h1>
                   <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
                     <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl animate-fade-in-up delay-500"></p>
                     <a data-hero-link href="#products" class="brand-text-link text-[#321506] animate-fade-in-up delay-800"></a>
@@ -1112,6 +1116,10 @@
       }
 
       function updateHeroCarousel(syncScroll = true) {
+        const scroller = document.getElementById('heroSlides');
+        const shouldSyncScroll = syncScroll && !window.matchMedia('(min-width: 768px)').matches && scroller;
+        const targetScrollLeft = shouldSyncScroll ? scroller.clientWidth * currentSlide : null;
+
         document.querySelectorAll('[data-hero-slide]').forEach((slide) => {
           const isActive = Number(slide.getAttribute('data-hero-slide')) === currentSlide;
           slide.className = `relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 ${
@@ -1126,9 +1134,8 @@
           }`;
         });
 
-        const scroller = document.getElementById('heroSlides');
-        if (syncScroll && !window.matchMedia('(min-width: 768px)').matches && scroller) {
-          scroller.scrollTo({ left: scroller.clientWidth * currentSlide, behavior: 'smooth' });
+        if (targetScrollLeft !== null) {
+          scroller.scrollTo({ left: targetScrollLeft, behavior: 'smooth' });
         }
       }
 
@@ -1307,6 +1314,6 @@
       updateHeroCarousel();
       restartHeroCarousel();
     </script>
-    <script src="./site-header.js?v=20260718"></script>
+    <script src="./site-header.js?v=20260718-2"></script>
   </body>
 </html>

@@ -61,29 +61,29 @@
             <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.businessTitle}</h2>
             <dl class="grid gap-x-7 gap-y-3 sm:grid-cols-2">
               <div>
-                <dt class="mb-1 font-bold text-white/40">${footer.companyLabel}</dt>
+                <dt class="mb-1 font-bold text-white/60">${footer.companyLabel}</dt>
                 <dd class="font-semibold text-white/75">${footer.company}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/40">${footer.ceoLabel}</dt>
+                <dt class="mb-1 font-bold text-white/60">${footer.ceoLabel}</dt>
                 <dd class="font-semibold text-white/75">${footer.ceo}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/40">${footer.registrationLabel}</dt>
+                <dt class="mb-1 font-bold text-white/60">${footer.registrationLabel}</dt>
                 <dd class="font-semibold text-white/75">${footer.registration}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/40">${footer.addressLabel}</dt>
-                <dd class="text-white/65">${footer.address}</dd>
+                <dt class="mb-1 font-bold text-white/60">${footer.addressLabel}</dt>
+                <dd class="text-white/75">${footer.address}</dd>
               </div>
             </dl>
           </section>
           <section class="lg:max-w-md lg:justify-self-end">
             <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.ipTitle}</h2>
-            <p class="text-white/55">${footer.ip}</p>
+            <p class="text-white/70">${footer.ip}</p>
           </section>
         </div>
-        <div class="text-[11px] font-semibold text-white/35">${footer.copyright}</div>
+        <div class="text-[11px] font-semibold text-white/60">${footer.copyright}</div>
       </div>
     `;
   }

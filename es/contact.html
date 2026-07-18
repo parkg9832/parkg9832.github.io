@@ -31,7 +31,9 @@
     <meta name="twitter:image" content="https://www.mokda.kr/assets/og-mokda.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
     <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
     <style>
       html {
@@ -160,14 +162,14 @@
             <button id="langKR" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="1" translate="no">KR</button>
             <button id="langEN" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="2" translate="no">EN</button>
           </div>
-          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 p-2 text-white ring-1 ring-white/30 transition-all duration-300 hover:scale-105" aria-label="Open navigation menu">
+          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 p-2 text-white ring-1 ring-white/30 transition-all duration-300 hover:scale-105" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
             </svg>
           </button>
         </div>
       </div>
-      <div id="mobile-menu" class="invisible absolute left-0 top-20 z-50 max-h-0 w-full overflow-hidden border-y border-white/30 bg-white/80 opacity-0 shadow-[0_10px_30px_rgba(23,23,23,0.08)] backdrop-blur-xl transition-all duration-300 ease-in-out">
+      <div id="mobile-menu" class="invisible absolute left-0 top-20 z-50 max-h-0 w-full overflow-hidden border-y border-white/30 bg-white/80 opacity-0 shadow-[0_10px_30px_rgba(23,23,23,0.08)] backdrop-blur-xl transition-all duration-300 ease-in-out" aria-hidden="true">
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
           <a id="nav-about" href="/es/about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Sobre nosotros</a>
           <a id="nav-products" href="/es/products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Salsa Coreana</a>
@@ -214,7 +216,7 @@
               </label>
             </div>
             <div class="mt-7 flex justify-center">
-              <button id="submitButton" type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-mokdaOrange px-8 py-4 text-sm font-extrabold uppercase text-white transition-colors duration-300 hover:bg-orange-700 focus:outline-none">
+              <button id="submitButton" type="submit" class="inline-flex items-center justify-center gap-2 rounded-lg bg-mokdaOrange px-8 py-4 text-sm font-extrabold uppercase text-[#321506] transition-colors duration-300 hover:bg-[#ff7a32] focus:outline-none">
                 <span id="submitButtonText"></span>
                 <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path d="M5 12h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
@@ -259,8 +261,8 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260718"></script>
-    <script src="./site-footer.js?v=20260718"></script>
+    <script src="./site-i18n.js?v=20260718-2"></script>
+    <script src="./site-footer.js?v=20260718-2"></script>
     <script src="./b2b-config.js"></script>
     <script>
       let language = window.MOKDA_I18N.getLanguage();
@@ -537,6 +539,6 @@
       document.getElementById('contactForm').addEventListener('submit', submitContactForm);
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260718"></script>
+    <script src="./site-header.js?v=20260718-2"></script>
   </body>
 </html>

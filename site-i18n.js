@@ -6,9 +6,9 @@
   const PATH_LANGUAGES = { es: 'ES', ko: 'KR', en: 'EN' };
   const LOCALIZED_PAGES = new Set(['index.html', 'about.html', 'products.html', 'qna.html', 'contact.html']);
   const ACTIVE_BUTTON_CLASS =
-    'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-white transition-colors duration-300';
+    'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-[#321506] transition-colors duration-300';
   const INACTIVE_BUTTON_CLASS =
-    'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-500 hover:text-neutral-950 transition-colors duration-300';
+    'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-600 hover:text-neutral-950 transition-colors duration-300';
 
   function normalizeLanguage(language) {
     return LANGUAGES.includes(language) ? language : 'ES';

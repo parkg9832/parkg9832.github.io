@@ -35,14 +35,29 @@
   }
 
   if (menuToggle && mobileMenu) {
+    function setMenuOpen(isOpen) {
+      mobileMenu.classList.toggle('max-h-0', !isOpen);
+      mobileMenu.classList.toggle('opacity-0', !isOpen);
+      mobileMenu.classList.toggle('invisible', !isOpen);
+      mobileMenu.classList.toggle('max-h-64', isOpen);
+      mobileMenu.classList.toggle('opacity-100', isOpen);
+      mobileMenu.classList.toggle('visible', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    }
+
     menuToggle.addEventListener('click', () => {
-      mobileMenu.classList.toggle('max-h-0');
-      mobileMenu.classList.toggle('opacity-0');
-      mobileMenu.classList.toggle('invisible');
-      mobileMenu.classList.toggle('max-h-64');
-      mobileMenu.classList.toggle('opacity-100');
-      mobileMenu.classList.toggle('visible');
+      setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
     });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
+    });
+
+    setMenuOpen(false);
   }
 
   handleScroll();

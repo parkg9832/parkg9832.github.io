@@ -393,7 +393,16 @@
       </header>
 
       <section id="top" class="relative min-h-[560px] overflow-hidden bg-[#f7ddc2] text-white sm:h-screen sm:min-h-[780px]">
-        <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar"></div>
+        <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar">
+          <div data-hero-prerender class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 md:absolute md:inset-0 md:min-w-0">
+            <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-9rem] md:h-[55vh] md:w-[78vw] md:-translate-x-[56%] lg:bottom-[-9.5rem] lg:h-[58vh] lg:w-[76vw] lg:-translate-x-[54%] xl:w-[72vw]">
+              <picture class="block h-full w-full">
+                <source media="(min-width: 768px)" srcset="/assets/images/hero-mokda-sauce-pour-cutout.webp" />
+                <img src="/assets/images/hero-mokda-sauce-pour-mobile.webp" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" loading="eager" fetchpriority="high" />
+              </picture>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section id="salsa-corea" class="brand-grid-bg scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-center text-[#f8dfc4] sm:px-6 sm:py-24 lg:px-8 lg:py-28">

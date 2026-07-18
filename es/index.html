@@ -122,15 +122,24 @@
       }
 
       .home-faq-item {
-        background: #f8dfc4;
+        border-bottom: 1px solid rgba(50, 21, 6, 0.24);
+        background: transparent;
         transition:
           background-color 240ms ease,
-          box-shadow 240ms ease;
+          color 240ms ease;
+      }
+
+      .home-faq-item:last-child {
+        border-bottom: 0;
       }
 
       .home-faq-item.is-open {
-        background: #fff1e3;
-        box-shadow: inset 5px 0 0 #ef5f18;
+        background: #ef5f18;
+      }
+
+      .home-faq-item.is-open .home-faq-number,
+      .home-faq-item.is-open .home-faq-question {
+        color: #fff4e6;
       }
 
       .home-faq-answer {
@@ -147,6 +156,11 @@
         opacity: 1;
       }
 
+      .home-faq-answer-panel {
+        border-top: 1px solid rgba(50, 21, 6, 0.18);
+        background: #fff8ef;
+      }
+
       .home-faq-glyph {
         transition: transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
       }
@@ -160,7 +174,8 @@
       }
 
       .home-faq-item.is-open .home-faq-icon {
-        background: #ef5f18;
+        background: #fff4e6;
+        color: #321506;
       }
 
       [data-reveal] {
@@ -493,39 +508,37 @@
               <span id="faqCta">Ver Q&A</span> <span class="ml-2">-&gt;</span>
             </a>
           </div>
-          <div data-reveal data-reveal-delay="120" class="mx-auto max-w-5xl rounded-[1.4rem] bg-[#321506] p-2 shadow-[0_24px_70px_rgba(50,21,6,0.16)] sm:p-3">
-            <div class="overflow-hidden rounded-[1rem]">
-              <article data-home-faq class="home-faq-item border-b border-[#321506]/16">
-                <button type="button" class="grid w-full cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8" aria-expanded="false" aria-controls="homeFaqAnswer1">
-                  <span class="text-xs font-black text-mokdaOrange">01</span>
-                  <span id="faqQuestion1" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué significa MOKDA?</span>
+          <div id="homeFaqList" data-reveal data-reveal-delay="120" class="mx-auto max-w-5xl overflow-hidden border-y-2 border-[#321506]">
+              <article data-home-faq data-accordion-item class="home-faq-item">
+                <button data-accordion-button type="button" class="grid w-full cursor-pointer grid-cols-[2.25rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-3 py-6 text-left sm:grid-cols-[3.5rem_minmax(0,1fr)_3rem] sm:px-6 sm:py-7" aria-expanded="false" aria-controls="homeFaqAnswer1">
+                  <span class="home-faq-number text-xs font-black text-mokdaOrange">01</span>
+                  <span id="faqQuestion1" class="home-faq-question faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué significa MOKDA?</span>
                   <span class="home-faq-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4]"><span class="home-faq-glyph">+</span></span>
                 </button>
-                <div id="homeFaqAnswer1" class="home-faq-answer">
-                  <div class="min-h-0 overflow-hidden"><p id="faqAnswer1" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">MOKDA viene de la expresión coreana “먹다”, que significa comer.</p></div>
+                <div id="homeFaqAnswer1" class="home-faq-answer" aria-hidden="true">
+                  <div class="min-h-0 overflow-hidden"><div class="home-faq-answer-panel"><p id="faqAnswer1" class="max-w-3xl px-[3.25rem] py-6 text-left text-sm font-semibold leading-7 text-[#321506]/76 sm:px-[6.5rem] sm:text-base">MOKDA viene de la expresión coreana “먹다”, que significa comer.</p></div></div>
                 </div>
               </article>
-              <article data-home-faq class="home-faq-item border-b border-[#321506]/16">
-                <button type="button" class="grid w-full cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8" aria-expanded="false" aria-controls="homeFaqAnswer2">
-                  <span class="text-xs font-black text-mokdaOrange">02</span>
-                  <span id="faqQuestion2" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué es Salsa Coreana?</span>
+              <article data-home-faq data-accordion-item class="home-faq-item">
+                <button data-accordion-button type="button" class="grid w-full cursor-pointer grid-cols-[2.25rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-3 py-6 text-left sm:grid-cols-[3.5rem_minmax(0,1fr)_3rem] sm:px-6 sm:py-7" aria-expanded="false" aria-controls="homeFaqAnswer2">
+                  <span class="home-faq-number text-xs font-black text-mokdaOrange">02</span>
+                  <span id="faqQuestion2" class="home-faq-question faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿Qué es Salsa Coreana?</span>
                   <span class="home-faq-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4]"><span class="home-faq-glyph">+</span></span>
                 </button>
-                <div id="homeFaqAnswer2" class="home-faq-answer">
-                  <div class="min-h-0 overflow-hidden"><p id="faqAnswer2" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">Es la primera línea de productos de MOKDA para acercar sabores coreanos a comidas cotidianas.</p></div>
+                <div id="homeFaqAnswer2" class="home-faq-answer" aria-hidden="true">
+                  <div class="min-h-0 overflow-hidden"><div class="home-faq-answer-panel"><p id="faqAnswer2" class="max-w-3xl px-[3.25rem] py-6 text-left text-sm font-semibold leading-7 text-[#321506]/76 sm:px-[6.5rem] sm:text-base">Es la primera línea de productos de MOKDA para acercar sabores coreanos a comidas cotidianas.</p></div></div>
                 </div>
               </article>
-              <article data-home-faq class="home-faq-item">
-                <button type="button" class="grid w-full cursor-pointer grid-cols-[2.5rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-2 py-7 text-center sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:px-4 sm:py-8" aria-expanded="false" aria-controls="homeFaqAnswer3">
-                  <span class="text-xs font-black text-mokdaOrange">03</span>
-                  <span id="faqQuestion3" class="faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿MOKDA acepta consultas?</span>
+              <article data-home-faq data-accordion-item class="home-faq-item">
+                <button data-accordion-button type="button" class="grid w-full cursor-pointer grid-cols-[2.25rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-3 py-6 text-left sm:grid-cols-[3.5rem_minmax(0,1fr)_3rem] sm:px-6 sm:py-7" aria-expanded="false" aria-controls="homeFaqAnswer3">
+                  <span class="home-faq-number text-xs font-black text-mokdaOrange">03</span>
+                  <span id="faqQuestion3" class="home-faq-question faq-question text-xl leading-7 text-[#321506] sm:text-2xl">¿MOKDA acepta consultas?</span>
                   <span class="home-faq-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl font-extrabold text-[#f8dfc4]"><span class="home-faq-glyph">+</span></span>
                 </button>
-                <div id="homeFaqAnswer3" class="home-faq-answer">
-                  <div class="min-h-0 overflow-hidden"><p id="faqAnswer3" class="mx-auto max-w-3xl px-6 pb-8 text-center text-sm font-semibold leading-7 text-[#321506]/72 sm:text-base">Sí. Estamos recibiendo consultas generales y propuestas B2B para LATAM.</p></div>
+                <div id="homeFaqAnswer3" class="home-faq-answer" aria-hidden="true">
+                  <div class="min-h-0 overflow-hidden"><div class="home-faq-answer-panel"><p id="faqAnswer3" class="max-w-3xl px-[3.25rem] py-6 text-left text-sm font-semibold leading-7 text-[#321506]/76 sm:px-[6.5rem] sm:text-base">Sí. Estamos recibiendo consultas generales y propuestas B2B para LATAM.</p></div></div>
                 </div>
               </article>
-            </div>
           </div>
         </div>
       </section>
@@ -617,6 +630,7 @@
 
     <script src="./site-i18n.js?v=20260718-2"></script>
     <script src="./site-footer.js?v=20260718-2"></script>
+    <script src="./site-accordion.js?v=20260719-1"></script>
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       window.scrollTo(0, 0);
@@ -1316,22 +1330,7 @@
       createHeroCarousel();
       bindHeroScroll();
       renderPage();
-      const homeFaqItems = Array.from(document.querySelectorAll('[data-home-faq]'));
-      homeFaqItems.forEach((item) => {
-        const button = item.querySelector('button');
-        if (!button) return;
-        button.addEventListener('click', () => {
-          const willOpen = !item.classList.contains('is-open');
-          homeFaqItems.forEach((otherItem) => {
-            otherItem.classList.remove('is-open');
-            const otherButton = otherItem.querySelector('button');
-            if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
-          });
-          if (!willOpen) return;
-          item.classList.add('is-open');
-          button.setAttribute('aria-expanded', 'true');
-        });
-      });
+      window.MOKDA_ACCORDION.init(document.getElementById('homeFaqList'));
       updateHeroCarousel();
       restartHeroCarousel();
     </script>

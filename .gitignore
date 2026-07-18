@@ -34,3 +34,7 @@ tsconfig.tsbuildinfo
 # Local archives / scratch workspaces
 Organized_Workspace/
 .git-local/
+
+# Local browser QA artifacts
+.playwright-cli/
+output/playwright/

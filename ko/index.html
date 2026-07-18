@@ -392,14 +392,23 @@
         </div>
       </header>
 
-      <section id="top" class="relative min-h-[560px] overflow-hidden bg-[#f7ddc2] text-white sm:h-screen sm:min-h-[780px]">
+      <section id="top" class="relative h-[658px] min-h-[658px] overflow-hidden bg-[#f7ddc2] text-white sm:h-screen sm:min-h-[780px]">
         <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar">
-          <div data-hero-prerender class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 md:absolute md:inset-0 md:min-w-0">
+          <div data-hero-slide="0" data-hero-theme="soft" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0">
+            <div class="absolute inset-0 bg-[#f7ddc2]"></div>
             <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-9rem] md:h-[55vh] md:w-[78vw] md:-translate-x-[56%] lg:bottom-[-9.5rem] lg:h-[58vh] lg:w-[76vw] lg:-translate-x-[54%] xl:w-[72vw]">
               <picture class="block h-full w-full">
                 <source media="(min-width: 768px)" srcset="/assets/images/hero-mokda-sauce-pour-cutout.webp" />
                 <img src="/assets/images/hero-mokda-sauce-pour-mobile.webp" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" loading="eager" fetchpriority="high" />
               </picture>
+            </div>
+            <div class="relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 pt-28 pb-[340px] sm:px-6 sm:pb-[455px] md:pt-28 md:pb-[31vh] lg:px-8">
+              <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
+              <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem] animate-fade-in-up delay-200"></h1>
+              <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
+                <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl animate-fade-in-up delay-500"></p>
+                <a data-hero-link href="#products" class="brand-text-link text-[#321506] animate-fade-in-up delay-800"></a>
+              </div>
             </div>
           </div>
         </div>
@@ -1040,7 +1049,10 @@
       }
 
       function createHeroCarousel() {
-        document.getElementById('heroSlides').innerHTML = homepageHeroSlides
+        const heroContainer = document.getElementById('heroSlides');
+        if (homepageHeroSlides.length === 1 && heroContainer.querySelector('[data-hero-slide="0"]')) return;
+
+        heroContainer.innerHTML = homepageHeroSlides
           .map(
             (slide, index) => {
               return `

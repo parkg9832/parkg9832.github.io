@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "generate:i18n": "node scripts/generate-localized-pages.mjs",
+    "build:static-css": "tailwindcss -c tailwind.config.ts -i ./styles/static-tailwind.css -o ./assets/mokda-tailwind.css --minify",
+    "generate:i18n": "npm run build:static-css && node scripts/generate-localized-pages.mjs",
     "preview:static": "node scripts/serve-static.mjs",
     "git:sync": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh",
     "push": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh"

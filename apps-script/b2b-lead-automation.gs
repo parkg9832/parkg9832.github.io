@@ -1,4 +1,4 @@
-const SERVICE_NAME = 'MOKDA B2B';
+const SERVICE_NAME = 'MOKDA Inquiry';
 const TIME_ZONE = 'Asia/Seoul';
 
 const SCRIPT_PROPERTY_KEYS = {
@@ -7,7 +7,7 @@ const SCRIPT_PROPERTY_KEYS = {
   notificationEmail: 'NOTIFICATION_EMAIL',
 };
 
-const REQUIRED_PAYLOAD_FIELDS = ['company', 'name', 'email', 'country', 'purpose', 'message'];
+const REQUIRED_PAYLOAD_FIELDS = ['name', 'email', 'country', 'purpose', 'message'];
 
 const SHEET_HEADERS = [
   'Received At',
@@ -24,6 +24,8 @@ const SHEET_HEADERS = [
   'User Agent',
   'Inquiry Type KO',
   'Partnership Details KO',
+  'Inquiry Source',
+  'WhatsApp',
 ];
 
 function doGet() {
@@ -32,7 +34,7 @@ function doGet() {
   return jsonResponse({
     ok: true,
     service: `${SERVICE_NAME} lead automation`,
-    message: 'Ready to receive B2B inquiries.',
+    message: 'Ready to receive MOKDA inquiries.',
     notification: {
       hasChatWebhookUrl: Boolean(chatWebhookUrl),
       chatWebhookUrlLooksValid: isGoogleChatWebhookUrl(chatWebhookUrl),
@@ -66,6 +68,9 @@ function doPost(event) {
     validatePayload(payload);
 
     const language = String(payload.language || 'ES').toUpperCase();
+    const source = String(payload.source || 'website').trim();
+    const company = String(payload.company || '').trim();
+    const whatsapp = String(payload.whatsapp || '').trim();
     const sourceLanguage = getSourceLanguage(language);
     const inquiryTypeEs = translateToSpanish(payload.purpose, sourceLanguage);
     const messageEs = translateToSpanish(payload.message, sourceLanguage);
@@ -88,14 +93,18 @@ function doPost(event) {
       payload.userAgent || '',
       inquiryTypeKo,
       messageKo,
+      source,
+      whatsapp,
     ]);
 
     const notification = notifyLead({
       receivedAt,
       language,
-      company: payload.company,
+      source,
+      company,
       name: payload.name,
       email: payload.email,
+      whatsapp,
       country: payload.country,
       purpose: payload.purpose,
       purposeEs: inquiryTypeEs,
@@ -106,7 +115,7 @@ function doPost(event) {
       pageUrl: payload.pageUrl || '',
     });
 
-    return jsonResponse({ ok: true, notification });
+    return jsonResponse({ ok: notification.ok, saved: true, notification });
   } catch (error) {
     console.error(error);
     return jsonResponse({ ok: false, error: String(error.message || error) });
@@ -243,7 +252,9 @@ function notifyGoogleChatWebhook(lead, webhookUrl) {
 
 function notifyEmail(lead, email) {
   const timestamp = Utilities.formatDate(lead.receivedAt, TIME_ZONE, 'yyyy-MM-dd HH:mm:ss');
-  const subject = `[${SERVICE_NAME} 문의] ${lead.company} - ${lead.country}`;
+  const inquiryLabel = getInquiryLabel(lead.source);
+  const senderLabel = lead.company || lead.name;
+  const subject = `[MOKDA ${inquiryLabel}] ${senderLabel} - ${lead.country}`;
   const body = formatLeadNotification(lead, timestamp);
 
   MailApp.sendEmail({
@@ -256,12 +267,14 @@ function notifyEmail(lead, email) {
 
 function formatLeadNotification(lead, timestamp) {
   return [
-    `${SERVICE_NAME} 문의가 접수되었습니다.`,
+    `MOKDA ${getInquiryLabel(lead.source)}가 접수되었습니다.`,
     '',
     `접수 시간: ${timestamp} KST`,
-    `회사: ${lead.company}`,
-    `담당자: ${lead.name}`,
+    `문의 구분: ${getInquiryLabel(lead.source)}`,
+    lead.company ? `회사: ${lead.company}` : '',
+    `이름: ${lead.name}`,
     `이메일: ${lead.email}`,
+    lead.whatsapp ? `WhatsApp: ${lead.whatsapp}` : '',
     `희망 시장: ${lead.country}`,
     `문의 유형: ${lead.purposeKo}`,
     '',
@@ -278,6 +291,10 @@ function formatLeadNotification(lead, timestamp) {
   ]
     .filter(Boolean)
     .join('\n');
+}
+
+function getInquiryLabel(source) {
+  return source === 'contact-page' ? '일반 문의' : 'B2B 문의';
 }
 
 function ensureSheetHeaders(sheet) {

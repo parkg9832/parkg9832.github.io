@@ -32,20 +32,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              mokdaOrange: '#ef5f18',
-              mokdaCream: '#f7ddc2',
-              mokdaBrown: '#321506',
-            },
-          },
-        },
-      };
-    </script>
+    <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
     <style>
       html {
         scroll-behavior: smooth;
@@ -227,7 +214,7 @@
   <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
-        <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
+        <a href="/es/" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
           <img src="assets/assetlogo-1.webp" alt="MOKDA" class="h-7 w-auto sm:h-9" />
         </a>
         <div class="flex items-center gap-4 md:gap-6">
@@ -246,10 +233,10 @@
       </div>
       <div id="mobile-menu" class="invisible absolute left-0 top-20 z-50 max-h-0 w-full overflow-hidden border-y border-[#321506]/10 bg-[#f7ddc2]/95 opacity-0 shadow-[0_10px_30px_rgba(23,23,23,0.08)] backdrop-blur-xl transition-all duration-300 ease-in-out">
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
-          <a id="mobile-about-link" href="about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Sobre nosotros</a>
-          <a id="mobile-products-link" href="products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Salsa Coreana</a>
-          <a id="mobile-qna-link" href="qna.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Q&A</a>
-          <a id="mobile-contact-link" href="contact.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Contacto</a>
+          <a id="mobile-about-link" href="/es/about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Sobre nosotros</a>
+          <a id="mobile-products-link" href="/es/products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Salsa Coreana</a>
+          <a id="mobile-qna-link" href="/es/qna.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Q&A</a>
+          <a id="mobile-contact-link" href="/es/contact.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Contacto</a>
         </div>
       </div>
     </header>
@@ -267,7 +254,7 @@
             <a href="#story" id="heroCta" class="brand-text-link mt-8 text-[#321506]"></a>
           </div>
           <div data-reveal style="--reveal-delay: 120ms" class="relative mt-8 min-h-[320px] w-full max-w-6xl overflow-hidden rounded-t-[1.5rem] sm:min-h-[460px] lg:mt-6 lg:min-h-[540px] lg:rounded-t-[2rem]">
-            <img src="./assets/images/brand-story-seoul-kfood-table.png" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[52%_60%]" loading="eager" fetchpriority="high" />
+            <img src="./assets/images/brand-story-seoul-kfood-table.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[52%_60%]" loading="eager" fetchpriority="high" decoding="async" />
             <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/18 via-transparent to-transparent"></div>
           </div>
         </div>
@@ -363,8 +350,8 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260710"></script>
-    <script src="./site-footer.js?v=20260711"></script>
+    <script src="./site-i18n.js?v=20260718"></script>
+    <script src="./site-footer.js?v=20260718"></script>
     <script>
       const pageCopy = {
         ES: {
@@ -603,6 +590,6 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js"></script>
+    <script src="./site-header.js?v=20260718"></script>
   </body>
 </html>

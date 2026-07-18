@@ -32,18 +32,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              mokdaOrange: '#ef5f18',
-            },
-          },
-        },
-      };
-    </script>
+    <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
     <style>
       html {
         scroll-behavior: smooth;
@@ -207,7 +196,7 @@
   <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="light" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
-        <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
+        <a href="/en/" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
           <img src="assets/assetlogo-1.webp" alt="MOKDA" class="h-6 w-auto sm:h-9" />
         </a>
         <div class="flex items-center gap-4 md:gap-6">
@@ -226,10 +215,10 @@
       </div>
       <div id="mobile-menu" class="invisible absolute left-0 top-20 z-50 max-h-0 w-full overflow-hidden border-y border-white/30 bg-white/80 opacity-0 shadow-[0_10px_30px_rgba(23,23,23,0.08)] backdrop-blur-xl transition-all duration-300 ease-in-out">
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
-          <a id="nav-about" href="about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Sobre nosotros</a>
-          <a id="nav-products" href="products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Salsa Coreana</a>
-          <a id="nav-qna" href="qna.html" class="py-2 text-base font-extrabold text-mokdaOrange transition hover:text-orange-700 sm:text-sm">Q&A</a>
-          <a id="nav-contact" href="contact.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Contacto</a>
+          <a id="nav-about" href="/en/about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Sobre nosotros</a>
+          <a id="nav-products" href="/en/products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Salsa Coreana</a>
+          <a id="nav-qna" href="/en/qna.html" class="py-2 text-base font-extrabold text-mokdaOrange transition hover:text-orange-700 sm:text-sm">Q&A</a>
+          <a id="nav-contact" href="/en/contact.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Contacto</a>
         </div>
       </div>
     </header>
@@ -249,7 +238,7 @@
         <div class="mx-auto w-full max-w-6xl">
           <div id="qnaList" data-reveal data-reveal-delay="80" class="overflow-hidden rounded-xl border border-[#321506]/20 bg-[#fff8ef] shadow-[0_24px_70px_rgba(50,21,6,0.12)]"></div>
           <div data-reveal data-reveal-delay="140" class="mt-10 text-center">
-            <a id="boardContactLink" href="contact.html" class="inline-flex items-center justify-center bg-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition-all hover:scale-[1.02] hover:bg-mokdaOrange"></a>
+            <a id="boardContactLink" href="/en/contact.html" class="inline-flex items-center justify-center bg-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition-all hover:scale-[1.02] hover:bg-mokdaOrange"></a>
           </div>
         </div>
       </section>
@@ -287,8 +276,8 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260710"></script>
-    <script src="./site-footer.js?v=20260711"></script>
+    <script src="./site-i18n.js?v=20260718"></script>
+    <script src="./site-footer.js?v=20260718"></script>
     <script>
       let language = window.MOKDA_I18N.getLanguage();
 
@@ -513,6 +502,6 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js"></script>
+    <script src="./site-header.js?v=20260718"></script>
   </body>
 </html>

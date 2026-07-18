@@ -108,6 +108,17 @@ function alternateLinks(page) {
   return links.join('\n');
 }
 
+function localizeInternalLinks(html, language) {
+  const prefix = languages[language].directory;
+  return html.replace(
+    /href="(index|about|products|qna|contact)\.html([^"#?]*)([?#][^"]*)?"/g,
+    (_match, pageName, extraPath, suffix = '') => {
+      const route = pageName === 'index' ? '' : `${pageName}.html${extraPath || ''}`;
+      return `href="/${prefix}/${route}${suffix}"`;
+    },
+  );
+}
+
 function replaceMeta(html, selector, value) {
   const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`(<meta[^>]*${escaped}[^>]*content=")[^"]*("[^>]*>)`, 'i');
@@ -161,6 +172,7 @@ function localizeHtml(source, language, page) {
   html = replaceMeta(html, 'name="twitter:description"', metadata.description);
   html = html.replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');
   html = html.replace('</head>', `    <script type="application/ld+json">\n${structuredData(language, page, canonical, metadata)}\n    </script>\n  </head>`);
+  html = localizeInternalLinks(html, language);
   return html;
 }
 

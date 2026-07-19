@@ -53,9 +53,15 @@
       }
 
       .display-korean {
-        font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif;
-        font-weight: 900 !important;
+        font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+        font-weight: 800 !important;
         letter-spacing: 0;
+        line-height: 1.08 !important;
+        word-break: keep-all;
+      }
+
+      #pageTitle.display-korean {
+        font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
       }
 
       .condensed-label {
@@ -82,8 +88,8 @@
       }
 
       .faq-question {
-        font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
-        font-weight: 400 !important;
+        font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+        font-weight: 700 !important;
       }
 
       [data-reveal] {
@@ -143,21 +149,22 @@
       }
 
       .qna-item.is-open {
-        border-color: #321506;
-        box-shadow: 0 18px 44px rgba(50, 21, 6, 0.14);
+        border-color: #ef5f18;
+        box-shadow: 0 12px 30px rgba(50, 21, 6, 0.09);
       }
 
       .qna-item.is-open .qna-question-row {
-        background: #321506;
+        background: #fff8ef;
+        box-shadow: inset 4px 0 0 #ef5f18;
       }
 
       .qna-item.is-open .qna-question {
-        color: #fff1df;
+        color: #321506;
       }
 
       .qna-answer-panel {
-        border-top: 3px solid #ef5f18;
-        background: #fff8ef;
+        border-top: 1px solid rgba(50, 21, 6, 0.14);
+        background: #fdf1e4;
       }
 
       .qna-icon {
@@ -255,18 +262,18 @@
     </header>
 
     <main class="overflow-hidden bg-[#f7ddc2]">
-      <section class="brand-grid-bg bg-[#321506] px-4 pb-16 pt-32 text-[#f8dfc4] sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24">
+      <section class="brand-grid-bg bg-[#321506] px-4 pb-14 pt-28 text-[#f8dfc4] sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pb-20">
         <div class="mx-auto w-full max-w-6xl text-center">
           <div data-reveal class="mx-auto max-w-5xl">
-            <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
-            <h1 id="pageTitle" class="display-latin break-keep text-balance text-5xl uppercase leading-[0.86] text-mokdaOrange sm:text-8xl lg:text-[7rem]"></h1>
-            <p id="pageDescription" class="mx-auto mt-7 max-w-2xl text-pretty text-base font-semibold leading-7 text-[#f8dfc4]/72 sm:text-lg sm:leading-8"></p>
+            <p id="pageKicker" class="condensed-label mb-4 text-sm uppercase text-mokdaOrange sm:text-lg"></p>
+            <h1 id="pageTitle" class="display-latin break-keep text-balance text-4xl uppercase leading-[0.94] text-mokdaOrange sm:text-7xl lg:text-[6rem]"></h1>
+            <p id="pageDescription" class="mx-auto mt-6 max-w-2xl text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/72 sm:text-base sm:leading-8"></p>
           </div>
         </div>
       </section>
 
-      <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto w-full max-w-6xl">
+      <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div class="mx-auto w-full max-w-5xl">
           <div id="qnaList" data-reveal data-reveal-delay="80" class="grid gap-3 sm:gap-4"></div>
           <div data-reveal data-reveal-delay="140" class="mt-10 text-center">
             <a id="boardContactLink" href="/en/contact.html" class="inline-flex items-center justify-center bg-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition-all hover:scale-[1.02] hover:bg-mokdaOrange"></a>
@@ -445,10 +452,10 @@
             const itemId = `qna-${index}`;
             return `
               <article data-accordion-item class="qna-item">
-                <button data-accordion-button type="button" class="qna-question-row grid w-full grid-cols-[2rem_minmax(0,1fr)_2.5rem] items-center gap-3 px-4 py-5 text-left transition-colors duration-300 sm:grid-cols-[3rem_minmax(0,1fr)_3rem] sm:gap-5 sm:px-7 sm:py-7" aria-expanded="false" aria-controls="${itemId}">
+                <button data-accordion-button type="button" class="qna-question-row grid w-full grid-cols-[2rem_minmax(0,1fr)_2.25rem] items-center gap-3 px-4 py-[1.125rem] text-left transition-colors duration-300 sm:grid-cols-[3rem_minmax(0,1fr)_2.5rem] sm:gap-5 sm:px-7 sm:py-6" aria-expanded="false" aria-controls="${itemId}">
                   <span class="text-xs font-black text-[#a93600]">${String(index + 1).padStart(2, '0')}</span>
-                  <span class="qna-question faq-question block min-w-0 break-keep text-lg leading-7 text-[#321506] transition-colors duration-300 sm:text-xl sm:leading-8">${localized.question}</span>
-                  <span class="qna-icon flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#321506] text-xl leading-none text-[#f8dfc4] transition-colors"><span class="qna-glyph">+</span></span>
+                  <span class="qna-question faq-question block min-w-0 break-keep text-base leading-7 text-[#321506] transition-colors duration-300 sm:text-lg sm:leading-8">${localized.question}</span>
+                  <span class="qna-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#321506] text-lg leading-none text-[#f8dfc4] transition-colors"><span class="qna-glyph">+</span></span>
                 </button>
                 <div id="${itemId}" class="qna-answer" aria-hidden="true">
                   <div class="min-h-0 overflow-hidden">
@@ -519,6 +526,6 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260719-3"></script>
+    <script src="./site-header.js?v=20260719-4"></script>
   </body>
 </html>

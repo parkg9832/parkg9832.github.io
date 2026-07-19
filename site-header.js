@@ -147,14 +147,14 @@
     .mokda-mobile-nav-trigger {
       display: flex;
       width: 100%;
-      min-height: 78px;
+      min-height: 72px;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
       color: #fff8ef;
-      font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
-      font-size: clamp(22px, 7vw, 32px);
-      font-weight: 900;
+      font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+      font-size: clamp(20px, 5.5vw, 26px);
+      font-weight: 700;
       letter-spacing: 0;
       line-height: 1;
       text-align: left;
@@ -273,26 +273,13 @@
         gap: 8px;
         padding: 2px 0 0;
         color: rgba(50, 21, 6, 0.72);
-        font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
+        font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
         font-size: 13px;
-        font-weight: 900;
+        font-weight: 700;
         letter-spacing: 0;
         line-height: 1;
         white-space: nowrap;
         transition: color 260ms ease;
-      }
-
-      .mokda-nav-trigger::before {
-        content: '';
-        position: absolute;
-        right: 0;
-        bottom: 17px;
-        left: 0;
-        height: 3px;
-        background: #ef5f18;
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       .mokda-nav-trigger::after {
@@ -310,10 +297,8 @@
         color: #321506;
       }
 
-      .mokda-nav-trigger:hover::before,
-      .mokda-nav-trigger[aria-expanded="true"]::before,
-      .mokda-nav-trigger.is-current::before {
-        transform: scaleX(1);
+      .mokda-nav-trigger[aria-expanded="true"] {
+        color: #ef5f18;
       }
 
       .mokda-nav-trigger[aria-expanded="true"]::after {
@@ -343,7 +328,7 @@
       }
 
       .mokda-site-header.is-nav-open .mokda-nav-panel {
-        max-height: 146px;
+        max-height: 132px;
         opacity: 1;
         transform: translateY(0);
         visibility: visible;
@@ -356,18 +341,23 @@
         align-items: center;
         gap: clamp(36px, 6vw, 90px);
         width: min(calc(100% - 60px), 1220px);
-        min-height: 120px;
+        min-height: 106px;
         margin: 0 auto;
         padding: 20px 0;
       }
 
       .mokda-nav-panel-title {
         color: #ef5f18;
-        font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
-        font-size: clamp(24px, 2.4vw, 36px);
+        font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
+        font-size: clamp(22px, 2vw, 30px);
         font-weight: 900;
         letter-spacing: 0;
         line-height: 0.96;
+      }
+
+      html:lang(ko) .mokda-nav-panel-title {
+        font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+        font-weight: 800;
       }
 
       .mokda-nav-panel-links {
@@ -388,7 +378,7 @@
         color: rgba(255, 248, 239, 0.78);
         border-right: 1px solid rgba(255, 248, 239, 0.2);
         font-size: 14px;
-        font-weight: 800;
+        font-weight: 600;
         letter-spacing: 0;
         line-height: 1.25;
         text-align: center;
@@ -449,7 +439,6 @@
 
     @media (prefers-reduced-motion: reduce) {
       .mokda-nav-panel,
-      .mokda-nav-trigger::before,
       .mokda-nav-trigger::after,
       .mokda-nav-panel-link,
       .mokda-mobile-menu,

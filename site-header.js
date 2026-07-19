@@ -313,23 +313,23 @@
         z-index: 60;
         display: block;
         overflow: hidden;
-        max-height: 0;
+        height: 104px;
         color: #fff8ef;
         background: #321506;
         border-top: 3px solid #ef5f18;
         opacity: 0;
-        transform: translateY(-10px);
+        pointer-events: none;
+        transform: translateY(-8px);
         visibility: hidden;
         transition:
-          max-height 520ms cubic-bezier(0.22, 1, 0.36, 1),
-          opacity 340ms ease,
-          transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-          visibility 0s linear 520ms;
+          opacity 220ms ease,
+          transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+          visibility 0s linear 280ms;
       }
 
       .mokda-site-header.is-nav-open .mokda-nav-panel {
-        max-height: 132px;
         opacity: 1;
+        pointer-events: auto;
         transform: translateY(0);
         visibility: visible;
         transition-delay: 0s;
@@ -341,9 +341,9 @@
         align-items: center;
         gap: clamp(36px, 6vw, 90px);
         width: min(calc(100% - 60px), 1220px);
-        min-height: 106px;
+        height: 100%;
         margin: 0 auto;
-        padding: 20px 0;
+        padding: 14px 0;
       }
 
       .mokda-nav-panel-title {
@@ -374,7 +374,7 @@
         flex: 1 1 0;
         align-items: center;
         justify-content: center;
-        padding: 20px 16px;
+        padding: 16px;
         color: rgba(255, 248, 239, 0.78);
         border-right: 1px solid rgba(255, 248, 239, 0.2);
         font-size: 14px;

@@ -5,10 +5,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
 const LAST_MODIFIED = '2026-07-18';
-const LATIN_FONT_REQUEST =
-  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&display=swap';
-const KOREAN_FONT_REQUEST =
-  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap';
+const SITE_FONT_REQUEST =
+  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
 const languages = {
   ES: { directory: 'es', html: 'es-419', hreflang: 'es-419', og: 'es_419' },
@@ -124,8 +122,7 @@ function localizeInternalLinks(html, language) {
 }
 
 function localizeFontRequests(html, language) {
-  const fontRequest = language === 'KR' ? KOREAN_FONT_REQUEST : LATIN_FONT_REQUEST;
-  return html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"']+/g, fontRequest);
+  return html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"']+/g, SITE_FONT_REQUEST);
 }
 
 function replaceMeta(html, selector, value) {

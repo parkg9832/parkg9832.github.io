@@ -13,36 +13,88 @@
       ? 'en'
       : 'es';
 
+  const copy = {
+    es: {
+      brand: {
+        label: 'MOKDA',
+        links: [['Nuestra historia', 'story'], ['Identidad', 'identity'], ['Trayectoria', 'history']]
+      },
+      products: {
+        label: 'SALSA COREANA',
+        links: [['Línea completa', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
+      },
+      connect: {
+        label: 'CONTACTO',
+        links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact']]
+      },
+      navigation: 'Navegación principal'
+    },
+    ko: {
+      brand: {
+        label: 'MOKDA',
+        links: [['브랜드 스토리', 'story'], ['브랜드 아이덴티티', 'identity'], ['브랜드 연혁', 'history']]
+      },
+      products: {
+        label: 'SALSA COREANA',
+        links: [['전체 라인업', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
+      },
+      connect: {
+        label: '문의',
+        links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact']]
+      },
+      navigation: '주요 메뉴'
+    },
+    en: {
+      brand: {
+        label: 'MOKDA',
+        links: [['Our story', 'story'], ['Brand identity', 'identity'], ['Our journey', 'history']]
+      },
+      products: {
+        label: 'SALSA COREANA',
+        links: [['Full lineup', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
+      },
+      connect: {
+        label: 'CONTACT',
+        links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact']]
+      },
+      navigation: 'Primary navigation'
+    }
+  }[language];
+
   const style = document.createElement('style');
   style.textContent = `
     .mokda-site-header {
       height: 80px !important;
       padding: 0 !important;
       background: #fff8ef !important;
-      border-bottom: 1px solid rgba(50, 21, 6, 0.13);
+      border-bottom: 1px solid rgba(50, 21, 6, 0.12);
     }
 
     .mokda-header-bar {
       height: 80px !important;
-      max-width: 1480px !important;
+      max-width: 1440px !important;
       padding: 0 18px !important;
       background: transparent !important;
     }
 
     .mokda-header-bar a[aria-label="MOKDA home"] img {
-      height: 29px !important;
       width: auto;
+      height: 29px !important;
     }
 
     .mokda-header-bar #lang-selector {
-      background: rgba(50, 21, 6, 0.06) !important;
-      box-shadow: inset 0 0 0 1px rgba(50, 21, 6, 0.06);
+      background: rgba(50, 21, 6, 0.055) !important;
+      box-shadow: inset 0 0 0 1px rgba(50, 21, 6, 0.07);
     }
 
     .mokda-header-bar #menu-toggle {
       color: #321506 !important;
-      background: rgba(50, 21, 6, 0.06) !important;
+      background: rgba(50, 21, 6, 0.055) !important;
       border: 1px solid rgba(50, 21, 6, 0.08);
+    }
+
+    .mokda-site-header.is-scrolled {
+      box-shadow: 0 10px 30px rgba(50, 21, 6, 0.09);
     }
 
     .mokda-desktop-nav,
@@ -50,18 +102,124 @@
       display: none;
     }
 
-    .mokda-site-header #mobile-menu {
+    .mokda-site-header .mokda-mobile-menu {
+      position: fixed !important;
       top: 80px !important;
+      right: 0 !important;
+      bottom: 0 !important;
       left: 0 !important;
+      z-index: 70 !important;
+      display: block !important;
       width: 100% !important;
+      max-height: 0 !important;
+      overflow-x: hidden !important;
+      overflow-y: auto !important;
       border: 0 !important;
-      border-bottom: 1px solid rgba(50, 21, 6, 0.14) !important;
-      border-radius: 0;
-      background: rgba(255, 248, 239, 0.98) !important;
+      background: #321506 !important;
+      opacity: 0 !important;
+      transform: translateY(-10px);
+      visibility: hidden !important;
+      transition:
+        max-height 520ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 360ms ease,
+        transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0s linear 520ms !important;
     }
 
-    .mokda-site-header.is-scrolled {
-      box-shadow: 0 12px 34px rgba(50, 21, 6, 0.1);
+    .mokda-site-header.is-mobile-menu-open .mokda-mobile-menu {
+      max-height: calc(100dvh - 80px) !important;
+      opacity: 1 !important;
+      transform: translateY(0);
+      visibility: visible !important;
+      transition-delay: 0s !important;
+    }
+
+    .mokda-mobile-menu-inner {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 18px 20px max(36px, env(safe-area-inset-bottom));
+    }
+
+    .mokda-mobile-nav-group {
+      border-bottom: 1px solid rgba(255, 248, 239, 0.2);
+    }
+
+    .mokda-mobile-nav-trigger {
+      display: flex;
+      width: 100%;
+      min-height: 78px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: #fff8ef;
+      font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
+      font-size: clamp(22px, 7vw, 32px);
+      font-weight: 900;
+      letter-spacing: 0;
+      line-height: 1;
+      text-align: left;
+    }
+
+    .mokda-mobile-nav-trigger::after {
+      content: '+';
+      flex: none;
+      color: #ef5f18;
+      font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .mokda-mobile-nav-group.is-open .mokda-mobile-nav-trigger::after {
+      transform: rotate(45deg);
+    }
+
+    .mokda-mobile-nav-links {
+      display: grid;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        max-height 560ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 380ms ease;
+    }
+
+    .mokda-mobile-nav-group.is-open .mokda-mobile-nav-links {
+      max-height: 320px;
+      padding-bottom: 18px;
+      opacity: 1;
+    }
+
+    .mokda-mobile-nav-link {
+      display: flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0 10px 20px;
+      color: rgba(255, 248, 239, 0.76);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 1.35;
+      transition: color 240ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .mokda-mobile-nav-link::after {
+      content: '→';
+      color: #ef5f18;
+      font-size: 18px;
+    }
+
+    .mokda-mobile-nav-link:hover,
+    .mokda-mobile-nav-link:focus-visible {
+      color: #fff8ef;
+      transform: translateX(4px);
+    }
+
+    html.mokda-menu-lock,
+    html.mokda-menu-lock body {
+      overflow: hidden !important;
     }
 
     @media (max-width: 479px) {
@@ -103,7 +261,7 @@
         align-self: stretch;
         align-items: center;
         justify-content: center;
-        gap: clamp(30px, 4vw, 68px);
+        gap: clamp(34px, 4.5vw, 72px);
         margin: 0 34px;
       }
 
@@ -112,12 +270,12 @@
         display: flex;
         height: 100%;
         align-items: center;
-        gap: 9px;
+        gap: 8px;
         padding: 2px 0 0;
         color: rgba(50, 21, 6, 0.72);
         font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
         font-size: 13px;
-        font-weight: 400;
+        font-weight: 900;
         letter-spacing: 0;
         line-height: 1;
         white-space: nowrap;
@@ -134,16 +292,16 @@
         background: #ef5f18;
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+        transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       .mokda-nav-trigger::after {
         content: '+';
         color: #ef5f18;
-        font-family: 'Noto Sans', sans-serif;
+        font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
         font-size: 15px;
-        font-weight: 700;
-        transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+        font-weight: 800;
+        transition: transform 440ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       .mokda-nav-trigger:hover,
@@ -167,24 +325,25 @@
         top: 80px;
         right: 0;
         left: 0;
+        z-index: 60;
         display: block;
         overflow: hidden;
         max-height: 0;
-        color: #321506;
-        background: #ef5f18;
-        border-bottom: 1px solid rgba(50, 21, 6, 0.2);
+        color: #fff8ef;
+        background: #321506;
+        border-top: 3px solid #ef5f18;
         opacity: 0;
-        transform: translateY(-18px);
+        transform: translateY(-10px);
         visibility: hidden;
         transition:
           max-height 520ms cubic-bezier(0.22, 1, 0.36, 1),
-          opacity 320ms ease,
+          opacity 340ms ease,
           transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
           visibility 0s linear 520ms;
       }
 
       .mokda-site-header.is-nav-open .mokda-nav-panel {
-        max-height: 230px;
+        max-height: 146px;
         opacity: 1;
         transform: translateY(0);
         visibility: visible;
@@ -193,91 +352,98 @@
 
       .mokda-nav-panel-inner {
         display: grid;
-        grid-template-columns: minmax(250px, 0.75fr) minmax(0, 1.5fr);
+        grid-template-columns: minmax(210px, 0.6fr) minmax(0, 1.8fr);
         align-items: center;
-        gap: 56px;
-        width: min(100% - 60px, 1220px);
-        min-height: 176px;
+        gap: clamp(36px, 6vw, 90px);
+        width: min(calc(100% - 60px), 1220px);
+        min-height: 120px;
         margin: 0 auto;
-        padding: 28px 0 30px;
-      }
-
-      .mokda-nav-panel-copy {
-        align-self: center;
-      }
-
-      .mokda-nav-panel-eyebrow {
-        margin-bottom: 8px;
-        font-family: 'Bebas Neue', 'Noto Sans KR', sans-serif;
-        font-size: 15px;
-        line-height: 1;
-        text-transform: uppercase;
+        padding: 20px 0;
       }
 
       .mokda-nav-panel-title {
+        color: #ef5f18;
         font-family: 'Archivo Black', 'Black Han Sans', 'Noto Sans KR', sans-serif;
-        font-size: clamp(30px, 3vw, 47px);
-        font-weight: 400;
+        font-size: clamp(24px, 2.4vw, 36px);
+        font-weight: 900;
         letter-spacing: 0;
-        line-height: 0.92;
-      }
-
-      .mokda-nav-panel-description {
-        margin-top: 11px;
-        max-width: 390px;
-        font-size: 13px;
-        font-weight: 650;
-        line-height: 1.55;
+        line-height: 0.96;
       }
 
       .mokda-nav-panel-links {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        border-top: 1px solid rgba(50, 21, 6, 0.36);
+        display: flex;
+        min-width: 0;
+        align-items: stretch;
+        border-left: 1px solid rgba(255, 248, 239, 0.2);
       }
 
       .mokda-nav-panel-link {
+        position: relative;
         display: flex;
-        min-height: 62px;
+        min-width: 0;
+        flex: 1 1 0;
         align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 0 18px;
-        border-bottom: 1px solid rgba(50, 21, 6, 0.36);
-        color: #321506;
+        justify-content: center;
+        padding: 20px 16px;
+        color: rgba(255, 248, 239, 0.78);
+        border-right: 1px solid rgba(255, 248, 239, 0.2);
         font-size: 14px;
         font-weight: 800;
+        letter-spacing: 0;
         line-height: 1.25;
-        transition: color 240ms ease, background-color 240ms ease, padding 320ms cubic-bezier(0.22, 1, 0.36, 1);
+        text-align: center;
+        transition: color 260ms ease, background-color 260ms ease;
       }
 
       .mokda-nav-panel-link::after {
-        content: '→';
-        flex: none;
-        font-size: 17px;
+        content: '';
+        position: absolute;
+        right: 18px;
+        bottom: 12px;
+        left: 18px;
+        height: 2px;
+        background: #ef5f18;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       .mokda-nav-panel-link:hover,
       .mokda-nav-panel-link:focus-visible {
-        padding-left: 24px;
         color: #fff8ef;
-        background: rgba(50, 21, 6, 0.92);
+        background: rgba(255, 248, 239, 0.055);
+      }
+
+      .mokda-nav-panel-link:hover::after,
+      .mokda-nav-panel-link:focus-visible::after {
+        transform: scaleX(1);
       }
 
       .mokda-header-bar #menu-toggle,
-      .mokda-site-header #mobile-menu {
+      .mokda-site-header .mokda-mobile-menu {
         display: none !important;
       }
     }
 
     @media (min-width: 1024px) and (max-width: 1160px) {
       .mokda-desktop-nav {
-        gap: 25px;
+        gap: 26px;
         margin: 0 22px;
       }
 
       .mokda-nav-trigger {
         font-size: 11px;
+      }
+
+      .mokda-nav-panel-inner {
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .mokda-nav-panel-link {
+        padding-right: 10px;
+        padding-left: 10px;
+        font-size: 12px;
       }
     }
 
@@ -285,7 +451,11 @@
       .mokda-nav-panel,
       .mokda-nav-trigger::before,
       .mokda-nav-trigger::after,
-      .mokda-nav-panel-link {
+      .mokda-nav-panel-link,
+      .mokda-mobile-menu,
+      .mokda-mobile-nav-links,
+      .mokda-mobile-nav-trigger::after,
+      .mokda-mobile-nav-link {
         transition: none !important;
       }
     }
@@ -294,51 +464,6 @@
 
   header.classList.add('mokda-site-header');
   if (headerBar) headerBar.classList.add('mokda-header-bar');
-
-  const copy = {
-    es: {
-      brand: {
-        label: 'MOKDA', eyebrow: 'Marca K-Food', title: 'Conoce MOKDA', description: 'La historia, la identidad y el camino de una marca entre Corea y América Latina.',
-        links: [['Nuestra historia', 'story'], ['Identidad', 'identity'], ['Trayectoria', 'history']]
-      },
-      products: {
-        label: 'SALSA COREANA', eyebrow: 'Primera línea', title: 'Salsa Coreana', description: 'Tres sabores coreanos pensados para integrarse en comidas cotidianas.',
-        links: [['Línea completa', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
-      },
-      connect: {
-        label: 'CONTACTO', eyebrow: 'Conversemos', title: 'Conecta con MOKDA', description: 'Respuestas, consultas y propuestas para consumidores y socios.',
-        links: [['Preguntas frecuentes', 'qna'], ['Enviar una consulta', 'contact']]
-      }
-    },
-    ko: {
-      brand: {
-        label: 'MOKDA', eyebrow: 'K-Food 브랜드', title: 'MOKDA 소개', description: '한국과 라틴아메리카를 잇는 브랜드의 이야기, 정체성, 여정.',
-        links: [['브랜드 스토리', 'story'], ['브랜드 아이덴티티', 'identity'], ['브랜드 연혁', 'history']]
-      },
-      products: {
-        label: 'SALSA COREANA', eyebrow: '첫 번째 제품 라인', title: 'Salsa Coreana', description: '일상 음식에 자연스럽게 어울리는 세 가지 한국 소스.',
-        links: [['전체 라인업', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
-      },
-      connect: {
-        label: '문의', eyebrow: 'MOKDA와 연결', title: 'MOKDA 문의', description: '일반 소비자 문의부터 유통과 협업 제안까지.',
-        links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact']]
-      }
-    },
-    en: {
-      brand: {
-        label: 'MOKDA', eyebrow: 'K-Food brand', title: 'Discover MOKDA', description: 'The story, identity and journey of a brand connecting Korea and Latin America.',
-        links: [['Our story', 'story'], ['Brand identity', 'identity'], ['Our journey', 'history']]
-      },
-      products: {
-        label: 'SALSA COREANA', eyebrow: 'First product line', title: 'Salsa Coreana', description: 'Three Korean sauces designed for familiar everyday foods.',
-        links: [['Full lineup', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
-      },
-      connect: {
-        label: 'CONTACT', eyebrow: 'Talk with MOKDA', title: 'Connect with MOKDA', description: 'Answers, consumer inquiries and partnership proposals.',
-        links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact']]
-      }
-    }
-  }[language];
 
   const hrefs = {
     about: sourceLinks[0]?.getAttribute('href') || 'about.html',
@@ -358,10 +483,23 @@
     { key: 'connect', page: 'connect', ...copy.connect }
   ];
 
+  function groupHref(group, target) {
+    if (group.key === 'brand') return addHash(hrefs.about, target);
+    if (group.key === 'products') return addHash(hrefs.products, target);
+    return target === 'qna' ? hrefs.qna : hrefs.contact;
+  }
+
+  const pageName = window.location.pathname.split('/').pop() || 'index.html';
+  const currentGroup = pageName === 'products.html'
+    ? 'products'
+    : pageName === 'qna.html' || pageName === 'contact.html'
+      ? 'connect'
+      : 'brand';
+
   if (headerBar && sourceLinks.length) {
     const desktopNav = document.createElement('nav');
     desktopNav.className = 'mokda-desktop-nav';
-    desktopNav.setAttribute('aria-label', language === 'ko' ? '주요 메뉴' : 'Primary navigation');
+    desktopNav.setAttribute('aria-label', copy.navigation);
 
     const panel = document.createElement('div');
     panel.className = 'mokda-nav-panel';
@@ -376,6 +514,7 @@
       button.textContent = group.label;
       button.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-controls', panel.id);
+      if (group.key === currentGroup) button.classList.add('is-current');
       desktopNav.appendChild(button);
       return button;
     });
@@ -384,43 +523,28 @@
     headerBar.insertBefore(desktopNav, controls || null);
     header.appendChild(panel);
 
-    const pageName = window.location.pathname.split('/').pop() || 'index.html';
-    const currentGroup = pageName === 'products.html'
-      ? 'products'
-      : pageName === 'qna.html' || pageName === 'contact.html'
-        ? 'connect'
-        : 'brand';
-    triggers.find((trigger) => trigger.dataset.navGroup === currentGroup)?.classList.add('is-current');
-
-    function groupHref(group, target) {
-      if (group.key === 'brand') return addHash(hrefs.about, target);
-      if (group.key === 'products') return addHash(hrefs.products, target);
-      return target === 'qna' ? hrefs.qna : hrefs.contact;
-    }
-
     function renderPanel(group) {
       const links = group.links.map(([label, target]) => (
         `<a class="mokda-nav-panel-link" href="${groupHref(group, target)}">${label}</a>`
       )).join('');
+
       panel.innerHTML = `
         <div class="mokda-nav-panel-inner">
-          <div class="mokda-nav-panel-copy">
-            <p class="mokda-nav-panel-eyebrow">${group.eyebrow}</p>
-            <p class="mokda-nav-panel-title">${group.title}</p>
-            <p class="mokda-nav-panel-description">${group.description}</p>
-          </div>
+          <p class="mokda-nav-panel-title">${group.label}</p>
           <div class="mokda-nav-panel-links">${links}</div>
         </div>
       `;
     }
 
     function setDesktopNavOpen(groupKey) {
-      const shouldOpen = Boolean(groupKey);
       const group = groups.find((item) => item.key === groupKey);
       if (group) renderPanel(group);
+      const shouldOpen = Boolean(group);
       header.classList.toggle('is-nav-open', shouldOpen);
       panel.setAttribute('aria-hidden', String(!shouldOpen));
-      triggers.forEach((trigger) => trigger.setAttribute('aria-expanded', String(trigger.dataset.navGroup === groupKey)));
+      triggers.forEach((trigger) => {
+        trigger.setAttribute('aria-expanded', String(trigger.dataset.navGroup === groupKey));
+      });
     }
 
     triggers.forEach((trigger) => {
@@ -439,11 +563,10 @@
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && header.classList.contains('is-nav-open')) {
-        const activeTrigger = triggers.find((trigger) => trigger.getAttribute('aria-expanded') === 'true');
-        setDesktopNavOpen(null);
-        activeTrigger?.focus();
-      }
+      if (event.key !== 'Escape' || !header.classList.contains('is-nav-open')) return;
+      const activeTrigger = triggers.find((trigger) => trigger.getAttribute('aria-expanded') === 'true');
+      setDesktopNavOpen(null);
+      activeTrigger?.focus();
     });
 
     window.addEventListener('resize', () => {
@@ -451,35 +574,61 @@
     });
   }
 
-  function setHeaderScrolled(isScrolled) {
-    header.classList.toggle('is-scrolled', isScrolled);
-  }
-
-  function handleScroll() {
-    setHeaderScrolled(window.scrollY > 10);
-  }
-
   if (menuToggle && mobileMenu) {
+    mobileMenu.className = 'mokda-mobile-menu';
+    mobileMenu.innerHTML = `
+      <nav class="mokda-mobile-menu-inner" aria-label="${copy.navigation}">
+        ${groups.map((group) => `
+          <section class="mokda-mobile-nav-group" data-mobile-group="${group.key}">
+            <button class="mokda-mobile-nav-trigger" type="button" aria-expanded="false">
+              ${group.label}
+            </button>
+            <div class="mokda-mobile-nav-links">
+              ${group.links.map(([label, target]) => (
+                `<a class="mokda-mobile-nav-link" href="${groupHref(group, target)}">${label}</a>`
+              )).join('')}
+            </div>
+          </section>
+        `).join('')}
+      </nav>
+    `;
+
+    const mobileGroups = Array.from(mobileMenu.querySelectorAll('.mokda-mobile-nav-group'));
+
+    function setMobileGroup(groupKey) {
+      mobileGroups.forEach((group) => {
+        const isOpen = group.dataset.mobileGroup === groupKey;
+        group.classList.toggle('is-open', isOpen);
+        group.querySelector('.mokda-mobile-nav-trigger')?.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
     function setMenuOpen(isOpen) {
-      mobileMenu.classList.toggle('max-h-0', !isOpen);
-      mobileMenu.classList.toggle('opacity-0', !isOpen);
-      mobileMenu.classList.toggle('invisible', !isOpen);
-      mobileMenu.classList.toggle('max-h-64', isOpen);
-      mobileMenu.classList.toggle('opacity-100', isOpen);
-      mobileMenu.classList.toggle('visible', isOpen);
+      header.classList.toggle('is-mobile-menu-open', isOpen);
+      document.documentElement.classList.toggle('mokda-menu-lock', isOpen);
       menuToggle.setAttribute('aria-expanded', String(isOpen));
       mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+      if (!isOpen) setMobileGroup(null);
     }
+
+    mobileGroups.forEach((group) => {
+      group.querySelector('.mokda-mobile-nav-trigger')?.addEventListener('click', () => {
+        setMobileGroup(group.classList.contains('is-open') ? null : group.dataset.mobileGroup);
+      });
+    });
+
+    mobileMenu.addEventListener('click', (event) => {
+      if (event.target.closest('a')) setMenuOpen(false);
+    });
 
     menuToggle.addEventListener('click', () => {
       setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
-        setMenuOpen(false);
-        menuToggle.focus();
-      }
+      if (event.key !== 'Escape' || menuToggle.getAttribute('aria-expanded') !== 'true') return;
+      setMenuOpen(false);
+      menuToggle.focus();
     });
 
     window.addEventListener('resize', () => {
@@ -487,6 +636,10 @@
     });
 
     setMenuOpen(false);
+  }
+
+  function handleScroll() {
+    header.classList.toggle('is-scrolled', window.scrollY > 10);
   }
 
   handleScroll();

@@ -69,12 +69,10 @@
       background: rgba(255, 248, 239, 0.98) !important;
       border-bottom: 1px solid transparent;
       box-shadow: none;
-      -webkit-backdrop-filter: blur(14px) saturate(130%);
-      backdrop-filter: blur(14px) saturate(130%);
       transition:
-        background-color 360ms ease,
-        border-color 360ms ease,
-        box-shadow 360ms ease !important;
+        background-color 240ms ease,
+        border-color 240ms ease,
+        box-shadow 240ms ease !important;
     }
 
     .mokda-header-bar {
@@ -101,9 +99,9 @@
     }
 
     .mokda-site-header.is-scrolled {
-      background: rgba(255, 255, 255, 0.8) !important;
-      border-bottom-color: rgba(50, 21, 6, 0.1);
-      box-shadow: 0 8px 24px rgba(50, 21, 6, 0.065);
+      background: rgba(255, 255, 255, 0.76) !important;
+      border-bottom-color: rgba(50, 21, 6, 0.07);
+      box-shadow: 0 4px 14px rgba(50, 21, 6, 0.035);
     }
 
     .mokda-desktop-nav,
@@ -322,7 +320,7 @@
         z-index: 60;
         display: block;
         overflow: hidden;
-        height: 104px;
+        height: 132px;
         color: #fff8ef;
         background: #321506;
         border-top: 3px solid #ef5f18;
@@ -351,8 +349,9 @@
         gap: clamp(36px, 6vw, 90px);
         width: min(calc(100% - 60px), 1220px);
         height: 100%;
+        min-height: 106px;
         margin: 0 auto;
-        padding: 14px 0;
+        padding: 20px 0;
       }
 
       .mokda-nav-panel-title {
@@ -383,7 +382,7 @@
         flex: 1 1 0;
         align-items: center;
         justify-content: center;
-        padding: 16px;
+        padding: 20px 16px;
         color: rgba(255, 248, 239, 0.78);
         border-right: 1px solid rgba(255, 248, 239, 0.2);
         font-size: 14px;
@@ -636,10 +635,19 @@
     setMenuOpen(false);
   }
 
-  function handleScroll() {
-    header.classList.toggle('is-scrolled', window.scrollY > 24);
+  let scrollFramePending = false;
+
+  function updateScrolledState() {
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+    scrollFramePending = false;
   }
 
-  handleScroll();
+  function handleScroll() {
+    if (scrollFramePending) return;
+    scrollFramePending = true;
+    window.requestAnimationFrame(updateScrolledState);
+  }
+
+  updateScrolledState();
   window.addEventListener('scroll', handleScroll, { passive: true });
 })();

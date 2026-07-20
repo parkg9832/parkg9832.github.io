@@ -66,8 +66,15 @@
     .mokda-site-header {
       height: 80px !important;
       padding: 0 !important;
-      background: #fff8ef !important;
-      border-bottom: 1px solid rgba(50, 21, 6, 0.12);
+      background: rgba(255, 248, 239, 0.98) !important;
+      border-bottom: 1px solid transparent;
+      box-shadow: none;
+      -webkit-backdrop-filter: blur(14px) saturate(130%);
+      backdrop-filter: blur(14px) saturate(130%);
+      transition:
+        background-color 360ms ease,
+        border-color 360ms ease,
+        box-shadow 360ms ease !important;
     }
 
     .mokda-header-bar {
@@ -94,7 +101,9 @@
     }
 
     .mokda-site-header.is-scrolled {
-      box-shadow: 0 10px 30px rgba(50, 21, 6, 0.09);
+      background: rgba(255, 255, 255, 0.8) !important;
+      border-bottom-color: rgba(50, 21, 6, 0.1);
+      box-shadow: 0 8px 24px rgba(50, 21, 6, 0.065);
     }
 
     .mokda-desktop-nav,
@@ -628,7 +637,7 @@
   }
 
   function handleScroll() {
-    header.classList.toggle('is-scrolled', window.scrollY > 10);
+    header.classList.toggle('is-scrolled', window.scrollY > 24);
   }
 
   handleScroll();

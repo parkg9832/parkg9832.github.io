@@ -389,7 +389,15 @@
             years: [
               { year: '2024', items: ['Presentación de Salsa Coreana, Lima, Perú'] },
               { year: '2025', items: ['Desarrollo inicial de Salsa Coreana'] },
-              { year: '2026', items: ['Selección - Programa de apoyo a emprendimientos HINT, Gimje', 'Selección - Jóvenes Innovadores, Jeonbuk', 'Selección - Programa de apoyo a startups de contenido, Jeonbuk', 'Registro empresarial, Corea'] },
+              {
+                year: '2026',
+                items: [
+                  { text: 'Selección - Programa de apoyo a emprendimientos H.I.N.T, Gimje', amount: '₩1,500,000' },
+                  { text: 'Selección - Programa de Jóvenes Innovadores, Jeonbuk', amount: '₩1,350,000' },
+                  { text: 'Selección - Apoyo a prototipos de contenidos, Jeonbuk', amount: '₩1,200,000' },
+                  'Registro empresarial, Corea',
+                ],
+              },
             ],
           },
         },
@@ -430,7 +438,15 @@
             years: [
               { year: '2024', items: ['Salsa Coreana 제품 시연, 페루 리마'] },
               { year: '2025', items: ['Salsa Coreana 초기 제품 개발'] },
-              { year: '2026', items: ['김제시 창업지원사업 HINT 선정', '전북 청년 창업지원사업 선정', '전북 콘텐츠 창업지원사업 선정', '대한민국 사업자 등록'] },
+              {
+                year: '2026',
+                items: [
+                  { text: '김제시 예비창업지원사업 H.I.N.T 선정', amount: '₩1,500,000' },
+                  { text: '전북 시군청년혁신가 예비창업지원사업 선정', amount: '₩1,350,000' },
+                  { text: '전북 콘텐츠코리아랩 창제작자 시제품 제작 지원사업 선정', amount: '₩1,200,000' },
+                  '대한민국 사업자 등록',
+                ],
+              },
             ],
           },
         },
@@ -471,7 +487,15 @@
             years: [
               { year: '2024', items: ['Salsa Coreana product showcase, Lima, Peru'] },
               { year: '2025', items: ['Initial development of Salsa Coreana'] },
-              { year: '2026', items: ['Selected - HINT startup support program, Gimje', 'Selected - Young Innovators Program, Jeonbuk', 'Selected - Content startup support program, Jeonbuk', 'Business registration, Korea'] },
+              {
+                year: '2026',
+                items: [
+                  { text: 'Selected - H.I.N.T Pre-Startup Support Program, Gimje', amount: '₩1,500,000' },
+                  { text: 'Selected - Young Innovators Pre-Startup Program, Jeonbuk', amount: '₩1,350,000' },
+                  { text: 'Selected - Content Prototype Support Program, Jeonbuk', amount: '₩1,200,000' },
+                  'Business registration, Korea',
+                ],
+              },
             ],
           },
         },
@@ -542,7 +566,10 @@
                         (item, itemIndex) => `
                           <div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-6 sm:py-6">
                             <span class="condensed-label pt-1 text-sm text-mokdaOrange">${String(itemIndex + 1).padStart(2, '0')}</span>
-                            <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${item}</p>
+                            <div>
+                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${typeof item === 'string' ? item : item.text}</p>
+                              ${typeof item === 'string' || !item.amount ? '' : `<p class="mt-1 text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">${item.amount}</p>`}
+                            </div>
                           </div>
                         `,
                       )

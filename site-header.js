@@ -1,4 +1,14 @@
 (() => {
+  if (!window.MOKDA_ANALYTICS_LOADING) {
+    window.MOKDA_ANALYTICS_LOADING = true;
+    const analyticsScript = document.createElement('script');
+    analyticsScript.src = '/site-analytics.js?v=20260724-1';
+    analyticsScript.async = true;
+    document.head.appendChild(analyticsScript);
+  }
+})();
+
+(() => {
   const header = document.getElementById('main-header');
   const menuToggle = document.getElementById('menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');

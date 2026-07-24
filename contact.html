@@ -492,6 +492,11 @@
           form.reset();
           renderForm((content[language] || content.ES).fields);
           setFormStatus('success', messages.success);
+          window.MOKDA_ANALYTICS?.track(
+            'lead_submit',
+            { element: 'contact_form' },
+            { immediate: true }
+          );
         } catch (error) {
           console.error(error);
           setFormStatus('error', messages.error);
@@ -532,6 +537,6 @@
       document.getElementById('contactForm').addEventListener('submit', submitContactForm);
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260720-2"></script>
+    <script src="./site-header.js?v=20260724-1"></script>
   </body>
 </html>

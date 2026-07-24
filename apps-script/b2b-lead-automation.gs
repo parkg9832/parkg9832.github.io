@@ -28,6 +28,41 @@ const SHEET_HEADERS = [
   'WhatsApp',
 ];
 
+const FUNNEL_SHEET_NAME = 'Funnel Events';
+const FUNNEL_HEADERS = [
+  'Received At',
+  'Event Name',
+  'Anonymous Visitor ID',
+  'Session ID',
+  'Page Path',
+  'Page Language',
+  'Device',
+  'Referrer Host',
+  'UTM Source',
+  'UTM Medium',
+  'UTM Campaign',
+  'Element',
+  'Product',
+  'Scroll Depth',
+  'Browser Locale',
+  'Time Zone',
+  'Event ID',
+  'Page URL',
+];
+const FUNNEL_EVENT_NAMES = [
+  'page_view',
+  'product_section_view',
+  'product_cta_click',
+  'contact_cta_click',
+  'contact_view',
+  'form_start',
+  'lead_submit',
+  'social_click',
+  'language_switch',
+  'scroll_depth',
+  'tracking_test',
+];
+
 function doGet() {
   const chatWebhookUrl = getOptionalProperty(SCRIPT_PROPERTY_KEYS.chatWebhookUrl);
 
@@ -60,6 +95,11 @@ function testEmailNotification() {
 function doPost(event) {
   try {
     const payload = parsePayload(event);
+
+    if (isFunnelPayload(payload)) {
+      const result = appendFunnelEvents(payload);
+      return jsonResponse({ ok: true, analytics: true, saved: result.saved });
+    }
 
     if (payload && typeof payload === 'object' && !Array.isArray(payload) && payload.website) {
       return jsonResponse({ ok: true, skipped: true });
@@ -120,6 +160,109 @@ function doPost(event) {
     console.error(error);
     return jsonResponse({ ok: false, error: String(error.message || error) });
   }
+}
+
+function isFunnelPayload(payload) {
+  return Boolean(
+    payload &&
+      typeof payload === 'object' &&
+      !Array.isArray(payload) &&
+      payload.type === 'analytics' &&
+      Array.isArray(payload.events)
+  );
+}
+
+function appendFunnelEvents(payload) {
+  const events = payload.events.slice(0, 20);
+  const validEvents = events.filter((item) => {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return false;
+    return FUNNEL_EVENT_NAMES.indexOf(String(item.name || '')) !== -1;
+  });
+
+  if (!validEvents.length) {
+    return { saved: 0 };
+  }
+
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  const spreadsheet = SpreadsheetApp.openById(sheetId);
+  let sheet = spreadsheet.getSheetByName(FUNNEL_SHEET_NAME);
+
+  if (!sheet) {
+    sheet = spreadsheet.insertSheet(FUNNEL_SHEET_NAME);
+  }
+
+  ensureFunnelHeaders(sheet);
+
+  const now = new Date();
+  const rows = [];
+  const cache = CacheService.getScriptCache();
+
+  validEvents.forEach((item) => {
+    const eventId = cleanAnalyticsValue(item.eventId, 100);
+    if (!eventId || cache.get(`funnel:${eventId}`)) return;
+
+    cache.put(`funnel:${eventId}`, '1', 21600);
+    rows.push([
+      now,
+      cleanAnalyticsValue(item.name, 50),
+      cleanAnalyticsValue(payload.visitorId, 100),
+      cleanAnalyticsValue(payload.sessionId, 100),
+      cleanAnalyticsValue(item.pagePath, 300),
+      cleanAnalyticsValue(item.language, 20),
+      cleanAnalyticsValue(item.device, 20),
+      cleanAnalyticsValue(item.referrerHost, 150),
+      cleanAnalyticsValue(item.utmSource, 100),
+      cleanAnalyticsValue(item.utmMedium, 100),
+      cleanAnalyticsValue(item.utmCampaign, 150),
+      cleanAnalyticsValue(item.element, 150),
+      cleanAnalyticsValue(item.product, 80),
+      cleanAnalyticsValue(item.scrollDepth, 20),
+      cleanAnalyticsValue(item.browserLocale, 30),
+      cleanAnalyticsValue(item.timeZone, 80),
+      eventId,
+      cleanAnalyticsValue(item.pageUrl, 500),
+    ]);
+  });
+
+  if (!rows.length) {
+    return { saved: 0 };
+  }
+
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+
+  try {
+    sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, FUNNEL_HEADERS.length).setValues(rows);
+  } finally {
+    lock.releaseLock();
+  }
+
+  return { saved: rows.length };
+}
+
+function ensureFunnelHeaders(sheet) {
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, FUNNEL_HEADERS.length).setValues([FUNNEL_HEADERS]);
+    sheet.setFrozenRows(1);
+    return;
+  }
+
+  const currentHeaders = sheet.getRange(1, 1, 1, FUNNEL_HEADERS.length).getValues()[0];
+  const needsUpdate = FUNNEL_HEADERS.some((header, index) => currentHeaders[index] !== header);
+
+  if (needsUpdate) {
+    sheet.getRange(1, 1, 1, FUNNEL_HEADERS.length).setValues([FUNNEL_HEADERS]);
+    sheet.setFrozenRows(1);
+  }
+}
+
+function cleanAnalyticsValue(value, maxLength) {
+  const cleaned = String(value == null ? '' : value)
+    .replace(/[\u0000-\u001F\u007F]/g, ' ')
+    .trim()
+    .slice(0, maxLength);
+
+  return /^[=+\-@]/.test(cleaned) ? `'${cleaned}` : cleaned;
 }
 
 function parsePayload(event) {

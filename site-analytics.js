@@ -2,10 +2,19 @@
   'use strict';
 
   if (window.MOKDA_ANALYTICS) return;
-  if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true) return;
+  const debugMode = new URLSearchParams(window.location.search).get('analytics_debug') === '1';
+  window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: false, reason: 'initializing' };
+
+  if (!debugMode && (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true)) {
+    window.MOKDA_ANALYTICS_STATUS.reason = 'privacy_preference';
+    return;
+  }
 
   const allowedHosts = new Set(['mokda.kr', 'www.mokda.kr', 'parkg9832.github.io']);
-  if (!allowedHosts.has(window.location.hostname)) return;
+  if (!allowedHosts.has(window.location.hostname)) {
+    window.MOKDA_ANALYTICS_STATUS.reason = 'unsupported_host';
+    return;
+  }
 
   // Public, write-only Apps Script web endpoint. No secret or API key is stored in the browser.
   const endpoint =
@@ -290,6 +299,7 @@
 
   window.addEventListener('pagehide', flush);
   window.MOKDA_ANALYTICS = { track, flush };
+  window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: true, reason: 'active' };
 
   track('page_view');
   if (/\/contact(?:\.html|\/)?$/i.test(window.location.pathname)) {

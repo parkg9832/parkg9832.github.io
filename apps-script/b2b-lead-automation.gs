@@ -48,6 +48,8 @@ const FUNNEL_HEADERS = [
   'Time Zone',
   'Event ID',
   'Page URL',
+  'Active Seconds',
+  'Page Instance ID',
 ];
 const FUNNEL_EVENT_NAMES = [
   'page_view',
@@ -60,6 +62,7 @@ const FUNNEL_EVENT_NAMES = [
   'social_click',
   'language_switch',
   'scroll_depth',
+  'engagement_update',
   'tracking_test',
 ];
 
@@ -221,6 +224,8 @@ function appendFunnelEvents(payload) {
       cleanAnalyticsValue(item.timeZone, 80),
       eventId,
       cleanAnalyticsValue(item.pageUrl, 500),
+      cleanAnalyticsNumber(item.activeSeconds, 0, 86400),
+      cleanAnalyticsValue(item.pageInstanceId, 100),
     ]);
   });
 
@@ -263,6 +268,15 @@ function cleanAnalyticsValue(value, maxLength) {
     .slice(0, maxLength);
 
   return /^[=+\-@]/.test(cleaned) ? `'${cleaned}` : cleaned;
+}
+
+function cleanAnalyticsNumber(value, min, max) {
+  if (value === '' || value == null) return '';
+
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return '';
+
+  return Math.min(max, Math.max(min, Math.floor(parsed)));
 }
 
 function parsePayload(event) {

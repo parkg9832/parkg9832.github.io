@@ -23,6 +23,7 @@
   const sessionStorageKey = 'mokda_analytics_session_v1';
   const attributionStorageKey = 'mokda_analytics_attribution_v1';
   const sessionDurationMs = 30 * 60 * 1000;
+  const engagementHeartbeatMs = 15 * 1000;
   const queue = [];
   const tracked = new Set();
   let flushTimer = null;
@@ -144,6 +145,10 @@
   const visitorId = getVisitorId();
   const session = getSession();
   const attribution = getAttribution(session.id);
+  const pageInstanceId = randomId();
+  let activeStartedAt = document.visibilityState === 'visible' ? performance.now() : null;
+  let accumulatedActiveMs = 0;
+  let lastReportedActiveSeconds = 0;
 
   function buildEvent(name, details = {}) {
     return {
@@ -162,6 +167,8 @@
       scrollDepth: clean(details.scrollDepth, 20),
       browserLocale: clean(navigator.language, 30),
       timeZone: clean(Intl.DateTimeFormat().resolvedOptions().timeZone, 80),
+      activeSeconds: details.activeSeconds == null ? '' : Math.max(0, Math.floor(details.activeSeconds)),
+      pageInstanceId,
     };
   }
 
@@ -211,6 +218,25 @@
     if (tracked.has(key)) return;
     tracked.add(key);
     track(name, details);
+  }
+
+  function captureActiveTime() {
+    if (activeStartedAt == null) return;
+
+    const now = performance.now();
+    accumulatedActiveMs += Math.max(0, now - activeStartedAt);
+    activeStartedAt = now;
+  }
+
+  function reportActiveTime(force) {
+    captureActiveTime();
+    const activeSeconds = Math.floor(accumulatedActiveMs / 1000);
+
+    if (activeSeconds <= lastReportedActiveSeconds) return;
+    if (!force && activeSeconds - lastReportedActiveSeconds < 10) return;
+
+    lastReportedActiveSeconds = activeSeconds;
+    track('engagement_update', { activeSeconds }, { immediate: true });
   }
 
   function inferProduct(element) {
@@ -297,7 +323,31 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   });
 
-  window.addEventListener('pagehide', flush);
+  window.setInterval(() => {
+    if (document.visibilityState === 'visible') reportActiveTime(false);
+  }, engagementHeartbeatMs);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      captureActiveTime();
+      activeStartedAt = null;
+      reportActiveTime(true);
+      return;
+    }
+
+    if (activeStartedAt == null) activeStartedAt = performance.now();
+  });
+
+  window.addEventListener('pageshow', () => {
+    if (document.visibilityState === 'visible' && activeStartedAt == null) {
+      activeStartedAt = performance.now();
+    }
+  });
+
+  window.addEventListener('pagehide', () => {
+    reportActiveTime(true);
+    flush();
+  });
   window.MOKDA_ANALYTICS = { track, flush };
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: true, reason: 'active' };
 

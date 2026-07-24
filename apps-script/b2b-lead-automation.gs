@@ -1,5 +1,6 @@
 const SERVICE_NAME = 'MOKDA Inquiry';
 const TIME_ZONE = 'Asia/Seoul';
+const LEAD_SHEET_NAME = 'Sheet1';
 
 const SCRIPT_PROPERTY_KEYS = {
   sheetId: 'SHEET_ID',
@@ -314,7 +315,11 @@ function appendLead(row) {
 
   try {
     const spreadsheet = SpreadsheetApp.openById(sheetId);
-    const sheet = spreadsheet.getSheets()[0];
+    let sheet = spreadsheet.getSheetByName(LEAD_SHEET_NAME);
+
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet(LEAD_SHEET_NAME);
+    }
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(SHEET_HEADERS);
@@ -333,7 +338,11 @@ function getSheetStatus() {
   try {
     const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
     const spreadsheet = SpreadsheetApp.openById(sheetId);
-    const sheet = spreadsheet.getSheets()[0];
+    const sheet = spreadsheet.getSheetByName(LEAD_SHEET_NAME);
+
+    if (!sheet) {
+      throw new Error(`Lead sheet not found: ${LEAD_SHEET_NAME}`);
+    }
 
     return {
       ok: true,

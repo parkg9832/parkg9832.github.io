@@ -429,7 +429,7 @@
       </header>
 
       <section id="top" class="relative h-[658px] min-h-[658px] overflow-hidden bg-[#f7ddc2] text-white sm:h-screen sm:min-h-[780px]">
-        <div id="heroSlides" class="relative flex h-full w-full snap-x snap-mandatory overflow-x-auto scroll-smooth md:block md:overflow-hidden no-scrollbar">
+        <div id="heroSlides" class="relative block h-full w-full overflow-hidden" style="touch-action: pan-y;">
           <div data-hero-slide="0" data-hero-theme="soft" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0">
             <div class="absolute inset-0 bg-[#f7ddc2]"></div>
             <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-9rem] md:h-[55vh] md:w-[78vw] md:-translate-x-[56%] lg:bottom-[-9.5rem] lg:h-[58vh] lg:w-[76vw] lg:-translate-x-[54%] xl:w-[72vw]">
@@ -653,9 +653,6 @@
     <script src="./site-footer.js?v=20260720-1"></script>
     <script src="./site-accordion.js?v=20260719-1"></script>
     <script>
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-      window.scrollTo(0, 0);
-
       const heroSlides = [
         {
           desktopImage: 'assets/images/hero-mokda-sauce-pour-cutout.webp',
@@ -1125,6 +1122,7 @@
       }
 
       function bindHeroScroll() {
+        if (homepageHeroSlides.length <= 1) return;
         const scroller = document.getElementById('heroSlides');
         scroller.addEventListener(
           'scroll',
@@ -1173,7 +1171,11 @@
 
       function updateHeroCarousel(syncScroll = true) {
         const scroller = document.getElementById('heroSlides');
-        const shouldSyncScroll = syncScroll && !window.matchMedia('(min-width: 768px)').matches && scroller;
+        const shouldSyncScroll =
+          homepageHeroSlides.length > 1 &&
+          syncScroll &&
+          !window.matchMedia('(min-width: 768px)').matches &&
+          scroller;
         const targetScrollLeft = shouldSyncScroll ? scroller.clientWidth * currentSlide : null;
 
         document.querySelectorAll('[data-hero-slide]').forEach((slide) => {

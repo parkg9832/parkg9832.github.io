@@ -105,15 +105,15 @@ const pages = {
     },
     ES: {
       title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
-      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú o México.',
+      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile, Colombia o Argentina.',
     },
     KR: {
       title: 'Salsa Coreana 출시 응원 | MOKDA',
-      description: '페루 또는 멕시코에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
+      description: '라틴아메리카 5개국에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
     },
     EN: {
       title: 'Support the Salsa Coreana Launch | MOKDA',
-      description: 'Support the launch of MOKDA Salsa Coreana in Peru or Mexico.',
+      description: 'Support the launch of MOKDA Salsa Coreana across five Latin American markets.',
     },
   },
 };

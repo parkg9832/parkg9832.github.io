@@ -5,6 +5,7 @@
   const endpoint = window.MOKDA_B2B_WEB_APP_URL || '';
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const supportStorageKey = 'mokda_demand_support_v1';
+  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'AR'];
   const copy = {
     KR: {
       visual: '당신의 응원으로 시작되는 첫 출시',
@@ -12,33 +13,50 @@
       title: 'Salsa Coreana의 출시를 도와주세요.',
       lead: 'MOKDA를 라틴아메리카의 마트와 식탁에 선보이기 위해 실제 소비자의 응원을 모으고 있습니다.',
       impactTitle: '당신의 응원이 실제 수요 데이터가 됩니다.',
-      impactText: '국가별 결과를 페루와 멕시코의 마트·벤더·유통사에 제안 자료로 활용합니다.',
+      impactText: '국가별 결과를 라틴아메리카 5개국의 마트·벤더·유통사에 제안 자료로 활용합니다.',
       nameLabel: '이름 또는 닉네임',
       namePlaceholder: '이름을 입력해주세요',
       countryLabel: '어디에서 Salsa Coreana를 만나고 싶나요?',
       peru: '페루',
       mexico: '멕시코',
+      chile: '칠레',
+      colombia: '콜롬비아',
+      argentina: '아르헨티나',
       declarationEmpty: '이름과 국가를 선택하면 나의 응원 문장이 완성됩니다.',
       declaration: (name, country) => `${name}님은 ${country}에서 Salsa Coreana를 만나길 원해요!`,
       submit: '출시 응원하기',
       sending: '응원을 전하고 있어요…',
-      privacy: '이름은 공개하지 않습니다. 위치 정보와 연락처도 수집하지 않습니다.',
+      privacy: '입력한 이름과 선택 국가가 아래 응원 목록에 표시됩니다. 위치 정보와 연락처는 수집하지 않습니다.',
       success: (name, country) => `${name}님의 ${country} 출시 응원이 등록되었습니다. 감사합니다!`,
       duplicate: (country) => `이미 ${country} 출시를 응원해주셨습니다. 감사합니다!`,
       error: '등록하지 못했습니다. 잠시 후 다시 시도해주세요.',
       required: '이름을 입력하고 국가를 선택해주세요.',
       tabStory: '프로젝트 소개',
       tabJoin: '지금 응원하기',
+      tabVoices: '응원 목록',
+      feedEyebrow: '실시간 응원',
+      feedTitle: 'Salsa Coreana를 기다리는 사람들',
+      feedLoading: '불러오는 중…',
+      feedTotal: (count) => `총 ${count}명 응원`,
+      feedMessage: (name, country) => `${name}님은 ${country}에서 Salsa Coreana를 만나길 원해요!`,
+      feedEmpty: '새 응원 메시지는 지금부터 이곳에 표시됩니다.',
       storyEyebrow: '왜 응원이 필요한가요?',
       storyTitle: '작은 응원이 큰 유통 기회를 만듭니다.',
       storyBody: '생산과 수출을 시작하기 전에, 실제로 Salsa Coreana를 원하는 사람이 있다는 근거가 필요합니다.',
       stepOneTitle: '출시 국가 선택',
-      stepOneText: '페루 또는 멕시코를 직접 선택합니다. 추정 국가는 사용하지 않습니다.',
+      stepOneText: '5개국 중 원하는 출시 국가를 직접 선택합니다. 추정 국가는 사용하지 않습니다.',
       stepTwoTitle: '국가별 수요 집계',
       stepTwoText: '응원 한 건이 해당 국가의 정량적인 관심 데이터로 쌓입니다.',
       stepThreeTitle: '시장에 결과 제시',
       stepThreeText: '마트, 벤더, 유통사와 상담할 때 실제 수요 근거로 보여줍니다.',
       back: '← MOKDA 홈페이지로 돌아가기',
+      menuHome: '홈',
+      menuAbout: '브랜드 소개',
+      menuProducts: 'Salsa Coreana',
+      menuQna: 'Q&A',
+      menuContact: '문의',
+      menuOpen: '메뉴 열기',
+      menuClose: '메뉴 닫기',
     },
     ES: {
       visual: 'Un sueño que empieza con tu apoyo',
@@ -46,33 +64,50 @@
       title: 'Ayúdanos a lanzar Salsa Coreana.',
       lead: 'Estamos reuniendo apoyo real para presentar MOKDA a tiendas y distribuidores de Latinoamérica.',
       impactTitle: 'Tu apoyo se convierte en datos reales.',
-      impactText: 'Usaremos el resultado para demostrar la demanda en Perú y México.',
+      impactText: 'Usaremos el resultado para demostrar la demanda en cinco mercados de Latinoamérica.',
       nameLabel: 'Nombre o apodo',
       namePlaceholder: 'Escribe tu nombre',
       countryLabel: '¿Dónde quieres encontrar Salsa Coreana?',
       peru: 'Perú',
       mexico: 'México',
+      chile: 'Chile',
+      colombia: 'Colombia',
+      argentina: 'Argentina',
       declarationEmpty: 'Escribe tu nombre y elige un país para completar tu mensaje.',
       declaration: (name, country) => `${name} quiere encontrar Salsa Coreana en ${country}.`,
       submit: 'Apoyar el lanzamiento',
       sending: 'Enviando tu apoyo…',
-      privacy: 'Tu nombre no será público. No recopilamos tu ubicación ni datos de contacto.',
+      privacy: 'Tu nombre y país aparecerán en la lista de apoyos. No recopilamos tu ubicación ni datos de contacto.',
       success: (name, country) => `¡Gracias, ${name}! Tu apoyo para el lanzamiento en ${country} ya está registrado.`,
       duplicate: (country) => `Ya registramos tu apoyo para ${country}. ¡Gracias!`,
       error: 'No pudimos registrar tu apoyo. Inténtalo de nuevo en un momento.',
       required: 'Escribe tu nombre y selecciona un país.',
       tabStory: 'Sobre el proyecto',
       tabJoin: 'Apoyar ahora',
+      tabVoices: 'Apoyos',
+      feedEyebrow: 'Apoyos reales',
+      feedTitle: 'Personas que quieren encontrar Salsa Coreana',
+      feedLoading: 'Cargando…',
+      feedTotal: (count) => `${count} ${count === 1 ? 'apoyo' : 'apoyos'}`,
+      feedMessage: (name, country) => `${name} quiere encontrar Salsa Coreana en ${country}.`,
+      feedEmpty: 'Los nuevos mensajes de apoyo aparecerán aquí.',
       storyEyebrow: 'Por qué necesitamos tu apoyo',
       storyTitle: 'Una señal pequeña puede abrir una puerta grande.',
       storyBody: 'Antes de producir y exportar, necesitamos demostrar que hay personas que realmente quieren encontrar Salsa Coreana en su país.',
       stepOneTitle: 'Elige tu mercado',
-      stepOneText: 'Selecciona Perú o México. No usamos ubicación estimada.',
+      stepOneText: 'Selecciona uno de los cinco países. No usamos ubicación estimada.',
       stepTwoTitle: 'Reunimos la demanda',
       stepTwoText: 'Cada apoyo se suma como una señal cuantitativa por país.',
       stepThreeTitle: 'Lo mostramos al mercado',
       stepThreeText: 'Presentaremos los resultados a tiendas, distribuidores y socios.',
       back: '← Volver a MOKDA',
+      menuHome: 'Inicio',
+      menuAbout: 'Sobre nosotros',
+      menuProducts: 'Salsa Coreana',
+      menuQna: 'Q&A',
+      menuContact: 'Contacto',
+      menuOpen: 'Abrir menú',
+      menuClose: 'Cerrar menú',
     },
     EN: {
       visual: 'A dream that starts with your support',
@@ -80,33 +115,50 @@
       title: 'Help us launch Salsa Coreana.',
       lead: 'We are gathering real support to introduce MOKDA to retailers and distributors across Latin America.',
       impactTitle: 'Your support becomes real demand data.',
-      impactText: 'We will use the results to demonstrate demand in Peru and Mexico.',
+      impactText: 'We will use the results to demonstrate demand across five Latin American markets.',
       nameLabel: 'Name or nickname',
       namePlaceholder: 'Enter your name',
       countryLabel: 'Where do you want to find Salsa Coreana?',
       peru: 'Peru',
       mexico: 'Mexico',
+      chile: 'Chile',
+      colombia: 'Colombia',
+      argentina: 'Argentina',
       declarationEmpty: 'Add your name and choose a country to complete your message.',
       declaration: (name, country) => `${name} wants to find Salsa Coreana in ${country}.`,
       submit: 'Support the launch',
       sending: 'Sending your support…',
-      privacy: 'Your name will not be public. We do not collect location or contact details.',
+      privacy: 'Your name and selected country will appear in the support list. We do not collect location or contact details.',
       success: (name, country) => `Thanks, ${name}! Your support for a launch in ${country} is registered.`,
       duplicate: (country) => `You already supported a launch in ${country}. Thank you!`,
       error: 'We could not register your support. Please try again in a moment.',
       required: 'Enter your name and choose a country.',
       tabStory: 'About the project',
       tabJoin: 'Support now',
+      tabVoices: 'Supporters',
+      feedEyebrow: 'Real support',
+      feedTitle: 'People who want to find Salsa Coreana',
+      feedLoading: 'Loading…',
+      feedTotal: (count) => `${count} ${count === 1 ? 'supporter' : 'supporters'}`,
+      feedMessage: (name, country) => `${name} wants to find Salsa Coreana in ${country}.`,
+      feedEmpty: 'New support messages will appear here from now on.',
       storyEyebrow: 'Why your support matters',
       storyTitle: 'A small signal can open a big door.',
       storyBody: 'Before we produce and export, we need evidence that people genuinely want to find Salsa Coreana in their country.',
       stepOneTitle: 'Choose your market',
-      stepOneText: 'Select Peru or Mexico. We never use an estimated location.',
+      stepOneText: 'Choose one of five countries. We never use an estimated location.',
       stepTwoTitle: 'Build demand data',
       stepTwoText: 'Every response becomes a quantitative signal for that country.',
       stepThreeTitle: 'Show the market',
       stepThreeText: 'We will present the results to retailers, distributors, and partners.',
       back: '← Back to MOKDA',
+      menuHome: 'Home',
+      menuAbout: 'About',
+      menuProducts: 'Salsa Coreana',
+      menuQna: 'Q&A',
+      menuContact: 'Contact',
+      menuOpen: 'Open menu',
+      menuClose: 'Close menu',
     },
   };
   const t = copy[language] || copy.ES;
@@ -155,7 +207,13 @@
   }
 
   function countryName(country) {
-    return country === 'PE' ? t.peru : t.mexico;
+    return {
+      PE: t.peru,
+      MX: t.mexico,
+      CL: t.chile,
+      CO: t.colombia,
+      AR: t.argentina,
+    }[country] || country;
   }
 
   function setText(id, value) {
@@ -176,10 +234,18 @@
       supportCountryLabel: t.countryLabel,
       supportPeru: t.peru,
       supportMexico: t.mexico,
+      supportChile: t.chile,
+      supportColombia: t.colombia,
+      supportArgentina: t.argentina,
       supportSubmitLabel: t.submit,
       supportPrivacy: t.privacy,
       supportTabStory: t.tabStory,
       supportTabJoin: t.tabJoin,
+      supportTabVoices: t.tabVoices,
+      supportFeedEyebrow: t.feedEyebrow,
+      supportFeedTitle: t.feedTitle,
+      supportFeedTotal: t.feedLoading,
+      supportFeedEmpty: t.feedEmpty,
       supportStoryEyebrow: t.storyEyebrow,
       supportStoryTitle: t.storyTitle,
       supportStoryBody: t.storyBody,
@@ -190,6 +256,11 @@
       supportStepThreeTitle: t.stepThreeTitle,
       supportStepThreeText: t.stepThreeText,
       supportBack: t.back,
+      supportMenuHome: t.menuHome,
+      supportMenuAbout: t.menuAbout,
+      supportMenuProducts: t.menuProducts,
+      supportMenuQna: t.menuQna,
+      supportMenuContact: t.menuContact,
     };
 
     Object.entries(textById).forEach(([id, value]) => setText(id, value));
@@ -197,6 +268,7 @@
     document.querySelectorAll('[data-language]').forEach((button) => {
       button.setAttribute('aria-pressed', button.dataset.language === language ? 'true' : 'false');
     });
+    document.getElementById('supportMenuToggle').setAttribute('aria-label', t.menuOpen);
     updateDeclaration();
   }
 
@@ -210,9 +282,71 @@
     const name = document.getElementById('supportName').value.trim().slice(0, 40);
     const country = document.querySelector('input[name="country"]:checked')?.value || '';
     const declaration = document.getElementById('supportDeclaration');
-    const ready = Boolean(name && ['PE', 'MX'].includes(country));
+    const ready = Boolean(name && countryCodes.includes(country));
     declaration.dataset.ready = ready ? 'true' : 'false';
     declaration.textContent = ready ? t.declaration(name, countryName(country)) : t.declarationEmpty;
+  }
+
+  function renderSupportFeed(result) {
+    const total = Number(result?.total || 0);
+    const totals = result?.totals || {};
+    const supporters = Array.isArray(result?.supporters) ? result.supporters : [];
+    const totalElement = document.getElementById('supportFeedTotal');
+    const totalsElement = document.getElementById('supportCountryTotals');
+    const listElement = document.getElementById('supportFeedList');
+    const emptyElement = document.getElementById('supportFeedEmpty');
+
+    totalElement.textContent = t.feedTotal(total);
+    totalsElement.replaceChildren();
+    countryCodes.forEach((code) => {
+      const item = document.createElement('span');
+      const label = document.createElement('span');
+      const count = document.createElement('strong');
+      item.className = 'support-country-total';
+      label.textContent = countryName(code);
+      count.textContent = String(Number(totals[code] || 0));
+      item.append(label, count);
+      totalsElement.appendChild(item);
+    });
+
+    listElement.replaceChildren();
+    supporters.forEach((supporter) => {
+      const name = String(supporter?.name || '').trim().slice(0, 40);
+      const code = String(supporter?.countryCode || '').trim().toUpperCase();
+      if (!name || !countryCodes.includes(code)) return;
+
+      const item = document.createElement('article');
+      const avatar = document.createElement('span');
+      const message = document.createElement('p');
+      const country = document.createElement('span');
+      item.className = 'support-feed-item';
+      avatar.className = 'support-feed-avatar';
+      message.className = 'support-feed-message';
+      country.className = 'support-feed-country';
+      avatar.textContent = name.slice(0, 1).toUpperCase();
+      message.textContent = t.feedMessage(name, countryName(code));
+      country.textContent = countryName(code);
+      item.append(avatar, message, country);
+      listElement.appendChild(item);
+    });
+
+    emptyElement.hidden = listElement.childElementCount > 0;
+  }
+
+  async function loadSupportFeed() {
+    if (!endpoint) return;
+    try {
+      const feedUrl = new URL(endpoint);
+      feedUrl.searchParams.set('mode', 'demand_support');
+      feedUrl.searchParams.set('limit', '24');
+      feedUrl.searchParams.set('_', String(Date.now()));
+      const response = await fetch(feedUrl.toString(), { method: 'GET', cache: 'no-store' });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || 'Support feed request failed');
+      renderSupportFeed(result);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   function showSavedSupport(saved) {
@@ -229,7 +363,7 @@
     const name = String(data.get('name') || '').trim().slice(0, 40);
     const country = String(data.get('country') || '').trim().toUpperCase();
 
-    if (!name || !['PE', 'MX'].includes(country)) {
+    if (!name || !countryCodes.includes(country)) {
       setStatus('error', t.required);
       return;
     }
@@ -257,6 +391,7 @@
           country,
           language,
           pageUrl: window.location.href,
+          publicFeed: true,
           ...attribution,
         }),
       });
@@ -282,6 +417,7 @@
         { element: `country_${country.toLowerCase()}` },
         { immediate: true },
       );
+      await loadSupportFeed();
     } catch (error) {
       console.error(error);
       setStatus('error', t.error);
@@ -302,8 +438,17 @@
     input.addEventListener('change', updateDeclaration);
   });
   document.getElementById('supportForm').addEventListener('submit', submitSupport);
+  const menuToggle = document.getElementById('supportMenuToggle');
+  const menu = document.getElementById('supportMenu');
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    menuToggle.setAttribute('aria-label', expanded ? t.menuOpen : t.menuClose);
+    menu.hidden = expanded;
+  });
 
   render();
   showSavedSupport(readJson(supportStorageKey));
+  loadSupportFeed();
   window.MOKDA_ANALYTICS?.track('support_page_view', { element: 'demand_support_page' });
 })();

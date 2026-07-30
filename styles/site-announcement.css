@@ -85,6 +85,7 @@
   bottom: 22px;
   left: 24px;
   color: #fffaf2;
+  text-align: center;
 }
 
 .mokda-announcement__visual-copy small {
@@ -98,6 +99,7 @@
 .mokda-announcement__visual-copy strong {
   display: block;
   max-width: 250px;
+  margin: 0 auto;
   font-size: 39px;
   font-weight: 950;
   line-height: 0.91;

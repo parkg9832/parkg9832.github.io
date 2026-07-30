@@ -66,10 +66,14 @@ const DEMAND_HEADERS = [
   'UTM Campaign',
   'Referrer Host',
   'Page URL',
+  'Public Feed Opt-in',
 ];
 const DEMAND_COUNTRIES = {
   PE: 'Peru',
   MX: 'Mexico',
+  CL: 'Chile',
+  CO: 'Colombia',
+  AR: 'Argentina',
 };
 const FUNNEL_EVENT_NAMES = [
   'page_view',
@@ -86,11 +90,17 @@ const FUNNEL_EVENT_NAMES = [
   'tracking_test',
   'support_popup_view',
   'support_popup_cta',
+  'support_popup_hide_day',
   'support_page_view',
   'support_submit',
 ];
 
-function doGet() {
+function doGet(event) {
+  const mode = String((event && event.parameter && event.parameter.mode) || '').trim();
+  if (mode === 'demand_support') {
+    return jsonResponse(getDemandSupportFeed(event));
+  }
+
   const chatWebhookUrl = getOptionalProperty(SCRIPT_PROPERTY_KEYS.chatWebhookUrl);
 
   return jsonResponse({
@@ -207,9 +217,10 @@ function appendDemandSupport(payload) {
   const countryCode = String(payload.country || '').trim().toUpperCase();
   const visitorId = cleanAnalyticsValue(payload.visitorId, 100);
   const eventId = cleanAnalyticsValue(payload.eventId, 100);
+  const publicFeed = payload.publicFeed === true;
 
   if (!name) throw new Error('Supporter name is required');
-  if (!DEMAND_COUNTRIES[countryCode]) throw new Error('Country must be PE or MX');
+  if (!DEMAND_COUNTRIES[countryCode]) throw new Error('Unsupported country');
   if (!visitorId) throw new Error('Anonymous visitor ID is required');
   if (!eventId) throw new Error('Event ID is required');
 
@@ -239,6 +250,10 @@ function appendDemandSupport(payload) {
         .findNext();
 
       if (existingVisitor) {
+        if (publicFeed) {
+          sheet.getRange(existingVisitor.getRow(), 2).setValue(name);
+          sheet.getRange(existingVisitor.getRow(), 13).setValue(true);
+        }
         return { ok: true, saved: false, duplicate: true };
       }
     }
@@ -256,6 +271,7 @@ function appendDemandSupport(payload) {
       cleanAnalyticsValue(payload.utmCampaign, 150),
       cleanAnalyticsValue(payload.referrerHost, 150),
       cleanAnalyticsValue(payload.pageUrl, 500),
+      publicFeed,
     ]);
 
     return { ok: true, saved: true, duplicate: false };
@@ -278,6 +294,46 @@ function ensureDemandHeaders(sheet) {
     sheet.getRange(1, 1, 1, DEMAND_HEADERS.length).setValues([DEMAND_HEADERS]);
     sheet.setFrozenRows(1);
   }
+}
+
+function getDemandSupportFeed(event) {
+  const requestedLimit = Number((event && event.parameter && event.parameter.limit) || 24);
+  const limit = Math.min(Math.max(Math.round(requestedLimit) || 24, 1), 50);
+  const totals = Object.keys(DEMAND_COUNTRIES).reduce((result, code) => {
+    result[code] = 0;
+    return result;
+  }, {});
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  const spreadsheet = SpreadsheetApp.openById(sheetId);
+  const sheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
+
+  if (!sheet || sheet.getLastRow() <= 1) {
+    return { ok: true, total: 0, totals, supporters: [] };
+  }
+
+  ensureDemandHeaders(sheet);
+  const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, DEMAND_HEADERS.length).getValues();
+  rows.forEach((row) => {
+    const countryCode = String(row[2] || '').trim().toUpperCase();
+    if (Object.prototype.hasOwnProperty.call(totals, countryCode)) totals[countryCode] += 1;
+  });
+
+  const supporters = rows
+    .filter((row) => row[12] === true || String(row[12]).toLowerCase() === 'true')
+    .slice(-limit)
+    .reverse()
+    .map((row) => ({
+      name: cleanAnalyticsValue(row[1], 40),
+      countryCode: String(row[2] || '').trim().toUpperCase(),
+      createdAt: row[0] instanceof Date ? row[0].toISOString() : String(row[0] || ''),
+    }));
+
+  return {
+    ok: true,
+    total: rows.length,
+    totals,
+    supporters,
+  };
 }
 
 function isFunnelPayload(payload) {

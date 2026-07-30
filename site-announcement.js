@@ -10,7 +10,7 @@
     KR: {
       badge: '첫 출시 응원 프로젝트',
       title: 'Salsa Coreana의 출시를 도와주세요!',
-      lead: '페루와 멕시코에서 MOKDA를 만나고 싶다면 지금 응원을 남겨주세요.',
+      lead: '라틴아메리카에서 MOKDA를 만나고 싶다면 지금 응원을 남겨주세요.',
       action: '응원하기',
       note: '이름과 국가만 선택 · 약 10초',
       close: '응원 캠페인 닫기',
@@ -19,7 +19,7 @@
     ES: {
       badge: 'Proyecto de primer lanzamiento',
       title: 'Ayúdanos a lanzar Salsa Coreana',
-      lead: 'Tu apoyo puede acercar MOKDA a Perú y México.',
+      lead: 'Tu apoyo puede acercar MOKDA a más países de Latinoamérica.',
       action: 'Quiero apoyar',
       note: 'Nombre y país · Solo 10 segundos',
       close: 'Cerrar campaña de apoyo',
@@ -28,7 +28,7 @@
     EN: {
       badge: 'First launch project',
       title: 'Help us launch Salsa Coreana',
-      lead: 'Your support can bring MOKDA closer to Peru and Mexico.',
+      lead: 'Your support can bring MOKDA closer to more Latin American markets.',
       action: 'Support the launch',
       note: 'Name and country · About 10 seconds',
       close: 'Close support campaign',

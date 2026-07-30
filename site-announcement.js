@@ -9,31 +9,19 @@
   const forcePopup = params.get('support_popup') === '1';
   const copy = {
     KR: {
-      eyebrow: 'MOKDA DREAM PROJECT · 2026',
-      title: 'Salsa Coreana의 출시를 도와주세요!',
-      lead: '당신의 한 번의 응원이 MOKDA의 첫 라틴아메리카 출시를 현실로 만듭니다.',
-      note: '이름과 원하는 출시 국가만 선택하면 끝나요.',
-      cta: '응원하기',
-      closeLabel: '응원 캠페인 닫기',
-      imageAlt: '하트처럼 흐르는 Salsa Coreana 소스',
+      action: 'Salsa Coreana 출시 응원하기',
+      close: '응원 캠페인 닫기',
+      image: 'ko',
     },
     ES: {
-      eyebrow: 'MOKDA DREAM PROJECT · 2026',
-      title: '¡Ayúdanos a lanzar Salsa Coreana!',
-      lead: 'Tu apoyo puede convertir el primer lanzamiento de MOKDA en Latinoamérica en una realidad.',
-      note: 'Solo elige tu nombre y el país donde quieres encontrarla.',
-      cta: 'Apoyar',
-      closeLabel: 'Cerrar campaña de apoyo',
-      imageAlt: 'Salsa Coreana formando un gesto de corazón',
+      action: 'Apoyar el lanzamiento de Salsa Coreana',
+      close: 'Cerrar campaña de apoyo',
+      image: 'es',
     },
     EN: {
-      eyebrow: 'MOKDA DREAM PROJECT · 2026',
-      title: 'Help us launch Salsa Coreana!',
-      lead: 'One simple show of support can help make MOKDA’s first Latin American launch real.',
-      note: 'Just add your name and choose where you want to find it.',
-      cta: 'Support',
-      closeLabel: 'Close support campaign',
-      imageAlt: 'Salsa Coreana flowing into a heart-like gesture',
+      action: 'Support the Salsa Coreana launch',
+      close: 'Close support campaign',
+      image: 'en',
     },
   };
   const t = copy[language] || copy.ES;
@@ -56,37 +44,21 @@
   const supportQuery = new URLSearchParams(window.location.search);
   supportQuery.delete('support_popup');
   const supportHref = `/${languagePath}/support.html${supportQuery.size ? `?${supportQuery}` : ''}`;
+  const desktopImage = `/assets/images/support-popup-${t.image}-2026.webp`;
+  const mobileImage = `/assets/images/support-popup-${t.image}-2026-mobile.webp`;
 
   const dialog = document.createElement('dialog');
   dialog.className = 'mokda-announcement';
-  dialog.setAttribute('aria-labelledby', 'mokdaAnnouncementTitle');
+  dialog.setAttribute('aria-label', t.action);
   dialog.innerHTML = `
     <article class="mokda-announcement__card">
-      <div class="mokda-announcement__visual">
-        <img
-          class="mokda-announcement__image"
-          src="/assets/images/salsa-coreana-support-campaign-2026.webp"
-          alt="${t.imageAlt}"
-          width="1122"
-          height="1402"
-        />
-        <span class="mokda-announcement__brand">MOKDA</span>
-        <span class="mokda-announcement__badge">THE FIRST SUPPORT</span>
-      </div>
-      <div class="mokda-announcement__content">
-        <button class="mokda-announcement__close" type="button" aria-label="${t.closeLabel}" data-announcement-close>&times;</button>
-        <p class="mokda-announcement__eyebrow">${t.eyebrow}</p>
-        <h2 class="mokda-announcement__title" id="mokdaAnnouncementTitle">${t.title}</h2>
-        <p class="mokda-announcement__lead">${t.lead}</p>
-        <div class="mokda-announcement__promise">
-          <span aria-hidden="true">01</span>
-          <p>${t.note}</p>
-        </div>
-        <a class="mokda-announcement__button" href="${supportHref}">
-          <span>${t.cta}</span>
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
+      <a class="mokda-announcement__poster" href="${supportHref}" aria-label="${t.action}">
+        <picture>
+          <source media="(max-width: 640px)" srcset="${mobileImage}" />
+          <img src="${desktopImage}" alt="" width="1200" height="720" />
+        </picture>
+      </a>
+      <button class="mokda-announcement__close" type="button" aria-label="${t.close}" data-announcement-close>&times;</button>
     </article>
   `;
 
@@ -105,10 +77,10 @@
   }
 
   dialog.querySelector('[data-announcement-close]')?.addEventListener('click', closeDialog);
-  dialog.querySelector('.mokda-announcement__button')?.addEventListener('click', () => {
+  dialog.querySelector('.mokda-announcement__poster')?.addEventListener('click', () => {
     window.MOKDA_ANALYTICS?.track(
       'support_popup_cta',
-      { element: 'support_popup_primary' },
+      { element: 'support_popup_poster' },
       { immediate: true },
     );
   });
@@ -127,7 +99,7 @@
     } else {
       dialog.setAttribute('open', '');
     }
-    window.MOKDA_ANALYTICS?.track('support_popup_view', { element: 'support_popup' });
-    dialog.querySelector('.mokda-announcement__button')?.focus();
+    window.MOKDA_ANALYTICS?.track('support_popup_view', { element: 'support_popup_poster' });
+    dialog.querySelector('.mokda-announcement__poster')?.focus();
   }, 520);
 })();

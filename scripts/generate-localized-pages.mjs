@@ -98,6 +98,11 @@ const pages = {
   'support.html': {
     route: 'support.html',
     type: 'WebPage',
+    image: {
+      ES: `${SITE}/assets/images/support-popup-es-2026.webp`,
+      KR: `${SITE}/assets/images/support-popup-ko-2026.webp`,
+      EN: `${SITE}/assets/images/support-popup-en-2026.webp`,
+    },
     ES: {
       title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
       description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú o México.',
@@ -190,6 +195,10 @@ function localizeHtml(source, language, page) {
   html = replaceMeta(html, 'property="og:title"', metadata.title);
   html = replaceMeta(html, 'property="og:description"', metadata.description);
   html = replaceMeta(html, 'property="og:url"', canonical);
+  if (page.image?.[language]) {
+    html = replaceMeta(html, 'property="og:image"', page.image[language]);
+    html = replaceMeta(html, 'name="twitter:image"', page.image[language]);
+  }
   html = replaceMeta(html, 'name="twitter:title"', metadata.title);
   html = replaceMeta(html, 'name="twitter:description"', metadata.description);
   html = html.replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '');

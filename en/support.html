@@ -14,25 +14,25 @@
     <link rel="alternate" hreflang="en" href="https://www.mokda.kr/en/support.html" />
     <link rel="alternate" hreflang="x-default" href="https://www.mokda.kr/es/support.html" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#153b2d" />
+    <meta name="theme-color" content="#f6f2e9" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="MOKDA" />
     <meta property="og:title" content="Support the Salsa Coreana Launch | MOKDA" />
     <meta property="og:description" content="Support the launch of MOKDA Salsa Coreana in Peru or Mexico." />
     <meta property="og:url" content="https://www.mokda.kr/en/support.html" />
-    <meta property="og:image" content="https://www.mokda.kr/assets/images/salsa-coreana-support-campaign-2026.webp" />
+    <meta property="og:image" content="https://www.mokda.kr/assets/images/support-popup-en-2026.webp" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Support the Salsa Coreana Launch | MOKDA" />
     <meta name="twitter:description" content="Support the launch of MOKDA Salsa Coreana in Peru or Mexico." />
-    <meta name="twitter:image" content="https://www.mokda.kr/assets/images/salsa-coreana-support-campaign-2026.webp" />
+    <meta name="twitter:image" content="https://www.mokda.kr/assets/images/support-popup-en-2026.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260730-1" />
+    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260730-2" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,89 +74,140 @@
   </head>
   <body class="support-page">
     <header class="support-header">
-      <a class="support-logo" href="/en/" aria-label="MOKDA home">MOKDA</a>
-      <div class="support-languages" aria-label="Language">
-        <button type="button" data-language="ES" aria-pressed="true">ES</button>
-        <button type="button" data-language="KR" aria-pressed="false">KR</button>
-        <button type="button" data-language="EN" aria-pressed="false">EN</button>
+      <div class="support-header-inner">
+        <a class="support-logo" href="/en/" aria-label="MOKDA home">MOKDA</a>
+        <div class="support-languages" aria-label="Language">
+          <button type="button" data-language="ES" aria-pressed="true">ES</button>
+          <button type="button" data-language="KR" aria-pressed="false">KR</button>
+          <button type="button" data-language="EN" aria-pressed="false">EN</button>
+        </div>
       </div>
     </header>
 
     <main class="support-main">
-      <section class="support-visual" aria-label="Salsa Coreana campaign">
-        <img
-          src="./assets/images/salsa-coreana-support-campaign-2026.webp"
-          alt=""
-          width="1122"
-          height="1402"
-          fetchpriority="high"
-        />
-        <div class="support-visual-copy">
-          <p>SALSA COREANA · MOKDA</p>
-          <strong id="supportVisualText">Tu apoyo puede hacer realidad nuestro primer lanzamiento</strong>
+      <section class="support-hero" aria-labelledby="supportTitle">
+        <div class="support-media">
+          <img
+            src="./assets/images/salsa-coreana-support-campaign-2026.webp"
+            alt=""
+            width="1122"
+            height="1402"
+            fetchpriority="high"
+          />
+          <div class="support-media-caption">
+            <span>MOKDA · SALSA COREANA</span>
+            <strong id="supportVisualText">Un sueño que empieza con tu apoyo.</strong>
+          </div>
         </div>
-      </section>
 
-      <section class="support-panel">
-        <div class="support-panel-inner">
-          <p class="support-eyebrow" id="supportEyebrow">MOKDA DREAM PROJECT · 2026</p>
-          <h1 class="support-title" id="supportTitle">¡Ayúdanos a lanzar Salsa Coreana!</h1>
+        <aside class="support-project">
+          <p class="support-category" id="supportCategory">Proyecto de lanzamiento</p>
+          <h1 class="support-title" id="supportTitle">Ayúdanos a lanzar Salsa Coreana.</h1>
           <p class="support-lead" id="supportLead">
-            Cada apoyo nos ayuda a demostrar a tiendas y distribuidores que existe una demanda real.
+            Estamos reuniendo apoyo real para presentar MOKDA a tiendas y distribuidores de Latinoamérica.
           </p>
 
-          <form class="support-form" id="supportForm" novalidate>
-            <p class="support-sentence">
-              <span id="supportSentenceBefore">Yo,</span>
-              <label>
-                <span class="sr-only" id="supportNameLabel">Nombre o apodo</span>
-                <input
-                  class="support-name"
-                  id="supportName"
-                  name="name"
-                  type="text"
-                  maxlength="40"
-                  autocomplete="nickname"
-                  placeholder="nombre o apodo"
-                  required
-                />
-              </label>
-              <span id="supportSentenceAfter">quiero encontrar Salsa Coreana en mi país.</span>
-            </p>
+          <div class="support-impact">
+            <strong id="supportImpactTitle">Tu apoyo se convierte en datos reales.</strong>
+            <span id="supportImpactText">
+              Usaremos el resultado para demostrar la demanda en Perú y México.
+            </span>
+          </div>
 
-            <fieldset style="border: 0; margin: 0; padding: 0">
-              <legend class="support-country-label" id="supportCountryLabel">
-                ¿Dónde quieres encontrar MOKDA?
-              </legend>
+          <form class="support-form" id="supportForm" novalidate>
+            <div class="support-field">
+              <label for="supportName" id="supportNameLabel">Nombre o apodo</label>
+              <input
+                id="supportName"
+                name="name"
+                type="text"
+                maxlength="40"
+                autocomplete="nickname"
+                placeholder="Escribe tu nombre"
+                required
+              />
+            </div>
+
+            <fieldset class="support-country-field">
+              <legend id="supportCountryLabel">¿Dónde quieres encontrar Salsa Coreana?</legend>
               <div class="support-countries">
-                <label class="support-country support-country--pe">
+                <label class="support-country">
                   <input type="radio" name="country" value="PE" required />
-                  <span id="supportPeru">Perú</span>
+                  <span>
+                    <small>PE</small>
+                    <strong id="supportPeru">Perú</strong>
+                    <i aria-hidden="true">✓</i>
+                  </span>
                 </label>
-                <label class="support-country support-country--mx">
+                <label class="support-country">
                   <input type="radio" name="country" value="MX" required />
-                  <span id="supportMexico">México</span>
+                  <span>
+                    <small>MX</small>
+                    <strong id="supportMexico">México</strong>
+                    <i aria-hidden="true">✓</i>
+                  </span>
                 </label>
               </div>
             </fieldset>
 
+            <p class="support-declaration" id="supportDeclaration">
+              Elige un país para completar tu mensaje de apoyo.
+            </p>
+
             <button class="support-submit" id="supportSubmit" type="submit">
-              <span id="supportSubmitLabel">Apoyar el primer lanzamiento</span>
+              <span id="supportSubmitLabel">Apoyar el lanzamiento</span>
+              <span aria-hidden="true">→</span>
             </button>
             <p class="support-privacy" id="supportPrivacy">
-              Tu nombre no se publicará. Solo se usará para medir el interés por país.
+              Tu nombre no será público. No recopilamos tu ubicación ni datos de contacto.
             </p>
           </form>
 
           <p class="support-status" id="supportStatus" role="status" aria-live="polite"></p>
-          <a class="support-back" id="supportBack" href="/en/">← Volver a MOKDA</a>
+        </aside>
+      </section>
+
+      <nav class="support-tabs" aria-label="Campaign sections">
+        <a href="#story" id="supportTabStory">Sobre el proyecto</a>
+        <a href="#supportForm" id="supportTabJoin">Apoyar ahora</a>
+      </nav>
+
+      <section class="support-story" id="story">
+        <div class="support-story-heading">
+          <p id="supportStoryEyebrow">Por qué necesitamos tu apoyo</p>
+          <h2 id="supportStoryTitle">Una señal pequeña puede abrir una puerta grande.</h2>
+          <p id="supportStoryBody">
+            Antes de producir y exportar, necesitamos demostrar que hay personas que realmente quieren encontrar Salsa Coreana en su país.
+          </p>
+        </div>
+
+        <div class="support-steps">
+          <article>
+            <span>1</span>
+            <h3 id="supportStepOneTitle">Elige tu mercado</h3>
+            <p id="supportStepOneText">Selecciona Perú o México. No usamos ubicación estimada.</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3 id="supportStepTwoTitle">Reunimos la demanda</h3>
+            <p id="supportStepTwoText">Cada apoyo se suma como una señal cuantitativa por país.</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3 id="supportStepThreeTitle">Lo mostramos al mercado</h3>
+            <p id="supportStepThreeText">Presentaremos los resultados a tiendas, distribuidores y socios.</p>
+          </article>
         </div>
       </section>
+
+      <a class="support-back" id="supportBack" href="/en/">← Volver a MOKDA</a>
     </main>
+
+    <footer class="support-footer">© 2026 MOKDA</footer>
 
     <script src="./site-i18n.js?v=20260718-1"></script>
     <script src="./b2b-config.js?v=20260718-1"></script>
     <script src="./site-analytics.js?v=20260730-1"></script>
-    <script src="./support-campaign.js?v=20260730-1"></script>
+    <script src="./support-campaign.js?v=20260730-2"></script>
   </body>
 </html>

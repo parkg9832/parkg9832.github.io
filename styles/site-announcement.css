@@ -1,15 +1,15 @@
 .mokda-announcement {
-  width: min(1000px, calc(100vw - 40px));
-  max-width: none;
-  max-height: calc(100dvh - 40px);
-  overflow: hidden;
+  width: min(380px, calc(100vw - 28px));
+  max-height: calc(100dvh - 28px);
+  overflow: auto;
   border: 0;
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 0;
-  background: #103c2d;
-  box-shadow: 0 30px 100px rgba(7, 24, 18, 0.46);
+  background: #fff;
+  color: #183c2e;
+  box-shadow: 0 28px 80px rgba(8, 27, 20, 0.34);
   opacity: 0;
-  transform: translateY(14px) scale(0.985);
+  transform: translateY(16px) scale(0.975);
 }
 
 .mokda-announcement[open] {
@@ -21,105 +21,152 @@
 }
 
 .mokda-announcement::backdrop {
-  background: rgba(8, 24, 18, 0.74);
-  backdrop-filter: blur(8px);
+  background: rgba(9, 24, 18, 0.68);
+  backdrop-filter: blur(7px);
 }
 
 .mokda-announcement__card {
   position: relative;
-  margin: 0;
 }
 
-.mokda-announcement__poster {
-  display: block;
-  color: inherit;
-  text-decoration: none;
+.mokda-announcement__visual {
+  height: 218px;
+  overflow: hidden;
+  background: #ef5f18;
 }
 
-.mokda-announcement__poster picture,
-.mokda-announcement__poster img {
+.mokda-announcement__visual img {
   width: 100%;
+  height: 100%;
   display: block;
-}
-
-.mokda-announcement__poster img {
-  height: auto;
-  aspect-ratio: 5 / 3;
   object-fit: cover;
+  object-position: center 48%;
 }
 
 .mokda-announcement__close {
   position: absolute;
   z-index: 2;
-  top: 18px;
-  right: 18px;
-  width: 42px;
-  height: 42px;
+  top: 14px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 999px;
-  background: rgba(13, 48, 36, 0.66);
-  color: #fffaf2;
-  font-size: 25px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(24, 60, 46, 0.78);
+  color: #fff;
+  font-size: 21px;
   line-height: 1;
   cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition:
-    background-color 160ms ease,
-    transform 160ms ease;
+  backdrop-filter: blur(7px);
 }
 
-.mokda-announcement__close:hover {
+.mokda-announcement__content {
+  padding: 23px 24px 21px;
+  text-align: center;
+}
+
+.mokda-announcement__badge {
+  width: fit-content;
+  margin: 0 auto 12px;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #fff0e7;
+  color: #d84c0d;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.mokda-announcement__title {
+  max-width: 310px;
+  margin: 0 auto;
+  color: #173d2e;
+  font-size: 29px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+  word-break: keep-all;
+}
+
+.mokda-announcement__lead {
+  max-width: 305px;
+  margin: 12px auto 0;
+  color: #6b746d;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.55;
+  word-break: keep-all;
+}
+
+.mokda-announcement__button {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  border-radius: 12px;
+  padding: 0 18px;
   background: #ef5f18;
-  transform: rotate(5deg);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease;
 }
 
-.mokda-announcement__poster:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.72);
-  outline-offset: -6px;
+.mokda-announcement__button:hover {
+  background: #d94c0d;
+  transform: translateY(-1px);
 }
 
+.mokda-announcement__button span:last-child {
+  font-size: 20px;
+}
+
+.mokda-announcement__note {
+  margin: 11px 0 0;
+  color: #929891;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.mokda-announcement__button:focus-visible,
 .mokda-announcement__close:focus-visible {
-  outline: 3px solid #ef5f18;
-  outline-offset: 2px;
+  outline: 3px solid rgba(21, 59, 45, 0.38);
+  outline-offset: 3px;
 }
 
-@media (max-width: 640px) {
-  .mokda-announcement {
-    width: min(100% - 22px, 390px);
-    max-height: calc(100dvh - 22px);
-    border-radius: 18px;
+@media (max-width: 390px), (max-height: 650px) {
+  .mokda-announcement__visual {
+    height: 175px;
   }
 
-  .mokda-announcement__poster img {
-    aspect-ratio: 3 / 4;
+  .mokda-announcement__content {
+    padding: 18px 20px 17px;
   }
 
-  .mokda-announcement__close {
-    top: 14px;
-    right: 14px;
-    width: 38px;
-    height: 38px;
-  }
-}
-
-@media (max-height: 620px) and (orientation: landscape) {
-  .mokda-announcement {
-    width: min(820px, calc(100vw - 24px));
-    max-height: calc(100dvh - 20px);
+  .mokda-announcement__title {
+    font-size: 25px;
   }
 
-  .mokda-announcement__poster img {
-    max-height: calc(100dvh - 20px);
-    aspect-ratio: 5 / 3;
-    object-fit: contain;
+  .mokda-announcement__lead {
+    margin-top: 9px;
+    font-size: 12px;
+  }
+
+  .mokda-announcement__button {
+    min-height: 48px;
+    margin-top: 15px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .mokda-announcement,
-  .mokda-announcement__close {
+  .mokda-announcement__button {
     transition: none;
   }
 }

@@ -84,23 +84,25 @@ input {
 }
 
 .support-main {
-  width: min(100% - 40px, 1180px);
+  width: min(100% - 40px, 1040px);
   margin: 0 auto;
   padding: 46px 0 72px;
 }
 
 .support-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.03fr) minmax(420px, 0.97fr);
-  gap: clamp(36px, 6vw, 76px);
+  grid-template-columns: minmax(320px, 400px) minmax(420px, 1fr);
+  gap: clamp(26px, 4vw, 42px);
   align-items: start;
 }
 
 .support-media {
-  position: relative;
+  position: sticky;
+  top: 102px;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: 16px;
-  background: #d9d1c4;
+  border-radius: 22px;
+  background: #ef5f18;
   box-shadow: 0 18px 50px rgba(39, 45, 40, 0.1);
 }
 
@@ -108,24 +110,25 @@ input {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 52%, rgba(8, 34, 24, 0.78) 100%);
+  background: linear-gradient(180deg, transparent 60%, rgba(8, 34, 24, 0.58) 100%);
   pointer-events: none;
 }
 
 .support-media img {
   width: 100%;
+  height: 100%;
   display: block;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: auto;
   object-fit: cover;
-  object-position: 53% center;
+  object-position: center;
 }
 
 .support-media-caption {
   position: absolute;
   z-index: 1;
-  right: 34px;
-  bottom: 31px;
-  left: 34px;
+  right: 24px;
+  bottom: 22px;
+  left: 24px;
   color: #fffaf2;
 }
 
@@ -140,7 +143,7 @@ input {
 .support-media-caption strong {
   display: block;
   max-width: 460px;
-  font-size: clamp(27px, 3.5vw, 44px);
+  font-size: clamp(22px, 2.5vw, 30px);
   font-weight: 900;
   line-height: 1.12;
   letter-spacing: -0.04em;
@@ -565,9 +568,15 @@ input {
   }
 
   .support-media img {
-    height: clamp(320px, 58vw, 520px);
+    height: clamp(260px, 52vw, 430px);
     aspect-ratio: auto;
     object-position: 52% 38%;
+  }
+
+  .support-media {
+    position: relative;
+    top: auto;
+    aspect-ratio: auto;
   }
 
   .support-project {
@@ -603,7 +612,7 @@ input {
   }
 
   .support-media img {
-    height: 292px;
+    height: 240px;
     aspect-ratio: auto;
   }
 

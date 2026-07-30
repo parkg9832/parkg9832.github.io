@@ -99,9 +99,9 @@ const pages = {
     route: 'support.html',
     type: 'WebPage',
     image: {
-      ES: `${SITE}/assets/images/support-popup-es-2026.webp`,
-      KR: `${SITE}/assets/images/support-popup-ko-2026.webp`,
-      EN: `${SITE}/assets/images/support-popup-en-2026.webp`,
+      ES: `${SITE}/assets/images/support-popup-heart-3d-2026.webp`,
+      KR: `${SITE}/assets/images/support-popup-heart-3d-2026.webp`,
+      EN: `${SITE}/assets/images/support-popup-heart-3d-2026.webp`,
     },
     ES: {
       title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',

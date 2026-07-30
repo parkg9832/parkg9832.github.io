@@ -2,7 +2,8 @@
   'use strict';
 
   const language = window.MOKDA_I18N?.getLanguage?.() || 'ES';
-  const dismissedSessionKey = 'mokda_support_popup_dismissed_session_v2';
+  const hiddenUntilKey = 'mokda_support_popup_hidden_until_v3';
+  const oneDay = 24 * 60 * 60 * 1000;
   const params = new URLSearchParams(window.location.search);
   const forcePopup = params.get('support_popup') === '1';
   const copy = {
@@ -13,6 +14,7 @@
       action: '응원하기',
       note: '이름과 국가만 선택 · 약 10초',
       close: '응원 캠페인 닫기',
+      hideToday: '오늘 하루 보지 않기',
     },
     ES: {
       badge: 'Proyecto de primer lanzamiento',
@@ -21,6 +23,7 @@
       action: 'Quiero apoyar',
       note: 'Nombre y país · Solo 10 segundos',
       close: 'Cerrar campaña de apoyo',
+      hideToday: 'No mostrar durante 24 horas',
     },
     EN: {
       badge: 'First launch project',
@@ -29,19 +32,21 @@
       action: 'Support the launch',
       note: 'Name and country · About 10 seconds',
       close: 'Close support campaign',
+      hideToday: 'Do not show for 24 hours',
     },
   };
   const t = copy[language] || copy.ES;
 
-  function readStorage(key, storage = window.sessionStorage) {
+  function readStorage(key) {
     try {
-      return storage.getItem(key);
+      return window.localStorage.getItem(key);
     } catch (error) {
       return null;
     }
   }
 
-  if (!forcePopup && readStorage(dismissedSessionKey, window.sessionStorage)) return;
+  const hiddenUntil = Number(readStorage(hiddenUntilKey) || 0);
+  if (!forcePopup && hiddenUntil > Date.now()) return;
 
   const languagePath = { ES: 'es', KR: 'ko', EN: 'en' }[language] || 'es';
   const supportQuery = new URLSearchParams(window.location.search);
@@ -69,18 +74,17 @@
           <span>${t.action}</span>
           <span aria-hidden="true">→</span>
         </a>
-        <p class="mokda-announcement__note">${t.note}</p>
+        <div class="mokda-announcement__footer">
+          <span class="mokda-announcement__note">${t.note}</span>
+          <button class="mokda-announcement__hide-day" type="button" data-announcement-hide-day>
+            ${t.hideToday}
+          </button>
+        </div>
       </div>
     </article>
   `;
 
   function closeDialog() {
-    try {
-      window.sessionStorage.setItem(dismissedSessionKey, '1');
-    } catch (error) {
-      // The dialog can still close when storage is unavailable.
-    }
-
     if (dialog.open && typeof dialog.close === 'function') {
       dialog.close();
     } else {
@@ -88,13 +92,19 @@
     }
   }
 
-  dialog.querySelector('[data-announcement-close]')?.addEventListener('click', closeDialog);
-  dialog.querySelector('.mokda-announcement__button')?.addEventListener('click', () => {
+  function hideForDay() {
     try {
-      window.sessionStorage.setItem(dismissedSessionKey, '1');
+      window.localStorage.setItem(hiddenUntilKey, String(Date.now() + oneDay));
     } catch (error) {
-      // Navigation can continue when session storage is unavailable.
+      // The dialog can still close when storage is unavailable.
     }
+    window.MOKDA_ANALYTICS?.track('support_popup_hide_day', { element: 'support_popup_hide_day' });
+    closeDialog();
+  }
+
+  dialog.querySelector('[data-announcement-close]')?.addEventListener('click', closeDialog);
+  dialog.querySelector('[data-announcement-hide-day]')?.addEventListener('click', hideForDay);
+  dialog.querySelector('.mokda-announcement__button')?.addEventListener('click', () => {
     window.MOKDA_ANALYTICS?.track(
       'support_popup_cta',
       { element: 'support_popup_primary' },

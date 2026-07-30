@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-07-18';
+const LAST_MODIFIED = '2026-07-30';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -95,6 +95,22 @@ const pages = {
       description: 'Contact MOKDA about Salsa Coreana, products, availability, distribution, retail, HORECA, and partnerships.',
     },
   },
+  'support.html': {
+    route: 'support.html',
+    type: 'WebPage',
+    ES: {
+      title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
+      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú o México.',
+    },
+    KR: {
+      title: 'Salsa Coreana 출시 응원 | MOKDA',
+      description: '페루 또는 멕시코에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
+    },
+    EN: {
+      title: 'Support the Salsa Coreana Launch | MOKDA',
+      description: 'Support the launch of MOKDA Salsa Coreana in Peru or Mexico.',
+    },
+  },
 };
 
 function routeUrl(language, page) {
@@ -113,7 +129,7 @@ function alternateLinks(page) {
 function localizeInternalLinks(html, language) {
   const prefix = languages[language].directory;
   return html.replace(
-    /href="(index|about|products|qna|contact)\.html([^"#?]*)([?#][^"]*)?"/g,
+    /href="(index|about|products|qna|contact|support)\.html([^"#?]*)([?#][^"]*)?"/g,
     (_match, pageName, extraPath, suffix = '') => {
       const route = pageName === 'index' ? '' : `${pageName}.html${extraPath || ''}`;
       return `href="/${prefix}/${route}${suffix}"`;

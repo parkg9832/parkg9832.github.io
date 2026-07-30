@@ -52,6 +52,25 @@ const FUNNEL_HEADERS = [
   'Active Seconds',
   'Page Instance ID',
 ];
+const DEMAND_SHEET_NAME = 'Demand Support';
+const DEMAND_HEADERS = [
+  'Received At',
+  'Supporter Name',
+  'Country Code',
+  'Country',
+  'Page Language',
+  'Anonymous Visitor ID',
+  'Event ID',
+  'UTM Source',
+  'UTM Medium',
+  'UTM Campaign',
+  'Referrer Host',
+  'Page URL',
+];
+const DEMAND_COUNTRIES = {
+  PE: 'Peru',
+  MX: 'Mexico',
+};
 const FUNNEL_EVENT_NAMES = [
   'page_view',
   'product_section_view',
@@ -65,6 +84,10 @@ const FUNNEL_EVENT_NAMES = [
   'scroll_depth',
   'engagement_update',
   'tracking_test',
+  'support_popup_view',
+  'support_popup_cta',
+  'support_page_view',
+  'support_submit',
 ];
 
 function doGet() {
@@ -99,6 +122,10 @@ function testEmailNotification() {
 function doPost(event) {
   try {
     const payload = parsePayload(event);
+
+    if (isDemandSupportPayload(payload)) {
+      return jsonResponse(appendDemandSupport(payload));
+    }
 
     if (isFunnelPayload(payload)) {
       const result = appendFunnelEvents(payload);
@@ -163,6 +190,93 @@ function doPost(event) {
   } catch (error) {
     console.error(error);
     return jsonResponse({ ok: false, error: String(error.message || error) });
+  }
+}
+
+function isDemandSupportPayload(payload) {
+  return Boolean(
+    payload &&
+      typeof payload === 'object' &&
+      !Array.isArray(payload) &&
+      payload.type === 'demand_support'
+  );
+}
+
+function appendDemandSupport(payload) {
+  const name = cleanAnalyticsValue(payload.name, 40);
+  const countryCode = String(payload.country || '').trim().toUpperCase();
+  const visitorId = cleanAnalyticsValue(payload.visitorId, 100);
+  const eventId = cleanAnalyticsValue(payload.eventId, 100);
+
+  if (!name) throw new Error('Supporter name is required');
+  if (!DEMAND_COUNTRIES[countryCode]) throw new Error('Country must be PE or MX');
+  if (!visitorId) throw new Error('Anonymous visitor ID is required');
+  if (!eventId) throw new Error('Event ID is required');
+
+  if (payload.verification === true) {
+    return { ok: true, saved: false, verification: true };
+  }
+
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+
+  try {
+    const spreadsheet = SpreadsheetApp.openById(sheetId);
+    let sheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
+
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet(DEMAND_SHEET_NAME);
+    }
+
+    ensureDemandHeaders(sheet);
+
+    if (sheet.getLastRow() > 1) {
+      const existingVisitor = sheet
+        .getRange(2, 6, sheet.getLastRow() - 1, 1)
+        .createTextFinder(visitorId)
+        .matchEntireCell(true)
+        .findNext();
+
+      if (existingVisitor) {
+        return { ok: true, saved: false, duplicate: true };
+      }
+    }
+
+    sheet.appendRow([
+      new Date(),
+      name,
+      countryCode,
+      DEMAND_COUNTRIES[countryCode],
+      cleanAnalyticsValue(payload.language, 20),
+      visitorId,
+      eventId,
+      cleanAnalyticsValue(payload.utmSource, 100),
+      cleanAnalyticsValue(payload.utmMedium, 100),
+      cleanAnalyticsValue(payload.utmCampaign, 150),
+      cleanAnalyticsValue(payload.referrerHost, 150),
+      cleanAnalyticsValue(payload.pageUrl, 500),
+    ]);
+
+    return { ok: true, saved: true, duplicate: false };
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function ensureDemandHeaders(sheet) {
+  if (sheet.getLastRow() === 0) {
+    sheet.getRange(1, 1, 1, DEMAND_HEADERS.length).setValues([DEMAND_HEADERS]);
+    sheet.setFrozenRows(1);
+    return;
+  }
+
+  const currentHeaders = sheet.getRange(1, 1, 1, DEMAND_HEADERS.length).getValues()[0];
+  const needsUpdate = DEMAND_HEADERS.some((header, index) => currentHeaders[index] !== header);
+
+  if (needsUpdate) {
+    sheet.getRange(1, 1, 1, DEMAND_HEADERS.length).setValues([DEMAND_HEADERS]);
+    sheet.setFrozenRows(1);
   }
 }
 

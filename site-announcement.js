@@ -1,101 +1,123 @@
 (() => {
+  'use strict';
+
   const language = window.MOKDA_I18N?.getLanguage?.() || 'ES';
-  const content = {
+  const supportStorageKey = 'mokda_demand_support_v1';
+  const dismissedStorageKey = 'mokda_support_popup_dismissed_at_v1';
+  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  const params = new URLSearchParams(window.location.search);
+  const forcePopup = params.get('support_popup') === '1';
+  const copy = {
     KR: {
-      eyebrow: 'MOKDA · SEPTEMBER 2026',
-      title: '새로운 맛의 시작.',
-      lead: '2026년 9월, MOKDA의 시제품을 선보이고 페루에서 직접 인사드립니다.',
-      productDate: '2026.09',
-      productStatus: '출시 예정',
-      productTitle: 'MOKDA 시제품 공개',
-      expoDate: '09.23—25',
-      expoStatus: '참가 확정 · PERÚ',
-      expoTitle: 'Expoalimentaria Perú 2026',
-      visualCaption: 'Korean flavor · Made for Latin America',
-      close: '소식 확인했어요',
-      closeLabel: '공지 닫기',
+      eyebrow: 'MOKDA DREAM PROJECT · 2026',
+      title: 'Salsa Coreana의 출시를 도와주세요!',
+      lead: '당신의 한 번의 응원이 MOKDA의 첫 라틴아메리카 출시를 현실로 만듭니다.',
+      note: '이름과 원하는 출시 국가만 선택하면 끝나요.',
+      cta: '응원하기',
+      closeLabel: '응원 캠페인 닫기',
+      imageAlt: '하트처럼 흐르는 Salsa Coreana 소스',
     },
     ES: {
-      eyebrow: 'MOKDA · SEPTIEMBRE 2026',
-      title: 'Un nuevo sabor comienza.',
-      lead: 'En septiembre presentamos los prototipos de MOKDA y nos vemos en Perú.',
-      productDate: '2026.09',
-      productStatus: 'PRÓXIMAMENTE',
-      productTitle: 'Presentación de prototipos MOKDA',
-      expoDate: '23—25 SEP',
-      expoStatus: 'PARTICIPACIÓN CONFIRMADA · PERÚ',
-      expoTitle: 'Expoalimentaria Perú 2026',
-      visualCaption: 'Sabor coreano · Hecho para Latinoamérica',
-      close: 'Listo',
-      closeLabel: 'Cerrar anuncio',
+      eyebrow: 'MOKDA DREAM PROJECT · 2026',
+      title: '¡Ayúdanos a lanzar Salsa Coreana!',
+      lead: 'Tu apoyo puede convertir el primer lanzamiento de MOKDA en Latinoamérica en una realidad.',
+      note: 'Solo elige tu nombre y el país donde quieres encontrarla.',
+      cta: 'Apoyar',
+      closeLabel: 'Cerrar campaña de apoyo',
+      imageAlt: 'Salsa Coreana formando un gesto de corazón',
     },
     EN: {
-      eyebrow: 'MOKDA · SEPTEMBER 2026',
-      title: 'A new flavor begins.',
-      lead: 'This September, we unveil MOKDA prototypes and meet you in Peru.',
-      productDate: 'SEP 2026',
-      productStatus: 'COMING SOON',
-      productTitle: 'MOKDA prototype reveal',
-      expoDate: 'SEP 23—25',
-      expoStatus: 'PARTICIPATION CONFIRMED · PERU',
-      expoTitle: 'Expoalimentaria Perú 2026',
-      visualCaption: 'Korean flavor · Made for Latin America',
-      close: 'Got it',
-      closeLabel: 'Close announcement',
+      eyebrow: 'MOKDA DREAM PROJECT · 2026',
+      title: 'Help us launch Salsa Coreana!',
+      lead: 'One simple show of support can help make MOKDA’s first Latin American launch real.',
+      note: 'Just add your name and choose where you want to find it.',
+      cta: 'Support',
+      closeLabel: 'Close support campaign',
+      imageAlt: 'Salsa Coreana flowing into a heart-like gesture',
     },
   };
-  const t = content[language] || content.ES;
+  const t = copy[language] || copy.ES;
+
+  function readStorage(key) {
+    try {
+      return window.localStorage.getItem(key);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  if (!forcePopup) {
+    if (readStorage(supportStorageKey)) return;
+    const dismissedAt = Number(readStorage(dismissedStorageKey) || 0);
+    if (dismissedAt && Date.now() - dismissedAt < sevenDays) return;
+  }
+
+  const languagePath = { ES: 'es', KR: 'ko', EN: 'en' }[language] || 'es';
+  const supportQuery = new URLSearchParams(window.location.search);
+  supportQuery.delete('support_popup');
+  const supportHref = `/${languagePath}/support.html${supportQuery.size ? `?${supportQuery}` : ''}`;
 
   const dialog = document.createElement('dialog');
   dialog.className = 'mokda-announcement';
   dialog.setAttribute('aria-labelledby', 'mokdaAnnouncementTitle');
   dialog.innerHTML = `
-    <div class="mokda-announcement__layout">
-      <div class="mokda-announcement__visual" aria-hidden="true">
-        <img class="mokda-announcement__image" src="${new URL('./assets/images/announcement-editorial-2026.webp', document.baseURI).href}" alt="" />
+    <article class="mokda-announcement__card">
+      <div class="mokda-announcement__visual">
+        <img
+          class="mokda-announcement__image"
+          src="/assets/images/salsa-coreana-support-campaign-2026.webp"
+          alt="${t.imageAlt}"
+          width="1122"
+          height="1402"
+        />
         <span class="mokda-announcement__brand">MOKDA</span>
-        <p class="mokda-announcement__visual-caption">${t.visualCaption}</p>
+        <span class="mokda-announcement__badge">THE FIRST SUPPORT</span>
       </div>
       <div class="mokda-announcement__content">
         <button class="mokda-announcement__close" type="button" aria-label="${t.closeLabel}" data-announcement-close>&times;</button>
         <p class="mokda-announcement__eyebrow">${t.eyebrow}</p>
         <h2 class="mokda-announcement__title" id="mokdaAnnouncementTitle">${t.title}</h2>
         <p class="mokda-announcement__lead">${t.lead}</p>
-        <div class="mokda-announcement__timeline">
-          <article class="mokda-announcement__event">
-            <time class="mokda-announcement__date" datetime="2026-09">${t.productDate}</time>
-            <div class="mokda-announcement__event-copy">
-              <span class="mokda-announcement__status">${t.productStatus}</span>
-              <h3>${t.productTitle}</h3>
-            </div>
-          </article>
-          <article class="mokda-announcement__event">
-            <time class="mokda-announcement__date" datetime="2026-09-23">${t.expoDate}</time>
-            <div class="mokda-announcement__event-copy">
-              <span class="mokda-announcement__status">${t.expoStatus}</span>
-              <h3>${t.expoTitle}</h3>
-            </div>
-          </article>
+        <div class="mokda-announcement__promise">
+          <span aria-hidden="true">01</span>
+          <p>${t.note}</p>
         </div>
-        <button class="mokda-announcement__button" type="button" data-announcement-close>${t.close}</button>
+        <a class="mokda-announcement__button" href="${supportHref}">
+          <span>${t.cta}</span>
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
-    </div>
+    </article>
   `;
 
-  const closeDialog = () => {
+  function closeDialog() {
+    try {
+      window.localStorage.setItem(dismissedStorageKey, String(Date.now()));
+    } catch (error) {
+      // The dialog can still close when storage is unavailable.
+    }
+
     if (dialog.open && typeof dialog.close === 'function') {
       dialog.close();
-      return;
+    } else {
+      dialog.removeAttribute('open');
     }
-    dialog.removeAttribute('open');
-  };
+  }
 
-  dialog.querySelectorAll('[data-announcement-close]').forEach((button) => {
-    button.addEventListener('click', closeDialog);
+  dialog.querySelector('[data-announcement-close]')?.addEventListener('click', closeDialog);
+  dialog.querySelector('.mokda-announcement__button')?.addEventListener('click', () => {
+    window.MOKDA_ANALYTICS?.track(
+      'support_popup_cta',
+      { element: 'support_popup_primary' },
+      { immediate: true },
+    );
   });
-
   dialog.addEventListener('click', (event) => {
     if (event.target === dialog) closeDialog();
+  });
+  dialog.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeDialog();
   });
 
   document.body.appendChild(dialog);
@@ -105,6 +127,7 @@
     } else {
       dialog.setAttribute('open', '');
     }
+    window.MOKDA_ANALYTICS?.track('support_popup_view', { element: 'support_popup' });
     dialog.querySelector('.mokda-announcement__button')?.focus();
-  }, 320);
+  }, 520);
 })();

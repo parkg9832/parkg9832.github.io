@@ -405,7 +405,11 @@
   function showSavedSupport(saved) {
     if (getAttribution().verification) return false;
     if (!saved?.country) return false;
-    document.getElementById('supportForm').hidden = true;
+    const savedCountry = String(saved.country || '').toUpperCase();
+    document.getElementById('supportName').value = String(saved.name || '').slice(0, 40);
+    document.getElementById('supportMessage').value = String(saved.message || '').slice(0, 180);
+    const countryInput = document.querySelector(`input[name="country"][value="${savedCountry}"]`);
+    if (countryInput) countryInput.checked = true;
     setStatus('success', t.duplicate(countryName(saved.country)));
     return true;
   }
@@ -463,11 +467,12 @@
         }
       }
 
-      form.hidden = true;
       setStatus(
         'success',
         result.duplicate ? t.duplicate(countryName(country)) : t.success(name, countryName(country)),
       );
+      submit.disabled = false;
+      setText('supportSubmitLabel', t.submit);
       window.MOKDA_ANALYTICS?.track(
         'support_submit',
         { element: `country_${country.toLowerCase()}` },

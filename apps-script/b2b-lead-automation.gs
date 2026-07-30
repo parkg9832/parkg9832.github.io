@@ -254,6 +254,8 @@ function appendDemandSupport(payload) {
       if (existingVisitor) {
         if (publicFeed) {
           sheet.getRange(existingVisitor.getRow(), 2).setValue(name);
+          sheet.getRange(existingVisitor.getRow(), 3).setValue(countryCode);
+          sheet.getRange(existingVisitor.getRow(), 4).setValue(DEMAND_COUNTRIES[countryCode]);
           sheet.getRange(existingVisitor.getRow(), 13).setValue(true);
           sheet.getRange(existingVisitor.getRow(), 14).setValue(message);
         }

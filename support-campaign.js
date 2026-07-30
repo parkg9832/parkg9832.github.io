@@ -35,7 +35,8 @@
       feedLoading: '불러오는 중…',
       feedTotal: (count) => `총 ${count}명 응원`,
       feedMessage: (name, country) => `${name}님은 ${country}에서 Salsa Coreana를 만나길 원해요!`,
-      feedEmpty: '새 응원 메시지는 지금부터 이곳에 표시됩니다.',
+      feedEmpty: '새 응원 메시지는 아래와 같은 모습으로 표시됩니다. 예시는 응원 수에 포함되지 않습니다.',
+      exampleLabel: '표시 예시',
       storyEyebrow: '왜 응원이 필요한가요?',
       storyTitle: '작은 응원이 큰 유통 기회를 만듭니다.',
       storyBody: '원하는 출시 국가를 선택하면 한 건의 응원이 국가별 수요 데이터로 쌓입니다. 이 결과를 마트·벤더·유통사에 실제 시장 근거로 제시합니다.',
@@ -76,7 +77,8 @@
       feedLoading: 'Cargando…',
       feedTotal: (count) => `${count} ${count === 1 ? 'apoyo' : 'apoyos'}`,
       feedMessage: (name, country) => `${name} quiere encontrar Salsa Coreana en ${country}.`,
-      feedEmpty: 'Los nuevos mensajes de apoyo aparecerán aquí.',
+      feedEmpty: 'Así aparecerán los nuevos mensajes. Estos ejemplos no cuentan en el total.',
+      exampleLabel: 'Ejemplo',
       storyEyebrow: 'Por qué necesitamos tu apoyo',
       storyTitle: 'Una señal pequeña puede abrir una puerta grande.',
       storyBody: 'Elige el país donde quieres encontrarla: cada apoyo se suma a la demanda de ese mercado. Presentaremos los resultados a tiendas, distribuidores y socios.',
@@ -117,7 +119,8 @@
       feedLoading: 'Loading…',
       feedTotal: (count) => `${count} ${count === 1 ? 'supporter' : 'supporters'}`,
       feedMessage: (name, country) => `${name} wants to find Salsa Coreana in ${country}.`,
-      feedEmpty: 'New support messages will appear here from now on.',
+      feedEmpty: 'New support messages will appear like this. Examples are not included in the total.',
+      exampleLabel: 'Example',
       storyEyebrow: 'Why your support matters',
       storyTitle: 'A small signal can open a big door.',
       storyBody: 'Choose where you want to find it and each response becomes a demand signal for that market. We will present the results to retailers, distributors, and partners.',
@@ -269,28 +272,42 @@
       totalsElement.appendChild(item);
     });
 
-    listElement.replaceChildren();
-    supporters.forEach((supporter) => {
-      const name = String(supporter?.name || '').trim().slice(0, 40);
-      const code = String(supporter?.countryCode || '').trim().toUpperCase();
-      if (!name || !countryCodes.includes(code)) return;
+    const validSupporters = supporters
+      .map((supporter) => ({
+        name: String(supporter?.name || '').trim().slice(0, 40),
+        code: String(supporter?.countryCode || '').trim().toUpperCase(),
+      }))
+      .filter((supporter) => supporter.name && countryCodes.includes(supporter.code));
 
+    function appendSupporter(name, code, example = false) {
       const item = document.createElement('article');
       const avatar = document.createElement('span');
       const message = document.createElement('p');
       const country = document.createElement('span');
-      item.className = 'support-feed-item';
+      item.className = example ? 'support-feed-item support-feed-item--example' : 'support-feed-item';
       avatar.className = 'support-feed-avatar';
       message.className = 'support-feed-message';
       country.className = 'support-feed-country';
       avatar.textContent = name.slice(0, 1).toUpperCase();
       message.textContent = t.feedMessage(name, countryName(code));
-      country.textContent = countryName(code);
+      country.textContent = example ? `${t.exampleLabel} · ${countryName(code)}` : countryName(code);
       item.append(avatar, message, country);
       listElement.appendChild(item);
-    });
+    }
 
-    emptyElement.hidden = listElement.childElementCount > 0;
+    listElement.replaceChildren();
+    if (validSupporters.length > 0) {
+      validSupporters.forEach(({ name, code }) => appendSupporter(name, code));
+      emptyElement.hidden = true;
+      return;
+    }
+
+    [
+      { name: 'Ana', code: 'PE' },
+      { name: 'Luis', code: 'MX' },
+      { name: 'Camila', code: 'CL' },
+    ].forEach(({ name, code }) => appendSupporter(name, code, true));
+    emptyElement.hidden = false;
   }
 
   async function loadSupportFeed() {

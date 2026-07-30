@@ -102,52 +102,87 @@ input {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 22px;
-  background: #ef5f18;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.36), transparent 30%),
+    radial-gradient(circle at 88% 16%, rgba(255, 224, 175, 0.72), transparent 31%),
+    linear-gradient(135deg, #e94c13 0%, #ef5f18 43%, #ff8b42 73%, #f6bd66 100%);
   box-shadow: 0 18px 50px rgba(39, 45, 40, 0.1);
 }
 
+.support-media::before,
 .support-media::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(8, 34, 24, 0.58) 100%);
+  z-index: -1;
+  border-radius: 999px;
   pointer-events: none;
 }
 
-.support-media img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  aspect-ratio: auto;
-  object-fit: cover;
-  object-position: center;
+.support-media::before {
+  width: 430px;
+  height: 430px;
+  right: -168px;
+  bottom: -224px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 0 0 54px rgba(255, 255, 255, 0.075),
+    0 0 0 118px rgba(255, 255, 255, 0.04);
 }
 
-.support-media-caption {
+.support-media::after {
+  width: 112px;
+  height: 112px;
+  top: 85px;
+  right: 56px;
+  background: rgba(255, 249, 235, 0.18);
+}
+
+.support-gradient-art {
   position: absolute;
-  z-index: 1;
-  right: 24px;
-  bottom: 22px;
-  left: 24px;
+  inset: 0;
+  padding: 32px;
   color: #fffaf2;
 }
 
-.support-media-caption span {
-  display: block;
-  margin-bottom: 10px;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
+.support-gradient-art > span {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 950;
+  letter-spacing: 0.22em;
 }
 
-.support-media-caption strong {
+.support-gradient-art > div {
+  position: absolute;
+  right: 32px;
+  bottom: 40px;
+  left: 32px;
+}
+
+.support-gradient-art small {
   display: block;
-  max-width: 460px;
-  font-size: clamp(22px, 2.5vw, 30px);
+  margin-bottom: 12px;
+  font-size: 10px;
   font-weight: 900;
-  line-height: 1.12;
-  letter-spacing: -0.04em;
-  word-break: keep-all;
+  letter-spacing: 0.17em;
+}
+
+.support-gradient-art strong {
+  display: block;
+  font-size: clamp(56px, 6.8vw, 76px);
+  font-weight: 950;
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.support-gradient-art em {
+  position: absolute;
+  right: 32px;
+  bottom: 30px;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.16em;
 }
 
 .support-project {
@@ -567,15 +602,10 @@ input {
     gap: 22px;
   }
 
-  .support-media img {
-    height: clamp(260px, 52vw, 430px);
-    aspect-ratio: auto;
-    object-position: 52% 38%;
-  }
-
   .support-media {
     position: relative;
     top: auto;
+    height: clamp(270px, 52vw, 430px);
     aspect-ratio: auto;
   }
 
@@ -608,28 +638,27 @@ input {
   }
 
   .support-media {
+    height: 240px;
     border-radius: 12px;
   }
 
-  .support-media img {
-    height: 240px;
-    aspect-ratio: auto;
+  .support-gradient-art {
+    padding: 22px;
   }
 
-  .support-media-caption {
-    right: 20px;
-    bottom: 19px;
-    left: 20px;
+  .support-gradient-art > div {
+    right: 22px;
+    bottom: 28px;
+    left: 22px;
   }
 
-  .support-media-caption span {
-    margin-bottom: 6px;
-    font-size: 9px;
+  .support-gradient-art strong {
+    font-size: 48px;
   }
 
-  .support-media-caption strong {
-    max-width: 320px;
-    font-size: 26px;
+  .support-gradient-art em {
+    right: 22px;
+    bottom: 20px;
   }
 
   .support-project {

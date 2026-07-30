@@ -2,9 +2,7 @@
   'use strict';
 
   const language = window.MOKDA_I18N?.getLanguage?.() || 'ES';
-  const supportStorageKey = 'mokda_demand_support_v1';
-  const dismissedStorageKey = 'mokda_support_popup_dismissed_at_v1';
-  const sevenDays = 7 * 24 * 60 * 60 * 1000;
+  const dismissedSessionKey = 'mokda_support_popup_dismissed_session_v2';
   const params = new URLSearchParams(window.location.search);
   const forcePopup = params.get('support_popup') === '1';
   const copy = {
@@ -35,19 +33,15 @@
   };
   const t = copy[language] || copy.ES;
 
-  function readStorage(key) {
+  function readStorage(key, storage = window.sessionStorage) {
     try {
-      return window.localStorage.getItem(key);
+      return storage.getItem(key);
     } catch (error) {
       return null;
     }
   }
 
-  if (!forcePopup) {
-    if (readStorage(supportStorageKey)) return;
-    const dismissedAt = Number(readStorage(dismissedStorageKey) || 0);
-    if (dismissedAt && Date.now() - dismissedAt < sevenDays) return;
-  }
+  if (!forcePopup && readStorage(dismissedSessionKey, window.sessionStorage)) return;
 
   const languagePath = { ES: 'es', KR: 'ko', EN: 'en' }[language] || 'es';
   const supportQuery = new URLSearchParams(window.location.search);
@@ -61,7 +55,11 @@
     <article class="mokda-announcement__card">
       <button class="mokda-announcement__close" type="button" aria-label="${t.close}" data-announcement-close>&times;</button>
       <div class="mokda-announcement__visual" aria-hidden="true">
-        <img src="/assets/images/support-popup-heart-3d-2026.webp" alt="" width="900" height="900" />
+        <span class="mokda-announcement__brand">MOKDA</span>
+        <div class="mokda-announcement__visual-copy">
+          <small>FIRST LAUNCH · 2026</small>
+          <strong>Salsa<br />Coreana</strong>
+        </div>
       </div>
       <div class="mokda-announcement__content">
         <p class="mokda-announcement__badge">${t.badge}</p>
@@ -78,7 +76,7 @@
 
   function closeDialog() {
     try {
-      window.localStorage.setItem(dismissedStorageKey, String(Date.now()));
+      window.sessionStorage.setItem(dismissedSessionKey, '1');
     } catch (error) {
       // The dialog can still close when storage is unavailable.
     }
@@ -92,6 +90,11 @@
 
   dialog.querySelector('[data-announcement-close]')?.addEventListener('click', closeDialog);
   dialog.querySelector('.mokda-announcement__button')?.addEventListener('click', () => {
+    try {
+      window.sessionStorage.setItem(dismissedSessionKey, '1');
+    } catch (error) {
+      // Navigation can continue when session storage is unavailable.
+    }
     window.MOKDA_ANALYTICS?.track(
       'support_popup_cta',
       { element: 'support_popup_primary' },

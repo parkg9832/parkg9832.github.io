@@ -30,17 +30,78 @@
 }
 
 .mokda-announcement__visual {
-  height: 218px;
+  position: relative;
+  height: 198px;
   overflow: hidden;
-  background: #ef5f18;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.38), transparent 30%),
+    radial-gradient(circle at 86% 18%, rgba(255, 221, 173, 0.7), transparent 32%),
+    linear-gradient(135deg, #e94c13 0%, #ef5f18 43%, #ff8b42 73%, #f6bd66 100%);
 }
 
-.mokda-announcement__visual img {
-  width: 100%;
-  height: 100%;
+.mokda-announcement__visual::before,
+.mokda-announcement__visual::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.mokda-announcement__visual::before {
+  width: 240px;
+  height: 240px;
+  right: -78px;
+  bottom: -126px;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  box-shadow:
+    0 0 0 30px rgba(255, 255, 255, 0.08),
+    0 0 0 68px rgba(255, 255, 255, 0.045);
+}
+
+.mokda-announcement__visual::after {
+  width: 82px;
+  height: 82px;
+  top: 48px;
+  right: 52px;
+  background: rgba(255, 248, 232, 0.2);
+  filter: blur(1px);
+}
+
+.mokda-announcement__brand {
+  position: absolute;
+  top: 22px;
+  left: 24px;
+  color: #fffaf2;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 0.23em;
+}
+
+.mokda-announcement__visual-copy {
+  position: absolute;
+  right: 24px;
+  bottom: 22px;
+  left: 24px;
+  color: #fffaf2;
+}
+
+.mokda-announcement__visual-copy small {
   display: block;
-  object-fit: cover;
-  object-position: center 48%;
+  margin-bottom: 8px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.mokda-announcement__visual-copy strong {
+  display: block;
+  max-width: 250px;
+  font-size: 39px;
+  font-weight: 950;
+  line-height: 0.91;
+  letter-spacing: -0.055em;
 }
 
 .mokda-announcement__close {
@@ -142,7 +203,11 @@
 
 @media (max-width: 390px), (max-height: 650px) {
   .mokda-announcement__visual {
-    height: 175px;
+    height: 164px;
+  }
+
+  .mokda-announcement__visual-copy strong {
+    font-size: 34px;
   }
 
   .mokda-announcement__content {

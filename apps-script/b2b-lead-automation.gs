@@ -67,6 +67,7 @@ const DEMAND_HEADERS = [
   'Referrer Host',
   'Page URL',
   'Public Feed Opt-in',
+  'Support Message',
 ];
 const DEMAND_COUNTRIES = {
   PE: 'Peru',
@@ -218,6 +219,7 @@ function appendDemandSupport(payload) {
   const visitorId = cleanAnalyticsValue(payload.visitorId, 100);
   const eventId = cleanAnalyticsValue(payload.eventId, 100);
   const publicFeed = payload.publicFeed === true;
+  const message = cleanAnalyticsValue(payload.message, 180);
 
   if (!name) throw new Error('Supporter name is required');
   if (!DEMAND_COUNTRIES[countryCode]) throw new Error('Unsupported country');
@@ -225,7 +227,7 @@ function appendDemandSupport(payload) {
   if (!eventId) throw new Error('Event ID is required');
 
   if (payload.verification === true) {
-    return { ok: true, saved: false, verification: true };
+    return { ok: true, saved: false, verification: true, message };
   }
 
   const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
@@ -253,6 +255,7 @@ function appendDemandSupport(payload) {
         if (publicFeed) {
           sheet.getRange(existingVisitor.getRow(), 2).setValue(name);
           sheet.getRange(existingVisitor.getRow(), 13).setValue(true);
+          sheet.getRange(existingVisitor.getRow(), 14).setValue(message);
         }
         return { ok: true, saved: false, duplicate: true };
       }
@@ -272,6 +275,7 @@ function appendDemandSupport(payload) {
       cleanAnalyticsValue(payload.referrerHost, 150),
       cleanAnalyticsValue(payload.pageUrl, 500),
       publicFeed,
+      message,
     ]);
 
     return { ok: true, saved: true, duplicate: false };
@@ -326,6 +330,7 @@ function getDemandSupportFeed(event) {
       name: cleanAnalyticsValue(row[1], 40),
       countryCode: String(row[2] || '').trim().toUpperCase(),
       createdAt: row[0] instanceof Date ? row[0].toISOString() : String(row[0] || ''),
+      message: cleanAnalyticsValue(row[13], 180),
     }));
 
   return {

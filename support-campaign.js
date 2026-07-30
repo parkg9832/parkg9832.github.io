@@ -15,17 +15,19 @@
       impactTitle: '당신의 응원이 실제 수요 데이터가 됩니다.',
       nameLabel: '이름 또는 닉네임',
       namePlaceholder: '이름을 입력해주세요',
+      messageLabel: '응원 메시지',
+      messageOptional: '(선택)',
+      messagePlaceholder: '출시를 응원하는 한마디를 남겨주세요',
+      messageHint: '최대 180자',
       countryLabel: '어디에서 Salsa Coreana를 만나고 싶나요?',
       peru: '페루',
       mexico: '멕시코',
       chile: '칠레',
       colombia: '콜롬비아',
       argentina: '아르헨티나',
-      declarationEmpty: '이름과 국가를 선택하면 나의 응원 문장이 완성됩니다.',
-      declaration: (name, country) => `${name}님은 ${country}에서 Salsa Coreana를 만나길 원해요!`,
       submit: '출시 응원하기',
       sending: '응원을 전하고 있어요…',
-      privacy: '입력한 이름과 선택 국가가 아래 응원 목록에 표시됩니다. 위치 정보와 연락처는 수집하지 않습니다.',
+      privacy: '이름, 국가, 응원 메시지가 아래 목록에 표시됩니다. 위치 정보와 연락처는 수집하지 않습니다.',
       success: (name, country) => `${name}님의 ${country} 출시 응원이 등록되었습니다. 감사합니다!`,
       duplicate: (country) => `이미 ${country} 출시를 응원해주셨습니다. 감사합니다!`,
       error: '등록하지 못했습니다. 잠시 후 다시 시도해주세요.',
@@ -34,7 +36,12 @@
       feedTitle: 'Salsa Coreana를 기다리는 사람들',
       feedLoading: '불러오는 중…',
       feedTotal: (count) => `총 ${count}명 응원`,
-      feedMessage: (name, country) => `${name}님은 ${country}에서 Salsa Coreana를 만나길 원해요!`,
+      feedMessage: (country) => `${country}에서 Salsa Coreana를 만나고 싶어요!`,
+      exampleMessages: [
+        '페루에서 Salsa Coreana를 꼭 만나보고 싶어요!',
+        '타코와 함께 먹어보고 싶습니다. 멕시코 출시를 응원해요!',
+        '칠레에서도 쉽게 살 수 있는 날을 기다릴게요.',
+      ],
       feedEmpty: '새 응원 메시지는 아래와 같은 모습으로 표시됩니다. 예시는 응원 수에 포함되지 않습니다.',
       exampleLabel: '표시 예시',
       storyEyebrow: '왜 응원이 필요한가요?',
@@ -57,17 +64,19 @@
       impactTitle: 'Tu apoyo se convierte en datos reales.',
       nameLabel: 'Nombre o apodo',
       namePlaceholder: 'Escribe tu nombre',
+      messageLabel: 'Mensaje de apoyo',
+      messageOptional: '(opcional)',
+      messagePlaceholder: 'Escribe unas palabras para apoyar el lanzamiento',
+      messageHint: 'Máximo 180 caracteres',
       countryLabel: '¿Dónde quieres encontrar Salsa Coreana?',
       peru: 'Perú',
       mexico: 'México',
       chile: 'Chile',
       colombia: 'Colombia',
       argentina: 'Argentina',
-      declarationEmpty: 'Escribe tu nombre y elige un país para completar tu mensaje.',
-      declaration: (name, country) => `${name} quiere encontrar Salsa Coreana en ${country}.`,
       submit: 'Apoyar el lanzamiento',
       sending: 'Enviando tu apoyo…',
-      privacy: 'Tu nombre y país aparecerán en la lista de apoyos. No recopilamos tu ubicación ni datos de contacto.',
+      privacy: 'Tu nombre, país y mensaje aparecerán en la lista. No recopilamos tu ubicación ni datos de contacto.',
       success: (name, country) => `¡Gracias, ${name}! Tu apoyo para el lanzamiento en ${country} ya está registrado.`,
       duplicate: (country) => `Ya registramos tu apoyo para ${country}. ¡Gracias!`,
       error: 'No pudimos registrar tu apoyo. Inténtalo de nuevo en un momento.',
@@ -76,7 +85,12 @@
       feedTitle: 'Personas que quieren encontrar Salsa Coreana',
       feedLoading: 'Cargando…',
       feedTotal: (count) => `${count} ${count === 1 ? 'apoyo' : 'apoyos'}`,
-      feedMessage: (name, country) => `${name} quiere encontrar Salsa Coreana en ${country}.`,
+      feedMessage: (country) => `¡Quiero encontrar Salsa Coreana en ${country}!`,
+      exampleMessages: [
+        '¡Quiero encontrar Salsa Coreana en Perú!',
+        'Me encantaría probarla con tacos. ¡Que llegue pronto a México!',
+        'Espero poder encontrarla muy pronto en Chile.',
+      ],
       feedEmpty: 'Así aparecerán los nuevos mensajes. Estos ejemplos no cuentan en el total.',
       exampleLabel: 'Ejemplo',
       storyEyebrow: 'Por qué necesitamos tu apoyo',
@@ -99,17 +113,19 @@
       impactTitle: 'Your support becomes real demand data.',
       nameLabel: 'Name or nickname',
       namePlaceholder: 'Enter your name',
+      messageLabel: 'Support message',
+      messageOptional: '(optional)',
+      messagePlaceholder: 'Leave a few words to support the launch',
+      messageHint: 'Up to 180 characters',
       countryLabel: 'Where do you want to find Salsa Coreana?',
       peru: 'Peru',
       mexico: 'Mexico',
       chile: 'Chile',
       colombia: 'Colombia',
       argentina: 'Argentina',
-      declarationEmpty: 'Add your name and choose a country to complete your message.',
-      declaration: (name, country) => `${name} wants to find Salsa Coreana in ${country}.`,
       submit: 'Support the launch',
       sending: 'Sending your support…',
-      privacy: 'Your name and selected country will appear in the support list. We do not collect location or contact details.',
+      privacy: 'Your name, country, and message will appear below. We do not collect location or contact details.',
       success: (name, country) => `Thanks, ${name}! Your support for a launch in ${country} is registered.`,
       duplicate: (country) => `You already supported a launch in ${country}. Thank you!`,
       error: 'We could not register your support. Please try again in a moment.',
@@ -118,7 +134,12 @@
       feedTitle: 'People who want to find Salsa Coreana',
       feedLoading: 'Loading…',
       feedTotal: (count) => `${count} ${count === 1 ? 'supporter' : 'supporters'}`,
-      feedMessage: (name, country) => `${name} wants to find Salsa Coreana in ${country}.`,
+      feedMessage: (country) => `I want to find Salsa Coreana in ${country}!`,
+      exampleMessages: [
+        'I would love to find Salsa Coreana in Peru!',
+        'I want to try it with tacos. Please bring it to Mexico!',
+        'I hope I can find it in Chile soon.',
+      ],
       feedEmpty: 'New support messages will appear like this. Examples are not included in the total.',
       exampleLabel: 'Example',
       storyEyebrow: 'Why your support matters',
@@ -203,6 +224,7 @@
       supportLead: t.lead,
       supportImpactTitle: t.impactTitle,
       supportNameLabel: t.nameLabel,
+      supportMessageHint: t.messageHint,
       supportCountryLabel: t.countryLabel,
       supportPeru: t.peru,
       supportMexico: t.mexico,
@@ -228,11 +250,16 @@
 
     Object.entries(textById).forEach(([id, value]) => setText(id, value));
     document.getElementById('supportName').placeholder = t.namePlaceholder;
+    const messageLabel = document.getElementById('supportMessageLabel');
+    messageLabel.replaceChildren(document.createTextNode(`${t.messageLabel} `));
+    const optional = document.createElement('span');
+    optional.textContent = t.messageOptional;
+    messageLabel.appendChild(optional);
+    document.getElementById('supportMessage').placeholder = t.messagePlaceholder;
     document.querySelectorAll('[data-language]').forEach((button) => {
       button.setAttribute('aria-pressed', button.dataset.language === language ? 'true' : 'false');
     });
     document.getElementById('supportMenuToggle').setAttribute('aria-label', t.menuOpen);
-    updateDeclaration();
   }
 
   function setStatus(state, message) {
@@ -241,13 +268,32 @@
     status.textContent = message;
   }
 
-  function updateDeclaration() {
-    const name = document.getElementById('supportName').value.trim().slice(0, 40);
-    const country = document.querySelector('input[name="country"]:checked')?.value || '';
-    const declaration = document.getElementById('supportDeclaration');
-    const ready = Boolean(name && countryCodes.includes(country));
-    declaration.dataset.ready = ready ? 'true' : 'false';
-    declaration.textContent = ready ? t.declaration(name, countryName(country)) : t.declarationEmpty;
+  function formatSupportTime(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+
+    const locale = { KR: 'ko-KR', ES: 'es-419', EN: 'en' }[language] || 'es-419';
+    const seconds = Math.round((date.getTime() - Date.now()) / 1000);
+    const absoluteSeconds = Math.abs(seconds);
+    let amount = seconds;
+    let unit = 'second';
+
+    if (absoluteSeconds >= 86400) {
+      amount = Math.round(seconds / 86400);
+      unit = 'day';
+    } else if (absoluteSeconds >= 3600) {
+      amount = Math.round(seconds / 3600);
+      unit = 'hour';
+    } else if (absoluteSeconds >= 60) {
+      amount = Math.round(seconds / 60);
+      unit = 'minute';
+    }
+
+    if (Math.abs(amount) <= 7 || unit !== 'day') {
+      return new Intl.RelativeTimeFormat(locale, { numeric: 'auto' }).format(amount, unit);
+    }
+
+    return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(date);
   }
 
   function renderSupportFeed(result) {
@@ -276,37 +322,67 @@
       .map((supporter) => ({
         name: String(supporter?.name || '').trim().slice(0, 40),
         code: String(supporter?.countryCode || '').trim().toUpperCase(),
+        message: String(supporter?.message || '').trim().slice(0, 180),
+        createdAt: String(supporter?.createdAt || '').trim(),
       }))
       .filter((supporter) => supporter.name && countryCodes.includes(supporter.code));
 
-    function appendSupporter(name, code, example = false) {
+    function appendSupporter({ name, code, message, createdAt, example = false }) {
       const item = document.createElement('article');
       const avatar = document.createElement('span');
-      const message = document.createElement('p');
+      const content = document.createElement('div');
+      const meta = document.createElement('div');
+      const supporterName = document.createElement('strong');
       const country = document.createElement('span');
+      const time = document.createElement('time');
+      const body = document.createElement('p');
       item.className = example ? 'support-feed-item support-feed-item--example' : 'support-feed-item';
       avatar.className = 'support-feed-avatar';
-      message.className = 'support-feed-message';
+      content.className = 'support-feed-content';
+      meta.className = 'support-feed-meta';
+      supporterName.className = 'support-feed-name';
       country.className = 'support-feed-country';
+      time.className = 'support-feed-time';
+      body.className = 'support-feed-message';
       avatar.textContent = name.slice(0, 1).toUpperCase();
-      message.textContent = t.feedMessage(name, countryName(code));
-      country.textContent = example ? `${t.exampleLabel} · ${countryName(code)}` : countryName(code);
-      item.append(avatar, message, country);
+      supporterName.textContent = name;
+      country.textContent = countryName(code);
+      time.textContent = formatSupportTime(createdAt);
+      if (createdAt && !Number.isNaN(new Date(createdAt).getTime())) time.dateTime = new Date(createdAt).toISOString();
+      body.textContent = message || t.feedMessage(countryName(code));
+      meta.append(supporterName, country, time);
+      if (example) {
+        const exampleTag = document.createElement('span');
+        exampleTag.className = 'support-feed-example';
+        exampleTag.textContent = t.exampleLabel;
+        meta.appendChild(exampleTag);
+      }
+      content.append(meta, body);
+      item.append(avatar, content);
       listElement.appendChild(item);
     }
 
     listElement.replaceChildren();
     if (validSupporters.length > 0) {
-      validSupporters.forEach(({ name, code }) => appendSupporter(name, code));
+      validSupporters.forEach(appendSupporter);
       emptyElement.hidden = true;
       return;
     }
 
+    const exampleTime = Date.now();
     [
-      { name: 'Ana', code: 'PE' },
-      { name: 'Luis', code: 'MX' },
-      { name: 'Camila', code: 'CL' },
-    ].forEach(({ name, code }) => appendSupporter(name, code, true));
+      { name: 'Ana', code: 'PE', minutesAgo: 2 },
+      { name: 'Luis', code: 'MX', minutesAgo: 8 },
+      { name: 'Camila', code: 'CL', minutesAgo: 15 },
+    ].forEach(({ name, code, minutesAgo }, index) =>
+      appendSupporter({
+        name,
+        code,
+        message: t.exampleMessages[index],
+        createdAt: new Date(exampleTime - minutesAgo * 60000).toISOString(),
+        example: true,
+      }),
+    );
     emptyElement.hidden = false;
   }
 
@@ -327,6 +403,7 @@
   }
 
   function showSavedSupport(saved) {
+    if (getAttribution().verification) return false;
     if (!saved?.country) return false;
     document.getElementById('supportForm').hidden = true;
     setStatus('success', t.duplicate(countryName(saved.country)));
@@ -339,6 +416,7 @@
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim().slice(0, 40);
     const country = String(data.get('country') || '').trim().toUpperCase();
+    const message = String(data.get('message') || '').trim().slice(0, 180);
 
     if (!name || !countryCodes.includes(country)) {
       setStatus('error', t.required);
@@ -366,6 +444,7 @@
           visitorId: getVisitorId(),
           name,
           country,
+          message,
           language,
           pageUrl: window.location.href,
           publicFeed: true,
@@ -375,7 +454,7 @@
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || 'Support request failed');
 
-      const saved = { name, country, at: new Date().toISOString() };
+      const saved = { name, country, message, at: new Date().toISOString() };
       if (!attribution.verification) {
         try {
           window.localStorage.setItem(supportStorageKey, JSON.stringify(saved));
@@ -409,10 +488,6 @@
       const languagePath = { ES: 'es', KR: 'ko', EN: 'en' }[nextLanguage] || 'es';
       window.location.href = `/${languagePath}/support.html${window.location.search}`;
     });
-  });
-  document.getElementById('supportName').addEventListener('input', updateDeclaration);
-  document.querySelectorAll('input[name="country"]').forEach((input) => {
-    input.addEventListener('change', updateDeclaration);
   });
   document.getElementById('supportForm').addEventListener('submit', submitSupport);
   const menuToggle = document.getElementById('supportMenuToggle');

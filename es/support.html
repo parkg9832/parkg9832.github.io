@@ -32,7 +32,7 @@
       href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260730-9" />
+    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260730-10" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -107,16 +107,26 @@
 
     <main class="support-main">
       <section class="support-hero" aria-labelledby="supportTitle">
-        <aside class="support-project">
-          <p class="support-category" id="supportCategory">Proyecto de lanzamiento</p>
-          <h1 class="support-title" id="supportTitle">Ayúdanos a lanzar Salsa Coreana.</h1>
-          <p class="support-lead" id="supportLead">
-            Estamos reuniendo apoyo real para presentar MOKDA a tiendas y distribuidores de Latinoamérica.
-          </p>
+        <div class="support-project">
+          <div class="support-intro">
+            <p class="support-category" id="supportCategory">Proyecto de lanzamiento</p>
+            <h1 class="support-title" id="supportTitle">Ayúdanos a lanzar Salsa Coreana.</h1>
+            <p class="support-lead" id="supportLead">
+              Estamos reuniendo apoyo real para presentar MOKDA a tiendas y distribuidores de Latinoamérica.
+            </p>
+            <div class="support-story-inline" id="story">
+              <p id="supportStoryEyebrow">Por qué necesitamos tu apoyo</p>
+              <h2 id="supportStoryTitle">Una señal pequeña puede abrir una puerta grande.</h2>
+              <p id="supportStoryBody">
+                Antes de producir y exportar, necesitamos demostrar que hay personas que realmente quieren encontrar Salsa Coreana en su país.
+              </p>
+            </div>
+          </div>
 
-          <p class="support-impact" id="supportImpactTitle">Tu apoyo se convierte en datos reales.</p>
+          <div class="support-participation">
+            <p class="support-impact" id="supportImpactTitle">Tu apoyo se convierte en datos reales.</p>
 
-          <form class="support-form" id="supportForm" novalidate>
+            <form class="support-form" id="supportForm" novalidate>
             <div class="support-field">
               <label for="supportName" id="supportNameLabel">Nombre o apodo</label>
               <input
@@ -176,9 +186,17 @@
               </div>
             </fieldset>
 
-            <p class="support-declaration" id="supportDeclaration">
-              Elige un país para completar tu mensaje de apoyo.
-            </p>
+              <div class="support-field support-message-field">
+                <label for="supportMessage" id="supportMessageLabel">Mensaje de apoyo <span>(opcional)</span></label>
+                <textarea
+                  id="supportMessage"
+                  name="message"
+                  maxlength="180"
+                  rows="4"
+                  placeholder="Escribe unas palabras para apoyar el lanzamiento"
+                ></textarea>
+                <small id="supportMessageHint">Máximo 180 caracteres</small>
+              </div>
 
             <button class="support-submit" id="supportSubmit" type="submit">
               <span id="supportSubmitLabel">Apoyar el lanzamiento</span>
@@ -187,10 +205,11 @@
             <p class="support-privacy" id="supportPrivacy">
               Tu nombre y país aparecerán en la lista de apoyos. No recopilamos tu ubicación ni datos de contacto.
             </p>
-          </form>
+            </form>
 
-          <p class="support-status" id="supportStatus" role="status" aria-live="polite"></p>
-        </aside>
+            <p class="support-status" id="supportStatus" role="status" aria-live="polite"></p>
+          </div>
+        </div>
       </section>
 
       <section class="support-feed" id="voices" aria-labelledby="supportFeedTitle">
@@ -206,17 +225,6 @@
         <div class="support-feed-list" id="supportFeedList" aria-live="polite"></div>
       </section>
 
-      <section class="support-story" id="story">
-        <div class="support-story-heading">
-          <p id="supportStoryEyebrow">Por qué necesitamos tu apoyo</p>
-          <h2 id="supportStoryTitle">Una señal pequeña puede abrir una puerta grande.</h2>
-          <p id="supportStoryBody">
-            Antes de producir y exportar, necesitamos demostrar que hay personas que realmente quieren encontrar Salsa Coreana en su país.
-          </p>
-        </div>
-
-      </section>
-
       <a class="support-back" id="supportBack" href="/es/">← Volver a MOKDA</a>
     </main>
 
@@ -225,6 +233,6 @@
     <script src="./site-i18n.js?v=20260718-1"></script>
     <script src="./b2b-config.js?v=20260718-1"></script>
     <script src="./site-analytics.js?v=20260730-1"></script>
-    <script src="./support-campaign.js?v=20260730-5"></script>
+    <script src="./support-campaign.js?v=20260730-6"></script>
   </body>
 </html>

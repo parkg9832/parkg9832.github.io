@@ -163,14 +163,14 @@
 }
 
 .mokda-announcement__button {
+  position: relative;
   min-height: 52px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  justify-content: center;
   margin-top: 20px;
   border-radius: 12px;
-  padding: 0 18px;
+  padding: 0 48px;
   background: #ef5f18;
   color: #fff;
   font-size: 14px;
@@ -187,21 +187,18 @@
 }
 
 .mokda-announcement__button span:last-child {
+  position: absolute;
+  right: 18px;
+  top: 50%;
   font-size: 20px;
+  transform: translateY(-50%);
 }
 
 .mokda-announcement__footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 11px 0 0;
-}
-
-.mokda-announcement__note {
-  color: #929891;
-  font-size: 10px;
-  font-weight: 650;
+  justify-content: center;
+  margin: 12px 0 0;
 }
 
 .mokda-announcement__hide-day {
@@ -256,10 +253,9 @@
   }
 
   .mokda-announcement__footer {
-    align-items: flex-end;
+    align-items: center;
   }
 
-  .mokda-announcement__note,
   .mokda-announcement__hide-day {
     font-size: 9px;
   }

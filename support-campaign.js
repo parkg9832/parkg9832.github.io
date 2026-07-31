@@ -16,9 +16,8 @@
       nameLabel: '이름 또는 닉네임',
       namePlaceholder: '이름을 입력해주세요',
       messageLabel: '응원 메시지',
-      messageOptional: '(선택)',
+      messageOptional: '(선택, 최대 180자)',
       messagePlaceholder: '출시를 응원하는 한마디를 남겨주세요',
-      messageHint: '최대 180자',
       countryLabel: '어디에서 Salsa Coreana를 만나고 싶나요?',
       peru: '페루',
       mexico: '멕시코',
@@ -29,7 +28,7 @@
       sending: '응원을 전하고 있어요…',
       privacy: '이름, 국가, 응원 메시지가 아래 목록에 표시됩니다. 위치 정보와 연락처는 수집하지 않습니다.',
       success: (name, country) => `${name}님의 ${country} 출시 응원이 등록되었습니다. 감사합니다!`,
-      duplicate: (country) => `이미 ${country} 출시를 응원해주셨습니다. 감사합니다!`,
+      duplicate: () => '이미 참여하셨습니다. 감사합니다!',
       error: '등록하지 못했습니다. 잠시 후 다시 시도해주세요.',
       required: '이름을 입력하고 국가를 선택해주세요.',
       feedEyebrow: '실시간 응원',
@@ -45,8 +44,7 @@
       feedEmpty: '새 응원 메시지는 아래와 같은 모습으로 표시됩니다. 예시는 응원 수에 포함되지 않습니다.',
       exampleLabel: '표시 예시',
       storyEyebrow: '응원이 필요한 이유',
-      storyTitle: '당신의 응원이 출시 근거가 됩니다.',
-      storyBody: '결과는 현지 마트와 유통사에 실제 수요 자료로 제시합니다.',
+      storyTitle: '당신의 응원이 출시 근거가 되어 현지 마트와 유통사에 실제 수요 자료로 제시됩니다.',
       back: '← MOKDA 홈페이지로 돌아가기',
       menuHome: '홈',
       menuAbout: '브랜드 소개',
@@ -65,9 +63,8 @@
       nameLabel: 'Nombre o apodo',
       namePlaceholder: 'Escribe tu nombre',
       messageLabel: 'Mensaje de apoyo',
-      messageOptional: '(opcional)',
+      messageOptional: '(opcional, máximo 180 caracteres)',
       messagePlaceholder: 'Escribe unas palabras para apoyar el lanzamiento',
-      messageHint: 'Máximo 180 caracteres',
       countryLabel: '¿Dónde quieres encontrar Salsa Coreana?',
       peru: 'Perú',
       mexico: 'México',
@@ -78,7 +75,7 @@
       sending: 'Enviando tu apoyo…',
       privacy: 'Tu nombre, país y mensaje aparecerán en la lista. No recopilamos tu ubicación ni datos de contacto.',
       success: (name, country) => `¡Gracias, ${name}! Tu apoyo para el lanzamiento en ${country} ya está registrado.`,
-      duplicate: (country) => `Ya registramos tu apoyo para ${country}. ¡Gracias!`,
+      duplicate: () => '¡Ya participaste! ¡Gracias!',
       error: 'No pudimos registrar tu apoyo. Inténtalo de nuevo en un momento.',
       required: 'Escribe tu nombre y selecciona un país.',
       feedEyebrow: 'Apoyos reales',
@@ -94,8 +91,7 @@
       feedEmpty: 'Así aparecerán los nuevos mensajes. Estos ejemplos no cuentan en el total.',
       exampleLabel: 'Ejemplo',
       storyEyebrow: 'Por qué importa',
-      storyTitle: 'Tu apoyo demuestra una demanda real.',
-      storyBody: 'Compartiremos los resultados con tiendas y distribuidores.',
+      storyTitle: 'Tu apoyo demuestra una demanda real que compartiremos con tiendas y distribuidores.',
       back: '← Volver a MOKDA',
       menuHome: 'Inicio',
       menuAbout: 'Sobre nosotros',
@@ -114,9 +110,8 @@
       nameLabel: 'Name or nickname',
       namePlaceholder: 'Enter your name',
       messageLabel: 'Support message',
-      messageOptional: '(optional)',
+      messageOptional: '(optional, up to 180 characters)',
       messagePlaceholder: 'Leave a few words to support the launch',
-      messageHint: 'Up to 180 characters',
       countryLabel: 'Where do you want to find Salsa Coreana?',
       peru: 'Peru',
       mexico: 'Mexico',
@@ -127,7 +122,7 @@
       sending: 'Sending your support…',
       privacy: 'Your name, country, and message will appear below. We do not collect location or contact details.',
       success: (name, country) => `Thanks, ${name}! Your support for a launch in ${country} is registered.`,
-      duplicate: (country) => `You already supported a launch in ${country}. Thank you!`,
+      duplicate: () => 'You already participated! Thank you!',
       error: 'We could not register your support. Please try again in a moment.',
       required: 'Enter your name and choose a country.',
       feedEyebrow: 'Real support',
@@ -143,8 +138,7 @@
       feedEmpty: 'New support messages will appear like this. Examples are not included in the total.',
       exampleLabel: 'Example',
       storyEyebrow: 'Why it matters',
-      storyTitle: 'Your support proves real demand.',
-      storyBody: 'We will share the results with retailers and distributors.',
+      storyTitle: 'Your support proves real demand that we will share with retailers and distributors.',
       back: '← Back to MOKDA',
       menuHome: 'Home',
       menuAbout: 'About',
@@ -224,7 +218,6 @@
       supportLead: t.lead,
       supportImpactTitle: t.impactTitle,
       supportNameLabel: t.nameLabel,
-      supportMessageHint: t.messageHint,
       supportCountryLabel: t.countryLabel,
       supportPeru: t.peru,
       supportMexico: t.mexico,
@@ -239,7 +232,6 @@
       supportFeedEmpty: t.feedEmpty,
       supportStoryEyebrow: t.storyEyebrow,
       supportStoryTitle: t.storyTitle,
-      supportStoryBody: t.storyBody,
       supportBack: t.back,
       supportMenuHome: t.menuHome,
       supportMenuAbout: t.menuAbout,
@@ -410,12 +402,28 @@
     document.getElementById('supportMessage').value = String(saved.message || '').slice(0, 180);
     const countryInput = document.querySelector(`input[name="country"][value="${savedCountry}"]`);
     if (countryInput) countryInput.checked = true;
-    setStatus('success', t.duplicate(countryName(saved.country)));
     return true;
+  }
+
+  let isSubmitting = false;
+
+  function showToast(message) {
+    const status = document.getElementById('supportStatus');
+    status.dataset.state = 'toast';
+    status.textContent = message;
+    clearTimeout(status._toastTimer);
+    status._toastTimer = setTimeout(() => {
+      if (status.dataset.state === 'toast') {
+        status.textContent = '';
+        delete status.dataset.state;
+      }
+    }, 4000);
   }
 
   async function submitSupport(event) {
     event.preventDefault();
+    if (isSubmitting) return;
+
     const form = event.currentTarget;
     const data = new FormData(form);
     const name = String(data.get('name') || '').trim().slice(0, 40);
@@ -433,7 +441,18 @@
     }
 
     const attribution = getAttribution();
+
+    // Pre-check: if localStorage already has a record, show duplicate toast
+    if (!attribution.verification) {
+      const existing = readJson(supportStorageKey);
+      if (existing?.country) {
+        showToast(t.duplicate());
+        return;
+      }
+    }
+
     const submit = document.getElementById('supportSubmit');
+    isSubmitting = true;
     submit.disabled = true;
     setText('supportSubmitLabel', t.sending);
     setStatus('pending', '');
@@ -467,10 +486,11 @@
         }
       }
 
-      setStatus(
-        'success',
-        result.duplicate ? t.duplicate(countryName(country)) : t.success(name, countryName(country)),
-      );
+      if (result.duplicate) {
+        showToast(t.duplicate());
+      } else {
+        showToast(t.success(name, countryName(country)));
+      }
       submit.disabled = false;
       setText('supportSubmitLabel', t.submit);
       window.MOKDA_ANALYTICS?.track(
@@ -484,6 +504,8 @@
       setStatus('error', t.error);
       submit.disabled = false;
       setText('supportSubmitLabel', t.submit);
+    } finally {
+      isSubmitting = false;
     }
   }
 

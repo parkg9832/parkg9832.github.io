@@ -365,11 +365,7 @@ textarea {
 }
 
 .support-message-field > small {
-  margin-top: -3px;
-  color: #929890;
-  font-size: 10px;
-  font-weight: 650;
-  text-align: right;
+  display: none;
 }
 
 .support-country-field {
@@ -546,6 +542,21 @@ textarea {
   color: var(--support-green);
   font-size: 13px;
   font-weight: 800;
+}
+
+.support-status[data-state="toast"] {
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--support-green);
+  color: #fff9f1;
+  font-size: 12px;
+  font-weight: 800;
+  animation: toast-in 250ms ease;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .support-feed {

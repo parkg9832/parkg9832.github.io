@@ -285,6 +285,12 @@ function appendDemandSupport(payload) {
       message,
     ]);
 
+    try {
+      const cache = CacheService.getScriptCache();
+      cache.remove('demand_support_feed_v2_24');
+      cache.remove('demand_support_feed_v2_50');
+    } catch (e) {}
+
     return { ok: true, saved: true, duplicate: false };
   } finally {
     lock.releaseLock();
@@ -310,6 +316,15 @@ function ensureDemandHeaders(sheet) {
 function getDemandSupportFeed(event) {
   const requestedLimit = Number((event && event.parameter && event.parameter.limit) || 24);
   const limit = Math.min(Math.max(Math.round(requestedLimit) || 24, 1), 50);
+  const cacheKey = `demand_support_feed_v2_${limit}`;
+  const cache = CacheService.getScriptCache();
+  try {
+    const cachedJson = cache.get(cacheKey);
+    if (cachedJson) {
+      return JSON.parse(cachedJson);
+    }
+  } catch (e) {}
+
   const totals = Object.keys(DEMAND_COUNTRIES).reduce((result, code) => {
     result[code] = 0;
     return result;
@@ -319,7 +334,9 @@ function getDemandSupportFeed(event) {
   const sheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
 
   if (!sheet || sheet.getLastRow() <= 1) {
-    return { ok: true, total: 0, totals, supporters: [] };
+    const emptyResult = { ok: true, total: 0, totals, supporters: [] };
+    try { cache.put(cacheKey, JSON.stringify(emptyResult), 45); } catch (e) {}
+    return emptyResult;
   }
 
   ensureDemandHeaders(sheet);
@@ -340,12 +357,18 @@ function getDemandSupportFeed(event) {
       message: cleanAnalyticsValue(row[13], 180),
     }));
 
-  return {
+  const payload = {
     ok: true,
     total: rows.length,
     totals,
     supporters,
   };
+
+  try {
+    cache.put(cacheKey, JSON.stringify(payload), 45);
+  } catch (e) {}
+
+  return payload;
 }
 
 function isFunnelPayload(payload) {

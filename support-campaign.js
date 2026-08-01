@@ -400,33 +400,113 @@
     emptyElement.hidden = false;
   }
 
+  const feedCacheKey = 'mokda_demand_support_feed_cache_v2';
+
+  function readFeedCache() {
+    try {
+      const cached = JSON.parse(window.localStorage.getItem(feedCacheKey) || 'null');
+      if (cached && cached.data && Array.isArray(cached.data.supporters)) {
+        return cached.data;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  function writeFeedCache(data) {
+    try {
+      if (data && data.ok) {
+        window.localStorage.setItem(feedCacheKey, JSON.stringify({
+          time: Date.now(),
+          data,
+        }));
+      }
+    } catch (e) {}
+  }
+
+  function renderSupportFeedSkeletons() {
+    const listElement = document.getElementById('supportFeedList');
+    const emptyElement = document.getElementById('supportFeedEmpty');
+    if (!listElement) return;
+
+    listElement.replaceChildren();
+    for (let i = 0; i < 3; i++) {
+      const skeleton = document.createElement('article');
+      skeleton.className = 'support-feed-item support-feed-skeleton';
+      skeleton.setAttribute('aria-hidden', 'true');
+
+      const avatar = document.createElement('span');
+      avatar.className = 'support-feed-avatar support-skeleton-block';
+
+      const content = document.createElement('div');
+      content.className = 'support-feed-content';
+
+      const meta = document.createElement('div');
+      meta.className = 'support-feed-meta';
+
+      const name = document.createElement('span');
+      name.className = 'support-skeleton-line support-skeleton-name';
+
+      const time = document.createElement('span');
+      time.className = 'support-skeleton-line support-skeleton-time';
+
+      meta.append(name, time);
+
+      const line1 = document.createElement('span');
+      line1.className = 'support-skeleton-line support-skeleton-msg1';
+
+      const line2 = document.createElement('span');
+      line2.className = 'support-skeleton-line support-skeleton-msg2';
+
+      content.append(meta, line1, line2);
+      skeleton.append(avatar, content);
+      listElement.appendChild(skeleton);
+    }
+    if (emptyElement) emptyElement.hidden = true;
+  }
+
   async function loadSupportFeed() {
     const totalElement = document.getElementById('supportFeedTotal');
+    const cachedData = readFeedCache();
+
+    if (cachedData) {
+      renderSupportFeed(cachedData);
+    } else {
+      renderSupportFeedSkeletons();
+    }
+
     if (!endpoint) {
-      if (totalElement) totalElement.textContent = t.feedTotal(0);
+      if (!cachedData && totalElement) totalElement.textContent = t.feedTotal(0);
       return;
     }
+
     const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
     const timeoutId = controller ? setTimeout(() => controller.abort(), 10000) : null;
+
     try {
       const feedUrl = new URL(endpoint);
       feedUrl.searchParams.set('mode', 'demand_support');
       feedUrl.searchParams.set('limit', '24');
       feedUrl.searchParams.set('_', String(Date.now()));
+
       const response = await fetch(feedUrl.toString(), {
         method: 'GET',
         cache: 'no-store',
         signal: controller ? controller.signal : undefined,
       });
       if (timeoutId) clearTimeout(timeoutId);
+
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || 'Support feed request failed');
+
+      writeFeedCache(result);
       renderSupportFeed(result);
     } catch (error) {
       if (timeoutId) clearTimeout(timeoutId);
-      console.error('Support feed load failure:', error);
-      if (totalElement) totalElement.textContent = t.feedTotal(0);
-      renderSupportFeed({ total: 0, totals: {}, supporters: [] });
+      console.error('Support feed background load failure:', error);
+      if (!cachedData) {
+        if (totalElement) totalElement.textContent = t.feedTotal(0);
+        renderSupportFeed({ total: 0, totals: {}, supporters: [] });
+      }
     }
   }
 
@@ -536,6 +616,9 @@
       } else {
         showToast(t.success(name, countryName(country)));
       }
+      try {
+        window.localStorage.removeItem(feedCacheKey);
+      } catch (e) {}
       submit.disabled = false;
       setText('supportSubmitLabel', t.submit);
       window.MOKDA_ANALYTICS?.track(

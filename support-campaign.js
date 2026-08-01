@@ -18,6 +18,7 @@
       messageLabel: '응원 메시지',
       messageOptional: '(선택, 최대 180자)',
       messagePlaceholder: '출시를 응원하는 한마디를 남겨주세요',
+      messageToggle: '＋ 응원 메시지 작성하기 (선택)',
       countryLabel: '어디에서 Salsa Coreana를 만나고 싶나요?',
       peru: '페루',
       mexico: '멕시코',
@@ -65,6 +66,7 @@
       messageLabel: 'Mensaje de apoyo',
       messageOptional: '(opcional, máximo 180 caracteres)',
       messagePlaceholder: 'Escribe unas palabras para apoyar el lanzamiento',
+      messageToggle: '＋ Añadir un mensaje de apoyo (opcional)',
       countryLabel: '¿Dónde quieres encontrar Salsa Coreana?',
       peru: 'Perú',
       mexico: 'México',
@@ -112,6 +114,7 @@
       messageLabel: 'Support message',
       messageOptional: '(optional, up to 180 characters)',
       messagePlaceholder: 'Leave a few words to support the launch',
+      messageToggle: '＋ Add a support message (optional)',
       countryLabel: 'Where do you want to find Salsa Coreana?',
       peru: 'Peru',
       mexico: 'Mexico',
@@ -224,6 +227,7 @@
       supportChile: t.chile,
       supportColombia: t.colombia,
       supportArgentina: t.argentina,
+      supportMessageToggleText: t.messageToggle,
       supportSubmitLabel: t.submit,
       supportPrivacy: t.privacy,
       supportFeedEyebrow: t.feedEyebrow,
@@ -397,7 +401,16 @@
     if (!saved?.country) return false;
     const savedCountry = String(saved.country || '').toUpperCase();
     document.getElementById('supportName').value = String(saved.name || '').slice(0, 40);
-    document.getElementById('supportMessage').value = String(saved.message || '').slice(0, 180);
+    const msg = String(saved.message || '').slice(0, 180);
+    document.getElementById('supportMessage').value = msg;
+    if (msg) {
+      const toggle = document.getElementById('supportMessageToggle');
+      const wrapper = document.getElementById('supportMessageWrapper');
+      if (toggle && wrapper) {
+        toggle.setAttribute('aria-expanded', 'true');
+        wrapper.hidden = false;
+      }
+    }
     const countryInput = document.querySelector(`input[name="country"][value="${savedCountry}"]`);
     if (countryInput) countryInput.checked = true;
     return true;
@@ -523,6 +536,20 @@
     menuToggle.setAttribute('aria-label', expanded ? t.menuOpen : t.menuClose);
     menu.hidden = expanded;
   });
+
+  const messageToggle = document.getElementById('supportMessageToggle');
+  const messageWrapper = document.getElementById('supportMessageWrapper');
+  if (messageToggle && messageWrapper) {
+    messageToggle.addEventListener('click', () => {
+      const expanded = messageToggle.getAttribute('aria-expanded') === 'true';
+      messageToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+      messageWrapper.hidden = expanded;
+      if (!expanded) {
+        const textarea = document.getElementById('supportMessage');
+        if (textarea) textarea.focus();
+      }
+    });
+  }
 
   render();
   showSavedSupport(readJson(supportStorageKey));

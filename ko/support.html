@@ -136,39 +136,51 @@
               <fieldset class="support-country-field">
                 <legend id="supportCountryLabel">¿Dónde quieres encontrar Salsa Coreana?</legend>
                 <div class="support-countries">
-                  <label class="support-country">
-                    <input type="radio" name="country" value="PE" required />
-                    <span><small>PE</small><strong id="supportPeru">Perú</strong><i aria-hidden="true">✓</i></span>
+                  <label class="support-country-chip">
+                    <input type="radio" name="country" value="PE" class="support-country-input" required />
+                    <span class="support-chip-label" id="supportPeru">Perú</span>
                   </label>
-                  <label class="support-country">
-                    <input type="radio" name="country" value="MX" required />
-                    <span><small>MX</small><strong id="supportMexico">México</strong><i aria-hidden="true">✓</i></span>
+                  <label class="support-country-chip">
+                    <input type="radio" name="country" value="MX" class="support-country-input" required />
+                    <span class="support-chip-label" id="supportMexico">México</span>
                   </label>
-                  <label class="support-country">
-                    <input type="radio" name="country" value="CL" required />
-                    <span><small>CL</small><strong id="supportChile">Chile</strong><i aria-hidden="true">✓</i></span>
+                  <label class="support-country-chip">
+                    <input type="radio" name="country" value="CL" class="support-country-input" required />
+                    <span class="support-chip-label" id="supportChile">Chile</span>
                   </label>
-                  <label class="support-country">
-                    <input type="radio" name="country" value="CO" required />
-                    <span><small>CO</small><strong id="supportColombia">Colombia</strong><i aria-hidden="true">✓</i></span>
+                  <label class="support-country-chip">
+                    <input type="radio" name="country" value="CO" class="support-country-input" required />
+                    <span class="support-chip-label" id="supportColombia">Colombia</span>
                   </label>
-                  <label class="support-country">
-                    <input type="radio" name="country" value="AR" required />
-                    <span><small>AR</small><strong id="supportArgentina">Argentina</strong><i aria-hidden="true">✓</i></span>
+                  <label class="support-country-chip">
+                    <input type="radio" name="country" value="AR" class="support-country-input" required />
+                    <span class="support-chip-label" id="supportArgentina">Argentina</span>
                   </label>
                 </div>
               </fieldset>
 
               <div class="support-field support-message-field">
-                <label for="supportMessage" id="supportMessageLabel">Mensaje de apoyo <span>(opcional)</span></label>
-                <textarea
-                  id="supportMessage"
-                  name="message"
-                  maxlength="180"
-                  rows="4"
-                  placeholder="Escribe unas palabras para apoyar el lanzamiento"
-                ></textarea>
-                <small id="supportMessageHint"></small>
+                <button
+                  type="button"
+                  class="support-message-toggle"
+                  id="supportMessageToggle"
+                  aria-expanded="false"
+                  aria-controls="supportMessageWrapper"
+                >
+                  <span class="support-message-toggle-icon" aria-hidden="true">＋</span>
+                  <span id="supportMessageToggleText">Añadir un mensaje de apoyo (opcional)</span>
+                </button>
+                <div class="support-message-wrapper" id="supportMessageWrapper" hidden>
+                  <label for="supportMessage" class="visually-hidden" id="supportMessageLabel">Mensaje de apoyo <span>(opcional)</span></label>
+                  <textarea
+                    id="supportMessage"
+                    name="message"
+                    maxlength="180"
+                    rows="3"
+                    placeholder="Escribe unas palabras para apoyar el lanzamiento"
+                  ></textarea>
+                  <small id="supportMessageHint"></small>
+                </div>
               </div>
 
               <button class="support-submit" id="supportSubmit" type="submit">

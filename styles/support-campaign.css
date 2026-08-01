@@ -331,6 +331,14 @@ textarea {
   display: none;
 }
 
+.support-form {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  max-width: 560px;
+  margin: 18px auto 0;
+}
+
 .support-country-field {
   min-width: 0;
   border: 0;
@@ -340,99 +348,144 @@ textarea {
 
 .support-country-field legend {
   width: auto;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .support-countries {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  width: 100%;
 }
 
-.support-country {
-  grid-column: span 2;
-}
-
-.support-country:nth-child(4) {
-  grid-column: 2 / span 2;
-}
-
-.support-country:nth-child(5) {
-  grid-column: 4 / span 2;
-}
-
-.support-country {
+.support-country-chip {
   position: relative;
+  display: flex;
   cursor: pointer;
+  min-width: 0;
+  margin: 0;
 }
 
-.support-country input {
+.support-country-input {
   position: absolute;
   width: 1px;
   height: 1px;
-  opacity: 0;
-  pointer-events: none;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-.support-country span {
-  position: relative;
-  min-height: 58px;
+.support-chip-label {
+  width: 100%;
+  min-height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   border: 1px solid #ccd0c9;
-  border-radius: 12px;
-  padding: 13px 36px 13px 12px;
-  background: #fff;
+  border-radius: 10px;
+  padding: 0 4px;
+  background: #ffffff;
+  color: var(--support-ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
   transition:
     border-color 150ms ease,
-    background-color 150ms ease;
+    background-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
 }
 
-.support-country small {
-  color: var(--support-orange);
-  font-size: 12px;
-  font-style: normal;
+.support-country-chip:hover .support-chip-label {
+  border-color: var(--support-orange);
+}
+
+.support-country-input:checked + .support-chip-label {
+  border-color: var(--support-orange);
+  background: var(--support-orange);
+  color: #ffffff;
   font-weight: 900;
+  box-shadow: 0 2px 8px rgba(239, 95, 24, 0.25);
 }
 
-.support-country strong {
-  color: var(--support-green);
-  font-size: 13px;
-  font-weight: 850;
+.support-country-input:focus-visible + .support-chip-label {
+  outline: 3px solid rgba(239, 95, 24, 0.35);
+  outline-offset: 1px;
 }
 
-.support-country i {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  width: 20px;
-  height: 20px;
+.support-message-field {
   display: grid;
-  place-items: center;
+  gap: 0;
+}
+
+.support-message-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  width: fit-content;
+  border: 0;
+  background: transparent;
+  padding: 4px 0;
+  color: #5a645d;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+  transition: color 150ms ease;
+}
+
+.support-message-toggle:hover {
+  color: var(--support-orange);
+}
+
+.support-message-toggle-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: #e3e7e2;
-  color: transparent;
-  font-size: 12px;
-  font-style: normal;
+  background: rgba(50, 21, 6, 0.07);
+  color: var(--support-orange);
+  font-size: 13px;
   font-weight: 900;
-  transform: translateY(-50%);
+  line-height: 1;
+  transition: transform 200ms ease, background-color 150ms ease, color 150ms ease;
 }
 
-.support-country input:checked + span {
-  border-color: var(--support-green);
-  background: #eef4f0;
+.support-message-toggle[aria-expanded="true"] .support-message-toggle-icon {
+  transform: rotate(45deg);
+  background: var(--support-orange);
+  color: #ffffff;
 }
 
-.support-country input:checked + span i {
-  background: var(--support-green);
-  color: #fff;
+.support-message-wrapper {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
 }
 
-.support-country input:focus-visible + span {
-  outline: 3px solid rgba(239, 95, 24, 0.27);
-  outline-offset: 2px;
+.support-message-wrapper[hidden] {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .support-submit {
@@ -824,26 +877,20 @@ textarea {
     padding: 22px 18px 24px;
   }
 
-  .support-impact {
-    font-size: 15px;
-  }
-
   .support-form {
-    gap: 18px;
+    gap: 12px;
+    margin-top: 14px;
   }
 
   .support-countries {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
   }
 
-  .support-country,
-  .support-country:nth-child(4),
-  .support-country:nth-child(5) {
-    grid-column: auto;
-  }
-
-  .support-country:last-child {
-    grid-column: 1 / -1;
+  .support-chip-label {
+    min-height: 44px;
+    font-size: 11.5px;
+    padding: 0 2px;
   }
 
   .support-feed {

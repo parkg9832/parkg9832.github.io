@@ -105,7 +105,7 @@ const pages = {
     },
     ES: {
       title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
-      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile, Colombia o Argentina.',
+      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile, Colombia o España.',
     },
     KR: {
       title: 'Salsa Coreana 출시 응원 | MOKDA',

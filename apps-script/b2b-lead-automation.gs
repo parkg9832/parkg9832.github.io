@@ -74,7 +74,7 @@ const DEMAND_COUNTRIES = {
   MX: 'Mexico',
   CL: 'Chile',
   CO: 'Colombia',
-  AR: 'Argentina',
+  ES: 'Spain',
 };
 const FUNNEL_EVENT_NAMES = [
   'page_view',

@@ -5,7 +5,14 @@
   const endpoint = window.MOKDA_B2B_WEB_APP_URL || '';
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const supportStorageKey = 'mokda_demand_support_v1';
-  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'AR'];
+  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'ES'];
+  const flagMap = {
+    PE: './assets/images/flags/peru.jpg',
+    MX: './assets/images/flags/mexico.jpg',
+    CL: './assets/images/flags/chile.jpg',
+    CO: './assets/images/flags/colombia.jpg',
+    ES: './assets/images/flags/spain.jpg',
+  };
   const copy = {
     KR: {
       visual: '당신의 응원으로 시작되는 첫 출시',
@@ -24,7 +31,7 @@
       mexico: '멕시코',
       chile: '칠레',
       colombia: '콜롬비아',
-      argentina: '아르헨티나',
+      spain: '스페인',
       submit: '출시 응원하기',
       sending: '응원을 전하고 있어요…',
       privacy: '이름, 국가, 응원 메시지가 아래 목록에 표시됩니다. 위치 정보와 연락처는 수집하지 않습니다.',
@@ -40,7 +47,7 @@
       exampleMessages: [
         '페루에서 Salsa Coreana를 꼭 만나보고 싶어요!',
         '타코와 함께 먹어보고 싶습니다. 멕시코 출시를 응원해요!',
-        '칠레에서도 쉽게 살 수 있는 날을 기다릴게요.',
+        '스페인에서도 쉽게 살 수 있는 날을 기다릴게요.',
       ],
       feedEmpty: '새 응원 메시지는 아래와 같은 모습으로 표시됩니다. 예시는 응원 수에 포함되지 않습니다.',
       exampleLabel: '표시 예시',
@@ -72,7 +79,7 @@
       mexico: 'México',
       chile: 'Chile',
       colombia: 'Colombia',
-      argentina: 'Argentina',
+      spain: 'España',
       submit: 'Apoyar el lanzamiento',
       sending: 'Enviando tu apoyo…',
       privacy: 'Tu nombre, país y mensaje aparecerán en la lista. No recopilamos tu ubicación ni datos de contacto.',
@@ -88,7 +95,7 @@
       exampleMessages: [
         '¡Quiero encontrar Salsa Coreana en Perú!',
         'Me encantaría probarla con tacos. ¡Que llegue pronto a México!',
-        'Espero poder encontrarla muy pronto en Chile.',
+        'Espero poder encontrarla muy pronto en España.',
       ],
       feedEmpty: 'Así aparecerán los nuevos mensajes. Estos ejemplos no cuentan en el total.',
       exampleLabel: 'Ejemplo',
@@ -120,7 +127,7 @@
       mexico: 'Mexico',
       chile: 'Chile',
       colombia: 'Colombia',
-      argentina: 'Argentina',
+      spain: 'Spain',
       submit: 'Support the launch',
       sending: 'Sending your support…',
       privacy: 'Your name, country, and message will appear below. We do not collect location or contact details.',
@@ -136,7 +143,7 @@
       exampleMessages: [
         'I would love to find Salsa Coreana in Peru!',
         'I want to try it with tacos. Please bring it to Mexico!',
-        'I hope I can find it in Chile soon.',
+        'I hope I can find it in Spain soon.',
       ],
       feedEmpty: 'New support messages will appear like this. Examples are not included in the total.',
       exampleLabel: 'Example',
@@ -203,7 +210,7 @@
       MX: t.mexico,
       CL: t.chile,
       CO: t.colombia,
-      AR: t.argentina,
+      ES: t.spain,
     }[country] || country;
   }
 
@@ -226,7 +233,7 @@
       supportMexico: t.mexico,
       supportChile: t.chile,
       supportColombia: t.colombia,
-      supportArgentina: t.argentina,
+      supportSpain: t.spain,
       supportMessageToggleText: t.messageToggle,
       supportSubmitLabel: t.submit,
       supportPrivacy: t.privacy,
@@ -327,15 +334,47 @@
       const content = document.createElement('div');
       const meta = document.createElement('div');
       const supporterName = document.createElement('strong');
-      const country = document.createElement('span');
       const time = document.createElement('time');
       const body = document.createElement('p');
+
       item.className = example ? 'support-feed-item support-feed-item--example' : 'support-feed-item';
       avatar.className = 'support-feed-avatar';
       content.className = 'support-feed-content';
       meta.className = 'support-feed-meta';
       supporterName.className = 'support-feed-name';
-      country.className = 'support-feed-country';
+      time.className = 'support-feed-time';
+      body.className = 'support-feed-message';
+
+      const flagSrc = flagMap[code];
+      if (flagSrc) {
+        const img = document.createElement('img');
+        img.src = flagSrc;
+        img.alt = countryName(code) || 'Flag';
+        img.className = 'support-feed-flag-img';
+        img.onerror = () => {
+          avatar.replaceChildren(document.createTextNode(name.slice(0, 1).toUpperCase()));
+        };
+        avatar.replaceChildren(img);
+      } else {
+        avatar.textContent = name.slice(0, 1).toUpperCase();
+      }
+
+      supporterName.textContent = name;
+      time.textContent = formatSupportTime(createdAt);
+      if (createdAt && !Number.isNaN(new Date(createdAt).getTime())) time.dateTime = new Date(createdAt).toISOString();
+      body.textContent = message || t.feedMessage(countryName(code));
+
+      meta.append(supporterName, time);
+      if (example) {
+        const exampleTag = document.createElement('span');
+        exampleTag.className = 'support-feed-example';
+        exampleTag.textContent = t.exampleLabel;
+        meta.appendChild(exampleTag);
+      }
+      content.append(meta, body);
+      item.append(avatar, content);
+      listElement.appendChild(item);
+    }try';
       time.className = 'support-feed-time';
       body.className = 'support-feed-message';
       avatar.textContent = name.slice(0, 1).toUpperCase();

@@ -374,25 +374,6 @@
       content.append(meta, body);
       item.append(avatar, content);
       listElement.appendChild(item);
-    }try';
-      time.className = 'support-feed-time';
-      body.className = 'support-feed-message';
-      avatar.textContent = name.slice(0, 1).toUpperCase();
-      supporterName.textContent = name;
-      country.textContent = countryName(code);
-      time.textContent = formatSupportTime(createdAt);
-      if (createdAt && !Number.isNaN(new Date(createdAt).getTime())) time.dateTime = new Date(createdAt).toISOString();
-      body.textContent = message || t.feedMessage(countryName(code));
-      meta.append(supporterName, country, time);
-      if (example) {
-        const exampleTag = document.createElement('span');
-        exampleTag.className = 'support-feed-example';
-        exampleTag.textContent = t.exampleLabel;
-        meta.appendChild(exampleTag);
-      }
-      content.append(meta, body);
-      item.append(avatar, content);
-      listElement.appendChild(item);
     }
 
     listElement.replaceChildren();
@@ -420,18 +401,32 @@
   }
 
   async function loadSupportFeed() {
-    if (!endpoint) return;
+    const totalElement = document.getElementById('supportFeedTotal');
+    if (!endpoint) {
+      if (totalElement) totalElement.textContent = t.feedTotal(0);
+      return;
+    }
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timeoutId = controller ? setTimeout(() => controller.abort(), 10000) : null;
     try {
       const feedUrl = new URL(endpoint);
       feedUrl.searchParams.set('mode', 'demand_support');
       feedUrl.searchParams.set('limit', '24');
       feedUrl.searchParams.set('_', String(Date.now()));
-      const response = await fetch(feedUrl.toString(), { method: 'GET', cache: 'no-store' });
+      const response = await fetch(feedUrl.toString(), {
+        method: 'GET',
+        cache: 'no-store',
+        signal: controller ? controller.signal : undefined,
+      });
+      if (timeoutId) clearTimeout(timeoutId);
       const result = await response.json();
       if (!response.ok || !result.ok) throw new Error(result.error || 'Support feed request failed');
       renderSupportFeed(result);
     } catch (error) {
-      console.error(error);
+      if (timeoutId) clearTimeout(timeoutId);
+      console.error('Support feed load failure:', error);
+      if (totalElement) totalElement.textContent = t.feedTotal(0);
+      renderSupportFeed({ total: 0, totals: {}, supporters: [] });
     }
   }
 

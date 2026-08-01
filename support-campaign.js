@@ -11,8 +11,8 @@
       visual: '당신의 응원으로 시작되는 첫 출시',
       category: '첫 출시 응원 프로젝트',
       title: 'Salsa Coreana의 출시를 도와주세요.',
-      lead: 'MOKDA의 첫 출시를 위해 국가별 응원을 모으고 있습니다.',
-      impactTitle: '당신의 응원이 실제 수요 데이터가 됩니다.',
+      lead: '당신의 응원은 라틴아메리카 현지 매장과 유통사에 실제 수요를 증명하는 데 큰 도움이 됩니다.',
+      impactTitle: 'Cuéntanos dónde quieres encontrar Salsa Coreana.',
       nameLabel: '이름 또는 닉네임',
       namePlaceholder: '이름을 입력해주세요',
       messageLabel: '응원 메시지',
@@ -43,8 +43,8 @@
       ],
       feedEmpty: '새 응원 메시지는 아래와 같은 모습으로 표시됩니다. 예시는 응원 수에 포함되지 않습니다.',
       exampleLabel: '표시 예시',
-      storyEyebrow: '응원이 필요한 이유',
-      storyTitle: '당신의 응원이 출시 근거가 되어 현지 마트와 유통사에 실제 수요 자료로 제시됩니다.',
+      storyEyebrow: '',
+      storyTitle: '',
       back: '← MOKDA 홈페이지로 돌아가기',
       menuHome: '홈',
       menuAbout: '브랜드 소개',
@@ -58,8 +58,8 @@
       visual: 'Un sueño que empieza con tu apoyo',
       category: 'Proyecto de lanzamiento',
       title: 'Ayúdanos a lanzar Salsa Coreana.',
-      lead: 'Estamos reuniendo apoyo para el primer lanzamiento de MOKDA en Latinoamérica.',
-      impactTitle: 'Tu apoyo se convierte en datos reales.',
+      lead: 'Tu apoyo nos ayuda a demostrar una demanda real ante tiendas y distribuidores de Latinoamérica.',
+      impactTitle: 'Cuéntanos dónde quieres encontrar Salsa Coreana.',
       nameLabel: 'Nombre o apodo',
       namePlaceholder: 'Escribe tu nombre',
       messageLabel: 'Mensaje de apoyo',
@@ -90,8 +90,8 @@
       ],
       feedEmpty: 'Así aparecerán los nuevos mensajes. Estos ejemplos no cuentan en el total.',
       exampleLabel: 'Ejemplo',
-      storyEyebrow: 'Por qué importa',
-      storyTitle: 'Tu apoyo demuestra una demanda real que compartiremos con tiendas y distribuidores.',
+      storyEyebrow: '',
+      storyTitle: '',
       back: '← Volver a MOKDA',
       menuHome: 'Inicio',
       menuAbout: 'Sobre nosotros',
@@ -105,8 +105,8 @@
       visual: 'A dream that starts with your support',
       category: 'First launch project',
       title: 'Help us launch Salsa Coreana.',
-      lead: 'We are gathering support for MOKDA’s first launch in Latin America.',
-      impactTitle: 'Your support becomes real demand data.',
+      lead: 'Your support helps us demonstrate real demand to stores and distributors across Latin America.',
+      impactTitle: 'Tell us where you want to find Salsa Coreana.',
       nameLabel: 'Name or nickname',
       namePlaceholder: 'Enter your name',
       messageLabel: 'Support message',
@@ -137,8 +137,8 @@
       ],
       feedEmpty: 'New support messages will appear like this. Examples are not included in the total.',
       exampleLabel: 'Example',
-      storyEyebrow: 'Why it matters',
-      storyTitle: 'Your support proves real demand that we will share with retailers and distributors.',
+      storyEyebrow: '',
+      storyTitle: '',
       back: '← Back to MOKDA',
       menuHome: 'Home',
       menuAbout: 'About',
@@ -206,7 +206,7 @@
 
   function setText(id, value) {
     const element = document.getElementById(id);
-    if (element) element.textContent = value;
+    if (element && value) element.textContent = value;
   }
 
   function render() {
@@ -230,8 +230,6 @@
       supportFeedTitle: t.feedTitle,
       supportFeedTotal: t.feedLoading,
       supportFeedEmpty: t.feedEmpty,
-      supportStoryEyebrow: t.storyEyebrow,
-      supportStoryTitle: t.storyTitle,
       supportBack: t.back,
       supportMenuHome: t.menuHome,
       supportMenuAbout: t.menuAbout,

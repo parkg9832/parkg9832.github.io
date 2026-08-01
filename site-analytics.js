@@ -357,10 +357,7 @@
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: true, reason: 'active' };
 
   track('page_view');
-  if (/\/contact(?:\.html|\/)?$/i.test(window.location.pathname)) {
+   if (/\/contact(?:\.html|\/)?$/i.test(window.location.pathname)) {
     track('contact_view', { element: 'contact_page' });
-  }
-  if (/\/support(?:\.html|\/)?$/i.test(window.location.pathname)) {
-    track('support_page_view', { element: 'demand_support_page' });
   }
 })();

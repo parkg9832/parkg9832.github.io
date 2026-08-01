@@ -103,6 +103,9 @@ function doGet(event) {
   if (mode === 'demand_support') {
     return jsonResponse(getDemandSupportFeed(event));
   }
+  if (mode === 'update_dashboard') {
+    return jsonResponse({ ok: true, result: updateDashboardSheetWithSupportFunnel() });
+  }
 
   const chatWebhookUrl = getOptionalProperty(SCRIPT_PROPERTY_KEYS.chatWebhookUrl);
 
@@ -703,52 +706,295 @@ function jsonResponse(payload) {
 }
 
 /**
- * 대시보드 시트에 출시 응원 곁가지 퍼널(Support Campaign Branch Funnel) 섹션을 자동 구축/갱신합니다.
+ * 대시보드에 출시 응원 곁가지 퍼널을 메인 퍼널과 동일한 디자인으로 구축합니다.
+ *
+ * 퍼널 3단계: 전체 방문(=A7 참조) → 응원 방문 → 응원 완료
+ * 포함: 누적 전환율, 다음 단계 이탈률, 이탈 세션, 자동 진단, 유입/이탈 분석, 퍼널 비교
  */
 function updateDashboardSheetWithSupportFunnel() {
-  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
-  const ss = SpreadsheetApp.openById(sheetId);
-  let sheet = ss.getSheetByName('MOKDA 홈페이지 대시보드') || ss.getSheetByName('대시보드');
+  var sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  var ss = SpreadsheetApp.openById(sheetId);
+  var dashboard = ss.getSheetByName('MOKDA 홈페이지 대시보드') || ss.getSheetByName('대시보드');
+  var funnelSheet = ss.getSheetByName('Funnel Events');
+  var supportSheet = ss.getSheetByName('Demand Support');
 
-  if (!sheet) {
-    throw new Error('대시보드 시트를 찾을 수 없습니다. (MOKDA 홈페이지 대시보드 또는 대시보드 탭)');
+  if (!dashboard || !funnelSheet) {
+    throw new Error('필수 시트(대시보드/Funnel Events)를 찾을 수 없습니다.');
   }
 
-  sheet.getRange('A28:F28').merge()
-    .setValue('곁가지 퍼널 — 출시 응원 (Support Campaign)')
-    .setFontWeight('bold')
-    .setBackground('#ef5f18')
-    .setFontColor('#ffffff');
+  // ════════════════════════════
+  //  1. 데이터 수집 & 집계
+  // ════════════════════════════
+  var allData = funnelSheet.getDataRange().getValues();
+  var hdr = allData[0];
+  var ci = function(name) { return hdr.indexOf(name); };
+  var iEv = ci('Event Name'), iSid = ci('Session ID');
+  var iPath = ci('Page Path'), iRef = ci('Referrer Host');
+  var iElem = ci('Element'), iTime = ci('Received At');
+  var rows = allData.slice(1);
 
-  const headers = [
-    '응원 관심 (Support View)',
-    '응원 폼 시작 (Form Start)',
-    '응원 완료 (Support Submit)',
-    '응원 전환율 (Support Conv.)',
-    '전체 방문 대비 응원율',
-    '최다 응원 국가',
-  ];
-  sheet.getRange('A29:F29').setValues([headers]).setFontWeight('bold').setBackground('#fce8e6');
+  // 고유 세션 집합 반환
+  function sessFor(evName, elemFilter) {
+    var s = {};
+    rows.forEach(function(r) {
+      if (r[iEv] === evName && r[iSid]) {
+        if (!elemFilter || r[iElem] === elemFilter) {
+          s[String(r[iSid])] = true;
+        }
+      }
+    });
+    return Object.keys(s);
+  }
 
-  sheet.getRange('A30').setFormula('=COUNTIFS(\'Funnel Events\'!B:B, "support_page_view")');
-  sheet.getRange('B30').setFormula('=COUNTIFS(\'Funnel Events\'!B:B, "support_form_start")');
-  sheet.getRange('C30').setFormula('=IFERROR(COUNTA(\'Demand Support\'!A2:A), 0)');
-  sheet.getRange('D30').setFormula('=IF(A30>0, C30/A30, 0)').setNumberFormat('0.0%');
-  sheet.getRange('E30').setFormula('=IF(A7>0, C30/A7, 0)').setNumberFormat('0.0%');
-  sheet.getRange('F30').setFormula('=IFERROR(INDEX(\'Demand Support\'!C2:C, MODE(IF(\'Demand Support\'!C2:C<>"", MATCH(\'Demand Support\'!C2:C, \'Demand Support\'!C2:C, 0)))), "N/A")');
+  var supView  = sessFor('support_page_view');
+  var supSubmitEv = sessFor('support_submit');
 
-  sheet.getRange('A32:F32').merge()
-    .setValue('퍼널 단계별 비교 (B2B 문의 vs 출시 응원)')
-    .setFontWeight('bold')
-    .setBackground('#321506')
-    .setFontColor('#ffffff');
+  // 응원 완료: Funnel Events 이벤트 수 vs Demand Support 시트 행 수 중 큰 값
+  var nComplete = supSubmitEv.length;
+  if (supportSheet) {
+    var sheetRows = Math.max(0, supportSheet.getLastRow() - 1);
+    if (sheetRows > nComplete) nComplete = sheetRows;
+  }
 
-  const compHeaders = ['퍼널 구분', '1단계 (관심)', '2단계 (폼 시작)', '3단계 (완료)', '최종 전환율', '비고'];
-  sheet.getRange('A33:F33').setValues([compHeaders]).setFontWeight('bold').setBackground('#f3f4f6');
+  var nSupView = supView.length;
+  var nSupSubmit = nComplete;
 
-  sheet.getRange('A34:F34').setValues([['B2B 문의 퍼널', '=C7', '=D7', '=E7', '=IF(B34>0, D34/B34, 0)', 'B2B 바이어/파트너']]);
-  sheet.getRange('A35:F35').setValues([['출시 응원 퍼널', '=A30', '=B30', '=C30', '=D30', '라틴아메리카 현지 유저']]);
-  sheet.getRange('E34:E35').setNumberFormat('0.0%');
+  // ── 유입 경로 분석 (세션 기준 중복 제거) ──
+  var refBySession = {};
+  rows.forEach(function(r) {
+    if (r[iEv] === 'support_page_view' && r[iSid]) {
+      var sid = String(r[iSid]);
+      if (!refBySession[sid]) {
+        var ref = String(r[iRef] || '').trim();
+        refBySession[sid] = ref || '직접 방문';
+      }
+    }
+  });
+  var refCnt = {};
+  Object.keys(refBySession).forEach(function(k) {
+    var v = refBySession[k];
+    refCnt[v] = (refCnt[v] || 0) + 1;
+  });
+  var topRef = Object.entries(refCnt).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 3);
+  while (topRef.length < 3) topRef.push(['—', 0]);
 
-  return '대시보드에 출시 응원 곁가지 퍼널이 성공적으로 반영되었습니다.';
+  // ── 이탈 행동 분석 ──
+  var timeline = {};
+  rows.forEach(function(r) {
+    var sid = String(r[iSid] || '');
+    if (!sid) return;
+    if (!timeline[sid]) timeline[sid] = [];
+    timeline[sid].push({ ev: r[iEv], pg: String(r[iPath] || ''), t: r[iTime] });
+  });
+
+  var exitCnt = {};
+  supView.forEach(function(sid) {
+    var tl = (timeline[sid] || []).sort(function(a, b) { return new Date(a.t) - new Date(b.t); });
+    var last = tl[tl.length - 1];
+    var lbl;
+    if (!last) {
+      lbl = '알 수 없음';
+    } else if (last.ev === 'support_submit') {
+      lbl = '응원 완료 후 이탈';
+    } else if (last.ev === 'support_page_view' || last.ev === 'scroll_milestone') {
+      lbl = '응원 페이지에서 이탈';
+    } else {
+      var pg = (last.pg || last.ev).replace(/\.html$/i, '').replace(/^\/?(es|en|ko)\//i, '/');
+      lbl = pg || last.ev;
+    }
+    exitCnt[lbl] = (exitCnt[lbl] || 0) + 1;
+  });
+  var topExit = Object.entries(exitCnt).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 3);
+  while (topExit.length < 3) topExit.push(['—', 0]);
+
+  // ── 최다 응원 국가 ──
+  var topCountry = 'N/A';
+  if (supportSheet && supportSheet.getLastRow() > 1) {
+    var cData = supportSheet.getRange(2, 3, supportSheet.getLastRow() - 1).getValues();
+    var cc = {};
+    cData.forEach(function(row) {
+      var c = row[0];
+      if (c) cc[c] = (cc[c] || 0) + 1;
+    });
+    var cSorted = Object.entries(cc).sort(function(a, b) { return b[1] - a[1]; });
+    if (cSorted.length) topCountry = cSorted[0][0];
+  }
+
+  // ════════════════════════════════════════════════
+  //  2. 대시보드 작성 (메인 퍼널 디자인 동일)
+  // ════════════════════════════════════════════════
+
+  // 기존 영역 초기화 (Row 28~55)
+  dashboard.getRange('A28:L55').breakApart().clearContent().clearFormat();
+
+  var R = 28; // 시작 행
+
+  // ── 셀 병합 + 포맷 헬퍼 ──
+  function m(row, col, cols, val, o) {
+    o = o || {};
+    var r = dashboard.getRange(row, col, 1, cols).merge();
+    if (typeof val === 'string' && val.length > 0 && val.charAt(0) === '=') {
+      r.setFormula(val);
+    } else {
+      r.setValue(val);
+    }
+    if (o.b) r.setFontWeight('bold');
+    if (o.s) r.setFontSize(o.s);
+    if (o.c) r.setFontColor(o.c);
+    if (o.bg) r.setBackground(o.bg);
+    if (o.a) r.setHorizontalAlignment(o.a);
+    if (o.f) r.setNumberFormat(o.f);
+    if (o.it) r.setFontStyle('italic');
+    return r;
+  }
+
+  // ────────────────────────────────────────
+  //  섹션: 곁가지 퍼널 — 출시 응원
+  // ────────────────────────────────────────
+
+  // Row 28: 타이틀 바
+  m(R, 1, 12, '곁가지 퍼널 — 출시 응원 (Support Campaign)', { b: 1, c: '#ffffff', bg: '#ef5f18', a: 'left' });
+
+  // Row 29: STEP 라벨 (색상 그라데이션)
+  var stepColors = ['#ef5f18', '#ff9800', '#4caf50'];
+  var stepLabels = ['STEP 1 →', 'STEP 2 →', 'STEP 3'];
+  for (var i = 0; i < 3; i++) {
+    m(R + 1, i * 2 + 1, 2, stepLabels[i], { b: 1, c: '#ffffff', bg: stepColors[i], a: 'center' });
+  }
+  m(R + 1, 7, 6, '자동 진단', { b: 1, c: '#ffffff', bg: '#c62828', a: 'center' });
+
+  // Row 30: 단계 이름
+  var stepNames = ['전체 방문', '응원 방문', '응원 완료'];
+  for (var i = 0; i < 3; i++) {
+    m(R + 2, i * 2 + 1, 2, stepNames[i], { b: 1, bg: '#fff3e0', a: 'center' });
+  }
+  m(R + 2, 7, 2, '가장 큰 이탈 구간', { s: 9, c: '#666666', a: 'right' });
+  m(R + 2, 9, 4, '', { a: 'left' });
+
+  // Row 31: 세션 수
+  // STEP 1 = 메인 대시보드 A7 참조! (79세션과 100% 동일)
+  m(R + 3, 1, 2, '=A7', { b: 1, s: 22, a: 'center' });
+  m(R + 3, 3, 2, nSupView, { b: 1, s: 22, a: 'center' });
+  m(R + 3, 5, 2, nSupSubmit, { b: 1, s: 22, a: 'center' });
+  m(R + 3, 7, 6, '=IF((1 - C31/A31) >= (1 - E31/C31), "전체 방문 → 응원 방문", "응원 방문 → 응원 완료")', { b: 1, c: '#c62828', a: 'center', s: 11 });
+
+  // Row 32: "세션" 라벨 + 최대 이탈률 라벨
+  for (var i = 0; i < 3; i++) {
+    m(R + 4, i * 2 + 1, 2, '세션', { s: 8, c: '#999999', a: 'center' });
+  }
+  m(R + 4, 7, 2, '최대 이탈률', { s: 9, c: '#666666', a: 'right' });
+  m(R + 4, 9, 4, '', { a: 'center' });
+
+  // Row 33: 누적 전환율 + 최대 이탈률 값
+  m(R + 5, 1, 2, 1, { b: 1, s: 16, c: '#2e7d32', a: 'center', f: '0.0%' });
+  m(R + 5, 3, 2, '=IF(A31>0, C31/A31, 0)', { b: 1, s: 16, c: '#f57f17', a: 'center', f: '0.0%' });
+  m(R + 5, 5, 2, '=IF(A31>0, E31/A31, 0)', { b: 1, s: 16, c: '#2e7d32', a: 'center', f: '0.0%' });
+  m(R + 5, 7, 2, '', {});
+  m(R + 5, 9, 4, '=MAX(1 - C31/A31, 1 - E31/C31)', { b: 1, s: 20, c: '#c62828', a: 'center', f: '0.0%' });
+
+  // Row 34: "누적 전환율" 라벨 + 우선 개선 영역
+  for (var i = 0; i < 3; i++) {
+    m(R + 6, i * 2 + 1, 2, '누적 전환율', { s: 8, c: '#999999', a: 'center' });
+  }
+  m(R + 6, 7, 2, '우선 개선 영역', { s: 9, c: '#666666', a: 'right' });
+  m(R + 6, 9, 4, '', { a: 'center' });
+
+  // Row 35: 다음 단계 이탈률 + 우선 개선 텍스트
+  m(R + 7, 1, 2, '=IF(A31>0, (A31-C31)/A31, 0)', { b: 1, s: 14, c: '#f57f17', a: 'center', f: '0.0%' });
+  m(R + 7, 3, 2, '=IF(C31>0, (C31-E31)/C31, 0)', { b: 1, s: 14, c: '#f57f17', a: 'center', f: '0.0%' });
+  m(R + 7, 5, 2, 0, { b: 1, s: 14, c: '#2e7d32', a: 'center', f: '0.0%' });
+  m(R + 7, 7, 6, '=IF(I33>0.8, "이탈률 심각 — 즉시 개선", IF(I33>0.5, "이탈률 주의 — 개선 검토", "양호"))', { b: 1, c: '#c62828', a: 'center' });
+
+  // Row 36: "다음 단계 이탈률" 라벨 + 직전 단계 전환율
+  for (var i = 0; i < 3; i++) {
+    m(R + 8, i * 2 + 1, 2, '다음 단계 이탈률', { s: 8, c: '#999999', a: 'center' });
+  }
+  m(R + 8, 7, 2, '직전 단계 전환율', { s: 9, c: '#666666', a: 'right' });
+  m(R + 8, 9, 4, '', { a: 'center' });
+
+  // Row 37: 이탈 세션 + 직전 전환율 값
+  m(R + 9, 1, 2, '=A31-C31', { b: 1, s: 14, a: 'center' });
+  m(R + 9, 3, 2, '=C31-E31', { b: 1, s: 14, a: 'center' });
+  m(R + 9, 5, 2, '=E31', { b: 1, s: 14, a: 'center' });
+  m(R + 9, 7, 2, '', {});
+  m(R + 9, 9, 4, '=IF(C31>0, E31/C31, 0)', { b: 1, s: 16, c: '#2e7d32', a: 'center', f: '0.0%' });
+
+  // Row 38: "이탈 세션" / "완료 세션" 라벨 + 최다 국가
+  m(R + 10, 1, 2, '이탈 세션', { s: 8, c: '#999999', a: 'center' });
+  m(R + 10, 3, 2, '이탈 세션', { s: 8, c: '#999999', a: 'center' });
+  m(R + 10, 5, 2, '완료 세션', { s: 8, c: '#999999', a: 'center' });
+  m(R + 10, 7, 2, '최다 응원 국가', { s: 9, c: '#666666', a: 'right' });
+  m(R + 10, 9, 4, topCountry, { b: 1, a: 'center', s: 12 });
+
+  // Row 39: 안내 문구
+  m(R + 11, 1, 12, '선택 기간의 고유 세션 기준입니다. (STEP 1 전체 방문 = 메인 대시보드 A7 셀 동기화)', { s: 8, c: '#999999', it: 1 });
+
+  // ────────────────────────────────────────
+  //  섹션: 유입 경로 / 이탈 행동 분석
+  // ────────────────────────────────────────
+
+  var TR = R + 12; // Row 40
+
+  // Row 40: 타이틀
+  m(TR, 1, 12, '유입 경로 / 이탈 행동 분석', { b: 1, c: '#ffffff', bg: '#37474f', a: 'left' });
+
+  // Row 41: 헤더
+  m(TR + 1, 1, 2, '유입 경로', { b: 1, bg: '#eceff1', a: 'center' });
+  m(TR + 1, 3, 2, '세션 수', { b: 1, bg: '#eceff1', a: 'center' });
+  m(TR + 1, 5, 2, '비율', { b: 1, bg: '#eceff1', a: 'center' });
+  m(TR + 1, 7, 2, '이탈 행동', { b: 1, bg: '#eceff1', a: 'center' });
+  m(TR + 1, 9, 2, '세션 수', { b: 1, bg: '#eceff1', a: 'center' });
+  m(TR + 1, 11, 2, '비율', { b: 1, bg: '#eceff1', a: 'center' });
+
+  // Rows 42-44: 데이터 (Top 3)
+  for (var i = 0; i < 3; i++) {
+    var dr = TR + 2 + i;
+    var rowBg = i % 2 === 0 ? '#ffffff' : '#fafafa';
+    m(dr, 1, 2, topRef[i][0], { a: 'left', bg: rowBg });
+    m(dr, 3, 2, topRef[i][1], { a: 'center', bg: rowBg, b: 1 });
+    m(dr, 5, 2, nSupView > 0 ? topRef[i][1] / nSupView : 0, { a: 'center', f: '0.0%', bg: rowBg });
+    m(dr, 7, 2, topExit[i][0], { a: 'left', bg: rowBg });
+    m(dr, 9, 2, topExit[i][1], { a: 'center', bg: rowBg, b: 1 });
+    m(dr, 11, 2, nSupView > 0 ? topExit[i][1] / nSupView : 0, { a: 'center', f: '0.0%', bg: rowBg });
+  }
+
+  // ────────────────────────────────────────
+  //  섹션: 퍼널 비교 (B2B 문의 vs 출시 응원)
+  // ────────────────────────────────────────
+
+  var CR = R + 18; // Row 46
+
+  // Row 46: 타이틀
+  m(CR, 1, 12, '퍼널 단계별 비교 (B2B 문의 vs 출시 응원)', { b: 1, c: '#ffffff', bg: '#321506', a: 'left' });
+
+  // Row 47: 헤더
+  var cHeaders = ['퍼널 구분', '1단계 (관심)', '2단계 (폼 시작)', '3단계 (완료)', '최종 전환율', '비고'];
+  for (var i = 0; i < 6; i++) {
+    m(CR + 1, i * 2 + 1, 2, cHeaders[i], { b: 1, bg: '#f3f4f6', a: 'center' });
+  }
+
+  // Row 48: B2B 문의 퍼널 (기존 대시보드 셀 참조: E7=문의 관심, G7=폼 시작, I7=문의 완료)
+  m(CR + 2, 1, 2, 'B2B 문의 퍼널', { a: 'left' });
+  m(CR + 2, 3, 2, '=E7', { a: 'center' });
+  m(CR + 2, 5, 2, '=G7', { a: 'center' });
+  m(CR + 2, 7, 2, '=I7', { a: 'center' });
+  m(CR + 2, 9, 2, '=IF(E7>0, I7/E7, 0)', { a: 'center', f: '0.0%' });
+  m(CR + 2, 11, 2, 'B2B 바이어/파트너', { a: 'left' });
+
+  // Row 49: 출시 응원 퍼널
+  m(CR + 3, 1, 2, '출시 응원 퍼널', { a: 'left' });
+  m(CR + 3, 3, 2, '=C31', { a: 'center' });
+  m(CR + 3, 5, 2, '—', { a: 'center', c: '#999999' });
+  m(CR + 3, 7, 2, '=E31', { a: 'center' });
+  m(CR + 3, 9, 2, '=IF(C31>0, E31/C31, 0)', { a: 'center', f: '0.0%' });
+  m(CR + 3, 11, 2, '라틴아메리카 현지 유저', { a: 'left' });
+
+  return JSON.stringify({
+    ok: true,
+    message: '출시 응원 퍼널이 메인 대시보드(=A7)와 완벽히 동기화되어 재구축되었습니다.',
+    stats: { 응원방문: nSupView, 응원완료: nSupSubmit, 최다국가: topCountry },
+    유입TOP3: topRef,
+    이탈TOP3: topExit,
+  });
 }
+

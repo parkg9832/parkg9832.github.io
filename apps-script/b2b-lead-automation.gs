@@ -701,3 +701,54 @@ function getOptionalProperty(key) {
 function jsonResponse(payload) {
   return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(ContentService.MimeType.JSON);
 }
+
+/**
+ * 대시보드 시트에 출시 응원 곁가지 퍼널(Support Campaign Branch Funnel) 섹션을 자동 구축/갱신합니다.
+ */
+function updateDashboardSheetWithSupportFunnel() {
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  const ss = SpreadsheetApp.openById(sheetId);
+  let sheet = ss.getSheetByName('MOKDA 홈페이지 대시보드') || ss.getSheetByName('대시보드');
+
+  if (!sheet) {
+    throw new Error('대시보드 시트를 찾을 수 없습니다. (MOKDA 홈페이지 대시보드 또는 대시보드 탭)');
+  }
+
+  sheet.getRange('A28:F28').merge()
+    .setValue('곁가지 퍼널 — 출시 응원 (Support Campaign)')
+    .setFontWeight('bold')
+    .setBackground('#ef5f18')
+    .setFontColor('#ffffff');
+
+  const headers = [
+    '응원 관심 (Support View)',
+    '응원 폼 시작 (Form Start)',
+    '응원 완료 (Support Submit)',
+    '응원 전환율 (Support Conv.)',
+    '전체 방문 대비 응원율',
+    '최다 응원 국가',
+  ];
+  sheet.getRange('A29:F29').setValues([headers]).setFontWeight('bold').setBackground('#fce8e6');
+
+  sheet.getRange('A30').setFormula('=COUNTIFS(\'Funnel Events\'!B:B, "support_page_view")');
+  sheet.getRange('B30').setFormula('=COUNTIFS(\'Funnel Events\'!B:B, "support_form_start")');
+  sheet.getRange('C30').setFormula('=IFERROR(COUNTA(\'Demand Support\'!A2:A), 0)');
+  sheet.getRange('D30').setFormula('=IF(A30>0, C30/A30, 0)').setNumberFormat('0.0%');
+  sheet.getRange('E30').setFormula('=IF(A7>0, C30/A7, 0)').setNumberFormat('0.0%');
+  sheet.getRange('F30').setFormula('=IFERROR(INDEX(\'Demand Support\'!C2:C, MODE(IF(\'Demand Support\'!C2:C<>"", MATCH(\'Demand Support\'!C2:C, \'Demand Support\'!C2:C, 0)))), "N/A")');
+
+  sheet.getRange('A32:F32').merge()
+    .setValue('퍼널 단계별 비교 (B2B 문의 vs 출시 응원)')
+    .setFontWeight('bold')
+    .setBackground('#321506')
+    .setFontColor('#ffffff');
+
+  const compHeaders = ['퍼널 구분', '1단계 (관심)', '2단계 (폼 시작)', '3단계 (완료)', '최종 전환율', '비고'];
+  sheet.getRange('A33:F33').setValues([compHeaders]).setFontWeight('bold').setBackground('#f3f4f6');
+
+  sheet.getRange('A34:F34').setValues([['B2B 문의 퍼널', '=C7', '=D7', '=E7', '=IF(B34>0, D34/B34, 0)', 'B2B 바이어/파트너']]);
+  sheet.getRange('A35:F35').setValues([['출시 응원 퍼널', '=A30', '=B30', '=C30', '=D30', '라틴아메리카 현지 유저']]);
+  sheet.getRange('E34:E35').setNumberFormat('0.0%');
+
+  return '대시보드에 출시 응원 곁가지 퍼널이 성공적으로 반영되었습니다.';
+}

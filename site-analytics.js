@@ -278,6 +278,11 @@
         return;
       }
 
+      if (/support\.html|#support/i.test(href)) {
+        track('support_cta_click', { element: label }, { immediate: true });
+        return;
+      }
+
       if (/products?\.html|#products|coming-soon\.html/i.test(href)) {
         track(
           'product_cta_click',
@@ -289,7 +294,7 @@
     true
   );
 
-  const form = document.querySelector('#contactForm, #b2bForm');
+  const form = document.querySelector('#contactForm, #b2bForm, #supportForm');
   if (form) {
     form.addEventListener(
       'focusin',
@@ -354,5 +359,8 @@
   track('page_view');
   if (/\/contact(?:\.html|\/)?$/i.test(window.location.pathname)) {
     track('contact_view', { element: 'contact_page' });
+  }
+  if (/\/support(?:\.html|\/)?$/i.test(window.location.pathname)) {
+    track('support_page_view', { element: 'demand_support_page' });
   }
 })();

@@ -35,7 +35,7 @@
       },
       connect: {
         label: 'CONTACTO',
-        links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact']]
+        links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact'], ['Apoyar lanzamiento', 'support']]
       },
       navigation: 'Navegación principal'
     },
@@ -50,7 +50,7 @@
       },
       connect: {
         label: '문의',
-        links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact']]
+        links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact'], ['출시 응원하기', 'support']]
       },
       navigation: '주요 메뉴'
     },
@@ -65,7 +65,7 @@
       },
       connect: {
         label: 'CONTACT',
-        links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact']]
+        links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact'], ['Support launch', 'support']]
       },
       navigation: 'Primary navigation'
     }
@@ -493,13 +493,14 @@
   function groupHref(group, target) {
     if (group.key === 'brand') return addHash(hrefs.about, target);
     if (group.key === 'products') return addHash(hrefs.products, target);
+    if (target === 'support') return hrefs.contact.replace('contact.html', 'support.html');
     return target === 'qna' ? hrefs.qna : hrefs.contact;
   }
 
   const pageName = window.location.pathname.split('/').pop() || 'index.html';
   const currentGroup = pageName === 'products.html'
     ? 'products'
-    : pageName === 'qna.html' || pageName === 'contact.html'
+    : pageName === 'qna.html' || pageName === 'contact.html' || pageName === 'support.html'
       ? 'connect'
       : 'brand';
 

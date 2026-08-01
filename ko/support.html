@@ -124,64 +124,44 @@
             <p class="support-impact" id="supportImpactTitle">Tu apoyo se convierte en datos reales.</p>
 
             <form class="support-form" id="supportForm" novalidate>
-            <div class="support-field">
-              <label for="supportName" id="supportNameLabel">Nombre o apodo</label>
-              <input
-                id="supportName"
-                name="name"
-                type="text"
-                maxlength="40"
-                autocomplete="nickname"
-                placeholder="Escribe tu nombre"
-                required
-              />
-            </div>
-
-            <fieldset class="support-country-field">
-              <legend id="supportCountryLabel">¿Dónde quieres encontrar Salsa Coreana?</legend>
-              <div class="support-countries">
-                <label class="support-country">
-                  <input type="radio" name="country" value="PE" required />
-                  <span>
-                    <small>PE</small>
-                    <strong id="supportPeru">Perú</strong>
-                    <i aria-hidden="true">✓</i>
-                  </span>
-                </label>
-                <label class="support-country">
-                  <input type="radio" name="country" value="MX" required />
-                  <span>
-                    <small>MX</small>
-                    <strong id="supportMexico">México</strong>
-                    <i aria-hidden="true">✓</i>
-                  </span>
-                </label>
-                <label class="support-country">
-                  <input type="radio" name="country" value="CL" required />
-                  <span>
-                    <small>CL</small>
-                    <strong id="supportChile">Chile</strong>
-                    <i aria-hidden="true">✓</i>
-                  </span>
-                </label>
-                <label class="support-country">
-                  <input type="radio" name="country" value="CO" required />
-                  <span>
-                    <small>CO</small>
-                    <strong id="supportColombia">Colombia</strong>
-                    <i aria-hidden="true">✓</i>
-                  </span>
-                </label>
-                <label class="support-country">
-                  <input type="radio" name="country" value="AR" required />
-                  <span>
-                    <small>AR</small>
-                    <strong id="supportArgentina">Argentina</strong>
-                    <i aria-hidden="true">✓</i>
-                  </span>
-                </label>
+              <div class="support-field">
+                <label for="supportName" id="supportNameLabel">Nombre o apodo</label>
+                <input
+                  id="supportName"
+                  name="name"
+                  type="text"
+                  maxlength="40"
+                  autocomplete="nickname"
+                  placeholder="Escribe tu nombre"
+                  required
+                />
               </div>
-            </fieldset>
+
+              <fieldset class="support-country-field">
+                <legend id="supportCountryLabel">¿Dónde quieres encontrar Salsa Coreana?</legend>
+                <div class="support-countries">
+                  <label class="support-country">
+                    <input type="radio" name="country" value="PE" required />
+                    <span><small>PE</small><strong id="supportPeru">Perú</strong><i aria-hidden="true">✓</i></span>
+                  </label>
+                  <label class="support-country">
+                    <input type="radio" name="country" value="MX" required />
+                    <span><small>MX</small><strong id="supportMexico">México</strong><i aria-hidden="true">✓</i></span>
+                  </label>
+                  <label class="support-country">
+                    <input type="radio" name="country" value="CL" required />
+                    <span><small>CL</small><strong id="supportChile">Chile</strong><i aria-hidden="true">✓</i></span>
+                  </label>
+                  <label class="support-country">
+                    <input type="radio" name="country" value="CO" required />
+                    <span><small>CO</small><strong id="supportColombia">Colombia</strong><i aria-hidden="true">✓</i></span>
+                  </label>
+                  <label class="support-country">
+                    <input type="radio" name="country" value="AR" required />
+                    <span><small>AR</small><strong id="supportArgentina">Argentina</strong><i aria-hidden="true">✓</i></span>
+                  </label>
+                </div>
+              </fieldset>
 
               <div class="support-field support-message-field">
                 <label for="supportMessage" id="supportMessageLabel">Mensaje de apoyo <span>(opcional)</span></label>
@@ -195,13 +175,13 @@
                 <small id="supportMessageHint"></small>
               </div>
 
-            <button class="support-submit" id="supportSubmit" type="submit">
-              <span id="supportSubmitLabel">Apoyar el lanzamiento</span>
-              <span aria-hidden="true">→</span>
-            </button>
-            <p class="support-privacy" id="supportPrivacy">
-              Tu nombre y país aparecerán en la lista de apoyos. No recopilamos tu ubicación ni datos de contacto.
-            </p>
+              <button class="support-submit" id="supportSubmit" type="submit">
+                <span id="supportSubmitLabel">Apoyar el lanzamiento</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <p class="support-privacy" id="supportPrivacy">
+                Tu nombre, país y mensaje aparecerán en la lista. No recopilamos tu ubicación ni datos de contacto.
+              </p>
             </form>
 
             <p class="support-status" id="supportStatus" role="status" aria-live="polite"></p>

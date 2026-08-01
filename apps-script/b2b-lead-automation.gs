@@ -93,6 +93,8 @@ const FUNNEL_EVENT_NAMES = [
   'support_popup_cta',
   'support_popup_hide_day',
   'support_page_view',
+  'support_cta_click',
+  'support_form_start',
   'support_submit',
 ];
 

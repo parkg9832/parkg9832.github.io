@@ -188,7 +188,7 @@ textarea {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  padding: 36px 36px 32px;
+  padding: 26px 20px 24px;
   background:
     radial-gradient(circle at 100% 0%, rgba(255, 149, 92, 0.28), transparent 34%),
     linear-gradient(145deg, #184b38 0%, #103f31 52%, #0a3025 100%);
@@ -207,36 +207,39 @@ textarea {
 
 .support-category {
   width: fit-content;
-  margin: 0 0 14px;
+  margin: 0 auto 15px;
   border-radius: 999px;
-  padding: 8px 13px;
+  padding: 7px 13px;
   background: var(--support-orange);
   color: #fff9f1;
   font-size: 11px;
   font-weight: 900;
-  letter-spacing: 0.02em;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .support-title {
-  max-width: 500px;
-  margin: 0;
+  max-width: 390px;
+  margin: 0 auto 13px;
   color: #fff9f1;
-  font-size: clamp(34px, 3.8vw, 54px);
+  font-size: 30px;
   font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.052em;
-  text-align: left;
+  line-height: 1.08;
+  letter-spacing: -0.7px;
+  text-align: center;
   word-break: keep-all;
 }
 
 .support-lead {
-  max-width: 480px;
-  margin: 14px 0 0;
+  max-width: 390px;
+  margin: 0 auto 0;
   color: #d6e4dc;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.6;
-  text-align: left;
+  line-height: 1.45;
+  letter-spacing: -0.1px;
+  text-align: center;
   word-break: keep-all;
 }
 
@@ -244,26 +247,27 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 36px 40px 28px;
+  padding: 26px 18px 28px;
   background: var(--support-paper);
 }
 
 .support-impact {
-  max-width: 520px;
-  margin: 0 auto;
+  max-width: 390px;
+  margin: 0 auto 24px;
   color: var(--support-green);
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 900;
-  line-height: 1.45;
+  line-height: 1.35;
+  letter-spacing: -0.25px;
   text-align: center;
 }
 
 .support-form {
   display: grid;
-  gap: 18px;
+  gap: 0;
   width: 100%;
   max-width: 560px;
-  margin: 20px auto 0;
+  margin: 0 auto;
 }
 
 .support-form[hidden] {
@@ -272,7 +276,7 @@ textarea {
 
 .support-field {
   display: grid;
-  gap: 8px;
+  gap: 0;
   width: 100%;
 }
 
@@ -280,10 +284,16 @@ textarea {
 .support-country-field legend {
   width: 100%;
   color: #303a34;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: 0;
   text-align: center;
   display: block;
+}
+
+.support-field label {
+  margin-bottom: 10px;
 }
 
 .support-field label span {
@@ -298,8 +308,6 @@ textarea {
   border-radius: 12px;
   background: #fff;
   color: var(--support-ink);
-  font-size: 15px;
-  font-weight: 700;
   text-align: left;
   outline: none;
   transition:
@@ -315,13 +323,22 @@ textarea {
 .support-field input {
   height: 54px;
   padding: 0 16px;
+  margin-bottom: 24px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.1px;
 }
 
 .support-field textarea {
-  min-height: 96px;
+  min-height: 120px;
   resize: vertical;
-  padding: 14px 16px;
-  line-height: 1.55;
+  padding: 15px 16px;
+  margin-bottom: 24px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.05px;
 }
 
 .support-field input:focus,
@@ -345,7 +362,7 @@ textarea {
 
 .support-country-field legend {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   text-align: center;
   display: block;
 }
@@ -353,9 +370,11 @@ textarea {
 .support-countries {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 6px;
+  column-gap: 5px;
+  row-gap: 5px;
   width: 100%;
   justify-content: center;
+  margin-bottom: 24px;
 }
 
 .support-country-chip {
@@ -364,6 +383,7 @@ textarea {
   cursor: pointer;
   min-width: 0;
   margin: 0;
+  border: 0;
 }
 
 .support-country-input {
@@ -380,17 +400,21 @@ textarea {
 
 .support-chip-label {
   width: 100%;
-  min-height: 46px;
+  height: 44px;
+  min-height: 44px;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #ccd0c9;
   border-radius: 10px;
-  padding: 0 4px;
+  padding: 0 3px;
   background: #ffffff;
   color: var(--support-ink);
   font-size: 12px;
   font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.15px;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -428,18 +452,21 @@ textarea {
 }
 
 .support-message-toggle {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
   width: fit-content;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0 auto 24px;
   border: 0;
   background: transparent;
   padding: 4px 0;
   color: #5a645d;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.1px;
   cursor: pointer;
   text-align: center;
   transition: color 150ms ease;
@@ -458,9 +485,9 @@ textarea {
   border-radius: 50%;
   background: rgba(50, 21, 6, 0.07);
   color: var(--support-orange);
-  font-size: 13px;
-  font-weight: 900;
-  line-height: 1;
+  font-size: 17px;
+  line-height: 18px;
+  flex-shrink: 0;
   transition: transform 200ms ease, background-color 150ms ease, color 150ms ease;
 }
 
@@ -472,9 +499,18 @@ textarea {
 
 .support-message-wrapper {
   display: grid;
-  gap: 6px;
-  margin-top: 8px;
+  gap: 0;
+  margin-top: 0;
   width: 100%;
+}
+
+.support-message-wrapper label {
+  font-size: 13px;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .support-message-wrapper[hidden] {
@@ -495,17 +531,22 @@ textarea {
 
 .support-submit {
   position: relative;
-  min-height: 58px;
+  width: 100%;
+  height: 58px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 0;
   border-radius: 12px;
-  padding: 0 52px;
+  padding: 0 18px;
+  margin-bottom: 16px;
   background: var(--support-orange);
   color: #fff;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.1px;
+  text-align: center;
   cursor: pointer;
   transition:
     background-color 150ms ease,
@@ -532,19 +573,20 @@ textarea {
 }
 
 .support-privacy {
-  margin: 8px auto 0;
-  max-width: 500px;
+  max-width: 350px;
+  margin: 0 auto 0;
   color: #838a84;
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 600;
-  line-height: 1.55;
+  line-height: 1.45;
+  letter-spacing: 0;
   text-align: center;
 }
 
 .support-status {
   max-width: 560px;
   min-height: 0;
-  margin: 18px auto 0;
+  margin: 12px auto 0;
   color: #a63c12;
   font-size: 12px;
   font-weight: 750;
@@ -565,8 +607,8 @@ textarea {
 .support-status[data-state="success"] {
   border: 1px solid #c7d9cd;
   border-radius: 10px;
-  padding: 16px;
-  background: #eaf3ed;
+  padding: 10px 14px;
+  background: #eef6f0;
   color: var(--support-green);
   font-size: 13px;
   font-weight: 800;
@@ -593,7 +635,7 @@ textarea {
   margin-left: calc(50% - 50vw);
   border-top: 1px solid rgba(50, 21, 6, 0.08);
   border-bottom: 1px solid rgba(50, 21, 6, 0.08);
-  padding: 34px max(20px, calc((100vw - 860px) / 2)) 72px;
+  padding: 44px max(12px, calc((100vw - 860px) / 2)) 72px;
   background:
     linear-gradient(180deg, rgba(239, 95, 24, 0.035), transparent 180px),
     #fff8ef;
@@ -603,71 +645,89 @@ textarea {
 .support-feed-heading {
   display: grid;
   justify-items: center;
-  gap: 10px;
-  max-width: 860px;
+  gap: 0;
+  width: calc(100% - 24px);
+  max-width: 430px;
   margin: 0 auto;
   text-align: center;
 }
 
 .support-feed-heading p {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
   color: #c9470c;
   font-size: 11px;
   font-weight: 900;
-  letter-spacing: 0.05em;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  text-align: center;
 }
 
 .support-feed-heading h2 {
-  max-width: 650px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto 14px;
   color: var(--support-green);
-  font-size: clamp(30px, 4vw, 44px);
+  font-size: 28px;
   font-weight: 900;
-  line-height: 1.12;
-  letter-spacing: -0.045em;
+  line-height: 1.08;
+  letter-spacing: -0.7px;
+  text-align: center;
   word-break: keep-all;
 }
 
 .support-feed-total {
   flex: 0 0 auto;
-  margin-top: 2px;
+  margin-top: 0;
+  margin-bottom: 18px;
   color: var(--support-orange);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+  text-align: center;
 }
 
 .support-country-totals {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  max-width: 860px;
-  margin: 16px auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  column-gap: 7px;
+  row-gap: 7px;
+  width: calc(100% - 24px);
+  max-width: 430px;
+  margin: 0 auto 22px;
 }
 
 .support-country-total {
+  height: 36px;
+  min-width: 0;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
+  justify-content: center;
+  gap: 4px;
   border: 1px solid rgba(18, 61, 46, 0.12);
   border-radius: 999px;
-  padding: 8px 12px;
+  padding: 0 3px;
   background: #fffdf8;
   color: #62584f;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.1px;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .support-country-total strong {
   color: var(--support-green);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 900;
 }
 
 .support-feed-list {
   display: block;
+  width: calc(100% - 24px);
   max-width: 760px;
-  margin: 22px auto 0;
+  margin: 0 auto;
   overflow: hidden;
   border: 1px solid rgba(18, 61, 46, 0.13);
   border-radius: 18px;
@@ -678,10 +738,10 @@ textarea {
 .support-feed-item {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 11px;
   min-height: 0;
   border-bottom: 1px solid rgba(18, 61, 46, 0.1);
-  padding: 22px 24px;
+  padding: 18px 14px;
   background: transparent;
 }
 
@@ -690,9 +750,9 @@ textarea {
 }
 
 .support-feed-avatar {
-  flex: 0 0 auto;
-  width: 42px;
-  height: 42px;
+  flex: 0 0 38px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -721,21 +781,33 @@ textarea {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 6px 8px;
+  gap: 4px 6px;
 }
 
 .support-feed-name {
   color: #24332b;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 900;
+  line-height: 1.25;
+  letter-spacing: -0.1px;
+}
+
+.support-feed-time {
+  margin-left: 7px;
+  color: #969b96;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0;
 }
 
 .support-feed-message {
-  margin: 7px 0 0;
+  margin: 6px 0 0;
   color: #39433d;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 650;
-  line-height: 1.6;
+  line-height: 1.5;
+  letter-spacing: -0.1px;
   text-align: left;
   overflow-wrap: anywhere;
 }
@@ -747,12 +819,6 @@ textarea {
   color: var(--support-green);
   font-size: 9px;
   font-weight: 900;
-}
-
-.support-feed-time {
-  color: #969b96;
-  font-size: 10px;
-  font-weight: 700;
 }
 
 .support-feed-example {
@@ -825,10 +891,10 @@ textarea {
   margin: 18px auto 0;
   border: 0;
   padding: 0;
-  color: #776960;
-  font-size: 12px;
-  font-weight: 750;
-  line-height: 1.6;
+  background: transparent;
+  color: #727e77;
+  font-size: 13px;
+  font-weight: 700;
   text-align: center;
 }
 
@@ -1002,6 +1068,58 @@ textarea {
     height: 38px;
   }
 
+}
+
+@media (max-width: 480px) {
+  .support-main {
+    width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .support-project {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .support-feed-heading,
+  .support-country-totals,
+  .support-feed-list {
+    width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 769px) {
+  .support-title {
+    font-size: 34px;
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+  }
+
+  .support-feed-heading h2 {
+    font-size: 32px;
+    line-height: 1.08;
+    letter-spacing: -0.7px;
+  }
+
+  .support-lead {
+    font-size: 15px;
+  }
+
+  .support-impact {
+    font-size: 18px;
+  }
+
+  .support-feed-message {
+    font-size: 15px;
+  }
+
+  .support-feed {
+    padding-top: 56px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

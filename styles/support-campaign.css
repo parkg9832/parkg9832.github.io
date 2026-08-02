@@ -247,13 +247,13 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 26px 18px 28px;
+  padding: 24px 18px 24px;
   background: var(--support-paper);
 }
 
 .support-impact {
   max-width: 390px;
-  margin: 0 auto 24px;
+  margin: 0 auto 20px;
   color: var(--support-green);
   font-size: 17px;
   font-weight: 900;
@@ -293,7 +293,7 @@ textarea {
 }
 
 .support-field label {
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 
 .support-field label span {
@@ -308,26 +308,25 @@ textarea {
   border-radius: 12px;
   background: #fff;
   color: var(--support-ink);
-  text-align: left;
   outline: none;
   transition:
     border-color 150ms ease,
     box-shadow 150ms ease;
 }
 
-.support-field input::placeholder,
-.support-field textarea::placeholder {
-  text-align: left;
-}
-
 .support-field input {
   height: 54px;
   padding: 0 16px;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.1px;
+  text-align: center;
+}
+
+.support-field input::placeholder {
+  text-align: center;
 }
 
 .support-field textarea {
@@ -339,6 +338,11 @@ textarea {
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: -0.05px;
+  text-align: left;
+}
+
+.support-field textarea::placeholder {
+  text-align: left;
 }
 
 .support-field input:focus,
@@ -362,7 +366,7 @@ textarea {
 
 .support-country-field legend {
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 11px;
   text-align: center;
   display: block;
 }
@@ -374,7 +378,7 @@ textarea {
   row-gap: 5px;
   width: 100%;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .support-country-chip {
@@ -458,7 +462,7 @@ textarea {
   gap: 8px;
   width: fit-content;
   max-width: 100%;
-  margin: 0 auto 24px;
+  margin: 0 auto 28px;
   border: 0;
   background: transparent;
   padding: 4px 0;
@@ -539,7 +543,7 @@ textarea {
   border: 0;
   border-radius: 12px;
   padding: 0 18px;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   background: var(--support-orange);
   color: #fff;
   font-size: 15px;
@@ -741,7 +745,7 @@ textarea {
   gap: 11px;
   min-height: 0;
   border-bottom: 1px solid rgba(18, 61, 46, 0.1);
-  padding: 18px 14px;
+  padding: 16px 14px;
   background: transparent;
 }
 
@@ -795,7 +799,7 @@ textarea {
 .support-feed-time {
   margin-left: 7px;
   color: #969b96;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: 0;
@@ -804,9 +808,9 @@ textarea {
 .support-feed-message {
   margin: 6px 0 0;
   color: #39433d;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 650;
-  line-height: 1.5;
+  line-height: 1.48;
   letter-spacing: -0.1px;
   text-align: left;
   overflow-wrap: anywhere;
@@ -936,7 +940,7 @@ textarea {
 
   .support-intro {
     align-items: center;
-    padding: 32px 24px 28px;
+    padding: 26px 20px 24px;
     text-align: center;
   }
 
@@ -996,28 +1000,34 @@ textarea {
   }
 
   .support-intro {
-    padding: 22px 18px 20px;
+    padding: 26px 20px 24px;
   }
 
   .support-category {
-    margin-bottom: 10px;
-    padding: 6px 12px;
-    font-size: 10.5px;
+    margin-bottom: 15px;
+    padding: 7px 13px;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0;
   }
 
   .support-title {
-    font-size: 28px;
-    line-height: 1.1;
+    font-size: 30px;
+    line-height: 1.08;
+    letter-spacing: -0.7px;
+    max-width: 390px;
+    margin-bottom: 13px;
   }
 
   .support-lead {
-    margin-top: 10px;
-    font-size: 13.5px;
-    line-height: 1.5;
+    font-size: 14px;
+    line-height: 1.45;
+    letter-spacing: -0.1px;
+    max-width: 390px;
   }
 
   .support-participation {
-    padding: 22px 18px 26px;
+    padding: 24px 18px 24px;
   }
 
   .support-form {

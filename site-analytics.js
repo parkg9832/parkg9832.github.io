@@ -294,7 +294,7 @@
     true
   );
 
-  const form = document.querySelector('#contactForm, #b2bForm, #supportForm');
+  const form = document.querySelector('#contactForm, #b2bForm');
   if (form) {
     form.addEventListener(
       'focusin',

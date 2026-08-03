@@ -93,6 +93,7 @@ const FUNNEL_EVENT_NAMES = [
   'support_popup_hide_day',
   'support_page_view',
   'support_cta_click',
+  'support_country_select',
   'support_form_start',
   'support_submit',
 ];
@@ -263,6 +264,7 @@ function appendDemandSupport(payload) {
           sheet.getRange(existingVisitor.getRow(), 13).setValue(true);
           sheet.getRange(existingVisitor.getRow(), 14).setValue(message);
         }
+        refreshDashboardIfNeeded_();
         return { ok: true, saved: false, duplicate: true };
       }
     }
@@ -289,6 +291,7 @@ function appendDemandSupport(payload) {
       cache.remove('demand_support_feed_v3_0_20');
     } catch (e) {}
 
+    refreshDashboardIfNeeded_();
     return { ok: true, saved: true, duplicate: false };
   } finally {
     lock.releaseLock();
@@ -461,6 +464,19 @@ function appendFunnelEvents(payload) {
     sheet.getRange(sheet.getLastRow() + 1, 1, rows.length, FUNNEL_HEADERS.length).setValues(rows);
   } finally {
     lock.releaseLock();
+  }
+
+  const dashboardEvents = new Set([
+    'contact_cta_click',
+    'form_start',
+    'lead_submit',
+    'support_page_view',
+    'support_country_select',
+    'support_form_start',
+    'support_submit',
+  ]);
+  if (validEvents.some((item) => dashboardEvents.has(String(item.name || '')))) {
+    refreshDashboardIfNeeded_();
   }
 
   return { saved: rows.length };
@@ -749,7 +765,7 @@ function jsonResponse(payload) {
  * 퍼널 3단계: 전체 방문(=A7 참조) → 응원 방문 → 응원 완료
  * 포함: 누적 전환율, 다음 단계 이탈률, 이탈 세션, 자동 진단, 유입/이탈 분석, 퍼널 비교
  */
-function updateDashboardSheetWithSupportFunnel() {
+function updateDashboardSheetWithSupportFunnelLegacy_() {
   var sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
   var ss = SpreadsheetApp.openById(sheetId);
   var dashboard = ss.getSheetByName('MOKDA 홈페이지 대시보드') || ss.getSheetByName('대시보드');
@@ -1034,5 +1050,212 @@ function updateDashboardSheetWithSupportFunnel() {
     유입TOP3: topRef,
     이탈TOP3: topExit,
   });
+}
+
+function refreshDashboardIfNeeded_() {
+  const cache = CacheService.getScriptCache();
+  const refreshKey = 'support_dashboard_refresh_lock_v1';
+
+  try {
+    if (cache.get(refreshKey)) return { refreshed: false, reason: 'throttled' };
+    cache.put(refreshKey, '1', 120);
+    updateDashboardSheetWithSupportFunnel();
+    return { refreshed: true };
+  } catch (error) {
+    console.warn(`Dashboard refresh failed: ${error.message || error}`);
+    return { refreshed: false, reason: 'error' };
+  }
+}
+
+function updateDashboardSheetWithSupportFunnel() {
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  const spreadsheet = SpreadsheetApp.openById(sheetId);
+  const dashboard = spreadsheet.getSheetByName('대시보드');
+  const funnelSheet = spreadsheet.getSheetByName(FUNNEL_SHEET_NAME);
+  const supportSheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
+
+  if (!dashboard || !funnelSheet) {
+    throw new Error('대시보드 또는 Funnel Events 시트를 찾을 수 없습니다.');
+  }
+
+  const startDate = dashboard.getRange('K3').getValue();
+  const endDate = dashboard.getRange('L3').getValue();
+  const start = startDate instanceof Date ? new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()) : null;
+  const end = endDate instanceof Date ? new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), 23, 59, 59, 999) : null;
+  const inSelectedPeriod = (value) => {
+    const date = value instanceof Date ? value : new Date(value);
+    if (Number.isNaN(date.getTime())) return false;
+    return (!start || date >= start) && (!end || date <= end);
+  };
+
+  const funnelData = funnelSheet.getDataRange().getValues();
+  const funnelHeaders = funnelData[0] || [];
+  const column = (name) => funnelHeaders.indexOf(name);
+  const iReceivedAt = column('Received At');
+  const iEvent = column('Event Name');
+  const iSession = column('Session ID');
+  const iReferrer = column('Referrer Host');
+  const iPath = column('Page Path');
+  const iMedium = column('UTM Medium');
+
+  if ([iReceivedAt, iEvent, iSession, iReferrer, iPath, iMedium].some((index) => index < 0)) {
+    throw new Error('Funnel Events 헤더가 현재 대시보드 구조와 맞지 않습니다.');
+  }
+
+  const events = funnelData.slice(1).filter((row) => {
+    return inSelectedPeriod(row[iReceivedAt]) && String(row[iMedium] || '').trim().toLowerCase() !== 'verification';
+  });
+
+  let supportRows = [];
+  if (supportSheet && supportSheet.getLastRow() > 1) {
+    const supportData = supportSheet.getDataRange().getValues();
+    const supportHeaders = supportData[0] || [];
+    const supportReceivedAt = supportHeaders.indexOf('Received At');
+    const supportMedium = supportHeaders.indexOf('UTM Medium');
+    supportRows = supportData.slice(1).filter((row) => {
+      const isVerification = supportMedium >= 0 && String(row[supportMedium] || '').trim().toLowerCase() === 'verification';
+      return !isVerification && supportReceivedAt >= 0 && inSelectedPeriod(row[supportReceivedAt]);
+    });
+  }
+
+  const sessionsFor = (eventName) => {
+    const sessions = {};
+    events.forEach((row) => {
+      if (row[iEvent] === eventName && row[iSession]) sessions[String(row[iSession])] = true;
+    });
+    return Object.keys(sessions);
+  };
+
+  const supportVisits = sessionsFor('support_page_view');
+  const countrySelections = sessionsFor('support_country_select');
+  const supportFormStarts = sessionsFor('support_form_start');
+  const supportSubmitSessions = sessionsFor('support_submit');
+  const supportCompletions = Math.max(supportSubmitSessions.length, supportRows.length);
+
+  const topCountryCounts = {};
+  supportRows.forEach((row) => {
+    const country = String(row[2] || '').trim().toUpperCase();
+    if (country) topCountryCounts[country] = (topCountryCounts[country] || 0) + 1;
+  });
+  const topCountry = Object.entries(topCountryCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
+
+  const referrerBySession = {};
+  events.forEach((row) => {
+    if (row[iEvent] !== 'support_page_view' || !row[iSession]) return;
+    const sessionId = String(row[iSession]);
+    if (!referrerBySession[sessionId]) referrerBySession[sessionId] = String(row[iReferrer] || '').trim() || '직접 방문';
+  });
+  const referrerCounts = {};
+  Object.values(referrerBySession).forEach((referrer) => {
+    referrerCounts[referrer] = (referrerCounts[referrer] || 0) + 1;
+  });
+
+  const timeline = {};
+  events.forEach((row) => {
+    if (!row[iSession]) return;
+    const sessionId = String(row[iSession]);
+    if (!timeline[sessionId]) timeline[sessionId] = [];
+    timeline[sessionId].push({ event: String(row[iEvent] || ''), path: String(row[iPath] || ''), at: row[iReceivedAt] });
+  });
+  const exitCounts = {};
+  supportVisits.forEach((sessionId) => {
+    const sessionEvents = (timeline[sessionId] || []).sort((a, b) => new Date(a.at) - new Date(b.at));
+    const last = sessionEvents[sessionEvents.length - 1];
+    let label = '기타';
+    if (last?.event === 'support_submit') label = '응원 완료 후 종료';
+    else if (last?.event === 'support_country_select') label = '국가 선택 후 이탈';
+    else if (last?.event === 'support_form_start') label = '폼 작성 중 이탈';
+    else if (last?.event === 'support_page_view') label = '지원 페이지에서 이탈';
+    else if (last?.path) label = last.path.replace(/^\/(es|en|ko)\//i, '/');
+    exitCounts[label] = (exitCounts[label] || 0) + 1;
+  });
+
+  const topThree = (counts) => {
+    const items = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 3);
+    while (items.length < 3) items.push(['—', 0]);
+    return items;
+  };
+  const topReferrers = topThree(referrerCounts);
+  const topExits = topThree(exitCounts);
+  const stages = [supportVisits.length, countrySelections.length, supportFormStarts.length, supportCompletions];
+  const stageNames = ['지원 페이지 방문', '국가 선택', '폼 시작', '응원 완료'];
+  const transitionRates = [
+    stages[0] ? stages[1] / stages[0] : 0,
+    stages[1] ? stages[2] / stages[1] : 0,
+    stages[2] ? stages[3] / stages[2] : 0,
+  ];
+  const dropLabels = ['방문 → 국가 선택', '국가 선택 → 폼 시작', '폼 시작 → 응원 완료'];
+  const weakestIndex = transitionRates.reduce((worst, rate, index, array) => rate < array[worst] ? index : worst, 0);
+  const lastUpdated = Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm');
+
+  const section = dashboard.getRange('A28:L50');
+  section.breakApart();
+  section.clearContent().clearFormat();
+
+  const cell = (row, col, width, value, options) => {
+    const range = dashboard.getRange(row, col, 1, width).merge();
+    const settings = options || {};
+    if (typeof value === 'string' && value.charAt(0) === '=') range.setFormula(value);
+    else range.setValue(value);
+    range.setVerticalAlignment('middle');
+    if (settings.bold) range.setFontWeight('bold');
+    if (settings.size) range.setFontSize(settings.size);
+    if (settings.color) range.setFontColor(settings.color);
+    if (settings.background) range.setBackground(settings.background);
+    if (settings.align) range.setHorizontalAlignment(settings.align);
+    if (settings.format) range.setNumberFormat(settings.format);
+    if (settings.italic) range.setFontStyle('italic');
+    return range;
+  };
+  const percent = (value) => Number.isFinite(value) ? value : 0;
+
+  cell(28, 1, 12, '출시 응원 퍼널 — 실제 수요 검증', { bold: true, color: '#ffffff', background: '#ef5f18', align: 'left', size: 12 });
+  ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4'].forEach((label, index) => {
+    cell(29, index * 2 + 1, 2, label, { bold: true, color: '#ffffff', background: ['#ef5f18', '#d95a1c', '#287356', '#123d2e'][index], align: 'center' });
+    cell(30, index * 2 + 1, 2, stageNames[index], { bold: true, background: '#fff3e8', align: 'center' });
+    cell(31, index * 2 + 1, 2, stages[index], { bold: true, size: 20, align: 'center' });
+    cell(32, index * 2 + 1, 2, '세션', { color: '#8a8f8c', size: 8, align: 'center' });
+    cell(33, index * 2 + 1, 2, index === 0 ? 1 : percent(stages[index] / stages[0]), { bold: true, color: '#287356', size: 14, align: 'center', format: '0.0%' });
+    cell(34, index * 2 + 1, 2, '누적 전환율', { color: '#8a8f8c', size: 8, align: 'center' });
+    cell(35, index * 2 + 1, 2, index < 3 ? percent(1 - transitionRates[index]) : 0, { bold: true, color: index < 3 ? '#c64a13' : '#287356', size: 13, align: 'center', format: '0.0%' });
+    cell(36, index * 2 + 1, 2, index < 3 ? '다음 단계 이탈률' : '완료', { color: '#8a8f8c', size: 8, align: 'center' });
+    cell(37, index * 2 + 1, 2, index < 3 ? Math.max(0, stages[index] - stages[index + 1]) : stages[index], { bold: true, size: 13, align: 'center' });
+    cell(38, index * 2 + 1, 2, index < 3 ? '이탈 세션' : '완료 세션', { color: '#8a8f8c', size: 8, align: 'center' });
+  });
+  cell(29, 9, 4, '자동 진단', { bold: true, color: '#ffffff', background: '#37474f', align: 'center' });
+  cell(30, 9, 4, '우선 개선 구간', { color: '#666666', size: 9, align: 'center' });
+  cell(31, 9, 4, dropLabels[weakestIndex], { bold: true, color: '#c64a13', align: 'center', size: 12 });
+  cell(32, 9, 4, '직전 단계 전환율', { color: '#666666', size: 9, align: 'center' });
+  cell(33, 9, 4, transitionRates[weakestIndex], { bold: true, color: '#c64a13', align: 'center', size: 18, format: '0.0%' });
+  cell(34, 9, 4, '최다 응원 국가', { color: '#666666', size: 9, align: 'center' });
+  cell(35, 9, 4, topCountry, { bold: true, color: '#123d2e', align: 'center', size: 14 });
+  cell(36, 9, 4, '대시보드 갱신', { color: '#666666', size: 9, align: 'center' });
+  cell(37, 9, 4, lastUpdated, { bold: true, color: '#123d2e', align: 'center', size: 10 });
+  cell(38, 9, 4, '검증 데이터는 자동 제외', { color: '#8a8f8c', size: 8, align: 'center' });
+  cell(39, 1, 12, '지원 퍼널은 지원 페이지 방문을 시작점으로 계산합니다. 전체 홈페이지 방문은 유입 경로 표에서만 확인하세요.', { color: '#8a8f8c', size: 8, italic: true });
+
+  cell(41, 1, 6, '유입 경로', { bold: true, color: '#ffffff', background: '#37474f', align: 'left' });
+  cell(41, 7, 6, '마지막 행동', { bold: true, color: '#ffffff', background: '#37474f', align: 'left' });
+  for (let index = 0; index < 3; index += 1) {
+    const row = 42 + index;
+    const background = index % 2 === 0 ? '#ffffff' : '#fafafa';
+    cell(row, 1, 3, topReferrers[index][0], { background, align: 'left' });
+    cell(row, 4, 3, `${topReferrers[index][1]} 세션 · ${supportVisits.length ? (topReferrers[index][1] / supportVisits.length * 100).toFixed(1) : '0.0'}%`, { background, bold: true, align: 'center' });
+    cell(row, 7, 3, topExits[index][0], { background, align: 'left' });
+    cell(row, 10, 3, `${topExits[index][1]} 세션 · ${supportVisits.length ? (topExits[index][1] / supportVisits.length * 100).toFixed(1) : '0.0'}%`, { background, bold: true, align: 'center' });
+  }
+  cell(46, 1, 12, '데이터 기준: 선택 기간 · 고유 세션 · verification 제외 · 응원 완료는 Demand Support 실데이터와 교차 확인', { color: '#8a8f8c', background: '#fff8ef', size: 8, italic: true });
+
+  return {
+    ok: true,
+    lastUpdated,
+    stats: {
+      supportVisits: stages[0],
+      countrySelections: stages[1],
+      supportFormStarts: stages[2],
+      supportCompletions: stages[3],
+      topCountry,
+    },
+  };
 }
 

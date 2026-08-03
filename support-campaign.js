@@ -157,6 +157,33 @@
     },
   };
   const t = copy[language] || copy.ES;
+  const campaignCopy = {
+    KR: {
+      category: '출시 응원 프로젝트',
+      title: '내 식탁에 한국 소스가 닿도록.',
+      lead: '어떤 나라에서 Salsa Coreana를 만나고 싶은지 알려주세요. 매장과 유통사에게 실제 수요를 보여줄 수 있습니다.',
+      impact: '나라를 고르고 첫 출시에 참여하세요.',
+      successLead: '첫 출시를 함께 만들어주셔서 고맙습니다.',
+      productCta: '소스 라인업 보기',
+    },
+    ES: {
+      category: 'Lanzamiento de Salsa Coreana',
+      title: 'Queremos llevar la salsa coreana a tu mesa.',
+      lead: 'Cuéntanos en qué país te gustaría encontrarla. Cada apoyo nos ayuda a conversar con tiendas y distribuidores.',
+      impact: 'Elige tu país y sé parte del primer lanzamiento.',
+      successLead: 'Gracias por ser parte del primer lanzamiento.',
+      productCta: 'Conoce nuestras salsas',
+    },
+    EN: {
+      category: 'Salsa Coreana launch',
+      title: 'We want Korean sauce to reach your table.',
+      lead: 'Tell us where you would like to find it. Every show of support helps us speak with stores and distributors.',
+      impact: 'Choose your country and join the first launch.',
+      successLead: 'Thanks for being part of the first launch.',
+      productCta: 'Explore our sauces',
+    },
+  };
+  const campaign = campaignCopy[language] || campaignCopy.ES;
 
   function randomId() {
     if (window.crypto?.randomUUID) return window.crypto.randomUUID();
@@ -219,9 +246,10 @@
     document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
     const textById = {
       supportVisualText: t.visual,
-      supportCategory: t.category,
-      supportTitle: t.title,
-      supportLead: t.lead,
+      supportCategory: campaign.category,
+      supportTitle: campaign.title,
+      supportLead: campaign.lead,
+      supportImpactTitle: campaign.impact,
       supportNameLabel: t.nameLabel,
       supportCountryLabel: t.countryLabel,
       supportPeru: t.peru,
@@ -240,6 +268,8 @@
       supportMenuProducts: t.menuProducts,
       supportMenuQna: t.menuQna,
       supportMenuContact: t.menuContact,
+      supportSuccessLead: campaign.successLead,
+      supportProductCtaLabel: campaign.productCta,
     };
 
     Object.entries(textById).forEach(([id, value]) => setText(id, value));
@@ -260,6 +290,11 @@
     const status = document.getElementById('supportStatus');
     status.dataset.state = state;
     status.textContent = message;
+  }
+
+  function showSuccessActions() {
+    const actions = document.getElementById('supportSuccessActions');
+    if (actions) actions.hidden = false;
   }
 
   function formatSupportTime(value) {
@@ -580,10 +615,13 @@
     document.getElementById('supportMessage').value = msg;
     const countryInput = document.querySelector(`input[name="country"][value="${savedCountry}"]`);
     if (countryInput) countryInput.checked = true;
+    showSuccessActions();
     return true;
   }
 
   let isSubmitting = false;
+  let hasTrackedSupportFormStart = false;
+  let hasTrackedCountrySelection = false;
 
   function showToast(message) {
     const status = document.getElementById('supportStatus');
@@ -669,6 +707,7 @@
       } else {
         showToast(t.success(name, countryName(country)));
       }
+      showSuccessActions();
       try {
         window.localStorage.removeItem(feedCacheKey);
       } catch (e) {}
@@ -697,7 +736,24 @@
       window.location.href = `/${languagePath}/support.html${window.location.search}`;
     });
   });
-  document.getElementById('supportForm').addEventListener('submit', submitSupport);
+  const supportForm = document.getElementById('supportForm');
+  supportForm.addEventListener('submit', submitSupport);
+  supportForm.addEventListener('focusin', () => {
+    if (hasTrackedSupportFormStart) return;
+    hasTrackedSupportFormStart = true;
+    window.MOKDA_ANALYTICS?.track('support_form_start', { element: 'demand_support_form' });
+  });
+  document.querySelectorAll('input[name="country"]').forEach((input) => {
+    input.addEventListener('change', () => {
+      if (hasTrackedCountrySelection || !input.checked) return;
+      hasTrackedCountrySelection = true;
+      window.MOKDA_ANALYTICS?.track(
+        'support_country_select',
+        { element: `country_${String(input.value || '').toLowerCase()}` },
+        { immediate: true },
+      );
+    });
+  });
   document.getElementById('supportFeedMore')?.addEventListener('click', loadMoreSupportFeed);
   const menuToggle = document.getElementById('supportMenuToggle');
   const menu = document.getElementById('supportMenu');

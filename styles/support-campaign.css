@@ -589,7 +589,7 @@ textarea {
   margin-left: calc(50% - 50vw);
   border-top: 1px solid rgba(50, 21, 6, 0.08);
   border-bottom: 1px solid rgba(50, 21, 6, 0.08);
-  padding: 44px max(12px, calc((100vw - 860px) / 2)) 72px;
+  padding: 24px max(12px, calc((100vw - 860px) / 2)) 72px;
   background:
     linear-gradient(180deg, rgba(239, 95, 24, 0.035), transparent 180px),
     #fff8ef;
@@ -1231,7 +1231,7 @@ textarea {
   }
 
   .support-feed {
-    padding-top: 56px;
+    padding-top: 38px;
   }
 }
 

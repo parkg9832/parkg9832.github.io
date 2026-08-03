@@ -993,11 +993,11 @@ textarea {
   }
 
   .support-intro {
-    padding: 16px 16px 15px;
+    padding: 20px 16px 19px;
   }
 
   .support-category {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     padding: 5px 10px;
     font-size: 10px;
     line-height: 1;
@@ -1009,7 +1009,7 @@ textarea {
     line-height: 1.05;
     letter-spacing: -0.5px;
     max-width: 390px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .support-lead {
@@ -1020,11 +1020,11 @@ textarea {
   }
 
   .support-participation {
-    padding: 15px 14px 16px;
+    padding: 18px 14px 19px;
   }
 
   .support-form {
-    gap: 8px;
+    gap: 10px;
     margin-top: 0;
   }
 
@@ -1035,7 +1035,7 @@ textarea {
   }
 
   .support-field label {
-    margin-bottom: 6px;
+    margin-bottom: 7px;
   }
 
   .support-field input {
@@ -1045,7 +1045,7 @@ textarea {
   }
 
   .support-country-field legend {
-    margin-bottom: 6px;
+    margin-bottom: 7px;
   }
 
   .support-countries {
@@ -1061,18 +1061,18 @@ textarea {
   }
 
   .support-message-wrapper {
-    gap: 6px;
+    gap: 7px;
   }
 
   .support-field textarea {
-    min-height: 60px;
+    min-height: 64px;
     padding: 10px 12px;
     font-size: 13px;
     line-height: 1.4;
   }
 
   .support-submit {
-    height: 50px;
+    height: 52px;
     margin-bottom: 0;
     font-size: 14px;
   }
@@ -1084,11 +1084,11 @@ textarea {
 
   .support-feed {
     width: 100%;
-    margin: 18px auto 0;
+    margin: 22px auto 0;
     overflow: hidden;
     border: 1px solid rgba(18, 61, 46, 0.13);
     border-radius: 20px;
-    padding: 22px 0 0;
+    padding: 24px 0 0;
     background: #fffdf8;
     box-shadow: 0 14px 38px rgba(50, 21, 6, 0.07);
   }

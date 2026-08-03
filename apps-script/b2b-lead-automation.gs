@@ -74,7 +74,6 @@ const DEMAND_COUNTRIES = {
   MX: 'Mexico',
   CL: 'Chile',
   CO: 'Colombia',
-  ES: 'Spain',
 };
 const FUNNEL_EVENT_NAMES = [
   'page_view',
@@ -219,7 +218,7 @@ function isDemandSupportPayload(payload) {
 }
 
 function appendDemandSupport(payload) {
-  const name = cleanAnalyticsValue(payload.name, 40);
+  const name = cleanAnalyticsValue(payload.name, 24);
   const countryCode = String(payload.country || '').trim().toUpperCase();
   const visitorId = cleanAnalyticsValue(payload.visitorId, 100);
   const eventId = cleanAnalyticsValue(payload.eventId, 100);
@@ -287,8 +286,7 @@ function appendDemandSupport(payload) {
 
     try {
       const cache = CacheService.getScriptCache();
-      cache.remove('demand_support_feed_v2_24');
-      cache.remove('demand_support_feed_v2_50');
+      cache.remove('demand_support_feed_v3_0_20');
     } catch (e) {}
 
     return { ok: true, saved: true, duplicate: false };
@@ -314,16 +312,21 @@ function ensureDemandHeaders(sheet) {
 }
 
 function getDemandSupportFeed(event) {
-  const requestedLimit = Number((event && event.parameter && event.parameter.limit) || 24);
-  const limit = Math.min(Math.max(Math.round(requestedLimit) || 24, 1), 50);
-  const cacheKey = `demand_support_feed_v2_${limit}`;
+  const requestedLimit = Number((event && event.parameter && event.parameter.limit) || 20);
+  const requestedOffset = Number((event && event.parameter && event.parameter.offset) || 0);
+  const limit = Math.min(Math.max(Math.round(requestedLimit) || 20, 1), 20);
+  const offset = Math.max(Math.round(requestedOffset) || 0, 0);
+  const cacheKey = `demand_support_feed_v3_${offset}_${limit}`;
+  const shouldCache = offset === 0;
   const cache = CacheService.getScriptCache();
-  try {
-    const cachedJson = cache.get(cacheKey);
-    if (cachedJson) {
-      return JSON.parse(cachedJson);
-    }
-  } catch (e) {}
+  if (shouldCache) {
+    try {
+      const cachedJson = cache.get(cacheKey);
+      if (cachedJson) {
+        return JSON.parse(cachedJson);
+      }
+    } catch (e) {}
+  }
 
   const totals = Object.keys(DEMAND_COUNTRIES).reduce((result, code) => {
     result[code] = 0;
@@ -334,22 +337,30 @@ function getDemandSupportFeed(event) {
   const sheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
 
   if (!sheet || sheet.getLastRow() <= 1) {
-    const emptyResult = { ok: true, total: 0, totals, supporters: [] };
-    try { cache.put(cacheKey, JSON.stringify(emptyResult), 45); } catch (e) {}
+    const emptyResult = { ok: true, total: 0, publicTotal: 0, totals, supporters: [], hasMore: false };
+    if (shouldCache) {
+      try { cache.put(cacheKey, JSON.stringify(emptyResult), 45); } catch (e) {}
+    }
     return emptyResult;
   }
 
   ensureDemandHeaders(sheet);
   const rows = sheet.getRange(2, 1, sheet.getLastRow() - 1, DEMAND_HEADERS.length).getValues();
-  rows.forEach((row) => {
+  const eligibleRows = rows.filter((row) => {
     const countryCode = String(row[2] || '').trim().toUpperCase();
-    if (Object.prototype.hasOwnProperty.call(totals, countryCode)) totals[countryCode] += 1;
+    return Object.prototype.hasOwnProperty.call(DEMAND_COUNTRIES, countryCode);
   });
 
-  const supporters = rows
+  eligibleRows.forEach((row) => {
+    const countryCode = String(row[2] || '').trim().toUpperCase();
+    totals[countryCode] += 1;
+  });
+
+  const publicRows = eligibleRows
     .filter((row) => row[12] === true || String(row[12]).toLowerCase() === 'true')
-    .slice(-limit)
-    .reverse()
+    .reverse();
+  const supporters = publicRows
+    .slice(offset, offset + limit)
     .map((row) => ({
       name: cleanAnalyticsValue(row[1], 40),
       countryCode: String(row[2] || '').trim().toUpperCase(),
@@ -359,14 +370,18 @@ function getDemandSupportFeed(event) {
 
   const payload = {
     ok: true,
-    total: rows.length,
+    total: eligibleRows.length,
+    publicTotal: publicRows.length,
     totals,
     supporters,
+    hasMore: offset + supporters.length < publicRows.length,
   };
 
-  try {
-    cache.put(cacheKey, JSON.stringify(payload), 45);
-  } catch (e) {}
+  if (shouldCache) {
+    try {
+      cache.put(cacheKey, JSON.stringify(payload), 45);
+    } catch (e) {}
+  }
 
   return payload;
 }

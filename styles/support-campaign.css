@@ -373,7 +373,7 @@ textarea {
 
 .support-countries {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 5px;
   row-gap: 5px;
   width: 100%;
@@ -693,7 +693,7 @@ textarea {
 
 .support-country-totals {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   column-gap: 7px;
   row-gap: 7px;
   width: calc(100% - 24px);
@@ -789,14 +789,20 @@ textarea {
 }
 
 .support-feed-name {
+  min-width: 0;
+  max-width: 24ch;
+  overflow: hidden;
   color: #24332b;
   font-size: 14px;
   font-weight: 900;
   line-height: 1.25;
   letter-spacing: -0.1px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .support-feed-time {
+  flex: 0 0 auto;
   margin-left: 7px;
   color: #969b96;
   font-size: 10px;
@@ -903,6 +909,43 @@ textarea {
 }
 
 .support-feed-empty[hidden] {
+  display: none;
+}
+
+.support-feed-more {
+  min-width: 188px;
+  min-height: 46px;
+  display: block;
+  margin: 18px auto 0;
+  border: 1px solid rgba(18, 61, 46, 0.2);
+  border-radius: 999px;
+  padding: 10px 22px;
+  background: #fffdf8;
+  color: var(--support-green);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.support-feed-more:hover {
+  border-color: var(--support-green);
+  background: var(--support-green);
+  color: #fffaf2;
+}
+
+.support-feed-more:focus-visible {
+  outline: 3px solid rgba(239, 95, 24, 0.35);
+  outline-offset: 3px;
+}
+
+.support-feed-more:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.support-feed-more[hidden] {
   display: none;
 }
 
@@ -1036,7 +1079,7 @@ textarea {
   }
 
   .support-countries {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 4px;
   }
 

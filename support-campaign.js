@@ -5,13 +5,13 @@
   const endpoint = window.MOKDA_B2B_WEB_APP_URL || '';
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const supportStorageKey = 'mokda_demand_support_v1';
-  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'ES'];
+  const countryCodes = ['PE', 'MX', 'CL', 'CO'];
+  const feedPageSize = 20;
   const flagMap = {
     PE: './assets/images/flags/peru.jpg',
     MX: './assets/images/flags/mexico.jpg',
     CL: './assets/images/flags/chile.jpg',
     CO: './assets/images/flags/colombia.jpg',
-    ES: './assets/images/flags/spain.jpg',
   };
   const copy = {
     KR: {
@@ -19,7 +19,6 @@
       category: '첫 출시 응원 프로젝트',
       title: 'Salsa Coreana의 출시를 도와주세요.',
       lead: '당신의 응원은 라틴아메리카 현지 매장과 유통사에 실제 수요를 증명하는 데 큰 도움이 됩니다.',
-      impactTitle: 'Cuéntanos dónde quieres encontrar Salsa Coreana.',
       nameLabel: '이름 또는 닉네임',
       namePlaceholder: '이름을 입력해주세요',
       messageLabel: '응원 메시지',
@@ -31,7 +30,6 @@
       mexico: '멕시코',
       chile: '칠레',
       colombia: '콜롬비아',
-      spain: '스페인',
       submit: '출시 응원하기',
       sending: '응원을 전하고 있어요…',
       privacy: '이름, 국가, 응원 메시지가 아래 목록에 표시됩니다. 위치 정보와 연락처는 수집하지 않습니다.',
@@ -43,11 +41,13 @@
       feedTitle: 'Salsa Coreana를 기다리는 사람들',
       feedLoading: '불러오는 중…',
       feedTotal: (count) => `총 ${count}명 응원`,
+      feedMore: (count) => `응원 ${count}개 더보기`,
+      feedMoreLoading: '불러오는 중…',
       feedMessage: (country) => `${country}에서 Salsa Coreana를 만나고 싶어요!`,
       exampleMessages: [
         '페루에서 Salsa Coreana를 꼭 만나보고 싶어요!',
         '타코와 함께 먹어보고 싶습니다. 멕시코 출시를 응원해요!',
-        '스페인에서도 쉽게 살 수 있는 날을 기다릴게요.',
+        '칠레에서도 쉽게 살 수 있는 날을 기다릴게요.',
       ],
       feedEmpty: '새 응원 메시지는 아래와 같은 모습으로 표시됩니다. 예시는 응원 수에 포함되지 않습니다.',
       exampleLabel: '표시 예시',
@@ -67,7 +67,6 @@
       category: 'Proyecto de lanzamiento',
       title: 'Ayúdanos a lanzar Salsa Coreana.',
       lead: 'Tu apoyo nos ayuda a demostrar una demanda real ante tiendas y distribuidores de Latinoamérica.',
-      impactTitle: 'Cuéntanos dónde quieres encontrar Salsa Coreana.',
       nameLabel: 'Nombre o apodo',
       namePlaceholder: 'Escribe tu nombre',
       messageLabel: 'Mensaje de apoyo',
@@ -79,7 +78,6 @@
       mexico: 'México',
       chile: 'Chile',
       colombia: 'Colombia',
-      spain: 'España',
       submit: 'Apoyar el lanzamiento',
       sending: 'Enviando tu apoyo…',
       privacy: 'Tu nombre, país y mensaje aparecerán en la lista. No recopilamos tu ubicación ni datos de contacto.',
@@ -91,11 +89,13 @@
       feedTitle: 'Personas que quieren encontrar Salsa Coreana',
       feedLoading: 'Cargando…',
       feedTotal: (count) => `${count} ${count === 1 ? 'apoyo' : 'apoyos'}`,
+      feedMore: (count) => `Ver ${count} ${count === 1 ? 'apoyo' : 'apoyos'} más`,
+      feedMoreLoading: 'Cargando…',
       feedMessage: (country) => `¡Quiero encontrar Salsa Coreana en ${country}!`,
       exampleMessages: [
         '¡Quiero encontrar Salsa Coreana en Perú!',
         'Me encantaría probarla con tacos. ¡Que llegue pronto a México!',
-        'Espero poder encontrarla muy pronto en España.',
+        'Espero poder encontrarla muy pronto en Chile.',
       ],
       feedEmpty: 'Así aparecerán los nuevos mensajes. Estos ejemplos no cuentan en el total.',
       exampleLabel: 'Ejemplo',
@@ -115,7 +115,6 @@
       category: 'First launch project',
       title: 'Help us launch Salsa Coreana.',
       lead: 'Your support helps us demonstrate real demand to stores and distributors across Latin America.',
-      impactTitle: 'Tell us where you want to find Salsa Coreana.',
       nameLabel: 'Name or nickname',
       namePlaceholder: 'Enter your name',
       messageLabel: 'Support message',
@@ -127,7 +126,6 @@
       mexico: 'Mexico',
       chile: 'Chile',
       colombia: 'Colombia',
-      spain: 'Spain',
       submit: 'Support the launch',
       sending: 'Sending your support…',
       privacy: 'Your name, country, and message will appear below. We do not collect location or contact details.',
@@ -139,11 +137,13 @@
       feedTitle: 'People who want to find Salsa Coreana',
       feedLoading: 'Loading…',
       feedTotal: (count) => `${count} ${count === 1 ? 'supporter' : 'supporters'}`,
+      feedMore: (count) => `Show ${count} more`,
+      feedMoreLoading: 'Loading…',
       feedMessage: (country) => `I want to find Salsa Coreana in ${country}!`,
       exampleMessages: [
         'I would love to find Salsa Coreana in Peru!',
         'I want to try it with tacos. Please bring it to Mexico!',
-        'I hope I can find it in Spain soon.',
+        'I hope I can find it in Chile soon.',
       ],
       feedEmpty: 'New support messages will appear like this. Examples are not included in the total.',
       exampleLabel: 'Example',
@@ -210,7 +210,6 @@
       MX: t.mexico,
       CL: t.chile,
       CO: t.colombia,
-      ES: t.spain,
     }[country] || country;
   }
 
@@ -226,14 +225,12 @@
       supportCategory: t.category,
       supportTitle: t.title,
       supportLead: t.lead,
-      supportImpactTitle: t.impactTitle,
       supportNameLabel: t.nameLabel,
       supportCountryLabel: t.countryLabel,
       supportPeru: t.peru,
       supportMexico: t.mexico,
       supportChile: t.chile,
       supportColombia: t.colombia,
-      supportSpain: t.spain,
       supportMessageToggleText: t.messageToggle,
       supportSubmitLabel: t.submit,
       supportPrivacy: t.privacy,
@@ -297,7 +294,23 @@
     return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(date);
   }
 
-  function renderSupportFeed(result) {
+  let renderedSupporterCount = 0;
+  let supportFeedPublicTotal = 0;
+  let supportFeedHasMore = false;
+  let supportFeedLoadingMore = false;
+
+  function updateSupportFeedMore() {
+    const button = document.getElementById('supportFeedMore');
+    if (!button) return;
+    const remaining = Math.max(0, supportFeedPublicTotal - renderedSupporterCount);
+    button.hidden = !supportFeedHasMore || remaining === 0;
+    button.disabled = supportFeedLoadingMore;
+    button.textContent = supportFeedLoadingMore
+      ? t.feedMoreLoading
+      : t.feedMore(Math.min(feedPageSize, remaining));
+  }
+
+  function renderSupportFeed(result, { append = false } = {}) {
     const total = Number(result?.total || 0);
     const totals = result?.totals || {};
     const supporters = Array.isArray(result?.supporters) ? result.supporters : [];
@@ -307,6 +320,8 @@
     const emptyElement = document.getElementById('supportFeedEmpty');
 
     totalElement.textContent = t.feedTotal(total);
+    supportFeedPublicTotal = Number(result?.publicTotal ?? supporters.length);
+    supportFeedHasMore = Boolean(result?.hasMore);
     totalsElement.replaceChildren();
     countryCodes.forEach((code) => {
       const item = document.createElement('span');
@@ -376,10 +391,21 @@
       listElement.appendChild(item);
     }
 
-    listElement.replaceChildren();
+    if (!append) {
+      listElement.replaceChildren();
+      renderedSupporterCount = 0;
+    }
     if (validSupporters.length > 0) {
       validSupporters.forEach(appendSupporter);
+      renderedSupporterCount += validSupporters.length;
       emptyElement.hidden = true;
+      updateSupportFeedMore();
+      return;
+    }
+
+    if (append) {
+      supportFeedHasMore = false;
+      updateSupportFeedMore();
       return;
     }
 
@@ -398,9 +424,10 @@
       }),
     );
     emptyElement.hidden = false;
+    updateSupportFeedMore();
   }
 
-  const feedCacheKey = 'mokda_demand_support_feed_cache_v2';
+  const feedCacheKey = 'mokda_demand_support_feed_cache_v3';
 
   function readFeedCache() {
     try {
@@ -476,6 +503,8 @@
 
     if (!endpoint) {
       if (!cachedData && totalElement) totalElement.textContent = t.feedTotal(0);
+      supportFeedHasMore = false;
+      updateSupportFeedMore();
       return;
     }
 
@@ -485,7 +514,8 @@
     try {
       const feedUrl = new URL(endpoint);
       feedUrl.searchParams.set('mode', 'demand_support');
-      feedUrl.searchParams.set('limit', '24');
+      feedUrl.searchParams.set('limit', String(feedPageSize));
+      feedUrl.searchParams.set('offset', '0');
       feedUrl.searchParams.set('_', String(Date.now()));
 
       const response = await fetch(feedUrl.toString(), {
@@ -510,11 +540,46 @@
     }
   }
 
+  async function loadMoreSupportFeed() {
+    if (!endpoint || !supportFeedHasMore || supportFeedLoadingMore) return;
+
+    supportFeedLoadingMore = true;
+    updateSupportFeedMore();
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timeoutId = controller ? setTimeout(() => controller.abort(), 10000) : null;
+
+    try {
+      const feedUrl = new URL(endpoint);
+      feedUrl.searchParams.set('mode', 'demand_support');
+      feedUrl.searchParams.set('limit', String(feedPageSize));
+      feedUrl.searchParams.set('offset', String(renderedSupporterCount));
+      feedUrl.searchParams.set('_', String(Date.now()));
+
+      const response = await fetch(feedUrl.toString(), {
+        method: 'GET',
+        cache: 'no-store',
+        signal: controller ? controller.signal : undefined,
+      });
+      if (timeoutId) clearTimeout(timeoutId);
+
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.error || 'Support feed request failed');
+      renderSupportFeed(result, { append: true });
+    } catch (error) {
+      if (timeoutId) clearTimeout(timeoutId);
+      console.error('Support feed pagination failure:', error);
+    } finally {
+      supportFeedLoadingMore = false;
+      updateSupportFeedMore();
+    }
+  }
+
   function showSavedSupport(saved) {
     if (getAttribution().verification) return false;
     if (!saved?.country) return false;
     const savedCountry = String(saved.country || '').toUpperCase();
-    document.getElementById('supportName').value = String(saved.name || '').slice(0, 40);
+    if (!countryCodes.includes(savedCountry)) return false;
+    document.getElementById('supportName').value = String(saved.name || '').slice(0, 24);
     const msg = String(saved.message || '').slice(0, 180);
     document.getElementById('supportMessage').value = msg;
     if (msg) {
@@ -551,7 +616,7 @@
 
     const form = event.currentTarget;
     const data = new FormData(form);
-    const name = String(data.get('name') || '').trim().slice(0, 40);
+    const name = String(data.get('name') || '').trim().slice(0, 24);
     const country = String(data.get('country') || '').trim().toUpperCase();
     const message = String(data.get('message') || '').trim().slice(0, 180);
 
@@ -645,6 +710,7 @@
     });
   });
   document.getElementById('supportForm').addEventListener('submit', submitSupport);
+  document.getElementById('supportFeedMore')?.addEventListener('click', loadMoreSupportFeed);
   const menuToggle = document.getElementById('supportMenuToggle');
   const menu = document.getElementById('supportMenu');
   menuToggle.addEventListener('click', () => {

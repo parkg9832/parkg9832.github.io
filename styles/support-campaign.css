@@ -950,11 +950,11 @@ textarea {
   }
 
   .support-header-inner {
-    min-height: 72px;
+    min-height: 58px;
   }
 
   .support-logo img {
-    height: 25px;
+    height: 22px;
   }
 
   .support-header-actions {
@@ -973,7 +973,7 @@ textarea {
   }
 
   .support-menu {
-    top: 72px;
+    top: 58px;
     flex-direction: column;
     gap: 0;
     padding: 12px 20px 18px;
@@ -985,7 +985,7 @@ textarea {
   }
 
   .support-main {
-    padding-top: 24px;
+    padding-top: 12px;
   }
 
   .support-project {
@@ -993,44 +993,65 @@ textarea {
   }
 
   .support-intro {
-    padding: 26px 20px 24px;
+    padding: 16px 16px 15px;
   }
 
   .support-category {
-    margin-bottom: 15px;
-    padding: 7px 13px;
-    font-size: 11px;
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    font-size: 10px;
     line-height: 1;
     letter-spacing: 0;
   }
 
   .support-title {
-    font-size: 30px;
-    line-height: 1.08;
-    letter-spacing: -0.7px;
+    font-size: 24px;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
     max-width: 390px;
-    margin-bottom: 13px;
+    margin-bottom: 8px;
   }
 
   .support-lead {
-    font-size: 14px;
-    line-height: 1.45;
+    font-size: 12.5px;
+    line-height: 1.35;
     letter-spacing: -0.1px;
     max-width: 390px;
   }
 
   .support-participation {
-    padding: 24px 18px 24px;
+    padding: 15px 14px 16px;
   }
 
   .support-form {
-    gap: 16px;
-    margin-top: 18px;
+    gap: 8px;
+    margin-top: 0;
+  }
+
+  .support-field label,
+  .support-country-field legend,
+  .support-message-wrapper label {
+    font-size: 12px;
+  }
+
+  .support-field label {
+    margin-bottom: 6px;
+  }
+
+  .support-field input {
+    height: 46px;
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  .support-country-field legend {
+    margin-bottom: 6px;
   }
 
   .support-countries {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 4px;
+    margin-bottom: 0;
   }
 
   .support-chip-label {
@@ -1039,22 +1060,64 @@ textarea {
     padding: 0 2px;
   }
 
+  .support-message-wrapper {
+    gap: 6px;
+  }
+
+  .support-field textarea {
+    min-height: 60px;
+    padding: 10px 12px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .support-submit {
+    height: 50px;
+    margin-bottom: 0;
+    font-size: 14px;
+  }
+
+  .support-privacy {
+    font-size: 9.5px;
+    line-height: 1.35;
+  }
+
   .support-feed {
     width: calc(100% + 28px);
     margin-left: -14px;
-    padding: 30px 14px 54px;
+    padding: 16px 14px 48px;
   }
 
   .support-feed-heading {
-    gap: 12px;
+    gap: 0;
+  }
+
+  .support-feed-heading p {
+    display: none;
   }
 
   .support-feed-heading h2 {
-    font-size: 30px;
+    margin-bottom: 8px;
+    font-size: 22px;
+    line-height: 1.08;
   }
 
   .support-feed-total {
-    font-size: 14px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .support-country-totals {
+    margin-bottom: 12px;
+  }
+
+  .support-country-total {
+    height: 32px;
+    font-size: 10.5px;
+  }
+
+  .support-country-total strong {
+    font-size: 10.5px;
   }
 
   .support-feed-item {

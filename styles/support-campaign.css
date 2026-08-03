@@ -326,6 +326,8 @@ textarea {
 }
 
 .support-field input::placeholder {
+  color: #90978f;
+  opacity: 1;
   text-align: center;
 }
 
@@ -342,6 +344,8 @@ textarea {
 }
 
 .support-field textarea::placeholder {
+  color: #90978f;
+  opacity: 1;
   text-align: left;
 }
 

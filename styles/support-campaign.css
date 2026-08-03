@@ -614,12 +614,14 @@ textarea {
   gap: 10px;
   min-height: 42px;
   border-radius: 999px;
+  border: 0;
   padding: 0 17px;
   background: var(--support-green);
   color: #fff9f1;
   font-size: 13px;
   font-weight: 900;
   text-decoration: none;
+  cursor: pointer;
   transition: background-color 150ms ease, transform 150ms ease;
 }
 

@@ -216,6 +216,20 @@
                 <span id="purposeLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
                 <select id="purposeSelect" name="purpose" required class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
               </label>
+              <div id="businessFields" class="hidden sm:col-span-2 grid-cols-1 gap-4 rounded-lg border border-mokdaOrange/25 bg-[#fff3e8] p-4 sm:grid-cols-2 sm:gap-5">
+                <label class="block">
+                  <span id="companyLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
+                  <input id="companyInput" type="text" name="company" autocomplete="organization" class="w-full rounded-lg border border-[#321506]/18 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
+                </label>
+                <label class="block">
+                  <span id="roleLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
+                  <input id="roleInput" type="text" name="role" autocomplete="organization-title" class="w-full rounded-lg border border-[#321506]/18 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none" />
+                </label>
+                <label class="block sm:col-span-2">
+                  <span id="productLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
+                  <select id="productSelect" name="product" class="w-full rounded-lg border border-[#321506]/18 bg-white p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:outline-none"></select>
+                </label>
+              </div>
               <label class="block sm:col-span-2">
                 <span id="messageLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
                 <textarea id="messageInput" name="message" rows="5" required class="w-full resize-none rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
@@ -299,6 +313,9 @@
             whatsapp: ['WhatsApp', 'Opcional'],
             country: ['País / Mercado', 'Selecciona un país'],
             purpose: ['Tipo de consulta', 'Selecciona el tipo de consulta', ['Producto y forma de uso', 'Compra / Disponibilidad', 'Ingredientes / Alérgenos', 'Distribución / Retail', 'Restaurante / HORECA', 'Prensa / Colaboración', 'Otro']],
+            company: ['Empresa', 'Nombre de la empresa'],
+            role: ['Cargo / Función', 'Ej. Compras, importación, chef'],
+            product: ['Producto de interés', 'Selecciona un producto', ['Toda la línea', 'Original', 'Para Carnes', 'Soy Sauce']],
             message: ['Mensaje', 'Cuéntanos tu pregunta o propuesta'],
             submit: 'Enviar consulta',
             required: 'Completa este campo.',
@@ -325,6 +342,9 @@
             whatsapp: ['WhatsApp', 'Optional'],
             country: ['Country / Market', 'Select a country'],
             purpose: ['Inquiry type', 'Select inquiry type', ['Product and usage', 'Purchase / Availability', 'Ingredients / Allergens', 'Distribution / Retail', 'Restaurant / HORECA', 'Press / Collaboration', 'Other']],
+            company: ['Company', 'Company name'],
+            role: ['Role', 'e.g. Purchasing, importer, chef'],
+            product: ['Product interest', 'Select a product', ['Full lineup', 'Original', 'Para Carnes', 'Soy Sauce']],
             message: ['Message', 'Tell us your question or proposal'],
             submit: 'Send inquiry',
             required: 'Please complete this field.',
@@ -351,6 +371,9 @@
             whatsapp: ['WhatsApp', '선택 입력'],
             country: ['국가 / 시장', '국가 선택'],
             purpose: ['문의 유형', '문의 유형 선택', ['제품 및 사용법', '구매 / 판매 여부', '원재료 / 알레르겐', '유통 / 리테일', '레스토랑 / HORECA', '홍보 / 협업', '기타']],
+            company: ['회사명', '회사명을 입력해주세요'],
+            role: ['직책 / 역할', '예: 구매담당, 수입사, 셰프'],
+            product: ['관심 제품', '제품 선택', ['전체 라인업', 'Original', 'Para Carnes', 'Soy Sauce']],
             message: ['문의 내용', '궁금한 내용이나 제안을 적어주세요'],
             submit: '문의 보내기',
             required: '필수 항목입니다.',
@@ -406,6 +429,11 @@
         setPlaceholder('whatsappInput', fields.whatsapp[1]);
         setText('countryLabel', fields.country[0]);
         setText('purposeLabel', fields.purpose[0]);
+        setText('companyLabel', fields.company[0]);
+        setPlaceholder('companyInput', fields.company[1]);
+        setText('roleLabel', fields.role[0]);
+        setPlaceholder('roleInput', fields.role[1]);
+        setText('productLabel', fields.product[0]);
         setText('messageLabel', fields.message[0]);
         setPlaceholder('messageInput', fields.message[1]);
         setText('submitButtonText', fields.submit);
@@ -417,6 +445,11 @@
           <option value="" selected disabled>${fields.purpose[1]}</option>
           ${fields.purpose[2].map((label) => `<option value="${label}">${label}</option>`).join('')}
         `;
+        document.getElementById('productSelect').innerHTML = `
+          <option value="">${fields.product[1]}</option>
+          ${['all', 'original', 'para-carnes', 'soy-sauce'].map((value, index) => `<option value="${value}">${fields.product[2][index]}</option>`).join('')}
+        `;
+        applyInquiryPreset();
         ['nameInput', 'emailInput', 'countrySelect', 'purposeSelect', 'messageInput'].forEach((id) => {
           const field = document.getElementById(id);
           if (!field) return;
@@ -431,6 +464,26 @@
           field.oninput = () => field.setCustomValidity('');
           field.onchange = () => field.setCustomValidity('');
         });
+      }
+
+      function updateBusinessFields() {
+        const purpose = document.getElementById('purposeSelect');
+        const wrapper = document.getElementById('businessFields');
+        const company = document.getElementById('companyInput');
+        const isBusiness = purpose && purpose.selectedIndex >= 4 && purpose.selectedIndex <= 6;
+        wrapper?.classList.toggle('hidden', !isBusiness);
+        wrapper?.classList.toggle('grid', Boolean(isBusiness));
+        if (company) company.required = Boolean(isBusiness);
+      }
+
+      function applyInquiryPreset() {
+        const params = new URLSearchParams(window.location.search);
+        const purpose = document.getElementById('purposeSelect');
+        const product = document.getElementById('productSelect');
+        if (params.get('purpose') === 'distribution' && purpose?.options[4]) purpose.selectedIndex = 4;
+        const requestedProduct = params.get('product');
+        if (requestedProduct && product) product.value = requestedProduct;
+        updateBusinessFields();
       }
 
       function bindReveal() {
@@ -472,11 +525,14 @@
         const form = event.currentTarget;
         const formData = new FormData(form);
         const payload = {
-          source: 'contact-page',
+          source: document.getElementById('businessFields')?.classList.contains('hidden') ? 'contact-page' : 'b2b-contact-page',
           language,
           name: String(formData.get('name') || '').trim(),
           email: String(formData.get('email') || '').trim(),
           whatsapp: String(formData.get('whatsapp') || '').trim(),
+          company: String(formData.get('company') || '').trim(),
+          role: String(formData.get('role') || '').trim(),
+          product: String(formData.get('product') || '').trim(),
           country: String(formData.get('country') || '').trim(),
           purpose: String(formData.get('purpose') || '').trim(),
           message: String(formData.get('message') || '').trim(),
@@ -506,8 +562,8 @@
           renderForm((content[language] || content.ES).fields);
           setFormStatus('success', messages.success);
           window.MOKDA_ANALYTICS?.track(
-            'lead_submit',
-            { element: 'contact_form' },
+            'generate_lead',
+            { element: 'contact_form', product: payload.product },
             { immediate: true }
           );
         } catch (error) {
@@ -548,6 +604,7 @@
       });
 
       document.getElementById('contactForm').addEventListener('submit', submitContactForm);
+      document.getElementById('purposeSelect').addEventListener('change', updateBusinessFields);
       renderPage();
     </script>
     <script src="./site-header.js?v=20260724-2"></script>

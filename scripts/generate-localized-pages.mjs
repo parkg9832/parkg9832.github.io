@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-07-30';
+const LAST_MODIFIED = '2026-08-03';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -105,15 +105,15 @@ const pages = {
     },
     ES: {
       title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
-      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile y Colombia.',
+      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile, Colombia y España.',
     },
     KR: {
       title: 'Salsa Coreana 출시 응원 | MOKDA',
-      description: '페루, 멕시코, 칠레, 콜롬비아에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
+      description: '페루, 멕시코, 칠레, 콜롬비아와 스페인에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
     },
     EN: {
       title: 'Support the Salsa Coreana Launch | MOKDA',
-      description: 'Support the launch of MOKDA Salsa Coreana in Peru, Mexico, Chile, and Colombia.',
+      description: 'Support the launch of MOKDA Salsa Coreana in Peru, Mexico, Chile, Colombia, and Spain.',
     },
   },
 };

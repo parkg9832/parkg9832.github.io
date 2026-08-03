@@ -27,6 +27,12 @@ const SHEET_HEADERS = [
   'Partnership Details KO',
   'Inquiry Source',
   'WhatsApp',
+  'Role',
+  'Interested Product',
+  'Lead Status',
+  'Qualified At',
+  'Working At',
+  'Converted At',
 ];
 
 const FUNNEL_SHEET_NAME = 'Funnel Events';
@@ -74,6 +80,7 @@ const DEMAND_COUNTRIES = {
   MX: 'Mexico',
   CL: 'Chile',
   CO: 'Colombia',
+  ES: 'Spain',
 };
 const FUNNEL_EVENT_NAMES = [
   'page_view',
@@ -83,6 +90,8 @@ const FUNNEL_EVENT_NAMES = [
   'contact_view',
   'form_start',
   'lead_submit',
+  'generate_lead',
+  'product_detail_view',
   'social_click',
   'language_switch',
   'scroll_depth',
@@ -96,6 +105,7 @@ const FUNNEL_EVENT_NAMES = [
   'support_country_select',
   'support_form_start',
   'support_submit',
+  'support_share',
 ];
 
 function doGet(event) {
@@ -104,7 +114,7 @@ function doGet(event) {
     return jsonResponse(getDemandSupportFeed(event));
   }
   if (mode === 'update_dashboard') {
-    return jsonResponse({ ok: true, result: updateDashboardSheetWithSupportFunnel() });
+    return jsonResponse({ ok: true, result: updateCompleteWebsiteDashboard_() });
   }
 
   const chatWebhookUrl = getOptionalProperty(SCRIPT_PROPERTY_KEYS.chatWebhookUrl);
@@ -158,6 +168,8 @@ function doPost(event) {
     const source = String(payload.source || 'website').trim();
     const company = String(payload.company || '').trim();
     const whatsapp = String(payload.whatsapp || '').trim();
+    const role = String(payload.role || '').trim();
+    const product = String(payload.product || '').trim();
     const sourceLanguage = getSourceLanguage(language);
     const inquiryTypeEs = translateToSpanish(payload.purpose, sourceLanguage);
     const messageEs = translateToSpanish(payload.message, sourceLanguage);
@@ -182,6 +194,12 @@ function doPost(event) {
       messageKo,
       source,
       whatsapp,
+      role,
+      product,
+      'New',
+      '',
+      '',
+      '',
     ]);
 
     const notification = notifyLead({
@@ -192,6 +210,8 @@ function doPost(event) {
       name: payload.name,
       email: payload.email,
       whatsapp,
+      role,
+      product,
       country: payload.country,
       purpose: payload.purpose,
       purposeEs: inquiryTypeEs,
@@ -286,11 +306,6 @@ function appendDemandSupport(payload) {
       message,
     ]);
 
-    try {
-      const cache = CacheService.getScriptCache();
-      cache.remove('demand_support_feed_v3_0_20');
-    } catch (e) {}
-
     refreshDashboardIfNeeded_();
     return { ok: true, saved: true, duplicate: false };
   } finally {
@@ -319,18 +334,6 @@ function getDemandSupportFeed(event) {
   const requestedOffset = Number((event && event.parameter && event.parameter.offset) || 0);
   const limit = Math.min(Math.max(Math.round(requestedLimit) || 20, 1), 20);
   const offset = Math.max(Math.round(requestedOffset) || 0, 0);
-  const cacheKey = `demand_support_feed_v3_${offset}_${limit}`;
-  const shouldCache = offset === 0;
-  const cache = CacheService.getScriptCache();
-  if (shouldCache) {
-    try {
-      const cachedJson = cache.get(cacheKey);
-      if (cachedJson) {
-        return JSON.parse(cachedJson);
-      }
-    } catch (e) {}
-  }
-
   const totals = Object.keys(DEMAND_COUNTRIES).reduce((result, code) => {
     result[code] = 0;
     return result;
@@ -340,11 +343,7 @@ function getDemandSupportFeed(event) {
   const sheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
 
   if (!sheet || sheet.getLastRow() <= 1) {
-    const emptyResult = { ok: true, total: 0, publicTotal: 0, totals, supporters: [], hasMore: false };
-    if (shouldCache) {
-      try { cache.put(cacheKey, JSON.stringify(emptyResult), 45); } catch (e) {}
-    }
-    return emptyResult;
+    return { ok: true, total: 0, publicTotal: 0, totals, supporters: [], hasMore: false };
   }
 
   ensureDemandHeaders(sheet);
@@ -371,7 +370,7 @@ function getDemandSupportFeed(event) {
       message: cleanAnalyticsValue(row[13], 180),
     }));
 
-  const payload = {
+  return {
     ok: true,
     total: eligibleRows.length,
     publicTotal: publicRows.length,
@@ -379,14 +378,6 @@ function getDemandSupportFeed(event) {
     supporters,
     hasMore: offset + supporters.length < publicRows.length,
   };
-
-  if (shouldCache) {
-    try {
-      cache.put(cacheKey, JSON.stringify(payload), 45);
-    } catch (e) {}
-  }
-
-  return payload;
 }
 
 function isFunnelPayload(payload) {
@@ -466,19 +457,7 @@ function appendFunnelEvents(payload) {
     lock.releaseLock();
   }
 
-  const dashboardEvents = new Set([
-    'contact_cta_click',
-    'form_start',
-    'lead_submit',
-    'support_page_view',
-    'support_country_select',
-    'support_form_start',
-    'support_submit',
-  ]);
-  if (validEvents.some((item) => dashboardEvents.has(String(item.name || '')))) {
-    refreshDashboardIfNeeded_();
-  }
-
+  refreshDashboardIfNeeded_();
   return { saved: rows.length };
 }
 
@@ -674,6 +653,8 @@ function formatLeadNotification(lead, timestamp) {
     `접수 시간: ${timestamp} KST`,
     `문의 구분: ${getInquiryLabel(lead.source)}`,
     lead.company ? `회사: ${lead.company}` : '',
+    lead.role ? `직책/역할: ${lead.role}` : '',
+    lead.product ? `관심 제품: ${lead.product}` : '',
     `이름: ${lead.name}`,
     `이메일: ${lead.email}`,
     lead.whatsapp ? `WhatsApp: ${lead.whatsapp}` : '',
@@ -706,6 +687,13 @@ function ensureSheetHeaders(sheet) {
   if (needsUpdate) {
     sheet.getRange(1, 1, 1, SHEET_HEADERS.length).setValues([SHEET_HEADERS]);
   }
+
+  const statusColumn = SHEET_HEADERS.indexOf('Lead Status') + 1;
+  const statusRule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['New', 'Qualified', 'Working', 'Converted', 'Disqualified'], true)
+    .setAllowInvalid(false)
+    .build();
+  sheet.getRange(2, statusColumn, Math.max(sheet.getMaxRows() - 1, 1), 1).setDataValidation(statusRule);
 }
 
 function isGoogleChatWebhookUrl(value) {
@@ -759,503 +747,832 @@ function jsonResponse(payload) {
   return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(ContentService.MimeType.JSON);
 }
 
-/**
- * 대시보드에 출시 응원 곁가지 퍼널을 메인 퍼널과 동일한 디자인으로 구축합니다.
- *
- * 퍼널 3단계: 전체 방문(=A7 참조) → 응원 방문 → 응원 완료
- * 포함: 누적 전환율, 다음 단계 이탈률, 이탈 세션, 자동 진단, 유입/이탈 분석, 퍼널 비교
- */
-function updateDashboardSheetWithSupportFunnelLegacy_() {
-  var sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
-  var ss = SpreadsheetApp.openById(sheetId);
-  var dashboard = ss.getSheetByName('MOKDA 홈페이지 대시보드') || ss.getSheetByName('대시보드');
-  var funnelSheet = ss.getSheetByName('Funnel Events');
-  var supportSheet = ss.getSheetByName('Demand Support');
-
-  if (!dashboard || !funnelSheet) {
-    throw new Error('필수 시트(대시보드/Funnel Events)를 찾을 수 없습니다.');
-  }
-
-  // ════════════════════════════
-  //  1. 데이터 수집 & 집계
-  // ════════════════════════════
-  var allData = funnelSheet.getDataRange().getValues();
-  var hdr = allData[0];
-  var ci = function(name) { return hdr.indexOf(name); };
-  var iEv = ci('Event Name'), iSid = ci('Session ID');
-  var iPath = ci('Page Path'), iRef = ci('Referrer Host');
-  var iElem = ci('Element'), iTime = ci('Received At');
-  var rows = allData.slice(1);
-
-  // 고유 세션 집합 반환
-  function sessFor(evName, elemFilter) {
-    var s = {};
-    rows.forEach(function(r) {
-      if (r[iEv] === evName && r[iSid]) {
-        if (!elemFilter || r[iElem] === elemFilter) {
-          s[String(r[iSid])] = true;
-        }
-      }
-    });
-    return Object.keys(s);
-  }
-
-  var supView  = sessFor('support_page_view');
-  var supSubmitEv = sessFor('support_submit');
-
-  // 응원 완료: Funnel Events 이벤트 수 vs Demand Support 시트 행 수 중 큰 값
-  var nComplete = supSubmitEv.length;
-  if (supportSheet) {
-    var sheetRows = Math.max(0, supportSheet.getLastRow() - 1);
-    if (sheetRows > nComplete) nComplete = sheetRows;
-  }
-
-  var nSupView = supView.length;
-  var nSupSubmit = nComplete;
-
-  // ── 유입 경로 분석 (세션 기준 중복 제거) ──
-  var refBySession = {};
-  rows.forEach(function(r) {
-    if (r[iEv] === 'support_page_view' && r[iSid]) {
-      var sid = String(r[iSid]);
-      if (!refBySession[sid]) {
-        var ref = String(r[iRef] || '').trim();
-        refBySession[sid] = ref || '직접 방문';
-      }
-    }
-  });
-  var refCnt = {};
-  Object.keys(refBySession).forEach(function(k) {
-    var v = refBySession[k];
-    refCnt[v] = (refCnt[v] || 0) + 1;
-  });
-  var topRef = Object.entries(refCnt).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 3);
-  while (topRef.length < 3) topRef.push(['—', 0]);
-
-  // ── 이탈 행동 분석 ──
-  var timeline = {};
-  rows.forEach(function(r) {
-    var sid = String(r[iSid] || '');
-    if (!sid) return;
-    if (!timeline[sid]) timeline[sid] = [];
-    timeline[sid].push({ ev: r[iEv], pg: String(r[iPath] || ''), t: r[iTime] });
-  });
-
-  var exitCnt = {};
-  supView.forEach(function(sid) {
-    var tl = (timeline[sid] || []).sort(function(a, b) { return new Date(a.t) - new Date(b.t); });
-    var last = tl[tl.length - 1];
-    var lbl;
-    if (!last) {
-      lbl = '알 수 없음';
-    } else if (last.ev === 'support_submit') {
-      lbl = '응원 완료 후 이탈';
-    } else if (last.ev === 'support_page_view' || last.ev === 'scroll_milestone') {
-      lbl = '응원 페이지에서 이탈';
-    } else {
-      var pg = (last.pg || last.ev).replace(/\.html$/i, '').replace(/^\/?(es|en|ko)\//i, '/');
-      lbl = pg || last.ev;
-    }
-    exitCnt[lbl] = (exitCnt[lbl] || 0) + 1;
-  });
-  var topExit = Object.entries(exitCnt).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 3);
-  while (topExit.length < 3) topExit.push(['—', 0]);
-
-  // ── 최다 응원 국가 ──
-  var topCountry = 'N/A';
-  if (supportSheet && supportSheet.getLastRow() > 1) {
-    var cData = supportSheet.getRange(2, 3, supportSheet.getLastRow() - 1).getValues();
-    var cc = {};
-    cData.forEach(function(row) {
-      var c = row[0];
-      if (c) cc[c] = (cc[c] || 0) + 1;
-    });
-    var cSorted = Object.entries(cc).sort(function(a, b) { return b[1] - a[1]; });
-    if (cSorted.length) topCountry = cSorted[0][0];
-  }
-
-  // ════════════════════════════════════════════════
-  //  2. 대시보드 작성 (메인 퍼널 디자인 동일)
-  // ════════════════════════════════════════════════
-
-  // 기존 영역 초기화 (Row 28~55)
-  dashboard.getRange('A28:L55').breakApart().clearContent().clearFormat();
-
-  var R = 28; // 시작 행
-
-  // ── 셀 병합 + 포맷 헬퍼 ──
-  function m(row, col, cols, val, o) {
-    o = o || {};
-    var r = dashboard.getRange(row, col, 1, cols).merge();
-    if (typeof val === 'string' && val.length > 0 && val.charAt(0) === '=') {
-      r.setFormula(val);
-    } else {
-      r.setValue(val);
-    }
-    if (o.b) r.setFontWeight('bold');
-    if (o.s) r.setFontSize(o.s);
-    if (o.c) r.setFontColor(o.c);
-    if (o.bg) r.setBackground(o.bg);
-    if (o.a) r.setHorizontalAlignment(o.a);
-    if (o.f) r.setNumberFormat(o.f);
-    if (o.it) r.setFontStyle('italic');
-    return r;
-  }
-
-  // ────────────────────────────────────────
-  //  섹션: 곁가지 퍼널 — 출시 응원
-  // ────────────────────────────────────────
-
-  // Row 28: 타이틀 바
-  m(R, 1, 12, '곁가지 퍼널 — 출시 응원 (Support Campaign)', { b: 1, c: '#ffffff', bg: '#ef5f18', a: 'left' });
-
-  // Row 29: STEP 라벨 (색상 그라데이션)
-  var stepColors = ['#ef5f18', '#ff9800', '#4caf50'];
-  var stepLabels = ['STEP 1 →', 'STEP 2 →', 'STEP 3'];
-  for (var i = 0; i < 3; i++) {
-    m(R + 1, i * 2 + 1, 2, stepLabels[i], { b: 1, c: '#ffffff', bg: stepColors[i], a: 'center' });
-  }
-  m(R + 1, 7, 6, '자동 진단', { b: 1, c: '#ffffff', bg: '#c62828', a: 'center' });
-
-  // Row 30: 단계 이름
-  var stepNames = ['전체 방문', '응원 방문', '응원 완료'];
-  for (var i = 0; i < 3; i++) {
-    m(R + 2, i * 2 + 1, 2, stepNames[i], { b: 1, bg: '#fff3e0', a: 'center' });
-  }
-  m(R + 2, 7, 2, '가장 큰 이탈 구간', { s: 9, c: '#666666', a: 'right' });
-  m(R + 2, 9, 4, '', { a: 'left' });
-
-  // Row 31: 세션 수
-  // STEP 1 = 메인 대시보드 A7 참조! (79세션과 100% 동일)
-  m(R + 3, 1, 2, '=A7', { b: 1, s: 22, a: 'center' });
-  m(R + 3, 3, 2, nSupView, { b: 1, s: 22, a: 'center' });
-  m(R + 3, 5, 2, nSupSubmit, { b: 1, s: 22, a: 'center' });
-  m(R + 3, 7, 6, '=IF((1 - C31/A31) >= (1 - E31/C31), "전체 방문 → 응원 방문", "응원 방문 → 응원 완료")', { b: 1, c: '#c62828', a: 'center', s: 11 });
-
-  // Row 32: "세션" 라벨 + 최대 이탈률 라벨
-  for (var i = 0; i < 3; i++) {
-    m(R + 4, i * 2 + 1, 2, '세션', { s: 8, c: '#999999', a: 'center' });
-  }
-  m(R + 4, 7, 2, '최대 이탈률', { s: 9, c: '#666666', a: 'right' });
-  m(R + 4, 9, 4, '', { a: 'center' });
-
-  // Row 33: 누적 전환율 + 최대 이탈률 값
-  m(R + 5, 1, 2, 1, { b: 1, s: 16, c: '#2e7d32', a: 'center', f: '0.0%' });
-  m(R + 5, 3, 2, '=IF(A31>0, C31/A31, 0)', { b: 1, s: 16, c: '#f57f17', a: 'center', f: '0.0%' });
-  m(R + 5, 5, 2, '=IF(A31>0, E31/A31, 0)', { b: 1, s: 16, c: '#2e7d32', a: 'center', f: '0.0%' });
-  m(R + 5, 7, 2, '', {});
-  m(R + 5, 9, 4, '=MAX(1 - C31/A31, 1 - E31/C31)', { b: 1, s: 20, c: '#c62828', a: 'center', f: '0.0%' });
-
-  // Row 34: "누적 전환율" 라벨 + 우선 개선 영역
-  for (var i = 0; i < 3; i++) {
-    m(R + 6, i * 2 + 1, 2, '누적 전환율', { s: 8, c: '#999999', a: 'center' });
-  }
-  m(R + 6, 7, 2, '우선 개선 영역', { s: 9, c: '#666666', a: 'right' });
-  m(R + 6, 9, 4, '', { a: 'center' });
-
-  // Row 35: 다음 단계 이탈률 + 우선 개선 텍스트
-  m(R + 7, 1, 2, '=IF(A31>0, (A31-C31)/A31, 0)', { b: 1, s: 14, c: '#f57f17', a: 'center', f: '0.0%' });
-  m(R + 7, 3, 2, '=IF(C31>0, (C31-E31)/C31, 0)', { b: 1, s: 14, c: '#f57f17', a: 'center', f: '0.0%' });
-  m(R + 7, 5, 2, 0, { b: 1, s: 14, c: '#2e7d32', a: 'center', f: '0.0%' });
-  m(R + 7, 7, 6, '=IF(I33>0.8, "이탈률 심각 — 즉시 개선", IF(I33>0.5, "이탈률 주의 — 개선 검토", "양호"))', { b: 1, c: '#c62828', a: 'center' });
-
-  // Row 36: "다음 단계 이탈률" 라벨 + 직전 단계 전환율
-  for (var i = 0; i < 3; i++) {
-    m(R + 8, i * 2 + 1, 2, '다음 단계 이탈률', { s: 8, c: '#999999', a: 'center' });
-  }
-  m(R + 8, 7, 2, '직전 단계 전환율', { s: 9, c: '#666666', a: 'right' });
-  m(R + 8, 9, 4, '', { a: 'center' });
-
-  // Row 37: 이탈 세션 + 직전 전환율 값
-  m(R + 9, 1, 2, '=A31-C31', { b: 1, s: 14, a: 'center' });
-  m(R + 9, 3, 2, '=C31-E31', { b: 1, s: 14, a: 'center' });
-  m(R + 9, 5, 2, '=E31', { b: 1, s: 14, a: 'center' });
-  m(R + 9, 7, 2, '', {});
-  m(R + 9, 9, 4, '=IF(C31>0, E31/C31, 0)', { b: 1, s: 16, c: '#2e7d32', a: 'center', f: '0.0%' });
-
-  // Row 38: "이탈 세션" / "완료 세션" 라벨 + 최다 국가
-  m(R + 10, 1, 2, '이탈 세션', { s: 8, c: '#999999', a: 'center' });
-  m(R + 10, 3, 2, '이탈 세션', { s: 8, c: '#999999', a: 'center' });
-  m(R + 10, 5, 2, '완료 세션', { s: 8, c: '#999999', a: 'center' });
-  m(R + 10, 7, 2, '최다 응원 국가', { s: 9, c: '#666666', a: 'right' });
-  m(R + 10, 9, 4, topCountry, { b: 1, a: 'center', s: 12 });
-
-  // Row 39: 안내 문구
-  m(R + 11, 1, 12, '선택 기간의 고유 세션 기준입니다. (STEP 1 전체 방문 = 메인 대시보드 A7 셀 동기화)', { s: 8, c: '#999999', it: 1 });
-
-  // ────────────────────────────────────────
-  //  섹션: 유입 경로 / 이탈 행동 분석
-  // ────────────────────────────────────────
-
-  var TR = R + 12; // Row 40
-
-  // Row 40: 타이틀
-  m(TR, 1, 12, '유입 경로 / 이탈 행동 분석', { b: 1, c: '#ffffff', bg: '#37474f', a: 'left' });
-
-  // Row 41: 헤더
-  m(TR + 1, 1, 2, '유입 경로', { b: 1, bg: '#eceff1', a: 'center' });
-  m(TR + 1, 3, 2, '세션 수', { b: 1, bg: '#eceff1', a: 'center' });
-  m(TR + 1, 5, 2, '비율', { b: 1, bg: '#eceff1', a: 'center' });
-  m(TR + 1, 7, 2, '이탈 행동', { b: 1, bg: '#eceff1', a: 'center' });
-  m(TR + 1, 9, 2, '세션 수', { b: 1, bg: '#eceff1', a: 'center' });
-  m(TR + 1, 11, 2, '비율', { b: 1, bg: '#eceff1', a: 'center' });
-
-  // Rows 42-44: 데이터 (Top 3)
-  for (var i = 0; i < 3; i++) {
-    var dr = TR + 2 + i;
-    var rowBg = i % 2 === 0 ? '#ffffff' : '#fafafa';
-    m(dr, 1, 2, topRef[i][0], { a: 'left', bg: rowBg });
-    m(dr, 3, 2, topRef[i][1], { a: 'center', bg: rowBg, b: 1 });
-    m(dr, 5, 2, nSupView > 0 ? topRef[i][1] / nSupView : 0, { a: 'center', f: '0.0%', bg: rowBg });
-    m(dr, 7, 2, topExit[i][0], { a: 'left', bg: rowBg });
-    m(dr, 9, 2, topExit[i][1], { a: 'center', bg: rowBg, b: 1 });
-    m(dr, 11, 2, nSupView > 0 ? topExit[i][1] / nSupView : 0, { a: 'center', f: '0.0%', bg: rowBg });
-  }
-
-  // ────────────────────────────────────────
-  //  섹션: 퍼널 비교 (B2B 문의 vs 출시 응원)
-  // ────────────────────────────────────────
-
-  var CR = R + 18; // Row 46
-
-  // Row 46: 타이틀
-  m(CR, 1, 12, '퍼널 단계별 비교 (B2B 문의 vs 출시 응원)', { b: 1, c: '#ffffff', bg: '#321506', a: 'left' });
-
-  // Row 47: 헤더
-  var cHeaders = ['퍼널 구분', '1단계 (관심)', '2단계 (폼 시작)', '3단계 (완료)', '최종 전환율', '비고'];
-  for (var i = 0; i < 6; i++) {
-    m(CR + 1, i * 2 + 1, 2, cHeaders[i], { b: 1, bg: '#f3f4f6', a: 'center' });
-  }
-
-  // Row 48: B2B 문의 퍼널 (기존 대시보드 셀 참조: E7=문의 관심, G7=폼 시작, I7=문의 완료)
-  m(CR + 2, 1, 2, 'B2B 문의 퍼널', { a: 'left' });
-  m(CR + 2, 3, 2, '=E7', { a: 'center' });
-  m(CR + 2, 5, 2, '=G7', { a: 'center' });
-  m(CR + 2, 7, 2, '=I7', { a: 'center' });
-  m(CR + 2, 9, 2, '=IF(E7>0, I7/E7, 0)', { a: 'center', f: '0.0%' });
-  m(CR + 2, 11, 2, 'B2B 바이어/파트너', { a: 'left' });
-
-  // Row 49: 출시 응원 퍼널
-  m(CR + 3, 1, 2, '출시 응원 퍼널', { a: 'left' });
-  m(CR + 3, 3, 2, '=C31', { a: 'center' });
-  m(CR + 3, 5, 2, '—', { a: 'center', c: '#999999' });
-  m(CR + 3, 7, 2, '=E31', { a: 'center' });
-  m(CR + 3, 9, 2, '=IF(C31>0, E31/C31, 0)', { a: 'center', f: '0.0%' });
-  m(CR + 3, 11, 2, '라틴아메리카 현지 유저', { a: 'left' });
-
-  return JSON.stringify({
-    ok: true,
-    message: '출시 응원 퍼널이 메인 대시보드(=A7)와 완벽히 동기화되어 재구축되었습니다.',
-    stats: { 응원방문: nSupView, 응원완료: nSupSubmit, 최다국가: topCountry },
-    유입TOP3: topRef,
-    이탈TOP3: topExit,
-  });
-}
-
 function refreshDashboardIfNeeded_() {
   const cache = CacheService.getScriptCache();
-  const refreshKey = 'support_dashboard_refresh_lock_v1';
+  const cacheKey = 'mokda_website_dashboard_refresh_v10';
+  if (cache.get(cacheKey)) return;
 
+  cache.put(cacheKey, '1', 120);
   try {
-    if (cache.get(refreshKey)) return { refreshed: false, reason: 'throttled' };
-    cache.put(refreshKey, '1', 120);
-    updateDashboardSheetWithSupportFunnel();
-    return { refreshed: true };
+    updateCompleteWebsiteDashboard_();
   } catch (error) {
-    console.warn(`Dashboard refresh failed: ${error.message || error}`);
-    return { refreshed: false, reason: 'error' };
+    console.error(`Support dashboard refresh failed: ${error.message || error}`);
   }
 }
 
 function updateDashboardSheetWithSupportFunnel() {
   const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
   const spreadsheet = SpreadsheetApp.openById(sheetId);
-  const dashboard = spreadsheet.getSheetByName('대시보드');
-  const funnelSheet = spreadsheet.getSheetByName(FUNNEL_SHEET_NAME);
+  const dashboard = spreadsheet.getSheetByName('대시보드') || spreadsheet.getSheetByName('Dashboard');
+  if (!dashboard) return { updated: false, reason: 'Dashboard sheet not found' };
+
+  const eventSheet = spreadsheet.getSheetByName(FUNNEL_SHEET_NAME);
   const supportSheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
+  const periodStart = dashboard.getRange('K3').getValue();
+  const periodEnd = dashboard.getRange('L3').getValue();
+  const start = periodStart instanceof Date ? periodStart : new Date(0);
+  const end = periodEnd instanceof Date ? new Date(periodEnd) : new Date();
+  end.setHours(23, 59, 59, 999);
 
-  if (!dashboard || !funnelSheet) {
-    throw new Error('대시보드 또는 Funnel Events 시트를 찾을 수 없습니다.');
-  }
-
-  const startDate = dashboard.getRange('K3').getValue();
-  const endDate = dashboard.getRange('L3').getValue();
-  const start = startDate instanceof Date ? new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()) : null;
-  const end = endDate instanceof Date ? new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate(), 23, 59, 59, 999) : null;
-  const inSelectedPeriod = (value) => {
+  const inPeriod = (value) => {
     const date = value instanceof Date ? value : new Date(value);
-    if (Number.isNaN(date.getTime())) return false;
-    return (!start || date >= start) && (!end || date <= end);
+    return !Number.isNaN(date.getTime()) && date >= start && date <= end;
   };
+  const isVerification = (value) => String(value || '').trim().toLowerCase() === 'verification';
+  const eventRows = eventSheet && eventSheet.getLastRow() > 1 ? eventSheet.getDataRange().getValues().slice(1) : [];
+  const supportRows = supportSheet && supportSheet.getLastRow() > 1 ? supportSheet.getDataRange().getValues().slice(1) : [];
+  const steps = ['support_page_view', 'support_country_select', 'support_form_start', 'support_submit'];
+  const sessionsByStep = {};
+  steps.forEach((step) => (sessionsByStep[step] = {}));
 
-  const funnelData = funnelSheet.getDataRange().getValues();
-  const funnelHeaders = funnelData[0] || [];
-  const column = (name) => funnelHeaders.indexOf(name);
-  const iReceivedAt = column('Received At');
-  const iEvent = column('Event Name');
-  const iSession = column('Session ID');
-  const iReferrer = column('Referrer Host');
-  const iPath = column('Page Path');
-  const iMedium = column('UTM Medium');
-
-  if ([iReceivedAt, iEvent, iSession, iReferrer, iPath, iMedium].some((index) => index < 0)) {
-    throw new Error('Funnel Events 헤더가 현재 대시보드 구조와 맞지 않습니다.');
-  }
-
-  const events = funnelData.slice(1).filter((row) => {
-    return inSelectedPeriod(row[iReceivedAt]) && String(row[iMedium] || '').trim().toLowerCase() !== 'verification';
+  eventRows.forEach((row) => {
+    const eventName = String(row[1] || '').trim();
+    if (steps.indexOf(eventName) === -1 || !inPeriod(row[0]) || isVerification(row[9])) return;
+    const sessionKey = String(row[3] || row[2] || row[16] || '').trim();
+    if (sessionKey) sessionsByStep[eventName][sessionKey] = true;
   });
 
-  let supportRows = [];
-  if (supportSheet && supportSheet.getLastRow() > 1) {
-    const supportData = supportSheet.getDataRange().getValues();
-    const supportHeaders = supportData[0] || [];
-    const supportReceivedAt = supportHeaders.indexOf('Received At');
-    const supportMedium = supportHeaders.indexOf('UTM Medium');
-    supportRows = supportData.slice(1).filter((row) => {
-      const isVerification = supportMedium >= 0 && String(row[supportMedium] || '').trim().toLowerCase() === 'verification';
-      return !isVerification && supportReceivedAt >= 0 && inSelectedPeriod(row[supportReceivedAt]);
-    });
-  }
-
-  const sessionsFor = (eventName) => {
-    const sessions = {};
-    events.forEach((row) => {
-      if (row[iEvent] === eventName && row[iSession]) sessions[String(row[iSession])] = true;
-    });
-    return Object.keys(sessions);
-  };
-
-  const supportVisits = sessionsFor('support_page_view');
-  const countrySelections = sessionsFor('support_country_select');
-  const supportFormStarts = sessionsFor('support_form_start');
-  const supportSubmitSessions = sessionsFor('support_submit');
-  const supportCompletions = Math.max(supportSubmitSessions.length, supportRows.length);
-
-  const topCountryCounts = {};
+  const supporters = {};
+  const countryCounts = {};
   supportRows.forEach((row) => {
-    const country = String(row[2] || '').trim().toUpperCase();
-    if (country) topCountryCounts[country] = (topCountryCounts[country] || 0) + 1;
-  });
-  const topCountry = Object.entries(topCountryCounts).sort((a, b) => b[1] - a[1])[0]?.[0] || '—';
-
-  const referrerBySession = {};
-  events.forEach((row) => {
-    if (row[iEvent] !== 'support_page_view' || !row[iSession]) return;
-    const sessionId = String(row[iSession]);
-    if (!referrerBySession[sessionId]) referrerBySession[sessionId] = String(row[iReferrer] || '').trim() || '직접 방문';
-  });
-  const referrerCounts = {};
-  Object.values(referrerBySession).forEach((referrer) => {
-    referrerCounts[referrer] = (referrerCounts[referrer] || 0) + 1;
+    if (!inPeriod(row[0]) || isVerification(row[8])) return;
+    const supporterKey = String(row[5] || row[6] || '').trim();
+    if (supporterKey) supporters[supporterKey] = true;
+    const country = String(row[3] || row[2] || '').trim();
+    if (country) countryCounts[country] = (countryCounts[country] || 0) + 1;
   });
 
-  const timeline = {};
-  events.forEach((row) => {
-    if (!row[iSession]) return;
-    const sessionId = String(row[iSession]);
-    if (!timeline[sessionId]) timeline[sessionId] = [];
-    timeline[sessionId].push({ event: String(row[iEvent] || ''), path: String(row[iPath] || ''), at: row[iReceivedAt] });
-  });
-  const exitCounts = {};
-  supportVisits.forEach((sessionId) => {
-    const sessionEvents = (timeline[sessionId] || []).sort((a, b) => new Date(a.at) - new Date(b.at));
-    const last = sessionEvents[sessionEvents.length - 1];
-    let label = '기타';
-    if (last?.event === 'support_submit') label = '응원 완료 후 종료';
-    else if (last?.event === 'support_country_select') label = '국가 선택 후 이탈';
-    else if (last?.event === 'support_form_start') label = '폼 작성 중 이탈';
-    else if (last?.event === 'support_page_view') label = '지원 페이지에서 이탈';
-    else if (last?.path) label = last.path.replace(/^\/(es|en|ko)\//i, '/');
-    exitCounts[label] = (exitCounts[label] || 0) + 1;
-  });
-
-  const topThree = (counts) => {
-    const items = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 3);
-    while (items.length < 3) items.push(['—', 0]);
-    return items;
-  };
-  const topReferrers = topThree(referrerCounts);
-  const topExits = topThree(exitCounts);
-  const stages = [supportVisits.length, countrySelections.length, supportFormStarts.length, supportCompletions];
-  const stageNames = ['지원 페이지 방문', '국가 선택', '폼 시작', '응원 완료'];
-  const transitionRates = [
-    stages[0] ? stages[1] / stages[0] : 0,
-    stages[1] ? stages[2] / stages[1] : 0,
-    stages[2] ? stages[3] / stages[2] : 0,
+  const counts = steps.map((step) => Object.keys(sessionsByStep[step]).length);
+  const completed = Math.max(counts[3], Object.keys(supporters).length);
+  counts[3] = completed;
+  const percentage = (value, total) => (total ? Math.round((value / total) * 1000) / 10 : 0);
+  const topCountry = Object.keys(countryCounts).sort((a, b) => countryCounts[b] - countryCounts[a])[0] || '-';
+  const labels = ['지원 페이지 방문', '국가 선택', '폼 시작', '응원 완료'];
+  const rows = [
+    ['지원 퍼널', '', '', '', '', '', '', '', '', '', '', ''],
+    ['기간', start, '–', end, '', '', '', '', '', '마지막 갱신', new Date(), ''],
+    ['단계', '고유 세션', '방문 대비', '직전 단계 대비', '이탈 세션', '', '', '', '', '', '', ''],
   ];
-  const dropLabels = ['방문 → 국가 선택', '국가 선택 → 폼 시작', '폼 시작 → 응원 완료'];
-  const weakestIndex = transitionRates.reduce((worst, rate, index, array) => rate < array[worst] ? index : worst, 0);
-  const lastUpdated = Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm');
 
-  const section = dashboard.getRange('A28:L50');
-  section.breakApart();
-  section.clearContent().clearFormat();
-
-  const cell = (row, col, width, value, options) => {
-    const range = dashboard.getRange(row, col, 1, width).merge();
-    const settings = options || {};
-    if (typeof value === 'string' && value.charAt(0) === '=') range.setFormula(value);
-    else range.setValue(value);
-    range.setVerticalAlignment('middle');
-    if (settings.bold) range.setFontWeight('bold');
-    if (settings.size) range.setFontSize(settings.size);
-    if (settings.color) range.setFontColor(settings.color);
-    if (settings.background) range.setBackground(settings.background);
-    if (settings.align) range.setHorizontalAlignment(settings.align);
-    if (settings.format) range.setNumberFormat(settings.format);
-    if (settings.italic) range.setFontStyle('italic');
-    return range;
-  };
-  const percent = (value) => Number.isFinite(value) ? value : 0;
-
-  cell(28, 1, 12, '출시 응원 퍼널 — 실제 수요 검증', { bold: true, color: '#ffffff', background: '#ef5f18', align: 'left', size: 12 });
-  ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4'].forEach((label, index) => {
-    cell(29, index * 2 + 1, 2, label, { bold: true, color: '#ffffff', background: ['#ef5f18', '#d95a1c', '#287356', '#123d2e'][index], align: 'center' });
-    cell(30, index * 2 + 1, 2, stageNames[index], { bold: true, background: '#fff3e8', align: 'center' });
-    cell(31, index * 2 + 1, 2, stages[index], { bold: true, size: 20, align: 'center' });
-    cell(32, index * 2 + 1, 2, '세션', { color: '#8a8f8c', size: 8, align: 'center' });
-    cell(33, index * 2 + 1, 2, index === 0 ? 1 : percent(stages[index] / stages[0]), { bold: true, color: '#287356', size: 14, align: 'center', format: '0.0%' });
-    cell(34, index * 2 + 1, 2, '누적 전환율', { color: '#8a8f8c', size: 8, align: 'center' });
-    cell(35, index * 2 + 1, 2, index < 3 ? percent(1 - transitionRates[index]) : 0, { bold: true, color: index < 3 ? '#c64a13' : '#287356', size: 13, align: 'center', format: '0.0%' });
-    cell(36, index * 2 + 1, 2, index < 3 ? '다음 단계 이탈률' : '완료', { color: '#8a8f8c', size: 8, align: 'center' });
-    cell(37, index * 2 + 1, 2, index < 3 ? Math.max(0, stages[index] - stages[index + 1]) : stages[index], { bold: true, size: 13, align: 'center' });
-    cell(38, index * 2 + 1, 2, index < 3 ? '이탈 세션' : '완료 세션', { color: '#8a8f8c', size: 8, align: 'center' });
+  counts.forEach((count, index) => {
+    const previous = index ? counts[index - 1] : count;
+    rows.push([
+      labels[index],
+      count,
+      percentage(count, counts[0]),
+      index ? percentage(count, previous) : 100,
+      index ? Math.max(previous - count, 0) : 0,
+      '', '', '', '', '', '', '',
+    ]);
   });
-  cell(29, 9, 4, '자동 진단', { bold: true, color: '#ffffff', background: '#37474f', align: 'center' });
-  cell(30, 9, 4, '우선 개선 구간', { color: '#666666', size: 9, align: 'center' });
-  cell(31, 9, 4, dropLabels[weakestIndex], { bold: true, color: '#c64a13', align: 'center', size: 12 });
-  cell(32, 9, 4, '직전 단계 전환율', { color: '#666666', size: 9, align: 'center' });
-  cell(33, 9, 4, transitionRates[weakestIndex], { bold: true, color: '#c64a13', align: 'center', size: 18, format: '0.0%' });
-  cell(34, 9, 4, '최다 응원 국가', { color: '#666666', size: 9, align: 'center' });
-  cell(35, 9, 4, topCountry, { bold: true, color: '#123d2e', align: 'center', size: 14 });
-  cell(36, 9, 4, '대시보드 갱신', { color: '#666666', size: 9, align: 'center' });
-  cell(37, 9, 4, lastUpdated, { bold: true, color: '#123d2e', align: 'center', size: 10 });
-  cell(38, 9, 4, '검증 데이터는 자동 제외', { color: '#8a8f8c', size: 8, align: 'center' });
-  cell(39, 1, 12, '지원 퍼널은 지원 페이지 방문을 시작점으로 계산합니다. 전체 홈페이지 방문은 유입 경로 표에서만 확인하세요.', { color: '#8a8f8c', size: 8, italic: true });
 
-  cell(41, 1, 6, '유입 경로', { bold: true, color: '#ffffff', background: '#37474f', align: 'left' });
-  cell(41, 7, 6, '마지막 행동', { bold: true, color: '#ffffff', background: '#37474f', align: 'left' });
-  for (let index = 0; index < 3; index += 1) {
-    const row = 42 + index;
-    const background = index % 2 === 0 ? '#ffffff' : '#fafafa';
-    cell(row, 1, 3, topReferrers[index][0], { background, align: 'left' });
-    cell(row, 4, 3, `${topReferrers[index][1]} 세션 · ${supportVisits.length ? (topReferrers[index][1] / supportVisits.length * 100).toFixed(1) : '0.0'}%`, { background, bold: true, align: 'center' });
-    cell(row, 7, 3, topExits[index][0], { background, align: 'left' });
-    cell(row, 10, 3, `${topExits[index][1]} 세션 · ${supportVisits.length ? (topExits[index][1] / supportVisits.length * 100).toFixed(1) : '0.0'}%`, { background, bold: true, align: 'center' });
-  }
-  cell(46, 1, 12, '데이터 기준: 선택 기간 · 고유 세션 · verification 제외 · 응원 완료는 Demand Support 실데이터와 교차 확인', { color: '#8a8f8c', background: '#fff8ef', size: 8, italic: true });
+  rows.push(['핵심 진단', '응원 완료', completed, '국가 선택률', percentage(counts[1], counts[0]), '폼 시작률', percentage(counts[2], counts[0]), '완료율', percentage(completed, counts[0]), '', '', '', '']);
+  rows.push(['상위 지원 국가', topCountry, countryCounts[topCountry] || 0, '실제 지원 데이터 기준', '', '', '', '', '', '', '', '']);
+  rows.push(['해석', counts[0] ? (counts[1] ? '국가 선택 이후 단계의 전환을 확인하세요.' : '방문자는 있으나 국가 선택 전 이탈이 큽니다.') : '지원 페이지 유입 데이터가 쌓이면 퍼널이 표시됩니다.', '', '', '', '', '', '', '', '', '', '']);
 
-  return {
-    ok: true,
-    lastUpdated,
-    stats: {
-      supportVisits: stages[0],
-      countrySelections: stages[1],
-      supportFormStarts: stages[2],
-      supportCompletions: stages[3],
-      topCountry,
-    },
-  };
+  const target = dashboard.getRange(28, 1, 18, 12);
+  target.clearContent();
+  dashboard.getRange(28, 1, rows.length, 12).setValues(rows);
+  dashboard.getRange(28, 1, 1, 12).setFontWeight('bold');
+  dashboard.getRange(30, 1, 1, 12).setFontWeight('bold');
+  dashboard.getRange(28, 1, rows.length, 12).setWrap(true);
+  dashboard.getRange(29, 2, 1, 1).setNumberFormat('yyyy-mm-dd');
+  dashboard.getRange(29, 4, 1, 1).setNumberFormat('yyyy-mm-dd');
+  dashboard.getRange(29, 11, 1, 1).setNumberFormat('yyyy-mm-dd hh:mm');
+  dashboard.getRange(31, 3, 4, 2).setNumberFormat('0.0"%"');
+
+  return { updated: true, visits: counts[0], completed, topCountry };
 }
 
+function updateDashboardSheetWithSupportFunnelV2_() {
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  const spreadsheet = SpreadsheetApp.openById(sheetId);
+  const dashboard = spreadsheet.getSheetByName('대시보드');
+  const eventSheet = spreadsheet.getSheetByName(FUNNEL_SHEET_NAME);
+  const supportSheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
+  const leadSheet = spreadsheet.getSheetByName(LEAD_SHEET_NAME);
+  if (!dashboard) throw new Error('대시보드 시트를 찾을 수 없습니다.');
+  if (leadSheet) ensureSheetHeaders(leadSheet);
+
+  const startValue = dashboard.getRange('K3').getValue();
+  const endValue = dashboard.getRange('L3').getValue();
+  const normalizeDate = (value) => {
+    if (value instanceof Date) return new Date(value);
+    if (typeof value === 'number' && value > 20000) return new Date((value - 25569) * 86400000);
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  };
+  const start = normalizeDate(startValue) || new Date(0);
+  const end = normalizeDate(endValue) || new Date();
+  end.setHours(23, 59, 59, 999);
+  const funnelTrackingStart = new Date('2026-08-03T02:23:00.000Z');
+  const inPeriod = (value) => {
+    const date = normalizeDate(value);
+    return date && date >= start && date <= end;
+  };
+  const isVerification = (value) => String(value || '').trim().toLowerCase() === 'verification';
+  const stepNames = ['support_page_view', 'support_form_start', 'support_country_select', 'support_submit'];
+  const sessionTimeline = {};
+
+  if (eventSheet && eventSheet.getLastRow() > 1) {
+    eventSheet.getDataRange().getValues().slice(1).forEach((row) => {
+      const name = String(row[1] || '').trim();
+      if (stepNames.indexOf(name) === -1 || !inPeriod(row[0]) || isVerification(row[9])) return;
+      const key = String(row[3] || row[2] || row[16] || '').trim();
+      const occurredAt = normalizeDate(row[0]);
+      if (!key || !occurredAt || occurredAt < funnelTrackingStart) return;
+      if (!sessionTimeline[key]) sessionTimeline[key] = {};
+      const previous = sessionTimeline[key][name];
+      if (!previous || occurredAt < previous) sessionTimeline[key][name] = occurredAt;
+    });
+  }
+
+  const countryCodes = ['PE', 'MX', 'CL', 'CO'];
+  const countryLabels = { PE: '페루', MX: '멕시코', CL: '칠레', CO: '콜롬비아' };
+  const countryCounts = { PE: 0, MX: 0, CL: 0, CO: 0 };
+  const supporterIds = {};
+  if (supportSheet && supportSheet.getLastRow() > 1) {
+    supportSheet.getDataRange().getValues().slice(1).forEach((row) => {
+      if (!inPeriod(row[0]) || isVerification(row[8])) return;
+      const code = String(row[2] || '').trim().toUpperCase();
+      const supporter = String(row[5] || row[6] || '').trim();
+      if (supporter) supporterIds[supporter] = true;
+      if (countryCounts.hasOwnProperty(code)) countryCounts[code] += 1;
+    });
+  }
+
+  const counts = [0, 0, 0, 0];
+  Object.keys(sessionTimeline).forEach((key) => {
+    const timeline = sessionTimeline[key];
+    const viewed = timeline.support_page_view;
+    const started = timeline.support_form_start;
+    const selected = timeline.support_country_select;
+    const submitted = timeline.support_submit;
+    if (!viewed) return;
+    counts[0] += 1;
+    if (!started || started < viewed) return;
+    counts[1] += 1;
+    if (!selected || selected < started) return;
+    counts[2] += 1;
+    if (!submitted || submitted < selected) return;
+    counts[3] += 1;
+  });
+  const totalSupport = Object.keys(supporterIds).length;
+  const totalVisits = counts[0];
+  const topCountry = countryCodes.slice().sort((a, b) => countryCounts[b] - countryCounts[a])[0];
+
+  const area = dashboard.getRange('A28:L62');
+  area.breakApart();
+  area.clearContent();
+  area.clearFormat();
+  area.setNumberFormat('General');
+
+  const merge = (row, column, width, value, options) => {
+    const opts = options || {};
+    const cell = dashboard.getRange(row, column, 1, width).merge();
+    cell.setValue(value);
+    cell.setHorizontalAlignment(opts.align || 'center');
+    cell.setVerticalAlignment('middle');
+    cell.setWrap(true);
+    if (opts.background) cell.setBackground(opts.background);
+    if (opts.color) cell.setFontColor(opts.color);
+    if (opts.bold) cell.setFontWeight('bold');
+    if (opts.size) cell.setFontSize(opts.size);
+    if (opts.format) cell.setNumberFormat(opts.format);
+    return cell;
+  };
+
+  const stepColors = ['#ef5f18', '#f39c1f', '#4f9b61', '#15372b'];
+  const stepLabels = ['STEP 1', 'STEP 2', 'STEP 3', 'STEP 4'];
+  const stepTitles = ['지원 페이지 방문', '폼 시작', '국가 선택', '응원 완료'];
+  const stepCounts = counts;
+  const stepSources = ['고유 세션', '방문 세션 중', '폼 시작 세션 중', '국가 선택 세션 중'];
+
+  merge(28, 1, 12, '출시 응원 전환 퍼널', { background: '#15372b', color: '#ffffff', bold: true, size: 12, align: 'left' });
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    const previousCount = index === 0 ? stepCounts[0] : stepCounts[index - 1];
+    const conversionRate = index === 0 ? (stepCounts[0] ? 1 : 0) : (previousCount ? stepCounts[index] / previousCount : 0);
+    merge(29, column, 3, stepLabels[index], { background: stepColors[index], color: '#ffffff', bold: true });
+    merge(30, column, 3, stepTitles[index], { background: '#fff6ed', color: '#15372b', bold: true });
+    merge(31, column, 3, stepCounts[index], { background: '#ffffff', bold: true, size: 22 });
+    merge(32, column, 3, stepSources[index], { background: '#ffffff', color: '#7a7a7a', size: 8 });
+    merge(33, column, 3, conversionRate, { background: '#fffaf5', color: stepColors[index], bold: true, size: 14, format: '0.0%' });
+    merge(34, column, 3, index === 0 ? '퍼널 기준값' : '직전 단계 전환율', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+  }
+  merge(35, 1, 12, '퍼널 측정 시작: 2026.08.03 11:23 KST · 같은 세션에서 순서대로 통과한 경우만 다음 단계로 집계 · verification 제외', { background: '#f5f7f6', color: '#5e6b63', size: 9, align: 'left' });
+
+  const safeRate = (value, base) => base ? value / base : 0;
+  const conversionLabels = ['방문 → 폼 시작', '폼 시작 → 국가 선택', '국가 선택 → 응원 완료', '방문 → 최종 완료'];
+  const conversionValues = [
+    safeRate(stepCounts[1], stepCounts[0]),
+    safeRate(stepCounts[2], stepCounts[1]),
+    safeRate(stepCounts[3], stepCounts[2]),
+    safeRate(stepCounts[3], stepCounts[0]),
+  ];
+  const conversionSources = [
+    `${stepCounts[1]} / ${stepCounts[0]} 세션`,
+    `${stepCounts[2]} / ${stepCounts[1]} 세션`,
+    `${stepCounts[3]} / ${stepCounts[2]} 세션`,
+    `${stepCounts[3]} / ${stepCounts[0]} 세션`,
+  ];
+  const conversionNotes = ['첫 입력 시작률', '선택 단계 진행률', '제출 성공률', '전체 퍼널 전환율'];
+
+  merge(37, 1, 12, '단계별 전환 분석', { background: '#ef5f18', color: '#ffffff', bold: true, size: 12, align: 'left' });
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    merge(38, column, 3, conversionLabels[index], { background: '#fff6ed', color: '#15372b', bold: true, size: 9 });
+    merge(39, column, 3, conversionValues[index], { background: '#ffffff', color: stepColors[index], bold: true, size: 20, format: '0.0%' });
+    merge(40, column, 3, conversionSources[index], { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
+    merge(41, column, 3, conversionNotes[index], { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+  }
+
+  const dropCounts = [
+    Math.max(stepCounts[0] - stepCounts[1], 0),
+    Math.max(stepCounts[1] - stepCounts[2], 0),
+    Math.max(stepCounts[2] - stepCounts[3], 0),
+    stepCounts[3],
+  ];
+  const dropRates = [
+    safeRate(dropCounts[0], stepCounts[0]),
+    safeRate(dropCounts[1], stepCounts[1]),
+    safeRate(dropCounts[2], stepCounts[2]),
+    safeRate(stepCounts[3], stepCounts[0]),
+  ];
+  const dropLabels = ['방문 후 미시작', '폼 시작 후 미선택', '국가 선택 후 미완료', '최종 완료'];
+  const dropNotes = ['폼 입력 전 이탈', '국가 선택 전 이탈', '제출 전 이탈', '전체 방문 중 완료'];
+
+  merge(43, 1, 12, '단계별 이탈 진단', { background: '#37474f', color: '#ffffff', bold: true, size: 11, align: 'left' });
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    merge(44, column, 3, dropLabels[index], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+    merge(45, column, 3, dropCounts[index], { background: '#ffffff', color: index === 3 ? '#15372b' : '#c54432', bold: true, size: 18 });
+    merge(46, column, 3, dropRates[index], { background: '#ffffff', color: index === 3 ? '#15372b' : '#c54432', bold: true, size: 12, format: '0.0%' });
+    merge(47, column, 3, dropNotes[index], { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  }
+
+  merge(49, 1, 12, '누적 출시 응원 현황', { background: '#ef5f18', color: '#ffffff', bold: true, size: 12, align: 'left' });
+  const kpiLabels = ['기간 내 응원', '최다 응원 국가', '국가별 합계', '최종 갱신'];
+  const kpiValues = [totalSupport, `${countryLabels[topCountry]} ${countryCounts[topCountry]}건`, countryCodes.map((code) => countryCounts[code]).reduce((sum, count) => sum + count, 0), Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm')];
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    merge(50, column, 3, kpiLabels[index], { background: '#fff6ed', color: '#5e4c43', bold: true, size: 9 });
+    merge(51, column, 3, kpiValues[index], { background: '#ffffff', color: '#15372b', bold: true, size: index === 0 || index === 2 ? 20 : 13 });
+    merge(52, column, 3, index === 0 ? 'Demand Support 기준' : index === 1 ? '기간 내 기준' : index === 2 ? '4개국 합계' : '자동 갱신', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  }
+
+  merge(54, 1, 12, '국가별 출시 응원', { background: '#37474f', color: '#ffffff', bold: true, size: 11, align: 'left' });
+  countryCodes.forEach((code, index) => {
+    const column = index * 3 + 1;
+    merge(55, column, 3, countryLabels[code], { background: '#eceff1', color: '#15372b', bold: true });
+    merge(56, column, 3, countryCounts[code], { background: '#ffffff', color: '#15372b', bold: true, size: 18 });
+    merge(57, column, 3, '응원', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  });
+  merge(59, 1, 12, '기간 기준: ' + Utilities.formatDate(start, TIME_ZONE, 'yyyy-MM-dd') + ' ~ ' + Utilities.formatDate(end, TIME_ZONE, 'yyyy-MM-dd') + ' · verification 테스트 데이터 제외', { background: '#f5f7f6', color: '#7a7a7a', size: 8, align: 'left' });
+
+  return { updated: true, visits: totalVisits, totalSupport, topCountry };
+}
+
+function updateCompleteWebsiteDashboard_() {
+  const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
+  const spreadsheet = SpreadsheetApp.openById(sheetId);
+  const dashboard = spreadsheet.getSheetByName('대시보드');
+  const eventSheet = spreadsheet.getSheetByName(FUNNEL_SHEET_NAME);
+  const supportSheet = spreadsheet.getSheetByName(DEMAND_SHEET_NAME);
+  const leadSheet = spreadsheet.getSheetByName(LEAD_SHEET_NAME);
+  if (!dashboard) throw new Error('대시보드 시트를 찾을 수 없습니다.');
+  if (leadSheet) ensureSheetHeaders(leadSheet);
+
+  const normalizeDate = (value) => {
+    if (value instanceof Date) return new Date(value);
+    if (typeof value === 'number' && value > 20000) return new Date((value - 25569) * 86400000);
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  };
+  const start = normalizeDate(dashboard.getRange('K3').getValue()) || new Date(0);
+  const end = normalizeDate(dashboard.getRange('L3').getValue()) || new Date();
+  end.setHours(23, 59, 59, 999);
+  const funnelTrackingStart = new Date('2026-08-03T02:23:00.000Z');
+  const inPeriod = (value) => {
+    const date = normalizeDate(value);
+    return date && date >= start && date <= end;
+  };
+  const isVerification = (value) => String(value || '').trim().toLowerCase() === 'verification';
+  const safeRate = (value, base) => base ? value / base : 0;
+  const earliest = (current, candidate) => !current || candidate < current ? candidate : current;
+  const formatDuration = (seconds) => {
+    const total = Math.max(Math.round(Number(seconds) || 0), 0);
+    const minutes = Math.floor(total / 60);
+    const remainder = total % 60;
+    return minutes ? `${minutes}분 ${remainder}초` : `${remainder}초`;
+  };
+
+  const pageDefinitions = [
+    { key: 'home', label: '홈' },
+    { key: 'about', label: '브랜드 소개' },
+    { key: 'products', label: '제품' },
+    { key: 'qna', label: 'Q&A' },
+    { key: 'contact', label: '문의' },
+    { key: 'support', label: '출시 응원' },
+    { key: 'coming-soon', label: '출시 예정' },
+  ];
+  const canonicalPage = (value) => {
+    let path = String(value || '').split('?')[0].split('#')[0].trim().toLowerCase();
+    if (!path) return 'other';
+    if (path.charAt(0) !== '/') path = `/${path}`;
+    path = path.replace(/\/+/g, '/').replace(/^\/(es|en|ko)(?=\/|$)/, '');
+    if (!path || path === '/' || path === '/index.html') return 'home';
+    const file = path.split('/').filter(Boolean).pop() || 'index.html';
+    if (file === 'index.html') return 'home';
+    if (file === 'about.html') return 'about';
+    if (file === 'products.html') return 'products';
+    if (file === 'qna.html') return 'qna';
+    if (file === 'contact.html') return 'contact';
+    if (file === 'support.html') return 'support';
+    if (file === 'coming-soon.html') return 'coming-soon';
+    return 'other';
+  };
+
+  const pageStats = {};
+  pageDefinitions.forEach((page) => {
+    pageStats[page.key] = {
+      views: 0,
+      sessions: {},
+      engagedSessions: {},
+      actionSessions: {},
+      activeTotal: 0,
+      activeInstances: 0,
+    };
+  });
+  const sessionTimeline = {};
+  const pageInstances = {};
+  const sessionPageViews = {};
+  const sessionActions = {};
+  const productSessions = { Original: {}, 'Para Carnes': {}, 'Soy Sauce': {}, '제품 미지정': {} };
+  const eventRows = eventSheet && eventSheet.getLastRow() > 1
+    ? eventSheet.getDataRange().getValues().slice(1)
+    : [];
+  const keyActionNames = [
+    'product_cta_click',
+    'contact_cta_click',
+    'form_start',
+    'lead_submit',
+    'generate_lead',
+    'support_cta_click',
+    'support_country_select',
+    'support_form_start',
+    'support_submit',
+    'support_share',
+  ];
+
+  eventRows.forEach((row) => {
+    if (!inPeriod(row[0]) || isVerification(row[9])) return;
+    const occurredAt = normalizeDate(row[0]);
+    const eventName = String(row[1] || '').trim();
+    const sessionKey = String(row[3] || row[2] || row[16] || '').trim();
+    const pageKey = canonicalPage(row[4]);
+    if (!occurredAt || !eventName || !sessionKey) return;
+    if (!sessionTimeline[sessionKey]) sessionTimeline[sessionKey] = {};
+    const timeline = sessionTimeline[sessionKey];
+    if (!timeline.language && row[5]) timeline.language = String(row[5]).trim().toUpperCase();
+    if (!timeline.device && row[6]) timeline.device = String(row[6]).trim().toLowerCase();
+    if (!timeline.referrer && row[7]) timeline.referrer = String(row[7]).trim();
+    if (!timeline.source && row[8]) timeline.source = String(row[8]).trim();
+    if (!timeline.medium && row[9]) timeline.medium = String(row[9]).trim();
+
+    if (eventName === 'page_view') {
+      timeline.siteView = earliest(timeline.siteView, occurredAt);
+      sessionPageViews[sessionKey] = (sessionPageViews[sessionKey] || 0) + 1;
+      if (pageStats[pageKey]) {
+        pageStats[pageKey].views += 1;
+        pageStats[pageKey].sessions[sessionKey] = true;
+      }
+      if (pageKey === 'contact') timeline.contactPage = earliest(timeline.contactPage, occurredAt);
+    }
+    if (eventName === 'product_section_view' || eventName === 'product_cta_click' || eventName === 'product_detail_view') {
+      timeline.productInterest = earliest(timeline.productInterest, occurredAt);
+      const rawProduct = String(row[12] || row[11] || '').toLowerCase();
+      const product = rawProduct.indexOf('original') !== -1
+        ? 'Original'
+        : rawProduct.indexOf('carne') !== -1 || rawProduct.indexOf('ssam') !== -1
+          ? 'Para Carnes'
+          : rawProduct.indexOf('soy') !== -1 || rawProduct.indexOf('ganjang') !== -1
+            ? 'Soy Sauce'
+            : '제품 미지정';
+      if (product === '제품 미지정') {
+        if (!productSessions.Original[sessionKey] && !productSessions['Para Carnes'][sessionKey] && !productSessions['Soy Sauce'][sessionKey]) {
+          productSessions[product][sessionKey] = true;
+        }
+      } else {
+        productSessions[product][sessionKey] = true;
+        delete productSessions['제품 미지정'][sessionKey];
+      }
+    }
+    if (eventName === 'contact_cta_click') {
+      timeline.contactCta = earliest(timeline.contactCta, occurredAt);
+      timeline.contactIntent = earliest(timeline.contactIntent, occurredAt);
+    }
+    if (eventName === 'contact_view') {
+      timeline.contactView = earliest(timeline.contactView, occurredAt);
+      timeline.contactIntent = earliest(timeline.contactIntent, occurredAt);
+    }
+    if (eventName === 'form_start' && pageKey === 'contact') {
+      timeline.contactFormStart = earliest(timeline.contactFormStart, occurredAt);
+    }
+    if ((eventName === 'lead_submit' || eventName === 'generate_lead') && pageKey === 'contact') {
+      timeline.leadSubmit = earliest(timeline.leadSubmit, occurredAt);
+    }
+    if (occurredAt >= funnelTrackingStart) {
+      if (eventName === 'support_page_view') timeline.supportView = earliest(timeline.supportView, occurredAt);
+      if (eventName === 'support_form_start') timeline.supportStart = earliest(timeline.supportStart, occurredAt);
+      if (eventName === 'support_country_select') timeline.supportCountry = earliest(timeline.supportCountry, occurredAt);
+      if (eventName === 'support_submit') timeline.supportSubmit = earliest(timeline.supportSubmit, occurredAt);
+    }
+
+    if (pageStats[pageKey] && keyActionNames.indexOf(eventName) !== -1) {
+      pageStats[pageKey].actionSessions[sessionKey] = true;
+      sessionActions[sessionKey] = true;
+    }
+    const activeSeconds = Number(row[18]) || 0;
+    if (activeSeconds > 0 && pageStats[pageKey]) {
+      const instanceKey = String(row[19] || `${sessionKey}|${row[4] || pageKey}`).trim();
+      const previous = pageInstances[instanceKey];
+      if (!previous || activeSeconds > previous.seconds) {
+        pageInstances[instanceKey] = { seconds: activeSeconds, pageKey, sessionKey };
+      }
+    }
+  });
+
+  const engagedSessions = {};
+  const activeBySession = {};
+  Object.keys(pageInstances).forEach((instanceKey) => {
+    const instance = pageInstances[instanceKey];
+    if (pageStats[instance.pageKey]) {
+      pageStats[instance.pageKey].activeTotal += instance.seconds;
+      pageStats[instance.pageKey].activeInstances += 1;
+    }
+    activeBySession[instance.sessionKey] = (activeBySession[instance.sessionKey] || 0) + instance.seconds;
+  });
+
+  Object.keys(sessionTimeline).forEach((sessionKey) => {
+    if ((activeBySession[sessionKey] || 0) >= 10 || sessionActions[sessionKey] || (sessionPageViews[sessionKey] || 0) >= 2) {
+      engagedSessions[sessionKey] = true;
+      pageDefinitions.forEach((page) => {
+        if (pageStats[page.key].sessions[sessionKey]) pageStats[page.key].engagedSessions[sessionKey] = true;
+      });
+    }
+  });
+
+  const siteSessions = {};
+  Object.keys(sessionTimeline).forEach((sessionKey) => {
+    if (sessionTimeline[sessionKey].siteView) siteSessions[sessionKey] = true;
+  });
+  const totalSessions = Object.keys(siteSessions).length;
+  const totalPageViews = pageDefinitions.reduce((sum, page) => sum + pageStats[page.key].views, 0);
+  const totalEngagedSessions = Object.keys(engagedSessions).filter((key) => siteSessions[key]).length;
+  const totalActiveSeconds = Object.keys(activeBySession)
+    .filter((key) => siteSessions[key])
+    .reduce((sum, key) => sum + activeBySession[key], 0);
+  const averageActiveSeconds = totalSessions ? totalActiveSeconds / totalSessions : 0;
+
+  const countBySessionProperty = (selector) => {
+    const counts = {};
+    Object.keys(siteSessions).forEach((sessionKey) => {
+      const label = selector(sessionTimeline[sessionKey] || {}) || '미확인';
+      counts[label] = (counts[label] || 0) + 1;
+    });
+    return Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  };
+  const acquisitionCounts = countBySessionProperty((timeline) => {
+    if (timeline.source) return `${timeline.source} / ${timeline.medium || '-'}`;
+    if (timeline.referrer) return timeline.referrer;
+    return 'Direct';
+  });
+  const languageCounts = countBySessionProperty((timeline) => ({ ES: '스페인어', EN: '영어', KR: '한국어' }[timeline.language] || timeline.language));
+  const deviceCounts = countBySessionProperty((timeline) => ({ mobile: '모바일', desktop: '데스크톱', tablet: '태블릿' }[timeline.device] || timeline.device));
+
+  const b2bCounts = [0, 0, 0, 0, 0];
+  let contactPageCount = 0;
+  let contactFormCount = 0;
+  let contactSubmitCount = 0;
+  const supportCounts = [0, 0, 0, 0];
+  Object.keys(sessionTimeline).forEach((sessionKey) => {
+    const timeline = sessionTimeline[sessionKey];
+    if (timeline.siteView) {
+      b2bCounts[0] += 1;
+      if (timeline.productInterest && timeline.productInterest >= timeline.siteView) {
+        b2bCounts[1] += 1;
+        const contactEntry = [timeline.contactIntent, timeline.contactPage]
+          .filter((date) => date && date >= timeline.productInterest)
+          .sort((a, b) => a - b)[0];
+        if (contactEntry && contactEntry >= timeline.productInterest) {
+          b2bCounts[2] += 1;
+          if (timeline.contactFormStart && timeline.contactFormStart >= contactEntry) {
+            b2bCounts[3] += 1;
+            if (timeline.leadSubmit && timeline.leadSubmit >= timeline.contactFormStart) b2bCounts[4] += 1;
+          }
+        }
+      }
+
+      if (timeline.contactPage && timeline.contactPage >= timeline.siteView) {
+        contactPageCount += 1;
+        if (timeline.contactFormStart && timeline.contactFormStart >= timeline.contactPage) {
+          contactFormCount += 1;
+          if (timeline.leadSubmit && timeline.leadSubmit >= timeline.contactFormStart) contactSubmitCount += 1;
+        }
+      }
+    }
+
+    if (timeline.supportView) {
+      supportCounts[0] += 1;
+      if (timeline.supportStart && timeline.supportStart >= timeline.supportView) {
+        supportCounts[1] += 1;
+        if (timeline.supportCountry && timeline.supportCountry >= timeline.supportStart) {
+          supportCounts[2] += 1;
+          if (timeline.supportSubmit && timeline.supportSubmit >= timeline.supportCountry) supportCounts[3] += 1;
+        }
+      }
+    }
+  });
+
+  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'ES', 'OTHER'];
+  const countryLabels = { PE: '페루', MX: '멕시코', CL: '칠레', CO: '콜롬비아', ES: '스페인', OTHER: '기타' };
+  const countryCounts = { PE: 0, MX: 0, CL: 0, CO: 0, ES: 0, OTHER: 0 };
+  const supporterIds = {};
+  if (supportSheet && supportSheet.getLastRow() > 1) {
+    supportSheet.getDataRange().getValues().slice(1).forEach((row) => {
+      if (!inPeriod(row[0]) || isVerification(row[8])) return;
+      const code = String(row[2] || '').trim().toUpperCase();
+      const supporter = String(row[5] || row[6] || '').trim();
+      if (supporter) supporterIds[supporter] = true;
+      if (Object.prototype.hasOwnProperty.call(countryCounts, code)) countryCounts[code] += 1;
+      else if (code) countryCounts.OTHER += 1;
+    });
+  }
+  const totalSupport = Object.keys(supporterIds).length;
+  const totalCountrySupport = countryCodes.reduce((sum, code) => sum + countryCounts[code], 0);
+  const topCountry = totalCountrySupport
+    ? countryCodes.slice().sort((a, b) => countryCounts[b] - countryCounts[a])[0]
+    : null;
+
+  const pipelineCounts = [0, 0, 0, 0];
+  if (leadSheet && leadSheet.getLastRow() > 1) {
+    const leadData = leadSheet.getDataRange().getValues();
+    const headers = leadData[0] || [];
+    const receivedIndex = headers.indexOf('Received At');
+    const statusIndex = headers.indexOf('Lead Status');
+    const sourceIndex = headers.indexOf('Inquiry Source');
+    const inquiryIndex = headers.indexOf('Inquiry Type');
+    leadData.slice(1).forEach((row) => {
+      if (receivedIndex < 0 || !inPeriod(row[receivedIndex])) return;
+      const source = sourceIndex >= 0 ? String(row[sourceIndex] || '').toLowerCase() : '';
+      const inquiry = inquiryIndex >= 0 ? String(row[inquiryIndex] || '').toLowerCase() : '';
+      if (!/b2b/.test(source) && !/distribution|retail|horeca|restaurant|distribución|restaurante|유통|리테일|레스토랑/.test(inquiry)) return;
+      pipelineCounts[0] += 1;
+      const status = statusIndex >= 0 ? String(row[statusIndex] || '').trim().toLowerCase() : '';
+      if (/qualified|유효|working|진행|converted|계약/.test(status)) pipelineCounts[1] += 1;
+      if (/working|진행|converted|계약/.test(status)) pipelineCounts[2] += 1;
+      if (/converted|계약/.test(status)) pipelineCounts[3] += 1;
+    });
+  }
+
+  const area = dashboard.getRange('A5:L100');
+  area.breakApart();
+  area.clearContent();
+  area.clearFormat();
+  dashboard.getRange('A1').setValue('MOKDA 홈페이지 통합 대시보드');
+  dashboard.getRange('A2').setValue('소비자 출시 수요와 B2B 바이어 전환을 분리해 봅니다. | 전체 페이지·언어·채널·제품 통합 · verification 제외');
+  dashboard.setColumnWidths(1, 12, 88);
+
+  const merge = (row, column, width, value, options) => {
+    const opts = options || {};
+    const cell = dashboard.getRange(row, column, 1, width).merge();
+    cell.setValue(value);
+    cell.setHorizontalAlignment(opts.align || 'center');
+    cell.setVerticalAlignment('middle');
+    cell.setWrap(true);
+    if (opts.background) cell.setBackground(opts.background);
+    if (opts.color) cell.setFontColor(opts.color);
+    if (opts.bold) cell.setFontWeight('bold');
+    if (opts.size) cell.setFontSize(opts.size);
+    if (opts.format) cell.setNumberFormat(opts.format);
+    return cell;
+  };
+  const section = (row, title, color) => merge(row, 1, 12, title, { background: color, color: '#ffffff', bold: true, size: 12, align: 'left' });
+  const colors = ['#ef5f18', '#f39c1f', '#4f9b61', '#2f6f5e', '#15372b'];
+
+  section(5, '전체 사이트 핵심 지표', '#15372b');
+  const overviewLabels = ['방문 세션', '페이지뷰', 'GA4형 참여 세션', '참여율', '평균 활성시간', '페이지/세션'];
+  const overviewValues = [
+    totalSessions,
+    totalPageViews,
+    totalEngagedSessions,
+    safeRate(totalEngagedSessions, totalSessions),
+    formatDuration(averageActiveSeconds),
+    safeRate(totalPageViews, totalSessions),
+  ];
+  const overviewNotes = ['고유 세션', '전체 페이지 합계', '10초+·전환·2뷰+', '방문 대비', '세션당 누적', '탐색 깊이'];
+  for (let index = 0; index < 6; index += 1) {
+    const column = index * 2 + 1;
+    merge(6, column, 2, overviewLabels[index], { background: '#fff6ed', color: '#15372b', bold: true, size: 9 });
+    merge(7, column, 2, overviewValues[index], { background: '#ffffff', color: index < 2 ? '#ef5f18' : '#15372b', bold: true, size: index === 4 ? 13 : 18, format: index === 3 ? '0.0%' : index === 5 ? '0.00' : index < 3 ? '#,##0' : null });
+    merge(8, column, 2, overviewNotes[index], { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  }
+
+  section(10, '페이지별 성과', '#ef5f18');
+  const pageHeaders = ['페이지', '방문 세션', '페이지뷰', '참여율', '평균 활성시간', '전환 행동 세션'];
+  for (let index = 0; index < 6; index += 1) {
+    merge(11, index * 2 + 1, 2, pageHeaders[index], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+  }
+  pageDefinitions.forEach((page, index) => {
+    const row = 12 + index;
+    const stats = pageStats[page.key];
+    const sessions = Object.keys(stats.sessions).length;
+    const engaged = Object.keys(stats.engagedSessions).length;
+    const background = index % 2 ? '#fffaf5' : '#ffffff';
+    const values = [
+      page.label,
+      sessions,
+      stats.views,
+      safeRate(engaged, sessions),
+      formatDuration(stats.activeInstances ? stats.activeTotal / stats.activeInstances : 0),
+      Object.keys(stats.actionSessions).length,
+    ];
+    values.forEach((value, valueIndex) => {
+      merge(row, valueIndex * 2 + 1, 2, value, {
+        background,
+        color: valueIndex === 0 ? '#15372b' : '#333333',
+        bold: valueIndex === 0 || valueIndex === 5,
+        size: valueIndex === 0 ? 9 : 10,
+        format: valueIndex === 3 ? '0.0%' : (valueIndex === 1 || valueIndex === 2 || valueIndex === 5) ? '#,##0' : null,
+      });
+    });
+  });
+  merge(19, 1, 12, '홈·소개·제품·Q&A·문의·출시 응원·출시 예정 페이지를 포함하며, 한국어·영어·스페인어 URL은 같은 페이지로 합산합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+
+  section(21, 'B2B 바이어 퍼널 · 제품 경유 폐쇄형', '#15372b');
+  const b2bLabels = ['사이트 방문', '제품 관심', '문의 CTA/도착', '폼 시작', '리드 생성'];
+  const b2bDropNames = ['방문 → 제품 관심', '제품 관심 → 문의 진입', '문의 진입 → 폼 시작', '폼 시작 → 문의 완료'];
+  const b2bDrops = b2bCounts.slice(0, 4).map((count, index) => Math.max(count - b2bCounts[index + 1], 0));
+  let largestDropIndex = 0;
+  b2bDrops.forEach((count, index) => {
+    if (count > b2bDrops[largestDropIndex]) largestDropIndex = index;
+  });
+  for (let index = 0; index < 5; index += 1) {
+    const column = index * 2 + 1;
+    const previous = index ? b2bCounts[index - 1] : b2bCounts[0];
+    merge(22, column, 2, b2bLabels[index], { background: colors[index], color: '#ffffff', bold: true, size: 9 });
+    merge(23, column, 2, b2bCounts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 18, format: '#,##0' });
+    merge(24, column, 2, index ? safeRate(b2bCounts[index], previous) : (b2bCounts[0] ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 12, format: '0.0%' });
+    merge(25, column, 2, index < 4 ? b2bDrops[index] : b2bCounts[4], { background: '#ffffff', color: index < 4 ? '#c54432' : '#15372b', bold: true, size: 11, format: '#,##0' });
+    merge(26, column, 2, index < 4 ? '다음 단계 이탈' : '완료 세션', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  }
+  merge(22, 11, 2, '자동 진단', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
+  merge(23, 11, 2, b2bCounts[0] ? b2bDropNames[largestDropIndex] : '데이터 수집 중', { background: '#ffffff', color: '#15372b', bold: true, size: 9 });
+  merge(24, 11, 2, safeRate(b2bDrops[largestDropIndex], b2bCounts[largestDropIndex]), { background: '#fffaf5', color: '#c54432', bold: true, size: 12, format: '0.0%' });
+  merge(25, 11, 2, '가장 큰 이탈 구간', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  merge(26, 11, 2, '동일 세션·순차 통과', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+
+  section(28, 'B2B 바이어 퍼널 · 직접 진입 포함', '#37474f');
+  const contactLabels = ['사이트 → 문의 페이지', '문의 페이지 → 폼 시작', '폼 시작 → 문의 완료', '사이트 → 문의 완료'];
+  const contactValues = [
+    safeRate(contactPageCount, totalSessions),
+    safeRate(contactFormCount, contactPageCount),
+    safeRate(contactSubmitCount, contactFormCount),
+    safeRate(contactSubmitCount, totalSessions),
+  ];
+  const contactSources = [
+    `${contactPageCount} / ${totalSessions} 세션`,
+    `${contactFormCount} / ${contactPageCount} 세션`,
+    `${contactSubmitCount} / ${contactFormCount} 세션`,
+    `${contactSubmitCount} / ${totalSessions} 세션`,
+  ];
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    merge(29, column, 3, contactLabels[index], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+    merge(30, column, 3, contactValues[index], { background: '#ffffff', color: colors[Math.min(index, 3)], bold: true, size: 18, format: '0.0%' });
+    merge(31, column, 3, contactSources[index], { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
+    merge(32, column, 3, index === 3 ? '전체 B2B 전환율' : '직전 단계 기준', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+  }
+
+  section(34, '출시 응원 전환 퍼널', '#ef5f18');
+  const supportLabels = ['출시 응원 방문', '폼 시작', '국가 선택', '응원 완료'];
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    const previous = index ? supportCounts[index - 1] : supportCounts[0];
+    merge(35, column, 3, `STEP ${index + 1}`, { background: colors[index], color: '#ffffff', bold: true, size: 9 });
+    merge(36, column, 3, supportLabels[index], { background: '#fff6ed', color: '#15372b', bold: true, size: 9 });
+    merge(37, column, 3, supportCounts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 18, format: '#,##0' });
+    merge(38, column, 3, index ? safeRate(supportCounts[index], previous) : (supportCounts[0] ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 12, format: '0.0%' });
+    merge(39, column, 3, index ? `${supportCounts[index]} / ${previous} 세션` : `${supportCounts[0]} 고유 세션`, { background: '#ffffff', color: '#5e6b63', size: 8 });
+    merge(40, column, 3, index ? '직전 단계 전환율' : '퍼널 기준값', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  }
+  merge(41, 1, 12, '출시 응원 퍼널은 2026.08.03 11:23 KST 이후 동일 세션에서 순서대로 통과한 경우만 집계합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+
+  section(43, '출시 응원 단계별 전환 분석', '#37474f');
+  const supportConversionLabels = ['방문 → 폼 시작', '폼 시작 → 국가 선택', '국가 선택 → 응원 완료', '방문 → 최종 완료'];
+  const supportConversionValues = [
+    safeRate(supportCounts[1], supportCounts[0]),
+    safeRate(supportCounts[2], supportCounts[1]),
+    safeRate(supportCounts[3], supportCounts[2]),
+    safeRate(supportCounts[3], supportCounts[0]),
+  ];
+  const supportConversionSources = [
+    `${supportCounts[1]} / ${supportCounts[0]} 세션`,
+    `${supportCounts[2]} / ${supportCounts[1]} 세션`,
+    `${supportCounts[3]} / ${supportCounts[2]} 세션`,
+    `${supportCounts[3]} / ${supportCounts[0]} 세션`,
+  ];
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    merge(44, column, 3, supportConversionLabels[index], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+    merge(45, column, 3, supportConversionValues[index], { background: '#ffffff', color: colors[index], bold: true, size: 18, format: '0.0%' });
+    merge(46, column, 3, supportConversionSources[index], { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
+    merge(47, column, 3, index === 3 ? '전체 응원 전환율' : '직전 단계 기준', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+  }
+
+  section(49, '누적 출시 응원 현황', '#ef5f18');
+  const supportKpiLabels = ['기간 내 응원', '최다 응원 국가', '국가별 합계', '최종 갱신'];
+  const supportKpiValues = [
+    totalSupport,
+    topCountry ? `${countryLabels[topCountry]} ${countryCounts[topCountry]}건` : '-',
+    totalCountrySupport,
+    Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm'),
+  ];
+  for (let index = 0; index < 4; index += 1) {
+    const column = index * 3 + 1;
+    merge(50, column, 3, supportKpiLabels[index], { background: '#fff6ed', color: '#5e4c43', bold: true, size: 9 });
+    merge(51, column, 3, supportKpiValues[index], { background: '#ffffff', color: '#15372b', bold: true, size: index === 0 || index === 2 ? 18 : 12, format: index === 0 || index === 2 ? '#,##0' : null });
+    merge(52, column, 3, index === 0 ? 'Demand Support 기준' : index === 1 ? '기간 내 기준' : index === 2 ? '전체 국가 합계' : '자동 갱신', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  }
+
+  section(54, '국가별 출시 응원', '#37474f');
+  countryCodes.forEach((code, index) => {
+    const column = index * 2 + 1;
+    merge(55, column, 2, countryLabels[code], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+    merge(56, column, 2, countryCounts[code], { background: '#ffffff', color: '#15372b', bold: true, size: 18, format: '#,##0' });
+    merge(57, column, 2, '응원', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  });
+
+  section(60, '유입·언어·기기 진단', '#15372b');
+  merge(61, 1, 4, '유입 경로 TOP 3', { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+  merge(61, 5, 4, '언어', { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+  merge(61, 9, 4, '기기', { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+  for (let index = 0; index < 3; index += 1) {
+    const row = 62 + index;
+    const source = acquisitionCounts[index] || ['-', 0];
+    const languageItem = languageCounts[index] || ['-', 0];
+    const deviceItem = deviceCounts[index] || ['-', 0];
+    merge(row, 1, 3, source[0], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#333333', size: 9, align: 'left' });
+    merge(row, 4, 1, source[1], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#15372b', bold: true, size: 10, format: '#,##0' });
+    merge(row, 5, 3, languageItem[0], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#333333', size: 9, align: 'left' });
+    merge(row, 8, 1, languageItem[1], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#15372b', bold: true, size: 10, format: '#,##0' });
+    merge(row, 9, 3, deviceItem[0], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#333333', size: 9, align: 'left' });
+    merge(row, 12, 1, deviceItem[1], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#15372b', bold: true, size: 10, format: '#,##0' });
+  }
+
+  section(66, '제품별 관심 세션', '#ef5f18');
+  ['Original', 'Para Carnes', 'Soy Sauce', '제품 미지정'].forEach((product, index) => {
+    const column = index * 3 + 1;
+    const count = Object.keys(productSessions[product]).length;
+    merge(67, column, 3, product, { background: '#fff6ed', color: '#15372b', bold: true, size: 9 });
+    merge(68, column, 3, count, { background: '#ffffff', color: '#ef5f18', bold: true, size: 18, format: '#,##0' });
+    merge(69, column, 3, safeRate(count, totalSessions), { background: '#fffaf5', color: '#15372b', bold: true, size: 11, format: '0.0%' });
+    merge(70, column, 3, '전체 방문 대비', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  });
+
+  section(72, 'B2B 영업 파이프라인 · 문의 이후', '#37474f');
+  ['리드 생성', '유효 리드', '상담·샘플 진행', '계약 전환'].forEach((label, index) => {
+    const column = index * 3 + 1;
+    merge(73, column, 3, label, { background: colors[index], color: '#ffffff', bold: true, size: 9 });
+    merge(74, column, 3, pipelineCounts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 18, format: '#,##0' });
+    merge(75, column, 3, index ? safeRate(pipelineCounts[index], pipelineCounts[index - 1]) : (pipelineCounts[0] ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 12, format: '0.0%' });
+    merge(76, column, 3, index ? '직전 단계 전환율' : 'Sheet1 문의 기준', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  });
+  merge(77, 1, 12, 'Sheet1의 Lead Status를 New → Qualified → Working → Converted로 갱신하면 영업 단계가 자동 반영됩니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+
+  section(79, '데이터 품질 체크', '#15372b');
+  const qualityItems = [
+    ['표본 상태', totalSessions < 30 ? '판단 보류' : totalSessions < 100 ? '방향 참고' : '추세 확인 가능'],
+    ['참여 기준', '10초+ 또는 전환 또는 2뷰+'],
+    ['퍼널 기준', '폐쇄형·직접 진입 분리'],
+    ['테스트 제외', 'UTM medium = verification'],
+  ];
+  qualityItems.forEach((item, index) => {
+    const column = index * 3 + 1;
+    merge(80, column, 3, item[0], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+    merge(81, column, 3, item[1], { background: '#ffffff', color: '#15372b', bold: true, size: 10 });
+  });
+  merge(83, 1, 12, '기간 기준: ' + Utilities.formatDate(start, TIME_ZONE, 'yyyy-MM-dd') + ' ~ ' + Utilities.formatDate(end, TIME_ZONE, 'yyyy-MM-dd') + ' · verification 제외 · 고유 세션 기준 · 갱신 ' + Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm'), { background: '#f5f7f6', color: '#7a7a7a', size: 8, align: 'left' });
+
+  dashboard.setRowHeights(5, 79, 24);
+  [5, 10, 21, 28, 34, 43, 49, 54, 60, 66, 72, 79].forEach((row) => dashboard.setRowHeight(row, 28));
+  return {
+    updated: true,
+    totalSessions,
+    totalPageViews,
+    b2bCounts,
+    supportCounts,
+    totalSupport,
+  };
+}

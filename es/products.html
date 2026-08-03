@@ -229,7 +229,7 @@
       </section>
 
       <section class="overflow-hidden">
-        <article id="original" class="product-feature scroll-mt-20 grid bg-[#fff8ef] lg:grid-cols-2 lg:items-stretch">
+        <article id="original" data-product="Original" class="product-feature scroll-mt-20 grid bg-[#fff8ef] lg:grid-cols-2 lg:items-stretch">
           <div class="relative min-h-[390px] overflow-hidden sm:min-h-[520px] lg:min-h-[650px]">
             <img src="assets/images/original-nachos-chicken-chips.webp" alt="Nachos, pollo frito y papas con salsa coreana Original" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" decoding="async" />
           </div>
@@ -237,31 +237,43 @@
             <p id="prod1Kicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">Gochujang</p>
             <h2 id="prod1Title" class="display-latin text-6xl uppercase leading-[0.86] text-[#ef3b1f] sm:text-8xl">Original</h2>
             <p id="prod1Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#321506]/72 sm:text-lg">Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.</p>
-            <a id="prod1Link" href="coming-soon.html" class="brand-text-link mt-8 text-mokdaOrange">Ver Producto ↗</a>
+            <p id="prod1Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#321506]/70">Ideal para tacos, pollo, frituras y snacks.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a id="prod1Link" data-product="Original" href="/es/support.html?product=original" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-6 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700">Apoyar el lanzamiento</a>
+              <a id="prod1B2bLink" data-product="Original" href="/es/contact.html?purpose=distribution&product=original" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4]">Consulta B2B</a>
+            </div>
           </div>
         </article>
 
-        <article id="para-carnes" class="product-feature scroll-mt-20 grid bg-[#321506] text-[#f8dfc4] lg:grid-cols-2 lg:items-stretch">
+        <article id="para-carnes" data-product="Para Carnes" class="product-feature scroll-mt-20 grid bg-[#321506] text-[#f8dfc4] lg:grid-cols-2 lg:items-stretch">
           <div class="reveal-target order-2 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:order-1 lg:px-16 xl:px-24">
             <p id="prod2Kicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">Ssamjang</p>
             <h2 id="prod2Title" class="display-latin text-6xl uppercase leading-[0.86] text-[#f8dfc4] sm:text-8xl">Para Carnes</h2>
             <p id="prod2Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#f8dfc4]/76 sm:text-lg">Ideal para pollo, res, cerdo y carnes asadas, con umami coreano profundo.</p>
-            <a id="prod2Link" href="coming-soon.html" class="brand-text-link mt-8 text-[#f8dfc4]">Ver Producto ↗</a>
+            <p id="prod2Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#f8dfc4]/70">Para mojar carne asada, tacos y parrilla.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a id="prod2Link" data-product="Para Carnes" href="/es/support.html?product=para-carnes" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-6 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700">Apoyar el lanzamiento</a>
+              <a id="prod2B2bLink" data-product="Para Carnes" href="/es/contact.html?purpose=distribution&product=para-carnes" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#f8dfc4] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#f8dfc4] hover:text-[#321506]">Consulta B2B</a>
+            </div>
           </div>
           <div class="relative order-1 min-h-[390px] overflow-hidden sm:min-h-[520px] lg:order-2 lg:min-h-[650px]">
             <img src="assets/images/para-carnes-grilled-meat.webp" alt="Pollo, cerdo y carne asada para Salsa Coreana Para Carnes" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" decoding="async" />
           </div>
         </article>
 
-        <article id="soy-sauce" class="product-feature scroll-mt-20 grid bg-[#ef5f18] text-white lg:grid-cols-2 lg:items-stretch">
+        <article id="soy-sauce" data-product="Soy Sauce" class="product-feature scroll-mt-20 grid bg-[#ef5f18] text-white lg:grid-cols-2 lg:items-stretch">
           <div class="relative min-h-[390px] overflow-hidden sm:min-h-[520px] lg:min-h-[650px]">
             <img src="assets/product-food-soy-v1.jpg" alt="Arroz, verduras y ensalada para Salsa Coreana Soy Sauce" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
           </div>
           <div class="reveal-target flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
             <p id="prod3Kicker" class="condensed-label mb-4 text-base uppercase text-[#321506]/65 sm:text-xl">Ganjang</p>
             <h2 id="prod3Title" class="display-latin text-6xl uppercase leading-[0.86] text-white sm:text-8xl">Soy Sauce</h2>
-            <p id="prod3Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-white/80 sm:text-lg">Umami dulce, salado y adictivo. (Aún no disponible)</p>
-            <a id="prod3Link" href="coming-soon.html" class="brand-text-link mt-8 text-white">Ver Producto ↗</a>
+            <p id="prod3Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-white/80 sm:text-lg">Umami dulce y salado para comidas cotidianas.</p>
+            <p id="prod3Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-white/75">Ideal para arroz, carne, frituras y salteados.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a id="prod3Link" data-product="Soy Sauce" href="/es/support.html?product=soy-sauce" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#1f0d04]">Apoyar el lanzamiento</a>
+              <a id="prod3B2bLink" data-product="Soy Sauce" href="/es/contact.html?purpose=distribution&product=soy-sauce" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-white px-6 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-white hover:text-mokdaOrange">Consulta B2B</a>
+            </div>
           </div>
         </article>
       </section>
@@ -315,20 +327,21 @@
             kicker: "Gochujang",
             name: "Original",
             desc: "Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.",
-            btn: "Ver Producto ↗"
+            uses: "Ideal para tacos, pollo, frituras y snacks."
           },
           p2: {
             kicker: "Ssamjang",
             name: "Para Carnes",
             desc: "Ideal para pollo, res, cerdo y carnes asadas, con umami coreano profundo.",
-            btn: "Ver Producto ↗"
+            uses: "Para mojar carne asada, tacos y parrilla."
           },
           p3: {
             kicker: "Ganjang",
             name: "Soy Sauce",
-            desc: "Umami dulce, salado y adictivo. (Aún no disponible)",
-            btn: "Ver Producto ↗"
-          }
+            desc: "Umami dulce y salado para comidas cotidianas.",
+            uses: "Ideal para arroz, carne, frituras y salteados."
+          },
+          actions: { support: 'Apoyar el lanzamiento', b2b: 'Consulta B2B' }
         },
         EN: {
           nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
@@ -340,20 +353,21 @@
             kicker: "Gochujang",
             name: "Original",
             desc: "A sauce where the spicy kick of gochujang meets the freshness of jalapeño.",
-            btn: "View Product ↗"
+            uses: "Made for tacos, chicken, fried food, and snacks."
           },
           p2: {
             kicker: "Ssamjang",
             name: "Para Carnes",
             desc: "Ideal for chicken, beef, pork, and grilled meats, with deep Korean umami.",
-            btn: "View Product ↗"
+            uses: "A Korean dipping sauce for grilled meat, tacos, and barbecue."
           },
           p3: {
             kicker: "Ganjang",
             name: "Soy Sauce",
-            desc: "Sweet, savory, and addictive umami. (Not yet released)",
-            btn: "View Product ↗"
-          }
+            desc: "Sweet and savory umami for everyday food.",
+            uses: "Made for rice, meat, fried food, and stir-fries."
+          },
+          actions: { support: 'Support the launch', b2b: 'B2B inquiry' }
         },
         KR: {
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
@@ -365,20 +379,21 @@
             kicker: "Gochujang",
             name: "Original",
             desc: "고추장의 매콤함과 할라피뇨의 상큼함이 만난 소스.",
-            btn: "상품 보기 ↗"
+            uses: "타코, 치킨, 튀김과 스낵에 어울립니다."
           },
           p2: {
             kicker: "Ssamjang",
             name: "Para Carnes",
             desc: "닭고기, 소고기, 돼지고기와 구운 고기에 어울리는 깊은 감칠맛의 한국식 소스.",
-            btn: "상품 보기 ↗"
+            uses: "구운 고기, 타코 속 고기와 바비큐에 찍어 먹는 소스입니다."
           },
           p3: {
             kicker: "Ganjang",
             name: "Soy Sauce",
-            desc: "달콤하고 짭조름하며 중독성 있는 감칠맛. (미출시)",
-            btn: "상품 보기 ↗"
-          }
+            desc: "일상 음식에 더하기 좋은 달콤짭짤한 감칠맛.",
+            uses: "밥, 고기, 튀김과 볶음요리에 어울립니다."
+          },
+          actions: { support: '출시 응원하기', b2b: 'B2B 문의' }
         }
       };
 
@@ -407,17 +422,23 @@
         setText('prod1Kicker', t.p1.kicker);
         setText('prod1Title', t.p1.name);
         setText('prod1Desc', t.p1.desc);
-        setText('prod1Link', t.p1.btn);
+        setText('prod1Uses', t.p1.uses);
+        setText('prod1Link', t.actions.support);
+        setText('prod1B2bLink', t.actions.b2b);
         
         setText('prod2Kicker', t.p2.kicker);
         setText('prod2Title', t.p2.name);
         setText('prod2Desc', t.p2.desc);
-        setText('prod2Link', t.p2.btn);
+        setText('prod2Uses', t.p2.uses);
+        setText('prod2Link', t.actions.support);
+        setText('prod2B2bLink', t.actions.b2b);
         
         setText('prod3Kicker', t.p3.kicker);
         setText('prod3Title', t.p3.name);
         setText('prod3Desc', t.p3.desc);
-        setText('prod3Link', t.p3.btn);
+        setText('prod3Uses', t.p3.uses);
+        setText('prod3Link', t.actions.support);
+        setText('prod3B2bLink', t.actions.b2b);
 
         window.MOKDA_FOOTER.render(language);
         

@@ -444,7 +444,10 @@
               <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem]"></h1>
               <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
                 <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                <a data-hero-link href="#products" class="brand-text-link text-[#321506]"></a>
+                <div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <a data-hero-link href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+                  <a data-hero-b2b-link href="/es/contact.html?purpose=distribution" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4] focus:outline-none focus:ring-4 focus:ring-[#321506]/15"></a>
+                </div>
               </div>
             </div>
           </div>
@@ -500,6 +503,17 @@
               </figure>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="launch-support" class="scroll-mt-20 bg-mokdaOrange px-4 py-14 text-white sm:px-6 sm:py-20 lg:px-8">
+        <div data-reveal class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-7 md:flex-row md:items-center">
+          <div class="max-w-3xl">
+            <p id="supportKicker" class="condensed-label mb-3 text-sm uppercase text-[#321506]/75 sm:text-base">LANZAMIENTO EN LATAM</p>
+            <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.9] sm:text-6xl">¿QUIERES ENCONTRAR SALSA COREANA EN TU PAÍS?</h2>
+            <p id="supportDescription" class="mt-4 max-w-2xl text-sm font-semibold leading-7 text-white/85 sm:text-base">Tu apoyo nos ayuda a demostrar demanda real ante tiendas y distribuidores.</p>
+          </div>
+          <a id="supportCta" href="/es/support.html" class="inline-flex min-h-14 shrink-0 items-center justify-center rounded-lg bg-[#321506] px-8 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:-translate-y-0.5 hover:bg-[#1f0d04] focus:outline-none focus:ring-4 focus:ring-white/25">Apoyar el lanzamiento</a>
         </div>
       </section>
 
@@ -666,21 +680,24 @@
               title: 'Comer Corea',
               titleLine2: '한국을 먹다',
               subtitle: 'Korean sauce for your favorite everyday foods',
-              button: 'Explore Lineup',
+              button: 'Explore sauces',
+              b2bButton: 'Distribution & retail',
             },
             ES: {
               kicker: 'ESENCIA DE MARCA MOKDA',
               title: 'Comer Corea',
               titleLine2: '한국을 먹다',
               subtitle: 'Salsa coreana para tus comidas favoritas',
-              button: 'Ver productos',
+              button: 'Conoce las salsas',
+              b2bButton: 'Distribución y retail',
             },
             KR: {
               kicker: 'MOKDA BRAND ESSENCE',
               title: 'Comer Corea',
               titleLine2: '한국을 먹다',
               subtitle: '좋아하는 음식에 더하는 한국 소스',
-              button: '라인업 보기',
+              button: '소스 라인업 보기',
+              b2bButton: '유통·리테일 문의',
             },
           },
         },
@@ -843,6 +860,12 @@
             lineDescription: "Three Korean sauces from MOKDA's first product line.",
             items: localizedProducts,
           },
+          support: {
+            kicker: 'LATAM LAUNCH',
+            title: 'Want Salsa Coreana in your country?',
+            description: 'Your support helps us demonstrate real demand to retailers and distributors.',
+            cta: 'Support the launch',
+          },
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT in LATAM',
@@ -890,6 +913,12 @@
             lineDescription: 'Tres salsas coreanas de la primera línea de productos de MOKDA.',
             items: localizedProducts,
           },
+          support: {
+            kicker: 'LANZAMIENTO EN LATAM',
+            title: '¿Quieres encontrar Salsa Coreana en tu país?',
+            description: 'Tu apoyo nos ayuda a demostrar demanda real ante tiendas y distribuidores.',
+            cta: 'Apoyar el lanzamiento',
+          },
           map: {
             kicker: 'MOKDA SPOT',
             title: 'MOKDA SPOT en LATAM',
@@ -936,6 +965,12 @@
             lineTitle: '제품 라인업',
             lineDescription: 'MOKDA의 첫 번째 제품 라인을 구성하는 세 가지 한국 소스입니다.',
             items: localizedProducts,
+          },
+          support: {
+            kicker: 'LATAM 출시 프로젝트',
+            title: '우리나라에서도 Salsa Coreana를 만나고 싶나요?',
+            description: '출시 응원이 쌓일수록 현지 매장과 유통사에 실제 수요를 보여줄 수 있습니다.',
+            cta: '출시 응원하기',
           },
           map: {
             kicker: 'MOKDA SPOT',
@@ -1102,7 +1137,10 @@
                   <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem]"></h1>
                   <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
                     <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                    <a data-hero-link href="#products" class="brand-text-link text-[#321506]"></a>
+                    <div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
+                      <a data-hero-link href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+                      <a data-hero-b2b-link href="/es/contact.html?purpose=distribution" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4] focus:outline-none focus:ring-4 focus:ring-[#321506]/15"></a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1148,6 +1186,7 @@
           const index = Number(slide.getAttribute('data-hero-slide'));
           const copy = heroSlides[index].copy[language];
           const link = slide.querySelector('[data-hero-link]');
+          const b2bLink = slide.querySelector('[data-hero-b2b-link]');
           const title = slide.querySelector('[data-hero-title]');
           slide.querySelector('[data-hero-kicker]').textContent = copy.kicker;
           title.textContent = '';
@@ -1167,6 +1206,7 @@
           slide.querySelector('[data-hero-subtitle]').textContent = copy.subtitle;
           link.textContent = copy.button;
           link.setAttribute('href', heroSlides[index].href);
+          if (b2bLink) b2bLink.textContent = copy.b2bButton || content[language].b2b.cta;
         });
       }
 
@@ -1226,7 +1266,7 @@
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
               return `
-              <a href="/es/products.html" data-reveal data-reveal-delay="${index * 120}" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300">
+              <a href="/es/products.html#${['original', 'para-carnes', 'soy-sauce'][index] || ''}" data-product="${item.name}" data-reveal data-reveal-delay="${index * 120}" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300">
                 <div class="relative h-[300px] overflow-hidden bg-[#f5d9b8] sm:h-[360px] lg:h-[390px]">
                   <img src="${item.foodImage || item.textureImage || item.image}" alt="" aria-hidden="true" class="product-food-image h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/6 to-transparent"></div>
@@ -1316,6 +1356,10 @@
         setText('productLineTitle', t.products.lineTitle);
         setText('productLineDescription', t.products.lineDescription);
         renderProducts(t.products.items);
+        setText('supportKicker', t.support.kicker);
+        setText('supportTitle', t.support.title);
+        setText('supportDescription', t.support.description);
+        setText('supportCta', t.support.cta);
         setText('mapKicker', t.map.kicker);
         setText('mapTitle', t.map.title);
         setText('mapDescription', t.map.description);

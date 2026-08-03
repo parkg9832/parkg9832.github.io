@@ -5,7 +5,7 @@
   const endpoint = window.MOKDA_B2B_WEB_APP_URL || '';
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const supportStorageKey = 'mokda_demand_support_v1';
-  const countryCodes = ['PE', 'MX', 'CL', 'CO'];
+  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'ES'];
   const feedPageSize = 20;
   const flagMap = {
     PE: './assets/images/flags/peru.jpg',
@@ -29,6 +29,7 @@
       mexico: '멕시코',
       chile: '칠레',
       colombia: '콜롬비아',
+      spain: '스페인',
       submit: '출시 응원하기',
       sending: '응원을 전하고 있어요…',
       privacy: '이름, 국가, 응원 메시지만 공개됩니다. 연락처는 수집하지 않습니다.',
@@ -60,6 +61,8 @@
       menuContact: '문의',
       menuOpen: '메뉴 열기',
       menuClose: '메뉴 닫기',
+      share: '캠페인 공유하기',
+      shareCopied: '링크를 복사했습니다.',
     },
     ES: {
       visual: 'Un sueño que empieza con tu apoyo',
@@ -76,6 +79,7 @@
       mexico: 'México',
       chile: 'Chile',
       colombia: 'Colombia',
+      spain: 'España',
       submit: 'Apoyar el lanzamiento',
       sending: 'Enviando tu apoyo…',
       privacy: 'Solo mostramos nombre, país y mensaje. No pedimos datos de contacto.',
@@ -107,6 +111,8 @@
       menuContact: 'Contacto',
       menuOpen: 'Abrir menú',
       menuClose: 'Cerrar menú',
+      share: 'Compartir la campaña',
+      shareCopied: 'Enlace copiado.',
     },
     EN: {
       visual: 'A dream that starts with your support',
@@ -123,6 +129,7 @@
       mexico: 'Mexico',
       chile: 'Chile',
       colombia: 'Colombia',
+      spain: 'Spain',
       submit: 'Support the launch',
       sending: 'Sending your support…',
       privacy: 'Only your name, country, and message are shown. We do not collect contact details.',
@@ -154,6 +161,8 @@
       menuContact: 'Contact',
       menuOpen: 'Open menu',
       menuClose: 'Close menu',
+      share: 'Share the campaign',
+      shareCopied: 'Link copied.',
     },
   };
   const t = copy[language] || copy.ES;
@@ -234,6 +243,7 @@
       MX: t.mexico,
       CL: t.chile,
       CO: t.colombia,
+      ES: t.spain,
     }[country] || country;
   }
 
@@ -256,6 +266,7 @@
       supportMexico: t.mexico,
       supportChile: t.chile,
       supportColombia: t.colombia,
+      supportSpain: t.spain,
       supportSubmitLabel: t.submit,
       supportPrivacy: t.privacy,
       supportFeedEyebrow: t.feedEyebrow,
@@ -270,6 +281,7 @@
       supportMenuContact: t.menuContact,
       supportSuccessLead: campaign.successLead,
       supportProductCtaLabel: campaign.productCta,
+      supportShareCtaLabel: t.share,
     };
 
     Object.entries(textById).forEach(([id, value]) => setText(id, value));
@@ -755,6 +767,20 @@
     });
   });
   document.getElementById('supportFeedMore')?.addEventListener('click', loadMoreSupportFeed);
+  document.getElementById('supportShareCta')?.addEventListener('click', async () => {
+    const shareUrl = `${window.location.origin}${window.location.pathname}`;
+    const shareData = { title: document.title, text: t.lead, url: shareUrl };
+    try {
+      if (navigator.share) await navigator.share(shareData);
+      else {
+        await navigator.clipboard.writeText(shareUrl);
+        showToast(t.shareCopied);
+      }
+      window.MOKDA_ANALYTICS?.track('support_share', { element: 'support_success_share' }, { immediate: true });
+    } catch (error) {
+      if (error?.name !== 'AbortError') showToast(t.error);
+    }
+  });
   const menuToggle = document.getElementById('supportMenuToggle');
   const menu = document.getElementById('supportMenu');
   menuToggle.addEventListener('click', () => {

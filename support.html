@@ -16,6 +16,9 @@
     <link rel="alternate" hreflang="x-default" href="https://www.mokda.kr/es/support.html" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="theme-color" content="#f6f2e9" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="shortcut icon" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
     <meta property="og:locale" content="es_419" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="MOKDA" />
@@ -113,6 +116,10 @@
                     <input type="radio" name="country" value="CO" class="support-country-input" required />
                     <span class="support-chip-label" id="supportColombia">Colombia</span>
                   </label>
+                  <label class="support-country-chip">
+                    <input type="radio" name="country" value="ES" class="support-country-input" required />
+                    <span class="support-chip-label" id="supportSpain">España</span>
+                  </label>
                 </div>
               </fieldset>
 
@@ -146,13 +153,10 @@
                 <span id="supportProductCtaLabel">Conoce nuestras salsas</span>
                 <span aria-hidden="true">→</span>
               </a>
-            </div>
-            <div class="support-success-actions" id="supportSuccessActions" hidden>
-              <p id="supportSuccessLead">Gracias por ser parte del lanzamiento.</p>
-              <a class="support-success-cta" id="supportProductCta" href="products.html">
-                <span id="supportProductCtaLabel">Conoce nuestras salsas</span>
-                <span aria-hidden="true">→</span>
-              </a>
+              <button class="support-success-cta" id="supportShareCta" type="button">
+                <span id="supportShareCtaLabel">Compartir la campaña</span>
+                <span aria-hidden="true">↗</span>
+              </button>
             </div>
           </div>
         </div>

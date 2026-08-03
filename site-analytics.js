@@ -274,12 +274,12 @@
       }
 
       if (/contact\.html|#(?:contact|partnership|b2b)/i.test(href)) {
-        track('contact_cta_click', { element: label }, { immediate: true });
+        track('contact_cta_click', { element: label, product: inferProduct(element) }, { immediate: true });
         return;
       }
 
       if (/support\.html|#support/i.test(href)) {
-        track('support_cta_click', { element: label }, { immediate: true });
+        track('support_cta_click', { element: label, product: inferProduct(element) }, { immediate: true });
         return;
       }
 
@@ -314,6 +314,21 @@
       { threshold: 0.35 }
     );
     productObserver.observe(productSection);
+  }
+
+  if ('IntersectionObserver' in window) {
+    const detailObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const product = inferProduct(entry.target);
+          if (product) trackOnce(`product_detail_${product}`, 'product_detail_view', { element: entry.target.id || 'product_detail', product });
+          detailObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.35 }
+    );
+    document.querySelectorAll('.product-feature').forEach((element) => detailObserver.observe(element));
   }
 
   [50, 90].forEach((depth) => {

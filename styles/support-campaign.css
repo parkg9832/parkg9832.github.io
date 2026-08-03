@@ -330,11 +330,11 @@ textarea {
 }
 
 .support-field textarea {
-  min-height: 120px;
-  resize: vertical;
-  padding: 15px 16px;
-  margin-bottom: 24px;
-  font-size: 15px;
+  min-height: 76px;
+  resize: none;
+  padding: 12px 14px;
+  margin-bottom: 0;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.5;
   letter-spacing: -0.05px;
@@ -455,55 +455,9 @@ textarea {
   text-align: center;
 }
 
-.support-message-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto 28px;
-  border: 0;
-  background: transparent;
-  padding: 4px 0;
-  color: #5a645d;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.25;
-  letter-spacing: -0.1px;
-  cursor: pointer;
-  text-align: center;
-  transition: color 150ms ease;
-}
-
-.support-message-toggle:hover {
-  color: var(--support-orange);
-}
-
-.support-message-toggle-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: rgba(50, 21, 6, 0.07);
-  color: var(--support-orange);
-  font-size: 17px;
-  line-height: 18px;
-  flex-shrink: 0;
-  transition: transform 200ms ease, background-color 150ms ease, color 150ms ease;
-}
-
-.support-message-toggle[aria-expanded="true"] .support-message-toggle-icon {
-  transform: rotate(45deg);
-  background: var(--support-orange);
-  color: #ffffff;
-}
-
 .support-message-wrapper {
   display: grid;
-  gap: 0;
+  gap: 9px;
   margin-top: 0;
   width: 100%;
 }
@@ -514,11 +468,7 @@ textarea {
   letter-spacing: 0;
   text-align: center;
   margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.support-message-wrapper[hidden] {
-  display: none;
+  margin-bottom: 0;
 }
 
 .visually-hidden {

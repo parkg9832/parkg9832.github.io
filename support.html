@@ -33,7 +33,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260803-1" />
+    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260803-2" />
   </head>
   <body class="support-page">
     <header class="support-header">
@@ -117,23 +117,13 @@
               </fieldset>
 
               <div class="support-field support-message-field">
-                <button
-                  type="button"
-                  class="support-message-toggle"
-                  id="supportMessageToggle"
-                  aria-expanded="false"
-                  aria-controls="supportMessageWrapper"
-                >
-                  <span class="support-message-toggle-icon" aria-hidden="true">＋</span>
-                  <span id="supportMessageToggleText">Añadir un mensaje de apoyo (opcional)</span>
-                </button>
-                <div class="support-message-wrapper" id="supportMessageWrapper" hidden>
-                  <label for="supportMessage" class="visually-hidden" id="supportMessageLabel">Mensaje de apoyo <span>(opcional)</span></label>
+                <div class="support-message-wrapper" id="supportMessageWrapper">
+                  <label for="supportMessage" class="support-message-label" id="supportMessageLabel">Mensaje de apoyo <span>(opcional)</span></label>
                   <textarea
                     id="supportMessage"
                     name="message"
                     maxlength="180"
-                    rows="3"
+                    rows="2"
                     placeholder="Escribe unas palabras para apoyar el lanzamiento"
                   ></textarea>
                   <small id="supportMessageHint"></small>
@@ -176,6 +166,6 @@
     <script src="./site-i18n.js?v=20260718-1"></script>
     <script src="./b2b-config.js?v=20260718-1"></script>
     <script src="./site-analytics.js?v=20260730-1"></script>
-    <script src="./support-campaign.js?v=20260803-1"></script>
+    <script src="./support-campaign.js?v=20260803-2"></script>
   </body>
 </html>

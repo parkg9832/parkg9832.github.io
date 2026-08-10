@@ -104,7 +104,7 @@
 
       .hero-title {
         font-size: 5rem;
-        line-height: 0.88;
+        line-height: 0.96;
       }
 
       .hero-copy {
@@ -554,6 +554,50 @@
       "about": {
         "@id": "https://www.mokda.kr/#organization"
       }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://www.mokda.kr/#organization",
+      "name": "MOKDA",
+      "alternateName": [
+        "먹다",
+        "MOKDA Salsa Coreana",
+        "Mokda 먹다"
+      ],
+      "url": "https://www.mokda.kr/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.mokda.kr/favicon.png",
+        "width": 192,
+        "height": 192
+      },
+      "image": "https://www.mokda.kr/assets/og-mokda.png",
+      "slogan": "Comer Corea · 한국을 먹다",
+      "description": "Marca K-Food que conecta sabores de Corea con las mesas cotidianas de América Latina.",
+      "sameAs": [
+        "https://www.instagram.com/salsa_coreana/",
+        "https://www.tiktok.com/@salsa_coreana",
+        "https://www.threads.com/@salsa_coreana"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.mokda.kr/#website",
+      "name": "MOKDA",
+      "alternateName": [
+        "먹다",
+        "MOKDA Salsa Coreana",
+        "Mokda 먹다"
+      ],
+      "url": "https://www.mokda.kr/",
+      "inLanguage": [
+        "es-419",
+        "ko-KR",
+        "en"
+      ],
+      "publisher": {
+        "@id": "https://www.mokda.kr/#organization"
+      }
     }
   ]
 }
@@ -625,35 +669,31 @@
           <div id="field-story" data-analytics-section="field_story" data-reveal data-reveal-delay="100" class="relative mx-auto mt-8 max-w-5xl sm:mt-9">
             <div id="proofCarousel" class="relative overflow-hidden touch-pan-y" aria-roledescription="carousel">
               <div id="proofCarouselTrack" class="flex gap-3 will-change-transform sm:gap-4">
-                <figure data-proof-slide class="relative aspect-[4/3] w-[86%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
+                <figure data-proof-slide class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
                   <picture>
                     <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp" />
                     <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover object-[center_58%]" width="1071" height="1428" loading="lazy" decoding="async" draggable="false" />
                   </picture>
                 </figure>
-                <figure data-proof-slide class="relative aspect-[4/3] w-[86%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
+                <figure data-proof-slide class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
                 <picture>
                   <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-720.webp" />
                     <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover object-[center_45%]" width="899" height="1600" loading="lazy" decoding="async" draggable="false" />
                 </picture>
               </figure>
-                <figure data-proof-slide class="relative aspect-[4/3] w-[86%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
+                <figure data-proof-slide class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
                 <picture>
                   <source media="(max-width: 767px)" srcset="assets/images/field-meeting-720.webp" />
                     <img src="assets/images/field-meeting-1440.webp" alt="MOKDA preparando su expansión internacional en una reunión de trabajo en Corea" class="absolute inset-0 h-full w-full object-cover object-center" width="1440" height="810" loading="lazy" decoding="async" draggable="false" />
                 </picture>
               </figure>
               </div>
-            </div>
-            <div class="mt-3 flex justify-center sm:mt-4">
-              <div class="inline-flex items-center gap-1.5 rounded-full border border-[#f8dfc4]/20 bg-[#4a200c] p-1.5 shadow-[0_10px_24px_rgba(0,0,0,0.16)]">
-                <button id="proofCarouselPrev" type="button" class="flex h-10 w-10 items-center justify-center rounded-full text-lg font-black text-[#f8dfc4] transition hover:bg-[#f8dfc4]/10 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:h-11 sm:w-11" aria-label="Foto anterior">←</button>
-                <button id="proofCarouselNext" type="button" class="flex h-10 w-10 items-center justify-center rounded-full bg-mokdaOrange text-lg font-black text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:h-11 sm:w-11" aria-label="Foto siguiente">→</button>
-              </div>
+              <button id="proofCarouselPrev" type="button" class="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#f8dfc4]/30 bg-[#321506]/55 text-lg font-black text-[#f8dfc4]/90 opacity-75 shadow-[0_8px_20px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:bg-[#321506]/80 hover:opacity-100 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:left-3 sm:h-11 sm:w-11" aria-label="Foto anterior">←</button>
+              <button id="proofCarouselNext" type="button" class="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#f8dfc4]/30 bg-[#321506]/55 text-lg font-black text-[#f8dfc4]/90 opacity-75 shadow-[0_8px_20px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:bg-[#321506]/80 hover:opacity-100 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:right-3 sm:h-11 sm:w-11" aria-label="Foto siguiente">→</button>
             </div>
           </div>
 
-          <div id="proofList" data-reveal data-reveal-delay="160" class="mx-auto mt-5 grid max-w-4xl grid-cols-3 border-y border-[#f8dfc4]/24 sm:mt-6">
+          <div id="proofList" data-reveal data-reveal-delay="160" class="mx-auto mt-8 grid max-w-4xl grid-cols-3 border-y border-[#f8dfc4]/24 sm:mt-7">
             <article id="proofViewsItem" class="min-w-0 py-4 text-center sm:py-5">
               <p id="proofViewsValue" class="display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
               <p id="proofViews" class="mt-1.5 px-1 text-[9px] font-extrabold uppercase leading-3 tracking-[0.08em] text-[#f8dfc4]/65 sm:text-xs sm:leading-4"></p>
@@ -712,8 +752,8 @@
           <div data-reveal class="mx-auto max-w-3xl">
             <p id="supportKicker" class="condensed-label mb-3 text-sm uppercase text-mokdaOrange sm:text-base">LANZAMIENTO EN LATAM</p>
             <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.92] text-[#f8dfc4] sm:text-6xl">Nos esperan en Latinoamérica.</h2>
-            <p class="mt-7 flex items-end justify-center gap-3 text-mokdaOrange"><strong id="supportTotal" class="display-latin text-6xl leading-none">—</strong><span id="supportTotalLabel" class="pb-1 text-sm font-extrabold uppercase text-[#f8dfc4]"></span></p>
-            <a id="supportCta" data-analytics-event="support_cta_click" href="/ko/support.html" class="mt-7 inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-white transition hover:-translate-y-0.5 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+            <p class="mt-8 text-center text-mokdaOrange"><strong id="supportTotal" class="display-latin block text-7xl leading-none sm:text-8xl">—</strong><span id="supportTotalLabel" class="mt-4 block text-sm font-extrabold uppercase text-[#f8dfc4]"></span></p>
+            <a id="supportCta" data-analytics-event="support_cta_click" href="/ko/support.html" class="mt-8 inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-white transition hover:-translate-y-0.5 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
           </div>
           <div id="homeSupportMessages" data-reveal data-reveal-delay="120" class="support-marquee mt-10 hidden w-full" aria-live="polite"></div>
         </div>
@@ -1376,18 +1416,21 @@
         if (!viewport || !track || slides.length < 2) return;
 
         const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
         firstClone.removeAttribute('data-proof-slide');
         firstClone.setAttribute('aria-hidden', 'true');
+        lastClone.removeAttribute('data-proof-slide');
+        lastClone.setAttribute('aria-hidden', 'true');
+        track.prepend(lastClone);
         track.appendChild(firstClone);
-        const carouselSlides = [...slides, firstClone];
+        const carouselSlides = [lastClone, ...slides, firstClone];
 
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        let activeIndex = 0;
+        let activeIndex = 1;
         let timer = null;
         let transitioning = false;
         let pointerStartX = null;
 
-        const slideStep = () => slides[1].offsetLeft - slides[0].offsetLeft;
         const syncSlideState = () => {
           carouselSlides.forEach((slide, index) => {
             slide.classList.toggle('is-active', index === activeIndex);
@@ -1395,10 +1438,12 @@
         };
         const move = (animate = true) => {
           syncSlideState();
+          const activeSlide = carouselSlides[activeIndex];
+          const centeredOffset = activeSlide.offsetLeft - (viewport.clientWidth - activeSlide.offsetWidth) / 2;
           track.style.transitionProperty = 'transform';
           track.style.transitionDuration = animate && !reducedMotion.matches ? '600ms' : '0ms';
           track.style.transitionTimingFunction = 'cubic-bezier(0.22, 1, 0.36, 1)';
-          track.style.transform = `translate3d(${-activeIndex * slideStep()}px, 0, 0)`;
+          track.style.transform = `translate3d(${-centeredOffset}px, 0, 0)`;
         };
         const stop = () => {
           if (!timer) return;
@@ -1413,18 +1458,6 @@
         };
         const previous = () => {
           if (transitioning) return;
-          if (activeIndex === 0) {
-            activeIndex = slides.length;
-            move(false);
-            requestAnimationFrame(() => {
-              requestAnimationFrame(() => {
-                transitioning = true;
-                activeIndex -= 1;
-                move();
-              });
-            });
-            return;
-          }
           transitioning = true;
           activeIndex -= 1;
           move();
@@ -1441,8 +1474,11 @@
         track.addEventListener('transitionend', (event) => {
           if (event.target !== track || event.propertyName !== 'transform') return;
           transitioning = false;
-          if (activeIndex === slides.length) {
-            activeIndex = 0;
+          if (activeIndex === carouselSlides.length - 1) {
+            activeIndex = 1;
+            move(false);
+          } else if (activeIndex === 0) {
+            activeIndex = slides.length;
             move(false);
           }
         });

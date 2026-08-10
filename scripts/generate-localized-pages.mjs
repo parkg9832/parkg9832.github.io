@@ -105,15 +105,15 @@ const pages = {
     },
     ES: {
       title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
-      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile, Colombia y España.',
+      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile y Colombia.',
     },
     KR: {
       title: 'Salsa Coreana 출시 응원 | MOKDA',
-      description: '페루, 멕시코, 칠레, 콜롬비아와 스페인에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
+      description: '페루, 멕시코, 칠레와 콜롬비아에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
     },
     EN: {
       title: 'Support the Salsa Coreana Launch | MOKDA',
-      description: 'Support the launch of MOKDA Salsa Coreana in Peru, Mexico, Chile, Colombia, and Spain.',
+      description: 'Support the launch of MOKDA Salsa Coreana in Peru, Mexico, Chile, and Colombia.',
     },
   },
 };
@@ -166,6 +166,41 @@ function structuredData(language, page, canonical, metadata) {
     },
   ];
 
+  if (!page.route) {
+    graph.push(
+      {
+        '@type': 'Organization',
+        '@id': `${SITE}/#organization`,
+        name: 'MOKDA',
+        alternateName: ['먹다', 'MOKDA Salsa Coreana', 'Mokda 먹다'],
+        url: `${SITE}/`,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${SITE}/favicon.png`,
+          width: 192,
+          height: 192,
+        },
+        image: `${SITE}/assets/og-mokda.png`,
+        slogan: 'Comer Corea · 한국을 먹다',
+        description: 'Marca K-Food que conecta sabores de Corea con las mesas cotidianas de América Latina.',
+        sameAs: [
+          'https://www.instagram.com/salsa_coreana/',
+          'https://www.tiktok.com/@salsa_coreana',
+          'https://www.threads.com/@salsa_coreana',
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${SITE}/#website`,
+        name: 'MOKDA',
+        alternateName: ['먹다', 'MOKDA Salsa Coreana', 'Mokda 먹다'],
+        url: `${SITE}/`,
+        inLanguage: ['es-419', 'ko-KR', 'en'],
+        publisher: { '@id': `${SITE}/#organization` },
+      },
+    );
+  }
+
   if (page.route) {
     graph.push({
       '@type': 'BreadcrumbList',
@@ -185,7 +220,11 @@ function localizeHtml(source, language, page) {
   const canonical = routeUrl(language, page);
   let html = source;
 
-  html = html.replace(/<html\s+lang="[^"]+"([^>]*)>/i, `<html lang="${config.html}" data-route-language="${language}"$1>`);
+  html = html.replace(/\s*<!-- legacy-route-redirect:start -->[\s\S]*?<!-- legacy-route-redirect:end -->\s*/i, '\n');
+  html = html.replace(/<html\s+lang="[^"]+"([^>]*)>/i, (_match, attributes) => {
+    const cleanAttributes = attributes.replace(/\s+data-route-language="[^"]*"/gi, '');
+    return `<html lang="${config.html}" data-route-language="${language}"${cleanAttributes}>`;
+  });
   html = html.replace(/(<meta\s+name="viewport"[^>]*>)/i, `$1\n    <base href="/" />\n    <meta name="mokda-route-language" content="${language}" />`);
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${metadata.title}</title>`);
   html = html.replace(/<meta(?:\s+id="[^"]+")?\s+name="description"[\s\S]*?\/\s*>/i, `    <meta name="description" content="${metadata.description}" />`);

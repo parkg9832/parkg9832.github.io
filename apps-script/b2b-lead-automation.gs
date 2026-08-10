@@ -8,7 +8,7 @@ const SCRIPT_PROPERTY_KEYS = {
   notificationEmail: 'NOTIFICATION_EMAIL',
 };
 
-const REQUIRED_PAYLOAD_FIELDS = ['name', 'email', 'country', 'purpose', 'message'];
+const REQUIRED_PAYLOAD_FIELDS = ['name', 'company', 'country', 'message'];
 
 const SHEET_HEADERS = [
   'Received At',
@@ -57,6 +57,8 @@ const FUNNEL_HEADERS = [
   'Page URL',
   'Active Seconds',
   'Page Instance ID',
+  'Section',
+  'Visitor Daypart',
 ];
 const DEMAND_SHEET_NAME = 'Demand Support';
 const DEMAND_HEADERS = [
@@ -74,6 +76,8 @@ const DEMAND_HEADERS = [
   'Page URL',
   'Public Feed Opt-in',
   'Support Message',
+  'Approved',
+  'Homepage Featured',
 ];
 const DEMAND_COUNTRIES = {
   PE: 'Peru',
@@ -106,6 +110,11 @@ const FUNNEL_EVENT_NAMES = [
   'support_form_start',
   'support_submit',
   'support_share',
+  'hero_product_click',
+  'section_view',
+  'whatsapp_click',
+  'b2b_cta_click',
+  'b2b_form_start',
 ];
 
 function doGet(event) {
@@ -304,6 +313,8 @@ function appendDemandSupport(payload) {
       cleanAnalyticsValue(payload.pageUrl, 500),
       publicFeed,
       message,
+      false,
+      false,
     ]);
 
     refreshDashboardIfNeeded_();
@@ -332,6 +343,7 @@ function ensureDemandHeaders(sheet) {
 function getDemandSupportFeed(event) {
   const requestedLimit = Number((event && event.parameter && event.parameter.limit) || 20);
   const requestedOffset = Number((event && event.parameter && event.parameter.offset) || 0);
+  const featuredOnly = String((event && event.parameter && event.parameter.featured) || '') === '1';
   const limit = Math.min(Math.max(Math.round(requestedLimit) || 20, 1), 20);
   const offset = Math.max(Math.round(requestedOffset) || 0, 0);
   const totals = Object.keys(DEMAND_COUNTRIES).reduce((result, code) => {
@@ -361,22 +373,32 @@ function getDemandSupportFeed(event) {
   const publicRows = eligibleRows
     .filter((row) => row[12] === true || String(row[12]).toLowerCase() === 'true')
     .reverse();
-  const supporters = publicRows
+  const selectedRows = featuredOnly
+    ? publicRows.filter(
+        (row) =>
+          (row[14] === true || String(row[14]).toLowerCase() === 'true') &&
+          (row[15] === true || String(row[15]).toLowerCase() === 'true') &&
+          String(row[13] || '').trim()
+      )
+    : publicRows;
+  const supporters = selectedRows
     .slice(offset, offset + limit)
     .map((row) => ({
       name: cleanAnalyticsValue(row[1], 40),
       countryCode: String(row[2] || '').trim().toUpperCase(),
       createdAt: row[0] instanceof Date ? row[0].toISOString() : String(row[0] || ''),
       message: cleanAnalyticsValue(row[13], 180),
+      featured: featuredOnly && (row[15] === true || String(row[15]).toLowerCase() === 'true'),
     }));
 
   return {
     ok: true,
     total: eligibleRows.length,
     publicTotal: publicRows.length,
+    featuredTotal: featuredOnly ? selectedRows.length : 0,
     totals,
     supporters,
-    hasMore: offset + supporters.length < publicRows.length,
+    hasMore: offset + supporters.length < selectedRows.length,
   };
 }
 
@@ -441,6 +463,8 @@ function appendFunnelEvents(payload) {
       cleanAnalyticsValue(item.pageUrl, 500),
       cleanAnalyticsNumber(item.activeSeconds, 0, 86400),
       cleanAnalyticsValue(item.pageInstanceId, 100),
+      cleanAnalyticsValue(item.section, 80),
+      cleanAnalyticsValue(item.visitorDaypart, 20),
     ]);
   });
 
@@ -518,7 +542,13 @@ function validatePayload(payload) {
     throw new Error(`Missing required fields: ${missing.join(', ')}`);
   }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(payload.email))) {
+  const email = String(payload.email || '').trim();
+  const whatsapp = String(payload.whatsapp || '').trim();
+  if (!email && !whatsapp) {
+    throw new Error('Email or WhatsApp is required');
+  }
+
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new Error('Invalid email');
   }
 }
@@ -1114,8 +1144,12 @@ function updateCompleteWebsiteDashboard_() {
     : [];
   const keyActionNames = [
     'product_cta_click',
+    'hero_product_click',
     'contact_cta_click',
+    'whatsapp_click',
+    'b2b_cta_click',
     'form_start',
+    'b2b_form_start',
     'lead_submit',
     'generate_lead',
     'support_cta_click',
@@ -1149,7 +1183,7 @@ function updateCompleteWebsiteDashboard_() {
       }
       if (pageKey === 'contact') timeline.contactPage = earliest(timeline.contactPage, occurredAt);
     }
-    if (eventName === 'product_section_view' || eventName === 'product_cta_click' || eventName === 'product_detail_view') {
+    if (eventName === 'product_section_view' || eventName === 'product_cta_click' || eventName === 'hero_product_click' || eventName === 'product_detail_view') {
       timeline.productInterest = earliest(timeline.productInterest, occurredAt);
       const rawProduct = String(row[12] || row[11] || '').toLowerCase();
       const product = rawProduct.indexOf('original') !== -1
@@ -1168,7 +1202,7 @@ function updateCompleteWebsiteDashboard_() {
         delete productSessions['제품 미지정'][sessionKey];
       }
     }
-    if (eventName === 'contact_cta_click') {
+    if (eventName === 'contact_cta_click' || eventName === 'b2b_cta_click' || eventName === 'whatsapp_click') {
       timeline.contactCta = earliest(timeline.contactCta, occurredAt);
       timeline.contactIntent = earliest(timeline.contactIntent, occurredAt);
     }
@@ -1176,7 +1210,7 @@ function updateCompleteWebsiteDashboard_() {
       timeline.contactView = earliest(timeline.contactView, occurredAt);
       timeline.contactIntent = earliest(timeline.contactIntent, occurredAt);
     }
-    if (eventName === 'form_start' && pageKey === 'contact') {
+    if ((eventName === 'form_start' || eventName === 'b2b_form_start') && pageKey === 'contact') {
       timeline.contactFormStart = earliest(timeline.contactFormStart, occurredAt);
     }
     if ((eventName === 'lead_submit' || eventName === 'generate_lead') && pageKey === 'contact') {

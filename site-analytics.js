@@ -10,7 +10,7 @@
     return;
   }
 
-  const allowedHosts = new Set(['mokda.kr', 'www.mokda.kr', 'parkg9832.github.io']);
+  const allowedHosts = new Set(['mokda.kr', 'www.mokda.kr']);
   if (!allowedHosts.has(window.location.hostname)) {
     window.MOKDA_ANALYTICS_STATUS.reason = 'unsupported_host';
     return;
@@ -135,6 +135,14 @@
     return 'desktop';
   }
 
+  function getVisitorDaypart() {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) return 'morning';
+    if (hour >= 12 && hour < 17) return 'afternoon';
+    if (hour >= 17 && hour < 22) return 'evening';
+    return 'night';
+  }
+
   function clean(value, maxLength = 150) {
     return String(value == null ? '' : value)
       .replace(/[\u0000-\u001F\u007F]/g, ' ')
@@ -164,9 +172,11 @@
       utmCampaign: clean(attribution.utmCampaign, 150),
       element: clean(details.element, 150),
       product: clean(details.product, 80),
+      section: clean(details.section, 80),
       scrollDepth: clean(details.scrollDepth, 20),
       browserLocale: clean(navigator.language, 30),
       timeZone: clean(Intl.DateTimeFormat().resolvedOptions().timeZone, 80),
+      visitorDaypart: getVisitorDaypart(),
       activeSeconds: details.activeSeconds == null ? '' : Math.max(0, Math.floor(details.activeSeconds)),
       pageInstanceId,
     };
@@ -263,6 +273,12 @@
       const label =
         element.getAttribute('aria-label') || element.textContent || element.getAttribute('id') || element.tagName;
 
+      const explicitEvent = clean(element.getAttribute('data-analytics-event'), 50);
+      if (explicitEvent) {
+        track(explicitEvent, { element: label, product: inferProduct(element) }, { immediate: true });
+        return;
+      }
+
       if (element.classList.contains('lang-btn') || /^lang(?:ES|KR|EN)$/i.test(element.id || '')) {
         track('language_switch', { element: label }, { immediate: true });
         return;
@@ -296,9 +312,10 @@
 
   const form = document.querySelector('#contactForm, #b2bForm');
   if (form) {
+    const formStartEvent = form.id === 'b2bForm' ? 'b2b_form_start' : 'form_start';
     form.addEventListener(
       'focusin',
-      () => trackOnce('form_start', 'form_start', { element: form.id || 'contact_form' }),
+      () => trackOnce(formStartEvent, formStartEvent, { element: form.id || 'contact_form' }),
       { once: true }
     );
   }
@@ -317,6 +334,19 @@
   }
 
   if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const section = clean(entry.target.getAttribute('data-analytics-section'), 80);
+          if (section) trackOnce(`section_${section}`, 'section_view', { element: section, section });
+          sectionObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+    );
+    document.querySelectorAll('[data-analytics-section]').forEach((element) => sectionObserver.observe(element));
+
     const detailObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -331,7 +361,7 @@
     document.querySelectorAll('.product-feature').forEach((element) => detailObserver.observe(element));
   }
 
-  [50, 90].forEach((depth) => {
+  [25, 50, 75, 90].forEach((depth) => {
     const onScroll = () => {
       const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
       const percentage = Math.round((window.scrollY / scrollable) * 100);

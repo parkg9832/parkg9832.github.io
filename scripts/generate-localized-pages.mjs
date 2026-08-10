@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-08-03';
+const LAST_MODIFIED = '2026-08-10';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -83,16 +83,16 @@ const pages = {
     route: 'contact.html',
     type: 'ContactPage',
     ES: {
-      title: 'Contacto | MOKDA',
-      description: 'Contacta a MOKDA sobre Salsa Coreana, productos, disponibilidad, distribución, retail, HORECA y colaboraciones.',
+      title: 'Alianza B2B | MOKDA',
+      description: 'Contacta a MOKDA sobre distribución, importación, retail, HORECA y alianzas comerciales para Latinoamérica.',
     },
     KR: {
-      title: '문의 | MOKDA',
-      description: 'Salsa Coreana 제품, 구매, 원재료, 유통, 리테일, HORECA 및 브랜드 협업에 관해 MOKDA에 문의하세요.',
+      title: 'B2B 문의 | MOKDA',
+      description: 'MOKDA의 라틴아메리카 유통, 수입, 리테일, HORECA 및 사업 협력에 관해 문의하세요.',
     },
     EN: {
-      title: 'Contact | MOKDA',
-      description: 'Contact MOKDA about Salsa Coreana, products, availability, distribution, retail, HORECA, and partnerships.',
+      title: 'B2B Partnership | MOKDA',
+      description: 'Contact MOKDA about distribution, importing, retail, HORECA, and business partnerships across Latin America.',
     },
   },
   'support.html': {

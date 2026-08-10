@@ -2,7 +2,7 @@
   if (!window.MOKDA_ANALYTICS_LOADING) {
     window.MOKDA_ANALYTICS_LOADING = true;
     const analyticsScript = document.createElement('script');
-    analyticsScript.src = '/site-analytics.js?v=20260724-3';
+    analyticsScript.src = '/site-analytics.js?v=20260810-1';
     analyticsScript.async = true;
     document.head.appendChild(analyticsScript);
   }
@@ -94,7 +94,7 @@
 
     .mokda-header-bar a[aria-label="MOKDA home"] img {
       width: auto;
-      height: 29px !important;
+      height: 56px !important;
     }
 
     .mokda-header-bar #lang-selector {
@@ -245,7 +245,7 @@
       }
 
       .mokda-header-bar a[aria-label="MOKDA home"] img {
-        height: 24px !important;
+        height: 42px !important;
       }
 
       .mokda-header-bar > div:last-child {
@@ -268,7 +268,7 @@
       }
 
       .mokda-header-bar a[aria-label="MOKDA home"] img {
-        height: 32px !important;
+        height: 48px !important;
       }
 
       .mokda-desktop-nav {

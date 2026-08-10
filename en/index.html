@@ -402,7 +402,7 @@
         <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
           <div class="flex items-center">
             <a href="/en/" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
-              <img src="assets/assetlogo-1.webp" alt="MOKDA" class="h-6 w-auto sm:h-9" />
+              <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA" class="h-14 w-auto sm:h-16" />
             </a>
           </div>
           <div class="flex items-center gap-4 md:gap-6">
@@ -444,33 +444,45 @@
               <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem]"></h1>
               <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
                 <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                <div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <a data-hero-link href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
-                  <a data-hero-b2b-link href="/en/contact.html?purpose=distribution" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4] focus:outline-none focus:ring-4 focus:ring-[#321506]/15"></a>
-                </div>
+                <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="salsa-corea" class="brand-grid-bg scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-center text-[#f8dfc4] sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div data-reveal class="mx-auto flex max-w-6xl flex-col items-center">
-          <p class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl">Salsa Coreana</p>
-          <h2 id="salsaTitle" class="display-latin max-w-5xl text-6xl uppercase leading-[0.82] text-mokdaOrange sm:text-8xl lg:text-[9.6rem]">
-            Corea,<br />más cerca<br />de ti
-          </h2>
-          <p id="salsaDescription" class="mt-8 max-w-2xl break-keep text-base font-semibold leading-8 text-[#f8dfc4]/82 sm:text-lg">
-            Salsa Coreana es la primera línea de MOKDA: una forma directa de acercar sabores coreanos a comidas cotidianas.
-          </p>
-          <a href="#products" class="brand-text-link mt-8 text-[#f8dfc4]">
-            <span id="salsaCta">Ver línea</span>
-            <span class="ml-2">-&gt;</span>
-          </a>
+      <section id="proof" data-analytics-section="proof" class="brand-grid-bg scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div class="mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-stretch">
+          <div data-reveal class="min-w-0 flex flex-col justify-center">
+            <p id="proofKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">HECHO EN COREA</p>
+            <h2 id="proofTitle" class="display-latin max-w-4xl text-[2.2rem] uppercase leading-[0.92] text-mokdaOrange sm:text-7xl lg:text-[6rem]">De Corea a las mesas de Latinoamérica.</h2>
+            <div id="proofList" class="mt-10 grid gap-6 border-y border-[#f8dfc4]/20 py-7 sm:grid-cols-2">
+              <article>
+                <p class="display-latin text-2xl uppercase leading-none text-[#f8dfc4] sm:text-4xl">EXPOALIMENTARIA PERÚ 2026</p>
+                <p id="proofExpo" class="mt-3 text-sm font-semibold leading-6 text-[#f8dfc4]/68"></p>
+              </article>
+              <article class="border-t border-[#f8dfc4]/14 pt-6 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
+                <p id="proofProgramsValue" class="display-latin text-5xl uppercase leading-none text-[#f8dfc4]">9+</p>
+                <p id="proofPrograms" class="mt-3 text-sm font-semibold leading-6 text-[#f8dfc4]/68"></p>
+              </article>
+              <article id="proofViewsItem" class="hidden">
+                <p id="proofViewsValue" class="display-latin text-5xl uppercase leading-none text-[#f8dfc4]"></p>
+                <p id="proofViews" class="mt-3 text-sm font-semibold leading-6 text-[#f8dfc4]/68"></p>
+              </article>
+            </div>
+            <div id="institutionalLogos" class="mt-7 hidden" aria-label="Con el apoyo de"></div>
+          </div>
+          <figure data-reveal data-reveal-delay="120" class="relative min-h-[320px] overflow-hidden rounded-[1.25rem] bg-[#f7ddc2] sm:min-h-[430px] lg:min-h-full">
+            <picture>
+              <source media="(max-width: 767px)" srcset="assets/images/field-meeting-720.webp" />
+              <img src="assets/images/field-meeting-1440.webp" alt="MOKDA preparando su expansión internacional en una reunión con una institución pública de Corea" class="absolute inset-0 h-full w-full object-cover" width="1440" height="810" loading="lazy" decoding="async" />
+            </picture>
+            <figcaption id="proofPhotoCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#321506]/90 to-transparent px-5 pb-5 pt-16 text-sm font-bold text-white sm:px-7 sm:pb-7"></figcaption>
+          </figure>
         </div>
       </section>
 
-      <section id="products" class="scroll-mt-20 bg-[#f7ddc2] py-16 sm:py-28 lg:py-32">
+      <section id="products" data-analytics-section="products" class="scroll-mt-20 bg-[#f7ddc2] py-16 sm:py-28 lg:py-32">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mb-12 max-w-5xl">
             <div class="editorial-accent">
@@ -506,32 +518,49 @@
         </div>
       </section>
 
-      <section id="launch-support" class="scroll-mt-20 bg-mokdaOrange px-4 py-14 text-white sm:px-6 sm:py-20 lg:px-8">
-        <div data-reveal class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-7 md:flex-row md:items-center">
-          <div class="max-w-3xl">
-            <p id="supportKicker" class="condensed-label mb-3 text-sm uppercase text-[#321506]/75 sm:text-base">LANZAMIENTO EN LATAM</p>
-            <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.9] sm:text-6xl">¿QUIERES ENCONTRAR SALSA COREANA EN TU PAÍS?</h2>
-            <p id="supportDescription" class="mt-4 max-w-2xl text-sm font-semibold leading-7 text-white/85 sm:text-base">Tu apoyo nos ayuda a demostrar demanda real ante tiendas y distribuidores.</p>
-          </div>
-          <a id="supportCta" href="/en/support.html" class="inline-flex min-h-14 shrink-0 items-center justify-center rounded-lg bg-[#321506] px-8 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:-translate-y-0.5 hover:bg-[#1f0d04] focus:outline-none focus:ring-4 focus:ring-white/25">Apoyar el lanzamiento</a>
-        </div>
-      </section>
-
-      <section id="story" class="brand-grid-bg relative scroll-mt-20 overflow-hidden bg-[#321506] py-16 text-[#f8dfc4] sm:py-24 lg:py-32">
-        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
-          <div data-reveal class="relative z-10 grid gap-8">
+      <section id="field-story" data-analytics-section="field_story" class="brand-grid-bg relative scroll-mt-20 overflow-hidden bg-[#321506] py-16 text-[#f8dfc4] sm:py-24 lg:py-28">
+        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:px-8">
+          <div data-reveal class="relative z-10 grid gap-7">
             <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
             <h2 id="storyTitle" class="display-korean max-w-[720px] break-keep text-balance text-5xl leading-[0.96] text-mokdaOrange sm:text-7xl lg:text-[5.8rem]"></h2>
-            <div id="storyBody" class="max-w-[620px] break-keep text-pretty text-base font-semibold leading-8 text-[#f7dfc6]/90 sm:text-lg sm:leading-8"></div>
+            <div id="storyBody" class="max-w-[620px] break-keep text-pretty text-base font-semibold leading-8 text-[#f7dfc6]/82 sm:text-lg sm:leading-8"></div>
             <a href="/en/about.html" class="brand-text-link text-[#f8dfc4]">
               Sobre nosotros
               <span class="ml-2">-&gt;</span>
             </a>
           </div>
-          <div data-reveal data-reveal-delay="140" class="story-image-fade relative min-h-[360px] overflow-hidden sm:min-h-[520px] lg:-mr-28 lg:min-h-[690px]">
-            <img src="./assets/images/brand-story-seoul-kfood-table.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/70 via-transparent to-transparent"></div>
+          <div data-reveal data-reveal-delay="140" class="grid grid-cols-2 gap-3 sm:gap-5">
+            <figure class="relative min-h-[390px] overflow-hidden rounded-[1.25rem] bg-neutral-800 sm:min-h-[560px]">
+              <picture>
+                <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-720.webp" />
+                <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover" width="899" height="1600" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption id="manufacturingCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent px-4 pb-5 pt-20 text-xs font-bold leading-5 text-white sm:px-6 sm:pb-7 sm:text-sm"></figcaption>
+            </figure>
+            <figure class="relative mt-12 min-h-[390px] overflow-hidden rounded-[1.25rem] bg-neutral-800 sm:mt-20 sm:min-h-[560px]">
+              <picture>
+                <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp" />
+                <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover" width="1071" height="1428" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption id="ingredientCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent px-4 pb-5 pt-20 text-xs font-bold leading-5 text-white sm:px-6 sm:pb-7 sm:text-sm"></figcaption>
+            </figure>
           </div>
+        </div>
+      </section>
+
+      <section id="support" data-analytics-section="support" class="scroll-mt-20 bg-mokdaOrange px-4 py-14 text-white sm:px-6 sm:py-20 lg:px-8">
+        <div class="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div data-reveal>
+            <p id="supportKicker" class="condensed-label mb-3 text-sm uppercase text-[#321506]/75 sm:text-base">LANZAMIENTO EN LATAM</p>
+            <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.9] sm:text-6xl">Nos esperan en Latinoamérica.</h2>
+            <p id="supportDescription" class="mt-4 max-w-xl text-sm font-semibold leading-7 text-white/85 sm:text-base"></p>
+            <p class="mt-7 flex items-end gap-3 text-[#321506]"><strong id="supportTotal" class="display-latin text-6xl leading-none">—</strong><span id="supportTotalLabel" class="pb-1 text-sm font-extrabold uppercase"></span></p>
+            <div class="mt-7 flex flex-wrap gap-3">
+              <a id="supportCta" data-analytics-event="support_cta_click" href="/en/support.html" class="inline-flex min-h-14 items-center justify-center rounded-lg bg-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:-translate-y-0.5 hover:bg-[#1f0d04] focus:outline-none focus:ring-4 focus:ring-white/25"></a>
+              <a id="supportMoreCta" data-analytics-event="support_cta_click" href="/en/support.html#supportFeed" class="inline-flex min-h-14 items-center justify-center rounded-lg border-2 border-[#321506] px-7 py-4 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4] focus:outline-none focus:ring-4 focus:ring-white/25"></a>
+            </div>
+          </div>
+          <div id="homeSupportMessages" data-reveal data-reveal-delay="120" class="grid gap-3" aria-live="polite"></div>
         </div>
       </section>
 
@@ -579,54 +608,28 @@
         </div>
       </section>
 
-      <section id="partnership" class="brand-grid-bg scroll-mt-20 bg-[#321506] pb-16 pt-20 text-[#f8dfc4] sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-28">
-        <div class="mx-auto flex w-full max-w-6xl flex-col items-center px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mb-7 w-full max-w-[860px] text-center">
+      <section id="contact" data-analytics-section="contact" class="brand-grid-bg scroll-mt-20 bg-[#321506] pb-16 pt-20 text-[#f8dfc4] sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-28">
+        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div data-reveal class="mx-auto mb-10 w-full max-w-[860px] text-center">
             <p id="b2bKicker" class="condensed-label mb-2 text-sm uppercase text-mokdaOrange sm:text-lg"></p>
             <h2 id="b2bTitle" class="display-latin break-keep text-balance text-4xl leading-[0.94] text-mokdaOrange sm:text-6xl md:text-7xl"></h2>
             <p id="b2bDescription" class="mx-auto mt-4 max-w-2xl break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/70 sm:text-base sm:leading-8"></p>
           </div>
-          <div data-reveal data-reveal-delay="120" class="mt-3 flex w-full max-w-[760px] justify-center border-y border-[#f8dfc4]/20 py-8 sm:py-10">
-            <a id="b2bCta" href="/en/contact.html" class="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-mokdaOrange px-8 py-4 text-center text-sm font-extrabold uppercase text-white transition duration-300 hover:scale-[1.02] hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25">
-              <span id="b2bCtaText"></span>
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M5 12h13m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section id="map" class="brand-grid-bg scroll-mt-20 bg-[#f7ddc2] px-4 py-16 text-[#321506] sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto w-full max-w-7xl">
-          <div data-reveal class="mx-auto mb-10 max-w-5xl text-center sm:mb-14">
-            <p id="mapKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
-            <h2 id="mapTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.84] text-[#321506] sm:text-8xl lg:text-[8rem]"></h2>
-            <p id="mapDescription" class="mx-auto mt-6 max-w-2xl break-keep text-pretty text-base font-semibold leading-7 text-[#321506]/70 sm:text-lg sm:leading-8"></p>
-          </div>
-          <div class="grid grid-cols-1 gap-5 lg:grid-cols-[1.45fr_0.75fr] lg:items-stretch lg:gap-7">
-            <div data-reveal data-reveal-delay="100" class="surface-depth relative min-h-[340px] w-full overflow-hidden rounded-[1.25rem] bg-white sm:min-h-[460px] lg:min-h-[560px]">
-            <iframe
-              id="mapFrame"
-              src="https://maps.google.com/maps?ll=4,-82&z=3&t=m&hl=es&output=embed"
-              width="100%"
-              height="100%"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="Mapa de MOKDA en América Latina"
-              data-map-src="https://maps.google.com/maps?ll=4,-82&z=3&t=m&hl=es&output=embed"
-              data-default-map-src="https://maps.google.com/maps?ll=4,-82&z=3&t=m&output=embed"
-              data-mobile-map-src="https://maps.google.com/maps?q=Latin%20America&t=m&z=2&ie=UTF8&iwloc=&output=embed"
-              class="absolute inset-0 h-full w-full border-0"
-            ></iframe>
-          </div>
-            <aside data-reveal data-reveal-delay="180" class="flex min-h-[360px] flex-col rounded-[1.25rem] bg-[#321506] p-5 text-[#f8dfc4] shadow-[0_26px_70px_rgba(67,24,9,0.16)] sm:p-7 lg:min-h-0 lg:p-8">
-              <div class="border-b border-[#f8dfc4]/18 pb-5">
-                <p id="mapListLabel" class="condensed-label text-base uppercase text-mokdaOrange sm:text-xl"></p>
-              </div>
-              <div id="storeList" class="mt-3 flex-1"></div>
-            </aside>
+          <div class="grid gap-5 md:grid-cols-2">
+            <article id="quickQuestionCard" data-reveal data-reveal-delay="100" class="hidden rounded-[1.25rem] border border-[#f8dfc4]/20 p-7 sm:p-9">
+              <p id="quickQuestionKicker" class="condensed-label text-sm uppercase text-mokdaOrange"></p>
+              <h3 id="quickQuestionTitle" class="mt-4 text-3xl font-black text-[#f8dfc4] sm:text-4xl"></h3>
+              <p id="quickQuestionDescription" class="mt-4 text-sm font-semibold leading-7 text-[#f8dfc4]/68"></p>
+              <a id="whatsappCta" data-analytics-event="whatsapp_click" class="mt-7 inline-flex min-h-14 items-center justify-center rounded-lg border-2 border-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-mokdaOrange transition hover:bg-mokdaOrange hover:text-white focus:outline-none focus:ring-4 focus:ring-orange-500/25" target="_blank" rel="noopener noreferrer"></a>
+            </article>
+            <article id="b2bCard" data-reveal data-reveal-delay="160" class="rounded-[1.25rem] bg-[#f7ddc2] p-7 text-[#321506] sm:p-9 md:col-span-2">
+              <p id="b2bCardKicker" class="condensed-label text-sm uppercase text-mokdaOrange"></p>
+              <h3 id="b2bCardTitle" class="mt-4 text-3xl font-black sm:text-4xl"></h3>
+              <p id="b2bCardDescription" class="mt-4 max-w-xl text-sm font-semibold leading-7 text-[#321506]/68"></p>
+              <a id="b2bCta" data-analytics-event="b2b_cta_click" href="/en/contact.html?purpose=distribution" class="mt-7 inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-mokdaOrange px-8 py-4 text-center text-sm font-extrabold uppercase text-white transition duration-300 hover:scale-[1.02] hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25">
+                <span id="b2bCtaText"></span>
+              </a>
+            </article>
           </div>
         </div>
       </section>
@@ -667,7 +670,16 @@
     <script src="./site-i18n.js?v=20260718-2"></script>
     <script src="./site-footer.js?v=20260720-1"></script>
     <script src="./site-accordion.js?v=20260719-1"></script>
+    <script src="./b2b-config.js?v=20260810-1"></script>
+    <script src="./site-contact-config.js?v=20260810-1"></script>
     <script>
+      const homepageProofConfig = {
+        // Set this to the latest verified cumulative LATAM content views.
+        // The metric stays hidden until a verified value is entered here.
+        verifiedLatamViews: null,
+        // Add only official supplied logo assets. Do not recreate institutional logos.
+        institutionalLogos: [],
+      };
       const heroSlides = [
         {
           desktopImage: 'assets/images/hero-mokda-sauce-pour-cutout.webp',
@@ -676,28 +688,22 @@
           href: '#products',
           copy: {
             EN: {
-              kicker: 'MOKDA BRAND ESSENCE',
-              title: 'Comer Corea',
-              titleLine2: '한국을 먹다',
-              subtitle: 'Korean sauce for your favorite everyday foods',
-              button: 'Explore sauces',
-              b2bButton: 'Distribution & retail',
+              kicker: 'MOKDA · KOREAN FOOD BRAND',
+              title: 'Korea, closer to you',
+              subtitle: 'A new Korean sauce created to complement the flavors of Latin America.',
+              button: 'Explore our sauces',
             },
             ES: {
-              kicker: 'ESENCIA DE MARCA MOKDA',
-              title: 'Comer Corea',
-              titleLine2: '한국을 먹다',
-              subtitle: 'Salsa coreana para tus comidas favoritas',
-              button: 'Conoce las salsas',
-              b2bButton: 'Distribución y retail',
+              kicker: 'MOKDA · KOREAN FOOD BRAND',
+              title: 'Corea, más cerca de ti',
+              subtitle: 'Una nueva salsa coreana creada para acompañar los sabores de Latinoamérica.',
+              button: 'Conoce nuestras salsas',
             },
             KR: {
-              kicker: 'MOKDA BRAND ESSENCE',
-              title: 'Comer Corea',
-              titleLine2: '한국을 먹다',
-              subtitle: '좋아하는 음식에 더하는 한국 소스',
+              kicker: 'MOKDA · KOREAN FOOD BRAND',
+              title: '한국을 더 가까이',
+              subtitle: '라틴아메리카의 맛과 자연스럽게 어울리도록 만든 새로운 한국 소스.',
               button: '소스 라인업 보기',
-              b2bButton: '유통·리테일 문의',
             },
           },
         },
@@ -828,6 +834,14 @@
       const content = {
         EN: {
           nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
+          proof: {
+            kicker: 'MADE IN KOREA',
+            title: 'From Korea to Latin American tables.',
+            expo: 'Confirmed participation in Expoalimentaria Peru 2026.',
+            programs: 'Selected for more than 9 support programs run by the Korean government and public institutions.',
+            views: 'Views on content created for Latin America.',
+            photo: 'Preparing our market entry with Korean public institutions.',
+          },
           salsa: {
             title: 'Korea,<br />closer<br />to you',
             description: "Salsa Coreana is MOKDA's first product line: a direct way to bring Korean flavors to everyday food.",
@@ -843,28 +857,42 @@
             ],
           },
           story: {
-            kicker: 'OUR STORY',
-            title: 'We Make Culture, Not Just Sauce',
+            kicker: 'IN THE FIELD',
+            title: 'So Korea feels familiar',
             body: [
-              'MOKDA is a Korean word that means "to eat."',
-              'The easiest way to experience a culture<br />is to taste its food.',
-              "MOKDA captures Korea's local ingredients and today's sensibility in one bottle,<br />bringing a new taste of Korea to Latin American tables.",
-              'We are not simply making sauce.<br />We are creating a new way to enjoy Korea.',
+              'MOKDA does not simply transfer Korean food unchanged.',
+              'We create new Korean sauces designed to pair naturally with the foods people already enjoy across Latin America.',
             ],
+            manufacturing: 'We follow how each product is made at the manufacturing facility.',
+            ingredient: 'Flavor starts with understanding its ingredients.',
           },
           products: {
             kicker: 'SALSA COREANA LINE UP',
             title: 'KOREA FLAVORS',
             lineKicker: 'SALSA COREANA',
             lineTitle: 'PRODUCT LINEUP',
-            lineDescription: "Three Korean sauces from MOKDA's first product line.",
+            lineDescription: 'Developed by incorporating feedback from Latin American consumers.',
             items: localizedProducts,
           },
           support: {
             kicker: 'LATAM LAUNCH',
-            title: 'Want Salsa Coreana in your country?',
-            description: 'Your support helps us demonstrate real demand to retailers and distributors.',
+            title: 'Latin America is waiting for us.',
+            description: 'Launch supporters are helping MOKDA show real interest to local retailers and distributors.',
             cta: 'Support the launch',
+            more: 'View messages',
+            totalLabel: 'launch supporters',
+            loading: 'Loading approved support messages…',
+            empty: 'Approved supporter messages will be featured here.',
+          },
+          contact: {
+            quickKicker: 'QUICK QUESTION',
+            quickTitle: 'Have a question?',
+            quickDescription: 'Ask about products, flavor, launch timing, or where to buy.',
+            whatsapp: 'Ask us on WhatsApp',
+            whatsappMessage: 'Hello, I found MOKDA through your website. I have a question.',
+            b2bKicker: 'BUSINESS PARTNERSHIP',
+            b2bTitle: 'We are looking for business partners.',
+            b2bDescription: 'For distributors, importers, retail, HORECA, and business partnerships.',
           },
           map: {
             kicker: 'MOKDA SPOT',
@@ -873,14 +901,22 @@
             listLabel: 'Open partner markets',
           },
           b2b: {
-            kicker: 'PROTOTYPE / B2B PARTNERSHIP',
-            title: 'B2B Partnership',
-            description: 'Prototype launch is planned for August 2026. We are now receiving early inquiries from LATAM distribution and retail partners.',
-            cta: 'Send an inquiry',
+            kicker: 'CONTACT MOKDA',
+            title: 'Business partnerships',
+            description: 'Let’s discuss distribution, import, retail, HORECA, and brand collaboration opportunities.',
+            cta: 'Send B2B inquiry',
           },
         },
         ES: {
           nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
+          proof: {
+            kicker: 'HECHO EN COREA',
+            title: 'De Corea a las mesas de Latinoamérica.',
+            expo: 'Participación confirmada en Expoalimentaria Perú 2026.',
+            programs: 'Seleccionados en más de 9 programas de apoyo del gobierno y organismos públicos de Corea.',
+            views: 'Visualizaciones en contenidos dirigidos a Latinoamérica.',
+            photo: 'Preparamos nuestra entrada a nuevos mercados junto a instituciones públicas de Corea.',
+          },
           salsa: {
             title: 'Corea,<br />más cerca<br />de ti',
             description: 'Salsa Coreana es la primera línea de MOKDA: una forma directa de acercar sabores coreanos a comidas cotidianas.',
@@ -896,28 +932,42 @@
             ],
           },
           story: {
-            kicker: 'NUESTRA HISTORIA',
-            title: 'Creamos cultura, no solo salsa',
+            kicker: 'SOBRE EL TERRENO',
+            title: 'Para que el sabor de Corea se sienta familiar',
             body: [
-              'MOKDA es una palabra coreana que significa "comer".',
-              'La forma más fácil de experimentar una cultura<br />es probar su comida.',
-              'MOKDA reúne ingredientes locales de Corea y la sensibilidad actual en una sola botella,<br />para ofrecer un nuevo sabor de Corea en las mesas de América Latina.',
-              'No solo hacemos salsa.<br />Creamos una nueva forma de disfrutar Corea.',
+              'MOKDA no busca simplemente trasladar la comida coreana tal como es.',
+              'Creamos nuevas salsas coreanas pensadas para combinar de forma natural con los sabores de Latinoamérica.',
             ],
+            manufacturing: 'Seguimos de cerca cómo se elabora cada producto en la planta de fabricación.',
+            ingredient: 'El sabor empieza por conocer sus ingredientes.',
           },
           products: {
             kicker: 'SALSA COREANA LINE UP',
             title: 'SABORES DE COREA',
             lineKicker: 'SALSA COREANA',
             lineTitle: 'LÍNEA DE PRODUCTOS',
-            lineDescription: 'Tres salsas coreanas de la primera línea de productos de MOKDA.',
+            lineDescription: 'Desarrolladas incorporando opiniones de consumidores latinoamericanos.',
             items: localizedProducts,
           },
           support: {
             kicker: 'LANZAMIENTO EN LATAM',
-            title: '¿Quieres encontrar Salsa Coreana en tu país?',
-            description: 'Tu apoyo nos ayuda a demostrar demanda real ante tiendas y distribuidores.',
+            title: 'Nos esperan en Latinoamérica.',
+            description: 'Cada apoyo nos ayuda a mostrar el interés real a tiendas y distribuidores locales.',
             cta: 'Apoyar el lanzamiento',
+            more: 'Ver mensajes',
+            totalLabel: 'personas apoyan el lanzamiento',
+            loading: 'Cargando mensajes aprobados…',
+            empty: 'Aquí aparecerán mensajes de apoyo aprobados.',
+          },
+          contact: {
+            quickKicker: 'PREGUNTA RÁPIDA',
+            quickTitle: '¿Tienes una pregunta?',
+            quickDescription: 'Consúltanos sobre productos, sabores, lanzamiento o puntos de venta.',
+            whatsapp: 'Pregúntanos por WhatsApp',
+            whatsappMessage: 'Hola, conocí MOKDA a través de su página web. Tengo una pregunta.',
+            b2bKicker: 'ALIANZA COMERCIAL',
+            b2bTitle: 'Buscamos socios comerciales.',
+            b2bDescription: 'Para distribuidores, importadores, retail, HORECA y colaboraciones de negocio.',
           },
           map: {
             kicker: 'MOKDA SPOT',
@@ -926,14 +976,22 @@
             listLabel: 'Mercados abiertos a socios',
           },
           b2b: {
-            kicker: 'PROTOTIPOS / ALIANZA B2B',
-            title: 'Alianzas B2B',
-            description: 'El lanzamiento de prototipos está previsto para agosto de 2026. Ya recibimos consultas iniciales de socios de distribución y retail en LATAM.',
-            cta: 'Enviar consulta',
+            kicker: 'CONTACTA CON MOKDA',
+            title: 'Alianzas comerciales',
+            description: 'Conversemos sobre distribución, importación, retail, HORECA y colaboraciones de marca.',
+            cta: 'Enviar consulta B2B',
           },
         },
         KR: {
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
+          proof: {
+            kicker: '한국에서 시작한 브랜드',
+            title: '한국에서 시작해, 중남미의 식탁으로.',
+            expo: 'Expoalimentaria Perú 2026 참가 확정.',
+            programs: '대한민국 정부·공공기관 지원사업 9개 이상 선정.',
+            views: '중남미 대상 콘텐츠 누적 조회 수.',
+            photo: '대한민국 공공기관과 함께 해외 시장 진출을 준비하고 있습니다.',
+          },
           salsa: {
             title: '한국을<br />더<br />가까이',
             description: 'Salsa Coreana는 MOKDA의 첫 번째 제품 라인으로, 익숙한 일상 음식에 한국의 맛을 더 가깝게 전합니다.',
@@ -949,28 +1007,42 @@
             ],
           },
           story: {
-            kicker: 'OUR STORY',
-            title: '소스가 아닌 문화를<br />만듭니다',
+            kicker: '현장에서 만드는 맛',
+            title: '한국의 맛이<br />낯설지 않도록',
             body: [
-              'MOKDA는 “먹다”라는 뜻의 한국어입니다.',
-              '문화를 경험하는 가장 쉬운 방법은<br />그 문화의 음식을 먹는 것입니다.',
-              'MOKDA는 한국의 현지 재료와 지금의 감성을 한 병에 담아,<br />라틴아메리카의 일상 위에 새로운 한국의 맛을 선사합니다.',
-              '우리는 단순한 소스를 만드는 것이 아닙니다.<br />한국을 즐기는 새로운 방식을 만듭니다.',
+              'MOKDA는 한국 음식을 그대로 옮기는 데서 멈추지 않습니다.',
+              '라틴아메리카 사람들이 즐겨 먹는 음식에 자연스럽게 어울리는 새로운 한국 소스를 만듭니다.',
             ],
+            manufacturing: '제조 시설에서 제품이 만들어지는 과정을 직접 확인합니다.',
+            ingredient: '맛의 시작인 원료부터 직접 살핍니다.',
           },
           products: {
             kicker: 'SALSA COREANA LINE UP',
             title: 'KOREA FLAVORS',
             lineKicker: 'SALSA COREANA',
             lineTitle: '제품 라인업',
-            lineDescription: 'MOKDA의 첫 번째 제품 라인을 구성하는 세 가지 한국 소스입니다.',
+            lineDescription: '중남미 현지인의 의견을 반영해 완성한 세 가지 한국 소스입니다.',
             items: localizedProducts,
           },
           support: {
             kicker: 'LATAM 출시 프로젝트',
-            title: '우리나라에서도 Salsa Coreana를 만나고 싶나요?',
-            description: '출시 응원이 쌓일수록 현지 매장과 유통사에 실제 수요를 보여줄 수 있습니다.',
+            title: '중남미에서 기다리고 있습니다.',
+            description: '출시 응원은 현지 매장과 유통사에 실제 관심을 보여주는 근거가 됩니다.',
             cta: '출시 응원하기',
+            more: '응원 메시지 보기',
+            totalLabel: '명이 출시를 응원했습니다',
+            loading: '승인된 응원 메시지를 불러오는 중입니다…',
+            empty: '승인된 응원 메시지가 이곳에 소개됩니다.',
+          },
+          contact: {
+            quickKicker: '간단한 질문',
+            quickTitle: '궁금한 점이 있나요?',
+            quickDescription: '제품, 맛, 출시 일정, 판매처에 관해 WhatsApp으로 질문하세요.',
+            whatsapp: 'WhatsApp으로 질문하기',
+            whatsappMessage: '안녕하세요. MOKDA 웹사이트를 보고 문의드립니다.',
+            b2bKicker: '비즈니스 파트너십',
+            b2bTitle: '함께할 비즈니스 파트너를 찾습니다.',
+            b2bDescription: '유통사, 수입사, 리테일, HORECA 및 사업 협력 문의를 받습니다.',
           },
           map: {
             kicker: 'MOKDA SPOT',
@@ -979,10 +1051,10 @@
             listLabel: '파트너 모집 지역',
           },
           b2b: {
-            kicker: '시제품 / B2B 파트너십',
-            title: 'B2B 파트너십',
-            description: '2026년 8월 시제품 출시 예정입니다. LATAM 유통·리테일 파트너의 사전 문의를 받고 있습니다.',
-            cta: '문의 페이지로 이동',
+            kicker: 'MOKDA 문의',
+            title: '비즈니스 파트너십',
+            description: '유통, 수입, 리테일, HORECA 및 브랜드 협업을 제안해 주세요.',
+            cta: 'B2B 문의 보내기',
           },
         },
       };
@@ -1116,6 +1188,142 @@
         if (node) node.textContent = value;
       }
 
+      let homepageSupportData = null;
+
+      function renderHomepageProof(t) {
+        setText('proofKicker', t.proof.kicker);
+        setText('proofTitle', t.proof.title);
+        setText('proofExpo', t.proof.expo);
+        setText('proofPrograms', t.proof.programs);
+        setText('proofViews', t.proof.views);
+        setText('proofPhotoCaption', t.proof.photo);
+
+        const views = Number(homepageProofConfig.verifiedLatamViews);
+        const viewsItem = document.getElementById('proofViewsItem');
+        const proofList = document.getElementById('proofList');
+        const hasVerifiedViews = Number.isFinite(views) && views > 0;
+        viewsItem?.classList.toggle('hidden', !hasVerifiedViews);
+        proofList?.classList.toggle('sm:grid-cols-3', hasVerifiedViews);
+        proofList?.classList.toggle('sm:grid-cols-2', !hasVerifiedViews);
+        if (hasVerifiedViews) {
+          const locale = language === 'KR' ? 'ko-KR' : language === 'EN' ? 'en-US' : 'es-419';
+          setText('proofViewsValue', new Intl.NumberFormat(locale, { notation: 'compact', maximumFractionDigits: 1 }).format(views));
+        }
+
+        const logoContainer = document.getElementById('institutionalLogos');
+        const logos = homepageProofConfig.institutionalLogos.filter((item) => item?.src && item?.alt);
+        if (!logoContainer) return;
+        logoContainer.replaceChildren();
+        logoContainer.classList.toggle('hidden', logos.length === 0);
+        logos.forEach((item) => {
+          const image = document.createElement('img');
+          image.src = item.src;
+          image.alt = item.alt;
+          image.loading = 'lazy';
+          image.className = 'h-9 w-auto max-w-[150px] object-contain opacity-70 grayscale';
+          logoContainer.appendChild(image);
+        });
+      }
+
+      function renderHomepageSupport() {
+        const t = content[language].support;
+        setText('supportTotalLabel', t.totalLabel);
+        setText('supportMoreCta', t.more);
+        const total = homepageSupportData?.total;
+        setText('supportTotal', Number.isFinite(total) ? String(total) : '—');
+
+        const container = document.getElementById('homeSupportMessages');
+        if (!container) return;
+        container.replaceChildren();
+
+        if (homepageSupportData === null) {
+          const loading = document.createElement('p');
+          loading.className = 'rounded-[1.25rem] border border-white/35 bg-white/10 p-6 text-sm font-bold text-white/80';
+          loading.textContent = t.loading;
+          container.appendChild(loading);
+          return;
+        }
+
+        const messages = Array.isArray(homepageSupportData.supporters) ? homepageSupportData.supporters : [];
+        if (!messages.length) {
+          const empty = document.createElement('p');
+          empty.className = 'rounded-[1.25rem] border border-white/35 bg-white/10 p-6 text-sm font-bold text-white/80';
+          empty.textContent = t.empty;
+          container.appendChild(empty);
+          return;
+        }
+
+        const flagFiles = { PE: 'peru', MX: 'mexico', CL: 'chile', CO: 'colombia', ES: 'spain' };
+        messages.slice(0, 3).forEach((supporter) => {
+          const article = document.createElement('article');
+          article.className = 'rounded-[1.25rem] bg-[#fff8ef] p-5 text-[#321506] sm:p-6';
+          const header = document.createElement('div');
+          header.className = 'flex items-center gap-3';
+          const flag = document.createElement('img');
+          flag.src = `assets/images/flags/${flagFiles[supporter.countryCode] || 'peru'}.jpg`;
+          flag.alt = supporter.countryCode || '';
+          flag.className = 'h-7 w-9 rounded object-cover';
+          const name = document.createElement('strong');
+          name.className = 'text-sm font-black';
+          name.textContent = supporter.name;
+          const message = document.createElement('p');
+          message.className = 'mt-4 text-sm font-semibold leading-6 text-[#321506]/75';
+          message.textContent = supporter.message;
+          header.append(flag, name);
+          article.append(header, message);
+          container.appendChild(article);
+        });
+      }
+
+      async function loadHomepageSupport() {
+        const endpoint = window.MOKDA_B2B_WEB_APP_URL;
+        if (!endpoint) {
+          homepageSupportData = { total: null, supporters: [] };
+          renderHomepageSupport();
+          return;
+        }
+
+        try {
+          const url = new URL(endpoint);
+          url.searchParams.set('mode', 'demand_support');
+          url.searchParams.set('limit', '3');
+          url.searchParams.set('featured', '1');
+          const response = await fetch(url.toString(), { method: 'GET', cache: 'no-store' });
+          const result = await response.json();
+          if (!response.ok || !result.ok) throw new Error('Support feed unavailable');
+          homepageSupportData = {
+            total: Number(result.total),
+            supporters: (Array.isArray(result.supporters) ? result.supporters : []).filter(
+              (supporter) => supporter?.featured === true && String(supporter?.message || '').trim()
+            ),
+          };
+        } catch (error) {
+          homepageSupportData = { total: null, supporters: [] };
+        }
+        renderHomepageSupport();
+      }
+
+      function renderHomepageContact(t) {
+        setText('quickQuestionKicker', t.contact.quickKicker);
+        setText('quickQuestionTitle', t.contact.quickTitle);
+        setText('quickQuestionDescription', t.contact.quickDescription);
+        setText('whatsappCta', t.contact.whatsapp);
+        setText('b2bCardKicker', t.contact.b2bKicker);
+        setText('b2bCardTitle', t.contact.b2bTitle);
+        setText('b2bCardDescription', t.contact.b2bDescription);
+
+        const number = String(window.MOKDA_CONTACT?.whatsappNumber || '').replace(/\D/g, '');
+        const quickCard = document.getElementById('quickQuestionCard');
+        const b2bCard = document.getElementById('b2bCard');
+        const whatsappCta = document.getElementById('whatsappCta');
+        const enabled = number.length >= 8;
+        quickCard?.classList.toggle('hidden', !enabled);
+        b2bCard?.classList.toggle('md:col-span-2', !enabled);
+        if (enabled && whatsappCta) {
+          whatsappCta.href = `https://wa.me/${number}?text=${encodeURIComponent(t.contact.whatsappMessage)}`;
+        }
+      }
+
       function createHeroCarousel() {
         const heroContainer = document.getElementById('heroSlides');
         if (homepageHeroSlides.length === 1 && heroContainer.querySelector('[data-hero-slide="0"]')) return;
@@ -1137,10 +1345,7 @@
                   <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem]"></h1>
                   <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
                     <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                    <div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
-                      <a data-hero-link href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
-                      <a data-hero-b2b-link href="/en/contact.html?purpose=distribution" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4] focus:outline-none focus:ring-4 focus:ring-[#321506]/15"></a>
-                    </div>
+                    <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
                   </div>
                 </div>
               </div>
@@ -1186,7 +1391,6 @@
           const index = Number(slide.getAttribute('data-hero-slide'));
           const copy = heroSlides[index].copy[language];
           const link = slide.querySelector('[data-hero-link]');
-          const b2bLink = slide.querySelector('[data-hero-b2b-link]');
           const title = slide.querySelector('[data-hero-title]');
           slide.querySelector('[data-hero-kicker]').textContent = copy.kicker;
           title.textContent = '';
@@ -1206,7 +1410,6 @@
           slide.querySelector('[data-hero-subtitle]').textContent = copy.subtitle;
           link.textContent = copy.button;
           link.setAttribute('href', heroSlides[index].href);
-          if (b2bLink) b2bLink.textContent = copy.b2bButton || content[language].b2b.cta;
         });
       }
 
@@ -1337,9 +1540,7 @@
         setText('mobile-products-link', t.nav.products);
         setText('mobile-qna-link', t.nav.qna);
         setText('mobile-contact-link', t.nav.contact);
-        document.getElementById('salsaTitle').innerHTML = t.salsa.title;
-        setText('salsaDescription', t.salsa.description);
-        setText('salsaCta', t.salsa.cta);
+        renderHomepageProof(t);
         setText('faqTitle', t.faq.title);
         setText('faqCta', t.faq.cta);
         t.faq.items.forEach((item, index) => {
@@ -1350,6 +1551,8 @@
         setText('storyKicker', t.story.kicker);
         document.getElementById('storyTitle').innerHTML = t.story.title;
         document.getElementById('storyBody').innerHTML = t.story.body.map((paragraph) => `<p class="break-keep leading-relaxed">${paragraph}</p>`).join('');
+        setText('manufacturingCaption', t.story.manufacturing);
+        setText('ingredientCaption', t.story.ingredient);
         setText('productsKicker', t.products.kicker);
         setText('productsTitle', t.products.title);
         setText('productLineKicker', t.products.lineKicker);
@@ -1360,17 +1563,13 @@
         setText('supportTitle', t.support.title);
         setText('supportDescription', t.support.description);
         setText('supportCta', t.support.cta);
-        setText('mapKicker', t.map.kicker);
-        setText('mapTitle', t.map.title);
-        setText('mapDescription', t.map.description);
-        setText('mapListLabel', t.map.listLabel);
-        renderStores();
-        syncMapFrame();
+        renderHomepageSupport();
+        renderHomepageContact(t);
         setText('b2bKicker', t.b2b.kicker);
         setText('b2bTitle', t.b2b.title);
         setText('b2bDescription', t.b2b.description);
         setText('b2bCtaText', t.b2b.cta);
-        ['salsaTitle', 'storyTitle', 'faqTitle', 'productLineTitle', 'b2bTitle'].forEach((id) => {
+        ['proofTitle', 'storyTitle', 'faqTitle', 'productLineTitle', 'b2bTitle'].forEach((id) => {
           const heading = document.getElementById(id);
           if (!heading) return;
           const usesKoreanDisplay = /[가-힣]/.test(heading.textContent);
@@ -1391,13 +1590,10 @@
         if (heroInterval) clearInterval(heroInterval);
       });
 
-      window.addEventListener('resize', () => {
-        if (!selectedStoreId) syncMapFrame();
-      });
-
       createHeroCarousel();
       bindHeroScroll();
       renderPage();
+      loadHomepageSupport();
       window.MOKDA_ACCORDION.init(document.getElementById('homeFaqList'));
       updateHeroCarousel();
       restartHeroCarousel();

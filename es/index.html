@@ -92,6 +92,80 @@
         letter-spacing: 0;
       }
 
+      .hero-section {
+        height: 658px;
+        min-height: 658px;
+      }
+
+      .hero-content {
+        padding-top: 7rem;
+        padding-bottom: 21.25rem;
+      }
+
+      .hero-title {
+        font-size: 5rem;
+        line-height: 0.78;
+      }
+
+      .hero-copy {
+        margin-top: 1.5rem;
+        gap: 1.25rem;
+      }
+
+      @media (min-width: 640px) {
+        .hero-section {
+          height: 780px;
+          min-height: 780px;
+        }
+
+        .hero-content {
+          padding-bottom: 28.5rem;
+        }
+
+        .hero-title {
+          font-size: 8rem;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .hero-section {
+          height: 100svh;
+          min-height: 720px;
+          max-height: 960px;
+        }
+
+        .hero-content {
+          padding-top: 6.75rem;
+          padding-bottom: 15rem;
+        }
+
+        .hero-title {
+          font-size: clamp(8rem, min(14vw, 16vh), 12rem);
+        }
+
+        .hero-copy {
+          margin-top: clamp(0.75rem, 1.8vh, 1.25rem);
+          gap: 0.875rem;
+        }
+
+        .hero-sauce-plate {
+          bottom: -17rem;
+          height: min(55vh, 36rem);
+          width: 78vw;
+        }
+      }
+
+      @media (min-width: 768px) and (max-height: 960px) {
+        .hero-sauce-plate {
+          bottom: -20rem;
+        }
+
+        .hero-copy [data-hero-subtitle] {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+      }
+
       .brand-text-link {
         position: relative;
         display: inline-flex;
@@ -429,7 +503,7 @@
         </div>
       </header>
 
-      <section id="top" class="relative h-[658px] min-h-[658px] overflow-hidden bg-[#f7ddc2] text-white sm:h-screen sm:min-h-[780px]">
+      <section id="top" class="hero-section relative overflow-hidden bg-[#f7ddc2] text-white">
         <div id="heroSlides" class="relative block h-full w-full overflow-hidden" style="touch-action: pan-y;">
           <div data-hero-slide="0" data-hero-theme="soft" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0">
             <div class="absolute inset-0 bg-[#f7ddc2]"></div>
@@ -439,10 +513,10 @@
                 <img src="/assets/images/hero-mokda-sauce-pour-mobile.webp" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" loading="eager" fetchpriority="high" />
               </picture>
             </div>
-            <div class="relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 pt-28 pb-[340px] sm:px-6 sm:pb-[455px] md:pt-28 md:pb-[31vh] lg:px-8">
+            <div class="hero-content relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 sm:px-6 lg:px-8">
               <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
-              <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem]"></h1>
-              <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
+              <h1 data-hero-title class="hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
+              <div class="hero-copy flex flex-col items-center text-center">
                 <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
                 <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
               </div>
@@ -451,34 +525,62 @@
         </div>
       </section>
 
-      <section id="proof" data-analytics-section="proof" class="brand-grid-bg scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-12 text-[#f8dfc4] sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div class="mx-auto grid w-full max-w-7xl gap-7 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-12">
-          <div data-reveal class="min-w-0 flex flex-col justify-center">
-            <p id="proofKicker" class="condensed-label mb-3 text-sm uppercase text-mokdaOrange sm:text-lg">HECHO EN COREA</p>
-            <h2 id="proofTitle" class="display-latin max-w-3xl text-[2.05rem] uppercase leading-[0.92] text-mokdaOrange sm:text-5xl lg:text-[4.4rem]">De Corea a las mesas de Latinoamérica.</h2>
-            <div id="proofList" class="mt-7 grid grid-cols-2 border-y border-[#f8dfc4]/20 py-5 sm:grid-cols-2 sm:py-6">
-              <article class="min-w-0 pr-4 sm:pr-6">
-                <p class="display-latin text-xl uppercase leading-[0.95] text-[#f8dfc4] sm:text-3xl">EXPOALIMENTARIA PERÚ 2026</p>
-                <p id="proofExpo" class="mt-3 text-xs font-semibold leading-5 text-[#f8dfc4]/68 sm:text-sm sm:leading-6"></p>
-              </article>
-              <article class="min-w-0 border-l border-[#f8dfc4]/14 pl-4 sm:pl-6">
-                <p id="proofProgramsValue" class="display-latin text-4xl uppercase leading-none text-[#f8dfc4] sm:text-5xl">9+</p>
-                <p id="proofPrograms" class="mt-3 text-xs font-semibold leading-5 text-[#f8dfc4]/68 sm:text-sm sm:leading-6"></p>
-              </article>
-              <article id="proofViewsItem" class="hidden min-w-0 border-l border-[#f8dfc4]/14 pl-4 sm:pl-6">
-                <p id="proofViewsValue" class="display-latin text-5xl uppercase leading-none text-[#f8dfc4]"></p>
-                <p id="proofViews" class="mt-3 text-sm font-semibold leading-6 text-[#f8dfc4]/68"></p>
-              </article>
+      <section id="proof" data-analytics-section="proof" class="brand-grid-bg scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-14 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div class="mx-auto w-full max-w-7xl">
+          <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+            <div data-reveal class="min-w-0">
+              <p id="proofKicker" class="condensed-label mb-3 text-sm uppercase text-mokdaOrange sm:text-lg">HECHO EN COREA</p>
+              <h2 id="proofTitle" class="display-latin max-w-3xl text-[2.15rem] uppercase leading-[0.92] text-mokdaOrange sm:text-5xl lg:text-[4.5rem]">De Corea a las mesas de Latinoamérica.</h2>
+              <div id="storyBody" class="mt-6 grid max-w-xl gap-2 break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/74 sm:text-base sm:leading-8"></div>
+              <a href="/es/about.html" class="brand-text-link mt-6 text-[#f8dfc4]">
+                Sobre nosotros
+                <span class="ml-2">-&gt;</span>
+              </a>
             </div>
-            <div id="institutionalLogos" class="mt-5 hidden" aria-label="Con el apoyo de"></div>
+            <figure data-reveal data-reveal-delay="100" class="relative min-h-[230px] overflow-hidden rounded-[1.25rem] bg-[#f7ddc2] sm:min-h-[320px] lg:min-h-[340px]">
+              <picture>
+                <source media="(max-width: 767px)" srcset="assets/images/field-meeting-720.webp" />
+                <img src="assets/images/field-meeting-1440.webp" alt="MOKDA preparando su expansión internacional en una reunión con una institución pública de Corea" class="absolute inset-0 h-full w-full object-cover" width="1440" height="810" loading="lazy" decoding="async" />
+              </picture>
+              <figcaption id="proofPhotoCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#321506]/90 to-transparent px-5 pb-5 pt-14 text-xs font-bold leading-5 text-white sm:px-6 sm:pb-6 sm:text-sm"></figcaption>
+            </figure>
           </div>
-          <figure data-reveal data-reveal-delay="120" class="relative min-h-[230px] overflow-hidden rounded-[1.25rem] bg-[#f7ddc2] sm:min-h-[320px] lg:min-h-[360px]">
-            <picture>
-              <source media="(max-width: 767px)" srcset="assets/images/field-meeting-720.webp" />
-              <img src="assets/images/field-meeting-1440.webp" alt="MOKDA preparando su expansión internacional en una reunión con una institución pública de Corea" class="absolute inset-0 h-full w-full object-cover" width="1440" height="810" loading="lazy" decoding="async" />
-            </picture>
-            <figcaption id="proofPhotoCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#321506]/90 to-transparent px-5 pb-5 pt-14 text-xs font-bold leading-5 text-white sm:px-6 sm:pb-6 sm:text-sm"></figcaption>
-          </figure>
+
+          <div id="field-story" data-analytics-section="field_story" class="mt-8 grid gap-6 border-t border-[#f8dfc4]/18 pt-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch lg:gap-8">
+            <div data-reveal class="flex min-w-0 flex-col justify-center">
+              <div id="proofList" class="grid grid-cols-2 border-y border-[#f8dfc4]/20 py-5 sm:grid-cols-2 sm:py-6">
+                <article class="min-w-0 pr-3 sm:pr-6">
+                  <p class="display-latin break-words text-base uppercase leading-[0.95] text-[#f8dfc4] sm:text-2xl lg:text-[1.7rem]">EXPOALIMENTARIA PERÚ 2026</p>
+                  <p id="proofExpo" class="mt-3 text-xs font-semibold leading-5 text-[#f8dfc4]/68 sm:text-sm sm:leading-6"></p>
+                </article>
+                <article class="min-w-0 border-l border-[#f8dfc4]/14 pl-3 sm:pl-6">
+                  <p id="proofProgramsValue" class="display-latin text-4xl uppercase leading-none text-[#f8dfc4] sm:text-5xl">9+</p>
+                  <p id="proofPrograms" class="mt-3 text-xs font-semibold leading-5 text-[#f8dfc4]/68 sm:text-sm sm:leading-6"></p>
+                </article>
+                <article id="proofViewsItem" class="hidden min-w-0 border-l border-[#f8dfc4]/14 pl-3 sm:pl-6">
+                  <p id="proofViewsValue" class="display-latin text-4xl uppercase leading-none text-[#f8dfc4] sm:text-5xl"></p>
+                  <p id="proofViews" class="mt-3 text-xs font-semibold leading-5 text-[#f8dfc4]/68 sm:text-sm sm:leading-6"></p>
+                </article>
+              </div>
+              <div id="institutionalLogos" class="mt-5 hidden" aria-label="Con el apoyo de"></div>
+            </div>
+            <div data-reveal data-reveal-delay="120" class="grid grid-cols-2 gap-3 sm:gap-5">
+              <figure class="relative min-h-[220px] overflow-hidden rounded-[1.25rem] bg-neutral-800 sm:min-h-[280px] lg:min-h-[300px]">
+                <picture>
+                  <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-720.webp" />
+                  <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover" width="899" height="1600" loading="lazy" decoding="async" />
+                </picture>
+                <figcaption id="manufacturingCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent px-4 pb-4 pt-16 text-[11px] font-bold leading-4 text-white sm:px-5 sm:pb-5 sm:text-sm sm:leading-5"></figcaption>
+              </figure>
+              <figure class="relative min-h-[220px] overflow-hidden rounded-[1.25rem] bg-neutral-800 sm:min-h-[280px] lg:min-h-[300px]">
+                <picture>
+                  <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp" />
+                  <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover" width="1071" height="1428" loading="lazy" decoding="async" />
+                </picture>
+                <figcaption id="ingredientCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent px-4 pb-4 pt-16 text-[11px] font-bold leading-4 text-white sm:px-5 sm:pb-5 sm:text-sm sm:leading-5"></figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -514,36 +616,6 @@
                 <figcaption class="text-center text-xs font-extrabold uppercase tracking-[0.16em] text-[#321506]/72 sm:text-sm">Soy Sauce</figcaption>
               </figure>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="field-story" data-analytics-section="field_story" class="relative scroll-mt-20 overflow-hidden border-t border-[#321506]/10 bg-[#fff8ef] py-14 text-[#321506] sm:py-20 lg:py-24">
-        <div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-12 lg:px-8">
-          <div data-reveal class="relative z-10 grid gap-5">
-            <p id="storyKicker" class="condensed-label text-sm uppercase text-mokdaOrange sm:text-lg"></p>
-            <h2 id="storyTitle" class="display-korean max-w-[660px] break-keep text-balance text-4xl leading-[0.98] text-mokdaOrange sm:text-6xl lg:text-[5rem]"></h2>
-            <div id="storyBody" class="max-w-[600px] break-keep text-pretty text-[15px] font-semibold leading-7 text-[#321506]/76 sm:text-base sm:leading-8"></div>
-            <a href="/es/about.html" class="brand-text-link text-[#321506]">
-              Sobre nosotros
-              <span class="ml-2">-&gt;</span>
-            </a>
-          </div>
-          <div data-reveal data-reveal-delay="140" class="grid grid-cols-2 gap-3 sm:gap-5">
-            <figure class="relative min-h-[230px] overflow-hidden rounded-[1.25rem] bg-neutral-800 sm:min-h-[340px] lg:min-h-[420px]">
-              <picture>
-                <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-720.webp" />
-                <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover" width="899" height="1600" loading="lazy" decoding="async" />
-              </picture>
-              <figcaption id="manufacturingCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent px-4 pb-4 pt-16 text-[11px] font-bold leading-4 text-white sm:px-5 sm:pb-5 sm:text-sm sm:leading-5"></figcaption>
-            </figure>
-            <figure class="relative min-h-[230px] overflow-hidden rounded-[1.25rem] bg-neutral-800 sm:min-h-[340px] lg:min-h-[420px]">
-              <picture>
-                <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp" />
-                <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover" width="1071" height="1428" loading="lazy" decoding="async" />
-              </picture>
-              <figcaption id="ingredientCaption" class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent px-4 pb-4 pt-16 text-[11px] font-bold leading-4 text-white sm:px-5 sm:pb-5 sm:text-sm sm:leading-5"></figcaption>
-            </figure>
           </div>
         </div>
       </section>
@@ -608,37 +680,44 @@
         </div>
       </section>
 
-      <section id="contact" data-analytics-section="contact" class="brand-grid-bg scroll-mt-20 bg-[#321506] pb-16 pt-20 text-[#f8dfc4] sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-28">
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-10 w-full max-w-[860px] text-center">
+      <section id="contact" data-analytics-section="contact" class="brand-grid-bg scroll-mt-20 bg-[#321506] py-16 text-[#f8dfc4] sm:py-20 lg:py-24">
+        <div class="mx-auto grid w-full max-w-7xl gap-9 px-4 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-12 lg:px-8">
+          <div data-reveal class="w-full max-w-[620px] text-left">
             <p id="b2bKicker" class="condensed-label mb-2 text-sm uppercase text-mokdaOrange sm:text-lg"></p>
-            <h2 id="b2bTitle" class="display-latin break-keep text-balance text-4xl leading-[0.94] text-mokdaOrange sm:text-6xl md:text-7xl"></h2>
-            <p id="b2bDescription" class="mx-auto mt-4 max-w-2xl break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/70 sm:text-base sm:leading-8"></p>
+            <h2 id="b2bTitle" class="display-latin break-keep text-balance text-4xl leading-[0.94] text-mokdaOrange sm:text-5xl lg:text-6xl"></h2>
+            <p id="b2bDescription" class="mt-4 max-w-xl break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/70 sm:text-base sm:leading-8"></p>
           </div>
-          <div class="grid gap-5 md:grid-cols-2">
+          <div class="grid gap-4">
             <article id="quickQuestionCard" data-reveal data-reveal-delay="100" class="hidden rounded-[1.25rem] border border-[#f8dfc4]/20 p-7 sm:p-9">
               <p id="quickQuestionKicker" class="condensed-label text-sm uppercase text-mokdaOrange"></p>
               <h3 id="quickQuestionTitle" class="mt-4 text-3xl font-black text-[#f8dfc4] sm:text-4xl"></h3>
               <p id="quickQuestionDescription" class="mt-4 text-sm font-semibold leading-7 text-[#f8dfc4]/68"></p>
               <a id="whatsappCta" data-analytics-event="whatsapp_click" class="mt-7 inline-flex min-h-14 items-center justify-center rounded-lg border-2 border-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-mokdaOrange transition hover:bg-mokdaOrange hover:text-white focus:outline-none focus:ring-4 focus:ring-orange-500/25" target="_blank" rel="noopener noreferrer"></a>
             </article>
-            <article id="b2bCard" data-reveal data-reveal-delay="160" class="rounded-[1.25rem] bg-[#f7ddc2] p-7 text-[#321506] sm:p-9 md:col-span-2">
-              <p id="b2bCardKicker" class="condensed-label text-sm uppercase text-mokdaOrange"></p>
-              <h3 id="b2bCardTitle" class="mt-4 text-3xl font-black sm:text-4xl"></h3>
-              <p id="b2bCardDescription" class="mt-4 max-w-xl text-sm font-semibold leading-7 text-[#321506]/68"></p>
-              <a id="b2bCta" data-analytics-event="b2b_cta_click" href="/es/contact.html?purpose=distribution" class="mt-7 inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-mokdaOrange px-8 py-4 text-center text-sm font-extrabold uppercase text-white transition duration-300 hover:scale-[1.02] hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25">
-                <span id="b2bCtaText"></span>
-              </a>
+            <article id="b2bCard" data-reveal data-reveal-delay="140" class="rounded-[1.25rem] bg-[#f7ddc2] p-7 text-[#321506] sm:p-9 md:col-span-2">
+              <div class="grid gap-7 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-10">
+                <div>
+                  <p id="b2bCardKicker" class="condensed-label text-sm uppercase text-mokdaOrange"></p>
+                  <h3 id="b2bCardTitle" class="mt-3 text-3xl font-black sm:text-4xl"></h3>
+                  <p id="b2bCardDescription" class="mt-3 max-w-xl text-sm font-semibold leading-7 text-[#321506]/68"></p>
+                </div>
+                <a id="b2bCta" data-analytics-event="b2b_cta_click" href="/es/contact.html?purpose=distribution" class="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-mokdaOrange px-8 py-4 text-center text-sm font-extrabold uppercase text-white transition duration-300 hover:scale-[1.02] hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25">
+                  <span id="b2bCtaText"></span>
+                </a>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="socialBanner" class="relative z-20 min-h-[170px] scroll-mt-24 border-t border-[#f8dfc4]/35 bg-mokdaOrange py-12 text-white shadow-[inset_0_24px_42px_rgba(50,21,6,0.07)] sm:py-14">
-        <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-6 px-4 text-center">
-          <div class="flex flex-col items-center">
-            <h2 class="mb-4 text-3xl font-black uppercase leading-tight tracking-[0.08em]">SNS</h2>
-            <div class="flex items-center justify-center gap-7">
+      <footer class="bg-neutral-950 py-10 text-white sm:py-12">
+        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div id="socialBanner" class="flex flex-col gap-5 border-b border-white/14 pb-8 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p class="condensed-label text-sm uppercase text-mokdaOrange">MOKDA SOCIAL</p>
+              <p class="mt-2 text-lg font-bold text-white/90">Instagram · TikTok · Threads</p>
+            </div>
+            <div class="flex items-center gap-6 text-mokdaOrange">
               <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
                   <rect x="3" y="3" width="18" height="18" rx="5"></rect>
@@ -659,11 +738,8 @@
               </a>
             </div>
           </div>
+          <div id="footerText" class="mt-8"></div>
         </div>
-      </section>
-
-      <footer class="bg-neutral-950 py-12 text-white">
-        <div id="footerText" class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8"></div>
       </footer>
     </main>
 
@@ -1350,10 +1426,10 @@
                     <img src="${slide.mobileImage}" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                   </picture>
                 </div>
-                <div class="relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 pt-28 pb-[340px] sm:px-6 sm:pb-[455px] md:pt-28 md:pb-[31vh] lg:px-8">
+                <div class="hero-content relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 sm:px-6 lg:px-8">
                   <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
-                  <h1 data-hero-title class="display-latin mx-auto max-w-[1080px] text-center text-[5rem] uppercase leading-[0.78] text-[#d94d0b] sm:text-[8rem] md:text-[9.2rem] lg:text-[11.8rem] xl:text-[13.2rem]"></h1>
-                  <div class="mt-6 flex flex-col items-center gap-5 text-center md:mt-4">
+                  <h1 data-hero-title class="hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
+                  <div class="hero-copy flex flex-col items-center text-center">
                     <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
                     <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
                   </div>
@@ -1558,9 +1634,8 @@
           setText(`faqAnswer${index + 1}`, item[1]);
         });
         renderHeroText();
-        setText('storyKicker', t.story.kicker);
-        document.getElementById('storyTitle').innerHTML = t.story.title;
-        document.getElementById('storyBody').innerHTML = t.story.body.map((paragraph) => `<p class="break-keep leading-relaxed">${paragraph}</p>`).join('');
+        const storyBody = document.getElementById('storyBody');
+        if (storyBody) storyBody.innerHTML = t.story.body.map((paragraph) => `<p class="break-keep leading-relaxed">${paragraph}</p>`).join('');
         setText('manufacturingCaption', t.story.manufacturing);
         setText('ingredientCaption', t.story.ingredient);
         setText('productsKicker', t.products.kicker);
@@ -1579,7 +1654,7 @@
         setText('b2bTitle', t.b2b.title);
         setText('b2bDescription', t.b2b.description);
         setText('b2bCtaText', t.b2b.cta);
-        ['proofTitle', 'storyTitle', 'faqTitle', 'productLineTitle', 'b2bTitle'].forEach((id) => {
+        ['proofTitle', 'faqTitle', 'productLineTitle', 'b2bTitle'].forEach((id) => {
           const heading = document.getElementById(id);
           if (!heading) return;
           const usesKoreanDisplay = /[가-힣]/.test(heading.textContent);

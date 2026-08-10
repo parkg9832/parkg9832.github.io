@@ -3,9 +3,9 @@
   --mokda-type-section-title: clamp(2.75rem, 5vw, 5.25rem);
   --mokda-type-feature-title: clamp(3.25rem, 6.5vw, 6rem);
   --mokda-type-card-title: clamp(2rem, 3.5vw, 3.5rem);
-  --mokda-type-label: clamp(1rem, 0.4vw + 0.9rem, 1.125rem);
+  --mokda-type-label: clamp(1.125rem, 0.35vw + 1.05rem, 1.25rem);
   --mokda-type-body: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
-  --mokda-type-body-small: clamp(0.9375rem, 0.15vw + 0.9rem, 1rem);
+  --mokda-type-body-small: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
   --mokda-type-meta: 0.875rem;
   --mokda-leading-display: 0.92;
   --mokda-leading-korean-display: 1.08;
@@ -33,12 +33,12 @@ main .display-korean {
 main .condensed-label,
 footer .condensed-label {
   font-size: var(--mokda-type-label);
-  line-height: 1.05;
+  line-height: 1.12;
   letter-spacing: var(--mokda-tracking-label);
 }
 
 footer .condensed-label {
-  font-size: 1rem;
+  font-size: 1.125rem;
 }
 
 .lang-btn {
@@ -129,6 +129,12 @@ footer .condensed-label {
   line-height: 1.7;
 }
 
+.product-photo-card span {
+  color: #321506;
+  font-weight: 600;
+  line-height: 1.72;
+}
+
 .qna-question,
 .home-faq-question,
 .faq-question {
@@ -184,8 +190,8 @@ body.support-page {
 
 .support-category,
 .support-feed-heading p {
-  font-size: 0.875rem;
-  line-height: 1.05;
+  font-size: 1rem;
+  line-height: 1.12;
   letter-spacing: var(--mokda-tracking-label);
   text-transform: uppercase;
 }

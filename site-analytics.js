@@ -429,7 +429,10 @@
           const section = clean(entry.target.getAttribute('data-analytics-section'), 80);
           if (!section) return;
           const existingTimer = sectionTimers.get(entry.target);
-          if (!entry.isIntersecting || entry.intersectionRatio < 0.5) {
+          const viewportHeight = entry.rootBounds?.height || window.innerHeight || 0;
+          const viewableHeight = Math.min(entry.boundingClientRect.height, viewportHeight);
+          const visibleRatio = viewableHeight > 0 ? entry.intersectionRect.height / viewableHeight : 0;
+          if (!entry.isIntersecting || visibleRatio < 0.5) {
             if (existingTimer) window.clearTimeout(existingTimer);
             sectionTimers.delete(entry.target);
             return;

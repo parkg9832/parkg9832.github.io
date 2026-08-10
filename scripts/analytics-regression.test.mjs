@@ -65,7 +65,8 @@ for (const depth of [25, 50, 75, 90]) assert.match(analyticsSource, new RegExp(`
 assert.match(analyticsSource, /trackOnce\(`scroll_\$\{depth\}`/);
 
 // TEST 7: section view requires 50% visibility and a one-second hold.
-assert.match(analyticsSource, /entry\.intersectionRatio < 0\.5/);
+assert.match(analyticsSource, /const viewableHeight = Math\.min\(entry\.boundingClientRect\.height, viewportHeight\)/);
+assert.match(analyticsSource, /visibleRatio < 0\.5/);
 assert.match(analyticsSource, /}, 1000\);/);
 
 // TEST 8: only production hosts are allowed.

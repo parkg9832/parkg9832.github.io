@@ -272,7 +272,10 @@
           </article>
           <div data-reveal style="--reveal-delay: 120ms" class="relative">
             <figure class="story-photo-mask relative min-h-[360px] overflow-hidden rounded-[1.25rem] bg-[#260f04] sm:min-h-[480px] lg:min-h-[650px] lg:rounded-[2rem]">
-              <img src="./assets/about-lima-cathedral.jpg" alt="MOKDA founder in Lima, Peru" class="absolute inset-0 h-full w-full object-cover object-[50%_80%]" loading="lazy" />
+              <picture>
+                <source media="(max-width: 767px)" srcset="./assets/images/field-chili-720.webp" />
+                <img src="./assets/images/field-chili-1080.webp" alt="MOKDA founder inspecting chili peppers in Korea" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
+              </picture>
               <div class="absolute inset-0 bg-gradient-to-r from-[#321506]/50 via-transparent to-transparent"></div>
             </figure>
           </div>
@@ -286,10 +289,8 @@
             <h2 id="logoTitle" class="display-latin break-keep text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
           </div>
           <div class="grid gap-5 lg:grid-cols-[0.95fr_1.2fr_0.95fr]">
-            <article data-reveal class="surface-depth flex flex-col justify-end rounded-[1.25rem] bg-white/72 p-7 sm:min-h-[360px] sm:p-9">
-              <p id="motiveKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange"></p>
-              <h3 id="motiveTitle" class="break-keep text-3xl font-black leading-tight text-[#321506] sm:text-5xl"></h3>
-              <p id="motiveBody" class="mt-5 break-keep text-pretty text-sm font-semibold leading-7 text-[#321506]/68 sm:text-base"></p>
+            <article data-reveal class="surface-depth flex flex-col justify-center rounded-[1.25rem] bg-white/72 p-7 sm:min-h-[360px] sm:p-9">
+              <p id="motiveBody" class="break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:text-lg sm:leading-9"></p>
             </article>
             <div data-reveal style="--reveal-delay: 100ms" class="surface-depth flex min-h-[360px] flex-col items-center justify-center rounded-[1.25rem] bg-[#321506] p-9 text-[#f8dfc4] sm:min-h-[470px]">
               <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[390px] object-contain" />
@@ -322,11 +323,11 @@
         </div>
       </section>
 
-      <section id="socialBanner" class="relative z-20 min-h-[170px] scroll-mt-24 bg-mokdaOrange py-12 text-white sm:py-14">
-        <div class="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-6 px-4 text-center">
-          <div class="flex flex-col items-center">
-            <h2 id="socialTitle" class="mb-4 text-3xl font-black uppercase leading-tight tracking-[0.08em]">SNS</h2>
-            <div class="flex items-center justify-center gap-7">
+      <footer class="bg-neutral-950 py-10 text-white sm:py-12">
+        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div id="socialBanner" class="flex flex-col items-center justify-center border-b border-white/14 pb-8 text-center">
+            <p class="condensed-label text-base uppercase text-mokdaOrange">MOKDA SNS</p>
+            <div class="mt-5 flex items-center justify-center gap-6 text-mokdaOrange">
               <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
                   <rect x="3" y="3" width="18" height="18" rx="5"></rect>
@@ -347,11 +348,8 @@
               </a>
             </div>
           </div>
+          <div id="footerText" class="mt-8"></div>
         </div>
-      </section>
-
-      <footer class="bg-neutral-950 py-12 text-white">
-        <div id="footerText" class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8"></div>
       </footer>
     </main>
 
@@ -381,11 +379,9 @@
             ],
           },
           logo: {
-            kicker: 'Logo de Marca',
-            title: 'Un diseño que contiene la herencia coreana y la pasión latina',
-            motiveKicker: 'Motivo',
-            motiveTitle: 'La primera inspiración que nace en tu cocina',
-            motiveBody: 'La silueta de la botella en el logo expresa que MOKDA puede ser el primer paso para cualquier receta K.',
+            kicker: 'BRAND LOGO',
+            title: 'De la mesa coreana a las mesas del mundo',
+            motiveBody: 'El logotipo de MOKDA expresa cómo un sabor nacido en Corea se expande hacia nuevas mesas. El gráfico, que recuerda a un sol naciente, representa un nuevo comienzo y la expansión; “MOKDA” y el coreano “먹다” señalan el origen coreano de la marca.',
             green: {
               title: 'MOKDA GREEN',
               keywords: 'Ingredientes · naturaleza · confianza · base',
@@ -412,6 +408,9 @@
                   { text: 'Selección - Programa de Jóvenes Innovadores, Jeonbuk', amount: '₩13,500,000' },
                   { text: 'Selección - Apoyo a prototipos de contenidos, Jeonbuk', amount: '₩12,000,000' },
                   'Registro empresarial, Corea',
+                  'Selección - Programa Jump-Up del Centro de Economía Creativa e Innovación de Jeonbuk',
+                  'Selección - Programa Sales-Up del Centro de Economía Creativa e Innovación de Jeonbuk',
+                  'Selección - Programa Trade Master YOUTH de la Agencia de Negocios de Jeonbuk',
                 ],
               },
             ],
@@ -439,11 +438,9 @@
             ],
           },
           logo: {
-            kicker: 'Brand Logo',
-            title: '한국의 뿌리와 라틴의 열정을 담은 디자인',
-            motiveKicker: 'Motive',
-            motiveTitle: '당신의 주방에서 시작되는 첫 번째 영감',
-            motiveBody: '로고 속 병의 실루엣은 MOKDA가 모든 K-레시피의 첫 단서가 될 수 있다는 의미를 담고 있습니다.',
+            kicker: 'BRAND LOGO',
+            title: '한국의 식탁에서 세계의 식탁으로',
+            motiveBody: 'MOKDA 로고는 한국에서 시작한 맛이 새로운 식탁으로 확장되는 모습을 표현합니다. 해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.',
             green: {
               title: 'MOKDA GREEN',
               keywords: '원재료 · 자연 · 신뢰 · 기반',
@@ -470,6 +467,9 @@
                   { text: '전북 시군청년혁신가 예비창업지원사업 선정', amount: '₩13,500,000' },
                   { text: '전북 콘텐츠코리아랩 창제작자 시제품 제작 지원사업 선정', amount: '₩12,000,000' },
                   '대한민국 사업자 등록',
+                  '전북창조경제혁신센터 점프-업 지원사업 선정',
+                  '전북창조경제혁신센터 세일즈-업 지원사업 선정',
+                  '전북경제통상진흥원 통상마스터 YOUTH 지원사업 선정',
                 ],
               },
             ],
@@ -497,11 +497,9 @@
             ],
           },
           logo: {
-            kicker: 'Brand Logo',
-            title: 'A design shaped by Korean heritage and Latin passion',
-            motiveKicker: 'Motive',
-            motiveTitle: 'The first inspiration to unfold in your kitchen',
-            motiveBody: 'The bottle silhouette in the logo represents MOKDA as the first step in every K-recipe.',
+            kicker: 'BRAND LOGO',
+            title: 'From Korean tables to tables around the world',
+            motiveBody: 'The MOKDA logo expresses how a flavor that began in Korea expands to new tables. The rising-sun graphic represents a new beginning and growth, while “MOKDA” and the Korean word “먹다” reflect the brand’s Korean origin.',
             green: {
               title: 'MOKDA GREEN',
               keywords: 'Ingredients · nature · trust · foundation',
@@ -528,6 +526,9 @@
                   { text: 'Selected - Young Innovators Pre-Startup Program, Jeonbuk', amount: '₩13,500,000' },
                   { text: 'Selected - Content Prototype Support Program, Jeonbuk', amount: '₩12,000,000' },
                   'Business registration, Korea',
+                  'Selected - Jeonbuk Center for Creative Economy & Innovation Jump-Up Program',
+                  'Selected - Jeonbuk Center for Creative Economy & Innovation Sales-Up Program',
+                  'Selected - Jeonbuk Business Agency Trade Master YOUTH Program',
                 ],
               },
             ],
@@ -571,8 +572,6 @@
         setHTML('storyBody', copy.story.body.map((item) => `<p>${item}</p>`).join(''));
         setText('logoKicker', copy.logo.kicker);
         setText('logoTitle', copy.logo.title);
-        setText('motiveKicker', copy.logo.motiveKicker);
-        setText('motiveTitle', copy.logo.motiveTitle);
         setText('motiveBody', copy.logo.motiveBody);
         setText('greenTitle', copy.logo.green.title);
         setText('greenKeywords', copy.logo.green.keywords);

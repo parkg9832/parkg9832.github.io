@@ -537,7 +537,7 @@
           });
 
           const result = await response.json();
-          if (!response.ok || !result.ok) {
+          if (!response.ok || !result.ok || result.saved !== true) {
             throw new Error(result.error || 'Inquiry submission failed');
           }
 
@@ -589,6 +589,6 @@
       document.getElementById('b2bForm').addEventListener('submit', submitContactForm);
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260810-1"></script>
+    <script src="./site-header.js?v=20260810-2"></script>
   </body>
 </html>

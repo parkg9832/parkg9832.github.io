@@ -244,6 +244,12 @@ function localizeHtml(source, language, page) {
   html = html.replace('</head>', `    <script type="application/ld+json">\n${structuredData(language, page, canonical, metadata)}\n    </script>\n  </head>`);
   html = localizeFontRequests(html, language);
   html = localizeInternalLinks(html, language);
+  if (!html.includes('site-typography.css')) {
+    html = html.replace(
+      '</head>',
+      '    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-1" />\n  </head>',
+    );
+  }
   return html;
 }
 

@@ -1,0 +1,309 @@
+:root {
+  --mokda-type-page-title: clamp(3.25rem, 7vw, 7rem);
+  --mokda-type-section-title: clamp(2.75rem, 5vw, 5.25rem);
+  --mokda-type-feature-title: clamp(3.25rem, 6.5vw, 6rem);
+  --mokda-type-card-title: clamp(2rem, 3.5vw, 3.5rem);
+  --mokda-type-label: clamp(1rem, 0.4vw + 0.9rem, 1.125rem);
+  --mokda-type-body: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
+  --mokda-type-body-small: clamp(0.9375rem, 0.15vw + 0.9rem, 1rem);
+  --mokda-type-meta: 0.875rem;
+  --mokda-leading-display: 0.92;
+  --mokda-leading-korean-display: 1.08;
+  --mokda-leading-body: 1.72;
+  --mokda-tracking-label: 0.045em;
+}
+
+body:not(.support-page) {
+  font-size: 1rem;
+  line-height: var(--mokda-leading-body);
+  letter-spacing: 0;
+}
+
+main h1.display-latin,
+main h2.display-latin,
+main h3.display-latin {
+  letter-spacing: -0.02em;
+}
+
+main .display-korean {
+  line-height: var(--mokda-leading-korean-display) !important;
+  letter-spacing: -0.025em;
+}
+
+main .condensed-label,
+footer .condensed-label {
+  font-size: var(--mokda-type-label);
+  line-height: 1.05;
+  letter-spacing: var(--mokda-tracking-label);
+}
+
+footer .condensed-label {
+  font-size: 1rem;
+}
+
+.lang-btn {
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+#mobile-menu a,
+#main-header nav a,
+#main-header nav button {
+  line-height: 1.2;
+  letter-spacing: 0.005em;
+}
+
+#mobile-menu a {
+  font-size: 1rem;
+}
+
+#pageTitle.display-latin {
+  font-size: var(--mokda-type-page-title);
+  line-height: 0.88;
+}
+
+#pageTitle.display-korean {
+  font-size: clamp(2.75rem, 6vw, 5.5rem) !important;
+  line-height: var(--mokda-leading-korean-display) !important;
+}
+
+#proofTitle,
+#supportTitle,
+#faqTitle,
+#b2bTitle,
+#storyTitle,
+#logoTitle,
+#historyTitle {
+  font-size: var(--mokda-type-section-title);
+  line-height: var(--mokda-leading-display);
+}
+
+#proofTitle.display-korean,
+#supportTitle.display-korean,
+#faqTitle.display-korean,
+#b2bTitle.display-korean,
+#storyTitle.display-korean,
+#logoTitle.display-korean,
+#historyTitle.display-korean {
+  font-size: clamp(2.5rem, 4.7vw, 4.75rem) !important;
+  line-height: var(--mokda-leading-korean-display) !important;
+}
+
+#prod1Title,
+#prod2Title,
+#prod3Title {
+  font-size: var(--mokda-type-feature-title);
+  line-height: 0.88;
+}
+
+#productLineTitle,
+#motiveTitle,
+#orangeTitle,
+#blackTitle,
+#socialTitle {
+  font-size: var(--mokda-type-card-title);
+  line-height: 1.02;
+}
+
+#heroBody,
+#heroSubtitle,
+#pageSubtitle,
+#pageDescription,
+#storyBody,
+#b2bDescription,
+#prod1Desc,
+#prod2Desc,
+#prod3Desc {
+  font-size: var(--mokda-type-body);
+  line-height: var(--mokda-leading-body);
+}
+
+#productLineDescription,
+#motiveBody,
+.qna-answer-panel p,
+.home-faq-answer-panel p,
+.product-photo-card span,
+#contactMethodHint {
+  font-size: var(--mokda-type-body-small);
+  line-height: 1.7;
+}
+
+.qna-question,
+.home-faq-question,
+.faq-question {
+  font-size: clamp(1.0625rem, 0.4vw + 1rem, 1.25rem);
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+}
+
+#proofViews,
+#proofPrograms,
+#proofExpo,
+#supportTotalLabel,
+#prod1Uses,
+#prod2Uses,
+#prod3Uses,
+figcaption {
+  font-size: var(--mokda-type-meta);
+  line-height: 1.45;
+  letter-spacing: 0.045em;
+}
+
+.brand-text-link,
+main a[class*="min-h-"],
+main button[type="submit"] {
+  font-size: 0.875rem;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+main label,
+main legend {
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+main input,
+main select,
+main textarea {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+body.support-page {
+  font-size: 1rem;
+  line-height: var(--mokda-leading-body);
+  letter-spacing: 0;
+}
+
+.support-menu a {
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+
+.support-category,
+.support-feed-heading p {
+  font-size: 0.875rem;
+  line-height: 1.05;
+  letter-spacing: var(--mokda-tracking-label);
+  text-transform: uppercase;
+}
+
+.support-title {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: var(--mokda-leading-korean-display);
+  letter-spacing: -0.025em;
+}
+
+.support-lead {
+  font-size: var(--mokda-type-body);
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+.support-impact {
+  font-size: clamp(1.125rem, 0.6vw + 1rem, 1.375rem);
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.support-country-field legend,
+.support-message-wrapper label,
+.support-field label {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.support-field input,
+.support-field textarea {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.support-chip-label,
+.support-submit,
+.support-success-cta,
+.support-feed-more {
+  font-size: 0.875rem;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+}
+
+.support-privacy,
+.support-message-wrapper small,
+.support-status,
+.support-feed-empty,
+.support-feed-example,
+.support-back,
+.support-footer {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.support-feed-heading h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.support-feed-total {
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.support-feed-name {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.support-feed-message {
+  font-size: var(--mokda-type-body-small);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+.support-feed-meta,
+.support-country-total,
+.support-country-total strong {
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+
+@media (min-width: 640px) {
+  .lang-btn {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --mokda-type-page-title: clamp(3rem, 14vw, 4.5rem);
+    --mokda-type-section-title: clamp(2.5rem, 11vw, 3.75rem);
+    --mokda-type-feature-title: clamp(3rem, 14vw, 4.75rem);
+    --mokda-type-card-title: clamp(2rem, 9vw, 3rem);
+  }
+
+  #productsTitle {
+    font-size: clamp(3.75rem, 17vw, 6rem);
+    line-height: 0.84;
+  }
+
+  body:has(#b2bForm) #pageTitle {
+    font-size: clamp(3rem, 12vw, 3.75rem);
+    line-height: 0.9;
+  }
+
+  #proofViews,
+  #proofPrograms,
+  #proofExpo {
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    letter-spacing: 0.025em;
+  }
+
+  .support-title {
+    font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+}

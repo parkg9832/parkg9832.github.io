@@ -145,7 +145,7 @@ footer .condensed-label {
 
 #proofViews,
 #proofPrograms,
-#proofExpo,
+#proofProducts,
 #supportTotalLabel,
 #prod1Uses,
 #prod2Uses,
@@ -154,6 +154,14 @@ figcaption {
   font-size: var(--mokda-type-meta);
   line-height: 1.45;
   letter-spacing: 0.045em;
+}
+
+.support-total-number {
+  font-family: 'Bebas Neue', 'Archivo Black', 'Noto Sans', sans-serif;
+  font-size: clamp(8rem, 22vw, 11rem);
+  font-weight: 400;
+  line-height: 0.78;
+  letter-spacing: 0.015em;
 }
 
 .brand-text-link,
@@ -303,9 +311,9 @@ body.support-page {
 
   #proofViews,
   #proofPrograms,
-  #proofExpo {
-    font-size: 0.6875rem;
-    line-height: 1.35;
+  #proofProducts {
+    font-size: 0.75rem;
+    line-height: 1.4;
     letter-spacing: 0.025em;
   }
 

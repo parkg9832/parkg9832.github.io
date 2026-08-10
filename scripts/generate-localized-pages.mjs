@@ -247,7 +247,7 @@ function localizeHtml(source, language, page) {
   if (!html.includes('site-typography.css')) {
     html = html.replace(
       '</head>',
-      '    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-2" />\n  </head>',
+      '    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-3" />\n  </head>',
     );
   }
   return html;

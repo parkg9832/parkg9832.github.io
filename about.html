@@ -209,7 +209,7 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-3" />
+    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
@@ -295,13 +295,17 @@
               <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[390px] object-contain" />
             </div>
             <div data-reveal style="--reveal-delay: 180ms" class="grid gap-5">
-              <article class="flex min-h-[190px] flex-col justify-end rounded-[1.25rem] bg-mokdaOrange p-7 text-white sm:p-8">
-                <p class="condensed-label text-base uppercase text-white/76">Burning Orange / #ef5f18</p>
-                <h3 id="orangeTitle" class="mt-4 break-keep text-3xl font-black leading-tight sm:text-4xl"></h3>
+              <article class="flex min-h-[280px] flex-col rounded-[1.25rem] bg-[#006943] p-7 text-white sm:p-8">
+                <p id="greenTitle" class="condensed-label text-base uppercase text-white/82"></p>
+                <h3 id="greenKeywords" class="mt-4 break-keep text-2xl font-black leading-tight sm:text-3xl"></h3>
+                <p id="greenBody" class="mt-4 break-keep text-sm font-semibold leading-6 text-white/82"></p>
+                <div id="greenSpecs" class="mt-auto grid grid-cols-2 gap-x-4 gap-y-1 pt-6 text-xs font-extrabold leading-5 text-white/78 sm:text-sm"></div>
               </article>
-              <article class="flex min-h-[190px] flex-col justify-end rounded-[1.25rem] bg-neutral-950 p-7 text-white sm:p-8">
-                <p class="condensed-label text-base uppercase text-white/68">Deep Black / editorial tone</p>
-                <h3 id="blackTitle" class="mt-4 break-keep text-3xl font-black leading-tight sm:text-4xl"></h3>
+              <article class="flex min-h-[280px] flex-col rounded-[1.25rem] bg-[#E8561D] p-7 text-white sm:p-8">
+                <p id="orangeTitle" class="condensed-label text-base uppercase text-white/86"></p>
+                <h3 id="orangeKeywords" class="mt-4 break-keep text-2xl font-black leading-tight sm:text-3xl"></h3>
+                <p id="orangeBody" class="mt-4 break-keep text-sm font-semibold leading-6 text-white/86"></p>
+                <div id="orangeSpecs" class="mt-auto grid grid-cols-2 gap-x-4 gap-y-1 pt-6 text-xs font-extrabold leading-5 text-white/82 sm:text-sm"></div>
               </article>
             </div>
           </div>
@@ -372,9 +376,8 @@
             title: 'Un joven coreano que llegó a América Latina',
             body: [
               'MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a América Latina con una sola maleta.',
-              'No tenía un vínculo especial con la región, pero la comida y la cultura de América Latina, descubiertas por primera vez en un documental, quedaron en la memoria del fundador. Incluso en Corea, buscaba tacos, empanadas y salsas porque le atraía esa energía cálida.',
-              'Al compartir la mesa con amigos latinoamericanos, entendió que la comida no es solo sabor. Es una forma directa de acercarse a una cultura y a las personas que la viven.',
-              'Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA quiere acercar Corea a las mesas de América Latina.',
+              'Al compartir la mesa y la comida con amigos latinoamericanos, entendió que comer va más allá de percibir sabores: es una forma directa de acercarse a una cultura y a las personas que la viven.',
+              'MOKDA busca compartir la esencia de Corea a través de su comida y hacer realidad el sueño de acercar Corea y América Latina por medio de la mesa.',
             ],
           },
           logo: {
@@ -383,8 +386,18 @@
             motiveKicker: 'Motivo',
             motiveTitle: 'La primera inspiración que nace en tu cocina',
             motiveBody: 'La silueta de la botella en el logo expresa que MOKDA puede ser el primer paso para cualquier receta K.',
-            orange: 'Energía, pasión y toque picante',
-            black: 'Un tono editorial para una marca F&B global',
+            green: {
+              title: 'MOKDA GREEN',
+              keywords: 'Ingredientes · naturaleza · confianza · base',
+              body: 'Es el color central que expresa el punto de partida de MOKDA: ingredientes frescos, confianza y estabilidad.',
+              specs: ['CMYK 100, 0, 36, 59', 'RGB 0, 105, 67', 'HEX #006943', 'Pantone 3425 C'],
+            },
+            orange: {
+              title: 'MOKDA ORANGE',
+              keywords: 'Sabor · energía · calidez · movimiento',
+              body: 'Inspirado en el chile y el sol, expresa la energía de la comida y el dinamismo de avanzar hacia nuevos mercados.',
+              specs: ['CMYK 0, 63, 88, 9', 'RGB 232, 86, 29', 'HEX #E8561D', 'Pantone 166 C'],
+            },
           },
           history: {
             kicker: 'Nuestra trayectoria',
@@ -421,9 +434,8 @@
             title: '라틴아메리카에 도착한 한 청년의 이야기',
             body: [
               'MOKDA는 2024년 봄, 가방 하나를 들고 라틴아메리카에 도착한 한 한국 청년의 여정에서 시작되었습니다.',
-              '지역과 특별한 인연은 없었지만, 다큐멘터리로 처음 만난 라틴아메리카의 음식과 문화는 오래 기억에 남았습니다. 한국에서도 타코, 엠파나다, 살사를 찾아 먹을 만큼 그 따뜻한 에너지에 끌렸습니다.',
-              '라틴아메리카 친구들과 식탁을 나누며 음식은 단순한 맛이 아니라, 한 문화와 그 문화를 살아가는 사람들에게 다가가는 가장 직접적인 방식이라는 것을 알게 되었습니다.',
-              'MOKDA는 한국의 재료, 젊은 시선, 현재의 감각을 담아 라틴아메리카의 식탁에 한국을 더 가깝게 전하고자 합니다.',
+              '라틴아메리카 친구들과 식탁에서 함께 음식을 나누며, 음식은 단순히 맛을 느끼는 것을 넘어 한 문화와 그 문화를 살아가는 사람들에게 다가가는 직접적인 방식이라는 것을 알게 되었습니다.',
+              'MOKDA는 음식에 한국의 정수를 담아 전하고자 합니다. 한국과 라틴아메리카를 음식으로 더 가깝게 연결하는 꿈을 실현해 나갑니다.',
             ],
           },
           logo: {
@@ -432,8 +444,18 @@
             motiveKicker: 'Motive',
             motiveTitle: '당신의 주방에서 시작되는 첫 번째 영감',
             motiveBody: '로고 속 병의 실루엣은 MOKDA가 모든 K-레시피의 첫 단서가 될 수 있다는 의미를 담고 있습니다.',
-            orange: '열정, 매운맛, 에너지',
-            black: '글로벌 F&B 브랜드를 위한 에디토리얼 톤',
+            green: {
+              title: 'MOKDA GREEN',
+              keywords: '원재료 · 자연 · 신뢰 · 기반',
+              body: 'MOKDA의 시작점을 알려주는 색으로, 신선한 식재료와 신뢰, 안정감을 상징하는 브랜드의 중심색입니다.',
+              specs: ['CMYK 100, 0, 36, 59', 'RGB 0, 105, 67', 'HEX #006943', 'Pantone 3425 C'],
+            },
+            orange: {
+              title: 'MOKDA ORANGE',
+              keywords: '맛 · 에너지 · 따뜻함 · 움직임',
+              body: '고추와 태양에서 따온 색으로, 음식의 에너지와 새로운 시장으로 나아가는 생동감을 상징하는 액센트 컬러입니다.',
+              specs: ['CMYK 0, 63, 88, 9', 'RGB 232, 86, 29', 'HEX #E8561D', 'Pantone 166 C'],
+            },
           },
           history: {
             kicker: 'Our Journey',
@@ -470,9 +492,8 @@
             title: 'A young Korean man who set out for Latin America',
             body: [
               'MOKDA began in the spring of 2024, from the journey of a young Korean who arrived in Latin America with a single bag.',
-              'He had no special connection to the region, but its food and culture stayed with him for years. Even in Korea, he kept looking for tacos, empanadas, and salsa because he was drawn to that warm, shared energy.',
-              'Sharing meals with Latin American friends taught him that food is more than flavor. It is one of the most direct ways to understand a culture and the people behind it.',
-              "With Korean ingredients, a young Korean perspective, and the sensibility of today's Korea, MOKDA brings Korea closer to Latin American tables.",
+              'Sharing food around the table with Latin American friends taught him that eating goes beyond experiencing flavor. It is a direct way to approach a culture and the people who live it.',
+              'MOKDA carries the essence of Korea through food and works to make its dream of bringing Korea and Latin America closer around the table a reality.',
             ],
           },
           logo: {
@@ -481,8 +502,18 @@
             motiveKicker: 'Motive',
             motiveTitle: 'The first inspiration to unfold in your kitchen',
             motiveBody: 'The bottle silhouette in the logo represents MOKDA as the first step in every K-recipe.',
-            orange: 'The energy of passion and spice',
-            black: 'An editorial tone for a global F&B brand',
+            green: {
+              title: 'MOKDA GREEN',
+              keywords: 'Ingredients · nature · trust · foundation',
+              body: "MOKDA's core color represents where the brand begins: fresh ingredients, trust, and stability.",
+              specs: ['CMYK 100, 0, 36, 59', 'RGB 0, 105, 67', 'HEX #006943', 'Pantone 3425 C'],
+            },
+            orange: {
+              title: 'MOKDA ORANGE',
+              keywords: 'Flavor · energy · warmth · movement',
+              body: 'Inspired by chili peppers and the sun, it expresses the energy of food and the momentum of moving into new markets.',
+              specs: ['CMYK 0, 63, 88, 9', 'RGB 232, 86, 29', 'HEX #E8561D', 'Pantone 166 C'],
+            },
           },
           history: {
             kicker: 'Our Journey',
@@ -543,8 +574,14 @@
         setText('motiveKicker', copy.logo.motiveKicker);
         setText('motiveTitle', copy.logo.motiveTitle);
         setText('motiveBody', copy.logo.motiveBody);
-        setText('orangeTitle', copy.logo.orange);
-        setText('blackTitle', copy.logo.black);
+        setText('greenTitle', copy.logo.green.title);
+        setText('greenKeywords', copy.logo.green.keywords);
+        setText('greenBody', copy.logo.green.body);
+        setHTML('greenSpecs', copy.logo.green.specs.map((item) => `<span>${item}</span>`).join(''));
+        setText('orangeTitle', copy.logo.orange.title);
+        setText('orangeKeywords', copy.logo.orange.keywords);
+        setText('orangeBody', copy.logo.orange.body);
+        setHTML('orangeSpecs', copy.logo.orange.specs.map((item) => `<span>${item}</span>`).join(''));
         setText('historyKicker', copy.history.kicker);
         setText('historyTitle', copy.history.title);
         ['storyTitle', 'logoTitle', 'historyTitle'].forEach((id) => {

@@ -99,8 +99,6 @@ footer .condensed-label {
 
 #productLineTitle,
 #motiveTitle,
-#orangeTitle,
-#blackTitle,
 #socialTitle {
   font-size: var(--mokda-type-card-title);
   line-height: 1.02;
@@ -145,7 +143,7 @@ footer .condensed-label {
 
 #proofViews,
 #proofPrograms,
-#proofProducts,
+#proofExpo,
 #supportTotalLabel,
 #prod1Uses,
 #prod2Uses,
@@ -205,7 +203,7 @@ body.support-page {
 }
 
 .support-title {
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-size: clamp(2.125rem, 4.6vw, 3.25rem);
   line-height: var(--mokda-leading-korean-display);
   letter-spacing: -0.025em;
 }
@@ -311,13 +309,13 @@ body.support-page {
 
   #proofViews,
   #proofPrograms,
-  #proofProducts {
+  #proofExpo {
     font-size: 0.75rem;
     line-height: 1.4;
     letter-spacing: 0.025em;
   }
 
   .support-title {
-    font-size: clamp(2rem, 9vw, 2.75rem);
+    font-size: clamp(1.875rem, 8.2vw, 2.4rem);
   }
 }

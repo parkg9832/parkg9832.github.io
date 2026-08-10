@@ -166,7 +166,7 @@
   const campaignCopy = {
     KR: {
       category: '출시 응원 프로젝트',
-      title: '내 식탁에 한국 소스가 닿도록.',
+      title: '내 식탁에 한국 소스가 닿도록',
       lead: '어떤 나라에서 Salsa Coreana를 만나고 싶은지 알려주세요. 매장과 유통사에게 실제 수요를 보여줄 수 있습니다.',
       impact: '나라를 고르고 첫 출시에 참여하세요.',
       successLead: '응원해주셔서 감사합니다.',
@@ -174,7 +174,7 @@
     },
     ES: {
       category: 'Lanzamiento de Salsa Coreana',
-      title: 'Queremos llevar la salsa coreana a tu mesa.',
+      title: 'Queremos llevar la salsa coreana a tu mesa',
       lead: 'Cuéntanos en qué país te gustaría encontrarla. Cada apoyo nos ayuda a conversar con tiendas y distribuidores.',
       impact: 'Elige tu país y sé parte del primer lanzamiento.',
       successLead: 'Gracias por apoyar el lanzamiento.',
@@ -182,7 +182,7 @@
     },
     EN: {
       category: 'Salsa Coreana launch',
-      title: 'We want Korean sauce to reach your table.',
+      title: 'We want Korean sauce to reach your table',
       lead: 'Tell us where you would like to find it. Every show of support helps us speak with stores and distributors.',
       impact: 'Choose your country and join the first launch.',
       successLead: 'Thanks for supporting the launch.',

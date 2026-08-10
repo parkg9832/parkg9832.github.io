@@ -94,7 +94,7 @@
 
     .mokda-header-bar a[aria-label="MOKDA home"] img {
       width: auto;
-      height: 56px !important;
+      height: 68px !important;
     }
 
     .mokda-header-bar #lang-selector {
@@ -245,7 +245,7 @@
       }
 
       .mokda-header-bar a[aria-label="MOKDA home"] img {
-        height: 42px !important;
+        height: 64px !important;
       }
 
       .mokda-header-bar > div:last-child {
@@ -268,7 +268,7 @@
       }
 
       .mokda-header-bar a[aria-label="MOKDA home"] img {
-        height: 48px !important;
+        height: 72px !important;
       }
 
       .mokda-desktop-nav {

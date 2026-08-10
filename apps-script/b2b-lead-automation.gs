@@ -422,6 +422,10 @@ function isFunnelPayload(payload) {
 }
 
 function appendFunnelEvents(payload) {
+  if (payload.verification === true) {
+    return { saved: 0, verification: true };
+  }
+
   const events = payload.events.slice(0, 20);
   const validEvents = events.filter((item) => {
     if (!item || typeof item !== 'object' || Array.isArray(item)) return false;
@@ -1753,6 +1757,7 @@ function updateCompleteWebsiteDashboard_() {
     product: column('Product', 12),
     scrollDepth: column('Scroll Depth', 13),
     eventId: column('Event ID', 16),
+    pageUrl: column('Page URL', 17),
     activeSeconds: column('Active Seconds', 18),
     pageInstanceId: column('Page Instance ID', 19),
     section: column('Section', 20),
@@ -1782,6 +1787,8 @@ function updateCompleteWebsiteDashboard_() {
   let totalPageViews = 0;
   let legacyProductDataExists = false;
   let v2EventCount = 0;
+  let verificationByMediumCount = 0;
+  let verificationByUrlCount = 0;
   const keyActionNames = [
     'product_cta_click', 'hero_product_click', 'contact_cta_click', 'whatsapp_click', 'b2b_cta_click',
     'b2b_form_start', 'generate_lead', 'support_cta_click', 'support_country_select',
@@ -1790,7 +1797,12 @@ function updateCompleteWebsiteDashboard_() {
   const productInterestNames = ['product_section_view', 'product_cta_click', 'hero_product_click', 'product_detail_view'];
 
   eventRows.forEach((row) => {
-    if (isVerification(row[columns.medium])) return;
+    const eventPageUrl = String(row[columns.pageUrl] || '').trim();
+    const verificationByMedium = isVerification(row[columns.medium]);
+    const verificationByUrl = /(?:[?&])utm_medium=verification(?:&|$)/i.test(eventPageUrl);
+    if (verificationByMedium) verificationByMediumCount += 1;
+    if (verificationByUrl) verificationByUrlCount += 1;
+    if (verificationByMedium || verificationByUrl) return;
     const receivedAt = normalizeDate(row[columns.receivedAt]);
     const occurredAt = normalizeDate(row[columns.occurredAt]) || receivedAt;
     if (!occurredAt || !inPeriod(occurredAt)) return;
@@ -2252,5 +2264,7 @@ function updateCompleteWebsiteDashboard_() {
     periodSupportTotal,
     allSupportTotal,
     v2EventCount,
+    verificationByMediumCount,
+    verificationByUrlCount,
   };
 }

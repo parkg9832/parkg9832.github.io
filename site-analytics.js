@@ -2,7 +2,9 @@
   'use strict';
 
   if (window.MOKDA_ANALYTICS) return;
-  const debugMode = new URLSearchParams(window.location.search).get('analytics_debug') === '1';
+  const queryParameters = new URLSearchParams(window.location.search);
+  const debugMode = queryParameters.get('analytics_debug') === '1';
+  const verificationMode = queryParameters.get('utm_medium') === 'verification';
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: false, reason: 'initializing' };
 
   if (!debugMode && (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true)) {
@@ -196,7 +198,7 @@
       device: getDevice(),
       referrerHost: clean(attribution.referrerHost, 150),
       utmSource: clean(attribution.utmSource, 100),
-      utmMedium: clean(attribution.utmMedium, 100),
+      utmMedium: verificationMode ? 'verification' : clean(attribution.utmMedium, 100),
       utmCampaign: clean(attribution.utmCampaign, 150),
       element: clean(details.element, 150),
       product: productName,
@@ -257,6 +259,7 @@
     const events = queue.splice(0, 20);
     const body = JSON.stringify({
       type: 'analytics',
+      verification: verificationMode,
       visitorId,
       sessionId: session.id,
       events,

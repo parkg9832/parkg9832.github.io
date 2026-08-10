@@ -71,6 +71,9 @@ assert.match(analyticsSource, /}, 1000\);/);
 
 // TEST 8: only production hosts are allowed.
 assert.match(analyticsSource, /new Set\(\['mokda\.kr', 'www\.mokda\.kr'\]\)/);
+assert.match(analyticsSource, /verification: verificationMode/);
+assert.match(appsScriptSource, /payload\.verification === true/);
+assert.match(appsScriptSource, /utm_medium=verification/);
 
 // TEST 9: support completion remains separate from B2B lead completion.
 const supportSuccess = [at('support_page_view', 1), at('support_form_start', 2), at('support_country_select', 3), at('support_submit', 4)];

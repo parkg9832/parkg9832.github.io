@@ -105,9 +105,50 @@
     }
 
     .mokda-header-bar #menu-toggle {
+      position: relative;
       color: #321506 !important;
       background: rgba(50, 21, 6, 0.055) !important;
       border: 1px solid rgba(50, 21, 6, 0.08);
+    }
+
+    .mokda-menu-icon {
+      position: relative;
+      display: block;
+      width: 22px;
+      height: 16px;
+    }
+
+    .mokda-menu-icon span {
+      position: absolute;
+      left: 0;
+      width: 22px;
+      height: 2px;
+      border-radius: 999px;
+      background: currentColor;
+      transform-origin: center;
+      transition:
+        top 320ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 220ms ease;
+    }
+
+    .mokda-menu-icon span:nth-child(1) { top: 0; }
+    .mokda-menu-icon span:nth-child(2) { top: 7px; }
+    .mokda-menu-icon span:nth-child(3) { top: 14px; }
+
+    .mokda-header-bar #menu-toggle[aria-expanded="true"] .mokda-menu-icon span:nth-child(1) {
+      top: 7px;
+      transform: rotate(45deg);
+    }
+
+    .mokda-header-bar #menu-toggle[aria-expanded="true"] .mokda-menu-icon span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0.45);
+    }
+
+    .mokda-header-bar #menu-toggle[aria-expanded="true"] .mokda-menu-icon span:nth-child(3) {
+      top: 7px;
+      transform: rotate(-45deg);
     }
 
     .mokda-site-header.is-scrolled {
@@ -138,6 +179,8 @@
       opacity: 0 !important;
       transform: translateY(-10px);
       visibility: hidden !important;
+      pointer-events: none !important;
+      will-change: max-height, opacity, transform;
       transition:
         max-height 520ms cubic-bezier(0.22, 1, 0.36, 1),
         opacity 360ms ease,
@@ -150,6 +193,7 @@
       opacity: 1 !important;
       transform: translateY(0);
       visibility: visible !important;
+      pointer-events: auto !important;
       transition-delay: 0s !important;
     }
 
@@ -157,6 +201,16 @@
       width: min(100%, 760px);
       margin: 0 auto;
       padding: 18px 20px max(36px, env(safe-area-inset-bottom));
+      opacity: 0;
+      transform: translateY(-14px);
+      transition:
+        opacity 300ms ease 40ms,
+        transform 480ms cubic-bezier(0.22, 1, 0.36, 1) 40ms;
+    }
+
+    .mokda-site-header.is-mobile-menu-open .mokda-mobile-menu-inner {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .mokda-mobile-nav-group {
@@ -462,9 +516,11 @@
       .mokda-nav-trigger::after,
       .mokda-nav-panel-link,
       .mokda-mobile-menu,
+      .mokda-mobile-menu-inner,
       .mokda-mobile-nav-links,
       .mokda-mobile-nav-trigger::after,
-      .mokda-mobile-nav-link {
+      .mokda-mobile-nav-link,
+      .mokda-menu-icon span {
         transition: none !important;
       }
     }
@@ -473,6 +529,9 @@
 
   header.classList.add('mokda-site-header');
   if (headerBar) headerBar.classList.add('mokda-header-bar');
+  if (menuToggle) {
+    menuToggle.innerHTML = '<span class="mokda-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>';
+  }
 
   const hrefs = {
     about: sourceLinks[0]?.getAttribute('href') || 'about.html',

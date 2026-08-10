@@ -302,7 +302,7 @@
           </div>
           <div class="grid gap-5 lg:grid-cols-[0.95fr_1.2fr_0.95fr]">
             <article data-reveal class="surface-depth flex flex-col justify-center rounded-[1.25rem] bg-white/72 p-7 sm:min-h-[360px] sm:p-9">
-              <p id="motiveBody" class="break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:text-lg sm:leading-9"></p>
+              <div id="motiveBody" class="space-y-5 break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:space-y-6 sm:text-lg sm:leading-9"></div>
             </article>
             <div data-reveal style="--reveal-delay: 100ms" class="surface-depth flex min-h-[360px] flex-col items-center justify-center rounded-[1.25rem] bg-[#321506] p-9 text-[#f8dfc4] sm:min-h-[470px]">
               <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[390px] object-contain" />
@@ -393,7 +393,10 @@
           logo: {
             kicker: 'BRAND LOGO',
             title: 'De la mesa coreana a las mesas del mundo',
-            motiveBody: 'El logotipo de MOKDA expresa cómo un sabor nacido en Corea se expande hacia nuevas mesas. El gráfico, que recuerda a un sol naciente, representa un nuevo comienzo y la expansión; “MOKDA” y el coreano “먹다” señalan el origen coreano de la marca.',
+            motiveBody: [
+              'El logotipo de MOKDA expresa cómo un sabor nacido en Corea se expande hacia nuevas mesas.',
+              'El gráfico, que recuerda a un sol naciente, representa un nuevo comienzo y la expansión; “MOKDA” y el coreano “먹다” señalan el origen coreano de la marca.',
+            ],
             green: {
               title: 'MOKDA GREEN',
               keywords: 'Ingredientes · naturaleza · confianza · base',
@@ -452,7 +455,10 @@
           logo: {
             kicker: 'BRAND LOGO',
             title: '한국의 식탁에서 세계의 식탁으로',
-            motiveBody: 'MOKDA 로고는 한국에서 시작한 맛이 새로운 식탁으로 확장되는 모습을 표현합니다. 해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.',
+            motiveBody: [
+              'MOKDA 로고는 한국에서 시작한 맛이 새로운 식탁으로 확장되는 모습을 표현합니다.',
+              '해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.',
+            ],
             green: {
               title: 'MOKDA GREEN',
               keywords: '원재료 · 자연 · 신뢰 · 기반',
@@ -511,7 +517,10 @@
           logo: {
             kicker: 'BRAND LOGO',
             title: 'From Korean tables to tables around the world',
-            motiveBody: 'The MOKDA logo expresses how a flavor that began in Korea expands to new tables. The rising-sun graphic represents a new beginning and growth, while “MOKDA” and the Korean word “먹다” reflect the brand’s Korean origin.',
+            motiveBody: [
+              'The MOKDA logo expresses how a flavor that began in Korea expands to new tables.',
+              'The rising-sun graphic represents a new beginning and growth, while “MOKDA” and the Korean word “먹다” reflect the brand’s Korean origin.',
+            ],
             green: {
               title: 'MOKDA GREEN',
               keywords: 'Ingredients · nature · trust · foundation',
@@ -584,7 +593,7 @@
         setHTML('storyBody', copy.story.body.map((item) => `<p>${item}</p>`).join(''));
         setText('logoKicker', copy.logo.kicker);
         setText('logoTitle', copy.logo.title);
-        setText('motiveBody', copy.logo.motiveBody);
+        setHTML('motiveBody', copy.logo.motiveBody.map((item) => `<p>${item}</p>`).join(''));
         setText('greenTitle', copy.logo.green.title);
         setText('greenKeywords', copy.logo.green.keywords);
         setText('greenBody', copy.logo.green.body);
@@ -666,6 +675,6 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260810-6"></script>
+    <script src="./site-header.js?v=20260810-7"></script>
   </body>
 </html>

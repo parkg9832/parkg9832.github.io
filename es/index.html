@@ -88,8 +88,8 @@
       .condensed-label {
         font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
         font-weight: 400;
-        line-height: 1;
-        letter-spacing: 0;
+        line-height: 1.05;
+        letter-spacing: 0.045em;
       }
 
       .hero-section {
@@ -135,7 +135,7 @@
         }
 
         .hero-content {
-          padding-top: 5.75rem;
+          padding-top: 7.25rem;
           padding-bottom: 12rem;
         }
 
@@ -158,7 +158,7 @@
 
       @media (min-width: 768px) and (max-height: 820px) {
         .hero-content {
-          padding-top: 5.35rem;
+          padding-top: 6.5rem;
         }
 
         .hero-title {
@@ -474,12 +474,12 @@
       }
 
       #proofCarouselTrack > figure {
-        opacity: 0.78;
+        opacity: 0.82;
         transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       #proofCarouselTrack > figure img {
-        filter: blur(1.15px) brightness(0.86);
+        filter: blur(0.8px) brightness(0.9);
         transform: scale(1.015);
         transition:
           filter 600ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -493,6 +493,26 @@
       #proofCarouselTrack > figure.is-active img {
         filter: none;
         transform: scale(1);
+      }
+
+      #proofCarousel::before,
+      #proofCarousel::after {
+        content: '';
+        position: absolute;
+        inset-block: 0;
+        z-index: 10;
+        width: clamp(2.75rem, 10vw, 8rem);
+        pointer-events: none;
+      }
+
+      #proofCarousel::before {
+        left: 0;
+        background: linear-gradient(90deg, #321506 0%, rgba(50, 21, 6, 0.72) 24%, rgba(50, 21, 6, 0) 100%);
+      }
+
+      #proofCarousel::after {
+        right: 0;
+        background: linear-gradient(270deg, #321506 0%, rgba(50, 21, 6, 0.72) 24%, rgba(50, 21, 6, 0) 100%);
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -651,7 +671,7 @@
               <h1 data-hero-title class="hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
               <div class="hero-copy flex flex-col items-center text-center">
                 <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+                <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
               </div>
             </div>
           </div>
@@ -661,7 +681,7 @@
       <section id="proof" data-analytics-section="proof" class="scroll-mt-20 overflow-hidden border-y border-[#f8dfc4]/10 bg-[#321506] px-4 py-14 text-[#f8dfc4] sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div class="mx-auto w-full max-w-7xl">
           <div data-reveal class="mx-auto max-w-3xl text-center">
-            <p id="proofKicker" class="condensed-label mb-2 text-xs uppercase tracking-[0.16em] text-mokdaOrange sm:text-sm">HECHO EN COREA</p>
+            <p id="proofKicker" class="condensed-label mb-2 text-sm uppercase tracking-[0.08em] text-mokdaOrange sm:text-base">HECHO EN COREA</p>
             <h2 id="proofTitle" class="display-latin mx-auto max-w-3xl text-[2.25rem] uppercase leading-[0.94] text-[#f8dfc4] sm:text-5xl lg:text-[3rem]">De Corea a las mesas de Latinoamérica.</h2>
             <div id="storyBody" class="mx-auto mt-4 grid max-w-xl gap-2 break-keep text-pretty text-sm font-semibold leading-6 text-[#f8dfc4]/70 sm:text-[15px] sm:leading-7"></div>
           </div>
@@ -688,23 +708,23 @@
                 </picture>
               </figure>
               </div>
-              <button id="proofCarouselPrev" type="button" class="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#f8dfc4]/30 bg-[#321506]/55 text-lg font-black text-[#f8dfc4]/90 opacity-75 shadow-[0_8px_20px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:bg-[#321506]/80 hover:opacity-100 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:left-3 sm:h-11 sm:w-11" aria-label="Foto anterior">←</button>
-              <button id="proofCarouselNext" type="button" class="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#f8dfc4]/30 bg-[#321506]/55 text-lg font-black text-[#f8dfc4]/90 opacity-75 shadow-[0_8px_20px_rgba(0,0,0,0.18)] backdrop-blur-sm transition hover:bg-[#321506]/80 hover:opacity-100 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:right-3 sm:h-11 sm:w-11" aria-label="Foto siguiente">→</button>
+              <button id="proofCarouselPrev" type="button" class="absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/55 text-xl font-black text-[#321506]/85 opacity-80 shadow-[0_8px_20px_rgba(0,0,0,0.16)] backdrop-blur-md transition hover:bg-white/80 hover:opacity-100 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:left-3 sm:h-11 sm:w-11" aria-label="Foto anterior">&lt;</button>
+              <button id="proofCarouselNext" type="button" class="absolute right-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/60 bg-white/55 text-xl font-black text-[#321506]/85 opacity-80 shadow-[0_8px_20px_rgba(0,0,0,0.16)] backdrop-blur-md transition hover:bg-white/80 hover:opacity-100 focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:right-3 sm:h-11 sm:w-11" aria-label="Foto siguiente">&gt;</button>
             </div>
           </div>
 
           <div id="proofList" data-reveal data-reveal-delay="160" class="mx-auto mt-8 grid max-w-4xl grid-cols-3 border-y border-[#f8dfc4]/24 sm:mt-7">
             <article id="proofViewsItem" class="min-w-0 py-4 text-center sm:py-5">
               <p id="proofViewsValue" class="display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
-              <p id="proofViews" class="mt-1.5 px-1 text-[9px] font-extrabold uppercase leading-3 tracking-[0.08em] text-[#f8dfc4]/65 sm:text-xs sm:leading-4"></p>
+              <p id="proofViews" class="mt-1.5 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
             </article>
             <article class="min-w-0 border-x border-[#f8dfc4]/18 py-4 text-center sm:py-5">
               <p id="proofProgramsValue" class="display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl">9+</p>
-              <p id="proofPrograms" class="mt-1.5 px-1 text-[9px] font-extrabold uppercase leading-3 tracking-[0.08em] text-[#f8dfc4]/65 sm:text-xs sm:leading-4"></p>
+              <p id="proofPrograms" class="mt-1.5 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
             </article>
             <article class="min-w-0 py-4 text-center sm:py-5">
               <p class="display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl">2026</p>
-              <p id="proofExpo" class="mt-1.5 px-1 text-[9px] font-extrabold uppercase leading-3 tracking-[0.08em] text-[#f8dfc4]/65 sm:text-xs sm:leading-4"></p>
+              <p id="proofExpo" class="mt-1.5 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
             </article>
           </div>
           <div id="institutionalLogos" class="mt-5 hidden" aria-label="Con el apoyo de"></div>
@@ -723,7 +743,7 @@
           <div id="product-line" data-reveal class="mt-14 border-t border-[#321506]/18 pt-10 text-center text-[#321506] sm:mt-28 sm:pt-16">
             <div class="mx-auto mb-2 flex max-w-4xl flex-col items-center gap-2 sm:mb-6 sm:gap-3">
               <div>
-                <p id="productLineKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange"></p>
+                <p id="productLineKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg"></p>
                 <h3 id="productLineTitle" class="display-latin text-5xl uppercase leading-none sm:text-7xl"></h3>
               </div>
               <p id="productLineDescription" class="max-w-xl text-sm font-semibold leading-6 text-[#321506]/65"></p>
@@ -750,7 +770,7 @@
       <section id="support" data-analytics-section="support" class="scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div class="mx-auto flex max-w-7xl flex-col items-center text-center">
           <div data-reveal class="mx-auto max-w-3xl">
-            <p id="supportKicker" class="condensed-label mb-3 text-sm uppercase text-mokdaOrange sm:text-base">LANZAMIENTO EN LATAM</p>
+            <p id="supportKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">LANZAMIENTO EN LATAM</p>
             <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.92] text-[#f8dfc4] sm:text-6xl">Nos esperan en Latinoamérica.</h2>
             <p class="mt-8 text-center text-mokdaOrange"><strong id="supportTotal" class="display-latin block text-7xl leading-none sm:text-8xl">—</strong><span id="supportTotalLabel" class="mt-4 block text-sm font-extrabold uppercase text-[#f8dfc4]"></span></p>
             <a id="supportCta" data-analytics-event="support_cta_click" href="/es/support.html" class="mt-8 inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-white transition hover:-translate-y-0.5 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
@@ -762,7 +782,7 @@
       <section id="faq" class="brand-grid-bg scroll-mt-20 bg-[#f7ddc2] py-14 sm:py-20 lg:py-24">
         <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-8 max-w-3xl text-center">
-            <p class="condensed-label mb-3 text-sm uppercase text-mokdaOrange sm:text-base">FAQ / Q&A</p>
+            <p class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">FAQ / Q&A</p>
             <h2 id="faqTitle" class="display-latin text-4xl uppercase leading-[0.94] text-[#321506] sm:text-6xl">Preguntas frecuentes</h2>
             <a href="/es/qna.html" class="brand-text-link mx-auto mt-6 text-mokdaOrange">
               <span id="faqCta">Ver Q&A</span> <span class="ml-2">-&gt;</span>
@@ -806,7 +826,7 @@
       <section id="contact" data-analytics-section="contact" class="brand-grid-bg scroll-mt-20 bg-[#321506] pb-16 pt-20 text-[#f8dfc4] sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-28">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div data-reveal class="mx-auto mb-10 w-full max-w-[860px] text-center">
-            <p id="b2bKicker" class="condensed-label mb-2 text-sm uppercase text-mokdaOrange sm:text-lg"></p>
+            <p id="b2bKicker" class="condensed-label mb-2 text-base uppercase text-mokdaOrange sm:text-lg"></p>
             <h2 id="b2bTitle" class="display-latin break-keep text-balance text-4xl leading-[0.94] text-mokdaOrange sm:text-6xl md:text-7xl"></h2>
             <p id="b2bDescription" class="mx-auto mt-4 max-w-2xl break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/70 sm:text-base sm:leading-8"></p>
           </div>
@@ -819,7 +839,7 @@
       <footer class="bg-neutral-950 py-10 text-white sm:py-12">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div id="socialBanner" class="flex flex-col items-center justify-center border-b border-white/14 pb-8 text-center">
-            <p class="condensed-label text-sm uppercase text-mokdaOrange">MOKDA SNS</p>
+            <p class="condensed-label text-base uppercase text-mokdaOrange">MOKDA SNS</p>
             <div class="mt-5 flex items-center justify-center gap-6 text-mokdaOrange">
               <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
@@ -1491,8 +1511,6 @@
           next();
           restart();
         });
-        viewport.addEventListener('mouseenter', stop);
-        viewport.addEventListener('mouseleave', start);
         viewport.addEventListener('focusin', stop);
         viewport.addEventListener('focusout', start);
         viewport.addEventListener('pointerdown', (event) => {
@@ -1665,7 +1683,7 @@
                   <h1 data-hero-title class="hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
                   <div class="hero-copy flex flex-col items-center text-center">
                     <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                    <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+                    <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
                   </div>
                 </div>
               </div>
@@ -1794,12 +1812,12 @@
                   <img src="${item.foodImage || item.textureImage || item.image}" alt="" aria-hidden="true" class="product-food-image h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/6 to-transparent"></div>
                   <div class="absolute bottom-5 left-5 right-5 sm:bottom-7 sm:left-7">
-                    <p class="condensed-label mb-2 break-keep text-sm uppercase leading-tight text-white/80 sm:text-base">${category}</p>
+                    <p class="condensed-label mb-2 break-keep text-base uppercase leading-tight tracking-[0.04em] text-white/85 sm:text-lg">${category}</p>
                     <h3 class="display-latin break-keep text-4xl uppercase leading-[0.88] text-white sm:text-5xl">${item.name}</h3>
                   </div>
                 </div>
                 <div class="min-h-[150px] px-5 py-6 sm:px-7 sm:py-7">
-                  <p class="condensed-label mb-4 text-sm uppercase text-mokdaOrange">Salsa Coreana line</p>
+                  <p class="condensed-label mb-4 text-base uppercase tracking-[0.04em] text-mokdaOrange">Salsa Coreana line</p>
                   ${d.line1 ? `<span class="block break-keep text-sm font-medium leading-6 text-slate-700">${d.line1}</span>` : ''}
                   ${d.line2 ? `<span class="mt-1 block break-keep text-[15px] font-extrabold leading-6 text-gray-950 sm:text-base">${d.line2}</span>` : ''}
                 </div>

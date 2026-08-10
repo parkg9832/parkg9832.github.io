@@ -217,6 +217,14 @@
   function rememberDebugEvent(event) {
     if (!debugMode) return;
     debugEvents.push(event);
+    console.info('[MOKDA analytics]', JSON.stringify({
+      name: event.name,
+      sequence: event.eventSequence,
+      pagePath: event.pagePath,
+      scroll_percent: event.scroll_percent,
+      section_name: event.section_name,
+      product_name: event.product_name,
+    }));
     try {
       const previous = JSON.parse(window.localStorage.getItem(debugEventStorageKey) || '[]');
       const next = (Array.isArray(previous) ? previous : []).concat(event).slice(-200);

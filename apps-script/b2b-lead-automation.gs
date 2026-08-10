@@ -84,7 +84,6 @@ const DEMAND_COUNTRIES = {
   MX: 'Mexico',
   CL: 'Chile',
   CO: 'Colombia',
-  ES: 'Spain',
 };
 const FUNNEL_EVENT_NAMES = [
   'page_view',
@@ -1329,9 +1328,9 @@ function updateCompleteWebsiteDashboard_() {
     }
   });
 
-  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'ES', 'OTHER'];
-  const countryLabels = { PE: '페루', MX: '멕시코', CL: '칠레', CO: '콜롬비아', ES: '스페인', OTHER: '기타' };
-  const countryCounts = { PE: 0, MX: 0, CL: 0, CO: 0, ES: 0, OTHER: 0 };
+  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'OTHER'];
+  const countryLabels = { PE: '페루', MX: '멕시코', CL: '칠레', CO: '콜롬비아', OTHER: '기타' };
+  const countryCounts = { PE: 0, MX: 0, CL: 0, CO: 0, OTHER: 0 };
   const supporterIds = {};
   if (supportSheet && supportSheet.getLastRow() > 1) {
     supportSheet.getDataRange().getValues().slice(1).forEach((row) => {

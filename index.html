@@ -691,6 +691,7 @@
         // Add only official supplied logo assets. Do not recreate institutional logos.
         institutionalLogos: [],
       };
+      const homepageSupportCountryCodes = ['PE', 'MX', 'CL', 'CO'];
       const heroSlides = [
         {
           desktopImage: 'assets/images/hero-mokda-sauce-pour-cutout.webp',
@@ -1264,7 +1265,7 @@
           return;
         }
 
-        const flagFiles = { PE: 'peru', MX: 'mexico', CL: 'chile', CO: 'colombia', ES: 'spain' };
+        const flagFiles = { PE: 'peru', MX: 'mexico', CL: 'chile', CO: 'colombia' };
         messages.slice(0, 3).forEach((supporter) => {
           const article = document.createElement('article');
           article.className = 'rounded-[1.25rem] bg-[#fff8ef] p-5 text-[#321506] sm:p-6';
@@ -1302,10 +1303,19 @@
           const response = await fetch(url.toString(), { method: 'GET', cache: 'no-store' });
           const result = await response.json();
           if (!response.ok || !result.ok) throw new Error('Support feed unavailable');
+          const countryTotals = result.totals || {};
+          const hasCountryTotals = homepageSupportCountryCodes.some((code) =>
+            Object.prototype.hasOwnProperty.call(countryTotals, code)
+          );
           homepageSupportData = {
-            total: Number(result.total),
+            total: hasCountryTotals
+              ? homepageSupportCountryCodes.reduce((sum, code) => sum + Number(countryTotals[code] || 0), 0)
+              : Number(result.total),
             supporters: (Array.isArray(result.supporters) ? result.supporters : []).filter(
-              (supporter) => supporter?.featured === true && String(supporter?.message || '').trim()
+              (supporter) =>
+                supporter?.featured === true &&
+                homepageSupportCountryCodes.includes(String(supporter?.countryCode || '').trim().toUpperCase()) &&
+                String(supporter?.message || '').trim()
             ),
           };
         } catch (error) {

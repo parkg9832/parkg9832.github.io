@@ -5,7 +5,7 @@
   const endpoint = window.MOKDA_B2B_WEB_APP_URL || '';
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const supportStorageKey = 'mokda_demand_support_v1';
-  const countryCodes = ['PE', 'MX', 'CL', 'CO', 'ES'];
+  const countryCodes = ['PE', 'MX', 'CL', 'CO'];
   const feedPageSize = 20;
   const flagMap = {
     PE: './assets/images/flags/peru.jpg',
@@ -29,7 +29,6 @@
       mexico: '멕시코',
       chile: '칠레',
       colombia: '콜롬비아',
-      spain: '스페인',
       submit: '출시 응원하기',
       sending: '응원을 전하고 있어요…',
       privacy: '이름, 국가, 응원 메시지만 공개됩니다. 연락처는 수집하지 않습니다.',
@@ -61,7 +60,7 @@
       menuContact: '문의',
       menuOpen: '메뉴 열기',
       menuClose: '메뉴 닫기',
-      share: '캠페인 공유하기',
+      share: '공유하기',
       shareCopied: '링크를 복사했습니다.',
     },
     ES: {
@@ -79,7 +78,6 @@
       mexico: 'México',
       chile: 'Chile',
       colombia: 'Colombia',
-      spain: 'España',
       submit: 'Apoyar el lanzamiento',
       sending: 'Enviando tu apoyo…',
       privacy: 'Solo mostramos nombre, país y mensaje. No pedimos datos de contacto.',
@@ -111,7 +109,7 @@
       menuContact: 'Contacto',
       menuOpen: 'Abrir menú',
       menuClose: 'Cerrar menú',
-      share: 'Compartir la campaña',
+      share: 'Compartir',
       shareCopied: 'Enlace copiado.',
     },
     EN: {
@@ -129,7 +127,6 @@
       mexico: 'Mexico',
       chile: 'Chile',
       colombia: 'Colombia',
-      spain: 'Spain',
       submit: 'Support the launch',
       sending: 'Sending your support…',
       privacy: 'Only your name, country, and message are shown. We do not collect contact details.',
@@ -161,7 +158,7 @@
       menuContact: 'Contact',
       menuOpen: 'Open menu',
       menuClose: 'Close menu',
-      share: 'Share the campaign',
+      share: 'Share',
       shareCopied: 'Link copied.',
     },
   };
@@ -172,24 +169,24 @@
       title: '내 식탁에 한국 소스가 닿도록.',
       lead: '어떤 나라에서 Salsa Coreana를 만나고 싶은지 알려주세요. 매장과 유통사에게 실제 수요를 보여줄 수 있습니다.',
       impact: '나라를 고르고 첫 출시에 참여하세요.',
-      successLead: '첫 출시를 함께 만들어주셔서 고맙습니다.',
-      productCta: '소스 라인업 보기',
+      successLead: '응원해주셔서 감사합니다.',
+      productCta: '소스 보기',
     },
     ES: {
       category: 'Lanzamiento de Salsa Coreana',
       title: 'Queremos llevar la salsa coreana a tu mesa.',
       lead: 'Cuéntanos en qué país te gustaría encontrarla. Cada apoyo nos ayuda a conversar con tiendas y distribuidores.',
       impact: 'Elige tu país y sé parte del primer lanzamiento.',
-      successLead: 'Gracias por ser parte del primer lanzamiento.',
-      productCta: 'Conoce nuestras salsas',
+      successLead: 'Gracias por apoyar el lanzamiento.',
+      productCta: 'Ver salsas',
     },
     EN: {
       category: 'Salsa Coreana launch',
       title: 'We want Korean sauce to reach your table.',
       lead: 'Tell us where you would like to find it. Every show of support helps us speak with stores and distributors.',
       impact: 'Choose your country and join the first launch.',
-      successLead: 'Thanks for being part of the first launch.',
-      productCta: 'Explore our sauces',
+      successLead: 'Thanks for supporting the launch.',
+      productCta: 'View sauces',
     },
   };
   const campaign = campaignCopy[language] || campaignCopy.ES;
@@ -243,7 +240,6 @@
       MX: t.mexico,
       CL: t.chile,
       CO: t.colombia,
-      ES: t.spain,
     }[country] || country;
   }
 
@@ -266,7 +262,6 @@
       supportMexico: t.mexico,
       supportChile: t.chile,
       supportColombia: t.colombia,
-      supportSpain: t.spain,
       supportSubmitLabel: t.submit,
       supportPrivacy: t.privacy,
       supportFeedEyebrow: t.feedEyebrow,
@@ -354,8 +349,11 @@
   }
 
   function renderSupportFeed(result, { append = false } = {}) {
-    const total = Number(result?.total || 0);
     const totals = result?.totals || {};
+    const hasCountryTotals = countryCodes.some((code) => Object.prototype.hasOwnProperty.call(totals, code));
+    const total = hasCountryTotals
+      ? countryCodes.reduce((sum, code) => sum + Number(totals[code] || 0), 0)
+      : Number(result?.total || 0);
     const supporters = Array.isArray(result?.supporters) ? result.supporters : [];
     const totalElement = document.getElementById('supportFeedTotal');
     const totalsElement = document.getElementById('supportCountryTotals');
@@ -470,7 +468,7 @@
     updateSupportFeedMore();
   }
 
-  const feedCacheKey = 'mokda_demand_support_feed_cache_v3';
+  const feedCacheKey = 'mokda_demand_support_feed_cache_v4';
 
   function readFeedCache() {
     try {

@@ -723,11 +723,13 @@
       } catch (e) {}
       submit.disabled = false;
       setText('supportSubmitLabel', t.submit);
-      window.MOKDA_ANALYTICS?.track(
-        'support_submit',
-        { element: `country_${country.toLowerCase()}` },
-        { immediate: true },
-      );
+      if (result.saved === true) {
+        window.MOKDA_ANALYTICS?.track(
+          'support_submit',
+          { element: `country_${country.toLowerCase()}` },
+          { immediate: true },
+        );
+      }
       await loadSupportFeed();
     } catch (error) {
       console.error(error);
@@ -748,14 +750,30 @@
   });
   const supportForm = document.getElementById('supportForm');
   supportForm.addEventListener('submit', submitSupport);
-  supportForm.addEventListener('focusin', () => {
+  const trackSupportFormStart = () => {
     if (hasTrackedSupportFormStart) return;
     hasTrackedSupportFormStart = true;
+    if (window.MOKDA_ANALYTICS?.trackOncePerSession) {
+      window.MOKDA_ANALYTICS.trackOncePerSession(
+        'support_form_start',
+        'support_form_start',
+        { element: 'demand_support_form' },
+      );
+      return;
+    }
     window.MOKDA_ANALYTICS?.track('support_form_start', { element: 'demand_support_form' });
+  };
+  supportForm.addEventListener('input', (event) => {
+    const field = event.target;
+    if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
+    if (!['name', 'message'].includes(field.name)) return;
+    if (!String(field.value || '').trim()) return;
+    trackSupportFormStart();
   });
   document.querySelectorAll('input[name="country"]').forEach((input) => {
     input.addEventListener('change', () => {
       if (hasTrackedCountrySelection || !input.checked) return;
+      trackSupportFormStart();
       hasTrackedCountrySelection = true;
       window.MOKDA_ANALYTICS?.track(
         'support_country_select',

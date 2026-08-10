@@ -22,6 +22,9 @@
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const sessionStorageKey = 'mokda_analytics_session_v1';
   const attributionStorageKey = 'mokda_analytics_attribution_v1';
+  const sessionEventStorageKey = 'mokda_analytics_session_events_v2';
+  const debugEventStorageKey = 'mokda_analytics_debug_events_v2';
+  const eventSchemaVersion = '2';
   const sessionDurationMs = 30 * 60 * 1000;
   const engagementHeartbeatMs = 15 * 1000;
   const queue = [];
@@ -74,8 +77,10 @@
     }
 
     if (!saved || !saved.id || Number(saved.expiresAt) <= now) {
-      saved = { id: randomId(), expiresAt: now + sessionDurationMs };
+      saved = { id: randomId(), startedAt: new Date(now).toISOString(), sequence: 0, expiresAt: now + sessionDurationMs };
     } else {
+      if (!saved.startedAt) saved.startedAt = new Date(now).toISOString();
+      if (!Number.isFinite(Number(saved.sequence))) saved.sequence = 0;
       saved.expiresAt = now + sessionDurationMs;
     }
 
@@ -154,14 +159,37 @@
   const session = getSession();
   const attribution = getAttribution(session.id);
   const pageInstanceId = randomId();
+  const debugEvents = [];
   let activeStartedAt = document.visibilityState === 'visible' ? performance.now() : null;
   let accumulatedActiveMs = 0;
   let lastReportedActiveSeconds = 0;
 
+  function normalizeProduct(value) {
+    const raw = clean(value, 80);
+    const normalized = raw.toLowerCase().replace(/ñ/g, 'n');
+    if (/k[-\s]?peno/.test(normalized)) return 'K-Peño';
+    if (/para\s+carne|carne|ssam/.test(normalized)) return 'Para Carnes';
+    return '제품 미지정';
+  }
+
+  function nextEventSequence() {
+    session.sequence = Math.max(Number(session.sequence) || 0, 0) + 1;
+    session.expiresAt = Date.now() + sessionDurationMs;
+    writeStorage(sessionStorageKey, JSON.stringify(session));
+    return session.sequence;
+  }
+
   function buildEvent(name, details = {}) {
+    const sectionName = clean(details.section_name || details.section, 80);
+    const scrollPercent = Number.parseInt(details.scroll_percent ?? details.scrollDepth, 10);
+    const productName = normalizeProduct(details.product_name || details.product);
+    const visitorDaypart = getVisitorDaypart();
     return {
       name: clean(name, 50),
       eventId: randomId(),
+      occurredAt: new Date().toISOString(),
+      eventSequence: nextEventSequence(),
+      eventSchemaVersion,
       pagePath: clean(`${window.location.pathname}${window.location.hash}`, 300),
       pageUrl: clean(window.location.href, 500),
       language: getLanguage(),
@@ -171,15 +199,44 @@
       utmMedium: clean(attribution.utmMedium, 100),
       utmCampaign: clean(attribution.utmCampaign, 150),
       element: clean(details.element, 150),
-      product: clean(details.product, 80),
-      section: clean(details.section, 80),
-      scrollDepth: clean(details.scrollDepth, 20),
+      product: productName,
+      product_name: productName,
+      section: sectionName,
+      section_name: sectionName,
+      scrollDepth: Number.isFinite(scrollPercent) ? `${scrollPercent}%` : '',
+      scroll_percent: Number.isFinite(scrollPercent) ? scrollPercent : '',
       browserLocale: clean(navigator.language, 30),
       timeZone: clean(Intl.DateTimeFormat().resolvedOptions().timeZone, 80),
-      visitorDaypart: getVisitorDaypart(),
+      visitorDaypart,
+      visitor_daypart: visitorDaypart,
       activeSeconds: details.activeSeconds == null ? '' : Math.max(0, Math.floor(details.activeSeconds)),
       pageInstanceId,
     };
+  }
+
+  function rememberDebugEvent(event) {
+    if (!debugMode) return;
+    debugEvents.push(event);
+    try {
+      const previous = JSON.parse(window.localStorage.getItem(debugEventStorageKey) || '[]');
+      const next = (Array.isArray(previous) ? previous : []).concat(event).slice(-200);
+      window.localStorage.setItem(debugEventStorageKey, JSON.stringify(next));
+    } catch (error) {
+      // In-memory debug events remain available when storage is blocked.
+    }
+  }
+
+  function sendToGa4(event) {
+    if (typeof window.gtag !== 'function') return;
+    if (event.name === 'page_view' || event.name === 'engagement_update') return;
+    window.gtag('event', event.name, {
+      section_name: event.section_name || undefined,
+      scroll_percent: event.scroll_percent === '' ? undefined : event.scroll_percent,
+      visitor_daypart: event.visitor_daypart,
+      product_name: event.product_name,
+      page_instance_id: event.pageInstanceId,
+      event_schema_version: event.eventSchemaVersion,
+    });
   }
 
   function flush() {
@@ -220,7 +277,10 @@
 
   function track(name, details = {}, options = {}) {
     if (!name) return;
-    queue.push(buildEvent(name, details));
+    const event = buildEvent(name, details);
+    queue.push(event);
+    rememberDebugEvent(event);
+    sendToGa4(event);
     scheduleFlush(Boolean(options.immediate || queue.length >= 10));
   }
 
@@ -228,6 +288,21 @@
     if (tracked.has(key)) return;
     tracked.add(key);
     track(name, details);
+  }
+
+  function trackOncePerSession(key, name, details = {}, options = {}) {
+    let state = { sessionId: session.id, keys: [] };
+    try {
+      const saved = JSON.parse(readStorage(sessionEventStorageKey) || 'null');
+      if (saved && saved.sessionId === session.id && Array.isArray(saved.keys)) state = saved;
+    } catch (error) {
+      // Fall back to a fresh session-scoped key list.
+    }
+    if (state.keys.indexOf(key) !== -1) return false;
+    state.keys.push(key);
+    writeStorage(sessionEventStorageKey, JSON.stringify(state));
+    track(name, details, options);
+    return true;
   }
 
   function captureActiveTime() {
@@ -314,9 +389,14 @@
   if (form) {
     const formStartEvent = form.id === 'b2bForm' ? 'b2b_form_start' : 'form_start';
     form.addEventListener(
-      'focusin',
-      () => trackOnce(formStartEvent, formStartEvent, { element: form.id || 'contact_form' }),
-      { once: true }
+      'input',
+      (event) => {
+        const field = event.target;
+        if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return;
+        if (!['name', 'company', 'email', 'whatsapp', 'message'].includes(field.name)) return;
+        if (!String(field.value || '').trim()) return;
+        trackOncePerSession(formStartEvent, formStartEvent, { element: form.id || 'contact_form' });
+      }
     );
   }
 
@@ -334,16 +414,32 @@
   }
 
   if ('IntersectionObserver' in window) {
+    const sectionTimers = new Map();
     const sectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
           const section = clean(entry.target.getAttribute('data-analytics-section'), 80);
-          if (section) trackOnce(`section_${section}`, 'section_view', { element: section, section });
-          sectionObserver.unobserve(entry.target);
+          if (!section) return;
+          const existingTimer = sectionTimers.get(entry.target);
+          if (!entry.isIntersecting || entry.intersectionRatio < 0.5) {
+            if (existingTimer) window.clearTimeout(existingTimer);
+            sectionTimers.delete(entry.target);
+            return;
+          }
+          if (existingTimer) return;
+          const timer = window.setTimeout(() => {
+            trackOnce(`section_${section}`, 'section_view', {
+              element: section,
+              section,
+              section_name: section,
+            });
+            sectionTimers.delete(entry.target);
+            sectionObserver.unobserve(entry.target);
+          }, 1000);
+          sectionTimers.set(entry.target, timer);
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      { threshold: [0, 0.5, 1] }
     );
     document.querySelectorAll('[data-analytics-section]').forEach((element) => sectionObserver.observe(element));
 
@@ -368,7 +464,7 @@
       if (percentage < depth) return;
 
       window.removeEventListener('scroll', onScroll);
-      trackOnce(`scroll_${depth}`, 'scroll_depth', { scrollDepth: `${depth}%` });
+      trackOnce(`scroll_${depth}`, 'scroll_depth', { scrollDepth: `${depth}%`, scroll_percent: depth });
     };
     window.addEventListener('scroll', onScroll, { passive: true });
   });
@@ -398,11 +494,29 @@
     reportActiveTime(true);
     flush();
   });
-  window.MOKDA_ANALYTICS = { track, flush };
+  window.MOKDA_ANALYTICS = {
+    track,
+    trackOncePerSession,
+    flush,
+    getDebugEvents() {
+      if (!debugMode) return [];
+      try {
+        const stored = JSON.parse(readStorage(debugEventStorageKey) || '[]');
+        return Array.isArray(stored) ? stored.slice() : debugEvents.slice();
+      } catch (error) {
+        return debugEvents.slice();
+      }
+    },
+    clearDebugEvents() {
+      if (!debugMode) return;
+      debugEvents.splice(0, debugEvents.length);
+      writeStorage(debugEventStorageKey, '[]');
+    },
+  };
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: true, reason: 'active' };
 
   track('page_view');
-   if (/\/contact(?:\.html|\/)?$/i.test(window.location.pathname)) {
-    track('contact_view', { element: 'contact_page' });
+  if (/\/contact(?:\.html|\/)?$/i.test(window.location.pathname)) {
+    track('contact_page_view', { element: 'contact_page' });
   }
 })();

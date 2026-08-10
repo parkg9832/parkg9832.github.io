@@ -604,27 +604,32 @@
             <div id="storyBody" class="mx-auto mt-4 grid max-w-xl gap-2 break-keep text-pretty text-sm font-semibold leading-6 text-[#f8dfc4]/70 sm:text-[15px] sm:leading-7"></div>
           </div>
 
-          <div id="field-story" data-analytics-section="field_story" data-reveal data-reveal-delay="100" class="relative mx-auto mt-8 max-w-4xl sm:mb-16 sm:mt-9">
-            <figure class="relative mx-auto aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] bg-neutral-800 sm:aspect-[2/1]">
-              <picture>
-                <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp" />
-                <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover object-[center_58%]" width="1071" height="1428" loading="lazy" decoding="async" />
-              </picture>
-              <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/35 via-transparent to-transparent"></div>
-            </figure>
-            <div class="relative z-10 mx-auto -mt-7 grid w-[90%] max-w-3xl grid-cols-2 gap-3 sm:absolute sm:-bottom-16 sm:left-1/2 sm:mt-0 sm:w-[72%] sm:-translate-x-1/2 sm:grid-cols-[1.28fr_0.72fr] sm:gap-4">
-              <figure class="relative aspect-[4/3] overflow-hidden rounded-[1rem] border-4 border-[#321506] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[3/2] sm:rounded-[1.25rem] sm:border-[6px]">
+          <div id="field-story" data-analytics-section="field_story" data-reveal data-reveal-delay="100" class="relative mx-auto mt-8 max-w-5xl sm:mt-9">
+            <div id="proofCarousel" class="relative overflow-hidden touch-pan-y" aria-roledescription="carousel">
+              <div id="proofCarouselTrack" class="flex gap-3 will-change-transform sm:gap-4">
+                <figure data-proof-slide class="relative aspect-[4/3] w-[86%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
+                  <picture>
+                    <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp" />
+                    <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover object-[center_58%]" width="1071" height="1428" loading="lazy" decoding="async" draggable="false" />
+                  </picture>
+                </figure>
+                <figure data-proof-slide class="relative aspect-[4/3] w-[86%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
                 <picture>
                   <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-720.webp" />
-                  <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover object-center" width="899" height="1600" loading="lazy" decoding="async" />
+                    <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover object-[center_45%]" width="899" height="1600" loading="lazy" decoding="async" draggable="false" />
                 </picture>
               </figure>
-              <figure class="relative aspect-[4/3] overflow-hidden rounded-[1rem] border-4 border-[#321506] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[3/2] sm:translate-y-5 sm:rounded-[1.25rem] sm:border-[6px]">
+                <figure data-proof-slide class="relative aspect-[4/3] w-[86%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
                 <picture>
                   <source media="(max-width: 767px)" srcset="assets/images/field-meeting-720.webp" />
-                  <img src="assets/images/field-meeting-1440.webp" alt="MOKDA preparando su expansión internacional en una reunión de trabajo en Corea" class="absolute inset-0 h-full w-full object-cover" width="1440" height="810" loading="lazy" decoding="async" />
+                    <img src="assets/images/field-meeting-1440.webp" alt="MOKDA preparando su expansión internacional en una reunión de trabajo en Corea" class="absolute inset-0 h-full w-full object-cover object-center" width="1440" height="810" loading="lazy" decoding="async" draggable="false" />
                 </picture>
               </figure>
+              </div>
+              <div class="absolute bottom-3 right-3 z-20 flex gap-2 sm:bottom-4 sm:right-4">
+                <button id="proofCarouselPrev" type="button" class="flex h-11 w-11 items-center justify-center rounded-full border border-[#f8dfc4]/45 bg-[#321506]/85 text-xl font-black text-[#f8dfc4] backdrop-blur-sm transition hover:bg-[#321506] focus:outline-none focus:ring-4 focus:ring-orange-500/25" aria-label="Foto anterior">←</button>
+                <button id="proofCarouselNext" type="button" class="flex h-11 w-11 items-center justify-center rounded-full border border-[#f8dfc4]/45 bg-[#321506]/85 text-xl font-black text-[#f8dfc4] backdrop-blur-sm transition hover:bg-[#321506] focus:outline-none focus:ring-4 focus:ring-orange-500/25" aria-label="Foto siguiente">→</button>
+              </div>
             </div>
           </div>
 
@@ -955,6 +960,8 @@
             programs: 'Public support programs',
             views: 'Social media views',
             photo: 'Preparing for international markets.',
+            previous: 'Previous photo',
+            next: 'Next photo',
           },
           salsa: {
             title: 'Korea,<br />closer<br />to you',
@@ -1027,6 +1034,8 @@
             programs: 'Programas públicos',
             views: 'Vistas en redes',
             photo: 'Preparamos la entrada a nuevos mercados.',
+            previous: 'Foto anterior',
+            next: 'Foto siguiente',
           },
           salsa: {
             title: 'Corea,<br />más cerca<br />de ti',
@@ -1099,6 +1108,8 @@
             programs: '정부·유관기관 지원사업',
             views: '브랜드 SNS 조회수',
             photo: '해외시장 진출을 준비합니다.',
+            previous: '이전 사진',
+            next: '다음 사진',
           },
           salsa: {
             title: '한국을<br />더<br />가까이',
@@ -1302,6 +1313,8 @@
         setText('proofPrograms', t.proof.programs);
         setText('proofViews', t.proof.views);
         setText('proofPhotoCaption', t.proof.photo);
+        document.getElementById('proofCarouselPrev')?.setAttribute('aria-label', t.proof.previous);
+        document.getElementById('proofCarouselNext')?.setAttribute('aria-label', t.proof.next);
 
         const views = Number(homepageProofConfig.verifiedLatamViews);
         const viewsItem = document.getElementById('proofViewsItem');
@@ -1328,6 +1341,127 @@
           image.className = 'h-9 w-auto max-w-[150px] object-contain opacity-70 grayscale';
           logoContainer.appendChild(image);
         });
+      }
+
+      let proofCarouselController = null;
+
+      function initProofCarousel() {
+        if (proofCarouselController) return;
+
+        const viewport = document.getElementById('proofCarousel');
+        const track = document.getElementById('proofCarouselTrack');
+        const previousButton = document.getElementById('proofCarouselPrev');
+        const nextButton = document.getElementById('proofCarouselNext');
+        const slides = track ? Array.from(track.querySelectorAll('[data-proof-slide]')) : [];
+        if (!viewport || !track || slides.length < 2) return;
+
+        const firstClone = slides[0].cloneNode(true);
+        firstClone.removeAttribute('data-proof-slide');
+        firstClone.setAttribute('aria-hidden', 'true');
+        track.appendChild(firstClone);
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let activeIndex = 0;
+        let timer = null;
+        let transitioning = false;
+        let pointerStartX = null;
+
+        const slideStep = () => slides[1].offsetLeft - slides[0].offsetLeft;
+        const move = (animate = true) => {
+          track.style.transitionProperty = 'transform';
+          track.style.transitionDuration = animate && !reducedMotion.matches ? '600ms' : '0ms';
+          track.style.transitionTimingFunction = 'cubic-bezier(0.22, 1, 0.36, 1)';
+          track.style.transform = `translate3d(${-activeIndex * slideStep()}px, 0, 0)`;
+        };
+        const stop = () => {
+          if (!timer) return;
+          clearInterval(timer);
+          timer = null;
+        };
+        const next = () => {
+          if (transitioning) return;
+          transitioning = true;
+          activeIndex += 1;
+          move();
+        };
+        const previous = () => {
+          if (transitioning) return;
+          if (activeIndex === 0) {
+            activeIndex = slides.length;
+            move(false);
+            requestAnimationFrame(() => {
+              requestAnimationFrame(() => {
+                transitioning = true;
+                activeIndex -= 1;
+                move();
+              });
+            });
+            return;
+          }
+          transitioning = true;
+          activeIndex -= 1;
+          move();
+        };
+        const start = () => {
+          stop();
+          if (!reducedMotion.matches && !document.hidden) timer = window.setInterval(next, 3000);
+        };
+        const restart = () => {
+          stop();
+          start();
+        };
+
+        track.addEventListener('transitionend', (event) => {
+          if (event.target !== track || event.propertyName !== 'transform') return;
+          transitioning = false;
+          if (activeIndex === slides.length) {
+            activeIndex = 0;
+            move(false);
+          }
+        });
+
+        previousButton?.addEventListener('click', () => {
+          previous();
+          restart();
+        });
+        nextButton?.addEventListener('click', () => {
+          next();
+          restart();
+        });
+        viewport.addEventListener('mouseenter', stop);
+        viewport.addEventListener('mouseleave', start);
+        viewport.addEventListener('focusin', stop);
+        viewport.addEventListener('focusout', start);
+        viewport.addEventListener('pointerdown', (event) => {
+          if (event.pointerType === 'mouse' && event.button !== 0) return;
+          pointerStartX = event.clientX;
+        });
+        viewport.addEventListener('pointerup', (event) => {
+          if (pointerStartX === null) return;
+          const distance = event.clientX - pointerStartX;
+          pointerStartX = null;
+          if (Math.abs(distance) < 40) return;
+          if (distance < 0) next();
+          else previous();
+          restart();
+        });
+        viewport.addEventListener('pointercancel', () => {
+          pointerStartX = null;
+        });
+        window.addEventListener('resize', () => move(false));
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden) stop();
+          else start();
+        });
+        reducedMotion.addEventListener?.('change', () => {
+          if (reducedMotion.matches) stop();
+          else start();
+          move(false);
+        });
+
+        move(false);
+        start();
+        proofCarouselController = { stop, start, next, previous };
       }
 
       function renderHomepageSupport() {
@@ -1710,10 +1844,12 @@
 
       window.addEventListener('pagehide', () => {
         if (heroInterval) clearInterval(heroInterval);
+        proofCarouselController?.stop();
       });
 
       createHeroCarousel();
       bindHeroScroll();
+      initProofCarousel();
       renderPage();
       loadHomepageSupport();
       window.MOKDA_ACCORDION.init(document.getElementById('homeFaqList'));

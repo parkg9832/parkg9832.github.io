@@ -838,7 +838,7 @@
             </article>
           </div>
           <div class="mt-7 text-center">
-            <a id="proofHistoryCta" data-analytics-event="proof_history_click" href="/ko/about.html#history" class="brand-text-link mx-auto text-mokdaOrange"></a>
+            <a id="proofHistoryCta" data-analytics-event="proof_history_click" href="/ko/about.html#history" class="mx-auto inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-[#321506] shadow-[0_10px_26px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5 hover:bg-[#ff7a32] focus:outline-none focus:ring-4 focus:ring-orange-300/30 sm:px-8 sm:text-base"></a>
           </div>
           <div id="institutionalLogos" class="mt-5 hidden" aria-label="Con el apoyo de"></div>
         </div>
@@ -852,6 +852,10 @@
               <h2 id="productsTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.82] text-neutral-950 sm:text-8xl lg:text-[8.4rem]"></h2>
             </div>
             <p id="productsDescription" class="mt-6 max-w-3xl break-keep text-pretty text-lg font-semibold leading-8 text-[#321506] sm:text-xl"></p>
+            <a id="productsPageCta" data-analytics-event="products_page_cta_click" href="/ko/products.html" class="mt-7 inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-[#321506] px-8 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_10px_26px_rgba(50,21,6,0.18)] transition hover:-translate-y-0.5 hover:bg-mokdaOrange hover:text-[#321506] focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:text-base">
+              <span id="productsPageCtaText"></span>
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
           <div id="productsGrid" class="grid grid-cols-1 gap-8 lg:grid-cols-3"></div>
         </div>
@@ -1165,6 +1169,7 @@
             kicker: 'LINEUP',
             title: 'SALSA COREANA',
             description: 'The essence of Korean flavor, captured in one bottle. Made with lower sugar and plant-based cream.',
+            pageCta: 'View products',
             lineKicker: 'SALSA COREANA',
             lineTitle: 'PRODUCT LINEUP',
             lineDescription: '',
@@ -1243,6 +1248,7 @@
             kicker: 'LINEUP',
             title: 'SALSA COREANA',
             description: 'La esencia del sabor coreano, en una sola botella. Elaborada con menos azúcar y crema vegetal.',
+            pageCta: 'Ver productos',
             lineKicker: 'SALSA COREANA',
             lineTitle: 'LÍNEA DE PRODUCTOS',
             lineDescription: '',
@@ -1321,6 +1327,7 @@
             kicker: 'LINEUP',
             title: 'SALSA COREANA',
             description: '한국 맛의 정수를 소스 한 병에 담았습니다. 저당과 식물성 크림으로 완성했습니다.',
+            pageCta: '제품 보러가기',
             lineKicker: 'SALSA COREANA',
             lineTitle: '제품 라인업',
             lineDescription: '',
@@ -2003,6 +2010,7 @@
         setText('productsKicker', t.products.kicker);
         setText('productsTitle', t.products.title);
         setText('productsDescription', t.products.description);
+        setText('productsPageCtaText', t.products.pageCta);
         setText('productLineKicker', t.products.lineKicker);
         setText('productLineTitle', t.products.lineTitle);
         setText('productLineDescription', t.products.lineDescription);

@@ -36,7 +36,7 @@
       duplicate: () => '이미 참여하셨습니다. 감사합니다!',
       error: '등록하지 못했습니다. 잠시 후 다시 시도해주세요.',
       required: '이름을 입력하고 국가를 선택해주세요.',
-      feedEyebrow: '실시간 응원',
+      feedEyebrow: 'REAL SUPPORT',
       feedTitle: 'Salsa Coreana를 기다리는 사람들',
       feedLoading: '불러오는 중…',
       feedTotal: (count) => `총 ${count}명이 응원했습니다`,

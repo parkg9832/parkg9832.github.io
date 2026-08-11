@@ -53,13 +53,6 @@
       storyEyebrow: '',
       storyTitle: '',
       back: '← MOKDA 홈페이지로 돌아가기',
-      menuHome: '홈',
-      menuAbout: '브랜드 소개',
-      menuProducts: 'Salsa Coreana',
-      menuQna: 'Q&A',
-      menuContact: '문의',
-      menuOpen: '메뉴 열기',
-      menuClose: '메뉴 닫기',
       share: '공유하기',
       shareCopied: '링크를 복사했습니다.',
     },
@@ -102,13 +95,6 @@
       storyEyebrow: '',
       storyTitle: '',
       back: '← Volver a MOKDA',
-      menuHome: 'Inicio',
-      menuAbout: 'Sobre nosotros',
-      menuProducts: 'Salsa Coreana',
-      menuQna: 'Q&A',
-      menuContact: 'Contacto',
-      menuOpen: 'Abrir menú',
-      menuClose: 'Cerrar menú',
       share: 'Compartir',
       shareCopied: 'Enlace copiado.',
     },
@@ -151,13 +137,6 @@
       storyEyebrow: '',
       storyTitle: '',
       back: '← Back to MOKDA',
-      menuHome: 'Home',
-      menuAbout: 'About',
-      menuProducts: 'Salsa Coreana',
-      menuQna: 'Q&A',
-      menuContact: 'Contact',
-      menuOpen: 'Open menu',
-      menuClose: 'Close menu',
       share: 'Share',
       shareCopied: 'Link copied.',
     },
@@ -269,11 +248,6 @@
       supportFeedTotal: t.feedLoading,
       supportFeedEmpty: t.feedEmpty,
       supportBack: t.back,
-      supportMenuHome: t.menuHome,
-      supportMenuAbout: t.menuAbout,
-      supportMenuProducts: t.menuProducts,
-      supportMenuQna: t.menuQna,
-      supportMenuContact: t.menuContact,
       supportSuccessLead: campaign.successLead,
       supportProductCtaLabel: campaign.productCta,
       supportShareCtaLabel: t.share,
@@ -287,10 +261,8 @@
     optional.textContent = t.messageOptional;
     messageLabel.appendChild(optional);
     document.getElementById('supportMessage').placeholder = t.messagePlaceholder;
-    document.querySelectorAll('[data-language]').forEach((button) => {
-      button.setAttribute('aria-pressed', button.dataset.language === language ? 'true' : 'false');
-    });
-    document.getElementById('supportMenuToggle').setAttribute('aria-label', t.menuOpen);
+    window.MOKDA_I18N?.syncLanguageButtons?.(language);
+    window.MOKDA_FOOTER?.render?.(language);
   }
 
   function setStatus(state, message) {
@@ -743,13 +715,7 @@
     }
   }
 
-  document.querySelectorAll('[data-language]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const nextLanguage = button.dataset.language;
-      const languagePath = { ES: 'es', KR: 'ko', EN: 'en' }[nextLanguage] || 'es';
-      window.location.href = `/${languagePath}/support.html${window.location.search}`;
-    });
-  });
+  window.MOKDA_I18N?.bindLanguageButtons?.(() => {});
   const supportForm = document.getElementById('supportForm');
   supportForm.addEventListener('submit', submitSupport);
   const trackSupportFormStart = () => {
@@ -799,25 +765,6 @@
       if (error?.name !== 'AbortError') showToast(t.error);
     }
   });
-  const menuToggle = document.getElementById('supportMenuToggle');
-  const menu = document.getElementById('supportMenu');
-  let menuCloseTimer = 0;
-  menuToggle.addEventListener('click', () => {
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-    menuToggle.setAttribute('aria-label', expanded ? t.menuOpen : t.menuClose);
-    window.clearTimeout(menuCloseTimer);
-    if (expanded) {
-      menu.classList.remove('is-open');
-      menuCloseTimer = window.setTimeout(() => {
-        if (menuToggle.getAttribute('aria-expanded') === 'false') menu.hidden = true;
-      }, 320);
-      return;
-    }
-    menu.hidden = false;
-    requestAnimationFrame(() => menu.classList.add('is-open'));
-  });
-
   function bindSupportMotion() {
     const targets = document.querySelectorAll('[data-motion]');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -37,7 +37,11 @@
         label: 'CONTACTO',
         links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact'], ['Apoyar lanzamiento', 'support']]
       },
-      navigation: 'Navegación principal'
+      navigation: 'Navegación principal',
+      menuLabel: 'MENÚ',
+      openMenu: 'Abrir menú',
+      closeMenu: 'Cerrar menú',
+      productsCta: 'VER SALSA COREANA'
     },
     ko: {
       brand: {
@@ -52,7 +56,11 @@
         label: '문의',
         links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact'], ['출시 응원하기', 'support']]
       },
-      navigation: '주요 메뉴'
+      navigation: '주요 메뉴',
+      menuLabel: 'MENU',
+      openMenu: '메뉴 열기',
+      closeMenu: '메뉴 닫기',
+      productsCta: 'SALSA COREANA 보기'
     },
     en: {
       brand: {
@@ -67,7 +75,11 @@
         label: 'CONTACT',
         links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact'], ['Support launch', 'support']]
       },
-      navigation: 'Primary navigation'
+      navigation: 'Primary navigation',
+      menuLabel: 'MENU',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      productsCta: 'VIEW SALSA COREANA'
     }
   }[language];
 
@@ -171,41 +183,41 @@
       z-index: 70 !important;
       display: block !important;
       width: 100% !important;
-      max-height: 0 !important;
+      clip-path: inset(0 0 100% 0);
       overflow-x: hidden !important;
       overflow-y: auto !important;
       border: 0 !important;
       background: #321506 !important;
       opacity: 0 !important;
-      transform: translateY(-10px);
       visibility: hidden !important;
       pointer-events: none !important;
-      will-change: max-height, opacity, transform;
+      will-change: clip-path, opacity;
       transition:
-        max-height 520ms cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 360ms ease,
-        transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-        visibility 0s linear 520ms !important;
+        clip-path 440ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 280ms ease,
+        visibility 0s linear 440ms !important;
     }
 
     .mokda-site-header.is-mobile-menu-open .mokda-mobile-menu {
-      max-height: calc(100dvh - 80px) !important;
+      clip-path: inset(0 0 0 0);
       opacity: 1 !important;
-      transform: translateY(0);
       visibility: visible !important;
       pointer-events: auto !important;
       transition-delay: 0s !important;
     }
 
     .mokda-mobile-menu-inner {
-      width: min(100%, 760px);
+      display: flex;
+      width: min(100%, 980px);
+      min-height: calc(100dvh - 80px);
+      flex-direction: column;
       margin: 0 auto;
-      padding: 18px 20px max(36px, env(safe-area-inset-bottom));
+      padding: 30px 22px max(32px, env(safe-area-inset-bottom));
       opacity: 0;
-      transform: translateY(-14px);
+      transform: translateY(18px);
       transition:
-        opacity 300ms ease 40ms,
-        transform 480ms cubic-bezier(0.22, 1, 0.36, 1) 40ms;
+        opacity 260ms ease 100ms,
+        transform 440ms cubic-bezier(0.22, 1, 0.36, 1) 80ms;
     }
 
     .mokda-site-header.is-mobile-menu-open .mokda-mobile-menu-inner {
@@ -213,81 +225,173 @@
       transform: translateY(0);
     }
 
-    .mokda-mobile-nav-group {
-      border-bottom: 1px solid rgba(255, 248, 239, 0.2);
-    }
-
-    .mokda-mobile-nav-trigger {
-      display: flex;
-      width: 100%;
-      min-height: 72px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      color: #fff8ef;
-      font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
-      font-size: clamp(20px, 5.5vw, 26px);
-      font-weight: 700;
-      letter-spacing: 0;
-      line-height: 1;
-      text-align: left;
-    }
-
-    .mokda-mobile-nav-trigger::after {
-      content: '+';
-      flex: none;
+    .mokda-mobile-menu-label {
+      margin-bottom: 28px;
       color: #ef5f18;
-      font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
-      font-size: 24px;
-      font-weight: 800;
-      transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1);
+      font-family: 'Bebas Neue', 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      line-height: 1;
     }
 
-    .mokda-mobile-nav-group.is-open .mokda-mobile-nav-trigger::after {
-      transform: rotate(45deg);
+    .mokda-mobile-menu-groups {
+      display: grid;
+      gap: 0;
+    }
+
+    .mokda-mobile-nav-group {
+      padding: 22px 0 24px;
+      border-top: 1px solid rgba(255, 248, 239, 0.18);
+      opacity: 0;
+      transform: translateY(18px);
+      transition:
+        opacity 260ms ease,
+        transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .mokda-mobile-nav-group:last-child {
+      border-bottom: 1px solid rgba(255, 248, 239, 0.18);
+    }
+
+    .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group:nth-child(1) { transition-delay: 130ms; }
+    .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group:nth-child(2) { transition-delay: 180ms; }
+    .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group:nth-child(3) { transition-delay: 230ms; }
+
+    .mokda-mobile-nav-heading {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .mokda-mobile-nav-index {
+      color: #ef5f18;
+      font-family: 'Bebas Neue', 'Noto Sans KR', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .mokda-mobile-nav-title {
+      width: fit-content;
+      color: #fff8ef;
+      font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
+      font-size: clamp(28px, 8vw, 42px);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      line-height: 0.96;
+      text-decoration: none;
+      transition: color 220ms ease;
+    }
+
+    html:lang(ko) .mokda-mobile-nav-title {
+      font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .mokda-mobile-nav-group.is-current .mokda-mobile-nav-title,
+    .mokda-mobile-nav-title:hover,
+    .mokda-mobile-nav-title:focus-visible {
+      color: #ef5f18;
     }
 
     .mokda-mobile-nav-links {
       display: grid;
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition:
-        max-height 560ms cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 380ms ease;
-    }
-
-    .mokda-mobile-nav-group.is-open .mokda-mobile-nav-links {
-      max-height: 320px;
-      padding-bottom: 18px;
-      opacity: 1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 4px 14px;
+      padding-left: 44px;
     }
 
     .mokda-mobile-nav-link {
       display: flex;
-      min-height: 48px;
+      min-height: 40px;
       align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 10px 0 10px 20px;
-      color: rgba(255, 248, 239, 0.76);
-      font-size: 15px;
-      font-weight: 800;
+      gap: 9px;
+      padding: 7px 0;
+      color: rgba(255, 248, 239, 0.72);
+      font-size: 14px;
+      font-weight: 700;
       letter-spacing: 0;
       line-height: 1.35;
       transition: color 240ms ease, transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .mokda-mobile-nav-link::after {
-      content: '→';
+      content: '↗';
       color: #ef5f18;
-      font-size: 18px;
+      font-size: 13px;
     }
 
     .mokda-mobile-nav-link:hover,
     .mokda-mobile-nav-link:focus-visible {
       color: #fff8ef;
       transform: translateX(4px);
+    }
+
+    .mokda-mobile-menu-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: auto;
+      padding-top: 28px;
+    }
+
+    .mokda-mobile-menu-cta {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 0 22px;
+      color: #321506;
+      background: #ef5f18;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      transition: transform 220ms ease, background-color 220ms ease;
+    }
+
+    .mokda-mobile-menu-cta:hover,
+    .mokda-mobile-menu-cta:focus-visible {
+      background: #fff8ef;
+      transform: translateY(-2px);
+    }
+
+    .mokda-mobile-menu-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .mokda-mobile-menu-social a {
+      color: rgba(255, 248, 239, 0.68);
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: color 220ms ease;
+    }
+
+    .mokda-mobile-menu-social a:hover,
+    .mokda-mobile-menu-social a:focus-visible {
+      color: #fff8ef;
+    }
+
+    .mokda-mobile-menu a:focus-visible,
+    .mokda-mobile-menu button:focus-visible {
+      outline: 2px solid #ef5f18;
+      outline-offset: 4px;
     }
 
     html.mokda-menu-lock,
@@ -315,6 +419,51 @@
 
       .mokda-header-bar #lang-selector .lang-btn {
         font-size: 11px !important;
+      }
+
+      .mokda-mobile-menu-inner {
+        padding-right: 18px;
+        padding-left: 18px;
+      }
+
+      .mokda-mobile-nav-links {
+        grid-template-columns: 1fr;
+      }
+
+      .mokda-mobile-menu-footer,
+      .mokda-mobile-menu-cta {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .mokda-mobile-menu-inner {
+        padding-top: 46px;
+      }
+
+      .mokda-mobile-menu-groups {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 26px;
+      }
+
+      .mokda-mobile-nav-group,
+      .mokda-mobile-nav-group:last-child {
+        border-top: 1px solid rgba(255, 248, 239, 0.18);
+        border-bottom: 0;
+      }
+
+      .mokda-mobile-nav-heading {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .mokda-mobile-nav-title {
+        font-size: clamp(25px, 4.3vw, 38px);
+      }
+
+      .mokda-mobile-nav-links {
+        grid-template-columns: 1fr;
+        padding-left: 0;
       }
     }
 
@@ -518,7 +667,6 @@
       .mokda-mobile-menu,
       .mokda-mobile-menu-inner,
       .mokda-mobile-nav-links,
-      .mokda-mobile-nav-trigger::after,
       .mokda-mobile-nav-link,
       .mokda-menu-icon span {
         transition: none !important;
@@ -647,44 +795,43 @@
     mobileMenu.className = 'mokda-mobile-menu';
     mobileMenu.innerHTML = `
       <nav class="mokda-mobile-menu-inner" aria-label="${copy.navigation}">
-        ${groups.map((group) => `
-          <section class="mokda-mobile-nav-group" data-mobile-group="${group.key}">
-            <button class="mokda-mobile-nav-trigger" type="button" aria-expanded="false">
-              ${group.label}
-            </button>
-            <div class="mokda-mobile-nav-links">
-              ${group.links.map(([label, target]) => (
-                `<a class="mokda-mobile-nav-link" href="${groupHref(group, target)}">${label}</a>`
-              )).join('')}
-            </div>
-          </section>
-        `).join('')}
+        <p class="mokda-mobile-menu-label">${copy.menuLabel}</p>
+        <div class="mokda-mobile-menu-groups">
+          ${groups.map((group, index) => `
+            <section class="mokda-mobile-nav-group${group.key === currentGroup ? ' is-current' : ''}">
+              <div class="mokda-mobile-nav-heading">
+                <span class="mokda-mobile-nav-index">0${index + 1}</span>
+                <a class="mokda-mobile-nav-title" href="${groupHref(group, '')}">${group.label}</a>
+              </div>
+              <div class="mokda-mobile-nav-links">
+                ${group.links.map(([label, target]) => (
+                  `<a class="mokda-mobile-nav-link" href="${groupHref(group, target)}">${label}</a>`
+                )).join('')}
+              </div>
+            </section>
+          `).join('')}
+        </div>
+        <div class="mokda-mobile-menu-footer">
+          <a class="mokda-mobile-menu-cta" href="${hrefs.products}">
+            ${copy.productsCta}<span aria-hidden="true">→</span>
+          </a>
+          <div class="mokda-mobile-menu-social" aria-label="MOKDA SNS">
+            <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.tiktok.com/@salsa_coreana" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://www.threads.com/@salsa_coreana" target="_blank" rel="noopener noreferrer">Threads</a>
+          </div>
+        </div>
       </nav>
     `;
-
-    const mobileGroups = Array.from(mobileMenu.querySelectorAll('.mokda-mobile-nav-group'));
-
-    function setMobileGroup(groupKey) {
-      mobileGroups.forEach((group) => {
-        const isOpen = group.dataset.mobileGroup === groupKey;
-        group.classList.toggle('is-open', isOpen);
-        group.querySelector('.mokda-mobile-nav-trigger')?.setAttribute('aria-expanded', String(isOpen));
-      });
-    }
 
     function setMenuOpen(isOpen) {
       header.classList.toggle('is-mobile-menu-open', isOpen);
       document.documentElement.classList.toggle('mokda-menu-lock', isOpen);
       menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? copy.closeMenu : copy.openMenu);
       mobileMenu.setAttribute('aria-hidden', String(!isOpen));
-      if (!isOpen) setMobileGroup(null);
+      if (!isOpen) mobileMenu.scrollTop = 0;
     }
-
-    mobileGroups.forEach((group) => {
-      group.querySelector('.mokda-mobile-nav-trigger')?.addEventListener('click', () => {
-        setMobileGroup(group.classList.contains('is-open') ? null : group.dataset.mobileGroup);
-      });
-    });
 
     mobileMenu.addEventListener('click', (event) => {
       if (event.target.closest('a')) setMenuOpen(false);

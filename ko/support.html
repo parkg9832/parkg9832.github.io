@@ -14,7 +14,7 @@
     <link rel="alternate" hreflang="en" href="https://www.mokda.kr/en/support.html" />
     <link rel="alternate" hreflang="x-default" href="https://www.mokda.kr/es/support.html" />
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <meta name="theme-color" content="#f6f2e9" />
+    <meta name="theme-color" content="#fff8ef" />
     <link rel="icon" type="image/png" href="./favicon.png" />
     <link rel="shortcut icon" href="./favicon.png" />
     <link rel="apple-touch-icon" href="./favicon.png" />
@@ -35,7 +35,8 @@
       href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260811-2" />
+    <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
+    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260811-3" />
     <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
       <script type="application/ld+json">
 {
@@ -77,36 +78,29 @@
     </script>
   </head>
   <body class="support-page">
-    <header class="support-header">
-      <div class="support-header-inner">
-        <a class="support-logo" href="/ko/" aria-label="MOKDA home">
-          <img src="./assets/images/mokda-logo-sub.webp" alt="MOKDA" />
+    <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
+      <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
+        <a href="/ko/" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
+          <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA" class="h-14 w-auto sm:h-16" />
         </a>
-        <div class="support-header-actions">
-          <div class="support-languages" aria-label="Language">
-            <button type="button" data-language="ES" aria-pressed="true">ES</button>
-            <button type="button" data-language="KR" aria-pressed="false">KR</button>
-            <button type="button" data-language="EN" aria-pressed="false">EN</button>
+        <div class="flex items-center gap-4 md:gap-6">
+          <div id="lang-selector" class="relative flex w-fit cursor-pointer items-center rounded-full bg-white/75 p-1 shadow-sm" aria-label="Language switcher">
+            <div id="lang-bg" class="absolute bottom-1 left-1 top-1 w-10 rounded-full bg-mokdaOrange transition-transform duration-300 ease-in-out sm:w-12"></div>
+            <button id="langES" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="0" translate="no">ES</button>
+            <button id="langKR" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="1" translate="no">KR</button>
+            <button id="langEN" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="2" translate="no">EN</button>
           </div>
-          <button
-            class="support-menu-toggle"
-            id="supportMenuToggle"
-            type="button"
-            aria-label="Open navigation menu"
-            aria-controls="supportMenu"
-            aria-expanded="false"
-          >
-            <span></span><span></span><span></span>
+          <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-gray-800 transition-colors duration-300 hover:bg-white/30" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
           </button>
         </div>
       </div>
-      <nav class="support-menu" id="supportMenu" aria-label="Primary navigation" hidden>
-        <a id="supportMenuHome" href="/ko/">Inicio</a>
-        <a id="supportMenuAbout" href="/ko/about.html">Sobre nosotros</a>
-        <a id="supportMenuProducts" href="/ko/products.html">Salsa Coreana</a>
-        <a id="supportMenuQna" href="/ko/qna.html">Q&amp;A</a>
-        <a id="supportMenuContact" href="/ko/contact.html">Contacto</a>
-      </nav>
+      <div id="mobile-menu" aria-hidden="true">
+        <a href="/ko/about.html">Sobre nosotros</a>
+        <a href="/ko/products.html">Salsa Coreana</a>
+        <a href="/ko/qna.html">Q&amp;A</a>
+        <a href="/ko/contact.html">Contacto</a>
+      </div>
     </header>
 
     <main class="support-main">
@@ -212,11 +206,31 @@
       <a class="support-back" id="supportBack" href="/ko/" data-motion>← Volver a MOKDA</a>
     </main>
 
-    <footer class="support-footer">© 2026 MOKDA</footer>
+    <footer class="bg-neutral-950 py-10 text-white sm:py-12">
+      <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div id="socialBanner" class="flex flex-col items-center justify-center border-b border-white/14 pb-8 text-center">
+          <p id="socialTitle" class="text-base font-extrabold uppercase tracking-[0.08em] text-mokdaOrange">REDES SOCIALES</p>
+          <div class="mt-5 flex items-center justify-center gap-6">
+            <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 hover:-translate-y-1 hover:opacity-75">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" class="fill-current stroke-none"></circle></svg>
+            </a>
+            <a href="https://www.tiktok.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white transition-all duration-300 hover:-translate-y-1 hover:opacity-75">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-current md:h-10 md:w-10"><path d="M16.55 3c.24 2.08 1.42 3.55 3.45 4.13v3.16a7.45 7.45 0 0 1-3.36-.86v5.91c0 3.48-2.31 5.66-5.63 5.66-3.03 0-5.01-1.88-5.01-4.72 0-3.12 2.42-4.95 5.77-4.62v3.22c-1.49-.27-2.42.29-2.42 1.31 0 .85.66 1.42 1.63 1.42 1.1 0 1.82-.69 1.82-2.17V3h3.75Z"></path></svg>
+            </a>
+            <a href="https://www.threads.com/@salsa_coreana" target="_blank" rel="noopener noreferrer" aria-label="Threads" class="text-white transition-all duration-300 hover:-translate-y-1 hover:opacity-75">
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10"><path d="M17.6 10.8c-.28-3.24-2.18-5.04-5.32-5.04-3.63 0-5.91 2.45-5.91 6.24 0 3.97 2.36 6.24 5.91 6.24 2.84 0 4.73-1.38 5.35-3.54.54-1.9-.64-3.34-2.86-3.51-2.17-.17-3.53.76-3.53 2.18 0 1.04.82 1.72 2.05 1.72 1.33 0 2.13-.72 2.13-1.85 0-2.28-2.21-3.69-5.13-3.24"></path><path d="M19.28 8.08C18.12 4.84 15.72 3 12.2 3 7.22 3 4 6.55 4 12s3.22 9 8.2 9c3.65 0 6.24-1.93 7.3-5.14"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div id="footerText" class="mt-8"></div>
+      </div>
+    </footer>
 
-    <script src="./site-i18n.js?v=20260811-2"></script>
+    <script src="./site-i18n.js?v=20260811-3"></script>
+    <script src="./site-footer.js?v=20260720-1"></script>
     <script src="./b2b-config.js?v=20260718-1"></script>
     <script src="./site-analytics.js?v=20260810-6"></script>
-    <script src="./support-campaign.js?v=20260811-2"></script>
+    <script src="./support-campaign.js?v=20260811-3"></script>
+    <script src="./site-header.js?v=20260811-1"></script>
   </body>
 </html>

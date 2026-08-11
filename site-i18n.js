@@ -36,7 +36,7 @@
   const LANG_INDEX = { ES: 0, KR: 1, EN: 2 };
   const LANGUAGE_PATHS = { ES: 'es', KR: 'ko', EN: 'en' };
   const PATH_LANGUAGES = { es: 'ES', ko: 'KR', en: 'EN' };
-  const LOCALIZED_PAGES = new Set(['index.html', 'about.html', 'products.html', 'qna.html', 'contact.html']);
+  const LOCALIZED_PAGES = new Set(['index.html', 'about.html', 'products.html', 'qna.html', 'contact.html', 'support.html']);
   const ACTIVE_BUTTON_CLASS =
     'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-[#321506] transition-colors duration-300';
   const INACTIVE_BUTTON_CLASS =

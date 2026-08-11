@@ -101,6 +101,15 @@
         transform: translateY(0);
       }
 
+      @media (max-width: 479px) {
+        #pageTitle.display-latin {
+          font-size: clamp(2rem, 9.2vw, 2.25rem) !important;
+          letter-spacing: -0.045em;
+          overflow-wrap: anywhere;
+          word-break: normal !important;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -273,7 +282,7 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260811-2"></script>
+    <script src="./site-i18n.js?v=20260811-3"></script>
     <script src="./site-footer.js?v=20260720-1"></script>
     <script src="./b2b-config.js"></script>
     <script>
@@ -589,6 +598,6 @@
       document.getElementById('b2bForm').addEventListener('submit', submitContactForm);
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260810-7"></script>
+    <script src="./site-header.js?v=20260811-1"></script>
   </body>
 </html>

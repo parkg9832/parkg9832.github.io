@@ -56,34 +56,34 @@
     element.innerHTML = `
       <div class="space-y-6">
         <p class="text-2xl font-black tracking-tight text-white">MOKDA</p>
-        <div class="grid gap-7 text-xs leading-5 text-white/60 lg:grid-cols-[1.45fr_0.9fr]">
+        <div class="grid gap-7 text-sm leading-6 text-white/70 lg:grid-cols-[1.45fr_0.9fr]">
           <section>
-            <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.businessTitle}</h2>
+            <h2 class="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.businessTitle}</h2>
             <dl class="grid gap-x-7 gap-y-3 sm:grid-cols-2">
               <div>
-                <dt class="mb-1 font-bold text-white/60">${footer.companyLabel}</dt>
-                <dd class="font-semibold text-white/75">${footer.company}</dd>
+                <dt class="mb-1 font-bold text-white/68">${footer.companyLabel}</dt>
+                <dd class="font-semibold text-white/82">${footer.company}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/60">${footer.ceoLabel}</dt>
-                <dd class="font-semibold text-white/75">${footer.ceo}</dd>
+                <dt class="mb-1 font-bold text-white/68">${footer.ceoLabel}</dt>
+                <dd class="font-semibold text-white/82">${footer.ceo}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/60">${footer.registrationLabel}</dt>
-                <dd class="font-semibold text-white/75">${footer.registration}</dd>
+                <dt class="mb-1 font-bold text-white/68">${footer.registrationLabel}</dt>
+                <dd class="font-semibold text-white/82">${footer.registration}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/60">${footer.addressLabel}</dt>
-                <dd class="text-white/75">${footer.address}</dd>
+                <dt class="mb-1 font-bold text-white/68">${footer.addressLabel}</dt>
+                <dd class="text-white/82">${footer.address}</dd>
               </div>
             </dl>
           </section>
           <section class="lg:max-w-md lg:justify-self-end">
-            <h2 class="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-white/70">${footer.ipTitle}</h2>
-            <p class="text-white/70">${footer.ip}</p>
+            <h2 class="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.ipTitle}</h2>
+            <p class="text-white/76">${footer.ip}</p>
           </section>
         </div>
-        <div class="text-[11px] font-semibold text-white/60">${footer.copyright}</div>
+        <div class="text-xs font-semibold text-white/66">${footer.copyright}</div>
       </div>
     `;
   }

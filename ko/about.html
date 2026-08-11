@@ -296,30 +296,39 @@
 
       <section id="identity" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
         <div class="mx-auto w-full max-w-7xl">
-          <div data-reveal class="mb-12 max-w-5xl">
+          <div data-reveal class="mb-12 max-w-4xl sm:mb-14">
             <p id="logoKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
-            <h2 id="logoTitle" class="display-latin break-keep text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
+            <h2 id="logoTitle" class="display-latin break-keep text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[5.5rem]"></h2>
           </div>
-          <div class="grid gap-5 lg:grid-cols-[0.95fr_1.2fr_0.95fr]">
-            <article data-reveal class="surface-depth flex flex-col justify-center rounded-[1.25rem] bg-white/72 p-7 sm:min-h-[360px] sm:p-9">
-              <div id="motiveBody" class="space-y-5 break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:space-y-6 sm:text-lg sm:leading-9"></div>
-            </article>
-            <div data-reveal style="--reveal-delay: 100ms" class="surface-depth flex min-h-[360px] flex-col items-center justify-center rounded-[1.25rem] bg-[#321506] p-9 text-[#f8dfc4] sm:min-h-[470px]">
-              <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[390px] object-contain" />
+          <div class="grid items-stretch gap-6 lg:grid-cols-[1.12fr_0.88fr] lg:gap-8">
+            <div data-reveal class="grid gap-5 sm:grid-cols-[minmax(0,1fr)_15rem] lg:grid-cols-1 xl:grid-cols-[minmax(0,1fr)_14rem]">
+              <figure class="surface-depth relative flex min-h-[390px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#321506] p-8 sm:min-h-[500px] sm:p-12">
+                <figcaption id="primaryLogoLabel" class="condensed-label absolute left-6 top-6 text-base uppercase text-[#f8dfc4]/70 sm:left-8 sm:top-8"></figcaption>
+                <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[430px] object-contain" />
+              </figure>
+              <figure class="surface-depth flex min-h-[190px] flex-col items-center justify-between rounded-[1.5rem] border border-[#321506]/10 bg-[#fff8ef] p-6 text-center sm:min-h-0 sm:p-7 lg:min-h-[210px] xl:min-h-0">
+                <figcaption id="compactLogoLabel" class="condensed-label text-base uppercase text-mokdaOrange"></figcaption>
+                <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA compact logo" class="my-5 h-auto w-full max-w-[190px] object-contain" />
+                <p id="compactLogoBody" class="break-keep text-sm font-bold leading-6 text-[#321506]/68"></p>
+              </figure>
             </div>
-            <div data-reveal style="--reveal-delay: 180ms" class="grid gap-5">
-              <article class="flex min-h-[280px] flex-col rounded-[1.25rem] bg-[#006943] p-7 text-white sm:p-8">
-                <p id="greenTitle" class="condensed-label text-base uppercase text-white/82"></p>
-                <h3 id="greenKeywords" class="mt-4 break-keep text-2xl font-black leading-tight sm:text-3xl"></h3>
-                <p id="greenBody" class="mt-4 break-keep text-sm font-semibold leading-6 text-white/82"></p>
-                <div id="greenSpecs" class="mt-auto grid grid-cols-2 gap-x-4 gap-y-1 pt-6 text-xs font-extrabold leading-5 text-white/78 sm:text-sm"></div>
+            <div data-reveal style="--reveal-delay: 120ms" class="grid content-start gap-5">
+              <article class="surface-depth rounded-[1.5rem] bg-white/72 p-7 sm:p-9 lg:p-10">
+                <p id="logoConceptLabel" class="condensed-label text-base uppercase text-mokdaOrange"></p>
+                <div id="motiveBody" class="mt-6 space-y-5 break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:text-lg sm:leading-9"></div>
               </article>
-              <article class="flex min-h-[280px] flex-col rounded-[1.25rem] bg-[#E8561D] p-7 text-white sm:p-8">
-                <p id="orangeTitle" class="condensed-label text-base uppercase text-white/86"></p>
-                <h3 id="orangeKeywords" class="mt-4 break-keep text-2xl font-black leading-tight sm:text-3xl"></h3>
-                <p id="orangeBody" class="mt-4 break-keep text-sm font-semibold leading-6 text-white/86"></p>
-                <div id="orangeSpecs" class="mt-auto grid grid-cols-2 gap-x-4 gap-y-1 pt-6 text-xs font-extrabold leading-5 text-white/82 sm:text-sm"></div>
-              </article>
+              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                <article class="rounded-[1.5rem] bg-[#006943] p-7 text-white sm:p-8">
+                  <p id="greenTitle" class="condensed-label text-base uppercase text-white/76"></p>
+                  <h3 id="greenKeywords" class="mt-4 break-keep text-2xl font-black leading-tight"></h3>
+                  <p id="greenBody" class="mt-4 break-keep text-sm font-semibold leading-6 text-white/82"></p>
+                </article>
+                <article class="rounded-[1.5rem] bg-[#E8561D] p-7 text-white sm:p-8">
+                  <p id="orangeTitle" class="condensed-label text-base uppercase text-white/80"></p>
+                  <h3 id="orangeKeywords" class="mt-4 break-keep text-2xl font-black leading-tight"></h3>
+                  <p id="orangeBody" class="mt-4 break-keep text-sm font-semibold leading-6 text-white/86"></p>
+                </article>
+              </div>
             </div>
           </div>
         </div>
@@ -394,21 +403,23 @@
           logo: {
             kicker: 'BRAND LOGO',
             title: 'De la mesa coreana a las mesas del mundo',
+            primaryLabel: 'LOGOTIPO PRINCIPAL',
+            compactLabel: 'LOGOTIPO COMPACTO',
+            compactBody: 'Para cabeceras y espacios reducidos.',
+            conceptLabel: 'CONCEPTO DEL LOGO',
             motiveBody: [
               'El logotipo de MOKDA muestra cómo un sabor nacido en Corea llega a nuevas mesas.',
               'El gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión; “MOKDA” y el coreano “먹다” señalan el origen coreano de la marca.',
             ],
             green: {
               title: 'MOKDA GREEN',
-              keywords: 'Ingredientes · naturaleza · confianza · base',
-              body: 'Es el color central que expresa el punto de partida de MOKDA: ingredientes frescos, confianza y estabilidad.',
-              specs: ['CMYK 100, 0, 36, 59', 'RGB 0, 105, 67', 'HEX #006943', 'Pantone 3425 C'],
+              keywords: 'Origen · naturaleza · confianza',
+              body: 'Representa los ingredientes y la confianza que sostienen la marca.',
             },
             orange: {
               title: 'MOKDA ORANGE',
-              keywords: 'Sabor · energía · calidez · movimiento',
-              body: 'Inspirado en el chile y el sol, expresa la energía de la comida y el dinamismo de avanzar hacia nuevos mercados.',
-              specs: ['CMYK 0, 63, 88, 9', 'RGB 232, 86, 29', 'HEX #E8561D', 'Pantone 166 C'],
+              keywords: 'Sabor · energía · movimiento',
+              body: 'Aporta la energía del sabor y el impulso hacia nuevas mesas.',
             },
           },
           history: {
@@ -457,21 +468,23 @@
           logo: {
             kicker: 'BRAND LOGO',
             title: '한국의 식탁에서 세계의 식탁으로',
+            primaryLabel: 'PRIMARY LOGO',
+            compactLabel: 'COMPACT LOGO',
+            compactBody: '헤더와 작은 공간에 사용하는 보조 로고',
+            conceptLabel: 'LOGO CONCEPT',
             motiveBody: [
               'MOKDA 로고는 한국에서 시작한 맛이 새로운 식탁으로 확장되는 모습을 표현합니다.',
               '해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.',
             ],
             green: {
               title: 'MOKDA GREEN',
-              keywords: '원재료 · 자연 · 신뢰 · 기반',
-              body: 'MOKDA의 시작점을 알려주는 색으로, 신선한 식재료와 신뢰, 안정감을 상징하는 브랜드의 중심색입니다.',
-              specs: ['CMYK 100, 0, 36, 59', 'RGB 0, 105, 67', 'HEX #006943', 'Pantone 3425 C'],
+              keywords: '원재료 · 자연 · 신뢰',
+              body: '브랜드의 시작인 원재료와 신뢰를 나타내는 중심색입니다.',
             },
             orange: {
               title: 'MOKDA ORANGE',
-              keywords: '맛 · 에너지 · 따뜻함 · 움직임',
-              body: '고추와 태양에서 따온 색으로, 음식의 에너지와 새로운 시장으로 나아가는 생동감을 상징하는 액센트 컬러입니다.',
-              specs: ['CMYK 0, 63, 88, 9', 'RGB 232, 86, 29', 'HEX #E8561D', 'Pantone 166 C'],
+              keywords: '맛 · 에너지 · 움직임',
+              body: '음식의 에너지와 새로운 식탁으로 향하는 움직임을 나타냅니다.',
             },
           },
           history: {
@@ -520,21 +533,23 @@
           logo: {
             kicker: 'BRAND LOGO',
             title: 'From Korean tables to tables around the world',
+            primaryLabel: 'PRIMARY LOGO',
+            compactLabel: 'COMPACT LOGO',
+            compactBody: 'For headers and space-limited applications.',
+            conceptLabel: 'LOGO CONCEPT',
             motiveBody: [
               'The MOKDA logo shows how a flavor born in Korea reaches new tables.',
               'The sunrise-inspired graphic represents a new beginning and growth, while “MOKDA” and the Korean word “먹다” reflect the brand’s Korean origin.',
             ],
             green: {
               title: 'MOKDA GREEN',
-              keywords: 'Ingredients · nature · trust · foundation',
-              body: "MOKDA's core color represents where the brand begins: fresh ingredients, trust, and stability.",
-              specs: ['CMYK 100, 0, 36, 59', 'RGB 0, 105, 67', 'HEX #006943', 'Pantone 3425 C'],
+              keywords: 'Ingredients · nature · trust',
+              body: "MOKDA's core color represents its ingredients and foundation of trust.",
             },
             orange: {
               title: 'MOKDA ORANGE',
-              keywords: 'Flavor · energy · warmth · movement',
-              body: 'Inspired by chili peppers and the sun, it expresses the energy of food and the momentum of moving into new markets.',
-              specs: ['CMYK 0, 63, 88, 9', 'RGB 232, 86, 29', 'HEX #E8561D', 'Pantone 166 C'],
+              keywords: 'Flavor · energy · movement',
+              body: 'It brings the energy of flavor and momentum toward new tables.',
             },
           },
           history: {
@@ -597,15 +612,17 @@
         setHTML('storyBody', copy.story.body.map((item) => `<p>${item}</p>`).join(''));
         setText('logoKicker', copy.logo.kicker);
         setText('logoTitle', copy.logo.title);
+        setText('primaryLogoLabel', copy.logo.primaryLabel);
+        setText('compactLogoLabel', copy.logo.compactLabel);
+        setText('compactLogoBody', copy.logo.compactBody);
+        setText('logoConceptLabel', copy.logo.conceptLabel);
         setHTML('motiveBody', copy.logo.motiveBody.map((item) => `<p>${item}</p>`).join(''));
         setText('greenTitle', copy.logo.green.title);
         setText('greenKeywords', copy.logo.green.keywords);
         setText('greenBody', copy.logo.green.body);
-        setHTML('greenSpecs', copy.logo.green.specs.map((item) => `<span>${item}</span>`).join(''));
         setText('orangeTitle', copy.logo.orange.title);
         setText('orangeKeywords', copy.logo.orange.keywords);
         setText('orangeBody', copy.logo.orange.body);
-        setHTML('orangeSpecs', copy.logo.orange.specs.map((item) => `<span>${item}</span>`).join(''));
         setText('historyKicker', copy.history.kicker);
         setText('historyTitle', copy.history.title);
         ['storyTitle', 'logoTitle', 'historyTitle'].forEach((id) => {

@@ -6,7 +6,17 @@
 
   if (isPageReload) {
     if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
-    const resetReloadScroll = () => window.scrollTo(0, 0);
+    let reloadScrollLock = true;
+    const resetReloadScroll = () => {
+      if (!reloadScrollLock) return;
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    };
+    const keepReloadAtTop = () => {
+      if (reloadScrollLock && window.scrollY !== 0) window.requestAnimationFrame(resetReloadScroll);
+    };
+    window.addEventListener('scroll', keepReloadAtTop, { passive: true });
     resetReloadScroll();
     window.addEventListener('load', () => {
       window.requestAnimationFrame(() => window.requestAnimationFrame(resetReloadScroll));
@@ -14,6 +24,11 @@
     window.addEventListener('pageshow', () => {
       window.requestAnimationFrame(resetReloadScroll);
     }, { once: true });
+    window.setTimeout(() => {
+      resetReloadScroll();
+      reloadScrollLock = false;
+      window.removeEventListener('scroll', keepReloadAtTop);
+    }, 900);
   }
 
   const STORAGE_KEY = 'mokdaLanguage';

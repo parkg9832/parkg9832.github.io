@@ -490,6 +490,30 @@
         width: clamp(17rem, 30vw, 23rem);
       }
 
+      #supportTitle.home-support-title {
+        max-width: 22ch;
+        margin-inline: auto;
+        font-size: clamp(2.15rem, 8.6vw, 2.9rem);
+        line-height: 1.02;
+        letter-spacing: -0.018em;
+        text-wrap: balance;
+      }
+
+      @media (min-width: 640px) {
+        #supportTitle.home-support-title {
+          max-width: 21ch;
+          font-size: clamp(3rem, 5.4vw, 3.7rem);
+          line-height: 0.99;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        #supportTitle.home-support-title {
+          max-width: 20ch;
+          font-size: 4rem;
+        }
+      }
+
       .support-marquee:hover .support-marquee-track {
         animation-play-state: paused;
       }
@@ -817,10 +841,10 @@
 
       <section id="support" data-analytics-section="support" class="scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div class="mx-auto flex max-w-7xl flex-col items-center text-center">
-          <div data-reveal class="mx-auto max-w-3xl">
+          <div data-reveal class="mx-auto w-full max-w-4xl px-1 sm:px-4">
             <p id="supportKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">LANZAMIENTO EN LATINOAMÉRICA</p>
-            <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.92] text-[#f8dfc4] sm:text-6xl">Personas en Latinoamérica que esperan la llegada de MOKDA</h2>
-            <p class="mt-8 text-center text-mokdaOrange"><strong id="supportTotal" class="support-total-number block leading-none">—</strong><span id="supportTotalLabel" class="mt-1 block text-sm font-extrabold uppercase text-[#f8dfc4]"></span></p>
+            <h2 id="supportTitle" class="home-support-title display-latin uppercase text-[#f8dfc4]">Personas que esperan a MOKDA en Latinoamérica</h2>
+            <p class="mt-10 text-center text-mokdaOrange"><strong id="supportTotal" class="support-total-number block leading-none">—</strong><span id="supportTotalLabel" class="mx-auto mt-3 block max-w-xl text-sm font-extrabold uppercase text-[#f8dfc4]"></span></p>
             <a id="supportCta" data-analytics-event="support_cta_click" href="/ko/support.html#voices" class="mt-8 inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-white transition hover:-translate-y-0.5 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
           </div>
           <div id="homeSupportMessages" data-reveal data-reveal-delay="120" class="support-marquee mt-10 hidden w-full" aria-live="polite"></div>
@@ -1208,11 +1232,11 @@
           },
           support: {
             kicker: 'LANZAMIENTO EN LATINOAMÉRICA',
-            title: 'Personas en Latinoamérica que esperan la llegada de MOKDA',
+            title: 'Personas que esperan a MOKDA en Latinoamérica',
             description: '',
             cta: 'Ver mensajes de apoyo',
             more: 'Ver mensajes',
-            totalLabel: 'personas en Latinoamérica esperan la llegada de MOKDA',
+            totalLabel: 'personas esperan a MOKDA en Latinoamérica',
             loading: 'Cargando mensajes aprobados…',
             empty: 'Aquí aparecerán mensajes de apoyo aprobados.',
           },

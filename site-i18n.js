@@ -1,4 +1,21 @@
 (() => {
+  const navigationEntry = window.performance?.getEntriesByType?.('navigation')?.[0];
+  const isPageReload = navigationEntry
+    ? navigationEntry.type === 'reload'
+    : window.performance?.navigation?.type === 1;
+
+  if (isPageReload) {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+    const resetReloadScroll = () => window.scrollTo(0, 0);
+    resetReloadScroll();
+    window.addEventListener('load', () => {
+      window.requestAnimationFrame(() => window.requestAnimationFrame(resetReloadScroll));
+    }, { once: true });
+    window.addEventListener('pageshow', () => {
+      window.requestAnimationFrame(resetReloadScroll);
+    }, { once: true });
+  }
+
   const STORAGE_KEY = 'mokdaLanguage';
   const LANGUAGES = ['ES', 'KR', 'EN'];
   const LANG_INDEX = { ES: 0, KR: 1, EN: 2 };

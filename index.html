@@ -145,6 +145,41 @@
         gap: 1.25rem;
       }
 
+      .hero-motion,
+      .hero-media-motion {
+        opacity: 0;
+        will-change: opacity, transform;
+      }
+
+      .hero-motion {
+        transform: translateY(24px);
+      }
+
+      .hero-media-motion {
+        transform: translateY(34px) scale(0.975);
+      }
+
+      .hero-slide.is-active .hero-motion {
+        animation: heroTextReveal 820ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .hero-slide.is-active .hero-motion-kicker { animation-delay: 80ms; }
+      .hero-slide.is-active .hero-motion-title { animation-delay: 180ms; }
+      .hero-slide.is-active .hero-motion-subtitle { animation-delay: 340ms; }
+      .hero-slide.is-active .hero-motion-cta { animation-delay: 470ms; }
+
+      .hero-slide.is-active .hero-media-motion {
+        animation: heroMediaReveal 1100ms 360ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes heroTextReveal {
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes heroMediaReveal {
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
       @media (min-width: 640px) {
         .hero-section {
           height: 780px;
@@ -389,6 +424,15 @@
         }
 
         #proofList.is-visible .proof-metric-value {
+          animation: none;
+        }
+
+        .hero-motion,
+        .hero-media-motion,
+        .hero-slide.is-active .hero-motion,
+        .hero-slide.is-active .hero-media-motion {
+          opacity: 1;
+          transform: none;
           animation: none;
         }
 
@@ -653,17 +697,17 @@
           <div data-hero-slide="0" data-hero-theme="soft" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0">
             <div class="absolute inset-0 bg-[#f7ddc2]"></div>
             <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-9rem] md:h-[55vh] md:w-[78vw] md:-translate-x-[56%] lg:bottom-[-9.5rem] lg:h-[58vh] lg:w-[76vw] lg:-translate-x-[54%] xl:w-[72vw]">
-              <picture class="block h-full w-full">
+              <picture class="hero-media-motion block h-full w-full">
                 <source media="(min-width: 768px)" srcset="/assets/images/hero-mokda-sauce-pour-cutout.webp" />
                 <img src="/assets/images/hero-mokda-sauce-pour-mobile.webp" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" loading="eager" fetchpriority="high" />
               </picture>
             </div>
             <div class="hero-content relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 sm:px-6 lg:px-8">
-              <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
-              <h1 data-hero-title class="hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
+              <p data-hero-kicker class="hero-motion hero-motion-kicker condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
+              <h1 data-hero-title class="hero-motion hero-motion-title hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
               <div class="hero-copy flex flex-col items-center text-center">
-                <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+                <p data-hero-subtitle class="hero-motion hero-motion-subtitle max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
+                <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="hero-motion hero-motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
               </div>
             </div>
           </div>
@@ -838,7 +882,7 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260718-2"></script>
+    <script src="./site-i18n.js?v=20260811-1"></script>
     <script src="./site-footer.js?v=20260720-1"></script>
     <script src="./site-accordion.js?v=20260719-1"></script>
     <script src="./b2b-config.js?v=20260810-1"></script>
@@ -1659,20 +1703,20 @@
           .map(
             (slide, index) => {
               return `
-              <div data-hero-slide="${index}" data-hero-theme="${slide.theme || 'soft'}" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
+              <div data-hero-slide="${index}" data-hero-theme="${slide.theme || 'soft'}" class="hero-slide relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 md:opacity-0">
                 <div class="absolute inset-0 bg-[#f7ddc2]"></div>
                 <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-9rem] md:h-[55vh] md:w-[78vw] md:-translate-x-[56%] lg:bottom-[-9.5rem] lg:h-[58vh] lg:w-[76vw] lg:-translate-x-[54%] xl:w-[72vw]">
-                  <picture class="block h-full w-full">
+                  <picture class="hero-media-motion block h-full w-full">
                     <source media="(min-width: 768px)" srcset="${slide.desktopImage}" />
                     <img src="${slide.mobileImage}" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" ${index === 0 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"'} />
                   </picture>
                 </div>
                 <div class="hero-content relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 sm:px-6 lg:px-8">
-                  <p data-hero-kicker class="condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
-                  <h1 data-hero-title class="hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
+                  <p data-hero-kicker class="hero-motion hero-motion-kicker condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
+                  <h1 data-hero-title class="hero-motion hero-motion-title hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
                   <div class="hero-copy flex flex-col items-center text-center">
-                    <p data-hero-subtitle class="max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                    <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+                    <p data-hero-subtitle class="hero-motion hero-motion-subtitle max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
+                    <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="hero-motion hero-motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
                   </div>
                 </div>
               </div>
@@ -1751,8 +1795,8 @@
 
         document.querySelectorAll('[data-hero-slide]').forEach((slide) => {
           const isActive = Number(slide.getAttribute('data-hero-slide')) === currentSlide;
-          slide.className = `relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 ${
-            isActive ? 'md:z-10 md:opacity-100' : 'md:z-0 md:opacity-0 md:pointer-events-none'
+          slide.className = `hero-slide relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 ${
+            isActive ? 'is-active md:z-10 md:opacity-100' : 'md:z-0 md:opacity-0 md:pointer-events-none'
           }`;
         });
         document.querySelectorAll('[data-hero-indicator]').forEach((indicator) => {

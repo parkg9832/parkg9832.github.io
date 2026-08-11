@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-08-10';
+const LAST_MODIFIED = '2026-08-11';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -19,15 +19,15 @@ const pages = {
     route: '',
     type: 'WebPage',
     ES: {
-      title: 'MOKDA | Salsa Coreana para América Latina',
-      description: 'MOKDA conecta Corea con América Latina a través de Salsa Coreana, su primera línea de salsas para comidas cotidianas.',
+      title: 'MOKDA | Salsa Coreana para Latinoamérica',
+      description: 'MOKDA conecta Corea con Latinoamérica a través de Salsa Coreana, su primera línea de salsas para comidas cotidianas.',
     },
     KR: {
       title: 'MOKDA | 라틴아메리카를 위한 한국 소스 브랜드',
       description: 'MOKDA는 한국의 맛과 문화를 라틴아메리카의 일상 음식에 연결하는 K-Food 브랜드입니다.',
     },
     EN: {
-      title: 'MOKDA | Korean Sauce Brand for Latin America',
+      title: 'MOKDA | Salsa Coreana for Latin America',
       description: 'MOKDA connects Korean flavors with everyday food across Latin America through Salsa Coreana, its first product line.',
     },
   },
@@ -35,8 +35,8 @@ const pages = {
     route: 'about.html',
     type: 'AboutPage',
     ES: {
-      title: 'Sobre MOKDA | K-Food entre Corea y América Latina',
-      description: 'Conoce la historia, identidad y trayectoria de MOKDA, la marca K-Food que conecta Corea con América Latina.',
+      title: 'Sobre MOKDA | K-Food entre Corea y Latinoamérica',
+      description: 'Conoce la historia, identidad y trayectoria de MOKDA, la marca K-Food que conecta Corea con Latinoamérica.',
     },
     KR: {
       title: 'MOKDA 브랜드 소개 | 한국과 라틴아메리카를 잇는 K-Food',
@@ -52,15 +52,15 @@ const pages = {
     type: 'CollectionPage',
     ES: {
       title: 'Salsa Coreana | Línea de productos MOKDA',
-      description: 'Original, Para Carnes y Soy Sauce: la primera línea de salsas coreanas de MOKDA para América Latina.',
+      description: 'K-PEÑO, Para Carnes y Ganjang (Soy Sauce): la primera línea de salsas coreanas de MOKDA para Latinoamérica.',
     },
     KR: {
       title: 'Salsa Coreana | MOKDA 한국 소스 라인업',
-      description: 'Original, Para Carnes, Soy Sauce로 구성된 MOKDA의 첫 번째 한국 소스 제품 라인업을 확인하세요.',
+      description: 'K-PEÑO, Para Carnes, Ganjang으로 구성된 MOKDA의 첫 번째 한국 소스 제품 라인업을 확인하세요.',
     },
     EN: {
       title: 'Salsa Coreana | MOKDA Product Line',
-      description: 'Explore Original, Para Carnes, and Soy Sauce, the first Korean sauce product line from MOKDA for Latin America.',
+      description: 'Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), the first Salsa Coreana product line from MOKDA for Latin America.',
     },
   },
   'qna.html': {
@@ -182,7 +182,7 @@ function structuredData(language, page, canonical, metadata) {
         },
         image: `${SITE}/assets/og-mokda.png`,
         slogan: 'Comer Corea · 한국을 먹다',
-        description: 'Marca K-Food que conecta sabores de Corea con las mesas cotidianas de América Latina.',
+        description: 'Marca K-Food que conecta sabores de Corea con las mesas cotidianas de Latinoamérica.',
         sameAs: [
           'https://www.instagram.com/salsa_coreana/',
           'https://www.tiktok.com/@salsa_coreana',

@@ -594,7 +594,7 @@
       },
       "image": "https://www.mokda.kr/assets/og-mokda.png",
       "slogan": "Comer Corea · 한국을 먹다",
-      "description": "Marca K-Food que conecta sabores de Corea con las mesas cotidianas de América Latina.",
+      "description": "Marca K-Food que conecta sabores de Corea con las mesas cotidianas de Latinoamérica.",
       "sameAs": [
         "https://www.instagram.com/salsa_coreana/",
         "https://www.tiktok.com/@salsa_coreana",
@@ -751,8 +751,8 @@
       <section id="support" data-analytics-section="support" class="scroll-mt-20 overflow-hidden bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div class="mx-auto flex max-w-7xl flex-col items-center text-center">
           <div data-reveal class="mx-auto max-w-3xl">
-            <p id="supportKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">LANZAMIENTO EN LATAM</p>
-            <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.92] text-[#f8dfc4] sm:text-6xl">Nos esperan en Latinoamérica.</h2>
+            <p id="supportKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">LANZAMIENTO EN LATINOAMÉRICA</p>
+            <h2 id="supportTitle" class="display-latin text-4xl uppercase leading-[0.92] text-[#f8dfc4] sm:text-6xl">Personas en Latinoamérica que esperan la llegada de MOKDA</h2>
             <p class="mt-8 text-center text-mokdaOrange"><strong id="supportTotal" class="support-total-number block leading-none">—</strong><span id="supportTotalLabel" class="mt-1 block text-sm font-extrabold uppercase text-[#f8dfc4]"></span></p>
             <a id="supportCta" data-analytics-event="support_cta_click" href="/ko/support.html#voices" class="mt-8 inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-white transition hover:-translate-y-0.5 hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
           </div>
@@ -797,7 +797,7 @@
                   <span class="home-faq-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#321506] text-lg font-extrabold text-[#f8dfc4]"><span class="home-faq-glyph">+</span></span>
                 </button>
                 <div id="homeFaqAnswer3" class="home-faq-answer" aria-hidden="true">
-                  <div class="min-h-0 overflow-hidden"><div class="home-faq-answer-panel"><p id="faqAnswer3" class="max-w-3xl px-[3.25rem] py-6 text-left text-sm font-semibold leading-7 text-[#321506]/76 sm:px-[6.5rem] sm:text-base">Sí. Estamos recibiendo consultas generales y propuestas B2B para LATAM.</p></div></div>
+                  <div class="min-h-0 overflow-hidden"><div class="home-faq-answer-panel"><p id="faqAnswer3" class="max-w-3xl px-[3.25rem] py-6 text-left text-sm font-semibold leading-7 text-[#321506]/76 sm:px-[6.5rem] sm:text-base">Sí. Estamos recibiendo consultas generales y propuestas B2B para Latinoamérica.</p></div></div>
                 </div>
               </article>
           </div>
@@ -820,7 +820,7 @@
       <footer class="bg-neutral-950 py-10 text-white sm:py-12">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div id="socialBanner" class="flex flex-col items-center justify-center border-b border-white/14 pb-8 text-center">
-            <p class="condensed-label text-base uppercase text-mokdaOrange">MOKDA SNS</p>
+            <p id="socialTitle" class="condensed-label text-base uppercase text-mokdaOrange">REDES SOCIALES</p>
             <div class="mt-5 flex items-center justify-center gap-6 text-mokdaOrange">
               <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:opacity-75">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="h-9 w-9 fill-none stroke-current stroke-2 md:h-10 md:w-10">
@@ -900,7 +900,7 @@
             },
             ES: {
               kicker: 'PUNTOS OFICIALES',
-              title: 'MOKDA en América Latina',
+              title: 'MOKDA en Latinoamérica',
               subtitle: 'Encuentra puntos de venta oficiales y restaurantes aliados donde ya puedes vivir la experiencia MOKDA.',
               button: 'Ver puntos de venta',
             },
@@ -989,12 +989,16 @@
         },
         {
           category: {
-            ES: 'SOY SAUCE',
-            EN: 'SOY SAUCE',
-            KR: 'SOY SAUCE',
+            ES: 'GANJANG',
+            EN: 'GANJANG',
+            KR: 'GANJANG',
           },
           koreanName: 'Ganjang',
-          name: 'Soy Sauce',
+          name: {
+            ES: 'GANJANG (SOY SAUCE)',
+            EN: 'GANJANG (SOY SAUCE)',
+            KR: 'GANJANG',
+          },
           titleClass: 'text-neutral-950',
           desc: {
             ES: { line1: 'Una salsa teriyaki al estilo coreano, con equilibrio entre notas dulces y saladas (producto en renovación)', line2: '' },
@@ -1013,14 +1017,15 @@
       const homepageHeroSlides = heroSlides.slice(0, 1);
       const content = {
         EN: {
-          nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
+          nav: { about: 'About us', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contact' },
+          socialTitle: 'SOCIAL',
           proof: {
             kicker: 'MADE IN KOREA',
             title: 'From ingredients to market',
             expoValue: 'SEP',
             expo: 'Expoalimentaria Peru 2026 · Participation planned',
-            programs: 'Selected in institutional programs in Korea',
-            views: 'Post views',
+            programs: 'Selections in Korean institutional startup programs',
+            views: 'Social media post views',
             historyCta: 'View our history →',
             photo: 'Preparing for international markets.',
             previous: 'Previous photo',
@@ -1036,33 +1041,33 @@
             cta: 'View Q&A',
             items: [
               ['What does MOKDA mean?', 'MOKDA comes from the Korean word “먹다,” meaning “to eat.” It is a K-Food brand connecting Korean flavors with everyday tables across Latin America.'],
-              ['What is Salsa Coreana?', "It is MOKDA's first product line: K-PEÑO, Para Carnes, and Soy Sauce, each designed for familiar everyday foods."],
-              ['Can I contact MOKDA?', 'Yes. We welcome general consumer questions as well as distribution, retail, HORECA, and brand collaboration proposals for LATAM.'],
+              ['What is Salsa Coreana?', "It is MOKDA's first product line: K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), each designed for familiar everyday foods."],
+              ['Can I contact MOKDA?', 'Yes. We welcome general consumer questions as well as distribution, retail, HORECA, and brand collaboration proposals for Latin America.'],
             ],
           },
           story: {
             kicker: 'IN THE FIELD',
-            title: 'So Korea feels familiar',
+            title: 'Bringing Korean flavor closer to everyday life',
             body: ['From ingredients to production, we capture the essence of Korea.'],
             manufacturing: 'We inspect the production process.',
             ingredient: 'Flavor starts with understanding its ingredients.',
           },
           products: {
-            kicker: 'LINE UP',
+            kicker: 'LINEUP',
             title: 'SALSA COREANA',
             description: 'The essence of Korean flavor, captured in one bottle. Made with lower sugar and plant-based cream.',
             lineKicker: 'SALSA COREANA',
             lineTitle: 'PRODUCT LINEUP',
-            lineDescription: 'Developed by incorporating feedback from Latin American consumers.',
+            lineDescription: '',
             items: localizedProducts,
           },
           support: {
-            kicker: 'LATAM LAUNCH',
-            title: 'People waiting for MOKDA',
+            kicker: 'LATIN AMERICA LAUNCH',
+            title: 'People across Latin America waiting for MOKDA to launch',
             description: '',
             cta: 'View support messages',
             more: 'View messages',
-            totalLabel: 'people are waiting for MOKDA',
+            totalLabel: 'people across Latin America are waiting for MOKDA to launch',
             loading: 'Loading approved support messages…',
             empty: 'Approved supporter messages will be featured here.',
           },
@@ -1078,7 +1083,7 @@
           },
           map: {
             kicker: 'MOKDA SPOT',
-            title: 'MOKDA SPOT in LATAM',
+            title: 'MOKDA SPOT in Latin America',
             description: "Five priority markets for MOKDA's expansion across Latin America.",
             listLabel: 'Open partner markets',
           },
@@ -1091,13 +1096,14 @@
         },
         ES: {
           nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
+          socialTitle: 'REDES SOCIALES',
           proof: {
             kicker: 'HECHO EN COREA',
             title: 'Del ingrediente al mercado',
             expoValue: 'SEP',
             expo: 'Expoalimentaria Perú 2026 · Participación prevista',
-            programs: 'Seleccionado en convocatorias institucionales de Corea',
-            views: 'Vistas en publicaciones',
+            programs: 'Selecciones en programas institucionales de emprendimiento de Corea',
+            views: 'Visualizaciones en redes sociales',
             historyCta: 'Ver nuestra historia →',
             photo: 'Preparamos la entrada a nuevos mercados.',
             previous: 'Foto anterior',
@@ -1112,34 +1118,34 @@
             title: 'Preguntas frecuentes',
             cta: 'Ver Q&A',
             items: [
-              ['¿Qué significa MOKDA?', 'MOKDA viene de la palabra coreana “먹다”, que significa comer. Es una marca K-Food que conecta sabores coreanos con las mesas cotidianas de América Latina.'],
-              ['¿Qué es Salsa Coreana?', 'Es la primera línea de MOKDA: K-PEÑO, Para Carnes y Soy Sauce, tres salsas pensadas para acompañar comidas cotidianas.'],
-              ['¿Puedo contactar a MOKDA?', 'Sí. Recibimos consultas de consumidores y propuestas de distribución, retail, HORECA y colaboración de marca para LATAM.'],
+              ['¿Qué significa MOKDA?', 'MOKDA viene de la palabra coreana “먹다”, que significa comer. Es una marca K-Food que conecta sabores coreanos con las mesas cotidianas de Latinoamérica.'],
+              ['¿Qué es Salsa Coreana?', 'Es la primera línea de MOKDA: K-PEÑO, Para Carnes y Ganjang (Soy Sauce), tres salsas pensadas para acompañar comidas cotidianas.'],
+              ['¿Puedo contactar a MOKDA?', 'Sí. Recibimos consultas de consumidores y propuestas de distribución, retail, HORECA y colaboración de marca para Latinoamérica.'],
             ],
           },
           story: {
             kicker: 'SOBRE EL TERRENO',
-            title: 'Para que el sabor de Corea se sienta familiar',
+            title: 'Para acercar el sabor de Corea a tu día a día',
             body: ['De los ingredientes a la producción, reunimos la esencia de Corea.'],
             manufacturing: 'Revisamos directamente el proceso de producción.',
             ingredient: 'El sabor empieza por conocer sus ingredientes.',
           },
           products: {
-            kicker: 'LINE UP',
+            kicker: 'LINEUP',
             title: 'SALSA COREANA',
             description: 'La esencia del sabor coreano, en una sola botella. Elaborada con menos azúcar y crema vegetal.',
             lineKicker: 'SALSA COREANA',
             lineTitle: 'LÍNEA DE PRODUCTOS',
-            lineDescription: 'Desarrolladas incorporando opiniones de consumidores latinoamericanos.',
+            lineDescription: '',
             items: localizedProducts,
           },
           support: {
-            kicker: 'LANZAMIENTO EN LATAM',
-            title: 'Personas que esperan a MOKDA',
+            kicker: 'LANZAMIENTO EN LATINOAMÉRICA',
+            title: 'Personas en Latinoamérica que esperan la llegada de MOKDA',
             description: '',
             cta: 'Ver mensajes de apoyo',
             more: 'Ver mensajes',
-            totalLabel: 'personas esperan a MOKDA',
+            totalLabel: 'personas en Latinoamérica esperan la llegada de MOKDA',
             loading: 'Cargando mensajes aprobados…',
             empty: 'Aquí aparecerán mensajes de apoyo aprobados.',
           },
@@ -1151,12 +1157,12 @@
             whatsappMessage: 'Hola, conocí MOKDA a través de su página web. Tengo una pregunta.',
             b2bKicker: 'ALIANZA COMERCIAL',
             b2bTitle: 'Buscamos socios comerciales.',
-            b2bDescription: 'Para distribuidores, importadores, retail, HORECA y colaboraciones de negocio.',
+            b2bDescription: 'Para distribuidores, importadores, retail, HORECA y alianzas comerciales.',
           },
           map: {
             kicker: 'MOKDA SPOT',
-            title: 'MOKDA SPOT en LATAM',
-            description: 'Cinco mercados prioritarios para la expansión de MOKDA en América Latina.',
+            title: 'MOKDA SPOT en Latinoamérica',
+            description: 'Cinco mercados prioritarios para la expansión de MOKDA en Latinoamérica.',
             listLabel: 'Mercados abiertos a socios',
           },
           b2b: {
@@ -1168,12 +1174,13 @@
         },
         KR: {
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
+          socialTitle: 'MOKDA SNS',
           proof: {
             kicker: '한국에서 만드는 MOKDA',
             title: '원료부터 시장까지',
             expoValue: '9월',
             expo: 'Expoalimentaria Perú 2026 참가 예정',
-            programs: '대한민국 기관 공모 선정',
+            programs: '대한민국 기관 창업프로그램 선정',
             views: 'SNS 게시글 조회수',
             historyCta: '브랜드 히스토리 보기 →',
             photo: '해외시장 진출을 준비합니다.',
@@ -1190,8 +1197,8 @@
             cta: 'Q&A 보기',
             items: [
               ['MOKDA는 무슨 뜻인가요?', 'MOKDA는 “먹다”라는 한국어에서 시작된 이름입니다. 한국의 맛을 라틴아메리카의 일상 식탁과 연결하는 K-Food 브랜드입니다.'],
-              ['Salsa Coreana는 무엇인가요?', 'K-PEÑO, Para Carnes, Soy Sauce로 구성된 MOKDA의 첫 번째 제품 라인입니다.'],
-              ['MOKDA에 문의할 수 있나요?', '네. 일반 소비자 문의와 LATAM 유통, 리테일, HORECA 및 브랜드 협업 제안을 모두 받고 있습니다.'],
+              ['Salsa Coreana는 무엇인가요?', 'K-PEÑO, Para Carnes, Ganjang으로 구성된 MOKDA의 첫 번째 제품 라인입니다.'],
+              ['MOKDA에 문의할 수 있나요?', '네. 일반 소비자 문의와 라틴아메리카 유통, 리테일, HORECA 및 브랜드 협업 제안을 모두 받고 있습니다.'],
             ],
           },
           story: {
@@ -1202,21 +1209,21 @@
             ingredient: '맛의 시작인 원료부터 직접 살핍니다.',
           },
           products: {
-            kicker: 'LINE UP',
+            kicker: 'LINEUP',
             title: 'SALSA COREANA',
             description: '한국 맛의 정수를 소스 한 병에 담았습니다. 저당과 식물성 크림으로 완성했습니다.',
             lineKicker: 'SALSA COREANA',
             lineTitle: '제품 라인업',
-            lineDescription: '중남미 현지인의 의견을 반영해 완성한 세 가지 한국 소스입니다.',
+            lineDescription: '',
             items: localizedProducts,
           },
           support: {
-            kicker: 'LATAM 출시 프로젝트',
-            title: 'MOKDA를 기다리는 사람들',
+            kicker: '라틴아메리카 출시 프로젝트',
+            title: '라틴아메리카에서 MOKDA 출시를 기다리는 사람들',
             description: '',
             cta: '응원 메시지 보기',
             more: '응원 메시지 보기',
-            totalLabel: '명이 MOKDA를 기다리고 있습니다',
+            totalLabel: '명이 라틴아메리카에서 MOKDA 출시를 기다리고 있습니다',
             loading: '승인된 응원 메시지를 불러오는 중입니다…',
             empty: '승인된 응원 메시지가 이곳에 소개됩니다.',
           },
@@ -1232,7 +1239,7 @@
           },
           map: {
             kicker: 'MOKDA SPOT',
-            title: 'MOKDA SPOT in LATAM',
+            title: '라틴아메리카 MOKDA SPOT',
             description: 'MOKDA가 라틴아메리카 진출을 준비하는 다섯 개의 우선 시장입니다.',
             listLabel: '파트너 모집 지역',
           },
@@ -1797,14 +1804,15 @@
             (item, index) => {
               const d = (item.desc && item.desc[lang]) ? item.desc[lang] : (item.desc ? item.desc['ES'] : { line1: '', line2: '' });
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
+              const name = typeof item.name === 'object' ? (item.name[lang] || item.name.ES) : item.name;
               return `
-              <a href="/ko/products.html#${['original', 'para-carnes', 'soy-sauce'][index] || ''}" data-product="${item.name}" data-reveal data-reveal-delay="${index * 120}" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300">
+              <a href="/ko/products.html#${['original', 'para-carnes', 'soy-sauce'][index] || ''}" data-product="${name}" data-reveal data-reveal-delay="${index * 120}" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300">
                 <div class="relative h-[300px] overflow-hidden bg-[#f5d9b8] sm:h-[360px] lg:h-[390px]">
                   <img src="${item.foodImage || item.textureImage || item.image}" alt="" aria-hidden="true" class="product-food-image h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/6 to-transparent"></div>
                   <div class="absolute bottom-5 left-5 right-5 sm:bottom-7 sm:left-7">
                     <p class="condensed-label mb-2 break-keep text-base uppercase leading-tight tracking-[0.04em] text-white/85 sm:text-lg">${category}</p>
-                    <h3 class="display-latin break-keep text-4xl uppercase leading-[0.88] text-white sm:text-5xl">${item.name}</h3>
+                    <h3 class="display-latin break-keep text-4xl uppercase leading-[0.88] text-white sm:text-5xl">${name}</h3>
                   </div>
                 </div>
                 <div class="min-h-[150px] px-5 py-6 sm:px-7 sm:py-7">
@@ -1869,6 +1877,7 @@
         setText('mobile-products-link', t.nav.products);
         setText('mobile-qna-link', t.nav.qna);
         setText('mobile-contact-link', t.nav.contact);
+        setText('socialTitle', t.socialTitle);
         renderHomepageProof(t);
         setText('faqTitle', t.faq.title);
         setText('faqCta', t.faq.cta);

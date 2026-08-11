@@ -394,6 +394,7 @@
       const body = document.createElement('p');
 
       item.className = example ? 'support-feed-item support-feed-item--example' : 'support-feed-item';
+      item.classList.add('support-feed-item--enter');
       avatar.className = 'support-feed-avatar';
       content.className = 'support-feed-content';
       meta.className = 'support-feed-meta';
@@ -430,6 +431,7 @@
       content.append(meta, body);
       item.append(avatar, content);
       listElement.appendChild(item);
+      requestAnimationFrame(() => item.classList.add('is-visible'));
     }
 
     if (!append) {
@@ -799,13 +801,41 @@
   });
   const menuToggle = document.getElementById('supportMenuToggle');
   const menu = document.getElementById('supportMenu');
+  let menuCloseTimer = 0;
   menuToggle.addEventListener('click', () => {
     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
     menuToggle.setAttribute('aria-label', expanded ? t.menuOpen : t.menuClose);
-    menu.hidden = expanded;
+    window.clearTimeout(menuCloseTimer);
+    if (expanded) {
+      menu.classList.remove('is-open');
+      menuCloseTimer = window.setTimeout(() => {
+        if (menuToggle.getAttribute('aria-expanded') === 'false') menu.hidden = true;
+      }, 320);
+      return;
+    }
+    menu.hidden = false;
+    requestAnimationFrame(() => menu.classList.add('is-open'));
   });
 
+  function bindSupportMotion() {
+    const targets = document.querySelectorAll('[data-motion]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      targets.forEach((target) => target.classList.add('is-visible'));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    targets.forEach((target) => observer.observe(target));
+  }
+
+  bindSupportMotion();
   render();
   showSavedSupport(readJson(supportStorageKey));
   loadSupportFeed();

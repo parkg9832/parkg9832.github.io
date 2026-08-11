@@ -40,7 +40,7 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@500;600;700;800;900&family=Noto+Sans+KR:wght@500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260810-13" />
+    <link rel="stylesheet" href="./styles/support-campaign.css?v=20260811-2" />
     <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
   </head>
   <body class="support-page">
@@ -78,7 +78,7 @@
 
     <main class="support-main">
       <section class="support-hero" aria-labelledby="supportTitle">
-        <div class="support-project">
+        <div class="support-project" data-motion="scale">
           <div class="support-intro">
             <h1 class="support-title" id="supportTitle">Ayúdanos a lanzar Salsa Coreana.</h1>
             <p class="support-lead" id="supportLead">
@@ -163,20 +163,20 @@
       </section>
 
       <section class="support-feed" id="voices" aria-labelledby="supportFeedTitle">
-        <div class="support-feed-heading">
+        <div class="support-feed-heading" data-motion>
           <div>
             <p id="supportFeedEyebrow">Apoyos reales</p>
             <h2 id="supportFeedTitle">Personas que quieren probar Salsa Coreana</h2>
           </div>
           <strong class="support-feed-total" id="supportFeedTotal">Cargando…</strong>
         </div>
-        <div class="support-country-totals" id="supportCountryTotals" aria-label="Support totals by country"></div>
+        <div class="support-country-totals" id="supportCountryTotals" aria-label="Support totals by country" data-motion></div>
         <p class="support-feed-empty" id="supportFeedEmpty" hidden>Los nuevos mensajes de apoyo aparecerán aquí.</p>
-        <div class="support-feed-list" id="supportFeedList" aria-live="polite"></div>
+        <div class="support-feed-list" id="supportFeedList" aria-live="polite" data-motion="scale"></div>
         <button class="support-feed-more" id="supportFeedMore" type="button" hidden></button>
       </section>
 
-      <a class="support-back" id="supportBack" href="index.html">← Volver a MOKDA</a>
+      <a class="support-back" id="supportBack" href="index.html" data-motion>← Volver a MOKDA</a>
     </main>
 
     <footer class="support-footer">© 2026 MOKDA</footer>
@@ -184,6 +184,6 @@
     <script src="./site-i18n.js?v=20260718-1"></script>
     <script src="./b2b-config.js?v=20260718-1"></script>
     <script src="./site-analytics.js?v=20260810-6"></script>
-    <script src="./support-campaign.js?v=20260811-1"></script>
+    <script src="./support-campaign.js?v=20260811-2"></script>
   </body>
 </html>

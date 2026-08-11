@@ -145,10 +145,23 @@ textarea {
   padding: 18px 24px;
   background: #321506;
   box-shadow: 0 16px 30px rgba(50, 21, 6, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px);
+  transform-origin: top center;
+  transition:
+    opacity 240ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .support-menu[hidden] {
   display: none;
+}
+
+.support-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .support-menu a {
@@ -156,7 +169,23 @@ textarea {
   font-size: 13px;
   font-weight: 800;
   text-decoration: none;
+  opacity: 0;
+  transform: translateY(-5px);
+  transition:
+    color 180ms ease,
+    opacity 240ms ease,
+    transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
+
+.support-menu.is-open a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.support-menu.is-open a:nth-child(2) { transition-delay: 35ms; }
+.support-menu.is-open a:nth-child(3) { transition-delay: 70ms; }
+.support-menu.is-open a:nth-child(4) { transition-delay: 105ms; }
+.support-menu.is-open a:nth-child(5) { transition-delay: 140ms; }
 
 .support-menu a:hover {
   color: #ff7b36;
@@ -332,6 +361,24 @@ textarea {
   font-size: 14px;
   font-weight: 600;
   text-align: center;
+}
+
+[data-motion] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--motion-delay, 0ms);
+}
+
+[data-motion="scale"] {
+  transform: translateY(18px) scale(0.985);
+}
+
+[data-motion].is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 .support-field textarea {
@@ -756,6 +803,19 @@ textarea {
   border-bottom: 1px solid rgba(18, 61, 46, 0.1);
   padding: 16px 14px;
   background: transparent;
+}
+
+.support-feed-item--enter {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 440ms ease,
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.support-feed-item--enter.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .support-feed-item:last-child {
@@ -1325,8 +1385,18 @@ textarea {
   .support-field input,
   .support-field textarea,
   .support-country span,
-  .support-submit {
+  .support-submit,
+  .support-menu,
+  .support-menu a,
+  [data-motion],
+  .support-feed-item--enter {
     transition: none;
+  }
+
+  [data-motion],
+  .support-feed-item--enter {
+    opacity: 1;
+    transform: none;
   }
 
   .support-skeleton-block,

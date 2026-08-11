@@ -331,6 +331,25 @@
         transform: translateY(0);
       }
 
+      #proofList.is-visible .proof-metric-value {
+        animation: proofMetricPop 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        transform-origin: center bottom;
+      }
+
+      #proofList.is-visible article:nth-child(2) .proof-metric-value {
+        animation-delay: 90ms;
+      }
+
+      #proofList.is-visible article:nth-child(3) .proof-metric-value {
+        animation-delay: 180ms;
+      }
+
+      @keyframes proofMetricPop {
+        0% { opacity: 0.25; transform: translateY(8px) scale(0.92); }
+        65% { opacity: 1; transform: translateY(0) scale(1.045); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
       .no-scrollbar {
         scrollbar-width: none;
       }
@@ -367,6 +386,10 @@
           opacity: 1;
           transform: none;
           transition: none;
+        }
+
+        #proofList.is-visible .proof-metric-value {
+          animation: none;
         }
 
         .home-faq-answer,
@@ -684,15 +707,15 @@
 
           <div id="proofList" data-reveal data-reveal-delay="160" class="mx-auto mt-8 grid max-w-4xl grid-cols-3 border-y border-[#f8dfc4]/24 sm:mt-7">
             <article id="proofViewsItem" class="flex min-h-[112px] min-w-0 flex-col items-center justify-center py-4 text-center sm:min-h-[128px] sm:py-5">
-              <p id="proofViewsValue" class="display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
+              <p id="proofViewsValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
               <p id="proofViews" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
             </article>
             <article class="flex min-h-[112px] min-w-0 flex-col items-center justify-center border-x border-[#f8dfc4]/18 py-4 text-center sm:min-h-[128px] sm:py-5">
-              <p id="proofProgramsValue" class="display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl">9+</p>
+              <p id="proofProgramsValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl">9+</p>
               <p id="proofPrograms" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
             </article>
             <article class="flex min-h-[112px] min-w-0 flex-col items-center justify-center py-4 text-center sm:min-h-[128px] sm:py-5">
-              <p id="proofExpoValue" class="display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
+              <p id="proofExpoValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
               <p id="proofExpo" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
             </article>
           </div>

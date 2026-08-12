@@ -569,6 +569,15 @@
         animation-play-state: paused;
       }
 
+      .support-total-number.is-counting {
+        animation: supportCountPulse 180ms ease-out;
+      }
+
+      @keyframes supportCountPulse {
+        0% { transform: translateY(3px); opacity: 0.78; }
+        100% { transform: translateY(0); opacity: 1; }
+      }
+
       @keyframes supportMarquee {
         to {
           transform: translateX(-50%);
@@ -1551,7 +1560,84 @@
         if (node) node.textContent = value;
       }
 
-      let homepageSupportData = null;
+      const homepageSupportFallbackTotal = 31;
+      const homepageSupportCacheKey = 'mokda_support_total';
+
+      function readCachedSupportTotal() {
+        try {
+          const cached = Number(window.localStorage.getItem(homepageSupportCacheKey));
+          return Number.isFinite(cached) && cached > 0 ? cached : homepageSupportFallbackTotal;
+        } catch (error) {
+          return homepageSupportFallbackTotal;
+        }
+      }
+
+      let homepageSupportData = { total: readCachedSupportTotal(), supporters: [] };
+      let supportCounterTarget = homepageSupportData.total;
+      let supportCounterVisible = false;
+      let supportCounterAnimatedTarget = null;
+      let supportCounterFrame = null;
+
+      function animateSupportTotal(target) {
+        const element = document.getElementById('supportTotal');
+        const safeTarget = Math.max(1, Math.round(Number(target) || 1));
+        supportCounterTarget = safeTarget;
+        if (!element) return;
+
+        if (!supportCounterVisible) {
+          element.textContent = '1';
+          return;
+        }
+        if (supportCounterAnimatedTarget === safeTarget && !supportCounterFrame) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          element.textContent = String(safeTarget);
+          supportCounterAnimatedTarget = safeTarget;
+          return;
+        }
+
+        if (supportCounterFrame) cancelAnimationFrame(supportCounterFrame);
+        const startValue = supportCounterAnimatedTarget === null ? 1 : Math.max(1, Number(element.textContent) || 1);
+        const distance = Math.max(1, safeTarget - startValue);
+        const duration = Math.min(1400, 680 + distance * 14);
+        const startedAt = performance.now();
+        supportCounterAnimatedTarget = safeTarget;
+
+        const tick = (now) => {
+          const progress = Math.min(1, (now - startedAt) / duration);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const nextValue = Math.min(safeTarget, Math.round(startValue + distance * eased));
+          if (element.textContent !== String(nextValue)) {
+            element.textContent = String(nextValue);
+            element.classList.remove('is-counting');
+            void element.offsetWidth;
+            element.classList.add('is-counting');
+          }
+          if (progress < 1) supportCounterFrame = requestAnimationFrame(tick);
+          else {
+            element.textContent = String(safeTarget);
+            element.classList.remove('is-counting');
+            supportCounterFrame = null;
+          }
+        };
+        supportCounterFrame = requestAnimationFrame(tick);
+      }
+
+      function initSupportCounter() {
+        const section = document.getElementById('support');
+        if (!section || !('IntersectionObserver' in window)) {
+          supportCounterVisible = true;
+          animateSupportTotal(supportCounterTarget);
+          return;
+        }
+        const observer = new IntersectionObserver((entries) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          supportCounterVisible = true;
+          supportCounterAnimatedTarget = null;
+          animateSupportTotal(supportCounterTarget);
+          observer.disconnect();
+        }, { threshold: 0.32 });
+        observer.observe(section);
+      }
 
       function renderHomepageProof(t) {
         setText('proofKicker', t.proof.kicker);
@@ -1718,7 +1804,7 @@
         setText('supportTotalLabel', t.totalLabel);
         setText('supportMoreCta', t.more);
         const total = homepageSupportData?.total;
-        setText('supportTotal', Number.isFinite(total) ? String(total) : '—');
+        animateSupportTotal(Number.isFinite(total) ? total : homepageSupportFallbackTotal);
 
         const container = document.getElementById('homeSupportMessages');
         if (!container) return;
@@ -1775,7 +1861,6 @@
       async function loadHomepageSupport() {
         const endpoint = window.MOKDA_B2B_WEB_APP_URL;
         if (!endpoint) {
-          homepageSupportData = { total: null, supporters: [] };
           renderHomepageSupport();
           return;
         }
@@ -1803,8 +1888,15 @@
                 String(supporter?.message || '').trim()
             ),
           };
+          if (Number.isFinite(homepageSupportData.total) && homepageSupportData.total > 0) {
+            try {
+              window.localStorage.setItem(homepageSupportCacheKey, String(homepageSupportData.total));
+            } catch (error) {
+              // Storage can be unavailable in privacy-restricted browsers.
+            }
+          }
         } catch (error) {
-          homepageSupportData = { total: null, supporters: [] };
+          homepageSupportData = { total: readCachedSupportTotal(), supporters: [] };
         }
         renderHomepageSupport();
       }
@@ -2118,6 +2210,7 @@
       createHeroCarousel();
       bindHeroScroll();
       initProofCarousel();
+      initSupportCounter();
       renderPage();
       loadHomepageSupport();
       window.MOKDA_ACCORDION.init(document.getElementById('homeFaqList'));

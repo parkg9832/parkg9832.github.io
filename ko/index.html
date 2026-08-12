@@ -987,11 +987,10 @@
         </div>
       </section>
 
-      <section id="institutions" class="border-y border-[#321506]/10 bg-[#fff8ef] py-10 sm:py-12">
+      <section id="institutions" class="border-y border-[#321506]/10 bg-[#fff8ef] py-8 sm:py-10">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p id="institutionsTitle" class="condensed-label mb-7 text-center text-base uppercase text-mokdaOrange sm:text-lg">CON EL APOYO DE</p>
           <div class="flex items-center gap-3 sm:gap-5">
-            <button id="institutionsPrev" type="button" aria-label="Anterior" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#321506]/18 bg-white text-2xl text-[#321506] transition hover:border-mokdaOrange hover:text-mokdaOrange">‹</button>
+            <button id="institutionsPrev" type="button" aria-label="Anterior" class="flex h-11 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[2rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">‹</button>
             <div id="institutionsTrack" class="no-scrollbar flex flex-1 gap-4 overflow-x-auto" style="mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);">
               <div data-institutions-group class="flex shrink-0 gap-4">
                 <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
@@ -1001,7 +1000,7 @@
                 <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
               </div>
             </div>
-            <button id="institutionsNext" type="button" aria-label="Siguiente" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#321506]/18 bg-white text-2xl text-[#321506] transition hover:border-mokdaOrange hover:text-mokdaOrange">›</button>
+            <button id="institutionsNext" type="button" aria-label="Siguiente" class="flex h-11 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[2rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">›</button>
           </div>
         </div>
       </section>
@@ -2180,7 +2179,6 @@
         setText('socialTitle', t.socialTitle);
         setText('voicesKicker', t.community.kicker);
         setText('voicesTitle', t.community.title);
-        setText('institutionsTitle', t.community.institutions);
         document.querySelectorAll('#voices article').forEach((card) => card.setAttribute('aria-label', t.community.reserved));
         document.getElementById('institutionsPrev').setAttribute('aria-label', t.community.previous);
         document.getElementById('institutionsNext').setAttribute('aria-label', t.community.next);

@@ -37,7 +37,7 @@
     <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
     <link rel="preload" as="image" href="/assets/images/hero-mokda-sauce-pour-mobile.webp" type="image/webp" media="(max-width: 767px)" fetchpriority="high" />
     <link rel="preload" as="image" href="/assets/images/hero-mokda-sauce-pour-cutout.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />
-    <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
+    <link rel="stylesheet" href="./assets/mokda-tailwind.css?v=20260812-2" />
     <link rel="stylesheet" href="./styles/site-announcement.css?v=20260730-7" />
     <style>
       html {
@@ -549,6 +549,21 @@
         background-size: 112px 112px;
       }
 
+      .voice-placeholder {
+        background: linear-gradient(135deg, rgba(239, 95, 24, 0.2), rgba(0, 105, 67, 0.16));
+      }
+
+      .placeholder-line {
+        display: block;
+        height: 0.72rem;
+        border-radius: 999px;
+        background: rgba(50, 21, 6, 0.13);
+      }
+
+      .institution-placeholder {
+        background: linear-gradient(135deg, rgba(50, 21, 6, 0.035), rgba(239, 95, 24, 0.07));
+      }
+
       .hero-soft-copy .hero-kicker-shadow,
       .hero-soft-copy .hero-title-shadow,
       .hero-soft-copy .hero-title-accent,
@@ -931,6 +946,55 @@
         </div>
       </section>
 
+      <section id="voices" class="brand-grid-bg overflow-hidden bg-[#f7ddc2] py-16 sm:py-20 lg:py-24">
+        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div data-reveal class="mx-auto mb-10 max-w-3xl text-center sm:mb-12">
+            <p id="voicesKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">VOCES</p>
+            <h2 id="voicesTitle" class="display-latin text-4xl uppercase leading-[0.96] text-[#321506] sm:text-5xl">Experiencias compartidas con MOKDA</h2>
+          </div>
+          <div data-reveal data-reveal-delay="100" class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0">
+            <article aria-label="Espacio reservado" class="min-w-[82%] snap-center rounded-[1.25rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:min-w-0 sm:p-7">
+              <div aria-hidden="true" class="flex flex-col items-center text-center">
+                <div class="voice-placeholder h-24 w-24 rounded-full ring-4 ring-white sm:h-28 sm:w-28"></div>
+                <div class="mt-6 h-3 w-28 rounded-full bg-[#321506]/18"></div><div class="mt-3 h-2.5 w-20 rounded-full bg-[#321506]/10"></div>
+                <div class="mt-7 w-full rounded-xl bg-[#321506]/[0.045] p-5"><span class="placeholder-line w-full"></span><span class="placeholder-line mt-3 w-[88%]"></span><span class="placeholder-line mt-3 w-[72%]"></span></div>
+              </div>
+            </article>
+            <article aria-label="Espacio reservado" class="min-w-[82%] snap-center rounded-[1.25rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:min-w-0 sm:p-7">
+              <div aria-hidden="true" class="flex flex-col items-center text-center">
+                <div class="voice-placeholder h-24 w-24 rounded-full ring-4 ring-white sm:h-28 sm:w-28"></div>
+                <div class="mt-6 h-3 w-28 rounded-full bg-[#321506]/18"></div><div class="mt-3 h-2.5 w-20 rounded-full bg-[#321506]/10"></div>
+                <div class="mt-7 w-full rounded-xl bg-[#321506]/[0.045] p-5"><span class="placeholder-line w-full"></span><span class="placeholder-line mt-3 w-[88%]"></span><span class="placeholder-line mt-3 w-[72%]"></span></div>
+              </div>
+            </article>
+            <article aria-label="Espacio reservado" class="min-w-[82%] snap-center rounded-[1.25rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:min-w-0 sm:p-7">
+              <div aria-hidden="true" class="flex flex-col items-center text-center">
+                <div class="voice-placeholder h-24 w-24 rounded-full ring-4 ring-white sm:h-28 sm:w-28"></div>
+                <div class="mt-6 h-3 w-28 rounded-full bg-[#321506]/18"></div><div class="mt-3 h-2.5 w-20 rounded-full bg-[#321506]/10"></div>
+                <div class="mt-7 w-full rounded-xl bg-[#321506]/[0.045] p-5"><span class="placeholder-line w-full"></span><span class="placeholder-line mt-3 w-[88%]"></span><span class="placeholder-line mt-3 w-[72%]"></span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="institutions" class="border-y border-[#321506]/10 bg-[#fff8ef] py-10 sm:py-12">
+        <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <p id="institutionsTitle" class="condensed-label mb-7 text-center text-base uppercase text-mokdaOrange sm:text-lg">CON EL APOYO DE</p>
+          <div class="flex items-center gap-3 sm:gap-5">
+            <button id="institutionsPrev" type="button" aria-label="Anterior" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#321506]/18 bg-white text-2xl text-[#321506] transition hover:border-mokdaOrange hover:text-mokdaOrange">‹</button>
+            <div id="institutionsTrack" class="no-scrollbar flex flex-1 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth">
+              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
+              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
+              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
+              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
+              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
+            </div>
+            <button id="institutionsNext" type="button" aria-label="Siguiente" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#321506]/18 bg-white text-2xl text-[#321506] transition hover:border-mokdaOrange hover:text-mokdaOrange">›</button>
+          </div>
+        </div>
+      </section>
+
       <footer class="bg-neutral-950 py-10 text-white sm:py-12">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div id="socialBanner" class="flex flex-col items-center justify-center border-b border-white/14 pb-8 text-center">
@@ -1133,6 +1197,14 @@
         EN: {
           nav: { about: 'About us', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contact' },
           socialTitle: 'SOCIAL',
+          community: {
+            kicker: 'VOICES',
+            title: "People along MOKDA's journey",
+            institutions: 'SUPPORTED BY',
+            reserved: 'Reserved for future content',
+            previous: 'Previous institutions',
+            next: 'Next institutions',
+          },
           proof: {
             kicker: 'MADE IN KOREA',
             title: 'From ingredients to market',
@@ -1211,6 +1283,14 @@
         ES: {
           nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
           socialTitle: 'REDES SOCIALES',
+          community: {
+            kicker: 'VOCES',
+            title: 'Personas que acompañan el camino de MOKDA',
+            institutions: 'CON EL APOYO DE',
+            reserved: 'Espacio reservado para contenido futuro',
+            previous: 'Instituciones anteriores',
+            next: 'Instituciones siguientes',
+          },
           proof: {
             kicker: 'HECHO EN COREA',
             title: 'Del ingrediente al mercado',
@@ -1289,6 +1369,14 @@
         KR: {
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
           socialTitle: 'MOKDA SNS',
+          community: {
+            kicker: 'VOICES',
+            title: 'MOKDA의 여정을 함께한 사람들',
+            institutions: 'SUPPORTED BY',
+            reserved: '추후 콘텐츠가 들어갈 자리',
+            previous: '이전 기관',
+            next: '다음 기관',
+          },
           proof: {
             kicker: 'MADE IN KOREA',
             title: '원료부터 시장까지',
@@ -1993,6 +2081,12 @@
         setText('mobile-qna-link', t.nav.qna);
         setText('mobile-contact-link', t.nav.contact);
         setText('socialTitle', t.socialTitle);
+        setText('voicesKicker', t.community.kicker);
+        setText('voicesTitle', t.community.title);
+        setText('institutionsTitle', t.community.institutions);
+        document.querySelectorAll('#voices article').forEach((card) => card.setAttribute('aria-label', t.community.reserved));
+        document.getElementById('institutionsPrev').setAttribute('aria-label', t.community.previous);
+        document.getElementById('institutionsNext').setAttribute('aria-label', t.community.next);
         renderHomepageProof(t);
         setText('faqTitle', t.faq.title);
         setText('faqCta', t.faq.cta);
@@ -2022,7 +2116,7 @@
         setText('b2bTitle', t.b2b.title);
         setText('b2bDescription', t.b2b.description);
         setText('b2bCtaText', t.b2b.cta);
-        ['proofTitle', 'faqTitle', 'productLineTitle', 'b2bTitle'].forEach((id) => {
+        ['proofTitle', 'faqTitle', 'productLineTitle', 'b2bTitle', 'voicesTitle'].forEach((id) => {
           const heading = document.getElementById(id);
           if (!heading) return;
           const usesKoreanDisplay = /[가-힣]/.test(heading.textContent);
@@ -2037,6 +2131,15 @@
       window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
         language = nextLanguage;
         renderPage();
+      });
+
+      ['institutionsPrev', 'institutionsNext'].forEach((id) => {
+        document.getElementById(id)?.addEventListener('click', () => {
+          const track = document.getElementById('institutionsTrack');
+          if (!track) return;
+          const direction = id === 'institutionsNext' ? 1 : -1;
+          track.scrollBy({ left: direction * Math.max(240, track.clientWidth * 0.72), behavior: 'smooth' });
+        });
       });
 
       window.addEventListener('pagehide', () => {

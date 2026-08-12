@@ -1690,6 +1690,10 @@ function updateCompleteWebsiteDashboardLegacy_() {
   };
 }
 
+function updateCompleteWebsiteDashboard() {
+  return updateCompleteWebsiteDashboard_();
+}
+
 function updateCompleteWebsiteDashboard_() {
   const ANALYTICS_V2_START = new Date('2026-08-10T09:00:00.000Z');
   const SUPPORT_FUNNEL_START = ANALYTICS_V2_START;
@@ -2019,13 +2023,20 @@ function updateCompleteWebsiteDashboard_() {
     });
   }
 
-  const dashboardArea = dashboard.getRange('A5:L140');
+  const DASHBOARD_DATA_COLUMNS = 12;
+  const DASHBOARD_EXPLANATION_COLUMN = 13;
+  const DASHBOARD_TOTAL_COLUMNS = 16;
+  if (dashboard.getMaxColumns() < DASHBOARD_TOTAL_COLUMNS) {
+    dashboard.insertColumnsAfter(dashboard.getMaxColumns(), DASHBOARD_TOTAL_COLUMNS - dashboard.getMaxColumns());
+  }
+  const dashboardArea = dashboard.getRange(5, 1, 136, DASHBOARD_TOTAL_COLUMNS);
   dashboardArea.breakApart();
   dashboardArea.clearContent();
   dashboardArea.clearFormat();
   dashboard.getRange('A1').setValue('MOKDA 홈페이지 통합 대시보드');
-  dashboard.getRange('A2').setValue('소비자 출시 수요와 B2B 바이어 리드를 분리합니다. | 사용자·세션·페이지뷰 구분 · verification 제외');
-  dashboard.setColumnWidths(1, 12, 88);
+  dashboard.getRange('A2').setValue('소비자 출시 수요와 B2B 바이어 리드를 분리합니다. | 사용자·세션·페이지뷰 구분 · verification·내부 방문 제외');
+  dashboard.setColumnWidths(1, DASHBOARD_DATA_COLUMNS, 88);
+  dashboard.setColumnWidths(DASHBOARD_EXPLANATION_COLUMN, 4, 92);
 
   const merge = (row, startColumn, width, value, options) => {
     const opts = options || {};
@@ -2038,10 +2049,10 @@ function updateCompleteWebsiteDashboard_() {
     if (opts.color) cell.setFontColor(opts.color);
     if (opts.bold) cell.setFontWeight('bold');
     if (opts.size) cell.setFontSize(opts.size);
-    if (opts.format) cell.setNumberFormat(opts.format);
+    cell.setNumberFormat(opts.format || 'General');
     return cell;
   };
-  const section = (row, title, color) => merge(row, 1, 12, title, { background: color, color: '#ffffff', bold: true, size: 12, align: 'left' });
+  const section = (row, title, color) => merge(row, 1, DASHBOARD_DATA_COLUMNS, title, { background: color, color: '#ffffff', bold: true, size: 12, align: 'left' });
   const colors = ['#ef5f18', '#f39c1f', '#4f9b61', '#2f6f5e', '#15372b'];
   const writeCards = (labelRow, items, cardWidth) => {
     items.forEach((item, index) => {
@@ -2049,6 +2060,34 @@ function updateCompleteWebsiteDashboard_() {
       merge(labelRow, startColumn, cardWidth, item.label, { background: '#fff6ed', color: '#15372b', bold: true, size: 9 });
       merge(labelRow + 1, startColumn, cardWidth, item.value, { background: '#ffffff', color: item.accent || '#15372b', bold: true, size: item.size || 17, format: item.format || null });
       merge(labelRow + 2, startColumn, cardWidth, item.note || '', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+    });
+  };
+  const writeExplanationRows = (sectionRow, color, explanations) => {
+    merge(sectionRow, DASHBOARD_EXPLANATION_COLUMN, 4, '읽는 법', { background: color, color: '#ffffff', bold: true, size: 10, align: 'left' });
+    explanations.forEach((text, index) => {
+      merge(sectionRow + index + 1, DASHBOARD_EXPLANATION_COLUMN, 4, text, {
+        background: index % 2 ? '#fffaf5' : '#f5f7f6', color: '#5e6b63', size: 8, align: 'left',
+      });
+    });
+  };
+  const writeStageFunnel = (config) => {
+    config.labels.forEach((label, index) => {
+      const startColumn = index * config.cardWidth + 1;
+      const previous = index ? config.counts[index - 1] : config.counts[0];
+      merge(config.labelRow, startColumn, config.cardWidth, label, { background: colors[index], color: '#ffffff', bold: true, size: 9 });
+      merge(config.labelRow + 1, startColumn, config.cardWidth, config.counts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
+      merge(config.labelRow + 2, startColumn, config.cardWidth, index ? safeRate(config.counts[index], previous) : (previous ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
+      merge(config.labelRow + 3, startColumn, config.cardWidth, config.detail(index, previous), config.detailStyle(index));
+      merge(config.labelRow + 4, startColumn, config.cardWidth, config.note(index), { background: '#ffffff', color: '#7a7a7a', size: 8 });
+    });
+  };
+  const writeRateCards = (labelRow, items) => {
+    items.forEach((item, index) => {
+      const startColumn = index * 3 + 1;
+      merge(labelRow, startColumn, 3, item.label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+      merge(labelRow + 1, startColumn, 3, item.value, { background: '#ffffff', color: colors[index], bold: true, size: 17, format: '0.0%' });
+      merge(labelRow + 2, startColumn, 3, item.source, { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
+      merge(labelRow + 3, startColumn, 3, item.note, { background: '#fffaf5', color: '#7a7a7a', size: 8 });
     });
   };
 
@@ -2118,32 +2157,41 @@ function updateCompleteWebsiteDashboard_() {
 
   section(41, 'B2B 바이어 퍼널 · 제품 경유 폐쇄형', '#15372b');
   const b2bLabels = ['사이트 방문', '제품 관심', '문의 CTA/도착', '폼 시작', '리드 생성'];
-  for (let index = 0; index < 5; index += 1) {
-    const startColumn = index * 2 + 1;
-    const previous = index ? closedB2bCounts[index - 1] : closedB2bCounts[0];
-    merge(42, startColumn, 2, b2bLabels[index], { background: colors[index], color: '#ffffff', bold: true, size: 9 });
-    merge(43, startColumn, 2, closedB2bCounts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
-    merge(44, startColumn, 2, index ? safeRate(closedB2bCounts[index], previous) : (previous ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
-    merge(45, startColumn, 2, index < 4 ? Math.max(closedB2bCounts[index] - closedB2bCounts[index + 1], 0) : closedB2bCounts[4], { background: '#ffffff', color: index < 4 ? '#c54432' : '#15372b', bold: true, size: 10, format: '#,##0' });
-    merge(46, startColumn, 2, index < 4 ? '다음 단계 이탈' : '완료 세션', { background: '#ffffff', color: '#7a7a7a', size: 8 });
-  }
+  writeStageFunnel({
+    labelRow: 42,
+    labels: b2bLabels,
+    counts: closedB2bCounts,
+    cardWidth: 2,
+    detail: (index) => index < 4 ? Math.max(closedB2bCounts[index] - closedB2bCounts[index + 1], 0) : closedB2bCounts[4],
+    detailStyle: (index) => ({ background: '#ffffff', color: index < 4 ? '#c54432' : '#15372b', bold: true, size: 10, format: '#,##0' }),
+    note: (index) => index < 4 ? '다음 단계 이탈' : '완료 세션',
+  });
   merge(42, 11, 2, '집계 기준', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
   merge(43, 11, 2, '동일 세션', { background: '#ffffff', color: '#15372b', bold: true, size: 10 });
   merge(44, 11, 2, '시간 순차 통과', { background: '#fffaf5', color: '#2f6f5e', bold: true, size: 9 });
   merge(45, 11, 2, Utilities.formatDate(B2B_FUNNEL_START, TIME_ZONE, 'MM-dd HH:mm') + ' 이후', { background: '#ffffff', color: '#7a7a7a', size: 8 });
   merge(46, 11, 2, '직접 문의 제외', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  writeExplanationRows(41, '#15372b', [
+    '단계: 방문 → 제품 관심 → 문의 → 폼 → 리드',
+    '각 단계까지 도달한 고유 세션 수',
+    '직전 단계에서 다음 단계로 넘어간 비율',
+    '다음 단계로 넘어가지 못한 세션 수',
+    '마지막 열만 완료, 나머지는 이탈 수',
+  ]);
 
   section(48, 'B2B 바이어 퍼널 · 직접 진입 포함', '#37474f');
-  const directLabels = ['사이트 → 문의 페이지', '문의 페이지 → 폼 시작', '폼 시작 → 문의 완료', '사이트 → 문의 완료'];
-  const directValues = [safeRate(directB2bCounts[1], directB2bCounts[0]), safeRate(directB2bCounts[2], directB2bCounts[1]), safeRate(directB2bCounts[3], directB2bCounts[2]), safeRate(directB2bCounts[3], directB2bCounts[0])];
-  const directSources = [`${directB2bCounts[1]} / ${directB2bCounts[0]} 세션`, `${directB2bCounts[2]} / ${directB2bCounts[1]} 세션`, `${directB2bCounts[3]} / ${directB2bCounts[2]} 세션`, `${directB2bCounts[3]} / ${directB2bCounts[0]} 세션`];
-  directLabels.forEach((label, index) => {
-    const startColumn = index * 3 + 1;
-    merge(49, startColumn, 3, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-    merge(50, startColumn, 3, directValues[index], { background: '#ffffff', color: colors[index], bold: true, size: 17, format: '0.0%' });
-    merge(51, startColumn, 3, directSources[index], { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
-    merge(52, startColumn, 3, index === 3 ? '전체 B2B 전환율' : '직전 단계 기준', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
-  });
+  writeRateCards(49, [
+    { label: '사이트 → 문의 페이지', value: safeRate(directB2bCounts[1], directB2bCounts[0]), source: `${directB2bCounts[1]} / ${directB2bCounts[0]} 세션`, note: '직전 단계 기준' },
+    { label: '문의 페이지 → 폼 시작', value: safeRate(directB2bCounts[2], directB2bCounts[1]), source: `${directB2bCounts[2]} / ${directB2bCounts[1]} 세션`, note: '직전 단계 기준' },
+    { label: '폼 시작 → 문의 완료', value: safeRate(directB2bCounts[3], directB2bCounts[2]), source: `${directB2bCounts[3]} / ${directB2bCounts[2]} 세션`, note: '직전 단계 기준' },
+    { label: '사이트 → 문의 완료', value: safeRate(directB2bCounts[3], directB2bCounts[0]), source: `${directB2bCounts[3]} / ${directB2bCounts[0]} 세션`, note: '전체 B2B 전환율' },
+  ]);
+  writeExplanationRows(48, '#37474f', [
+    '제품 페이지를 거치지 않은 문의 경로 포함',
+    '각 구간과 전체 문의 완료 전환율',
+    '완료 세션 / 기준 세션',
+    '마지막 열은 전체 B2B 전환율',
+  ]);
 
   section(54, 'B2B 영업 파이프라인 · 문의 이후', '#37474f');
   ['리드 생성', '유효 리드', '상담·샘플 진행', '계약 전환'].forEach((label, index) => {
@@ -2153,19 +2201,33 @@ function updateCompleteWebsiteDashboard_() {
     merge(57, startColumn, 3, index ? safeRate(pipelineCounts[index], pipelineCounts[index - 1]) : (pipelineCounts[0] ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
     merge(58, startColumn, 3, index ? '직전 단계 전환율' : 'Sheet1 저장 행 기준', { background: '#ffffff', color: '#7a7a7a', size: 8 });
   });
+  writeExplanationRows(54, '#37474f', [
+    '문의 저장 이후 실제 영업 상태 단계',
+    '기간 내 각 상태에 도달한 문의 수',
+    '직전 영업 단계 대비 전환율',
+    'Sheet1의 Lead Status 기준',
+  ]);
 
   section(60, '출시 응원 퍼널', '#ef5f18');
   const supportLabels = ['출시 응원 방문', '폼 시작', '국가 선택', '응원 완료'];
-  supportLabels.forEach((label, index) => {
-    const startColumn = index * 3 + 1;
-    const previous = index ? supportCounts[index - 1] : supportCounts[0];
-    merge(61, startColumn, 3, label, { background: colors[index], color: '#ffffff', bold: true, size: 9 });
-    merge(62, startColumn, 3, supportCounts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
-    merge(63, startColumn, 3, index ? safeRate(supportCounts[index], previous) : (previous ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
-    merge(64, startColumn, 3, index ? `${supportCounts[index]} / ${previous} 세션` : `${supportCounts[0]} 고유 세션`, { background: '#ffffff', color: '#5e6b63', size: 8 });
-    merge(65, startColumn, 3, index ? '직전 단계 전환율' : '퍼널 기준값', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  writeStageFunnel({
+    labelRow: 61,
+    labels: supportLabels,
+    counts: supportCounts,
+    cardWidth: 3,
+    detail: (index, previous) => index ? `${supportCounts[index]} / ${previous} 세션` : `${supportCounts[0]} 고유 세션`,
+    detailStyle: () => ({ background: '#ffffff', color: '#5e6b63', size: 8 }),
+    note: (index) => index ? '직전 단계 전환율' : '퍼널 기준값',
   });
   merge(66, 1, 12, '소비자 응원은 B2B generate_lead와 완전히 분리하며, 저장 성공한 신규 응원만 완료로 기록합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+  writeExplanationRows(60, '#ef5f18', [
+    '단계: 응원 방문 → 폼 → 국가 → 저장',
+    '각 단계까지 도달한 고유 세션 수',
+    '직전 단계에서 다음 단계로 넘어간 비율',
+    '완료 세션 / 직전 단계 세션',
+    '첫 단계는 퍼널 시작 기준',
+    '응원 완료는 신규 저장 성공만 인정',
+  ]);
 
   section(68, '출시 응원 단계별 분석', '#37474f');
   const supportConversions = [
@@ -2174,13 +2236,18 @@ function updateCompleteWebsiteDashboard_() {
     ['국가 선택 → 응원 완료', supportCounts[3], supportCounts[2]],
     ['방문 → 최종 완료', supportCounts[3], supportCounts[0]],
   ];
-  supportConversions.forEach((item, index) => {
-    const startColumn = index * 3 + 1;
-    merge(69, startColumn, 3, item[0], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-    merge(70, startColumn, 3, safeRate(item[1], item[2]), { background: '#ffffff', color: colors[index], bold: true, size: 17, format: '0.0%' });
-    merge(71, startColumn, 3, `${item[1]} / ${item[2]} 세션`, { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
-    merge(72, startColumn, 3, index === 3 ? '방문 대비 최종 완료율' : '직전 단계 기준', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
-  });
+  writeRateCards(69, supportConversions.map((item, index) => ({
+    label: item[0],
+    value: safeRate(item[1], item[2]),
+    source: `${item[1]} / ${item[2]} 세션`,
+    note: index === 3 ? '방문 대비 최종 완료율' : '직전 단계 기준',
+  })));
+  writeExplanationRows(68, '#37474f', [
+    '구간별 전환율과 전체 완료율',
+    '분모가 0명이면 0.0%로 표시',
+    '분자 / 분모 세션',
+    '마지막 열은 방문 대비 최종 완료율',
+  ]);
 
   section(74, '누적 출시 응원 현황', '#ef5f18');
   writeCards(75, [
@@ -2257,7 +2324,7 @@ function updateCompleteWebsiteDashboard_() {
     merge(row, startColumn, 2, item[0], { background: '#eceff1', color: '#15372b', bold: true, size: 8 });
     merge(row, startColumn + 2, 4, item[1], { background: '#ffffff', color: '#333333', size: 8, align: 'left' });
   });
-  merge(113, 1, 12, '현재 대시보드는 자체 익명 이벤트 기준입니다. 실제 GA4 속성 연결 후에는 Custom Dimension·Internal Traffic·Enhanced Measurement 설정을 별도로 확인해야 합니다.', { background: '#fff6ed', color: '#5e4c43', size: 8, align: 'left' });
+  merge(113, 1, DASHBOARD_TOTAL_COLUMNS, 'GA4 연결 완료 · 자체 대시보드는 확정 응원 국가와 익명 이벤트를 기준으로 집계합니다. GA4 추정 국가는 확정 국가 데이터로 사용하지 않습니다.', { background: '#fff6ed', color: '#5e4c43', size: 8, align: 'left' });
 
   dashboard.setRowHeights(5, 109, 24);
   [5, 13, 24, 35, 41, 48, 54, 60, 68, 74, 80, 86, 92, 100, 106].forEach((row) => dashboard.setRowHeight(row, 28));

@@ -113,9 +113,23 @@ assert.ok(
     analyticsSource.indexOf('initializeGa4();'),
 );
 
+// TEST 13: the dashboard renderer owns number formats and provides row-aligned funnel guidance.
+assert.match(appsScriptSource, /cell\.setNumberFormat\(opts\.format \|\| 'General'\)/);
+assert.match(appsScriptSource, /const DASHBOARD_TOTAL_COLUMNS = 16/);
+assert.match(appsScriptSource, /const writeExplanationRows =/);
+assert.match(appsScriptSource, /writeExplanationRows\(41, '#15372b'/);
+assert.match(appsScriptSource, /writeExplanationRows\(60, '#ef5f18'/);
+
+// TEST 14: repeated funnel cards share rendering helpers after refactoring.
+assert.match(appsScriptSource, /const writeStageFunnel =/);
+assert.match(appsScriptSource, /const writeRateCards =/);
+assert.equal((appsScriptSource.match(/writeStageFunnel\(\{/g) || []).length, 2);
+assert.equal((appsScriptSource.match(/writeRateCards\(/g) || []).length, 2);
+assert.match(appsScriptSource, /function updateCompleteWebsiteDashboard\(\) \{\s*return updateCompleteWebsiteDashboard_\(\);/);
+
 assert.equal(context.normalizeDashboardProduct_('K-Peño', '2'), 'K-Peño');
 assert.equal(context.normalizeDashboardProduct_('Para Carnes', '2'), 'Para Carnes');
 assert.equal(context.normalizeDashboardProduct_('Original', 'legacy'), 'Legacy Product');
 assert.equal(context.normalizeDashboardProduct_('Soy Sauce', '2'), '제품 미지정');
 
-console.log('analytics regression tests passed (12 scenarios)');
+console.log('analytics regression tests passed (14 scenarios)');

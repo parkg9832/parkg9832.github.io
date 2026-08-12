@@ -83,6 +83,9 @@ const DEMAND_HEADERS = [
   'Approved',
   'Homepage Featured',
 ];
+const INTERNAL_ANALYTICS_VISITOR_IDS = [
+  'fdcbfe0d-6b37-4956-a83f-17747c9395a3',
+];
 const DEMAND_COUNTRIES = {
   PE: 'Peru',
   MX: 'Mexico',
@@ -120,6 +123,11 @@ const FUNNEL_EVENT_NAMES = [
   'b2b_cta_click',
   'b2b_form_start',
 ];
+
+function isInternalAnalyticsVisitor_(value) {
+  const visitorId = String(value || '').trim();
+  return Boolean(visitorId && INTERNAL_ANALYTICS_VISITOR_IDS.indexOf(visitorId) !== -1);
+}
 
 function doGet(event) {
   const mode = String((event && event.parameter && event.parameter.mode) || '').trim();
@@ -840,7 +848,7 @@ function updateDashboardSheetWithSupportFunnel() {
 
   eventRows.forEach((row) => {
     const eventName = String(row[1] || '').trim();
-    if (steps.indexOf(eventName) === -1 || !inPeriod(row[0]) || isVerification(row[9])) return;
+    if (steps.indexOf(eventName) === -1 || !inPeriod(row[0]) || isVerification(row[9]) || isInternalAnalyticsVisitor_(row[2])) return;
     const sessionKey = String(row[3] || row[2] || row[16] || '').trim();
     if (sessionKey) sessionsByStep[eventName][sessionKey] = true;
   });
@@ -848,7 +856,7 @@ function updateDashboardSheetWithSupportFunnel() {
   const supporters = {};
   const countryCounts = {};
   supportRows.forEach((row) => {
-    if (!inPeriod(row[0]) || isVerification(row[8])) return;
+    if (!inPeriod(row[0]) || isVerification(row[8]) || isInternalAnalyticsVisitor_(row[5])) return;
     const supporterKey = String(row[5] || row[6] || '').trim();
     if (supporterKey) supporters[supporterKey] = true;
     const country = String(row[3] || row[2] || '').trim();
@@ -930,7 +938,7 @@ function updateDashboardSheetWithSupportFunnelV2_() {
   if (eventSheet && eventSheet.getLastRow() > 1) {
     eventSheet.getDataRange().getValues().slice(1).forEach((row) => {
       const name = String(row[1] || '').trim();
-      if (stepNames.indexOf(name) === -1 || !inPeriod(row[0]) || isVerification(row[9])) return;
+      if (stepNames.indexOf(name) === -1 || !inPeriod(row[0]) || isVerification(row[9]) || isInternalAnalyticsVisitor_(row[2])) return;
       const key = String(row[3] || row[2] || row[16] || '').trim();
       const occurredAt = normalizeDate(row[0]);
       if (!key || !occurredAt || occurredAt < funnelTrackingStart) return;
@@ -946,7 +954,7 @@ function updateDashboardSheetWithSupportFunnelV2_() {
   const supporterIds = {};
   if (supportSheet && supportSheet.getLastRow() > 1) {
     supportSheet.getDataRange().getValues().slice(1).forEach((row) => {
-      if (!inPeriod(row[0]) || isVerification(row[8])) return;
+      if (!inPeriod(row[0]) || isVerification(row[8]) || isInternalAnalyticsVisitor_(row[5])) return;
       const code = String(row[2] || '').trim().toUpperCase();
       const supporter = String(row[5] || row[6] || '').trim();
       if (supporter) supporterIds[supporter] = true;
@@ -1231,7 +1239,7 @@ function updateCompleteWebsiteDashboardLegacy_() {
   ];
 
   eventRows.forEach((row) => {
-    if (!inPeriod(row[0]) || isVerification(row[9])) return;
+    if (!inPeriod(row[0]) || isVerification(row[9]) || isInternalAnalyticsVisitor_(row[2])) return;
     const occurredAt = normalizeDate(row[0]);
     const eventName = String(row[1] || '').trim();
     const sessionKey = String(row[3] || row[2] || row[16] || '').trim();
@@ -1406,7 +1414,7 @@ function updateCompleteWebsiteDashboardLegacy_() {
   const supporterIds = {};
   if (supportSheet && supportSheet.getLastRow() > 1) {
     supportSheet.getDataRange().getValues().slice(1).forEach((row) => {
-      if (!inPeriod(row[0]) || isVerification(row[8])) return;
+      if (!inPeriod(row[0]) || isVerification(row[8]) || isInternalAnalyticsVisitor_(row[5])) return;
       const code = String(row[2] || '').trim().toUpperCase();
       const supporter = String(row[5] || row[6] || '').trim();
       if (supporter) supporterIds[supporter] = true;
@@ -1802,7 +1810,7 @@ function updateCompleteWebsiteDashboard_() {
     const verificationByUrl = /(?:[?&])utm_medium=verification(?:&|$)/i.test(eventPageUrl);
     if (verificationByMedium) verificationByMediumCount += 1;
     if (verificationByUrl) verificationByUrlCount += 1;
-    if (verificationByMedium || verificationByUrl) return;
+    if (verificationByMedium || verificationByUrl || isInternalAnalyticsVisitor_(row[columns.visitorId])) return;
     const receivedAt = normalizeDate(row[columns.receivedAt]);
     const occurredAt = normalizeDate(row[columns.occurredAt]) || receivedAt;
     if (!occurredAt || !inPeriod(occurredAt)) return;
@@ -1967,7 +1975,7 @@ function updateCompleteWebsiteDashboard_() {
   });
   if (supportSheet && supportSheet.getLastRow() > 1) {
     supportSheet.getDataRange().getValues().slice(1).forEach((row, index) => {
-      if (isVerification(row[8])) return;
+      if (isVerification(row[8]) || isInternalAnalyticsVisitor_(row[5])) return;
       const countryCode = countryCodes.indexOf(String(row[2] || '').trim().toUpperCase()) !== -1
         ? String(row[2] || '').trim().toUpperCase()
         : 'OTHER';

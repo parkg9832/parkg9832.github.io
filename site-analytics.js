@@ -9,6 +9,14 @@
   const internalCommand = queryParameters.get('mokda_internal');
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: false, reason: 'initializing' };
 
+  function isInternalOptedOut() {
+    try {
+      return window.localStorage.getItem(internalOptOutKey) === '1';
+    } catch (error) {
+      return false;
+    }
+  }
+
   try {
     if (internalCommand === '1') window.localStorage.setItem(internalOptOutKey, '1');
     if (internalCommand === '0') window.localStorage.removeItem(internalOptOutKey);
@@ -26,13 +34,9 @@
     );
   }
 
-  try {
-    if (window.localStorage.getItem(internalOptOutKey) === '1') {
-      window.MOKDA_ANALYTICS_STATUS.reason = 'internal_visitor';
-      return;
-    }
-  } catch (error) {
-    // Tracking continues when browser storage cannot be read.
+  if (isInternalOptedOut()) {
+    window.MOKDA_ANALYTICS_STATUS.reason = 'internal_visitor';
+    return;
   }
 
   if (!debugMode && (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true)) {
@@ -283,6 +287,13 @@
       flushTimer = null;
     }
 
+    if (isInternalOptedOut()) {
+      queue.length = 0;
+      window.MOKDA_ANALYTICS_STATUS.enabled = false;
+      window.MOKDA_ANALYTICS_STATUS.reason = 'internal_visitor';
+      return;
+    }
+
     if (!queue.length) return;
     const events = queue.splice(0, 20);
     const body = JSON.stringify({
@@ -315,7 +326,7 @@
   }
 
   function track(name, details = {}, options = {}) {
-    if (!name) return;
+    if (!name || isInternalOptedOut()) return;
     const event = buildEvent(name, details);
     queue.push(event);
     rememberDebugEvent(event);

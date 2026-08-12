@@ -1929,7 +1929,12 @@ function updateCompleteWebsiteDashboard_() {
     });
     return Object.entries(counts).sort((left, right) => right[1] - left[1]);
   };
-  const acquisitionCounts = countBySessionProperty((timeline) => timeline.source ? `${timeline.source} / ${timeline.medium || '-'}` : timeline.referrer || 'Direct');
+  const acquisitionCounts = countBySessionProperty((timeline) => {
+    if (timeline.source) return `${timeline.source} / ${timeline.medium || '-'}`;
+    const referrer = String(timeline.referrer || '').trim();
+    const normalizedReferrer = referrer.toLowerCase().replace(/^www\./, '');
+    return !normalizedReferrer || normalizedReferrer === 'mokda.kr' ? 'Direct' : referrer;
+  });
   const languageCounts = countBySessionProperty((timeline) => ({ ES: '스페인어', EN: '영어', KR: '한국어' }[timeline.language] || timeline.language));
   const deviceCounts = countBySessionProperty((timeline) => ({ mobile: '모바일', desktop: '데스크톱', tablet: '태블릿' }[timeline.device] || timeline.device));
 
@@ -2041,6 +2046,7 @@ function updateCompleteWebsiteDashboard_() {
   const merge = (row, startColumn, width, value, options) => {
     const opts = options || {};
     const cell = dashboard.getRange(row, startColumn, 1, width).merge();
+    cell.setNumberFormat(opts.format || 'General');
     cell.setValue(value);
     cell.setHorizontalAlignment(opts.align || 'center');
     cell.setVerticalAlignment('middle');
@@ -2049,7 +2055,6 @@ function updateCompleteWebsiteDashboard_() {
     if (opts.color) cell.setFontColor(opts.color);
     if (opts.bold) cell.setFontWeight('bold');
     if (opts.size) cell.setFontSize(opts.size);
-    cell.setNumberFormat(opts.format || 'General');
     return cell;
   };
   const section = (row, title, color) => merge(row, 1, DASHBOARD_DATA_COLUMNS, title, { background: color, color: '#ffffff', bold: true, size: 12, align: 'left' });
@@ -2081,13 +2086,12 @@ function updateCompleteWebsiteDashboard_() {
       merge(config.labelRow + 4, startColumn, config.cardWidth, config.note(index), { background: '#ffffff', color: '#7a7a7a', size: 8 });
     });
   };
-  const writeRateCards = (labelRow, items) => {
+  const writeWideCards = (labelRow, items) => {
     items.forEach((item, index) => {
-      const startColumn = index * 3 + 1;
-      merge(labelRow, startColumn, 3, item.label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-      merge(labelRow + 1, startColumn, 3, item.value, { background: '#ffffff', color: colors[index], bold: true, size: 17, format: '0.0%' });
-      merge(labelRow + 2, startColumn, 3, item.source, { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
-      merge(labelRow + 3, startColumn, 3, item.note, { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+      const startColumn = index * 4 + 1;
+      merge(labelRow, startColumn, 4, item.label, { background: '#fff6ed', color: '#15372b', bold: true, size: 9 });
+      merge(labelRow + 1, startColumn, 4, item.value, { background: '#ffffff', color: item.accent || '#15372b', bold: true, size: item.size || 17, format: item.format || 'General' });
+      merge(labelRow + 2, startColumn, 4, item.note || '', { background: '#ffffff', color: '#7a7a7a', size: 8 });
     });
   };
 
@@ -2104,114 +2108,28 @@ function updateCompleteWebsiteDashboard_() {
     { label: '평균 활성시간', value: formatDuration(averageActiveSeconds), note: '세션당 누적', size: 13 },
   ], 4);
 
-  section(13, '페이지별 성과', '#ef5f18');
-  ['페이지', '방문 세션', '페이지뷰', '참여율', '평균 활성시간', '행동 세션'].forEach((label, index) => {
-    merge(14, index * 2 + 1, 2, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-  });
-  pageDefinitions.forEach((page, index) => {
-    const row = 15 + index;
-    const stats = pageStats[page.key];
-    const sessions = Object.keys(stats.sessions).length;
-    const engaged = Object.keys(stats.engagedSessions).length;
-    const values = [page.label, sessions, stats.views, safeRate(engaged, sessions), formatDuration(stats.activeInstances ? stats.activeTotal / stats.activeInstances : 0), Object.keys(stats.actionSessions).length];
-    values.forEach((value, valueIndex) => merge(row, valueIndex * 2 + 1, 2, value, {
-      background: index % 2 ? '#fffaf5' : '#ffffff',
-      color: valueIndex === 0 ? '#15372b' : '#333333',
-      bold: valueIndex === 0 || valueIndex === 5,
-      size: valueIndex === 0 ? 9 : 10,
-      format: valueIndex === 3 ? '0.0%' : [1, 2, 5].indexOf(valueIndex) !== -1 ? '#,##0' : null,
-    }));
-  });
-  merge(22, 1, 12, '언어별 URL은 같은 페이지로 합산합니다. 사용자, 세션, 페이지뷰는 서로 다른 지표입니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
-
-  section(24, '페이지별 Scroll Depth', '#37474f');
-  ['페이지', '방문 세션', '25% 도달', '50% 도달', '75% 도달', '90% 도달'].forEach((label, index) => {
-    merge(25, index * 2 + 1, 2, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-  });
-  pageDefinitions.forEach((page, index) => {
-    const row = 26 + index;
-    const sessions = Object.keys(pageStats[page.key].sessions).length;
-    const values = [page.label, sessions].concat([25, 50, 75, 90].map((depth) => {
-      const count = Object.keys(scrollStats[page.key][depth]).length;
-      return `${count} · ${(safeRate(count, sessions) * 100).toFixed(1)}%`;
-    }));
-    values.forEach((value, valueIndex) => merge(row, valueIndex * 2 + 1, 2, value, {
-      background: index % 2 ? '#fffaf5' : '#ffffff', color: valueIndex === 0 ? '#15372b' : '#333333', bold: valueIndex < 2, size: 9,
-    }));
-  });
-  merge(33, 1, 12, '동일 page_view에서 각 깊이는 1회만 수집하며, GA4 기본 scroll과 다른 scroll_depth 이벤트입니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
-
-  section(35, '홈페이지 주요 Section 도달 분석', '#ef5f18');
   const homeSessions = Object.keys(pageStats.home.sessions).length;
-  sectionNames.forEach((name, index) => {
-    const columnStart = index * 2 + 1;
-    const count = Object.keys(sectionSessions[name]).length;
-    merge(36, columnStart, 2, ({ proof: 'Proof', products: 'Products', field_story: 'Field Story', support: 'Support', contact: 'Contact' }[name]), { background: colors[index], color: '#ffffff', bold: true, size: 9 });
-    merge(37, columnStart, 2, count, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
-    merge(38, columnStart, 2, safeRate(count, homeSessions), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
+  section(13, '출시 응원 수요', '#ef5f18');
+  writeWideCards(14, [
+    { label: '기간 내 응원', value: periodSupportTotal, note: '현재 적용 기간', accent: '#ef5f18', format: '#,##0' },
+    { label: '전체 누적 응원', value: allSupportTotal, note: '확정 응원 누적', accent: '#ef5f18', format: '#,##0' },
+    { label: '기간 내 최다 국가', value: periodSupportTotal ? `${countryLabels[topCountry]} ${periodCountryCounts[topCountry]}건` : '-', note: '마트·벤더 제안용', size: 12 },
+    { label: '최종 갱신', value: Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm'), note: '자동 갱신', size: 11, format: '@' },
+  ]);
+
+  section(18, '국가별 확정 응원', '#37474f');
+  countryCodes.forEach((code, index) => {
+    const startColumn = index * 4 + 1;
+    merge(19, startColumn, 4, countryLabels[code], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+    merge(20, startColumn, 4, periodCountryCounts[code], { background: '#ffffff', color: '#ef5f18', bold: true, size: 17, format: '#,##0' });
+    merge(21, startColumn, 4, allCountryCounts[code], { background: '#fffaf5', color: '#15372b', bold: true, size: 10, format: '#,##0' });
+    merge(22, startColumn, 4, '기간 내 / 전체 누적', { background: '#ffffff', color: '#7a7a7a', size: 8 });
   });
-  merge(36, 11, 2, '홈 방문', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
-  merge(37, 11, 2, homeSessions, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
-  merge(38, 11, 2, '기준 세션', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
-  merge(39, 1, 12, '섹션의 50% 이상이 약 1초 유지된 경우에만 동일 page_view당 1회 기록합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
 
-  section(41, 'B2B 바이어 퍼널 · 제품 경유 폐쇄형', '#15372b');
-  const b2bLabels = ['사이트 방문', '제품 관심', '문의 CTA/도착', '폼 시작', '리드 생성'];
-  writeStageFunnel({
-    labelRow: 42,
-    labels: b2bLabels,
-    counts: closedB2bCounts,
-    cardWidth: 2,
-    detail: (index) => index < 4 ? Math.max(closedB2bCounts[index] - closedB2bCounts[index + 1], 0) : closedB2bCounts[4],
-    detailStyle: (index) => ({ background: '#ffffff', color: index < 4 ? '#c54432' : '#15372b', bold: true, size: 10, format: '#,##0' }),
-    note: (index) => index < 4 ? '다음 단계 이탈' : '완료 세션',
-  });
-  merge(42, 11, 2, '집계 기준', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
-  merge(43, 11, 2, '동일 세션', { background: '#ffffff', color: '#15372b', bold: true, size: 10 });
-  merge(44, 11, 2, '시간 순차 통과', { background: '#fffaf5', color: '#2f6f5e', bold: true, size: 9 });
-  merge(45, 11, 2, Utilities.formatDate(B2B_FUNNEL_START, TIME_ZONE, 'MM-dd HH:mm') + ' 이후', { background: '#ffffff', color: '#7a7a7a', size: 8 });
-  merge(46, 11, 2, '직접 문의 제외', { background: '#ffffff', color: '#7a7a7a', size: 8 });
-  writeExplanationRows(41, '#15372b', [
-    '단계: 방문 → 제품 관심 → 문의 → 폼 → 리드',
-    '각 단계까지 도달한 고유 세션 수',
-    '직전 단계에서 다음 단계로 넘어간 비율',
-    '다음 단계로 넘어가지 못한 세션 수',
-    '마지막 열만 완료, 나머지는 이탈 수',
-  ]);
-
-  section(48, 'B2B 바이어 퍼널 · 직접 진입 포함', '#37474f');
-  writeRateCards(49, [
-    { label: '사이트 → 문의 페이지', value: safeRate(directB2bCounts[1], directB2bCounts[0]), source: `${directB2bCounts[1]} / ${directB2bCounts[0]} 세션`, note: '직전 단계 기준' },
-    { label: '문의 페이지 → 폼 시작', value: safeRate(directB2bCounts[2], directB2bCounts[1]), source: `${directB2bCounts[2]} / ${directB2bCounts[1]} 세션`, note: '직전 단계 기준' },
-    { label: '폼 시작 → 문의 완료', value: safeRate(directB2bCounts[3], directB2bCounts[2]), source: `${directB2bCounts[3]} / ${directB2bCounts[2]} 세션`, note: '직전 단계 기준' },
-    { label: '사이트 → 문의 완료', value: safeRate(directB2bCounts[3], directB2bCounts[0]), source: `${directB2bCounts[3]} / ${directB2bCounts[0]} 세션`, note: '전체 B2B 전환율' },
-  ]);
-  writeExplanationRows(48, '#37474f', [
-    '제품 페이지를 거치지 않은 문의 경로 포함',
-    '각 구간과 전체 문의 완료 전환율',
-    '완료 세션 / 기준 세션',
-    '마지막 열은 전체 B2B 전환율',
-  ]);
-
-  section(54, 'B2B 영업 파이프라인 · 문의 이후', '#37474f');
-  ['리드 생성', '유효 리드', '상담·샘플 진행', '계약 전환'].forEach((label, index) => {
-    const startColumn = index * 3 + 1;
-    merge(55, startColumn, 3, label, { background: colors[index], color: '#ffffff', bold: true, size: 9 });
-    merge(56, startColumn, 3, pipelineCounts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
-    merge(57, startColumn, 3, index ? safeRate(pipelineCounts[index], pipelineCounts[index - 1]) : (pipelineCounts[0] ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
-    merge(58, startColumn, 3, index ? '직전 단계 전환율' : 'Sheet1 저장 행 기준', { background: '#ffffff', color: '#7a7a7a', size: 8 });
-  });
-  writeExplanationRows(54, '#37474f', [
-    '문의 저장 이후 실제 영업 상태 단계',
-    '기간 내 각 상태에 도달한 문의 수',
-    '직전 영업 단계 대비 전환율',
-    'Sheet1의 Lead Status 기준',
-  ]);
-
-  section(60, '출시 응원 퍼널', '#ef5f18');
+  section(24, '출시 응원 퍼널', '#ef5f18');
   const supportLabels = ['출시 응원 방문', '폼 시작', '국가 선택', '응원 완료'];
   writeStageFunnel({
-    labelRow: 61,
+    labelRow: 25,
     labels: supportLabels,
     counts: supportCounts,
     cardWidth: 3,
@@ -2219,8 +2137,8 @@ function updateCompleteWebsiteDashboard_() {
     detailStyle: () => ({ background: '#ffffff', color: '#5e6b63', size: 8 }),
     note: (index) => index ? '직전 단계 전환율' : '퍼널 기준값',
   });
-  merge(66, 1, 12, '소비자 응원은 B2B generate_lead와 완전히 분리하며, 저장 성공한 신규 응원만 완료로 기록합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
-  writeExplanationRows(60, '#ef5f18', [
+  merge(30, 1, 12, `누적 응원 ${allSupportTotal}명과 퍼널 ${supportCounts[0]}세션은 기준이 다릅니다. 퍼널은 ${Utilities.formatDate(SUPPORT_FUNNEL_START, TIME_ZONE, 'yyyy-MM-dd HH:mm')} 이후만 집계합니다.`, { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+  writeExplanationRows(24, '#ef5f18', [
     '단계: 응원 방문 → 폼 → 국가 → 저장',
     '각 단계까지 도달한 고유 세션 수',
     '직전 단계에서 다음 단계로 넘어간 비율',
@@ -2229,105 +2147,79 @@ function updateCompleteWebsiteDashboard_() {
     '응원 완료는 신규 저장 성공만 인정',
   ]);
 
-  section(68, '출시 응원 단계별 분석', '#37474f');
-  const supportConversions = [
-    ['방문 → 폼 시작', supportCounts[1], supportCounts[0]],
-    ['폼 시작 → 국가 선택', supportCounts[2], supportCounts[1]],
-    ['국가 선택 → 응원 완료', supportCounts[3], supportCounts[2]],
-    ['방문 → 최종 완료', supportCounts[3], supportCounts[0]],
-  ];
-  writeRateCards(69, supportConversions.map((item, index) => ({
-    label: item[0],
-    value: safeRate(item[1], item[2]),
-    source: `${item[1]} / ${item[2]} 세션`,
-    note: index === 3 ? '방문 대비 최종 완료율' : '직전 단계 기준',
-  })));
-  writeExplanationRows(68, '#37474f', [
-    '구간별 전환율과 전체 완료율',
-    '분모가 0명이면 0.0%로 표시',
-    '분자 / 분모 세션',
-    '마지막 열은 방문 대비 최종 완료율',
+  section(32, 'B2B 바이어 핵심 퍼널', '#15372b');
+  const b2bLabels = ['사이트 방문', '제품 관심', '문의 CTA/도착', '폼 시작', '리드 생성'];
+  writeStageFunnel({
+    labelRow: 33,
+    labels: b2bLabels,
+    counts: closedB2bCounts,
+    cardWidth: 2,
+    detail: (index) => index < 4 ? Math.max(closedB2bCounts[index] - closedB2bCounts[index + 1], 0) : closedB2bCounts[4],
+    detailStyle: (index) => ({ background: '#ffffff', color: index < 4 ? '#c54432' : '#15372b', bold: true, size: 10, format: '#,##0' }),
+    note: (index) => index < 4 ? '다음 단계 이탈' : '완료 세션',
+  });
+  merge(33, 11, 2, '집계 기준', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
+  merge(34, 11, 2, '동일 세션', { background: '#ffffff', color: '#15372b', bold: true, size: 10 });
+  merge(35, 11, 2, '시간 순차 통과', { background: '#fffaf5', color: '#2f6f5e', bold: true, size: 9 });
+  merge(36, 11, 2, Utilities.formatDate(B2B_FUNNEL_START, TIME_ZONE, 'MM-dd HH:mm') + ' 이후', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  merge(37, 11, 2, '직접 문의 제외', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+  writeExplanationRows(32, '#15372b', [
+    '단계: 방문 → 제품 관심 → 문의 → 폼 → 리드',
+    '각 단계까지 도달한 고유 세션 수',
+    '직전 단계에서 다음 단계로 넘어간 비율',
+    '다음 단계로 넘어가지 못한 세션 수',
+    '마지막 열만 완료, 나머지는 이탈 수',
   ]);
 
-  section(74, '누적 출시 응원 현황', '#ef5f18');
-  writeCards(75, [
-    { label: '기간 내 응원', value: periodSupportTotal, note: '현재 날짜 필터', accent: '#ef5f18', format: '#,##0' },
-    { label: '전체 누적 응원', value: allSupportTotal, note: '전체 기간 누적', accent: '#ef5f18', format: '#,##0' },
-    { label: '기간 내 최다 국가', value: periodSupportTotal ? `${countryLabels[topCountry]} ${periodCountryCounts[topCountry]}건` : '-', note: '현재 날짜 필터', size: 12 },
-    { label: '최종 갱신', value: Utilities.formatDate(new Date(), TIME_ZONE, 'MM-dd HH:mm'), note: '자동 갱신', size: 12 },
-  ], 3);
-
-  section(80, '국가별 출시 응원', '#37474f');
-  countryCodes.forEach((code, index) => {
+  section(39, 'B2B 영업 파이프라인 · 문의 이후', '#37474f');
+  ['리드 생성', '유효 리드', '상담·샘플 진행', '계약 전환'].forEach((label, index) => {
     const startColumn = index * 3 + 1;
-    merge(81, startColumn, 3, countryLabels[code], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-    merge(82, startColumn, 3, periodCountryCounts[code], { background: '#ffffff', color: '#ef5f18', bold: true, size: 17, format: '#,##0' });
-    merge(83, startColumn, 3, allCountryCounts[code], { background: '#fffaf5', color: '#15372b', bold: true, size: 11, format: '#,##0' });
-    merge(84, startColumn, 3, '기간 내 / 전체 누적', { background: '#ffffff', color: '#7a7a7a', size: 8 });
+    merge(40, startColumn, 3, label, { background: colors[index], color: '#ffffff', bold: true, size: 9 });
+    merge(41, startColumn, 3, pipelineCounts[index], { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
+    merge(42, startColumn, 3, index ? safeRate(pipelineCounts[index], pipelineCounts[index - 1]) : (pipelineCounts[0] ? 1 : 0), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
+    merge(43, startColumn, 3, index ? '직전 단계 전환율' : 'Sheet1 저장 행 기준', { background: '#ffffff', color: '#7a7a7a', size: 8 });
   });
+  writeExplanationRows(39, '#37474f', [
+    '문의 저장 이후 실제 영업 상태 단계',
+    '기간 내 각 상태에 도달한 문의 수',
+    '직전 영업 단계 대비 전환율',
+    'Sheet1의 Lead Status 기준',
+  ]);
+  const topAcquisition = acquisitionCounts.slice(0, 2);
+  const namedProductCounts = ['K-Peño', 'Para Carnes'].map((product) => [product, Object.keys(productSessions[product]).length]);
+  section(45, '유입·제품 관심 요약', '#15372b');
+  writeWideCards(46, [
+    { label: '유입 1위', value: topAcquisition[0] ? topAcquisition[0][1] : 0, note: topAcquisition[0] ? topAcquisition[0][0] : '-', format: '#,##0' },
+    { label: '유입 2위', value: topAcquisition[1] ? topAcquisition[1][1] : 0, note: topAcquisition[1] ? topAcquisition[1][0] : '-', format: '#,##0' },
+    { label: namedProductCounts[0][0], value: namedProductCounts[0][1], note: '관심 고유 세션', accent: '#ef5f18', format: '#,##0' },
+    { label: namedProductCounts[1][0], value: namedProductCounts[1][1], note: '관심 고유 세션', accent: '#ef5f18', format: '#,##0' },
+  ]);
+  const knownDaypartSessions = totalSessions - daypartCounts.unknown.sessions;
+  const sampleState = totalSessions < 30 ? '판단 보류' : totalSessions < 100 ? '방향 참고' : '추세 확인 가능';
+  merge(50, 1, DASHBOARD_TOTAL_COLUMNS, `측정 상태 · 퍼널 ${Utilities.formatDate(B2B_FUNNEL_START, TIME_ZONE, 'MM-dd HH:mm')}부터 · 시간대 확인 ${knownDaypartSessions}/${totalSessions}세션 · 표본 ${sampleState}`, { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+  merge(52, 1, DASHBOARD_TOTAL_COLUMNS, 'GA4 연결 완료 · 확정 응원 국가는 자체 저장값만 사용하며, GA4 추정 국가는 확정 데이터로 사용하지 않습니다. 기술 진단은 ‘세부 분석’ 탭에서 확인하세요.', { background: '#fff6ed', color: '#5e4c43', size: 8, align: 'left' });
 
-  section(86, '유입 · 언어 · 기기', '#15372b');
-  merge(87, 1, 4, '유입 경로 TOP 3', { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-  merge(87, 5, 4, '언어', { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-  merge(87, 9, 4, '기기', { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-  for (let index = 0; index < 3; index += 1) {
-    const row = 88 + index;
-    const source = acquisitionCounts[index] || ['-', 0];
-    const language = languageCounts[index] || ['-', 0];
-    const device = deviceCounts[index] || ['-', 0];
-    [[source, 1], [language, 5], [device, 9]].forEach((item) => {
-      merge(row, item[1], 3, item[0][0], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#333333', size: 9, align: 'left' });
-      merge(row, item[1] + 3, 1, item[0][1], { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#15372b', bold: true, size: 10, format: '#,##0' });
-    });
-  }
-
-  section(92, '방문 시간대', '#ef5f18');
-  ['시간대', '방문 세션', '출시 응원 완료', 'B2B 문의 완료'].forEach((label, index) => {
-    merge(93, index * 3 + 1, 3, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+  dashboard.getRange('C3').setValue('직접 시작일');
+  dashboard.getRange('E3').setValue('직접 종료일');
+  dashboard.setRowHeights(5, 48, 24);
+  [5, 13, 18, 24, 32, 39, 45].forEach((row) => dashboard.setRowHeight(row, 28));
+  renderWebsiteDetailedDiagnostics_(spreadsheet, {
+    start,
+    end,
+    pageDefinitions,
+    pageStats,
+    scrollStats,
+    sectionNames,
+    sectionSessions,
+    homeSessions,
+    directB2bCounts,
+    daypartKeys,
+    daypartCounts,
+    totalSessions,
+    v2EventCount,
+    legacyProductDataExists,
+    pipelineCounts,
   });
-  const daypartLabels = { morning: 'Morning · 05–11시', afternoon: 'Afternoon · 12–16시', evening: 'Evening · 17–21시', night: 'Night · 22–04시', unknown: '미확인' };
-  daypartKeys.forEach((key, index) => {
-    const row = 94 + index;
-    const values = [daypartLabels[key], daypartCounts[key].sessions, daypartCounts[key].support, daypartCounts[key].b2b];
-    values.forEach((value, valueIndex) => merge(row, valueIndex * 3 + 1, 3, value, {
-      background: index % 2 ? '#fffaf5' : '#ffffff', color: valueIndex === 0 ? '#15372b' : '#333333', bold: valueIndex === 0 || valueIndex > 1, size: 9, format: valueIndex ? '#,##0' : null,
-    }));
-  });
-
-  section(100, '제품별 관심 세션', '#37474f');
-  ['K-Peño', 'Para Carnes', '제품 미지정', 'Legacy Product'].forEach((product, index) => {
-    const startColumn = index * 3 + 1;
-    const count = Object.keys(productSessions[product]).length;
-    merge(101, startColumn, 3, product, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-    merge(102, startColumn, 3, count, { background: '#ffffff', color: '#ef5f18', bold: true, size: 17, format: '#,##0' });
-    merge(103, startColumn, 3, safeRate(count, totalSessions), { background: '#fffaf5', color: '#15372b', bold: true, size: 11, format: '0.0%' });
-    merge(104, startColumn, 3, product === 'Legacy Product' ? '과거 명칭·원본 보존' : '전체 방문 대비', { background: '#ffffff', color: '#7a7a7a', size: 8 });
-  });
-
-  section(106, '데이터 품질 체크', '#15372b');
-  const v2PeriodState = end < ANALYTICS_V2_START ? '수집 시작 전 데이터 없음' : v2EventCount ? '신규 스키마 수집 중' : '실제 0건 또는 전송 대기';
-  const qualityItems = [
-    ['분석 기간', `${Utilities.formatDate(start, TIME_ZONE, 'yyyy-MM-dd')} ~ ${Utilities.formatDate(end, TIME_ZONE, 'yyyy-MM-dd')}`],
-    ['집계 기준', '퍼널=고유 세션 · 사용자=고유 방문자'],
-    ['verification', 'UTM medium=verification 제외'],
-    ['개발·미리보기', 'mokda.kr 외 전송 OFF'],
-    ['출시 응원 퍼널', `${Utilities.formatDate(SUPPORT_FUNNEL_START, TIME_ZONE, 'yyyy-MM-dd HH:mm')}부터`],
-    ['B2B 퍼널', `${Utilities.formatDate(B2B_FUNNEL_START, TIME_ZONE, 'yyyy-MM-dd HH:mm')}부터`],
-    ['Legacy 제품', legacyProductDataExists ? '존재 · 별도 표시' : '현재 기간 없음'],
-    ['신규 이벤트 상태', v2PeriodState],
-    ['표본 상태', totalSessions < 30 ? '표본 적음 · 전환율 판단 보류' : totalSessions < 100 ? '방향 참고' : '추세 확인 가능'],
-    ['리드 정합성', `Sheet1 ${pipelineCounts[0]}건 · 이벤트 ${directB2bCounts[3]}세션`],
-  ];
-  qualityItems.forEach((item, index) => {
-    const row = 107 + Math.floor(index / 2);
-    const startColumn = index % 2 ? 7 : 1;
-    merge(row, startColumn, 2, item[0], { background: '#eceff1', color: '#15372b', bold: true, size: 8 });
-    merge(row, startColumn + 2, 4, item[1], { background: '#ffffff', color: '#333333', size: 8, align: 'left' });
-  });
-  merge(113, 1, DASHBOARD_TOTAL_COLUMNS, 'GA4 연결 완료 · 자체 대시보드는 확정 응원 국가와 익명 이벤트를 기준으로 집계합니다. GA4 추정 국가는 확정 국가 데이터로 사용하지 않습니다.', { background: '#fff6ed', color: '#5e4c43', size: 8, align: 'left' });
-
-  dashboard.setRowHeights(5, 109, 24);
-  [5, 13, 24, 35, 41, 48, 54, 60, 68, 74, 80, 86, 92, 100, 106].forEach((row) => dashboard.setRowHeight(row, 28));
   return {
     updated: true,
     totalUsers,
@@ -2342,4 +2234,109 @@ function updateCompleteWebsiteDashboard_() {
     verificationByMediumCount,
     verificationByUrlCount,
   };
+}
+
+function renderWebsiteDetailedDiagnostics_(spreadsheet, model) {
+  const detail = spreadsheet.getSheetByName('세부 분석');
+  if (!detail) return;
+  const area = detail.getRange('A75:L140');
+  area.breakApart();
+  area.clearContent();
+  area.clearFormat();
+  const colors = ['#ef5f18', '#f39c1f', '#4f9b61', '#2f6f5e', '#15372b'];
+  const safeRate = (value, base) => base ? value / base : 0;
+  const merge = (row, column, width, value, options) => {
+    const opts = options || {};
+    const cell = detail.getRange(row, column, 1, width).merge();
+    cell.setNumberFormat(opts.format || 'General');
+    cell.setValue(value);
+    cell.setHorizontalAlignment(opts.align || 'center');
+    cell.setVerticalAlignment('middle');
+    cell.setWrap(true);
+    if (opts.background) cell.setBackground(opts.background);
+    if (opts.color) cell.setFontColor(opts.color);
+    if (opts.bold) cell.setFontWeight('bold');
+    if (opts.size) cell.setFontSize(opts.size);
+    return cell;
+  };
+  const section = (row, title, color) => merge(row, 1, 12, title, { background: color, color: '#ffffff', bold: true, size: 12, align: 'left' });
+
+  section(75, '퍼널 상세 · 직접 문의 포함', '#37474f');
+  const directItems = [
+    ['사이트 → 문의 페이지', model.directB2bCounts[1], model.directB2bCounts[0]],
+    ['문의 페이지 → 폼 시작', model.directB2bCounts[2], model.directB2bCounts[1]],
+    ['폼 시작 → 문의 완료', model.directB2bCounts[3], model.directB2bCounts[2]],
+    ['사이트 → 문의 완료', model.directB2bCounts[3], model.directB2bCounts[0]],
+  ];
+  directItems.forEach((item, index) => {
+    const column = index * 3 + 1;
+    merge(76, column, 3, item[0], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+    merge(77, column, 3, safeRate(item[1], item[2]), { background: '#ffffff', color: colors[index], bold: true, size: 17, format: '0.0%' });
+    merge(78, column, 3, `${item[1]} / ${item[2]} 세션`, { background: '#ffffff', color: '#5e6b63', bold: true, size: 9 });
+    merge(79, column, 3, index === 3 ? '전체 B2B 전환율' : '직전 단계 기준', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+  });
+
+  section(81, '페이지별 Scroll Depth', '#37474f');
+  ['페이지', '방문 세션', '25% 도달', '50% 도달', '75% 도달', '90% 도달'].forEach((label, index) => {
+    merge(82, index * 2 + 1, 2, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+  });
+  model.pageDefinitions.forEach((page, index) => {
+    const row = 83 + index;
+    const sessions = Object.keys(model.pageStats[page.key].sessions).length;
+    const values = [page.label, sessions].concat([25, 50, 75, 90].map((depth) => {
+      const count = Object.keys(model.scrollStats[page.key][depth]).length;
+      return `${count} · ${(safeRate(count, sessions) * 100).toFixed(1)}%`;
+    }));
+    values.forEach((value, valueIndex) => merge(row, valueIndex * 2 + 1, 2, value, {
+      background: index % 2 ? '#fffaf5' : '#ffffff', color: valueIndex === 0 ? '#15372b' : '#333333', bold: valueIndex < 2, size: 9,
+    }));
+  });
+  merge(90, 1, 12, 'Scroll Depth는 신규 측정 표본이 충분히 쌓일 때까지 기술 진단용으로만 사용합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+
+  section(92, '홈페이지 주요 Section 도달', '#ef5f18');
+  model.sectionNames.forEach((name, index) => {
+    const column = index * 2 + 1;
+    const count = Object.keys(model.sectionSessions[name]).length;
+    merge(93, column, 2, ({ proof: 'Proof', products: 'Products', field_story: 'Field Story', support: 'Support', contact: 'Contact' }[name]), { background: colors[index], color: '#ffffff', bold: true, size: 9 });
+    merge(94, column, 2, count, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
+    merge(95, column, 2, safeRate(count, model.homeSessions), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
+  });
+  merge(93, 11, 2, '홈 방문', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
+  merge(94, 11, 2, model.homeSessions, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
+  merge(95, 11, 2, '기준 세션', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+  merge(96, 1, 12, '섹션 50% 이상이 약 1초 유지된 경우만 동일 page_view당 1회 기록합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+
+  section(98, '방문 시간대 · 신규 스키마', '#ef5f18');
+  ['시간대', '방문 세션', '출시 응원 완료', 'B2B 문의 완료'].forEach((label, index) => {
+    merge(99, index * 3 + 1, 3, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
+  });
+  const labels = { morning: 'Morning · 05–11시', afternoon: 'Afternoon · 12–16시', evening: 'Evening · 17–21시', night: 'Night · 22–04시', unknown: '미확인' };
+  model.daypartKeys.forEach((key, index) => {
+    const row = 100 + index;
+    const values = [labels[key], model.daypartCounts[key].sessions, model.daypartCounts[key].support, model.daypartCounts[key].b2b];
+    values.forEach((value, valueIndex) => merge(row, valueIndex * 3 + 1, 3, value, {
+      background: index % 2 ? '#fffaf5' : '#ffffff', color: valueIndex === 0 ? '#15372b' : '#333333', bold: valueIndex === 0 || valueIndex > 1, size: 9, format: valueIndex ? '#,##0' : 'General',
+    }));
+  });
+
+  section(107, '데이터 품질 체크', '#15372b');
+  const v2State = model.end < new Date('2026-08-10T09:00:00.000Z') ? '수집 시작 전' : model.v2EventCount ? '신규 스키마 수집 중' : '실제 0건 또는 전송 대기';
+  const quality = [
+    ['분석 기간', `${Utilities.formatDate(model.start, TIME_ZONE, 'yyyy-MM-dd')} ~ ${Utilities.formatDate(model.end, TIME_ZONE, 'yyyy-MM-dd')}`],
+    ['퍼널 기준', '고유 세션 · 시간 순차 통과'],
+    ['퍼널 수집', '2026-08-10 18:00부터'],
+    ['시간대 확인', `${model.totalSessions - model.daypartCounts.unknown.sessions} / ${model.totalSessions}세션`],
+    ['신규 이벤트', v2State],
+    ['Legacy 제품', model.legacyProductDataExists ? '존재 · 별도 표시' : '현재 기간 없음'],
+    ['표본 상태', model.totalSessions < 30 ? '판단 보류' : model.totalSessions < 100 ? '방향 참고' : '추세 확인 가능'],
+    ['리드 정합성', `Sheet1 ${model.pipelineCounts[0]}건 · 이벤트 ${model.directB2bCounts[3]}세션`],
+  ];
+  quality.forEach((item, index) => {
+    const row = 108 + Math.floor(index / 2);
+    const column = index % 2 ? 7 : 1;
+    merge(row, column, 2, item[0], { background: '#eceff1', color: '#15372b', bold: true, size: 8 });
+    merge(row, column + 2, 4, item[1], { background: '#ffffff', color: '#333333', size: 8, align: 'left' });
+  });
+  detail.setRowHeights(75, 37, 24);
+  [75, 81, 92, 98, 107].forEach((row) => detail.setRowHeight(row, 28));
 }

@@ -117,14 +117,15 @@ assert.ok(
 assert.match(appsScriptSource, /cell\.setNumberFormat\(opts\.format \|\| 'General'\)/);
 assert.match(appsScriptSource, /const DASHBOARD_TOTAL_COLUMNS = 16/);
 assert.match(appsScriptSource, /const writeExplanationRows =/);
-assert.match(appsScriptSource, /writeExplanationRows\(41, '#15372b'/);
-assert.match(appsScriptSource, /writeExplanationRows\(60, '#ef5f18'/);
+assert.match(appsScriptSource, /writeExplanationRows\(32, '#15372b'/);
+assert.match(appsScriptSource, /writeExplanationRows\(24, '#ef5f18'/);
 
 // TEST 14: repeated funnel cards share rendering helpers after refactoring.
 assert.match(appsScriptSource, /const writeStageFunnel =/);
-assert.match(appsScriptSource, /const writeRateCards =/);
 assert.equal((appsScriptSource.match(/writeStageFunnel\(\{/g) || []).length, 2);
-assert.equal((appsScriptSource.match(/writeRateCards\(/g) || []).length, 2);
+assert.match(appsScriptSource, /function renderWebsiteDetailedDiagnostics_/);
+assert.match(appsScriptSource, /normalizedReferrer === 'mokda\.kr'/);
+assert.match(appsScriptSource, /format: '@'/);
 assert.match(appsScriptSource, /function updateCompleteWebsiteDashboard\(\) \{\s*return updateCompleteWebsiteDashboard_\(\);/);
 
 assert.equal(context.normalizeDashboardProduct_('K-Peño', '2'), 'K-Peño');

@@ -992,12 +992,14 @@
           <p id="institutionsTitle" class="condensed-label mb-7 text-center text-base uppercase text-mokdaOrange sm:text-lg">CON EL APOYO DE</p>
           <div class="flex items-center gap-3 sm:gap-5">
             <button id="institutionsPrev" type="button" aria-label="Anterior" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#321506]/18 bg-white text-2xl text-[#321506] transition hover:border-mokdaOrange hover:text-mokdaOrange">‹</button>
-            <div id="institutionsTrack" class="no-scrollbar flex flex-1 snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth">
-              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
-              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
-              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
-              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
-              <div aria-hidden="true" class="institution-placeholder h-20 min-w-[72%] snap-center rounded-xl border border-[#321506]/10 sm:min-w-[32%] lg:min-w-[23%]"></div>
+            <div id="institutionsTrack" class="no-scrollbar flex flex-1 gap-4 overflow-x-auto" style="mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);">
+              <div data-institutions-group class="flex shrink-0 gap-4">
+                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
+                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
+                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
+                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
+                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
+              </div>
             </div>
             <button id="institutionsNext" type="button" aria-label="Siguiente" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#321506]/18 bg-white text-2xl text-[#321506] transition hover:border-mokdaOrange hover:text-mokdaOrange">›</button>
           </div>
@@ -2228,24 +2230,66 @@
         renderPage();
       });
 
-      ['institutionsPrev', 'institutionsNext'].forEach((id) => {
-        document.getElementById(id)?.addEventListener('click', () => {
-          const track = document.getElementById('institutionsTrack');
-          if (!track) return;
-          const direction = id === 'institutionsNext' ? 1 : -1;
+      let institutionsMarqueeFrame = null;
+      function initInstitutionsMarquee() {
+        const track = document.getElementById('institutionsTrack');
+        const group = track?.querySelector('[data-institutions-group]');
+        if (!track || !group || group.dataset.cloned === 'true') return;
+
+        const clone = group.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.removeAttribute('data-institutions-group');
+        track.appendChild(clone);
+        group.dataset.cloned = 'true';
+
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let paused = false;
+        let lastTime = null;
+        const loopWidth = () => group.scrollWidth + 16;
+        const normalize = () => {
+          const width = loopWidth();
+          if (width <= 0) return;
+          while (track.scrollLeft >= width) track.scrollLeft -= width;
+          while (track.scrollLeft < 0) track.scrollLeft += width;
+        };
+        const tick = (time) => {
+          if (lastTime === null) lastTime = time;
+          const elapsed = Math.min(32, time - lastTime);
+          lastTime = time;
+          if (!paused && !document.hidden && !reducedMotion.matches) {
+            track.scrollLeft += elapsed * 0.035;
+            normalize();
+          }
+          institutionsMarqueeFrame = requestAnimationFrame(tick);
+        };
+        const nudge = (direction) => {
+          paused = true;
           track.scrollBy({ left: direction * Math.max(240, track.clientWidth * 0.72), behavior: 'smooth' });
-        });
-      });
+          window.setTimeout(() => { normalize(); paused = false; }, 650);
+        };
+
+        document.getElementById('institutionsPrev')?.addEventListener('click', () => nudge(-1));
+        document.getElementById('institutionsNext')?.addEventListener('click', () => nudge(1));
+        track.addEventListener('mouseenter', () => { paused = true; });
+        track.addEventListener('mouseleave', () => { paused = false; });
+        track.addEventListener('pointerdown', () => { paused = true; });
+        track.addEventListener('pointerup', () => { normalize(); paused = false; });
+        track.addEventListener('pointercancel', () => { normalize(); paused = false; });
+        reducedMotion.addEventListener?.('change', () => { lastTime = null; });
+        institutionsMarqueeFrame = requestAnimationFrame(tick);
+      }
 
       window.addEventListener('pagehide', () => {
         if (heroInterval) clearInterval(heroInterval);
         proofCarouselController?.stop();
+        if (institutionsMarqueeFrame) cancelAnimationFrame(institutionsMarqueeFrame);
       });
 
       createHeroCarousel();
       bindHeroScroll();
       initProofCarousel();
       initSupportCounter();
+      initInstitutionsMarquee();
       renderPage();
       loadHomepageSupport();
       window.MOKDA_ACCORDION.init(document.getElementById('homeFaqList'));

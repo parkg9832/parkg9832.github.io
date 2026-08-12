@@ -2038,8 +2038,9 @@ function updateCompleteWebsiteDashboard_() {
   dashboardArea.breakApart();
   dashboardArea.clearContent();
   dashboardArea.clearFormat();
-  dashboard.getRange('A1').setValue('MOKDA 홈페이지 통합 대시보드');
-  dashboard.getRange('A2').setValue('소비자 출시 수요와 B2B 바이어 리드를 분리합니다. | 사용자·세션·페이지뷰 구분 · verification·내부 방문 제외');
+  dashboard.getRange('A1:P2').breakApart();
+  dashboard.getRange('A1:P1').merge().setValue('MOKDA 홈페이지 통합 대시보드');
+  dashboard.getRange('A2:P2').merge().setValue('소비자 출시 수요와 B2B 바이어 리드를 분리합니다. | 사용자·세션·페이지뷰 구분 · verification·내부 방문 제외');
   dashboard.setColumnWidths(1, DASHBOARD_DATA_COLUMNS, 88);
   dashboard.setColumnWidths(DASHBOARD_EXPLANATION_COLUMN, 4, 92);
 
@@ -2058,6 +2059,7 @@ function updateCompleteWebsiteDashboard_() {
     return cell;
   };
   const section = (row, title, color) => merge(row, 1, DASHBOARD_DATA_COLUMNS, title, { background: color, color: '#ffffff', bold: true, size: 12, align: 'left' });
+  const wideSection = (row, title, color) => merge(row, 1, DASHBOARD_TOTAL_COLUMNS, title, { background: color, color: '#ffffff', bold: true, size: 12, align: 'left' });
   const colors = ['#ef5f18', '#f39c1f', '#4f9b61', '#2f6f5e', '#15372b'];
   const writeCards = (labelRow, items, cardWidth) => {
     items.forEach((item, index) => {
@@ -2095,7 +2097,7 @@ function updateCompleteWebsiteDashboard_() {
     });
   };
 
-  section(5, '전체 사이트 핵심 지표', '#15372b');
+  wideSection(5, '전체 사이트 핵심 지표', '#15372b');
   writeCards(6, [
     { label: '사용자 수', value: totalUsers, note: '고유 익명 사용자', accent: '#ef5f18', format: '#,##0' },
     { label: '방문 세션', value: totalSessions, note: '30분 자체 세션', accent: '#ef5f18', format: '#,##0' },
@@ -2109,7 +2111,7 @@ function updateCompleteWebsiteDashboard_() {
   ], 4);
 
   const homeSessions = Object.keys(pageStats.home.sessions).length;
-  section(13, '출시 응원 수요', '#ef5f18');
+  wideSection(13, '출시 응원 수요', '#ef5f18');
   writeWideCards(14, [
     { label: '기간 내 응원', value: periodSupportTotal, note: '현재 적용 기간', accent: '#ef5f18', format: '#,##0' },
     { label: '전체 누적 응원', value: allSupportTotal, note: '확정 응원 누적', accent: '#ef5f18', format: '#,##0' },
@@ -2117,7 +2119,7 @@ function updateCompleteWebsiteDashboard_() {
     { label: '최종 갱신', value: Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm'), note: '자동 갱신', size: 11, format: '@' },
   ]);
 
-  section(18, '국가별 확정 응원', '#37474f');
+  wideSection(18, '국가별 확정 응원', '#37474f');
   countryCodes.forEach((code, index) => {
     const startColumn = index * 4 + 1;
     merge(19, startColumn, 4, countryLabels[code], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
@@ -2187,7 +2189,7 @@ function updateCompleteWebsiteDashboard_() {
   ]);
   const topAcquisition = acquisitionCounts.slice(0, 2);
   const namedProductCounts = ['K-Peño', 'Para Carnes'].map((product) => [product, Object.keys(productSessions[product]).length]);
-  section(45, '유입·제품 관심 요약', '#15372b');
+  wideSection(45, '유입·제품 관심 요약', '#15372b');
   writeWideCards(46, [
     { label: '유입 1위', value: topAcquisition[0] ? topAcquisition[0][1] : 0, note: topAcquisition[0] ? topAcquisition[0][0] : '-', format: '#,##0' },
     { label: '유입 2위', value: topAcquisition[1] ? topAcquisition[1][1] : 0, note: topAcquisition[1] ? topAcquisition[1][0] : '-', format: '#,##0' },

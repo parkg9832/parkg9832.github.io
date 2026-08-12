@@ -126,6 +126,8 @@ assert.equal((appsScriptSource.match(/writeStageFunnel\(\{/g) || []).length, 2);
 assert.match(appsScriptSource, /function renderWebsiteDetailedDiagnostics_/);
 assert.match(appsScriptSource, /normalizedReferrer === 'mokda\.kr'/);
 assert.match(appsScriptSource, /format: '@'/);
+assert.match(appsScriptSource, /const wideSection =/);
+assert.match(appsScriptSource, /getRange\('A1:P1'\)\.merge\(\)/);
 assert.match(appsScriptSource, /function updateCompleteWebsiteDashboard\(\) \{\s*return updateCompleteWebsiteDashboard_\(\);/);
 
 assert.equal(context.normalizeDashboardProduct_('K-Peño', '2'), 'K-Peño');

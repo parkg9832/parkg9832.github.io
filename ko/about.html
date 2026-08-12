@@ -194,31 +194,8 @@
         color: #fff3e5;
       }
 
-      .compact-logo-card {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 1.25rem;
-        text-align: left;
-      }
-
-      .compact-logo-card img {
-        width: min(9.5rem, 34vw);
-      }
-
       .brand-color-card {
         min-height: 0;
-      }
-
-      @media (min-width: 1024px) {
-        .compact-logo-card {
-          min-height: 7.5rem;
-          padding: 1rem 1.5rem !important;
-        }
-
-        .compact-logo-card img {
-          width: 7.5rem;
-        }
       }
 
       @media (max-width: 767px) {
@@ -251,11 +228,6 @@
         .story-copy p:last-child {
           margin-top: 1.5rem;
           padding-left: 1rem;
-        }
-
-        .compact-logo-card {
-          min-height: 8.5rem;
-          padding: 1.25rem;
         }
 
         .brand-color-card {
@@ -398,13 +370,6 @@
                 <figcaption id="primaryLogoLabel" class="condensed-label absolute left-6 top-6 text-base uppercase text-[#f8dfc4]/70 sm:left-8 sm:top-8"></figcaption>
                 <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[430px] object-contain" />
               </figure>
-              <figure class="compact-logo-card surface-depth rounded-[1.5rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:p-7">
-                <figcaption>
-                  <span id="compactLogoLabel" class="condensed-label block text-base uppercase text-mokdaOrange"></span>
-                  <span id="compactLogoBody" class="mt-3 block max-w-[19rem] break-keep text-sm font-bold leading-6 text-[#321506]/68"></span>
-                </figcaption>
-                <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA compact logo" class="h-auto object-contain" />
-              </figure>
             </div>
             <div data-reveal style="--reveal-delay: 120ms" class="grid content-start gap-5">
               <article class="surface-depth rounded-[1.5rem] bg-white/72 p-6 sm:p-8 lg:p-9">
@@ -520,20 +485,19 @@
             kicker: 'Nuestra trayectoria',
             title: 'De Corea a Latinoamérica',
             years: [
-              { year: '2024', items: ['Presentación de Salsa Coreana, Lima, Perú'] },
-              { year: '2025', items: ['Desarrollo inicial de Salsa Coreana'] },
               {
-                year: '2026',
+                year: '2025',
                 items: [
-                  { text: 'Selección - Programa de apoyo a emprendimientos H.I.N.T, Gimje', amount: '₩15,000,000' },
-                  { text: 'Selección - Programa de Jóvenes Innovadores, Jeonbuk', amount: '₩13,500,000' },
-                  { text: 'Selección - Apoyo a prototipos de contenidos, Jeonbuk', amount: '₩12,000,000' },
-                  'Registro empresarial, Corea',
-                  'Selección - Programa Jump-Up del Centro de Economía Creativa e Innovación de Jeonbuk',
-                  'Selección - Programa Sales-Up del Centro de Economía Creativa e Innovación de Jeonbuk',
-                  'Selección - Programa Trade Master YOUTH de la Agencia de Negocios de Jeonbuk',
+                  { month: '04', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa H.I.N.T' },
+                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa de Jóvenes Innovadores de Ciudades y Condados' },
+                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Agencia de Convergencia de Contenidos de Jeonbuk · Apoyo a la producción de prototipos' },
+                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa Sales-Up' },
+                  { month: '08', text: 'Selección en un programa de apoyo a jóvenes startups en etapa inicial', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa Jump-Up' },
+                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Agencia de Negocios de Jeonbuk · Trade Master Youth' },
+                  { month: '08', text: 'Lanzamiento de dos prototipos de Salsa Coreana', detail: 'K-Peño / Para Carnes' },
                 ],
               },
+              { year: '2026', items: [{ month: '09', text: 'Participación en Expoalimentaria Perú 2026' }] },
             ],
           },
         },
@@ -585,20 +549,19 @@
             kicker: 'Our Journey',
             title: '한국에서 라틴아메리카로',
             years: [
-              { year: '2024', items: ['Salsa Coreana 제품 시연, 페루 리마'] },
-              { year: '2025', items: ['Salsa Coreana 초기 제품 개발'] },
               {
-                year: '2026',
+                year: '2025',
                 items: [
-                  { text: '김제시 예비창업지원사업 H.I.N.T 선정', amount: '₩15,000,000' },
-                  { text: '전북 시군청년혁신가 예비창업지원사업 선정', amount: '₩13,500,000' },
-                  { text: '전북 콘텐츠코리아랩 창제작자 시제품 제작 지원사업 선정', amount: '₩12,000,000' },
-                  '대한민국 사업자 등록',
-                  '전북창조경제혁신센터 점프-업 지원사업 선정',
-                  '전북창조경제혁신센터 세일즈-업 지원사업 선정',
-                  '전북경제통상진흥원 통상마스터 YOUTH 지원사업 선정',
+                  { month: '04', text: '청년예비창업 지원사업 선정', detail: '전북창조경제혁신센터, H.I.N.T 지원사업' },
+                  { month: '06', text: '청년예비창업 지원사업 선정', detail: '전북창조경제혁신센터, 시군청년혁신가 지원사업' },
+                  { month: '06', text: '청년예비창업 지원사업 선정', detail: '전북콘텐츠융합진흥원, 시제품 제작 지원사업' },
+                  { month: '08', text: '수출 기업 지원사업 선정', detail: '전북창조경제혁신센터, 세일즈업 지원사업' },
+                  { month: '08', text: '청년초기창업 지원사업 선정', detail: '전북창조경제혁신센터, 점프업 지원사업' },
+                  { month: '08', text: '수출 기업 지원사업 선정', detail: '전북경제통상진흥원, 통상마스터Youth' },
+                  { month: '08', text: 'Salsa Coreana 시제품 2종 출시', detail: 'K-Peño / Para Carnes' },
                 ],
               },
+              { year: '2026', items: [{ month: '09', text: 'Expoalimentaria Perú 2026 박람회 참가' }] },
             ],
           },
         },
@@ -650,20 +613,19 @@
             kicker: 'Our Journey',
             title: 'From Korea to Latin America',
             years: [
-              { year: '2024', items: ['Salsa Coreana product showcase, Lima, Peru'] },
-              { year: '2025', items: ['Initial development of Salsa Coreana'] },
               {
-                year: '2026',
+                year: '2025',
                 items: [
-                  { text: 'Selected - H.I.N.T Pre-Startup Support Program, Gimje', amount: '₩15,000,000' },
-                  { text: 'Selected - Young Innovators Pre-Startup Program, Jeonbuk', amount: '₩13,500,000' },
-                  { text: 'Selected - Content Prototype Support Program, Jeonbuk', amount: '₩12,000,000' },
-                  'Business registration, Korea',
-                  'Selected - Jeonbuk Center for Creative Economy & Innovation Jump-Up Program',
-                  'Selected - Jeonbuk Center for Creative Economy & Innovation Sales-Up Program',
-                  'Selected - Jeonbuk Business Agency Trade Master YOUTH Program',
+                  { month: '04', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · H.I.N.T Program' },
+                  { month: '06', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · City and County Young Innovators Program' },
+                  { month: '06', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Content Convergence Agency · Prototype Production Support Program' },
+                  { month: '08', text: 'Selected for an export business support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · Sales-Up Program' },
+                  { month: '08', text: 'Selected for an early-stage youth startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · Jump-Up Program' },
+                  { month: '08', text: 'Selected for an export business support program', detail: 'Jeonbuk Business Agency · Trade Master Youth' },
+                  { month: '08', text: 'Launched two Salsa Coreana prototypes', detail: 'K-Peño / Para Carnes' },
                 ],
               },
+              { year: '2026', items: [{ month: '09', text: 'Participating in Expoalimentaria Perú 2026' }] },
             ],
           },
         },
@@ -707,8 +669,6 @@
         setText('logoKicker', copy.logo.kicker);
         setText('logoTitle', copy.logo.title);
         setText('primaryLogoLabel', copy.logo.primaryLabel);
-        setText('compactLogoLabel', copy.logo.compactLabel);
-        setText('compactLogoBody', copy.logo.compactBody);
         setText('logoConceptLabel', copy.logo.conceptLabel);
         setHTML('motiveBody', copy.logo.motiveBody.map((item) => `<p>${item}</p>`).join(''));
         setText('greenTitle', copy.logo.green.title);
@@ -731,19 +691,19 @@
           copy.history.years
             .map(
               (group, index) => `
-                <article data-reveal style="--reveal-delay: ${index * 90}ms" class="grid gap-5 border-t border-[#321506]/18 py-7 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[11rem_minmax(0,1fr)] lg:gap-12">
+                <article data-reveal style="--reveal-delay: ${index * 90}ms" class="grid gap-5 overflow-visible border-t border-[#321506]/18 py-7 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
                   <div class="sm:pt-1">
-                    <p class="display-latin text-6xl leading-none text-mokdaOrange sm:text-7xl lg:text-8xl">${group.year}</p>
+                    <p class="display-latin whitespace-nowrap text-6xl leading-none text-mokdaOrange sm:text-7xl lg:text-[5.5rem] xl:text-8xl">${group.year}</p>
                   </div>
                   <div class="divide-y divide-[#321506]/14 border-y border-[#321506]/14 sm:border-t-0">
                     ${group.items
                       .map(
                         (item, itemIndex) => `
                           <div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-3 py-4 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-5">
-                            <span class="condensed-label pt-1 text-sm text-mokdaOrange">${String(itemIndex + 1).padStart(2, '0')}</span>
+                            <span class="condensed-label pt-1 text-sm text-mokdaOrange">${typeof item === 'string' ? String(itemIndex + 1).padStart(2, '0') : item.month || String(itemIndex + 1).padStart(2, '0')}</span>
                             <div>
                               <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${typeof item === 'string' ? item : item.text}</p>
-                              ${typeof item === 'string' || !item.amount ? '' : `<p class="mt-1 text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">${item.amount}</p>`}
+                              ${typeof item === 'string' || !(item.detail || item.amount) ? '' : `<p class="mt-1 break-keep text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">(${item.detail || item.amount})</p>`}
                             </div>
                           </div>
                         `,
@@ -790,6 +750,6 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260811-1"></script>
+    <script src="./site-header.js?v=20260812-2"></script>
   </body>
 </html>

@@ -100,9 +100,22 @@ assert.equal(context.isInternalAnalyticsVisitor_('public-visitor'), false);
 assert.match(appsScriptSource, /isInternalAnalyticsVisitor_\(row\[columns\.visitorId\]\)/);
 assert.match(appsScriptSource, /isInternalAnalyticsVisitor_\(row\[5\]\)/);
 
+// TEST 12: GA4 loads only after privacy, host, and internal-browser guards have passed.
+assert.match(analyticsSource, /G-TGLJ91TKZF/);
+assert.match(analyticsSource, /window\.gtag\('config', ga4MeasurementId, \{ send_page_view: true \}\)/);
+assert.match(analyticsSource, /googletagmanager\.com\/gtag\/js\?id=/);
+assert.ok(
+  analyticsSource.indexOf("MOKDA_ANALYTICS_STATUS.reason = 'internal_visitor'") <
+    analyticsSource.indexOf('initializeGa4();'),
+);
+assert.ok(
+  analyticsSource.indexOf("MOKDA_ANALYTICS_STATUS.reason = 'privacy_preference'") <
+    analyticsSource.indexOf('initializeGa4();'),
+);
+
 assert.equal(context.normalizeDashboardProduct_('K-Peño', '2'), 'K-Peño');
 assert.equal(context.normalizeDashboardProduct_('Para Carnes', '2'), 'Para Carnes');
 assert.equal(context.normalizeDashboardProduct_('Original', 'legacy'), 'Legacy Product');
 assert.equal(context.normalizeDashboardProduct_('Soy Sauce', '2'), '제품 미지정');
 
-console.log('analytics regression tests passed (11 scenarios)');
+console.log('analytics regression tests passed (12 scenarios)');

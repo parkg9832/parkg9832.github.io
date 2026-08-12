@@ -2,7 +2,7 @@
 
 ## 현재 측정 구조
 
-- 저장소에는 GA4 Measurement ID 또는 GTM 컨테이너가 없다.
+- GA4 웹 스트림 `MOKDA Website`가 Measurement ID `G-TGLJ91TKZF`로 연결되어 있다.
 - 현재 운영 데이터는 `site-analytics.js`가 익명 이벤트를 Google Apps Script로 보내고, `Funnel Events`·`Demand Support`·`Sheet1`을 통합해 Google Sheet 대시보드에서 집계한다.
 - `Users`는 고유 익명 방문자 ID, `Sessions`는 30분 유휴 만료 자체 세션, `Pageviews`는 전체 `page_view` 수다.
 - 자체 세션은 GA4 세션과 같은 값이 아니다. 화면에서는 `방문 세션`으로 표시한다.
@@ -41,7 +41,7 @@
 - 전송 허용 호스트는 `mokda.kr`, `www.mokda.kr`뿐이다.
 - localhost, 개발 서버, preview/staging에서는 분석이 꺼진다.
 - `utm_medium=verification` 이벤트와 응원은 대시보드 집계에서 제외한다.
-- 내부 운영자는 사용하는 브라우저마다 `?mokda_internal=1`을 한 번 열어 해당 브라우저의 분석 전송을 중지한다.
+- 내부 운영자는 사용하는 브라우저마다 `?mokda_internal=1`을 한 번 열어 자체 분석과 GA4 전송을 모두 중지한다.
 - 내부 방문 제외를 해제할 때만 `?mokda_internal=0`을 사용한다.
 - 고정 사무실 IP는 프런트엔드에서 판별하지 않는다.
 
@@ -49,13 +49,13 @@
 
 GA4를 실제 연결할 때 아래 항목은 관리자 화면에서 별도로 설정한다.
 
-1. Measurement ID 또는 GTM 컨테이너 연결
-2. Custom Dimension: `visitor_daypart`, `section_name`, `product_name`, `event_schema_version`
-3. Custom Metric: `scroll_percent`
-4. Internal Traffic: 사무실 고정 IP 규칙과 데이터 필터
+1. Custom Dimension: `visitor_daypart`, `section_name`, `product_name`, `event_schema_version`
+2. Custom Metric: `scroll_percent`
+3. Key Event: `generate_lead`, `support_submit`
+4. Internal Traffic: 필요할 때만 사무실 고정 IP 규칙과 데이터 필터 추가
 5. Enhanced Measurement: 기본 `scroll` 활성 여부 확인
 
-MOKDA의 커스텀 이벤트는 `scroll_depth`이므로 GA4 기본 `scroll`과 이벤트명이 겹치지 않는다. GA4 태그가 설치되면 `site-analytics.js`는 핵심 커스텀 이벤트를 `gtag`에도 전달한다.
+MOKDA의 커스텀 이벤트는 `scroll_depth`이므로 GA4 기본 `scroll`과 이벤트명이 겹치지 않는다. `site-analytics.js`는 GA4의 자동 `page_view`는 한 번만 사용하고, 핵심 커스텀 이벤트를 `gtag`에도 전달한다. 추정 위치 기반 국가는 자체 대시보드의 확정 국가 데이터로 사용하지 않는다.
 
 ## 홈페이지 운영 설정
 

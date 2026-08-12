@@ -7,6 +7,7 @@
   const verificationMode = queryParameters.get('utm_medium') === 'verification';
   const internalOptOutKey = 'mokda_analytics_internal_opt_out_v1';
   const internalCommand = queryParameters.get('mokda_internal');
+  const ga4MeasurementId = 'G-TGLJ91TKZF';
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: false, reason: 'initializing' };
 
   function isInternalOptedOut() {
@@ -49,6 +50,24 @@
     window.MOKDA_ANALYTICS_STATUS.reason = 'unsupported_host';
     return;
   }
+
+  function initializeGa4() {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
+    window.gtag('js', new Date());
+    window.gtag('config', ga4MeasurementId, { send_page_view: true });
+
+    if (document.querySelector(`script[data-mokda-ga4="${ga4MeasurementId}"]`)) return;
+    const googleTag = document.createElement('script');
+    googleTag.async = true;
+    googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(ga4MeasurementId)}`;
+    googleTag.dataset.mokdaGa4 = ga4MeasurementId;
+    document.head.appendChild(googleTag);
+  }
+
+  initializeGa4();
 
   // Public, write-only Apps Script web endpoint. No secret or API key is stored in the browser.
   const endpoint =

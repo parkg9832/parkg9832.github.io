@@ -41,6 +41,8 @@
 - 전송 허용 호스트는 `mokda.kr`, `www.mokda.kr`뿐이다.
 - localhost, 개발 서버, preview/staging에서는 분석이 꺼진다.
 - `utm_medium=verification` 이벤트와 응원은 대시보드 집계에서 제외한다.
+- 내부 운영자는 사용하는 브라우저마다 `?mokda_internal=1`을 한 번 열어 해당 브라우저의 분석 전송을 중지한다.
+- 내부 방문 제외를 해제할 때만 `?mokda_internal=0`을 사용한다.
 - 고정 사무실 IP는 프런트엔드에서 판별하지 않는다.
 
 ## GA4 관리자에서 사람이 설정할 항목

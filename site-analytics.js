@@ -5,7 +5,35 @@
   const queryParameters = new URLSearchParams(window.location.search);
   const debugMode = queryParameters.get('analytics_debug') === '1';
   const verificationMode = queryParameters.get('utm_medium') === 'verification';
+  const internalOptOutKey = 'mokda_analytics_internal_opt_out_v1';
+  const internalCommand = queryParameters.get('mokda_internal');
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: false, reason: 'initializing' };
+
+  try {
+    if (internalCommand === '1') window.localStorage.setItem(internalOptOutKey, '1');
+    if (internalCommand === '0') window.localStorage.removeItem(internalOptOutKey);
+  } catch (error) {
+    // Continue with the current browser state when storage is unavailable.
+  }
+
+  if (internalCommand === '1' || internalCommand === '0') {
+    queryParameters.delete('mokda_internal');
+    const cleanQuery = queryParameters.toString();
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${cleanQuery ? `?${cleanQuery}` : ''}${window.location.hash}`,
+    );
+  }
+
+  try {
+    if (window.localStorage.getItem(internalOptOutKey) === '1') {
+      window.MOKDA_ANALYTICS_STATUS.reason = 'internal_visitor';
+      return;
+    }
+  } catch (error) {
+    // Tracking continues when browser storage cannot be read.
+  }
 
   if (!debugMode && (navigator.doNotTrack === '1' || navigator.globalPrivacyControl === true)) {
     window.MOKDA_ANALYTICS_STATUS.reason = 'privacy_preference';

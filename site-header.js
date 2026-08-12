@@ -2,7 +2,7 @@
   if (!window.MOKDA_ANALYTICS_LOADING) {
     window.MOKDA_ANALYTICS_LOADING = true;
     const analyticsScript = document.createElement('script');
-    analyticsScript.src = '/site-analytics.js?v=20260810-6';
+    analyticsScript.src = '/site-analytics.js?v=20260812-7';
     analyticsScript.async = true;
     document.head.appendChild(analyticsScript);
   }

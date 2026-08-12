@@ -82,9 +82,18 @@ assert.equal(evaluate(supportSuccess, b2bDirectSteps, minimumDate).length, 0);
 assert.match(supportSource, /if \(result\.saved === true\)/);
 assert.match(contactSource, /result\.saved !== true/);
 
+// TEST 10: an internal browser opts out before any analytics queue is created.
+assert.match(analyticsSource, /mokda_analytics_internal_opt_out_v1/);
+assert.match(analyticsSource, /internalCommand === '1'/);
+assert.match(analyticsSource, /MOKDA_ANALYTICS_STATUS\.reason = 'internal_visitor'/);
+assert.ok(
+  analyticsSource.indexOf("MOKDA_ANALYTICS_STATUS.reason = 'internal_visitor'") <
+    analyticsSource.indexOf('const queue = []'),
+);
+
 assert.equal(context.normalizeDashboardProduct_('K-Peño', '2'), 'K-Peño');
 assert.equal(context.normalizeDashboardProduct_('Para Carnes', '2'), 'Para Carnes');
 assert.equal(context.normalizeDashboardProduct_('Original', 'legacy'), 'Legacy Product');
 assert.equal(context.normalizeDashboardProduct_('Soy Sauce', '2'), '제품 미지정');
 
-console.log('analytics regression tests passed (9 scenarios)');
+console.log('analytics regression tests passed (10 scenarios)');

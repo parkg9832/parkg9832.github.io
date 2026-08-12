@@ -40,8 +40,7 @@
       navigation: 'Navegación principal',
       menuLabel: 'MENÚ',
       openMenu: 'Abrir menú',
-      closeMenu: 'Cerrar menú',
-      productsCta: 'VER SALSA COREANA'
+      closeMenu: 'Cerrar menú'
     },
     ko: {
       brand: {
@@ -59,8 +58,7 @@
       navigation: '주요 메뉴',
       menuLabel: 'MENU',
       openMenu: '메뉴 열기',
-      closeMenu: '메뉴 닫기',
-      productsCta: 'SALSA COREANA 보기'
+      closeMenu: '메뉴 닫기'
     },
     en: {
       brand: {
@@ -78,8 +76,7 @@
       navigation: 'Primary navigation',
       menuLabel: 'MENU',
       openMenu: 'Open menu',
-      closeMenu: 'Close menu',
-      productsCta: 'VIEW SALSA COREANA'
+      closeMenu: 'Close menu'
     }
   }[language];
 
@@ -338,35 +335,10 @@
 
     .mokda-mobile-menu-footer {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-top: auto;
-      padding-top: 28px;
-    }
-
-    .mokda-mobile-menu-cta {
-      display: inline-flex;
-      min-height: 52px;
       align-items: center;
       justify-content: center;
-      gap: 18px;
-      padding: 0 22px;
-      color: #321506;
-      background: #ef5f18;
-      border-radius: 10px;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.01em;
-      text-decoration: none;
-      transition: transform 220ms ease, background-color 220ms ease;
-    }
-
-    .mokda-mobile-menu-cta:hover,
-    .mokda-mobile-menu-cta:focus-visible {
-      background: #fff8ef;
-      transform: translateY(-2px);
+      margin-top: auto;
+      padding-top: 28px;
     }
 
     .mokda-mobile-menu-social {
@@ -430,8 +402,7 @@
         grid-template-columns: 1fr;
       }
 
-      .mokda-mobile-menu-footer,
-      .mokda-mobile-menu-cta {
+      .mokda-mobile-menu-footer {
         width: 100%;
       }
     }
@@ -812,9 +783,6 @@
           `).join('')}
         </div>
         <div class="mokda-mobile-menu-footer">
-          <a class="mokda-mobile-menu-cta" href="${hrefs.products}">
-            ${copy.productsCta}<span aria-hidden="true">→</span>
-          </a>
           <div class="mokda-mobile-menu-social" aria-label="MOKDA SNS">
             <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://www.tiktok.com/@salsa_coreana" target="_blank" rel="noopener noreferrer">TikTok</a>

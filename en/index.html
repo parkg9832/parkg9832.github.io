@@ -682,8 +682,86 @@
       }
 
       @media (max-width: 767px) {
+        .hero-title {
+          max-width: 100%;
+          font-size: clamp(3.65rem, 21vw, 5rem);
+          line-height: 0.94;
+        }
+
+        .hero-copy [data-hero-subtitle] {
+          max-width: min(100%, 32rem);
+          padding: 0.65rem 0.85rem;
+          border: 1px solid rgba(50, 21, 6, 0.08);
+          border-radius: 0.8rem;
+          background: rgba(255, 248, 239, 0.82);
+          box-shadow: 0 8px 24px rgba(50, 21, 6, 0.08);
+          color: #321506;
+          font-size: clamp(0.9rem, 4vw, 1rem);
+          font-weight: 700;
+          line-height: 1.55;
+          -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+        }
+
+        #proofTitle {
+          max-width: 100%;
+          font-size: clamp(1.75rem, 9vw, 2.25rem) !important;
+          line-height: 0.98;
+        }
+
+        #storyBody {
+          color: rgba(248, 223, 196, 0.84);
+        }
+
+        #proofList > article {
+          min-width: 0;
+          padding-right: 0.2rem;
+          padding-left: 0.2rem;
+        }
+
+        #proofViews,
+        #proofPrograms,
+        #proofExpo {
+          padding-right: 0.25rem;
+          padding-left: 0.25rem;
+          color: rgba(248, 223, 196, 0.84);
+          font-size: clamp(0.5rem, 2.35vw, 0.6875rem);
+          line-height: 1.4;
+          letter-spacing: 0;
+          overflow-wrap: anywhere;
+          word-break: normal;
+        }
+
         .product-food-image {
           object-position: center top;
+        }
+      }
+
+      @media (max-width: 359px) {
+        .hero-content {
+          padding-right: 0.75rem;
+          padding-left: 0.75rem;
+        }
+
+        .hero-title {
+          font-size: clamp(3.35rem, 21vw, 4.65rem);
+        }
+
+        #proofTitle {
+          font-size: clamp(1.6rem, 9vw, 1.9rem) !important;
+        }
+
+        #productsTitle,
+        #productLineTitle {
+          font-size: clamp(2.8rem, 17vw, 3.5rem) !important;
+          line-height: 0.88 !important;
+        }
+
+        #faqTitle,
+        #b2bTitle,
+        #voicesTitle {
+          font-size: clamp(2.25rem, 13vw, 3rem) !important;
+          line-height: 0.94 !important;
         }
       }
     </style>
@@ -2294,7 +2372,7 @@
       updateHeroCarousel();
       restartHeroCarousel();
     </script>
-    <script src="./site-header.js?v=20260812-2"></script>
+    <script src="./site-header.js?v=20260812-3"></script>
     <script src="./site-announcement.js?v=20260730-7"></script>
   </body>
 </html>

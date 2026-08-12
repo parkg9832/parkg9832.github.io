@@ -407,6 +407,44 @@
       }
     }
 
+    @media (max-width: 359px) {
+      .mokda-header-bar {
+        padding-right: 8px !important;
+        padding-left: 8px !important;
+      }
+
+      .mokda-header-bar a[aria-label="MOKDA home"] img {
+        height: 78px !important;
+      }
+
+      .mokda-header-bar > div:last-child {
+        gap: 4px !important;
+      }
+
+      .mokda-header-bar #lang-selector {
+        padding: 2px !important;
+      }
+
+      .mokda-header-bar #lang-selector .lang-btn,
+      .mokda-header-bar #lang-bg {
+        width: 30px !important;
+      }
+
+      .mokda-header-bar #menu-toggle {
+        width: 40px !important;
+        height: 40px !important;
+      }
+
+      .mokda-mobile-menu-inner {
+        padding-right: 14px;
+        padding-left: 14px;
+      }
+
+      .mokda-mobile-nav-title {
+        font-size: clamp(25px, 9vw, 32px);
+      }
+    }
+
     @media (min-width: 640px) and (max-width: 1023px) {
       .mokda-mobile-menu-inner {
         padding-top: 46px;

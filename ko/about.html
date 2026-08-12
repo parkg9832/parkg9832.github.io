@@ -338,7 +338,6 @@
             </h1>
             <p id="heroLine2" class="display-korean mt-5 break-keep text-4xl leading-none text-[#321506] sm:text-6xl lg:text-7xl"></p>
             <p id="heroBody" class="mx-auto mt-7 max-w-2xl break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:text-lg"></p>
-            <a href="#story" id="heroCta" class="about-hero-cta brand-text-link mt-7"></a>
           </div>
           <div data-reveal style="--reveal-delay: 120ms" class="relative mt-4 min-h-[285px] w-full max-w-6xl overflow-hidden rounded-t-[1.5rem] sm:min-h-[390px] lg:mt-2 lg:min-h-[460px] lg:rounded-t-[2rem]">
             <img src="./assets/images/brand-story-seoul-kfood-table.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[52%_60%]" loading="eager" fetchpriority="high" decoding="async" />
@@ -496,12 +495,12 @@
               {
                 year: '2025',
                 items: [
-                  { month: '04', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa H.I.N.T' },
-                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa de Jóvenes Innovadores de Ciudades y Condados' },
-                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Agencia de Convergencia de Contenidos de Jeonbuk · Apoyo a la producción de prototipos' },
-                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa Sales-Up' },
-                  { month: '08', text: 'Selección en un programa de apoyo a jóvenes startups en etapa inicial', detail: 'Centro de Economía Creativa e Innovación de Jeonbuk · Programa Jump-Up' },
-                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Agencia de Negocios de Jeonbuk · Trade Master Youth' },
+                  { month: '04', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa H.I.N.T' },
+                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa de Jóvenes Innovadores de Ciudades y Condados' },
+                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Jeonbuk State Contents Convergence Agency · Apoyo a la producción de prototipos' },
+                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa Sales-Up' },
+                  { month: '08', text: 'Selección en un programa de apoyo a jóvenes startups en etapa inicial', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa Jump-Up' },
+                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Jeonbuk Business Agency · Trade Master Youth' },
                   { month: '08', text: 'Lanzamiento de dos prototipos de Salsa Coreana', detail: 'K-Peño / Para Carnes' },
                 ],
               },
@@ -626,7 +625,7 @@
                 items: [
                   { month: '04', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · H.I.N.T Program' },
                   { month: '06', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · City and County Young Innovators Program' },
-                  { month: '06', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Content Convergence Agency · Prototype Production Support Program' },
+                  { month: '06', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk State Contents Convergence Agency · Prototype Production Support Program' },
                   { month: '08', text: 'Selected for an export business support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · Sales-Up Program' },
                   { month: '08', text: 'Selected for an early-stage youth startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · Jump-Up Program' },
                   { month: '08', text: 'Selected for an export business support program', detail: 'Jeonbuk Business Agency · Trade Master Youth' },
@@ -670,7 +669,6 @@
         setText('heroLine1', copy.hero.line1);
         setText('heroLine2', copy.hero.line2);
         setText('heroBody', copy.hero.body);
-        setText('heroCta', copy.hero.cta + '  →');
         setText('storyKicker', copy.story.kicker);
         setText('storyTitle', copy.story.title);
         setHTML('storyBody', copy.story.body.map((item) => `<p>${item}</p>`).join(''));
@@ -708,7 +706,13 @@
                       .map(
                         (item, itemIndex) => `
                           <div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-3 py-4 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-5">
-                            <span class="condensed-label pt-1 text-sm text-mokdaOrange">${typeof item === 'string' ? String(itemIndex + 1).padStart(2, '0') : item.month || String(itemIndex + 1).padStart(2, '0')}</span>
+                            <span class="condensed-label pt-1 text-sm text-mokdaOrange">${
+                              typeof item === 'string'
+                                ? String(itemIndex + 1).padStart(2, '0')
+                                : itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month
+                                  ? ''
+                                  : item.month || String(itemIndex + 1).padStart(2, '0')
+                            }</span>
                             <div>
                               <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${typeof item === 'string' ? item : item.text}</p>
                               ${typeof item === 'string' || !(item.detail || item.amount) ? '' : `<p class="mt-1 break-keep text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">(${item.detail || item.amount})</p>`}

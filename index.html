@@ -1598,13 +1598,16 @@
         if (supportCounterFrame) cancelAnimationFrame(supportCounterFrame);
         const startValue = supportCounterAnimatedTarget === null ? 1 : Math.max(1, Number(element.textContent) || 1);
         const distance = Math.max(1, safeTarget - startValue);
-        const duration = Math.min(1400, 680 + distance * 14);
+        const duration = Math.min(1550, 760 + distance * 15);
         const startedAt = performance.now();
         supportCounterAnimatedTarget = safeTarget;
 
         const tick = (now) => {
           const progress = Math.min(1, (now - startedAt) / duration);
-          const eased = 1 - Math.pow(1 - progress, 3);
+          // Run through the first values quickly, then visibly ease into the final count.
+          const eased = progress < 0.62
+            ? 0.82 * (progress / 0.62)
+            : 0.82 + 0.18 * (1 - Math.pow(1 - ((progress - 0.62) / 0.38), 3));
           const nextValue = Math.min(safeTarget, Math.round(startValue + distance * eased));
           if (element.textContent !== String(nextValue)) {
             element.textContent = String(nextValue);

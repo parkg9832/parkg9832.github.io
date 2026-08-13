@@ -623,6 +623,12 @@
         object-fit: contain;
       }
 
+      .institution-logo-item img.institution-logo-open-sauce {
+        max-width: 88%;
+        max-height: 3.5rem;
+        transform: scale(1.28);
+      }
+
       .hero-soft-copy .hero-kicker-shadow,
       .hero-soft-copy .hero-title-shadow,
       .hero-soft-copy .hero-title-accent,
@@ -1077,7 +1083,7 @@
                   <img src="assets/images/partner-gimje-eda-v1.webp" alt="김제청년공간 E:DA" loading="lazy" decoding="async" />
                 </div>
                 <div class="institution-logo-item h-20 w-[min(72vw,270px)] shrink-0 px-4 sm:w-[280px] lg:w-[300px]">
-                  <img src="assets/images/partner-open-sauce-lab-v1.webp" alt="오픈소스랩 Open Sauce Lab" loading="lazy" decoding="async" />
+                  <img src="assets/images/partner-open-sauce-lab-v1.webp" alt="오픈소스랩 Open Sauce Lab" class="institution-logo-open-sauce" loading="lazy" decoding="async" />
                 </div>
               </div>
             </div>
@@ -2449,10 +2455,14 @@
         const group = track?.querySelector('[data-institutions-group]');
         if (!track || !group || group.dataset.cloned === 'true') return;
 
-        const clone = group.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        clone.removeAttribute('data-institutions-group');
-        track.appendChild(clone);
+        const cloneBefore = group.cloneNode(true);
+        const cloneAfter = group.cloneNode(true);
+        [cloneBefore, cloneAfter].forEach((clone) => {
+          clone.setAttribute('aria-hidden', 'true');
+          clone.removeAttribute('data-institutions-group');
+        });
+        track.insertBefore(cloneBefore, group);
+        track.appendChild(cloneAfter);
         group.dataset.cloned = 'true';
 
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -2462,9 +2472,11 @@
         const normalize = () => {
           const width = loopWidth();
           if (width <= 0) return;
-          while (track.scrollLeft >= width) track.scrollLeft -= width;
-          while (track.scrollLeft < 0) track.scrollLeft += width;
+          while (track.scrollLeft >= width * 2) track.scrollLeft -= width;
+          while (track.scrollLeft < width) track.scrollLeft += width;
         };
+        track.scrollLeft = loopWidth();
+        window.requestAnimationFrame(() => { track.scrollLeft = loopWidth(); });
         const tick = (time) => {
           if (lastTime === null) lastTime = time;
           const elapsed = Math.min(32, time - lastTime);
@@ -2477,6 +2489,7 @@
         };
         const nudge = (direction) => {
           paused = true;
+          normalize();
           track.scrollBy({ left: direction * Math.max(240, track.clientWidth * 0.72), behavior: 'smooth' });
           window.setTimeout(() => { normalize(); paused = false; }, 650);
         };

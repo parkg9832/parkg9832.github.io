@@ -704,11 +704,8 @@
         box-shadow: none;
       }
 
-      .voice-quote-preview {
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
+      .voice-entry + .voice-entry {
+        border-top: 1px solid rgba(50, 21, 6, 0.16);
       }
 
       .testimonial-dialog {
@@ -1093,7 +1090,7 @@
             <p id="voicesKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">VOCES</p>
             <h2 id="voicesTitle" class="display-latin text-4xl uppercase leading-[0.96] text-[#321506] sm:text-5xl">Experiencias compartidas con MOKDA</h2>
           </div>
-          <div id="voicesList" data-reveal data-reveal-delay="100" class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-0 sm:overflow-visible sm:px-0"></div>
+          <div id="voicesList" data-reveal data-reveal-delay="100" class="mx-auto max-w-4xl border-y border-[#321506]/20"></div>
         </div>
       </section>
 
@@ -1341,7 +1338,7 @@
               {
                 name: 'Juhyeong Noh',
                 role: 'Dietitian | Food and foodservice specialist company',
-                image: 'assets/images/testimonial-no-juhyeong-v1.webp',
+                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
                 excerpt: 'The flavor is highly refined, balancing the sweet-and-spicy profile favored by Korean consumers today with deep umami.',
                 quote: 'I was impressed by the product design: plant-based cream replaces dairy cream, and allulose is used instead of sugar to reduce the sugar content. The flavor is highly refined, balancing the sweet-and-spicy profile favored by Korean consumers today with deep umami. It is a versatile Korean sauce that considers both nutrition and taste.',
               },
@@ -1444,7 +1441,7 @@
               {
                 name: 'Juhyeong Noh',
                 role: 'Nutricionista | Empresa especializada en alimentación y foodservice',
-                image: 'assets/images/testimonial-no-juhyeong-v1.webp',
+                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
                 excerpt: 'El sabor está muy logrado, con un equilibrio entre el perfil picante y dulce que prefieren hoy los consumidores coreanos y un umami profundo.',
                 quote: 'Me pareció especialmente acertado el diseño del producto: utiliza crema vegetal en lugar de crema de origen animal y alulosa en lugar de azúcar para reducir el contenido de azúcares. El sabor está muy logrado, con un equilibrio entre el perfil picante y dulce que prefieren hoy los consumidores coreanos y un umami profundo. Es una salsa coreana versátil que cuida tanto la nutrición como el sabor.',
               },
@@ -1547,7 +1544,7 @@
               {
                 name: '노주형 영양사',
                 role: '식품·푸드서비스 전문기업 소속',
-                image: 'assets/images/testimonial-no-juhyeong-v1.webp',
+                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
                 excerpt: '맛의 완성도는 굉장히 높았으며, 매콤달콤한 풍미와 깊은 감칠맛을 균형 있게 담아냈습니다.',
                 quote: '동물성 크림 대신 식물성 크림을 사용하고, 설탕 대신 알룰로스를 적용해 당류를 낮춘 제품 설계가 인상적이었습니다. 맛의 완성도는 굉장히 높았으며, 최근 한국 소비자들이 선호하는 매콤달콤한 풍미와 깊은 감칠맛을 균형 있게 담아냈습니다. 영양과 맛을 함께 고민한, 활용도 높은 한국식 소스라고 생각합니다.',
               },
@@ -2384,18 +2381,18 @@
 
         const cards = testimonials.map(
           (item, index) => `
-            <article aria-label="${item.name}" class="min-w-[88%] snap-center border-y border-[#321506]/20 px-1 py-6 sm:min-w-0 sm:border-y-0 sm:border-t-2 sm:px-7 sm:py-7 ${index > 0 ? 'sm:border-l sm:border-l-[#321506]/15' : ''}">
-              <div class="flex h-full min-h-[17rem] flex-col">
-                <div class="flex items-center gap-4">
-                  <img src="${item.image}" alt="${item.name}" class="h-20 w-20 shrink-0 rounded-full object-cover object-center ring-4 ring-white sm:h-24 sm:w-24" loading="lazy" decoding="async" />
-                  <div class="min-w-0">
-                    <h3 class="break-keep text-lg font-black leading-6 text-[#321506]">${item.name}</h3>
-                    <p class="mt-1.5 break-keep text-xs font-bold leading-5 text-mokdaOrange sm:text-sm">${item.role}</p>
-                  </div>
+            <article aria-label="${item.name}" class="voice-entry grid gap-5 py-8 sm:grid-cols-[12rem_minmax(0,1fr)] sm:items-center sm:gap-8 sm:py-10">
+              <div class="flex items-center gap-4 sm:flex-col sm:text-center">
+                <img src="${item.image}" alt="${item.name}" class="h-24 w-24 shrink-0 rounded-full object-cover object-center ring-4 ring-white sm:h-28 sm:w-28" loading="lazy" decoding="async" />
+                <div class="min-w-0 sm:mt-1">
+                  <h3 class="break-keep text-lg font-black leading-6 text-[#321506]">${item.name}</h3>
+                  <p class="mt-1.5 break-keep text-xs font-bold leading-5 text-mokdaOrange sm:text-sm">${item.role}</p>
                 </div>
-                <div aria-hidden="true" class="mt-5 h-8 text-5xl font-black leading-none text-mokdaOrange">“</div>
-                <blockquote class="voice-quote-preview mt-1 text-left text-[15px] font-bold leading-7 text-[#321506]/84 sm:text-base sm:leading-7">${item.excerpt || item.quote}</blockquote>
-                <button type="button" data-testimonial-open="${index}" class="mt-auto flex w-fit items-center gap-2 pt-5 text-xs font-black uppercase tracking-[0.08em] text-[#321506] transition hover:text-mokdaOrange focus:outline-none focus-visible:text-mokdaOrange">
+              </div>
+              <div class="min-w-0">
+                <div aria-hidden="true" class="h-7 text-5xl font-black leading-none text-mokdaOrange">“</div>
+                <blockquote class="mt-2 text-left text-[15px] font-bold leading-7 text-[#321506]/86 sm:text-base sm:leading-8">${item.excerpt || item.quote}</blockquote>
+                <button type="button" data-testimonial-open="${index}" class="mt-4 flex w-fit items-center gap-2 text-xs font-black uppercase tracking-[0.08em] text-[#321506] transition hover:text-mokdaOrange focus:outline-none focus-visible:text-mokdaOrange">
                   <span>${labels.readMore || ''}</span><span aria-hidden="true" class="text-xl font-light leading-none text-mokdaOrange">›</span>
                 </button>
               </div>
@@ -2497,8 +2494,6 @@
         track.appendChild(cloneAfter);
         group.dataset.cloned = 'true';
 
-        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        let paused = false;
         let lastTime = null;
         const loopWidth = () => group.scrollWidth + 16;
         const normalize = () => {
@@ -2513,27 +2508,29 @@
           if (lastTime === null) lastTime = time;
           const elapsed = Math.min(32, time - lastTime);
           lastTime = time;
-          if (!paused && !document.hidden && !reducedMotion.matches) {
-            track.scrollLeft += elapsed * 0.035;
+          if (!document.hidden) {
+            track.scrollLeft += elapsed * 0.052;
             normalize();
           }
           institutionsMarqueeFrame = requestAnimationFrame(tick);
         };
         const nudge = (direction) => {
-          paused = true;
-          normalize();
-          track.scrollBy({ left: direction * Math.max(240, track.clientWidth * 0.72), behavior: 'smooth' });
-          window.setTimeout(() => { normalize(); paused = false; }, 650);
+          const width = loopWidth();
+          const distance = Math.max(240, track.clientWidth * 0.72);
+          const relative = ((track.scrollLeft - width) % width + width) % width;
+          const nextRelative = ((relative + direction * distance) % width + width) % width;
+          const currentAbsolute = width + relative;
+          const nextAbsolute = width + nextRelative;
+          track.scrollLeft = nextAbsolute;
+          if (direction < 0 && nextAbsolute > currentAbsolute) track.scrollLeft -= width;
+          if (direction > 0 && nextAbsolute < currentAbsolute) track.scrollLeft += width;
         };
 
         document.getElementById('institutionsPrev')?.addEventListener('click', () => nudge(-1));
         document.getElementById('institutionsNext')?.addEventListener('click', () => nudge(1));
-        track.addEventListener('mouseenter', () => { paused = true; });
-        track.addEventListener('mouseleave', () => { paused = false; });
-        track.addEventListener('pointerdown', () => { paused = true; });
-        track.addEventListener('pointerup', () => { normalize(); paused = false; });
-        track.addEventListener('pointercancel', () => { normalize(); paused = false; });
-        reducedMotion.addEventListener?.('change', () => { lastTime = null; });
+        track.addEventListener('pointerup', normalize);
+        track.addEventListener('pointercancel', normalize);
+        track.addEventListener('mouseleave', normalize);
         institutionsMarqueeFrame = requestAnimationFrame(tick);
       }
 

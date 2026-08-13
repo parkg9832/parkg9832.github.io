@@ -2311,11 +2311,11 @@
         const cards = testimonials.map(
           (item) => `
             <article aria-label="${item.name}" class="voice-entry py-9 sm:grid sm:grid-cols-[9rem_minmax(0,1fr)] sm:items-start sm:gap-x-8 sm:gap-y-5 sm:py-11">
-              <div class="flex items-center gap-4 sm:col-start-1 sm:row-span-2 sm:flex-col sm:pt-1 sm:text-center">
-                <img src="${item.image}" alt="${item.name}" class="h-24 w-24 shrink-0 rounded-full object-cover object-center ring-4 ring-white sm:h-28 sm:w-28" loading="lazy" decoding="async" />
+              <div class="flex items-center justify-center gap-4 sm:col-start-1 sm:row-span-2 sm:flex-col sm:pt-1 sm:text-center">
+                <img src="${item.image}" alt="${item.name}" class="h-28 w-28 shrink-0 rounded-full object-cover object-center ring-2 ring-white sm:h-32 sm:w-32" loading="lazy" decoding="async" />
               </div>
-              <div class="mt-5 min-w-0 sm:col-start-2 sm:mt-0">
-                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 sm:flex-nowrap">
+              <div class="mt-5 min-w-0 text-center sm:col-start-2 sm:mt-0 sm:text-left">
+                <div class="flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1 sm:flex-nowrap sm:justify-start">
                   <h3 class="break-keep text-xl font-black leading-7 text-[#321506] sm:text-2xl">${item.name}</h3>
                   <span aria-hidden="true" class="text-sm font-semibold text-[#321506]/35">|</span>
                   <p class="break-keep text-sm font-bold leading-6 text-[#321506]/78 sm:text-[15px]">${item.occupation}</p>

@@ -137,7 +137,12 @@
 
       .hero-title {
         font-size: 5rem;
-        line-height: 0.96;
+        line-height: 0.88;
+      }
+
+      .hero-title-line {
+        display: block;
+        white-space: nowrap;
       }
 
       .hero-copy {
@@ -208,8 +213,8 @@
         }
 
         .hero-title {
-          font-size: clamp(5.25rem, min(7.2vw, 12.5vh), 7rem);
-          line-height: 0.9;
+          font-size: clamp(4.6rem, min(6.2vw, 10.5vh), 6.5rem);
+          line-height: 0.86;
         }
 
         .hero-copy [data-hero-subtitle] {
@@ -242,7 +247,7 @@
         }
 
         .hero-title {
-          font-size: clamp(5rem, min(6.8vw, 11.5vh), 6.5rem);
+          font-size: clamp(4.35rem, min(5.8vw, 9.8vh), 5.8rem);
         }
 
         .hero-sauce-plate {
@@ -606,6 +611,18 @@
         background: linear-gradient(135deg, rgba(50, 21, 6, 0.035), rgba(239, 95, 24, 0.07));
       }
 
+      .institution-logo-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .institution-logo-item img {
+        max-width: 88%;
+        max-height: 3.5rem;
+        object-fit: contain;
+      }
+
       .hero-soft-copy .hero-kicker-shadow,
       .hero-soft-copy .hero-title-shadow,
       .hero-soft-copy .hero-title-accent,
@@ -717,23 +734,20 @@
       @media (max-width: 767px) {
         .hero-title {
           max-width: 100%;
-          font-size: clamp(3.65rem, 21vw, 5rem);
-          line-height: 0.94;
+          font-size: clamp(2.5rem, 14vw, 4.3rem);
+          line-height: 0.88;
         }
 
         .hero-copy [data-hero-subtitle] {
-          max-width: min(100%, 32rem);
-          padding: 0.65rem 0.85rem;
-          border: 1px solid rgba(50, 21, 6, 0.08);
-          border-radius: 0.8rem;
-          background: rgba(255, 248, 239, 0.82);
-          box-shadow: 0 8px 24px rgba(50, 21, 6, 0.08);
+          max-width: min(92%, 32rem);
           color: #321506;
           font-size: clamp(0.9rem, 4vw, 1rem);
           font-weight: 700;
           line-height: 1.55;
-          -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
+          text-shadow:
+            0 1px 0 rgba(255, 248, 239, 0.98),
+            0 0 14px rgba(255, 248, 239, 0.94),
+            0 0 28px rgba(255, 248, 239, 0.82);
         }
 
         #proofTitle {
@@ -777,7 +791,7 @@
         }
 
         .hero-title {
-          font-size: clamp(3.35rem, 21vw, 4.65rem);
+          font-size: clamp(2.45rem, 14vw, 3.15rem);
         }
 
         #proofTitle {
@@ -1007,29 +1021,7 @@
             <p id="voicesKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">VOCES</p>
             <h2 id="voicesTitle" class="display-latin text-4xl uppercase leading-[0.96] text-[#321506] sm:text-5xl">Experiencias compartidas con MOKDA</h2>
           </div>
-          <div data-reveal data-reveal-delay="100" class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0">
-            <article aria-label="Espacio reservado" class="min-w-[82%] snap-center rounded-[1.25rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:min-w-0 sm:p-7">
-              <div aria-hidden="true" class="flex flex-col items-center text-center">
-                <div class="voice-placeholder h-24 w-24 rounded-full ring-4 ring-white sm:h-28 sm:w-28"></div>
-                <div class="mt-6 h-3 w-28 rounded-full bg-[#321506]/18"></div><div class="mt-3 h-2.5 w-20 rounded-full bg-[#321506]/10"></div>
-                <div class="mt-7 w-full rounded-xl bg-[#321506]/[0.045] p-5"><span class="placeholder-line w-full"></span><span class="placeholder-line mt-3 w-[88%]"></span><span class="placeholder-line mt-3 w-[72%]"></span></div>
-              </div>
-            </article>
-            <article aria-label="Espacio reservado" class="min-w-[82%] snap-center rounded-[1.25rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:min-w-0 sm:p-7">
-              <div aria-hidden="true" class="flex flex-col items-center text-center">
-                <div class="voice-placeholder h-24 w-24 rounded-full ring-4 ring-white sm:h-28 sm:w-28"></div>
-                <div class="mt-6 h-3 w-28 rounded-full bg-[#321506]/18"></div><div class="mt-3 h-2.5 w-20 rounded-full bg-[#321506]/10"></div>
-                <div class="mt-7 w-full rounded-xl bg-[#321506]/[0.045] p-5"><span class="placeholder-line w-full"></span><span class="placeholder-line mt-3 w-[88%]"></span><span class="placeholder-line mt-3 w-[72%]"></span></div>
-              </div>
-            </article>
-            <article aria-label="Espacio reservado" class="min-w-[82%] snap-center rounded-[1.25rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:min-w-0 sm:p-7">
-              <div aria-hidden="true" class="flex flex-col items-center text-center">
-                <div class="voice-placeholder h-24 w-24 rounded-full ring-4 ring-white sm:h-28 sm:w-28"></div>
-                <div class="mt-6 h-3 w-28 rounded-full bg-[#321506]/18"></div><div class="mt-3 h-2.5 w-20 rounded-full bg-[#321506]/10"></div>
-                <div class="mt-7 w-full rounded-xl bg-[#321506]/[0.045] p-5"><span class="placeholder-line w-full"></span><span class="placeholder-line mt-3 w-[88%]"></span><span class="placeholder-line mt-3 w-[72%]"></span></div>
-              </div>
-            </article>
-          </div>
+          <div id="voicesList" data-reveal data-reveal-delay="100" class="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0"></div>
         </div>
       </section>
 
@@ -1039,11 +1031,15 @@
             <button id="institutionsPrev" type="button" aria-label="Anterior" class="flex h-11 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[2rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">‹</button>
             <div id="institutionsTrack" class="no-scrollbar flex flex-1 gap-4 overflow-x-auto" style="mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);">
               <div data-institutions-group class="flex shrink-0 gap-4">
-                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
-                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
-                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
-                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
-                <div aria-hidden="true" class="institution-placeholder h-20 w-[min(72vw,270px)] shrink-0 rounded-xl border border-[#321506]/10 sm:w-[280px] lg:w-[300px]"></div>
+                <div class="institution-logo-item h-20 w-[min(72vw,270px)] shrink-0 px-4 sm:w-[280px] lg:w-[300px]">
+                  <img src="assets/images/partner-jeonbuk-ccei-v1.webp" alt="전북창조경제혁신센터" loading="lazy" decoding="async" />
+                </div>
+                <div class="institution-logo-item h-20 w-[min(72vw,270px)] shrink-0 px-4 sm:w-[280px] lg:w-[300px]">
+                  <img src="assets/images/partner-gimje-eda-v1.webp" alt="김제청년공간 E:DA" loading="lazy" decoding="async" />
+                </div>
+                <div class="institution-logo-item h-20 w-[min(72vw,270px)] shrink-0 px-4 sm:w-[280px] lg:w-[300px]">
+                  <img src="assets/images/partner-open-sauce-lab-v1.webp" alt="오픈소스랩 Open Sauce Lab" loading="lazy" decoding="async" />
+                </div>
               </div>
             </div>
             <button id="institutionsNext" type="button" aria-label="Siguiente" class="flex h-11 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[2rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">›</button>
@@ -1104,18 +1100,21 @@
             EN: {
               kicker: 'MOKDA · KOREAN FOOD BRAND',
               title: 'Korea, closer to you',
+              titleLines: ['Korea,', 'closer', 'to you'],
               subtitle: 'We make Korean flavors easier and more natural to enjoy every day.',
               button: 'Explore our sauces',
             },
             ES: {
               kicker: 'MOKDA · KOREAN FOOD BRAND',
               title: 'Corea, más cerca de ti',
+              titleLines: ['Corea,', 'más cerca', 'de ti'],
               subtitle: 'Conectamos los sabores de Corea con tu día a día de una forma fácil y natural.',
               button: 'Conoce nuestras salsas',
             },
             KR: {
               kicker: 'MOKDA · KOREAN FOOD BRAND',
               title: '한국을 더 가까이',
+              titleLines: ['한국을', '더', '가까이'],
               subtitle: '한국의 맛을 당신의 일상에 더 쉽고 자연스럽게 연결합니다.',
               button: '소스 라인업 보기',
             },
@@ -1260,6 +1259,20 @@
             reserved: 'Reserved for future content',
             previous: 'Previous institutions',
             next: 'Next institutions',
+            testimonials: [
+              {
+                name: 'Juhyeong Noh',
+                role: 'Dietitian | Food and foodservice specialist company',
+                image: 'assets/images/testimonial-no-juhyeong-v1.webp',
+                quote: 'I was impressed by the product design: plant-based cream replaces dairy cream, and allulose is used instead of sugar to reduce the sugar content. The flavor is highly refined, balancing the sweet-and-spicy profile favored by Korean consumers today with deep umami. It is a versatile Korean sauce that considers both nutrition and taste.',
+              },
+              {
+                name: 'Jinsoo Park',
+                role: 'CEO, Open Sauce Lab | 1,000+ food and restaurant products developed',
+                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
+                quote: 'MOKDA has strong potential to reinterpret Korean flavors for local food cultures and expand into global markets. I saw that potential firsthand while co-developing two sauces for Latin America. With its drive to meet consumers directly and validate the products in the market, I look forward to seeing MOKDA’s K-Food grow beyond Latin America and reach the world.',
+              },
+            ],
           },
           proof: {
             kicker: 'MADE IN KOREA',
@@ -1346,6 +1359,20 @@
             reserved: 'Espacio reservado para contenido futuro',
             previous: 'Instituciones anteriores',
             next: 'Instituciones siguientes',
+            testimonials: [
+              {
+                name: 'Juhyeong Noh',
+                role: 'Nutricionista | Empresa especializada en alimentación y foodservice',
+                image: 'assets/images/testimonial-no-juhyeong-v1.webp',
+                quote: 'Me pareció especialmente acertado el diseño del producto: utiliza crema vegetal en lugar de crema de origen animal y alulosa en lugar de azúcar para reducir el contenido de azúcares. El sabor está muy logrado, con un equilibrio entre el perfil picante y dulce que prefieren hoy los consumidores coreanos y un umami profundo. Es una salsa coreana versátil que cuida tanto la nutrición como el sabor.',
+              },
+              {
+                name: 'Jinsoo Park',
+                role: 'CEO de Open Sauce Lab | Más de 1.000 desarrollos de alimentos y restauración',
+                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
+                quote: 'MOKDA tiene un gran potencial para reinterpretar los sabores de Corea de acuerdo con la cultura gastronómica local y llevarlos al mercado global. Lo confirmé al desarrollar junto a la marca dos salsas para Latinoamérica. Gracias a su capacidad de encontrarse directamente con los consumidores y validar el producto en el mercado, espero que el K-Food de MOKDA crezca más allá de Latinoamérica y llegue al mundo.',
+              },
+            ],
           },
           proof: {
             kicker: 'HECHO EN COREA',
@@ -1432,6 +1459,20 @@
             reserved: '추후 콘텐츠가 들어갈 자리',
             previous: '이전 기관',
             next: '다음 기관',
+            testimonials: [
+              {
+                name: '노주형 영양사',
+                role: '식품·푸드서비스 전문기업 소속',
+                image: 'assets/images/testimonial-no-juhyeong-v1.webp',
+                quote: '동물성 크림 대신 식물성 크림을 사용하고, 설탕 대신 알룰로스를 적용해 당류를 낮춘 제품 설계가 인상적이었습니다. 맛의 완성도는 굉장히 높았으며, 최근 한국 소비자들이 선호하는 매콤달콤한 풍미와 깊은 감칠맛을 균형 있게 담아냈습니다. 영양과 맛을 함께 고민한, 활용도 높은 한국식 소스라고 생각합니다.',
+              },
+              {
+                name: '박진수 오픈소스랩 대표',
+                role: '식품·외식 개발 1,000개 이상',
+                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
+                quote: '먹다는 한국의 맛을 현지 식문화에 맞게 재해석해 글로벌 시장으로 확장할 가능성이 큰 브랜드입니다. 남미 진출을 위한 소스 2종을 함께 개발하며 그 가능성을 확인했습니다. 현지 소비자와 직접 만나고 검증해 나가는 실행력을 바탕으로, 먹다만의 K-Food가 남미를 넘어 세계시장으로 성장하기를 기대합니다.',
+              },
+            ],
           },
           proof: {
             kicker: 'MADE IN KOREA',
@@ -2078,10 +2119,13 @@
           slide.setAttribute('data-hero-layout', usesKoreanDisplay ? 'compact' : 'standard');
           title.classList.toggle('display-korean', usesKoreanDisplay);
           title.classList.toggle('display-latin', !usesKoreanDisplay);
-          const titleLine1 = document.createElement('span');
-          titleLine1.className = 'block';
-          titleLine1.textContent = copy.title;
-          title.appendChild(titleLine1);
+          const titleLines = Array.isArray(copy.titleLines) && copy.titleLines.length ? copy.titleLines : [copy.title];
+          titleLines.forEach((line) => {
+            const titleLine = document.createElement('span');
+            titleLine.className = 'hero-title-line';
+            titleLine.textContent = line;
+            title.appendChild(titleLine);
+          });
           if (copy.titleLine2) {
             const titleLine2 = document.createElement('span');
             titleLine2.className = 'mt-3 block text-[0.42em] leading-[0.95] text-[#321506] md:mt-4';
@@ -2215,6 +2259,37 @@
         }
       }
 
+      function renderTestimonials(testimonials = [], reservedLabel = '') {
+        const list = document.getElementById('voicesList');
+        if (!list) return;
+
+        const cards = testimonials.map(
+          (item) => `
+            <article aria-label="${item.name}" class="min-w-[88%] snap-center rounded-[1.25rem] border border-[#321506]/10 bg-[#fff8ef] p-6 sm:min-w-0 sm:p-7">
+              <div class="flex h-full flex-col items-center text-center">
+                <img src="${item.image}" alt="${item.name}" class="h-24 w-24 rounded-full object-cover object-center ring-4 ring-white sm:h-28 sm:w-28" loading="lazy" decoding="async" />
+                <h3 class="mt-6 break-keep text-lg font-extrabold leading-6 text-[#321506]">${item.name}</h3>
+                <p class="mt-2 min-h-10 break-keep text-xs font-bold leading-5 text-mokdaOrange sm:text-sm">${item.role}</p>
+                <blockquote class="mt-6 flex-1 border-t border-[#321506]/12 pt-5 text-left text-sm font-semibold leading-7 text-[#321506]/78 sm:text-[15px]">
+                  “${item.quote}”
+                </blockquote>
+              </div>
+            </article>
+          `,
+        );
+
+        cards.push(`
+          <article aria-label="${reservedLabel}" class="min-w-[88%] snap-center rounded-[1.25rem] border border-dashed border-[#321506]/12 bg-[#fff8ef]/50 p-6 sm:min-w-0 sm:p-7">
+            <div aria-hidden="true" class="flex h-full flex-col items-center justify-center text-center opacity-55">
+              <div class="voice-placeholder h-24 w-24 rounded-full ring-4 ring-white sm:h-28 sm:w-28"></div>
+              <div class="mt-6 h-3 w-28 rounded-full bg-[#321506]/18"></div><div class="mt-3 h-2.5 w-20 rounded-full bg-[#321506]/10"></div>
+              <div class="mt-7 w-full p-2"><span class="placeholder-line w-full"></span><span class="placeholder-line mt-3 w-[88%]"></span><span class="placeholder-line mt-3 w-[72%]"></span></div>
+            </div>
+          </article>
+        `);
+        list.innerHTML = cards.join('');
+      }
+
       function renderPage() {
         const t = content[language];
         document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
@@ -2225,7 +2300,7 @@
         setText('socialTitle', t.socialTitle);
         setText('voicesKicker', t.community.kicker);
         setText('voicesTitle', t.community.title);
-        document.querySelectorAll('#voices article').forEach((card) => card.setAttribute('aria-label', t.community.reserved));
+        renderTestimonials(t.community.testimonials, t.community.reserved);
         document.getElementById('institutionsPrev').setAttribute('aria-label', t.community.previous);
         document.getElementById('institutionsNext').setAttribute('aria-label', t.community.next);
         renderHomepageProof(t);

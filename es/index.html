@@ -708,33 +708,6 @@
         border-top: 1px solid rgba(50, 21, 6, 0.16);
       }
 
-      .testimonial-dialog {
-        width: min(calc(100% - 2rem), 44rem);
-        max-height: min(86svh, 48rem);
-        margin: auto;
-        padding: 0;
-        overflow: auto;
-        border: 0;
-        border-radius: 1.5rem;
-        background: #fff8ef;
-        color: #321506;
-        box-shadow: 0 28px 80px rgba(50, 21, 6, 0.3);
-      }
-
-      .testimonial-dialog::backdrop {
-        background: rgba(50, 21, 6, 0.72);
-        backdrop-filter: blur(4px);
-      }
-
-      .testimonial-dialog[open] {
-        animation: testimonialDialogIn 180ms ease-out;
-      }
-
-      @keyframes testimonialDialogIn {
-        from { opacity: 0; transform: translateY(12px) scale(0.985); }
-        to { opacity: 1; transform: translateY(0) scale(1); }
-      }
-
       @media (max-width: 767px) {
         .hero-title {
           max-width: 100%;
@@ -1094,11 +1067,6 @@
         </div>
       </section>
 
-      <dialog id="testimonialDialog" class="testimonial-dialog" aria-labelledby="testimonialDialogName">
-        <button id="testimonialDialogClose" type="button" class="sticky right-4 top-4 z-10 ml-auto mr-4 mt-4 flex h-11 w-11 items-center justify-center rounded-full border border-[#321506]/15 bg-[#fff8ef] text-2xl font-medium leading-none text-[#321506] transition hover:border-mokdaOrange hover:text-mokdaOrange focus:outline-none focus:ring-4 focus:ring-mokdaOrange/20">×</button>
-        <div id="testimonialDialogContent" class="px-6 pb-8 pt-1 sm:px-10 sm:pb-10"></div>
-      </dialog>
-
       <section id="institutions" class="border-y border-[#321506]/10 bg-[#fff8ef] py-8 sm:py-10">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="flex items-center gap-3 sm:gap-5">
@@ -1330,24 +1298,22 @@
             kicker: 'VOICES',
             title: 'What people who know MOKDA say',
             institutions: 'SUPPORTED BY',
-            readMore: 'Read full testimonial',
-            close: 'Close testimonial',
             previous: 'Previous institutions',
             next: 'Next institutions',
             testimonials: [
               {
-                name: 'Juhyeong Noh',
-                role: 'Dietitian | Food and foodservice specialist company',
-                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
-                excerpt: 'The flavor is highly refined, balancing the sweet-and-spicy profile favored by Korean consumers today with deep umami.',
-                quote: 'I was impressed by the product design: plant-based cream replaces dairy cream, and allulose is used instead of sugar to reduce the sugar content. The flavor is highly refined, balancing the sweet-and-spicy profile favored by Korean consumers today with deep umami. It is a versatile Korean sauce that considers both nutrition and taste.',
+                name: 'Jinsoo Park',
+                occupation: 'CEO, Open Sauce Lab',
+                profile: 'Developer of 1,000+ food and restaurant products',
+                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
+                quote: 'MOKDA has strong potential to reinterpret Korean flavors for local food cultures and expand into global markets. I saw that potential firsthand while co-developing two sauces for Latin America. With its drive to meet consumers directly and validate the products in the market, I look forward to seeing MOKDA’s K-Food grow beyond Latin America and reach the world.',
               },
               {
-                name: 'Jinsoo Park',
-                role: 'CEO, Open Sauce Lab | 1,000+ food and restaurant products developed',
-                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
-                excerpt: 'MOKDA has strong potential to reinterpret Korean flavors for local food cultures and expand into global markets.',
-                quote: 'MOKDA has strong potential to reinterpret Korean flavors for local food cultures and expand into global markets. I saw that potential firsthand while co-developing two sauces for Latin America. With its drive to meet consumers directly and validate the products in the market, I look forward to seeing MOKDA’s K-Food grow beyond Latin America and reach the world.',
+                name: 'Juhyeong Noh',
+                occupation: 'Dietitian',
+                profile: 'Food and foodservice specialist company',
+                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
+                quote: 'I was impressed by the product design: plant-based cream replaces dairy cream, and allulose is used instead of sugar to reduce the sugar content. The flavor is highly refined, balancing the sweet-and-spicy profile favored by Korean consumers today with deep umami. It is a versatile Korean sauce that considers both nutrition and taste.',
               },
             ],
           },
@@ -1433,24 +1399,22 @@
             kicker: 'VOCES',
             title: 'Lo que dicen quienes conocen MOKDA',
             institutions: 'CON EL APOYO DE',
-            readMore: 'Leer testimonio completo',
-            close: 'Cerrar testimonio',
             previous: 'Instituciones anteriores',
             next: 'Instituciones siguientes',
             testimonials: [
               {
-                name: 'Juhyeong Noh',
-                role: 'Nutricionista | Empresa especializada en alimentación y foodservice',
-                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
-                excerpt: 'El sabor está muy logrado, con un equilibrio entre el perfil picante y dulce que prefieren hoy los consumidores coreanos y un umami profundo.',
-                quote: 'Me pareció especialmente acertado el diseño del producto: utiliza crema vegetal en lugar de crema de origen animal y alulosa en lugar de azúcar para reducir el contenido de azúcares. El sabor está muy logrado, con un equilibrio entre el perfil picante y dulce que prefieren hoy los consumidores coreanos y un umami profundo. Es una salsa coreana versátil que cuida tanto la nutrición como el sabor.',
+                name: 'Jinsoo Park',
+                occupation: 'CEO de Open Sauce Lab',
+                profile: 'Más de 1.000 desarrollos en alimentación y restauración',
+                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
+                quote: 'MOKDA tiene un gran potencial para reinterpretar los sabores de Corea de acuerdo con la cultura gastronómica local y llevarlos al mercado global. Lo confirmé al desarrollar junto a la marca dos salsas para Latinoamérica. Gracias a su capacidad de encontrarse directamente con los consumidores y validar el producto en el mercado, espero que el K-Food de MOKDA crezca más allá de Latinoamérica y llegue al mundo.',
               },
               {
-                name: 'Jinsoo Park',
-                role: 'CEO de Open Sauce Lab | Más de 1.000 desarrollos de alimentos y restauración',
-                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
-                excerpt: 'MOKDA tiene un gran potencial para reinterpretar los sabores de Corea de acuerdo con la cultura gastronómica local y llevarlos al mercado global.',
-                quote: 'MOKDA tiene un gran potencial para reinterpretar los sabores de Corea de acuerdo con la cultura gastronómica local y llevarlos al mercado global. Lo confirmé al desarrollar junto a la marca dos salsas para Latinoamérica. Gracias a su capacidad de encontrarse directamente con los consumidores y validar el producto en el mercado, espero que el K-Food de MOKDA crezca más allá de Latinoamérica y llegue al mundo.',
+                name: 'Juhyeong Noh',
+                occupation: 'Nutricionista',
+                profile: 'Especialista en alimentación y foodservice',
+                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
+                quote: 'Me pareció especialmente acertado el diseño del producto: utiliza crema vegetal en lugar de crema de origen animal y alulosa en lugar de azúcar para reducir el contenido de azúcares. El sabor está muy logrado, con un equilibrio entre el perfil picante y dulce que prefieren hoy los consumidores coreanos y un umami profundo. Es una salsa coreana versátil que cuida tanto la nutrición como el sabor.',
               },
             ],
           },
@@ -1536,24 +1500,22 @@
             kicker: 'VOICES',
             title: 'MOKDA를 경험한 사람들의 이야기',
             institutions: 'SUPPORTED BY',
-            readMore: '추천사 전체보기',
-            close: '추천사 닫기',
             previous: '이전 기관',
             next: '다음 기관',
             testimonials: [
               {
-                name: '노주형 영양사',
-                role: '식품·푸드서비스 전문기업 소속',
-                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
-                excerpt: '맛의 완성도는 굉장히 높았으며, 매콤달콤한 풍미와 깊은 감칠맛을 균형 있게 담아냈습니다.',
-                quote: '동물성 크림 대신 식물성 크림을 사용하고, 설탕 대신 알룰로스를 적용해 당류를 낮춘 제품 설계가 인상적이었습니다. 맛의 완성도는 굉장히 높았으며, 최근 한국 소비자들이 선호하는 매콤달콤한 풍미와 깊은 감칠맛을 균형 있게 담아냈습니다. 영양과 맛을 함께 고민한, 활용도 높은 한국식 소스라고 생각합니다.',
+                name: '박진수',
+                occupation: '오픈소스랩 대표',
+                profile: '식품·외식 제품 1,000개 이상 개발',
+                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
+                quote: '먹다는 한국의 맛을 현지 식문화에 맞게 재해석해 글로벌 시장으로 확장할 가능성이 큰 브랜드입니다. 남미 진출을 위한 소스 2종을 함께 개발하며 그 가능성을 확인했습니다. 현지 소비자와 직접 만나고 검증해 나가는 실행력을 바탕으로, 먹다만의 K-Food가 남미를 넘어 세계시장으로 성장하기를 기대합니다.',
               },
               {
-                name: '박진수 오픈소스랩 대표',
-                role: '식품·외식 개발 1,000개 이상',
-                image: 'assets/images/testimonial-park-jinsoo-v1.webp',
-                excerpt: '먹다는 한국의 맛을 현지 식문화에 맞게 재해석해 글로벌 시장으로 확장할 가능성이 큰 브랜드입니다.',
-                quote: '먹다는 한국의 맛을 현지 식문화에 맞게 재해석해 글로벌 시장으로 확장할 가능성이 큰 브랜드입니다. 남미 진출을 위한 소스 2종을 함께 개발하며 그 가능성을 확인했습니다. 현지 소비자와 직접 만나고 검증해 나가는 실행력을 바탕으로, 먹다만의 K-Food가 남미를 넘어 세계시장으로 성장하기를 기대합니다.',
+                name: '노주형',
+                occupation: '영양사',
+                profile: '식품·푸드서비스 전문기업 소속',
+                image: 'assets/images/testimonial-no-juhyeong-upright-v2.png',
+                quote: '동물성 크림 대신 식물성 크림을 사용하고, 설탕 대신 알룰로스를 적용해 당류를 낮춘 제품 설계가 인상적이었습니다. 맛의 완성도는 굉장히 높았으며, 최근 한국 소비자들이 선호하는 매콤달콤한 풍미와 깊은 감칠맛을 균형 있게 담아냈습니다. 영양과 맛을 함께 고민한, 활용도 높은 한국식 소스라고 생각합니다.',
               },
             ],
           },
@@ -2342,71 +2304,35 @@
         }
       }
 
-      let testimonialReturnFocus = null;
-
-      function closeTestimonialDialog() {
-        const dialog = document.getElementById('testimonialDialog');
-        if (!dialog) return;
-        if (typeof dialog.close === 'function' && dialog.open) dialog.close();
-        else dialog.removeAttribute('open');
-      }
-
-      function openTestimonialDialog(item, closeLabel = '') {
-        const dialog = document.getElementById('testimonialDialog');
-        const contentNode = document.getElementById('testimonialDialogContent');
-        const closeButton = document.getElementById('testimonialDialogClose');
-        if (!dialog || !contentNode || !item) return;
-
-        contentNode.innerHTML = `
-          <div class="grid gap-5 sm:grid-cols-[7rem_minmax(0,1fr)] sm:items-center sm:gap-6">
-            <img src="${item.image}" alt="${item.name}" class="h-24 w-24 rounded-full object-cover object-center ring-4 ring-white sm:h-28 sm:w-28" />
-            <div>
-              <p class="condensed-label text-sm uppercase tracking-[0.12em] text-mokdaOrange">MOKDA VOICES</p>
-              <h3 id="testimonialDialogName" class="mt-2 break-keep text-2xl font-black leading-tight text-[#321506]">${item.name}</h3>
-              <p class="mt-2 break-keep text-sm font-bold leading-6 text-mokdaOrange">${item.role}</p>
-            </div>
-          </div>
-          <blockquote class="mt-7 border-t border-[#321506]/15 pt-6 text-base font-semibold leading-8 text-[#321506]/82 sm:text-lg sm:leading-9">“${item.quote}”</blockquote>
-        `;
-        closeButton?.setAttribute('aria-label', closeLabel);
-        testimonialReturnFocus = document.activeElement;
-        if (typeof dialog.showModal === 'function') dialog.showModal();
-        else dialog.setAttribute('open', '');
-        closeButton?.focus();
-      }
-
-      function renderTestimonials(testimonials = [], labels = {}) {
+      function renderTestimonials(testimonials = []) {
         const list = document.getElementById('voicesList');
         if (!list) return;
 
         const cards = testimonials.map(
-          (item, index) => `
-            <article aria-label="${item.name}" class="voice-entry grid gap-5 py-8 sm:grid-cols-[12rem_minmax(0,1fr)] sm:items-center sm:gap-8 sm:py-10">
-              <div class="flex items-center gap-4 sm:flex-col sm:text-center">
+          (item) => `
+            <article aria-label="${item.name}" class="voice-entry py-9 sm:grid sm:grid-cols-[9rem_minmax(0,1fr)] sm:items-start sm:gap-x-8 sm:gap-y-5 sm:py-11">
+              <div class="flex items-center gap-4 sm:col-start-1 sm:row-span-2 sm:flex-col sm:pt-1 sm:text-center">
                 <img src="${item.image}" alt="${item.name}" class="h-24 w-24 shrink-0 rounded-full object-cover object-center ring-4 ring-white sm:h-28 sm:w-28" loading="lazy" decoding="async" />
-                <div class="min-w-0 sm:mt-1">
-                  <h3 class="break-keep text-lg font-black leading-6 text-[#321506]">${item.name}</h3>
-                  <p class="mt-1.5 break-keep text-xs font-bold leading-5 text-mokdaOrange sm:text-sm">${item.role}</p>
-                </div>
               </div>
-              <div class="min-w-0">
-                <div aria-hidden="true" class="h-7 text-5xl font-black leading-none text-mokdaOrange">“</div>
-                <blockquote class="mt-2 text-left text-[15px] font-bold leading-7 text-[#321506]/86 sm:text-base sm:leading-8">${item.excerpt || item.quote}</blockquote>
-                <button type="button" data-testimonial-open="${index}" class="mt-4 flex w-fit items-center gap-2 text-xs font-black uppercase tracking-[0.08em] text-[#321506] transition hover:text-mokdaOrange focus:outline-none focus-visible:text-mokdaOrange">
-                  <span>${labels.readMore || ''}</span><span aria-hidden="true" class="text-xl font-light leading-none text-mokdaOrange">›</span>
-                </button>
+              <div class="mt-5 min-w-0 sm:col-start-2 sm:mt-0">
+                <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 sm:flex-nowrap">
+                  <h3 class="break-keep text-xl font-black leading-7 text-[#321506] sm:text-2xl">${item.name}</h3>
+                  <span aria-hidden="true" class="text-sm font-semibold text-[#321506]/35">|</span>
+                  <p class="break-keep text-sm font-bold leading-6 text-[#321506]/78 sm:text-[15px]">${item.occupation}</p>
+                </div>
+                <p class="mt-1 break-keep text-xs font-semibold leading-5 text-[#321506]/55 sm:text-[13px]">${item.profile}</p>
+              </div>
+              <div class="mt-5 min-w-0 sm:col-span-2 sm:mt-0">
+                <blockquote class="relative rounded-[1rem] bg-[#fff8ef]/62 px-5 py-5 text-left text-[15px] font-semibold leading-7 text-[#321506]/88 sm:px-7 sm:py-6 sm:text-base sm:leading-8">
+                  <span aria-hidden="true" class="absolute -left-1 -top-3 text-4xl font-black leading-none text-mokdaOrange">“</span>
+                  ${item.quote}
+                </blockquote>
               </div>
             </article>
           `,
         );
 
         list.innerHTML = cards.join('');
-        list.querySelectorAll('[data-testimonial-open]').forEach((button) => {
-          button.addEventListener('click', () => {
-            const item = testimonials[Number(button.dataset.testimonialOpen)];
-            openTestimonialDialog(item, labels.close);
-          });
-        });
       }
 
       function renderPage() {
@@ -2419,7 +2345,7 @@
         setText('socialTitle', t.socialTitle);
         setText('voicesKicker', t.community.kicker);
         setText('voicesTitle', t.community.title);
-        renderTestimonials(t.community.testimonials, t.community);
+        renderTestimonials(t.community.testimonials);
         document.getElementById('institutionsPrev').setAttribute('aria-label', t.community.previous);
         document.getElementById('institutionsNext').setAttribute('aria-label', t.community.next);
         renderHomepageProof(t);
@@ -2465,17 +2391,7 @@
 
       window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
         language = nextLanguage;
-        closeTestimonialDialog();
         renderPage();
-      });
-
-      document.getElementById('testimonialDialogClose')?.addEventListener('click', closeTestimonialDialog);
-      document.getElementById('testimonialDialog')?.addEventListener('click', (event) => {
-        if (event.target === event.currentTarget) closeTestimonialDialog();
-      });
-      document.getElementById('testimonialDialog')?.addEventListener('close', () => {
-        if (testimonialReturnFocus && document.contains(testimonialReturnFocus)) testimonialReturnFocus.focus();
-        testimonialReturnFocus = null;
       });
 
       let institutionsMarqueeFrame = null;

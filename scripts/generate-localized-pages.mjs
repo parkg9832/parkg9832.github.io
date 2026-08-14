@@ -99,9 +99,9 @@ const pages = {
     route: 'support.html',
     type: 'WebPage',
     image: {
-      ES: `${SITE}/assets/og-mokda.png`,
-      KR: `${SITE}/assets/og-mokda.png`,
-      EN: `${SITE}/assets/og-mokda.png`,
+      ES: `${SITE}/assets/og-mokda-social-v2.png`,
+      KR: `${SITE}/assets/og-mokda-social-v2.png`,
+      EN: `${SITE}/assets/og-mokda-social-v2.png`,
     },
     ES: {
       title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
@@ -180,7 +180,7 @@ function structuredData(language, page, canonical, metadata) {
           width: 192,
           height: 192,
         },
-        image: `${SITE}/assets/og-mokda.png`,
+        image: `${SITE}/assets/og-mokda-social-v2.png`,
         slogan: 'Comer Corea · 한국을 먹다',
         description: 'Marca K-Food que conecta sabores de Corea con las mesas cotidianas de Latinoamérica.',
         sameAs: [

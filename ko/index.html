@@ -708,6 +708,12 @@
         border-top: 1px solid rgba(50, 21, 6, 0.16);
       }
 
+      @media (min-width: 1024px) {
+        .voice-entry + .voice-entry {
+          border-top: 0;
+        }
+      }
+
       @media (max-width: 767px) {
         .hero-title {
           max-width: 100%;
@@ -1063,7 +1069,7 @@
             <p id="voicesKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">VOCES</p>
             <h2 id="voicesTitle" class="display-latin text-4xl uppercase leading-[0.96] text-[#321506] sm:text-5xl">Experiencias compartidas con MOKDA</h2>
           </div>
-          <div id="voicesList" data-reveal data-reveal-delay="100" class="mx-auto max-w-4xl border-y border-[#321506]/20"></div>
+          <div id="voicesList" data-reveal data-reveal-delay="100" class="mx-auto max-w-6xl border-y border-[#321506]/20 lg:grid lg:grid-cols-2 lg:gap-6 lg:border-y-0"></div>
         </div>
       </section>
 
@@ -2310,20 +2316,20 @@
 
         const cards = testimonials.map(
           (item) => `
-            <article aria-label="${item.name}" class="voice-entry py-9 sm:grid sm:grid-cols-[9rem_minmax(0,1fr)] sm:items-start sm:gap-x-8 sm:gap-y-5 sm:py-11">
-              <div class="flex items-center justify-center gap-4 sm:col-start-1 sm:row-span-2 sm:flex-col sm:pt-1 sm:text-center">
-                <img src="${item.image}" alt="${item.name}" class="h-28 w-28 shrink-0 rounded-full object-cover object-center ring-2 ring-white sm:h-32 sm:w-32" loading="lazy" decoding="async" />
-              </div>
-              <div class="mt-5 min-w-0 text-center sm:col-start-2 sm:mt-0 sm:text-left">
+            <article aria-label="${item.name}" class="voice-entry py-9 sm:py-11 lg:flex lg:h-full lg:flex-col lg:rounded-[1.5rem] lg:border lg:border-[#321506]/10 lg:bg-white lg:p-8 lg:shadow-[0_12px_32px_rgba(50,21,6,0.06)]">
+              <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left lg:min-h-32">
+                <img src="${item.image}" alt="${item.name}" class="h-28 w-28 shrink-0 rounded-full object-cover object-center ring-2 ring-white sm:h-32 sm:w-32 lg:h-28 lg:w-28" loading="lazy" decoding="async" />
+                <div class="min-w-0">
                 <div class="flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1 sm:flex-nowrap sm:justify-start">
                   <h3 class="break-keep text-xl font-black leading-7 text-[#321506] sm:text-2xl">${item.name}</h3>
                   <span aria-hidden="true" class="text-sm font-semibold text-[#321506]/35">|</span>
                   <p class="break-keep text-sm font-bold leading-6 text-[#321506]/78 sm:text-[15px]">${item.occupation}</p>
                 </div>
                 <p class="mt-1 break-keep text-xs font-semibold leading-5 text-[#321506]/55 sm:text-[13px]">${item.profile}</p>
+                </div>
               </div>
-              <div class="mt-5 min-w-0 sm:col-span-2 sm:mt-0">
-                <blockquote class="relative rounded-[1rem] bg-[#fff8ef]/62 px-5 py-5 text-left text-[15px] font-semibold leading-7 text-[#321506]/88 sm:px-7 sm:py-6 sm:text-base sm:leading-8">
+              <div class="mt-6 min-w-0 lg:flex lg:flex-1">
+                <blockquote class="relative rounded-[1rem] bg-[#fff8ef]/62 px-5 py-5 text-left text-[15px] font-semibold leading-7 text-[#321506]/88 sm:px-7 sm:py-6 sm:text-base sm:leading-8 lg:flex-1">
                   <span aria-hidden="true" class="absolute -left-1 -top-3 text-4xl font-black leading-none text-mokdaOrange">“</span>
                   ${item.quote}
                 </blockquote>

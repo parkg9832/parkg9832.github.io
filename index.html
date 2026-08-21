@@ -622,18 +622,25 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-inline: clamp(0.65rem, 1.35vw, 1.15rem);
       }
 
       .institution-logo-item img {
-        max-width: 88%;
-        max-height: 3.5rem;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 3.1rem;
         object-fit: contain;
       }
 
       .institution-logo-item img.institution-logo-open-sauce {
-        max-width: 88%;
-        max-height: 3.5rem;
-        transform: scale(1.28);
+        max-height: 3.2rem;
+        transform: scale(1.08);
+      }
+
+      .institution-logo-item img.institution-logo-chamgoeul {
+        max-height: 4.5rem;
+        transform: scale(1.04);
       }
 
       .hero-soft-copy .hero-kicker-shadow,
@@ -1048,24 +1055,27 @@
         </div>
       </section>
 
-      <section id="institutions" class="border-y border-[#321506]/10 bg-white py-8 sm:py-10">
+      <section id="institutions" class="border-y border-[#321506]/10 bg-white py-3">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center gap-3 sm:gap-5">
-            <button id="institutionsPrev" type="button" aria-label="Anterior" class="flex h-11 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[2rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">‹</button>
-            <div id="institutionsTrack" class="no-scrollbar flex flex-1 gap-4 overflow-x-auto" style="mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);">
-              <div data-institutions-group class="flex shrink-0 gap-4">
-                <div class="institution-logo-item h-20 w-[min(72vw,270px)] shrink-0 px-4 sm:w-[280px] lg:w-[300px]">
+          <div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
+            <button id="institutionsPrev" type="button" aria-label="Anterior" class="flex h-10 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[1.85rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">‹</button>
+            <div id="institutionsTrack" class="no-scrollbar flex flex-1 gap-6 overflow-x-auto sm:gap-8 lg:gap-10" style="mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);">
+              <div data-institutions-group class="flex shrink-0 gap-6 sm:gap-8 lg:gap-10">
+                <div class="institution-logo-item h-[4.75rem] w-[215px] shrink-0 sm:w-[235px] lg:w-[255px]">
                   <img src="assets/images/partner-jeonbuk-ccei-v1.webp" alt="전북창조경제혁신센터" loading="lazy" decoding="async" />
                 </div>
-                <div class="institution-logo-item h-20 w-[min(72vw,270px)] shrink-0 px-4 sm:w-[280px] lg:w-[300px]">
+                <div class="institution-logo-item h-[4.75rem] w-[160px] shrink-0 sm:w-[180px] lg:w-[195px]">
                   <img src="assets/images/partner-gimje-eda-v1.webp" alt="김제청년공간 E:DA" loading="lazy" decoding="async" />
                 </div>
-                <div class="institution-logo-item h-20 w-[min(72vw,270px)] shrink-0 px-4 sm:w-[280px] lg:w-[300px]">
+                <div class="institution-logo-item h-[4.75rem] w-[150px] shrink-0 sm:w-[170px] lg:w-[185px]">
                   <img src="assets/images/partner-open-sauce-lab-v1.webp" alt="오픈소스랩 Open Sauce Lab" class="institution-logo-open-sauce" loading="lazy" decoding="async" />
+                </div>
+                <div class="institution-logo-item h-[4.75rem] w-[100px] shrink-0 sm:w-[112px] lg:w-[124px]">
+                  <img src="assets/images/partner-chamgoeul-mark-v1.png" alt="참고을" class="institution-logo-chamgoeul" loading="lazy" decoding="async" />
                 </div>
               </div>
             </div>
-            <button id="institutionsNext" type="button" aria-label="Siguiente" class="flex h-11 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[2rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">›</button>
+            <button id="institutionsNext" type="button" aria-label="Siguiente" class="flex h-10 w-7 shrink-0 items-center justify-center border-0 bg-transparent p-0 text-[1.85rem] font-light leading-none text-mokdaOrange transition hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-mokdaOrange/35">›</button>
           </div>
         </div>
       </section>
@@ -2381,26 +2391,35 @@
         const group = track?.querySelector('[data-institutions-group]');
         if (!track || !group || group.dataset.cloned === 'true') return;
 
-        const cloneBefore = group.cloneNode(true);
-        const cloneAfter = group.cloneNode(true);
-        [cloneBefore, cloneAfter].forEach((clone) => {
+        const loopWidth = () => {
+          const styles = window.getComputedStyle(track);
+          const gap = Number.parseFloat(styles.columnGap || styles.gap) || 0;
+          return group.scrollWidth + gap;
+        };
+        const sideCopies = 3;
+        const createClone = () => {
+          const clone = group.cloneNode(true);
           clone.setAttribute('aria-hidden', 'true');
           clone.removeAttribute('data-institutions-group');
-        });
-        track.insertBefore(cloneBefore, group);
-        track.appendChild(cloneAfter);
+          return clone;
+        };
+        for (let index = 0; index < sideCopies; index += 1) {
+          track.insertBefore(createClone(), group);
+          track.appendChild(createClone());
+        }
         group.dataset.cloned = 'true';
 
         let lastTime = null;
-        const loopWidth = () => group.scrollWidth + 16;
+        const loopStart = () => loopWidth() * sideCopies;
         const normalize = () => {
           const width = loopWidth();
           if (width <= 0) return;
-          while (track.scrollLeft >= width * 2) track.scrollLeft -= width;
-          while (track.scrollLeft < width) track.scrollLeft += width;
+          const start = loopStart();
+          while (track.scrollLeft >= start + width) track.scrollLeft -= width;
+          while (track.scrollLeft < start) track.scrollLeft += width;
         };
-        track.scrollLeft = loopWidth();
-        window.requestAnimationFrame(() => { track.scrollLeft = loopWidth(); });
+        track.scrollLeft = loopStart();
+        window.requestAnimationFrame(() => { track.scrollLeft = loopStart(); });
         const tick = (time) => {
           if (lastTime === null) lastTime = time;
           const elapsed = Math.min(32, time - lastTime);
@@ -2413,11 +2432,12 @@
         };
         const nudge = (direction) => {
           const width = loopWidth();
+          const start = loopStart();
           const distance = Math.max(240, track.clientWidth * 0.72);
-          const relative = ((track.scrollLeft - width) % width + width) % width;
+          const relative = ((track.scrollLeft - start) % width + width) % width;
           const nextRelative = ((relative + direction * distance) % width + width) % width;
-          const currentAbsolute = width + relative;
-          const nextAbsolute = width + nextRelative;
+          const currentAbsolute = start + relative;
+          const nextAbsolute = start + nextRelative;
           track.scrollLeft = nextAbsolute;
           if (direction < 0 && nextAbsolute > currentAbsolute) track.scrollLeft -= width;
           if (direction > 0 && nextAbsolute < currentAbsolute) track.scrollLeft += width;

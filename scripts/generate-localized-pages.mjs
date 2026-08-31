@@ -51,16 +51,16 @@ const pages = {
     route: 'products.html',
     type: 'CollectionPage',
     ES: {
-      title: 'Salsa Coreana | Línea de productos MOKDA',
+      title: 'Salsa Coreana | Salsas MOKDA',
       description: 'K-PEÑO, Para Carnes y Ganjang (Soy Sauce): la primera línea de salsas coreanas de MOKDA para Latinoamérica.',
     },
     KR: {
       title: 'Salsa Coreana | MOKDA 한국 소스 라인업',
-      description: 'K-PEÑO, Para Carnes, Ganjang으로 구성된 MOKDA의 첫 번째 한국 소스 제품 라인업을 확인하세요.',
+      description: 'K-PEÑO, Para Carnes, Ganjang으로 구성된 MOKDA의 첫 번째 한국 소스 라인업을 확인하세요.',
     },
     EN: {
-      title: 'Salsa Coreana | MOKDA Product Line',
-      description: 'Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), the first Salsa Coreana product line from MOKDA for Latin America.',
+      title: 'Salsa Coreana | MOKDA Sauces',
+      description: 'Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), MOKDA’s first Korean sauce lineup for Latin America.',
     },
   },
   'qna.html': {
@@ -68,15 +68,15 @@ const pages = {
     type: 'WebPage',
     ES: {
       title: 'Preguntas frecuentes | MOKDA',
-      description: 'Respuestas sobre MOKDA, Salsa Coreana, productos, usos, disponibilidad, distribución y colaboraciones.',
+      description: 'Respuestas sobre MOKDA, Salsa Coreana, sabores, usos, disponibilidad, distribución y colaboraciones.',
     },
     KR: {
       title: '자주 묻는 질문 | MOKDA',
-      description: 'MOKDA와 Salsa Coreana의 제품, 활용법, 판매 정보, 유통 및 협업에 관한 자주 묻는 질문을 확인하세요.',
+      description: 'MOKDA와 Salsa Coreana의 소스, 활용법, 판매 정보, 유통 및 협업에 관한 자주 묻는 질문을 확인하세요.',
     },
     EN: {
       title: 'Frequently Asked Questions | MOKDA',
-      description: 'Find answers about MOKDA, Salsa Coreana, products, usage, availability, distribution, and partnerships.',
+      description: 'Find answers about MOKDA, Salsa Coreana, sauces, usage, availability, distribution, and partnerships.',
     },
   },
   'contact.html': {

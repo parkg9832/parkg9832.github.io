@@ -74,6 +74,7 @@
       }
 
       #storyTitle.display-korean,
+      #directionTitle.display-korean,
       #logoTitle.display-korean,
       #historyTitle.display-korean {
         font-size: clamp(2.45rem, 5vw, 4.5rem) !important;
@@ -368,6 +369,35 @@
         </div>
       </section>
 
+      <section id="direction" class="cream-grid-bg scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <div class="mx-auto w-full max-w-7xl">
+          <div data-reveal class="max-w-5xl">
+            <p id="directionKicker" class="condensed-label mb-4 text-base uppercase text-[#006943] sm:text-xl"></p>
+            <h2 id="directionTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
+          </div>
+          <div class="mt-10 grid gap-6 lg:mt-14 lg:grid-cols-2 lg:gap-8">
+            <article data-reveal class="surface-depth overflow-hidden rounded-[1.5rem] bg-white/75">
+              <div class="h-2 w-full bg-[#006943]"></div>
+              <div class="p-7 sm:p-9 lg:p-10">
+                <p id="visionLabel" class="condensed-label text-base uppercase text-[#006943] sm:text-lg"></p>
+                <p id="visionBody" class="mt-5 max-w-xl break-keep text-pretty text-xl font-extrabold leading-9 text-[#321506] sm:text-2xl sm:leading-10"></p>
+              </div>
+            </article>
+            <article data-reveal style="--reveal-delay: 100ms" class="surface-depth overflow-hidden rounded-[1.5rem] bg-white/75">
+              <div class="h-2 w-full bg-[#E8561D]"></div>
+              <div class="p-7 sm:p-9 lg:p-10">
+                <p id="missionLabel" class="condensed-label text-base uppercase text-[#E8561D] sm:text-lg"></p>
+                <p id="missionBody" class="mt-5 max-w-xl break-keep text-pretty text-xl font-extrabold leading-9 text-[#321506] sm:text-2xl sm:leading-10"></p>
+              </div>
+            </article>
+          </div>
+          <div data-reveal style="--reveal-delay: 140ms" class="mt-6 flex flex-col gap-3 border-l-4 border-[#E8561D] bg-[#f7ddc2]/70 px-6 py-6 sm:mt-8 sm:flex-row sm:items-baseline sm:gap-8 sm:px-8">
+            <p id="essenceLabel" class="condensed-label shrink-0 text-base uppercase text-[#006943] sm:text-lg"></p>
+            <p id="essenceBody" class="break-keep text-pretty text-xl font-extrabold leading-8 text-[#321506] sm:text-2xl"></p>
+          </div>
+        </div>
+      </section>
+
       <section id="identity" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-20">
         <div class="mx-auto w-full max-w-7xl">
           <div data-reveal class="mb-10 max-w-4xl sm:mb-12">
@@ -457,7 +487,7 @@
             kicker: 'Esencia de Marca MOKDA',
             line1: 'Comer Corea',
             line2: '한국을 먹다',
-            body: 'MOKDA es una marca K-Food que acerca la sensibilidad de Corea actual a las mesas de Latinoamérica.',
+            body: 'MOKDA es una marca K-Food que conecta la cultura gastronómica de Corea con la vida cotidiana de Latinoamérica.',
             cta: 'Historia de marca',
           },
           story: {
@@ -468,6 +498,16 @@
               'Al compartir comidas con amigos latinoamericanos, entendió que la comida va más allá del sabor: es una forma directa de conocer una cultura y a las personas que la viven.',
               'MOKDA transmite la esencia de Corea a través de la comida. Nuestro sueño es acercar Corea y Latinoamérica por medio de la comida, y estamos trabajando para hacerlo realidad.',
             ],
+          },
+          direction: {
+            kicker: 'IDENTIDAD DE MARCA',
+            title: 'Lo que guía a MOKDA',
+            visionLabel: 'VISIÓN',
+            vision: 'Ser una marca K-Food referente en Latinoamérica.',
+            missionLabel: 'MISIÓN',
+            mission: 'Conectar los sabores de Corea con la vida cotidiana de Latinoamérica de forma fácil y natural.',
+            essenceLabel: 'BRAND ESSENCE',
+            essence: 'La comida conecta culturas.',
           },
           logo: {
             kicker: 'BRAND LOGO',
@@ -521,7 +561,7 @@
             kicker: 'MOKDA Brand Essence',
             line1: 'Comer Corea',
             line2: '한국을 먹다',
-            body: 'MOKDA는 한국의 현재 감각을 라틴아메리카의 일상 식탁에 더 가깝게 전하는 K-Food 브랜드입니다.',
+            body: 'MOKDA는 한국의 식문화를 라틴아메리카의 일상과 연결하는 K-Food 브랜드입니다.',
             cta: '브랜드 스토리',
           },
           story: {
@@ -532,6 +572,16 @@
               '라틴아메리카 친구들과 함께 식사하며, 음식은 맛을 넘어 한 문화와 그곳의 사람들을 이해하는 가장 직접적인 방법이라는 것을 알게 되었습니다.',
               'MOKDA는 음식에 한국의 정수를 담아 전하고자 합니다. 한국과 라틴아메리카를 음식으로 더 가깝게 연결하는 꿈을 실현해 나갑니다.',
             ],
+          },
+          direction: {
+            kicker: 'BRAND IDENTITY',
+            title: 'MOKDA가 향하는 방향',
+            visionLabel: 'VISION',
+            vision: '라틴아메리카를 대표하는 K-Food 브랜드로 성장합니다.',
+            missionLabel: 'MISSION',
+            mission: '한국의 맛을 라틴아메리카의 일상에 더 쉽고 자연스럽게 연결합니다.',
+            essenceLabel: 'BRAND ESSENCE',
+            essence: '음식은 문화를 연결합니다.',
           },
           logo: {
             kicker: 'BRAND LOGO',
@@ -585,7 +635,7 @@
             kicker: 'MOKDA Brand Essence',
             line1: 'Comer Corea',
             line2: '한국을 먹다',
-            body: 'MOKDA is a K-Food brand bringing the present-day taste of Korea closer to everyday Latin American tables.',
+            body: 'MOKDA is a K-Food brand connecting Korean food culture with everyday life across Latin America.',
             cta: 'Brand story',
           },
           story: {
@@ -596,6 +646,16 @@
               'Sharing meals with Latin American friends taught him that food is more than flavor. It is one of the most direct ways to understand a culture and its people.',
               'MOKDA shares the essence of Korea through food. Our dream is to bring Korea and Latin America closer through food, and we are working to make it a reality.',
             ],
+          },
+          direction: {
+            kicker: 'BRAND IDENTITY',
+            title: 'What guides MOKDA',
+            visionLabel: 'VISION',
+            vision: 'To become a leading K-Food brand in Latin America.',
+            missionLabel: 'MISSION',
+            mission: 'To connect Korean flavors with everyday life across Latin America in an easy and natural way.',
+            essenceLabel: 'BRAND ESSENCE',
+            essence: 'Food connects cultures.',
           },
           logo: {
             kicker: 'BRAND LOGO',
@@ -675,6 +735,14 @@
         setText('storyKicker', copy.story.kicker);
         setText('storyTitle', copy.story.title);
         setHTML('storyBody', copy.story.body.map((item) => `<p>${item}</p>`).join(''));
+        setText('directionKicker', copy.direction.kicker);
+        setText('directionTitle', copy.direction.title);
+        setText('visionLabel', copy.direction.visionLabel);
+        setText('visionBody', copy.direction.vision);
+        setText('missionLabel', copy.direction.missionLabel);
+        setText('missionBody', copy.direction.mission);
+        setText('essenceLabel', copy.direction.essenceLabel);
+        setText('essenceBody', copy.direction.essence);
         setText('logoKicker', copy.logo.kicker);
         setText('logoTitle', copy.logo.title);
         setText('primaryLogoLabel', copy.logo.primaryLabel);
@@ -688,7 +756,7 @@
         setText('orangeBody', copy.logo.orange.body);
         setText('historyKicker', copy.history.kicker);
         setText('historyTitle', copy.history.title);
-        ['storyTitle', 'logoTitle', 'historyTitle'].forEach((id) => {
+        ['storyTitle', 'directionTitle', 'logoTitle', 'historyTitle'].forEach((id) => {
           const heading = document.getElementById(id);
           if (!heading) return;
           const usesKoreanDisplay = /[가-힣]/.test(heading.textContent);

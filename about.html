@@ -213,25 +213,8 @@
         transform: translateY(0);
       }
 
-      .story-editorial-photo {
-        box-shadow: 18px 18px 0 rgba(232, 86, 29, 0.16);
-      }
-
-      .story-chapter {
-        display: grid;
-        grid-template-columns: 3.25rem minmax(0, 1fr);
-        gap: 1rem;
-        border-top: 1px solid rgba(248, 223, 196, 0.2);
-        padding: 1.65rem 0;
-      }
-
-      .direction-row {
-        display: grid;
-        grid-template-columns: 5.5rem 10rem minmax(0, 1fr);
-        align-items: start;
-        gap: 1.5rem;
-        border-top: 1px solid rgba(50, 21, 6, 0.2);
-        padding: 2.5rem 0;
+      .story-copy p + p {
+        margin-top: 1.75rem;
       }
 
       .brand-color-card {
@@ -239,7 +222,6 @@
       }
 
       @media (max-width: 767px) {
-        body #storyTitle,
         body #historyTitle {
           font-size: clamp(2.15rem, 9.7vw, 2.75rem) !important;
           line-height: 0.96 !important;
@@ -247,7 +229,6 @@
           word-break: normal !important;
         }
 
-        body #storyTitle.display-korean,
         body #historyTitle.display-korean {
           font-size: clamp(2.1rem, 9.2vw, 2.65rem) !important;
           line-height: 1.12 !important;
@@ -258,30 +239,6 @@
           font-size: clamp(2.3rem, 10vw, 3rem) !important;
           overflow-wrap: anywhere;
           word-break: normal !important;
-        }
-
-        .story-editorial-photo {
-          box-shadow: 10px 10px 0 rgba(232, 86, 29, 0.16);
-        }
-
-        .story-chapter {
-          grid-template-columns: 2.5rem minmax(0, 1fr);
-          gap: 0.75rem;
-          padding: 1.35rem 0;
-        }
-
-        .direction-row {
-          grid-template-columns: 2.75rem minmax(0, 1fr);
-          gap: 0.75rem;
-          padding: 1.75rem 0;
-        }
-
-        .direction-row .direction-label {
-          grid-column: 2;
-        }
-
-        .direction-row .direction-copy {
-          grid-column: 2;
         }
 
         .brand-color-card {
@@ -362,61 +319,49 @@
         </div>
       </section>
 
-      <section id="story" class="brand-grid-bg scroll-mt-24 bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto w-full max-w-7xl">
-          <header data-reveal class="grid gap-7 border-b border-[#f8dfc4]/20 pb-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end lg:gap-20 lg:pb-14">
-            <div>
-              <p id="storyKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
-              <h2 id="storyTitle" class="display-latin max-w-2xl text-balance text-[2.65rem] uppercase leading-[0.94] text-mokdaOrange sm:text-6xl lg:text-[4.35rem]"></h2>
-            </div>
-            <p id="storyLead" class="max-w-2xl break-keep text-pretty text-lg font-semibold leading-9 text-[#f8dfc4]/88 sm:text-xl sm:leading-10"></p>
-          </header>
-
-          <div class="mt-10 grid items-start gap-12 sm:mt-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-20">
-            <figure data-reveal class="lg:sticky lg:top-28">
-              <div class="story-editorial-photo relative aspect-[4/5] overflow-hidden rounded-sm bg-[#260f04]">
+      <section id="story" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <div class="mx-auto w-full max-w-6xl">
+          <div class="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
+            <figure data-reveal>
+              <div class="relative aspect-[4/5] overflow-hidden bg-[#f7ddc2]">
                 <picture>
                   <source media="(max-width: 767px)" srcset="./assets/images/field-chili-720.webp" />
                   <img src="./assets/images/field-chili-1080.webp" alt="MOKDA founder inspecting chili peppers in Korea" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
                 </picture>
-                <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/22 via-transparent to-transparent"></div>
               </div>
-              <figcaption id="storyImageCaption" class="condensed-label mt-5 text-sm uppercase leading-6 text-[#f8dfc4]/55"></figcaption>
             </figure>
 
-            <div data-reveal style="--reveal-delay: 100ms">
-              <div id="storyChapters"></div>
-              <blockquote class="mt-8 border-l-2 border-mokdaOrange pl-5 sm:mt-12 sm:pl-7">
-                <p id="storyQuote" class="display-latin text-balance text-3xl uppercase leading-tight text-[#fff3e5] sm:text-4xl lg:text-5xl"></p>
-              </blockquote>
+            <div data-reveal style="--reveal-delay: 100ms" class="pt-1 lg:pt-6">
+              <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-lg"></p>
+              <h2 id="storyTitle" class="max-w-xl break-keep text-pretty text-3xl font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
+              <div class="my-8 h-0.5 w-12 bg-mokdaOrange sm:my-10"></div>
+              <div id="storyBody" class="story-copy max-w-xl break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="direction" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto w-full max-w-7xl">
-          <header data-reveal class="grid gap-5 lg:grid-cols-[15rem_minmax(0,1fr)] lg:items-end lg:gap-12">
-            <p id="directionKicker" class="condensed-label text-base uppercase text-[#006943] sm:text-xl"></p>
-            <h2 id="directionTitle" class="display-latin max-w-4xl text-balance text-4xl uppercase leading-[0.94] text-[#321506] sm:text-6xl lg:text-[4.6rem]"></h2>
+      <section id="direction" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <div class="mx-auto w-full max-w-6xl">
+          <header data-reveal class="max-w-3xl">
+            <p id="directionKicker" class="condensed-label text-base uppercase text-[#006943] sm:text-lg"></p>
+            <h2 id="directionTitle" class="mt-4 break-keep text-pretty text-3xl font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
           </header>
 
-          <div class="mt-10 border-b border-[#321506]/20 sm:mt-14">
-            <article data-reveal class="direction-row">
-              <p class="display-latin text-4xl leading-none text-[#006943]/20 sm:text-5xl">01</p>
-              <p id="visionLabel" class="direction-label condensed-label pt-1 text-base uppercase text-[#006943] sm:text-lg"></p>
-              <p id="visionBody" class="direction-copy max-w-3xl break-keep text-pretty text-2xl font-extrabold leading-9 text-[#321506] sm:text-3xl sm:leading-[1.35]"></p>
+          <div class="mt-10 grid gap-10 border-t border-[#321506]/20 pt-8 sm:mt-14 sm:gap-12 sm:pt-10 md:grid-cols-2 md:gap-16">
+            <article data-reveal>
+              <p id="visionLabel" class="condensed-label text-base uppercase text-[#006943] sm:text-lg"></p>
+              <p id="visionBody" class="mt-5 max-w-lg break-keep text-pretty text-xl font-bold leading-8 text-[#321506] sm:text-2xl sm:leading-9"></p>
             </article>
-            <article data-reveal style="--reveal-delay: 100ms" class="direction-row">
-              <p class="display-latin text-4xl leading-none text-[#E8561D]/20 sm:text-5xl">02</p>
-              <p id="missionLabel" class="direction-label condensed-label pt-1 text-base uppercase text-[#E8561D] sm:text-lg"></p>
-              <p id="missionBody" class="direction-copy max-w-3xl break-keep text-pretty text-2xl font-extrabold leading-9 text-[#321506] sm:text-3xl sm:leading-[1.35]"></p>
+            <article data-reveal style="--reveal-delay: 100ms">
+              <p id="missionLabel" class="condensed-label text-base uppercase text-[#E8561D] sm:text-lg"></p>
+              <p id="missionBody" class="mt-5 max-w-lg break-keep text-pretty text-xl font-bold leading-8 text-[#321506] sm:text-2xl sm:leading-9"></p>
             </article>
           </div>
 
-          <div data-reveal style="--reveal-delay: 140ms" class="mt-10 grid gap-4 border-l-[6px] border-[#E8561D] bg-[#006943] px-6 py-8 text-white sm:mt-14 sm:grid-cols-[12rem_minmax(0,1fr)] sm:items-center sm:gap-8 sm:px-10 sm:py-10">
-            <p id="essenceLabel" class="condensed-label text-base uppercase text-white/65 sm:text-lg"></p>
-            <p id="essenceBody" class="display-latin break-keep text-balance text-3xl uppercase leading-tight text-white sm:text-4xl lg:text-5xl"></p>
+          <div data-reveal style="--reveal-delay: 140ms" class="mt-14 flex flex-col gap-3 border-y border-[#321506]/20 py-6 sm:mt-20 sm:flex-row sm:items-center sm:gap-10 sm:py-7">
+            <p id="essenceLabel" class="condensed-label flex-none text-base uppercase text-[#006943] sm:text-lg"></p>
+            <p id="essenceBody" class="break-keep text-pretty text-xl font-bold text-[#321506] sm:text-2xl"></p>
           </div>
         </div>
       </section>
@@ -515,24 +460,12 @@
           },
           story: {
             kicker: 'Historia de Marca',
-            title: 'Un joven coreano, una mesa compartida',
-            lead: 'MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a Latinoamérica con una sola maleta.',
-            imageCaption: 'El fundador de MOKDA explora los ingredientes desde su origen en Corea.',
-            chapters: [
-              {
-                label: 'Una mesa compartida',
-                body: 'Al compartir la mesa con amigos latinoamericanos, entendió que la comida va más allá del sabor.',
-              },
-              {
-                label: 'Más que sabor',
-                body: 'Es una de las formas más directas de conocer una cultura y a las personas que la viven.',
-              },
-              {
-                label: 'Corea, más cerca',
-                body: 'Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA acerca Corea a las mesas cotidianas de Latinoamérica.',
-              },
+            title: 'Una historia que comenzó alrededor de la mesa',
+            body: [
+              'MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a Latinoamérica con una sola maleta.',
+              'Al compartir la mesa con amigos latinoamericanos, entendió que la comida va más allá del sabor. Es una de las formas más directas de conocer una cultura y a las personas que la viven.',
+              'Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA acerca Corea a las mesas cotidianas de Latinoamérica.',
             ],
-            quote: 'La comida va más allá del sabor.',
           },
           direction: {
             kicker: 'IDENTIDAD DE MARCA',
@@ -601,24 +534,12 @@
           },
           story: {
             kicker: 'Brand Story',
-            title: '한 청년의 여정, 함께 나눈 식탁',
-            lead: 'MOKDA는 2024년 봄, 가방 하나를 들고 라틴아메리카로 향한 한 청년의 여정에서 시작되었습니다.',
-            imageCaption: 'MOKDA 창업자가 한국에서 원재료의 시작을 살펴봅니다.',
-            chapters: [
-              {
-                label: '함께 나눈 식탁',
-                body: '라틴아메리카 친구들과 한 식탁에서 음식을 나누며, 음식은 단순한 맛을 넘어선다는 것을 알게 되었습니다.',
-              },
-              {
-                label: '맛을 넘어',
-                body: '음식은 한 문화와 그 문화를 살아가는 사람들을 이해하는 가장 직접적인 방법이었습니다.',
-              },
-              {
-                label: '한국을 더 가깝게',
-                body: 'MOKDA는 한국의 재료와 젊은 시선, 오늘의 감각을 담아 라틴아메리카의 식탁에 한국을 더 가깝게 전합니다.',
-              },
+            title: '한 식탁에서 시작된 이야기',
+            body: [
+              'MOKDA는 2024년 봄, 가방 하나를 들고 라틴아메리카로 향한 한 청년의 여정에서 시작되었습니다.',
+              '라틴아메리카의 친구들과 한 식탁에서 음식을 나누며 음식은 단순한 맛을 넘어, 한 문화와 그 문화를 살아가는 사람들을 이해하는 가장 직접적인 방법이라는 것을 알게 되었습니다.',
+              'MOKDA는 한국의 재료와 젊은 시선, 오늘의 감각을 담아 라틴아메리카의 식탁에 한국을 더 가깝게 전합니다.',
             ],
-            quote: '음식은 단순한 맛을 넘어섭니다.',
           },
           direction: {
             kicker: 'BRAND IDENTITY',
@@ -687,24 +608,12 @@
           },
           story: {
             kicker: 'Brand Story',
-            title: 'One journey, one shared table',
-            lead: 'MOKDA began in the spring of 2024, with the journey of a young Korean who set out for Latin America carrying a single bag.',
-            imageCaption: 'MOKDA’s founder explores Korean ingredients at their source.',
-            chapters: [
-              {
-                label: 'A shared table',
-                body: 'Sharing a table with Latin American friends taught him that food goes far beyond flavor.',
-              },
-              {
-                label: 'Beyond flavor',
-                body: 'It is one of the most direct ways to understand a culture and the people who live it.',
-              },
-              {
-                label: 'Bringing Korea closer',
-                body: 'With Korean ingredients, a young perspective, and the sensibility of Korea today, MOKDA brings Korea closer to everyday tables across Latin America.',
-              },
+            title: 'A story that began around the table',
+            body: [
+              'MOKDA began in the spring of 2024, with the journey of a young Korean who set out for Latin America carrying a single bag.',
+              'Sharing a table with Latin American friends taught him that food goes beyond flavor. It is one of the most direct ways to understand a culture and the people who live it.',
+              'With Korean ingredients, a young perspective, and the sensibility of Korea today, MOKDA brings Korea closer to everyday tables across Latin America.',
             ],
-            quote: 'Food goes far beyond flavor.',
           },
           direction: {
             kicker: 'BRAND IDENTITY',
@@ -793,25 +702,10 @@
         setText('heroBody', copy.hero.body);
         setText('storyKicker', copy.story.kicker);
         setText('storyTitle', copy.story.title);
-        setText('storyLead', copy.story.lead);
-        setText('storyImageCaption', copy.story.imageCaption);
         setHTML(
-          'storyChapters',
-          copy.story.chapters
-            .map(
-              (chapter, index) => `
-                <article class="story-chapter">
-                  <p class="condensed-label pt-1 text-sm text-mokdaOrange/70">${String(index + 1).padStart(2, '0')}</p>
-                  <div>
-                    <h3 class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg">${chapter.label}</h3>
-                    <p class="mt-3 break-keep text-pretty text-base font-semibold leading-8 text-[#f8dfc4]/82 sm:text-lg sm:leading-9">${chapter.body}</p>
-                  </div>
-                </article>
-              `,
-            )
-            .join(''),
+          'storyBody',
+          copy.story.body.map((paragraph) => `<p>${paragraph}</p>`).join(''),
         );
-        setText('storyQuote', copy.story.quote);
         setText('directionKicker', copy.direction.kicker);
         setText('directionTitle', copy.direction.title);
         setText('visionLabel', copy.direction.visionLabel);
@@ -833,7 +727,7 @@
         setText('orangeBody', copy.logo.orange.body);
         setText('historyKicker', copy.history.kicker);
         setText('historyTitle', copy.history.title);
-        ['storyTitle', 'directionTitle', 'logoTitle', 'historyTitle'].forEach((id) => {
+        ['logoTitle', 'historyTitle'].forEach((id) => {
           const heading = document.getElementById(id);
           if (!heading) return;
           const usesKoreanDisplay = /[가-힣]/.test(heading.textContent);

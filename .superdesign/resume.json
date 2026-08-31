@@ -28,8 +28,8 @@
         }
       },
       "fingerprints": {
-        ".superdesign/design-system.md": "c24a9cfd2bb650b9a44efdb75cf65959609aaee4ccb3880c23b61fb9f71e73a7",
-        "about.html": "8d17171049f8f2c799a71f273f671c859b8e41c63f7cbba83e3e59b979b3e052",
+        ".superdesign/design-system.md": "e2d25d5e4e885044cdea5a6ba4d2d3710a0c0e4d7620553436ceab0040f51c6b",
+        "about.html": "7d469f9e80114e4045e3fe8065716c2a362f06cbef425c9408bfc48dc2d2de51",
         "site-header.js": "ded3b747afa07d2433a72ba49bbc441c617870f8bea9407bbd8b53dcaeb3f68f",
         "site-footer.js": "2c616519d599aef8fa9cdbca3d8fd1e74e3e94456c0eae01d86c9814ec894b79",
         "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
@@ -37,9 +37,9 @@
       "components": [],
       "drafts": {
         "0365aeea-4218-4c0f-b5cd-6ed99e5b24e7": {
-          "title": "Current MOKDA About",
-          "visualDirection": "current UI baseline",
-          "currentVersion": 1
+          "title": "MOKDA Brand Story & Identity",
+          "visualDirection": "continuous founder narrative with quiet vision and mission",
+          "currentVersion": 2
         },
         "4cbacec9-50cb-4646-9dda-7c6c176b71a1": {
           "title": "MOKDA Founder's Journey Redesign",
@@ -54,7 +54,7 @@
           "currentVersion": 1
         }
       },
-      "updatedAt": "2026-08-31T05:23:07.135Z"
+      "updatedAt": "2026-08-31T18:59:15.1163023+09:00"
     }
   }
 }

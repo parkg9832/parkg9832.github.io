@@ -25,6 +25,15 @@ MOKDA is a Korean K-Food brand connecting Korean food culture with everyday life
 - Keep the existing hero identity, but improve the narrative rhythm below it.
 - Expand the Brand Story into an editorial sequence with the founder as the subject.
 - Use the exact brandbook meaning: spring 2024 journey with one bag; sharing meals with Latin American friends; discovering food as a direct way to understand a culture and its people; Korean ingredients, a young perspective, and today's Korean sensibility brought closer to Latin American tables.
-- Redesign Vision/Mission/Essence without floating cards: use editorial columns, fine dividers, restrained numbering, and one confident essence statement.
+- Redesign Vision/Mission/Essence without floating cards: use simple text columns, fine dividers, and one quiet essence statement.
 - Responsive behavior must remain polished at 1440px desktop and around 390px mobile, with no horizontal overflow.
 - Keep motion restrained to the existing reveal behavior and respect reduced-motion settings.
+
+## Reference-informed correction
+
+- The story must read as one continuous founder narrative, not a numbered sequence or a set of labeled content fragments.
+- Follow the restraint of founder-story pages from Fly By Jing, Omsom, Brightland, and Momofuku: one clear human voice, real photography, comfortable reading width, and very few graphic devices.
+- Remove AI-template signals: no `01/02/03` story beats, no editorial figure captions, no oversized pull quote, no sticky-image trick, no fake magazine language, and no decorative interaction that competes with the text.
+- Keep the story in 3–4 natural paragraphs. Let spacing and paragraph rhythm create hierarchy.
+- Use sentence case for the story heading and body-led typography. Reserve all-caps Archivo Black for established MOKDA identity moments, not every section.
+- Vision and mission should feel like plain brand commitments, not a presentation slide or dashboard component.

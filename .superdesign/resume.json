@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "targets": {
+    "/es/about.html": {
+      "targetKind": "existing-ui",
+      "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "baselineDraftId": "0365aeea-4218-4c0f-b5cd-6ed99e5b24e7",
+      "activeDraftId": "0365aeea-4218-4c0f-b5cd-6ed99e5b24e7",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        "about.html",
+        "site-header.js",
+        "site-footer.js",
+        "tailwind.config.ts"
+      ],
+      "referenceIds": [
+        "24d6e55e-7a24-438a-bac6-2125d9bc8e6a",
+        "16977b45-2660-4cbc-8ce3-ad00686a7d3d",
+        "68690680-f063-49b0-ba9e-1657a50a708c",
+        "assets-images-mokda-logo-main.webp"
+      ],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "assets-images-mokda-logo-main.webp",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/brand-assets/assets-images-mokda-logo-main.webp/mokda-logo-main.webp",
+          "sourcePath": "assets/images/mokda-logo-main.webp"
+        }
+      },
+      "fingerprints": {
+        ".superdesign/design-system.md": "c24a9cfd2bb650b9a44efdb75cf65959609aaee4ccb3880c23b61fb9f71e73a7",
+        "about.html": "8d17171049f8f2c799a71f273f671c859b8e41c63f7cbba83e3e59b979b3e052",
+        "site-header.js": "ded3b747afa07d2433a72ba49bbc441c617870f8bea9407bbd8b53dcaeb3f68f",
+        "site-footer.js": "2c616519d599aef8fa9cdbca3d8fd1e74e3e94456c0eae01d86c9814ec894b79",
+        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
+      },
+      "components": [],
+      "drafts": {
+        "0365aeea-4218-4c0f-b5cd-6ed99e5b24e7": {
+          "title": "Current MOKDA About",
+          "visualDirection": "current UI baseline",
+          "currentVersion": 1
+        },
+        "4cbacec9-50cb-4646-9dda-7c6c176b71a1": {
+          "title": "MOKDA Founder's Journey Redesign",
+          "visualDirection": "chronological founder journey",
+          "parentDraftId": "0365aeea-4218-4c0f-b5cd-6ed99e5b24e7",
+          "currentVersion": 1
+        },
+        "c79a4bab-bdc3-4bc3-9644-c92143729d1f": {
+          "title": "MOKDA Editorial Brand Story",
+          "visualDirection": "mature editorial food-brand story",
+          "parentDraftId": "0365aeea-4218-4c0f-b5cd-6ed99e5b24e7",
+          "currentVersion": 1
+        }
+      },
+      "updatedAt": "2026-08-31T05:23:07.135Z"
+    }
+  }
+}

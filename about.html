@@ -217,10 +217,6 @@
         margin-top: 1.75rem;
       }
 
-      .brand-color-card {
-        min-height: 0;
-      }
-
       @media (max-width: 767px) {
         body #historyTitle {
           font-size: clamp(2.15rem, 9.7vw, 2.75rem) !important;
@@ -241,9 +237,6 @@
           word-break: normal !important;
         }
 
-        .brand-color-card {
-          padding: 1.25rem;
-        }
       }
 
       @media (max-width: 359px) {
@@ -343,71 +336,61 @@
 
       <section id="direction" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div class="mx-auto w-full max-w-6xl">
-          <header data-reveal class="max-w-3xl">
+          <header data-reveal class="grid gap-6 md:grid-cols-[0.34fr_minmax(0,1fr)] md:gap-16 lg:gap-20">
             <p id="directionKicker" class="condensed-label text-base uppercase text-[#006943] sm:text-lg"></p>
-            <h2 id="directionTitle" class="mt-4 break-keep text-pretty text-3xl font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
+            <h2 id="directionTitle" class="max-w-3xl break-keep text-pretty text-4xl font-extrabold leading-[1.12] tracking-[-0.035em] text-[#321506] sm:text-5xl lg:text-6xl"></h2>
           </header>
 
-          <div class="mt-10 grid gap-10 border-t border-[#321506]/20 pt-8 sm:mt-14 sm:gap-12 sm:pt-10 md:grid-cols-2 md:gap-16">
-            <article data-reveal>
+          <div class="mt-14 border-t border-[#321506]/20 sm:mt-20 md:ml-[34%]">
+            <article data-reveal class="grid gap-3 border-b border-[#321506]/20 py-7 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8 sm:py-9">
+              <p id="missionLabel" class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg"></p>
+              <p id="missionBody" class="max-w-2xl break-keep text-pretty text-xl font-bold leading-8 text-[#321506] sm:text-2xl sm:leading-9"></p>
+            </article>
+            <article data-reveal style="--reveal-delay: 100ms" class="grid gap-3 border-b border-[#321506]/20 py-7 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8 sm:py-9">
               <p id="visionLabel" class="condensed-label text-base uppercase text-[#006943] sm:text-lg"></p>
-              <p id="visionBody" class="mt-5 max-w-lg break-keep text-pretty text-xl font-bold leading-8 text-[#321506] sm:text-2xl sm:leading-9"></p>
+              <p id="visionBody" class="max-w-2xl break-keep text-pretty text-xl font-bold leading-8 text-[#321506] sm:text-2xl sm:leading-9"></p>
             </article>
-            <article data-reveal style="--reveal-delay: 100ms">
-              <p id="missionLabel" class="condensed-label text-base uppercase text-[#E8561D] sm:text-lg"></p>
-              <p id="missionBody" class="mt-5 max-w-lg break-keep text-pretty text-xl font-bold leading-8 text-[#321506] sm:text-2xl sm:leading-9"></p>
-            </article>
-          </div>
-
-          <div data-reveal style="--reveal-delay: 140ms" class="mt-14 flex flex-col gap-3 border-y border-[#321506]/20 py-6 sm:mt-20 sm:flex-row sm:items-center sm:gap-10 sm:py-7">
-            <p id="essenceLabel" class="condensed-label flex-none text-base uppercase text-[#006943] sm:text-lg"></p>
-            <p id="essenceBody" class="break-keep text-pretty text-xl font-bold text-[#321506] sm:text-2xl"></p>
           </div>
         </div>
       </section>
 
-      <section id="identity" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-20">
-        <div class="mx-auto w-full max-w-7xl">
-          <div data-reveal class="mb-10 max-w-4xl sm:mb-12">
-            <p id="logoKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
-            <h2 id="logoTitle" class="display-latin break-keep text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[5.5rem]"></h2>
-          </div>
-          <div class="grid items-stretch gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
-            <div data-reveal class="grid content-start gap-5">
-              <figure class="surface-depth relative flex min-h-[330px] items-center justify-center overflow-hidden rounded-[1.5rem] bg-[#321506] p-8 sm:min-h-[420px] sm:p-10 lg:min-h-[390px]">
-                <figcaption id="primaryLogoLabel" class="condensed-label absolute left-6 top-6 text-base uppercase text-[#f8dfc4]/70 sm:left-8 sm:top-8"></figcaption>
-                <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[430px] object-contain" />
-              </figure>
-            </div>
-            <div data-reveal style="--reveal-delay: 120ms" class="grid content-start gap-5">
-              <article class="surface-depth rounded-[1.5rem] bg-white/72 p-6 sm:p-8 lg:p-9">
-                <p id="logoConceptLabel" class="condensed-label text-base uppercase text-mokdaOrange"></p>
-                <div id="motiveBody" class="mt-5 space-y-4 break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:text-lg sm:leading-9"></div>
-              </article>
-              <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-2">
-                <article class="brand-color-card rounded-[1.5rem] bg-[#006943] p-6 text-white sm:p-7">
-                  <p id="greenTitle" class="condensed-label text-base uppercase text-white/76"></p>
-                  <h3 id="greenKeywords" class="mt-3 break-keep text-xl font-black leading-tight sm:text-2xl"></h3>
-                  <p id="greenBody" class="mt-3 break-keep text-sm font-semibold leading-6 text-white/82"></p>
-                </article>
-                <article class="brand-color-card rounded-[1.5rem] bg-[#E8561D] p-6 text-white sm:p-7">
-                  <p id="orangeTitle" class="condensed-label text-base uppercase text-white/80"></p>
-                  <h3 id="orangeKeywords" class="mt-3 break-keep text-xl font-black leading-tight sm:text-2xl"></h3>
-                  <p id="orangeBody" class="mt-3 break-keep text-sm font-semibold leading-6 text-white/86"></p>
-                </article>
-              </div>
-            </div>
+      <section id="identity" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
+        <div class="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
+          <figure data-reveal class="surface-depth flex min-h-[300px] items-center justify-center overflow-hidden bg-[#321506] p-8 sm:min-h-[390px] sm:p-12">
+            <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[430px] object-contain" />
+          </figure>
+          <div data-reveal style="--reveal-delay: 120ms">
+            <p id="logoKicker" class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg"></p>
+            <h2 id="logoTitle" class="mt-5 max-w-xl break-keep text-pretty text-3xl font-extrabold leading-[1.18] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
+            <div class="mt-8 h-0.5 w-12 bg-mokdaOrange"></div>
+            <div id="motiveBody" class="mt-8 max-w-xl space-y-5 break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"></div>
           </div>
         </div>
       </section>
 
-      <section id="history" class="cream-grid-bg scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <section id="history" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div class="mx-auto w-full max-w-7xl">
           <div data-reveal class="mb-10 max-w-5xl sm:mb-14">
             <p id="historyKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
             <h2 id="historyTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
           </div>
           <div id="timelineList" class="border-b border-[#321506]/18"></div>
+        </div>
+      </section>
+
+      <section id="products-transition" class="scroll-mt-24 bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8">
+        <div class="mx-auto grid w-full max-w-6xl items-end gap-9 md:grid-cols-[minmax(0,1fr)_auto] md:gap-16">
+          <div data-reveal>
+            <p id="productCtaKicker" class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg"></p>
+            <h2 id="productCtaTitle" class="mt-4 max-w-3xl break-keep text-pretty text-3xl font-extrabold leading-[1.16] tracking-[-0.03em] sm:text-4xl lg:text-5xl"></h2>
+            <p id="productCtaBody" class="mt-5 max-w-2xl break-keep text-pretty text-base font-medium leading-8 text-[#f8dfc4]/76 sm:text-lg"></p>
+          </div>
+          <a href="products.html" class="group inline-flex min-h-12 w-fit items-center gap-3 rounded-full bg-mokdaOrange px-6 py-3 font-extrabold text-white transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#321506]">
+            <span id="productCtaButton"></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-none stroke-current stroke-2 transition-transform duration-300 group-hover:translate-x-1">
+              <path d="M5 12h14M13 6l6 6-6 6"></path>
+            </svg>
+          </a>
         </div>
       </section>
 
@@ -468,36 +451,20 @@
             ],
           },
           direction: {
-            kicker: 'IDENTIDAD DE MARCA',
-            title: 'Lo que guía a MOKDA',
-            visionLabel: 'VISIÓN',
-            vision: 'Ser una marca K-Food referente en Latinoamérica.',
-            missionLabel: 'MISIÓN',
+            kicker: 'LO QUE CREEMOS',
+            title: 'La comida conecta culturas.',
+            missionLabel: 'LO QUE HACEMOS',
             mission: 'Conectar los sabores de Corea con la vida cotidiana de Latinoamérica de forma fácil y natural.',
-            essenceLabel: 'BRAND ESSENCE',
-            essence: 'La comida conecta culturas.',
+            visionLabel: 'HACIA DÓNDE VAMOS',
+            vision: 'Ser una marca K-Food referente en Latinoamérica.',
           },
           logo: {
-            kicker: 'BRAND LOGO',
-            title: 'De la mesa coreana a las mesas del mundo',
-            primaryLabel: 'LOGOTIPO PRINCIPAL',
-            compactLabel: 'LOGOTIPO COMPACTO',
-            compactBody: 'Para cabeceras y espacios reducidos.',
-            conceptLabel: 'CONCEPTO DEL LOGO',
+            kicker: 'MOKDA',
+            title: 'El nombre y el símbolo',
             motiveBody: [
-              'El logotipo de MOKDA muestra cómo un sabor nacido en Corea llega a nuevas mesas.',
-              'El gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión; “MOKDA” y el coreano “먹다” señalan el origen coreano de la marca.',
+              'MOKDA viene de la palabra coreana 먹다, que significa “comer”.',
+              'El gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión. “MOKDA” y el coreano “먹다” muestran el origen coreano de la marca.',
             ],
-            green: {
-              title: 'MOKDA GREEN',
-              keywords: 'Origen · naturaleza · confianza',
-              body: 'Representa los ingredientes y la confianza que sostienen la marca.',
-            },
-            orange: {
-              title: 'MOKDA ORANGE',
-              keywords: 'Sabor · energía · movimiento',
-              body: 'Aporta la energía del sabor y el impulso hacia nuevas mesas.',
-            },
           },
           history: {
             kicker: 'Nuestra trayectoria',
@@ -517,6 +484,12 @@
                 ],
               },
             ],
+          },
+          productCta: {
+            kicker: 'SALSA COREANA',
+            title: 'Descubre Salsa Coreana',
+            body: 'Conoce cómo MOKDA acerca los sabores de Corea a las mesas de todos los días.',
+            button: 'Conocer Salsa Coreana',
           },
         },
         KR: {
@@ -542,36 +515,20 @@
             ],
           },
           direction: {
-            kicker: 'BRAND IDENTITY',
-            title: 'MOKDA가 향하는 방향',
-            visionLabel: 'VISION',
-            vision: '라틴아메리카를 대표하는 K-Food 브랜드로 성장합니다.',
-            missionLabel: 'MISSION',
+            kicker: '우리가 믿는 것',
+            title: '음식은 문화를 연결합니다.',
+            missionLabel: '우리가 하는 일',
             mission: '한국의 맛을 라틴아메리카의 일상에 더 쉽고 자연스럽게 연결합니다.',
-            essenceLabel: 'BRAND ESSENCE',
-            essence: '음식은 문화를 연결합니다.',
+            visionLabel: '우리가 향하는 곳',
+            vision: '라틴아메리카를 대표하는 K-Food 브랜드로 성장합니다.',
           },
           logo: {
-            kicker: 'BRAND LOGO',
-            title: '한국의 식탁에서 세계의 식탁으로',
-            primaryLabel: 'PRIMARY LOGO',
-            compactLabel: 'COMPACT LOGO',
-            compactBody: '헤더와 작은 공간에 사용하는 보조 로고',
-            conceptLabel: 'LOGO CONCEPT',
+            kicker: 'MOKDA',
+            title: '이름과 상징',
             motiveBody: [
-              'MOKDA 로고는 한국에서 시작한 맛이 새로운 식탁으로 확장되는 모습을 표현합니다.',
+              'MOKDA는 한국어 ‘먹다’에서 시작된 이름입니다.',
               '해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.',
             ],
-            green: {
-              title: 'MOKDA GREEN',
-              keywords: '원재료 · 자연 · 신뢰',
-              body: '브랜드의 시작인 원재료와 신뢰를 나타내는 중심색입니다.',
-            },
-            orange: {
-              title: 'MOKDA ORANGE',
-              keywords: '맛 · 에너지 · 움직임',
-              body: '음식의 에너지와 새로운 식탁으로 향하는 움직임을 나타냅니다.',
-            },
           },
           history: {
             kicker: 'Our Journey',
@@ -591,6 +548,12 @@
                 ],
               },
             ],
+          },
+          productCta: {
+            kicker: 'SALSA COREANA',
+            title: 'MOKDA의 Salsa Coreana',
+            body: '한국의 맛을 일상의 식탁에 더 가깝게 전하는 MOKDA의 소스를 만나보세요.',
+            button: 'Salsa Coreana 보기',
           },
         },
         EN: {
@@ -616,36 +579,20 @@
             ],
           },
           direction: {
-            kicker: 'BRAND IDENTITY',
-            title: 'What guides MOKDA',
-            visionLabel: 'VISION',
-            vision: 'To become a leading K-Food brand in Latin America.',
-            missionLabel: 'MISSION',
+            kicker: 'WHAT WE BELIEVE',
+            title: 'Food connects cultures.',
+            missionLabel: 'WHAT WE DO',
             mission: 'To connect Korean flavors with everyday life across Latin America in an easy and natural way.',
-            essenceLabel: 'BRAND ESSENCE',
-            essence: 'Food connects cultures.',
+            visionLabel: 'WHERE WE ARE GOING',
+            vision: 'To become a leading K-Food brand in Latin America.',
           },
           logo: {
-            kicker: 'BRAND LOGO',
-            title: 'From Korean tables to tables around the world',
-            primaryLabel: 'PRIMARY LOGO',
-            compactLabel: 'COMPACT LOGO',
-            compactBody: 'For headers and space-limited applications.',
-            conceptLabel: 'LOGO CONCEPT',
+            kicker: 'MOKDA',
+            title: 'The name and the symbol',
             motiveBody: [
-              'The MOKDA logo shows how a flavor born in Korea reaches new tables.',
-              'The sunrise-inspired graphic represents a new beginning and growth, while “MOKDA” and the Korean word “먹다” reflect the brand’s Korean origin.',
+              'MOKDA comes from the Korean word 먹다, meaning “to eat.”',
+              'The sunrise-inspired graphic represents a new beginning and expansion. “MOKDA” and the Korean word “먹다” express the brand’s Korean origin.',
             ],
-            green: {
-              title: 'MOKDA GREEN',
-              keywords: 'Ingredients · nature · trust',
-              body: "MOKDA's core color represents its ingredients and foundation of trust.",
-            },
-            orange: {
-              title: 'MOKDA ORANGE',
-              keywords: 'Flavor · energy · movement',
-              body: 'It brings the energy of flavor and momentum toward new tables.',
-            },
           },
           history: {
             kicker: 'Our Journey',
@@ -665,6 +612,12 @@
                 ],
               },
             ],
+          },
+          productCta: {
+            kicker: 'SALSA COREANA',
+            title: 'Discover Salsa Coreana',
+            body: 'See how MOKDA brings Korean flavors closer to everyday tables.',
+            button: 'Explore Salsa Coreana',
           },
         },
       };
@@ -712,22 +665,16 @@
         setText('visionBody', copy.direction.vision);
         setText('missionLabel', copy.direction.missionLabel);
         setText('missionBody', copy.direction.mission);
-        setText('essenceLabel', copy.direction.essenceLabel);
-        setText('essenceBody', copy.direction.essence);
         setText('logoKicker', copy.logo.kicker);
         setText('logoTitle', copy.logo.title);
-        setText('primaryLogoLabel', copy.logo.primaryLabel);
-        setText('logoConceptLabel', copy.logo.conceptLabel);
         setHTML('motiveBody', copy.logo.motiveBody.map((item) => `<p>${item}</p>`).join(''));
-        setText('greenTitle', copy.logo.green.title);
-        setText('greenKeywords', copy.logo.green.keywords);
-        setText('greenBody', copy.logo.green.body);
-        setText('orangeTitle', copy.logo.orange.title);
-        setText('orangeKeywords', copy.logo.orange.keywords);
-        setText('orangeBody', copy.logo.orange.body);
         setText('historyKicker', copy.history.kicker);
         setText('historyTitle', copy.history.title);
-        ['logoTitle', 'historyTitle'].forEach((id) => {
+        setText('productCtaKicker', copy.productCta.kicker);
+        setText('productCtaTitle', copy.productCta.title);
+        setText('productCtaBody', copy.productCta.body);
+        setText('productCtaButton', copy.productCta.button);
+        ['historyTitle'].forEach((id) => {
           const heading = document.getElementById(id);
           if (!heading) return;
           const usesKoreanDisplay = /[가-힣]/.test(heading.textContent);

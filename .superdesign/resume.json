@@ -29,7 +29,7 @@
       },
       "fingerprints": {
         ".superdesign/design-system.md": "e2d25d5e4e885044cdea5a6ba4d2d3710a0c0e4d7620553436ceab0040f51c6b",
-        "about.html": "e1593151393602bd60359d1050e8f787b93e627fcc8bd8f935e723ba2a83b8d4",
+        "about.html": "d80e72ea918820b808fd43ac89efc4de04893db76f627adb53a9abbf4577980f",
         "site-header.js": "cc9d30a09aa1b338e782787442d609b599825c4296c47d98a36f396f7e3a305e",
         "site-footer.js": "2c616519d599aef8fa9cdbca3d8fd1e74e3e94456c0eae01d86c9814ec894b79",
         "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
@@ -38,8 +38,8 @@
       "drafts": {
         "0365aeea-4218-4c0f-b5cd-6ed99e5b24e7": {
           "title": "Dirección de marca compacta de MOKDA",
-          "visualDirection": "centered brand essence with balanced mission and vision columns",
-          "currentVersion": 5
+          "visualDirection": "brand essence, mission, and vision integrated into the hero beside the food image",
+          "currentVersion": 6
         },
         "4cbacec9-50cb-4646-9dda-7c6c176b71a1": {
           "title": "MOKDA Founder's Journey Redesign",
@@ -54,7 +54,7 @@
           "currentVersion": 1
         }
       },
-      "updatedAt": "2026-09-01T10:41:00+09:00"
+      "updatedAt": "2026-09-01T14:41:17.4033112+09:00"
     }
   }
 }

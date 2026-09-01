@@ -161,9 +161,10 @@
     }
 
     .mokda-site-header.is-scrolled {
-      background: rgba(255, 255, 255, 0.76) !important;
+      background: rgba(255, 248, 239, 0.92) !important;
       border-bottom-color: rgba(50, 21, 6, 0.07);
       box-shadow: 0 4px 14px rgba(50, 21, 6, 0.035);
+      backdrop-filter: saturate(1.12) blur(14px);
     }
 
     .mokda-desktop-nav,
@@ -386,11 +387,17 @@
 
       .mokda-header-bar #lang-selector .lang-btn,
       .mokda-header-bar #lang-bg {
-        width: 34px !important;
+        width: 40px !important;
       }
 
       .mokda-header-bar #lang-selector .lang-btn {
+        height: 44px !important;
         font-size: 11px !important;
+      }
+
+      .mokda-header-bar #menu-toggle {
+        width: 44px !important;
+        height: 44px !important;
       }
 
       .mokda-mobile-menu-inner {
@@ -427,12 +434,12 @@
 
       .mokda-header-bar #lang-selector .lang-btn,
       .mokda-header-bar #lang-bg {
-        width: 30px !important;
+        width: 40px !important;
       }
 
       .mokda-header-bar #menu-toggle {
-        width: 40px !important;
-        height: 40px !important;
+        width: 44px !important;
+        height: 44px !important;
       }
 
       .mokda-mobile-menu-inner {

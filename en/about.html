@@ -175,10 +175,10 @@
 
       [data-reveal] {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(16px);
         transition:
-          opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
-          transform 680ms cubic-bezier(0.22, 1, 0.36, 1);
+          opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
         transition-delay: var(--reveal-delay, 0ms);
       }
 
@@ -189,6 +189,39 @@
 
       .story-copy p + p {
         margin-top: 1.75rem;
+      }
+
+      .timeline-month {
+        display: inline-flex;
+        min-width: 2.25rem;
+        min-height: 2.25rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: #321506;
+        color: #fff8ef;
+        box-shadow: 0 5px 14px rgba(50, 21, 6, 0.12);
+      }
+
+      .timeline-month.is-empty {
+        background: transparent;
+        box-shadow: none;
+      }
+
+      @media (min-width: 640px) and (max-width: 1023px) {
+        .about-story-figure {
+          width: 100%;
+          max-width: 40rem;
+          margin-inline: auto;
+        }
+
+        .about-story-media {
+          aspect-ratio: 5 / 4;
+        }
+
+        .about-identity-logo {
+          max-width: 390px !important;
+        }
       }
 
       @media (max-width: 767px) {
@@ -310,8 +343,8 @@
       <section id="top" class="cream-grid-bg relative min-h-screen bg-[#f7ddc2] px-4 pb-10 pt-24 sm:px-6 sm:pb-12 sm:pt-28 lg:px-8">
         <div class="mx-auto flex w-full max-w-7xl flex-col items-center text-center">
           <div data-reveal class="relative z-10 flex min-h-[380px] w-full flex-col items-center justify-center sm:min-h-[420px] lg:min-h-[475px]">
-            <p id="heroKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-xl"></p>
-            <h1 class="display-latin mx-auto max-w-6xl text-[5.25rem] uppercase leading-[0.77] text-mokdaOrange sm:text-[8.5rem] lg:text-[11rem] xl:text-[13rem]">
+            <p id="heroKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-xl"></p>
+            <h1 class="display-latin mx-auto max-w-6xl text-[5.25rem] uppercase leading-[0.77] text-[#d94a00] sm:text-[8.5rem] lg:text-[11rem] xl:text-[13rem]">
               <span id="heroLine1" class="block"></span>
             </h1>
             <p id="heroLine2" class="display-korean mt-5 break-keep text-4xl leading-none text-[#321506] sm:text-6xl lg:text-7xl"></p>
@@ -327,8 +360,8 @@
       <section id="story" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div class="mx-auto w-full max-w-6xl">
           <div class="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
-            <figure data-reveal>
-              <div class="relative aspect-[4/5] overflow-hidden bg-[#f7ddc2]">
+            <figure data-reveal class="about-story-figure">
+              <div class="about-story-media relative aspect-[4/5] overflow-hidden bg-[#f7ddc2]">
                 <picture>
                   <source media="(max-width: 767px)" srcset="./assets/images/field-chili-720.webp" />
                   <img src="./assets/images/field-chili-1080.webp" alt="MOKDA founder inspecting chili peppers in Korea" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
@@ -337,8 +370,8 @@
             </figure>
 
             <div data-reveal style="--reveal-delay: 100ms" class="pt-1 lg:pt-6">
-              <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-mokdaOrange sm:text-lg"></p>
-              <h2 id="storyTitle" class="max-w-xl break-keep text-pretty text-3xl font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
+              <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-lg"></p>
+              <h2 id="storyTitle" class="max-w-xl break-keep text-pretty text-[1.75rem] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
               <div class="my-8 h-0.5 w-12 bg-mokdaOrange sm:my-10"></div>
               <div id="storyBody" class="story-copy max-w-xl break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"></div>
             </div>
@@ -355,7 +388,7 @@
 
           <div class="mt-14 border-t border-[#321506]/20 sm:mt-20 md:ml-[34%]">
             <article data-reveal class="grid gap-3 border-b border-[#321506]/20 py-7 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8 sm:py-9">
-              <p id="missionLabel" class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg"></p>
+              <p id="missionLabel" class="condensed-label text-base uppercase text-[#b73500] sm:text-lg"></p>
               <p id="missionBody" class="max-w-2xl break-keep text-pretty text-xl font-bold leading-8 text-[#321506] sm:text-2xl sm:leading-9"></p>
             </article>
             <article data-reveal style="--reveal-delay: 100ms" class="grid gap-3 border-b border-[#321506]/20 py-7 sm:grid-cols-[11rem_minmax(0,1fr)] sm:gap-8 sm:py-9">
@@ -369,10 +402,10 @@
       <section id="identity" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div class="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
           <figure data-reveal class="surface-depth flex min-h-[300px] items-center justify-center overflow-hidden bg-[#321506] p-8 sm:min-h-[390px] sm:p-12">
-            <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="h-auto w-full max-w-[430px] object-contain" />
+            <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="about-identity-logo h-auto w-full max-w-[430px] object-contain" />
           </figure>
           <div data-reveal style="--reveal-delay: 120ms">
-            <p id="logoKicker" class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg"></p>
+            <p id="logoKicker" class="condensed-label text-base uppercase text-[#b73500] sm:text-lg"></p>
             <h2 id="logoTitle" class="mt-5 max-w-xl break-keep text-pretty text-3xl font-extrabold leading-[1.18] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
             <div class="mt-8 h-0.5 w-12 bg-mokdaOrange"></div>
             <div id="motiveBody" class="mt-8 max-w-xl space-y-5 break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"></div>
@@ -383,7 +416,7 @@
       <section id="history" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
         <div class="mx-auto w-full max-w-7xl">
           <div data-reveal class="mb-10 max-w-5xl sm:mb-14">
-            <p id="historyKicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl"></p>
+            <p id="historyKicker" class="condensed-label mb-4 text-base uppercase text-[#b73500] sm:text-xl"></p>
             <h2 id="historyTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
           </div>
           <div id="timelineList" class="border-b border-[#321506]/18"></div>
@@ -700,14 +733,16 @@
               (group, index) => `
                 <article data-reveal style="--reveal-delay: ${index * 90}ms" class="grid gap-5 overflow-visible border-t border-[#321506]/18 py-7 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
                   <div class="sm:pt-1">
-                    <p class="display-latin whitespace-nowrap text-6xl leading-none text-mokdaOrange sm:text-7xl lg:text-[5.5rem] xl:text-8xl">${group.year}</p>
+                    <p class="display-latin whitespace-nowrap text-6xl leading-none text-[#d94a00] sm:text-7xl lg:text-[5.5rem] xl:text-8xl">${group.year}</p>
                   </div>
                   <div class="divide-y divide-[#321506]/14 border-y border-[#321506]/14 sm:border-t-0">
                     ${group.items
                       .map(
                         (item, itemIndex) => `
-                          <div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-3 py-4 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-5">
-                            <span class="condensed-label pt-1 text-sm text-mokdaOrange">${
+                          <div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
+                            <span class="timeline-month condensed-label text-sm${
+                              itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month ? ' is-empty' : ''
+                            }">${
                               typeof item === 'string'
                                 ? String(itemIndex + 1).padStart(2, '0')
                                 : itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month
@@ -716,7 +751,7 @@
                             }</span>
                             <div>
                               <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${typeof item === 'string' ? item : item.text}</p>
-                              ${typeof item === 'string' || !(item.detail || item.amount) ? '' : `<p class="mt-1 break-keep text-sm font-extrabold leading-6 text-mokdaOrange sm:text-base">(${item.detail || item.amount})</p>`}
+                              ${typeof item === 'string' || !(item.detail || item.amount) ? '' : `<p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(${item.detail || item.amount})</p>`}
                             </div>
                           </div>
                         `,

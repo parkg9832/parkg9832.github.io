@@ -90,15 +90,13 @@
       })
       .join('');
     element.innerHTML = `
-      <div class="space-y-6">
-        <p class="text-2xl font-black tracking-tight text-white">MOKDA</p>
-        <nav aria-label="${footer.navigationLabel}" class="flex flex-wrap gap-x-6 gap-y-3 border-y border-white/12 py-5 text-sm">
+      <div class="space-y-9 text-center">
+        <nav aria-label="${footer.navigationLabel}" class="flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm">
           ${navigationLinks}
         </nav>
-        <div class="grid gap-7 text-sm leading-6 text-white/70 lg:grid-cols-[1.45fr_0.9fr]">
-          <section>
-            <h2 class="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.businessTitle}</h2>
-            <dl class="grid gap-x-7 gap-y-3 sm:grid-cols-2">
+        <section class="mx-auto w-full max-w-5xl text-sm leading-6 text-white/70">
+          <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.businessTitle}</h2>
+          <dl class="mt-5 grid items-start gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
               <div>
                 <dt class="mb-1 font-bold text-white/68">${footer.companyLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.company}</dd>
@@ -115,13 +113,12 @@
                 <dt class="mb-1 font-bold text-white/68">${footer.addressLabel}</dt>
                 <dd class="text-white/82">${footer.address}</dd>
               </div>
-            </dl>
-          </section>
-          <section class="lg:max-w-md lg:justify-self-end">
-            <h2 class="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.ipTitle}</h2>
-            <p class="text-white/76">${footer.ip}</p>
-          </section>
-        </div>
+          </dl>
+        </section>
+        <section class="mx-auto max-w-2xl text-sm leading-6 text-white/70">
+          <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.ipTitle}</h2>
+          <p class="mt-5 text-white/76">${footer.ip}</p>
+        </section>
         <div class="text-xs font-semibold text-white/66">${footer.copyright}</div>
       </div>
     `;

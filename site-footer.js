@@ -86,17 +86,18 @@
     const navigationLinks = footer.navigation
       .map(([label, route]) => {
         const href = route ? `/${routePrefix}/${route}` : `/${routePrefix}/`;
-        return `<a class="font-bold text-white/76 transition hover:text-white focus:text-white" href="${href}">${label}</a>`;
+        return `<a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="${href}">${label}</a>`;
       })
       .join('');
     element.innerHTML = `
-      <div class="space-y-9 text-center">
-        <nav aria-label="${footer.navigationLabel}" class="flex flex-wrap justify-center gap-x-7 gap-y-3 text-sm">
+      <div class="space-y-4 text-center sm:space-y-5">
+        <nav aria-label="${footer.navigationLabel}" class="grid grid-cols-2 gap-x-3 gap-y-1 rounded-2xl bg-white/[0.035] p-2 text-[13px] sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-2 sm:px-6 sm:py-4 sm:text-sm">
           ${navigationLinks}
         </nav>
-        <section class="mx-auto w-full max-w-5xl text-sm leading-6 text-white/70">
-          <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.businessTitle}</h2>
-          <dl class="mt-5 grid items-start gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="grid gap-4 lg:grid-cols-[1.55fr_0.85fr] lg:items-stretch">
+          <section class="rounded-2xl bg-white/[0.045] px-4 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
+            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">${footer.businessTitle}</h2>
+            <dl class="mt-4 grid grid-cols-2 items-start gap-x-4 gap-y-4 sm:gap-x-6 lg:grid-cols-4">
               <div>
                 <dt class="mb-1 font-bold text-white/68">${footer.companyLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.company}</dd>
@@ -105,21 +106,22 @@
                 <dt class="mb-1 font-bold text-white/68">${footer.ceoLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.ceo}</dd>
               </div>
-              <div>
+              <div class="col-span-2 lg:col-span-1">
                 <dt class="mb-1 font-bold text-white/68">${footer.registrationLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.registration}</dd>
               </div>
-              <div>
+              <div class="col-span-2 lg:col-span-1">
                 <dt class="mb-1 font-bold text-white/68">${footer.addressLabel}</dt>
                 <dd class="text-white/82">${footer.address}</dd>
               </div>
-          </dl>
-        </section>
-        <section class="mx-auto max-w-2xl text-sm leading-6 text-white/70">
-          <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-white/78">${footer.ipTitle}</h2>
-          <p class="mt-5 text-white/76">${footer.ip}</p>
-        </section>
-        <div class="text-xs font-semibold text-white/66">${footer.copyright}</div>
+            </dl>
+          </section>
+          <section class="flex flex-col justify-center rounded-2xl bg-white/[0.035] px-5 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
+            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">${footer.ipTitle}</h2>
+            <p class="mt-3 text-white/76">${footer.ip}</p>
+          </section>
+        </div>
+        <div class="pt-1 text-[11px] font-semibold text-white/66 sm:text-xs">${footer.copyright}</div>
       </div>
     `;
   }

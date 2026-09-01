@@ -38,3 +38,4 @@ Organized_Workspace/
 # Local browser QA artifacts
 .playwright-cli/
 output/playwright/
+.superdesign/tmp/

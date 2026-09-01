@@ -11,6 +11,7 @@
     "generate:i18n": "npm run build:static-css && node scripts/generate-localized-pages.mjs",
     "preview:static": "node scripts/serve-static.mjs",
     "test:analytics": "node scripts/analytics-regression.test.mjs",
+    "test:support-preview": "node scripts/support-preview-regression.test.mjs",
     "git:sync": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh",
     "push": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh"
   },

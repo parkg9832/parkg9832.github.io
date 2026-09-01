@@ -1115,6 +1115,7 @@
     <script src="./site-accordion.js?v=20260719-1"></script>
     <script src="./b2b-config.js?v=20260810-1"></script>
     <script src="./site-contact-config.js?v=20260810-1"></script>
+    <script src="./support-preview-data.js?v=20260901-1"></script>
     <script>
       const homepageProofConfig = {
         // Latest verified cumulative brand social media views.
@@ -1719,6 +1720,23 @@
       const homepageSupportFallbackTotal = 31;
       const homepageSupportCacheKey = 'mokda_support_total';
 
+      function getHomepageSupportPreview() {
+        if (!window.MOKDA_SUPPORT_PREVIEW?.isEnabled?.()) return null;
+        return window.MOKDA_SUPPORT_PREVIEW.create(language);
+      }
+
+      function applyHomepageSupportPreview(data) {
+        const preview = getHomepageSupportPreview();
+        if (!preview) return data;
+        const baseTotal = Number.isFinite(Number(data?.total))
+          ? Number(data.total)
+          : readCachedSupportTotal();
+        return {
+          total: baseTotal + preview.total,
+          supporters: preview.entries,
+        };
+      }
+
       function readCachedSupportTotal() {
         try {
           const cached = Number(window.localStorage.getItem(homepageSupportCacheKey));
@@ -1965,6 +1983,18 @@
         const total = homepageSupportData?.total;
         animateSupportTotal(Number.isFinite(total) ? total : homepageSupportFallbackTotal);
 
+        const preview = getHomepageSupportPreview();
+        const supportCta = document.getElementById('supportCta');
+        if (preview && supportCta) {
+          const previewUrl = new URL(supportCta.href, window.location.href);
+          previewUrl.searchParams.set(
+            window.MOKDA_SUPPORT_PREVIEW.parameter,
+            window.MOKDA_SUPPORT_PREVIEW.value,
+          );
+          previewUrl.hash = 'voices';
+          supportCta.href = previewUrl.toString();
+        }
+
         const container = document.getElementById('homeSupportMessages');
         if (!container) return;
         container.replaceChildren();
@@ -2020,6 +2050,7 @@
       async function loadHomepageSupport() {
         const endpoint = window.MOKDA_B2B_WEB_APP_URL;
         if (!endpoint) {
+          homepageSupportData = applyHomepageSupportPreview(homepageSupportData);
           renderHomepageSupport();
           return;
         }
@@ -2036,7 +2067,7 @@
           const hasCountryTotals = homepageSupportCountryCodes.some((code) =>
             Object.prototype.hasOwnProperty.call(countryTotals, code)
           );
-          homepageSupportData = {
+          homepageSupportData = applyHomepageSupportPreview({
             total: hasCountryTotals
               ? homepageSupportCountryCodes.reduce((sum, code) => sum + Number(countryTotals[code] || 0), 0)
               : Number(result.total),
@@ -2046,7 +2077,7 @@
                 homepageSupportCountryCodes.includes(String(supporter?.countryCode || '').trim().toUpperCase()) &&
                 String(supporter?.message || '').trim()
             ),
-          };
+          });
           if (Number.isFinite(homepageSupportData.total) && homepageSupportData.total > 0) {
             try {
               window.localStorage.setItem(homepageSupportCacheKey, String(homepageSupportData.total));
@@ -2055,7 +2086,7 @@
             }
           }
         } catch (error) {
-          homepageSupportData = { total: readCachedSupportTotal(), supporters: [] };
+          homepageSupportData = applyHomepageSupportPreview({ total: readCachedSupportTotal(), supporters: [] });
         }
         renderHomepageSupport();
       }

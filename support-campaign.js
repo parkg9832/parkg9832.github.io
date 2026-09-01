@@ -3,6 +3,9 @@
 
   const language = window.MOKDA_I18N?.getLanguage?.() || 'ES';
   const endpoint = window.MOKDA_B2B_WEB_APP_URL || '';
+  const supportPreview = window.MOKDA_SUPPORT_PREVIEW?.isEnabled?.()
+    ? window.MOKDA_SUPPORT_PREVIEW.create(language)
+    : null;
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const supportStorageKey = 'mokda_demand_support_v1';
   const countryCodes = ['PE', 'MX', 'CL', 'CO'];
@@ -308,6 +311,44 @@
   let supportFeedPublicTotal = 0;
   let supportFeedHasMore = false;
   let supportFeedLoadingMore = false;
+  let previewLiveResult = {};
+
+  function readPreviewBaseTotal() {
+    try {
+      const cached = Number(window.localStorage.getItem('mokda_support_total'));
+      return Number.isFinite(cached) && cached > 0 ? cached : 34;
+    } catch (error) {
+      return 34;
+    }
+  }
+
+  function buildPreviewResult(liveResult = {}, offset = 0) {
+    if (!supportPreview) return liveResult;
+    if (Number.isFinite(Number(liveResult?.total)) || liveResult?.totals) {
+      previewLiveResult = liveResult;
+    }
+    const liveTotals = liveResult?.totals || {};
+    const hasLiveTotals = countryCodes.some((code) =>
+      Object.prototype.hasOwnProperty.call(liveTotals, code),
+    );
+    const liveTotal = Number.isFinite(Number(liveResult?.total))
+      ? Number(liveResult.total)
+      : readPreviewBaseTotal();
+    const totals = countryCodes.reduce((result, code) => {
+      result[code] = Number(supportPreview.totals[code] || 0) + (hasLiveTotals ? Number(liveTotals[code] || 0) : 0);
+      return result;
+    }, {});
+    const supporters = supportPreview.entries.slice(offset, offset + feedPageSize);
+
+    return {
+      ok: true,
+      total: supportPreview.total + liveTotal,
+      publicTotal: supportPreview.total,
+      totals,
+      supporters,
+      hasMore: offset + supporters.length < supportPreview.total,
+    };
+  }
 
   function updateSupportFeedMore() {
     const button = document.getElementById('supportFeedMore');
@@ -323,9 +364,12 @@
   function renderSupportFeed(result, { append = false } = {}) {
     const totals = result?.totals || {};
     const hasCountryTotals = countryCodes.some((code) => Object.prototype.hasOwnProperty.call(totals, code));
-    const total = hasCountryTotals
-      ? countryCodes.reduce((sum, code) => sum + Number(totals[code] || 0), 0)
-      : Number(result?.total || 0);
+    const explicitTotal = Number(result?.total);
+    const total = Number.isFinite(explicitTotal)
+      ? explicitTotal
+      : hasCountryTotals
+        ? countryCodes.reduce((sum, code) => sum + Number(totals[code] || 0), 0)
+        : 0;
     const supporters = Array.isArray(result?.supporters) ? result.supporters : [];
     const totalElement = document.getElementById('supportFeedTotal');
     const totalsElement = document.getElementById('supportCountryTotals');
@@ -510,15 +554,17 @@
     const totalElement = document.getElementById('supportFeedTotal');
     const cachedData = readFeedCache();
 
-    if (cachedData) {
+    if (supportPreview) {
+      renderSupportFeed(buildPreviewResult(cachedData || {}));
+    } else if (cachedData) {
       renderSupportFeed(cachedData);
     } else {
       renderSupportFeedSkeletons();
     }
 
     if (!endpoint) {
-      if (!cachedData && totalElement) totalElement.textContent = t.feedTotal(0);
-      supportFeedHasMore = false;
+      if (!cachedData && !supportPreview && totalElement) totalElement.textContent = t.feedTotal(0);
+      if (!supportPreview) supportFeedHasMore = false;
       updateSupportFeedMore();
       return;
     }
@@ -544,11 +590,11 @@
       if (!response.ok || !result.ok) throw new Error(result.error || 'Support feed request failed');
 
       writeFeedCache(result);
-      renderSupportFeed(result);
+      renderSupportFeed(buildPreviewResult(result));
     } catch (error) {
       if (timeoutId) clearTimeout(timeoutId);
       console.error('Support feed background load failure:', error);
-      if (!cachedData) {
+      if (!cachedData && !supportPreview) {
         if (totalElement) totalElement.textContent = t.feedTotal(0);
         renderSupportFeed({ total: 0, totals: {}, supporters: [] });
       }
@@ -556,7 +602,18 @@
   }
 
   async function loadMoreSupportFeed() {
-    if (!endpoint || !supportFeedHasMore || supportFeedLoadingMore) return;
+    if (!supportFeedHasMore || supportFeedLoadingMore) return;
+
+    if (supportPreview) {
+      supportFeedLoadingMore = true;
+      updateSupportFeedMore();
+      renderSupportFeed(buildPreviewResult(previewLiveResult, renderedSupporterCount), { append: true });
+      supportFeedLoadingMore = false;
+      updateSupportFeedMore();
+      return;
+    }
+
+    if (!endpoint) return;
 
     supportFeedLoadingMore = true;
     updateSupportFeedMore();
@@ -632,6 +689,12 @@
 
     if (!name || !countryCodes.includes(country)) {
       setStatus('error', t.required);
+      return;
+    }
+
+    if (supportPreview) {
+      showToast(t.success(name, countryName(country)));
+      showSuccessActions();
       return;
     }
 
@@ -719,6 +782,7 @@
   const supportForm = document.getElementById('supportForm');
   supportForm.addEventListener('submit', submitSupport);
   const trackSupportFormStart = () => {
+    if (supportPreview) return;
     if (hasTrackedSupportFormStart) return;
     hasTrackedSupportFormStart = true;
     if (window.MOKDA_ANALYTICS?.trackOncePerSession) {
@@ -743,6 +807,7 @@
       if (hasTrackedCountrySelection || !input.checked) return;
       trackSupportFormStart();
       hasTrackedCountrySelection = true;
+      if (supportPreview) return;
       window.MOKDA_ANALYTICS?.track(
         'support_country_select',
         { element: `country_${String(input.value || '').toLowerCase()}` },
@@ -760,7 +825,9 @@
         await navigator.clipboard.writeText(shareUrl);
         showToast(t.shareCopied);
       }
-      window.MOKDA_ANALYTICS?.track('support_share', { element: 'support_success_share' }, { immediate: true });
+      if (!supportPreview) {
+        window.MOKDA_ANALYTICS?.track('support_share', { element: 'support_success_share' }, { immediate: true });
+      }
     } catch (error) {
       if (error?.name !== 'AbortError') showToast(t.error);
     }
@@ -784,7 +851,9 @@
 
   bindSupportMotion();
   render();
-  showSavedSupport(readJson(supportStorageKey));
+  if (!supportPreview) showSavedSupport(readJson(supportStorageKey));
   loadSupportFeed();
-  window.MOKDA_ANALYTICS?.track('support_page_view', { element: 'demand_support_page' });
+  if (!supportPreview) {
+    window.MOKDA_ANALYTICS?.track('support_page_view', { element: 'demand_support_page' });
+  }
 })();

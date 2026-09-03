@@ -33,6 +33,7 @@ vm.runInContext(source, context);
 
 const preview = context.window.MOKDA_SUPPORT_PREVIEW;
 assert.equal(preview.isEnabled(), true);
+assert.equal(preview.isTestMode(), true);
 const data = preview.create('ES');
 assert.equal(data.total, 200);
 assert.deepEqual({ ...data.totals }, { PE: 120, MX: 60, CL: 10, CO: 10 });
@@ -63,6 +64,9 @@ assert.equal(names.size, 200);
 context.window.location.hostname = 'www.mokda.kr';
 assert.equal(preview.isEnabled(), true);
 context.window.location.search = '';
+assert.equal(preview.isEnabled(), true);
+assert.equal(preview.isTestMode(), false);
+context.window.location.hostname = 'example.com';
 assert.equal(preview.isEnabled(), false);
 
 console.log('Support preview fixture checks passed.');

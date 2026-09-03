@@ -51,10 +51,14 @@
     EN: { PE: 'Peru', MX: 'Mexico', CL: 'Chile', CO: 'Colombia' },
   };
 
-  function isEnabled() {
+  function isSupportedHost() {
     const hostname = String(window.location.hostname || '').toLowerCase();
+    return previewHosts.has(hostname);
+  }
+
+  function isTestMode() {
     const params = new URLSearchParams(window.location.search);
-    const enabled = previewHosts.has(hostname) && params.get(previewParameter) === previewValue;
+    const enabled = isSupportedHost() && params.get(previewParameter) === previewValue;
     if (enabled && typeof document !== 'undefined') {
       let robots = document.querySelector('meta[data-support-preview-robots]');
       if (!robots) {
@@ -66,6 +70,10 @@
       robots.content = 'noindex, nofollow, noarchive';
     }
     return enabled;
+  }
+
+  function isEnabled() {
+    return isSupportedHost();
   }
 
   function seededRandom(seed) {
@@ -151,6 +159,7 @@
 
   window.MOKDA_SUPPORT_PREVIEW = Object.freeze({
     isEnabled,
+    isTestMode,
     create,
     parameter: previewParameter,
     value: previewValue,

@@ -6,6 +6,7 @@
   const supportPreview = window.MOKDA_SUPPORT_PREVIEW?.isEnabled?.()
     ? window.MOKDA_SUPPORT_PREVIEW.create(language)
     : null;
+  const supportPreviewMode = window.MOKDA_SUPPORT_PREVIEW?.isTestMode?.() === true;
   const visitorStorageKey = 'mokda_analytics_visitor_v1';
   const supportStorageKey = 'mokda_demand_support_v1';
   const countryCodes = ['PE', 'MX', 'CL', 'CO'];
@@ -315,7 +316,7 @@
 
   function readPreviewBaseTotal() {
     try {
-      const cached = Number(window.localStorage.getItem('mokda_support_total'));
+      const cached = Number(window.localStorage.getItem('mokda_support_live_total_v2'));
       return Number.isFinite(cached) && cached > 0 ? cached : 34;
     } catch (error) {
       return 34;
@@ -692,7 +693,7 @@
       return;
     }
 
-    if (supportPreview) {
+    if (supportPreviewMode) {
       showToast(t.success(name, countryName(country)));
       showSuccessActions();
       return;
@@ -782,7 +783,7 @@
   const supportForm = document.getElementById('supportForm');
   supportForm.addEventListener('submit', submitSupport);
   const trackSupportFormStart = () => {
-    if (supportPreview) return;
+    if (supportPreviewMode) return;
     if (hasTrackedSupportFormStart) return;
     hasTrackedSupportFormStart = true;
     if (window.MOKDA_ANALYTICS?.trackOncePerSession) {
@@ -807,7 +808,7 @@
       if (hasTrackedCountrySelection || !input.checked) return;
       trackSupportFormStart();
       hasTrackedCountrySelection = true;
-      if (supportPreview) return;
+      if (supportPreviewMode) return;
       window.MOKDA_ANALYTICS?.track(
         'support_country_select',
         { element: `country_${String(input.value || '').toLowerCase()}` },
@@ -825,7 +826,7 @@
         await navigator.clipboard.writeText(shareUrl);
         showToast(t.shareCopied);
       }
-      if (!supportPreview) {
+      if (!supportPreviewMode) {
         window.MOKDA_ANALYTICS?.track('support_share', { element: 'support_success_share' }, { immediate: true });
       }
     } catch (error) {
@@ -851,9 +852,9 @@
 
   bindSupportMotion();
   render();
-  if (!supportPreview) showSavedSupport(readJson(supportStorageKey));
+  if (!supportPreviewMode) showSavedSupport(readJson(supportStorageKey));
   loadSupportFeed();
-  if (!supportPreview) {
+  if (!supportPreviewMode) {
     window.MOKDA_ANALYTICS?.track('support_page_view', { element: 'demand_support_page' });
   }
 })();

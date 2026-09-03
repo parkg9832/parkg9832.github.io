@@ -18,6 +18,12 @@
     { code: 'CL', total: 10, female: 8 },
     { code: 'CO', total: 10, female: 8 },
   ];
+  const nameComponentPlan = [
+    ...Array.from({ length: 20 }, () => 1),
+    ...Array.from({ length: 90 }, () => 2),
+    ...Array.from({ length: 60 }, () => 3),
+    ...Array.from({ length: 30 }, () => 4),
+  ];
 
   const firstNames = {
     PE: {
@@ -43,6 +49,25 @@
     MX: ['Hernández', 'García', 'Martínez', 'López', 'González', 'Pérez', 'Rodríguez', 'Sánchez', 'Ramírez', 'Cruz', 'Flores', 'Gómez', 'Morales', 'Vázquez', 'Reyes'],
     CL: ['González', 'Muñoz', 'Rojas', 'Díaz', 'Pérez', 'Soto', 'Contreras', 'Silva', 'Martínez', 'Sepúlveda'],
     CO: ['Rodríguez', 'Martínez', 'García', 'Gómez', 'López', 'González', 'Hernández', 'Sánchez', 'Ramírez', 'Torres'],
+  };
+
+  const compoundGivenNames = {
+    PE: {
+      female: [['María', 'Fernanda'], ['María', 'José'], ['Ana', 'Lucía'], ['Ana', 'Paula'], ['Rosa', 'María'], ['Luz', 'Elena'], ['María', 'Alejandra'], ['María', 'Isabel']],
+      male: [['José', 'Luis'], ['Luis', 'Alberto'], ['Juan', 'Carlos'], ['Carlos', 'Andrés'], ['Miguel', 'Ángel'], ['Diego', 'Alonso'], ['Jorge', 'Eduardo'], ['Marco', 'Antonio']],
+    },
+    MX: {
+      female: [['María', 'Fernanda'], ['María', 'José'], ['Ana', 'Sofía'], ['Ana', 'Paula'], ['Dulce', 'María'], ['María', 'Guadalupe'], ['María', 'Isabel'], ['Luz', 'Elena']],
+      male: [['José', 'Luis'], ['Juan', 'Carlos'], ['Miguel', 'Ángel'], ['Luis', 'Ángel'], ['Marco', 'Antonio'], ['José', 'Manuel'], ['Carlos', 'Eduardo'], ['Diego', 'Alejandro']],
+    },
+    CL: {
+      female: [['María', 'José'], ['María', 'Paz'], ['María', 'Ignacia'], ['Ana', 'María'], ['María', 'Fernanda'], ['María', 'Isabel'], ['Javiera', 'Paz'], ['Francisca', 'Javiera']],
+      male: [['Juan', 'Pablo'], ['José', 'Tomás'], ['Luis', 'Felipe'], ['Diego', 'Ignacio'], ['Cristóbal', 'Andrés'], ['Vicente', 'Alonso'], ['Benjamín', 'Ignacio'], ['Matías', 'Nicolás']],
+    },
+    CO: {
+      female: [['María', 'Camila'], ['María', 'Fernanda'], ['Laura', 'Sofía'], ['Ana', 'María'], ['María', 'Alejandra'], ['Luisa', 'Fernanda'], ['Sara', 'Isabel'], ['María', 'Paula']],
+      male: [['Juan', 'David'], ['Juan', 'Sebastián'], ['Luis', 'Fernando'], ['Carlos', 'Andrés'], ['José', 'Manuel'], ['Miguel', 'Ángel'], ['Juan', 'Felipe'], ['Andrés', 'Felipe']],
+    },
   };
 
   const countryNames = {
@@ -104,12 +129,61 @@
     return `¡Quiero encontrar Salsa Coreana en ${country}!`;
   }
 
+  function createNaturalName({
+    code,
+    gender,
+    genderIndex,
+    componentCount,
+    nameOffset,
+    compoundOffset,
+    surnameOffset,
+    usedNames,
+  }) {
+    const names = firstNames[code][gender];
+    const compoundNames = compoundGivenNames[code][gender];
+    const familyNames = surnames[code];
+
+    for (let attempt = 0; attempt < 500; attempt += 1) {
+      const firstName = names[(genderIndex + nameOffset + attempt) % names.length];
+      const compoundName = compoundNames[(genderIndex + compoundOffset + attempt) % compoundNames.length];
+      const firstSurname = familyNames[(genderIndex + surnameOffset + attempt) % familyNames.length];
+      let secondSurname = familyNames[
+        (genderIndex + surnameOffset + attempt + Math.ceil(familyNames.length / 2)) % familyNames.length
+      ];
+      if (secondSurname === firstSurname) {
+        secondSurname = familyNames[(genderIndex + surnameOffset + attempt + 1) % familyNames.length];
+      }
+
+      let parts;
+      if (componentCount === 1) parts = [firstName];
+      else if (componentCount === 2) parts = [firstName, firstSurname];
+      else if (componentCount === 3 && genderIndex % 2 === 0) {
+        parts = [firstName, firstSurname, secondSurname];
+      } else if (componentCount === 3) {
+        parts = [...compoundName, firstSurname];
+      } else {
+        parts = [...compoundName, firstSurname, secondSurname];
+      }
+
+      const name = parts.join(' ');
+      if (!usedNames.has(name)) {
+        usedNames.add(name);
+        return name;
+      }
+    }
+
+    throw new Error(`Unable to create a unique support name for ${code}`);
+  }
+
   function create(language = 'ES') {
     const random = seededRandom(20260730);
     const start = new Date(campaignCreatedAt).getTime();
     const end = Math.max(start, Date.now());
     const entries = [];
     const totals = {};
+    const usedNames = new Set();
+    const componentCounts = shuffle(nameComponentPlan, random);
+    let componentIndex = 0;
 
     countryPlan.forEach(({ code, total, female }) => {
       totals[code] = total;
@@ -126,20 +200,30 @@
         female: Math.floor(random() * surnames[code].length),
         male: Math.floor(random() * surnames[code].length),
       };
+      const compoundOffsets = {
+        female: Math.floor(random() * compoundGivenNames[code].female.length),
+        male: Math.floor(random() * compoundGivenNames[code].male.length),
+      };
 
       genders.forEach((gender) => {
-        const names = firstNames[code][gender];
-        const familyNames = surnames[code];
         const genderIndex = genderIndexes[gender];
         genderIndexes[gender] += 1;
-        const firstName = names[(genderIndex + nameOffsets[gender]) % names.length];
-        const firstSurname = familyNames[
-          (Math.floor(genderIndex / names.length) + surnameOffsets[gender]) % familyNames.length
-        ];
+        const componentCount = componentCounts[componentIndex];
+        componentIndex += 1;
+        const name = createNaturalName({
+          code,
+          gender,
+          genderIndex,
+          componentCount,
+          nameOffset: nameOffsets[gender],
+          compoundOffset: compoundOffsets[gender],
+          surnameOffset: surnameOffsets[gender],
+          usedNames,
+        });
         const createdAt = new Date(start + Math.floor(random() * (end - start + 1))).toISOString();
 
         entries.push({
-          name: `${firstName} ${firstSurname}`,
+          name,
           countryCode: code,
           gender,
           message: localizedMessage(language, code),

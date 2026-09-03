@@ -42,13 +42,15 @@ const countryCounts = { PE: 0, MX: 0, CL: 0, CO: 0 };
 const genderCounts = { female: 0, male: 0 };
 const createdAtValues = new Set();
 const names = new Set();
+const nameComponentCounts = { 1: 0, 2: 0, 3: 0, 4: 0 };
 const start = new Date(data.campaignCreatedAt).getTime();
 
 data.entries.forEach((entry) => {
   countryCounts[entry.countryCode] += 1;
   genderCounts[entry.gender] += 1;
-  assert.match(entry.name, /^\S+\s+\S+$/);
-  assert.ok(entry.name.length <= 24);
+  assert.match(entry.name, /^\S+(?:\s+\S+){0,3}$/);
+  assert.ok(entry.name.length <= 40);
+  nameComponentCounts[entry.name.split(/\s+/).length] += 1;
   assert.equal(entry.message, `¡Quiero encontrar Salsa Coreana en ${{ PE: 'Perú', MX: 'México', CL: 'Chile', CO: 'Colombia' }[entry.countryCode]}!`);
   const timestamp = new Date(entry.createdAt).getTime();
   assert.ok(timestamp >= start && timestamp <= fixedNow);
@@ -58,6 +60,7 @@ data.entries.forEach((entry) => {
 
 assert.deepEqual(countryCounts, { PE: 120, MX: 60, CL: 10, CO: 10 });
 assert.deepEqual(genderCounts, { female: 160, male: 40 });
+assert.deepEqual(nameComponentCounts, { 1: 20, 2: 90, 3: 60, 4: 30 });
 assert.equal(createdAtValues.size, 200);
 assert.equal(names.size, 200);
 

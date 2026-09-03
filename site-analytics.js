@@ -5,10 +5,23 @@
   const queryParameters = new URLSearchParams(window.location.search);
   const debugMode = queryParameters.get('analytics_debug') === '1';
   const verificationMode = queryParameters.get('utm_medium') === 'verification';
+  const supportPreviewMode = queryParameters.get('support_preview') === '200';
   const internalOptOutKey = 'mokda_analytics_internal_opt_out_v1';
   const internalCommand = queryParameters.get('mokda_internal');
   const ga4MeasurementId = 'G-TGLJ91TKZF';
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: false, reason: 'initializing' };
+
+  if (supportPreviewMode) {
+    window.MOKDA_ANALYTICS_STATUS.reason = 'support_preview';
+    window.MOKDA_ANALYTICS = Object.freeze({
+      track() {},
+      trackOncePerSession() { return false; },
+      flush() {},
+      getDebugEvents() { return []; },
+      clearDebugEvents() {},
+    });
+    return;
+  }
 
   function isInternalOptedOut() {
     try {

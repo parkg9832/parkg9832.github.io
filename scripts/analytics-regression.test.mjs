@@ -9,6 +9,10 @@ const analyticsSource = read('site-analytics.js');
 const supportSource = read('support-campaign.js');
 const contactSource = read('contact.html');
 
+assert.match(analyticsSource, /queryParameters\.get\('support_preview'\) === '200'/);
+assert.match(analyticsSource, /MOKDA_ANALYTICS_STATUS\.reason = 'support_preview'/);
+assert.match(analyticsSource, /window\.MOKDA_ANALYTICS = Object\.freeze/);
+
 const context = vm.createContext({ console, Date, Number, String, Array, Object, RegExp, Math, JSON });
 vm.runInContext(appsScriptSource, context);
 

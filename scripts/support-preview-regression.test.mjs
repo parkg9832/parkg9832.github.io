@@ -61,6 +61,8 @@ assert.equal(createdAtValues.size, 200);
 assert.equal(names.size, 200);
 
 context.window.location.hostname = 'www.mokda.kr';
+assert.equal(preview.isEnabled(), true);
+context.window.location.search = '';
 assert.equal(preview.isEnabled(), false);
 
 console.log('Support preview fixture checks passed.');

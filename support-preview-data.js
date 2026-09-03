@@ -1,7 +1,14 @@
 (() => {
   'use strict';
 
-  const localHosts = new Set(['localhost', '127.0.0.1', '0.0.0.0', '[::1]']);
+  const previewHosts = new Set([
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0',
+    '[::1]',
+    'mokda.kr',
+    'www.mokda.kr',
+  ]);
   const previewParameter = 'support_preview';
   const previewValue = '200';
   const campaignCreatedAt = '2026-07-30T16:12:41+09:00';
@@ -47,7 +54,18 @@
   function isEnabled() {
     const hostname = String(window.location.hostname || '').toLowerCase();
     const params = new URLSearchParams(window.location.search);
-    return localHosts.has(hostname) && params.get(previewParameter) === previewValue;
+    const enabled = previewHosts.has(hostname) && params.get(previewParameter) === previewValue;
+    if (enabled && typeof document !== 'undefined') {
+      let robots = document.querySelector('meta[data-support-preview-robots]');
+      if (!robots) {
+        robots = document.createElement('meta');
+        robots.name = 'robots';
+        robots.dataset.supportPreviewRobots = 'true';
+        document.head.appendChild(robots);
+      }
+      robots.content = 'noindex, nofollow, noarchive';
+    }
+    return enabled;
   }
 
   function seededRandom(seed) {

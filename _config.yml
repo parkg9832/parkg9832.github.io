@@ -1,0 +1,27 @@
+# GitHub Pages (branch/Jekyll publishing): keep development and operational
+# material out of the published website. This does not make a public Git repo private.
+exclude:
+  - node_modules
+  - app
+  - components
+  - public
+  - apps-script
+  - scripts
+  - docs
+  - output
+  - tmp
+  - AGENTS.md
+  - MOKDA_HARNESS.md
+  - B2B_AUTOMATION_SETUP.md
+  - korean_script_text_list.md
+  - korean_text_list.md
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - tsconfig.tsbuildinfo
+  - next-env.d.ts
+  - next.config.mjs
+  - postcss.config.mjs
+  - tailwind.config.ts
+  - translations.ts
+  - sync.sh

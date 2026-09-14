@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import vm from 'node:vm';
 
 const source = await readFile(new URL('../support-preview-data.js', import.meta.url), 'utf8');
-const fixedNow = new Date('2026-09-01T12:00:00+09:00').getTime();
+let fixedNow = new Date('2026-09-01T12:00:00+09:00').getTime();
 class FixedDate extends Date {
   constructor(value) {
     super(value === undefined ? fixedNow : value);
@@ -64,10 +64,15 @@ assert.deepEqual(nameComponentCounts, { 1: 20, 2: 90, 3: 60, 4: 30 });
 assert.equal(createdAtValues.size, 200);
 assert.equal(names.size, 200);
 
-context.window.location.hostname = 'www.mokda.kr';
-assert.equal(preview.isEnabled(), true);
+fixedNow += 10 * 86400000;
+assert.deepEqual(preview.create('ES').entries.map(entry => entry.createdAt), data.entries.map(entry => entry.createdAt), 'Preview registration timestamps must not move as days pass');
 context.window.location.search = '';
-assert.equal(preview.isEnabled(), true);
+assert.equal(preview.isEnabled(), false, 'The normal local page must use real support data');
+context.window.location.hostname = 'www.mokda.kr';
+context.window.location.search = '?support_preview=200';
+assert.equal(preview.isEnabled(), false, 'Generated supporters must not replace the production feed');
+context.window.location.search = '';
+assert.equal(preview.isEnabled(), false);
 assert.equal(preview.isTestMode(), false);
 context.window.location.hostname = 'example.com';
 assert.equal(preview.isEnabled(), false);

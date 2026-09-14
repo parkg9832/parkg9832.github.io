@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import vm from 'node:vm';
+
+const source = await readFile(new URL('../support-campaign.js', import.meta.url), 'utf8');
+const start = source.indexOf('  function formatSupportTime(');
+const end = source.indexOf('  let renderedSupporterCount', start);
+assert.ok(start >= 0 && end > start);
+let now = Date.parse('2026-09-12T12:00:00Z');
+class TestDate extends Date { static now() { return now; } }
+const time = { dateTime: '2026-09-12T11:00:00Z', textContent: '' };
+const document = { hidden: false, querySelectorAll: () => [time] };
+const context = vm.createContext({ Date: TestDate, Intl, document, language: 'ES' });
+vm.runInContext(source.slice(start, end), context);
+const run = code => vm.runInContext(code, context);
+
+run('refreshSupportTimes()');
+assert.equal(time.textContent, 'hace 1 hora');
+now += 3600000;
+run('refreshSupportTimes()');
+assert.equal(time.textContent, 'hace 2 horas');
+assert.equal(time.dateTime, '2026-09-12T11:00:00Z', 'Refreshing must not change the stored registration date');
+document.hidden = true;
+now += 3600000;
+run('refreshSupportTimes()');
+assert.equal(time.textContent, 'hace 2 horas');
+document.hidden = false;
+run('refreshSupportTimes()');
+assert.equal(time.textContent, 'hace 3 horas', 'Resuming a tab recalculates elapsed time');
+context.language = 'KR';
+run('refreshSupportTimes()');
+assert.equal(time.textContent, '3시간 전');
+context.language = 'EN';
+run('refreshSupportTimes()');
+assert.equal(time.textContent, '3 hours ago');
+assert.equal(run("formatSupportTime('invalid-date')"), '');
+assert.match(run("formatSupportTime('2026-08-20T12:00:00Z')"), /Aug.*20/);
+assert.match(source, /setInterval\(refreshSupportTimes, 60000\)/);
+assert.match(source, /addEventListener\('visibilitychange', refreshSupportTimes\)/);
+assert.match(source, /addEventListener\('pageshow', refreshSupportTimes\)/);
+console.log('Support time checks passed: elapsed time, resume, immutable timestamp, locales, invalid and older dates.');

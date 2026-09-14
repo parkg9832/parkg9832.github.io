@@ -31,11 +31,11 @@
       },
       products: {
         label: 'SALSA COREANA',
-        links: [['Línea completa', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
+        links: [['Línea completa', ''], ['K-PEÑO', 'original'], ['Para Carnes', 'para-carnes']]
       },
       connect: {
         label: 'CONTACTO',
-        links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact'], ['Apoyar lanzamiento', 'support']]
+        links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact']]
       },
       navigation: 'Navegación principal',
       menuLabel: 'MENÚ',
@@ -49,11 +49,11 @@
       },
       products: {
         label: 'SALSA COREANA',
-        links: [['전체 라인업', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
+        links: [['전체 라인업', ''], ['K-PEÑO', 'original'], ['Para Carnes', 'para-carnes']]
       },
       connect: {
         label: '문의',
-        links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact'], ['출시 응원하기', 'support']]
+        links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact']]
       },
       navigation: '주요 메뉴',
       menuLabel: 'MENU',
@@ -67,11 +67,11 @@
       },
       products: {
         label: 'SALSA COREANA',
-        links: [['Full lineup', ''], ['Original', 'original'], ['Para Carnes', 'para-carnes'], ['Soy Sauce', 'soy-sauce']]
+        links: [['Full lineup', ''], ['K-PEÑO', 'original'], ['Para Carnes', 'para-carnes']]
       },
       connect: {
         label: 'CONTACT',
-        links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact'], ['Support launch', 'support']]
+        links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact']]
       },
       navigation: 'Primary navigation',
       menuLabel: 'MENU',
@@ -176,7 +176,8 @@
       position: fixed !important;
       top: 80px !important;
       right: 0 !important;
-      bottom: 0 !important;
+      bottom: auto !important;
+      height: calc(100dvh - 80px) !important;
       left: 0 !important;
       z-index: 70 !important;
       display: block !important;
@@ -718,14 +719,13 @@
   function groupHref(group, target) {
     if (group.key === 'brand') return addHash(hrefs.about, target);
     if (group.key === 'products') return addHash(hrefs.products, target);
-    if (target === 'support') return hrefs.contact.replace('contact.html', 'support.html');
     return target === 'qna' ? hrefs.qna : hrefs.contact;
   }
 
   const pageName = window.location.pathname.split('/').pop() || 'index.html';
   const currentGroup = pageName === 'products.html'
     ? 'products'
-    : pageName === 'qna.html' || pageName === 'contact.html' || pageName === 'support.html'
+    : pageName === 'qna.html' || pageName === 'contact.html'
       ? 'connect'
       : 'brand';
 

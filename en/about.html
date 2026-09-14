@@ -2,6 +2,8 @@
 <html lang="en" data-route-language="EN" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-iJxKQyelNdzYEIZwC1rP7IflbwzvNh9WFWBAVCM1Egk='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
@@ -35,241 +37,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
-    <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: 'Noto Sans', 'Noto Sans KR', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        font-weight: 400;
-        letter-spacing: 0;
-      }
-
-      h1,
-      h2,
-      h3 {
-        letter-spacing: 0;
-      }
-
-      .display-latin {
-        font-family: 'Archivo Black', 'Arial Black', 'Noto Sans', sans-serif;
-        font-weight: 900 !important;
-        letter-spacing: 0;
-      }
-
-      .display-korean {
-        font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
-        font-weight: 800 !important;
-        letter-spacing: 0;
-        line-height: 1.08 !important;
-        word-break: keep-all;
-      }
-
-      #heroLine2.display-korean {
-        font-size: clamp(2.25rem, 4.2vw, 4rem) !important;
-      }
-
-      #storyTitle.display-korean,
-      #directionTitle.display-korean,
-      #logoTitle.display-korean,
-      #historyTitle.display-korean {
-        font-size: clamp(2.45rem, 5vw, 4.5rem) !important;
-      }
-
-      .condensed-label {
-        font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
-        font-weight: 400;
-        line-height: 1;
-        letter-spacing: 0;
-      }
-
-      .font-black,
-      .font-extrabold {
-        font-weight: 700 !important;
-      }
-
-      .font-semibold {
-        font-weight: 500 !important;
-      }
-
-      .font-medium {
-        font-weight: 400 !important;
-      }
-
-      .brand-grid-bg {
-        background-image:
-          linear-gradient(rgba(248, 223, 196, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(248, 223, 196, 0.06) 1px, transparent 1px);
-        background-size: 112px 112px;
-      }
-
-      .cream-grid-bg {
-        background-image:
-          linear-gradient(rgba(50, 21, 6, 0.055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(50, 21, 6, 0.055) 1px, transparent 1px);
-        background-size: 112px 112px;
-      }
-
-      .surface-depth {
-        box-shadow:
-          0 24px 70px rgba(67, 24, 9, 0.11),
-          0 6px 20px rgba(23, 23, 23, 0.045),
-          inset 0 1px 0 rgba(255, 255, 255, 0.72);
-      }
-
-      .brand-text-link {
-        position: relative;
-        display: inline-flex;
-        width: fit-content;
-        align-items: center;
-        gap: 0.55rem;
-        font-family: 'Archivo Black', 'Noto Sans', sans-serif;
-        font-size: 0.82rem;
-        letter-spacing: 0;
-        text-transform: uppercase;
-      }
-
-      .brand-text-link::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: -0.48rem;
-        height: 2px;
-        background: currentColor;
-        transform-origin: left;
-        transition: transform 240ms ease;
-      }
-
-      .brand-text-link:hover::after {
-        transform: scaleX(0.58);
-      }
-
-      .about-hero-cta {
-        min-height: 3rem;
-        padding: 0.85rem 1.35rem;
-        border: 1px solid #321506;
-        border-radius: 999px;
-        background: #321506;
-        color: #fff8ef;
-        box-shadow: 0 12px 28px rgba(50, 21, 6, 0.12);
-        transition:
-          transform 220ms ease,
-          background-color 220ms ease,
-          color 220ms ease;
-      }
-
-      .about-hero-cta::after {
-        display: none;
-      }
-
-      .about-hero-cta:hover {
-        transform: translateY(-2px);
-        background: #ef5f18;
-        border-color: #ef5f18;
-      }
-
-      [data-reveal] {
-        opacity: 0;
-        transform: translateY(16px);
-        transition:
-          opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
-          transform 480ms cubic-bezier(0.22, 1, 0.36, 1);
-        transition-delay: var(--reveal-delay, 0ms);
-      }
-
-      [data-reveal].is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .story-copy p + p {
-        margin-top: 1.75rem;
-      }
-
-      .timeline-month {
-        display: inline-flex;
-        min-width: 2.25rem;
-        min-height: 2.25rem;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        background: #321506;
-        color: #fff8ef;
-        box-shadow: 0 5px 14px rgba(50, 21, 6, 0.12);
-      }
-
-      .timeline-month.is-empty {
-        background: transparent;
-        box-shadow: none;
-      }
-
-      @media (min-width: 640px) and (max-width: 1023px) {
-        .about-story-figure {
-          width: 100%;
-          max-width: 40rem;
-          margin-inline: auto;
-        }
-
-        .about-story-media {
-          aspect-ratio: 5 / 4;
-        }
-
-        .about-identity-logo {
-          max-width: 390px !important;
-        }
-      }
-
-      @media (max-width: 767px) {
-        body #historyTitle {
-          font-size: clamp(2.15rem, 9.7vw, 2.75rem) !important;
-          line-height: 0.96 !important;
-          overflow-wrap: anywhere;
-          word-break: normal !important;
-        }
-
-        body #historyTitle.display-korean {
-          font-size: clamp(2.1rem, 9.2vw, 2.65rem) !important;
-          line-height: 1.12 !important;
-          word-break: keep-all !important;
-        }
-
-        body #logoTitle {
-          font-size: clamp(2.3rem, 10vw, 3rem) !important;
-          overflow-wrap: anywhere;
-          word-break: normal !important;
-        }
-
-      }
-
-      @media (max-width: 359px) {
-        #top h1 {
-          max-width: 100%;
-          font-size: clamp(3.75rem, 22vw, 5.25rem) !important;
-          line-height: 0.8 !important;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        [data-reveal] {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
-    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=c61ad77c9f6c" />
+    <link rel="stylesheet" href="/assets/generated/dfedbaebb0303342ee3d.css?v=dfedbaebb030" />
+    <link rel="stylesheet" href="/styles/site-typography.css?v=0c054a2cb241" />
+    <link rel="stylesheet" href="/styles/about-experience.css?v=91eaee469f43" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=9244f8c3e455" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -309,7 +85,7 @@
 }
     </script>
   </head>
-  <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
+  <body class="about-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="/en/" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -339,37 +115,34 @@
       </div>
     </header>
 
-    <main class="overflow-hidden">
-      <section id="top" class="cream-grid-bg relative min-h-screen bg-[#f7ddc2] px-4 pb-10 pt-24 sm:px-6 sm:pb-12 sm:pt-28 lg:px-8">
-        <div class="mx-auto flex w-full max-w-7xl flex-col items-center text-center">
-          <div data-reveal class="relative z-10 flex min-h-[380px] w-full flex-col items-center justify-center sm:min-h-[420px] lg:min-h-[475px]">
-            <p id="heroKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-xl"></p>
-            <h1 class="display-latin mx-auto max-w-6xl text-[5.25rem] uppercase leading-[0.77] text-[#d94a00] sm:text-[8.5rem] lg:text-[11rem] xl:text-[13rem]">
-              <span id="heroLine1" class="block"></span>
-            </h1>
-            <p id="heroLine2" class="display-korean mt-5 break-keep text-4xl leading-none text-[#321506] sm:text-6xl lg:text-7xl"></p>
-            <p id="heroBody" class="mx-auto mt-7 max-w-2xl break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:text-lg"></p>
+    <main>
+      <section id="top" class="about-opening">
+        <div>
+          <div class="about-opening-copy">
+            <p id="heroKicker" class="condensed-label"></p>
+            <h1 class="display-latin"><span id="heroLine1"></span></h1>
+            <p id="heroLine2" class="display-korean"></p>
+            <p id="heroBody"></p>
           </div>
-          <div data-reveal style="--reveal-delay: 120ms" class="relative mt-4 min-h-[285px] w-full max-w-6xl overflow-hidden rounded-t-[1.5rem] sm:min-h-[390px] lg:mt-2 lg:min-h-[460px] lg:rounded-t-[2rem]">
-            <img src="./assets/images/brand-story-seoul-kfood-table.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[52%_60%]" loading="eager" fetchpriority="high" decoding="async" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/18 via-transparent to-transparent"></div>
-          </div>
+          <figure class="about-opening-photo">
+            <img src="./assets/images/field-chili-1080.webp" alt="MOKDA visiting a chili farm in Korea" width="1071" height="1428" loading="eager" fetchpriority="high" decoding="async" />
+          </figure>
         </div>
       </section>
 
       <section id="story" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div class="mx-auto w-full max-w-6xl">
-          <div class="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
+          <div class="about-story-grid grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
             <figure data-reveal class="about-story-figure">
               <div class="about-story-media relative aspect-[4/5] overflow-hidden bg-[#f7ddc2]">
                 <picture>
-                  <source media="(max-width: 767px)" srcset="./assets/images/field-chili-720.webp" />
-                  <img src="./assets/images/field-chili-1080.webp" alt="MOKDA founder inspecting chili peppers in Korea" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
+                  <source media="(max-width: 767px)" srcset="./assets/images/field-meeting-720.webp" />
+                  <img src="./assets/images/field-meeting-1440.webp" alt="MOKDA preparing for international expansion at a meeting in Korea" width="1440" height="810" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
                 </picture>
               </div>
             </figure>
 
-            <div data-reveal style="--reveal-delay: 100ms" class="pt-1 lg:pt-6">
+            <div data-reveal style="--reveal-delay: 100ms" class="about-story-copy pt-1 lg:pt-6">
               <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-lg"></p>
               <h2 id="storyTitle" class="max-w-xl break-keep text-pretty text-[1.75rem] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
               <div class="my-8 h-0.5 w-12 bg-mokdaOrange sm:my-10"></div>
@@ -398,6 +171,9 @@
           <div data-reveal class="mb-10 max-w-5xl sm:mb-14">
             <p id="historyKicker" class="condensed-label mb-4 text-base uppercase text-[#b73500] sm:text-xl"></p>
             <h2 id="historyTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
+            <figure class="about-history-photo">
+              <img src="./assets/images/field-manufacturing-720.webp" alt="MOKDA — visita a una planta de producción" loading="lazy" width="720" height="1279" />
+            </figure>
           </div>
           <div id="timelineList" class="border-b border-[#321506]/18"></div>
         </div>
@@ -449,335 +225,10 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260811-3"></script>
-    <script src="./site-footer.js?v=20260901-2"></script>
-    <script>
-      const pageCopy = {
-        ES: {
-          lang: 'es',
-          title: 'Sobre MOKDA | K-Food entre Corea y Latinoamérica',
-          metaDescription: 'Conoce la historia, identidad y trayectoria de MOKDA, la marca K-Food que conecta Corea con Latinoamérica.',
-          socialTitle: 'REDES SOCIALES',
-          nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
-          hero: {
-            kicker: 'Esencia de Marca MOKDA',
-            line1: 'Comer Corea',
-            line2: '한국을 먹다',
-            body: 'MOKDA es una marca K-Food que conecta la cultura gastronómica de Corea con la vida cotidiana de Latinoamérica.',
-            cta: 'Historia de marca',
-          },
-          story: {
-            kicker: 'Historia de Marca',
-            title: 'Una historia que comenzó alrededor de la mesa',
-            body: [
-              'MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a Latinoamérica con una sola maleta.',
-              'Al compartir la mesa con amigos latinoamericanos, entendió que la comida va más allá del sabor. Es una de las formas más directas de conocer una cultura y a las personas que la viven.',
-              'Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA acerca Corea a las mesas cotidianas de Latinoamérica.',
-            ],
-          },
-          direction: {
-            kicker: 'LO QUE CREEMOS',
-            title: 'La comida conecta culturas.',
-            missionLabel: 'LO QUE HACEMOS',
-            mission: 'Conectar los sabores de Corea con la vida cotidiana de Latinoamérica de forma fácil y natural.',
-            visionLabel: 'HACIA DÓNDE VAMOS',
-            vision: 'Ser una marca K-Food referente en Latinoamérica.',
-          },
-          logo: {
-            kicker: 'MOKDA',
-            title: 'El nombre y el símbolo',
-            motiveBody: [
-              'MOKDA viene de la palabra coreana 먹다, que significa “comer”.',
-              'El gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión. “MOKDA” y el coreano “먹다” muestran el origen coreano de la marca.',
-            ],
-          },
-          history: {
-            kicker: 'Nuestra trayectoria',
-            title: 'De Corea a Latinoamérica',
-            years: [
-              {
-                year: '2026',
-                items: [
-                  { month: '04', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa H.I.N.T' },
-                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa de Jóvenes Innovadores de Ciudades y Condados' },
-                  { month: '06', text: 'Selección en un programa de apoyo a jóvenes preemprendedores', detail: 'Jeonbuk State Contents Convergence Agency · Apoyo a la producción de prototipos' },
-                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa Sales-Up' },
-                  { month: '08', text: 'Selección en un programa de apoyo a jóvenes startups en etapa inicial', detail: 'Jeonbuk Center for Creative Economy & Innovation · Programa Jump-Up' },
-                  { month: '08', text: 'Selección en un programa de apoyo a empresas exportadoras', detail: 'Jeonbuk Business Agency · Trade Master Youth' },
-                  { month: '08', text: 'Lanzamiento de dos prototipos de Salsa Coreana', detail: 'K-Peño / Para Carnes' },
-                  { month: '09', text: 'Participación en Expoalimentaria Perú 2026' },
-                ],
-              },
-            ],
-          },
-          productCta: {
-            kicker: 'SALSA COREANA',
-            title: 'Descubre Salsa Coreana',
-            body: 'Conoce cómo MOKDA acerca los sabores de Corea a las mesas de todos los días.',
-            button: 'Conocer Salsa Coreana',
-          },
-        },
-        KR: {
-          lang: 'ko',
-          title: 'MOKDA 브랜드 소개 | 한국과 라틴아메리카를 잇는 K-Food',
-          metaDescription: 'MOKDA는 한국 소스 문화를 라틴아메리카의 일상 식탁과 연결하는 K-Food 브랜드입니다.',
-          nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
-          socialTitle: 'MOKDA SNS',
-          hero: {
-            kicker: 'MOKDA Brand Essence',
-            line1: 'Comer Corea',
-            line2: '한국을 먹다',
-            body: 'MOKDA는 한국의 식문화를 라틴아메리카의 일상과 연결하는 K-Food 브랜드입니다.',
-            cta: '브랜드 스토리',
-          },
-          story: {
-            kicker: 'Brand Story',
-            title: '한 식탁에서 시작된 이야기',
-            body: [
-              'MOKDA는 2024년 봄, 가방 하나를 들고 라틴아메리카로 향한 한 청년의 여정에서 시작되었습니다.',
-              '라틴아메리카의 친구들과 한 식탁에서 음식을 나누며 음식은 단순한 맛을 넘어, 한 문화와 그 문화를 살아가는 사람들을 이해하는 가장 직접적인 방법이라는 것을 알게 되었습니다.',
-              'MOKDA는 한국의 재료와 젊은 시선, 오늘의 감각을 담아 라틴아메리카의 식탁에 한국을 더 가깝게 전합니다.',
-            ],
-          },
-          direction: {
-            kicker: '우리가 믿는 것',
-            title: '음식은 문화를 연결합니다.',
-            missionLabel: '우리가 하는 일',
-            mission: '한국의 맛을 라틴아메리카의 일상에 더 쉽고 자연스럽게 연결합니다.',
-            visionLabel: '우리가 향하는 곳',
-            vision: '라틴아메리카를 대표하는 K-Food 브랜드로 성장합니다.',
-          },
-          logo: {
-            kicker: 'MOKDA',
-            title: '이름과 상징',
-            motiveBody: [
-              'MOKDA는 한국어 ‘먹다’에서 시작된 이름입니다.',
-              '해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.',
-            ],
-          },
-          history: {
-            kicker: 'Our Journey',
-            title: '한국에서 라틴아메리카로',
-            years: [
-              {
-                year: '2026',
-                items: [
-                  { month: '04', text: '청년예비창업 지원사업 선정', detail: '전북창조경제혁신센터, H.I.N.T 지원사업' },
-                  { month: '06', text: '청년예비창업 지원사업 선정', detail: '전북창조경제혁신센터, 시군청년혁신가 지원사업' },
-                  { month: '06', text: '청년예비창업 지원사업 선정', detail: '전북콘텐츠융합진흥원, 시제품 제작 지원사업' },
-                  { month: '08', text: '수출 기업 지원사업 선정', detail: '전북창조경제혁신센터, 세일즈업 지원사업' },
-                  { month: '08', text: '청년초기창업 지원사업 선정', detail: '전북창조경제혁신센터, 점프업 지원사업' },
-                  { month: '08', text: '수출 기업 지원사업 선정', detail: '전북경제통상진흥원, 통상마스터Youth' },
-                  { month: '08', text: 'Salsa Coreana 시제품 2종 출시', detail: 'K-Peño / Para Carnes' },
-                  { month: '09', text: 'Expoalimentaria Perú 2026 박람회 참가' },
-                ],
-              },
-            ],
-          },
-          productCta: {
-            kicker: 'SALSA COREANA',
-            title: 'MOKDA의 Salsa Coreana',
-            body: '한국의 맛을 일상의 식탁에 더 가깝게 전하는 MOKDA의 소스를 만나보세요.',
-            button: 'Salsa Coreana 보기',
-          },
-        },
-        EN: {
-          lang: 'en',
-          title: 'About MOKDA | K-Food between Korea and Latin America',
-          metaDescription: 'MOKDA connects Korean sauce culture with everyday tables across Latin America.',
-          nav: { about: 'About us', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contact' },
-          socialTitle: 'SOCIAL',
-          hero: {
-            kicker: 'MOKDA Brand Essence',
-            line1: 'Comer Corea',
-            line2: '한국을 먹다',
-            body: 'MOKDA is a K-Food brand connecting Korean food culture with everyday life across Latin America.',
-            cta: 'Brand story',
-          },
-          story: {
-            kicker: 'Brand Story',
-            title: 'A story that began around the table',
-            body: [
-              'MOKDA began in the spring of 2024, with the journey of a young Korean who set out for Latin America carrying a single bag.',
-              'Sharing a table with Latin American friends taught him that food goes beyond flavor. It is one of the most direct ways to understand a culture and the people who live it.',
-              'With Korean ingredients, a young perspective, and the sensibility of Korea today, MOKDA brings Korea closer to everyday tables across Latin America.',
-            ],
-          },
-          direction: {
-            kicker: 'WHAT WE BELIEVE',
-            title: 'Food connects cultures.',
-            missionLabel: 'WHAT WE DO',
-            mission: 'To connect Korean flavors with everyday life across Latin America in an easy and natural way.',
-            visionLabel: 'WHERE WE ARE GOING',
-            vision: 'To become a leading K-Food brand in Latin America.',
-          },
-          logo: {
-            kicker: 'MOKDA',
-            title: 'The name and the symbol',
-            motiveBody: [
-              'MOKDA comes from the Korean word 먹다, meaning “to eat.”',
-              'The sunrise-inspired graphic represents a new beginning and expansion. “MOKDA” and the Korean word “먹다” express the brand’s Korean origin.',
-            ],
-          },
-          history: {
-            kicker: 'Our Journey',
-            title: 'From Korea to Latin America',
-            years: [
-              {
-                year: '2026',
-                items: [
-                  { month: '04', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · H.I.N.T Program' },
-                  { month: '06', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · City and County Young Innovators Program' },
-                  { month: '06', text: 'Selected for a youth pre-startup support program', detail: 'Jeonbuk State Contents Convergence Agency · Prototype Production Support Program' },
-                  { month: '08', text: 'Selected for an export business support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · Sales-Up Program' },
-                  { month: '08', text: 'Selected for an early-stage youth startup support program', detail: 'Jeonbuk Center for Creative Economy & Innovation · Jump-Up Program' },
-                  { month: '08', text: 'Selected for an export business support program', detail: 'Jeonbuk Business Agency · Trade Master Youth' },
-                  { month: '08', text: 'Launched two Salsa Coreana prototypes', detail: 'K-Peño / Para Carnes' },
-                  { month: '09', text: 'Participating in Expoalimentaria Perú 2026' },
-                ],
-              },
-            ],
-          },
-          productCta: {
-            kicker: 'SALSA COREANA',
-            title: 'Discover Salsa Coreana',
-            body: 'See how MOKDA brings Korean flavors closer to everyday tables.',
-            button: 'Explore Salsa Coreana',
-          },
-        },
-      };
-
-      let language = window.MOKDA_I18N.getLanguage();
-
-      function setText(id, value) {
-        const element = document.getElementById(id);
-        if (element) element.textContent = value;
-      }
-
-      function setHTML(id, value) {
-        const element = document.getElementById(id);
-        if (element) element.innerHTML = value;
-      }
-
-      function renderPage() {
-        const copy = pageCopy[language] || pageCopy.ES;
-        document.documentElement.lang = copy.lang;
-        document.title = copy.title;
-        document.getElementById('meta-description')?.setAttribute('content', copy.metaDescription);
-        document.getElementById('og-title')?.setAttribute('content', copy.title);
-        document.getElementById('og-description')?.setAttribute('content', copy.metaDescription);
-        document.getElementById('twitter-title')?.setAttribute('content', copy.title);
-        document.getElementById('twitter-description')?.setAttribute('content', copy.metaDescription);
-
-        setText('mobile-about-link', copy.nav.about);
-        setText('mobile-products-link', copy.nav.products);
-        setText('mobile-qna-link', copy.nav.qna);
-        setText('mobile-contact-link', copy.nav.contact);
-        setText('socialTitle', copy.socialTitle);
-        setText('heroKicker', copy.hero.kicker);
-        setText('heroLine1', copy.hero.line1);
-        setText('heroLine2', copy.hero.line2);
-        setText('heroBody', copy.hero.body);
-        setText('storyKicker', copy.story.kicker);
-        setText('storyTitle', copy.story.title);
-        setHTML(
-          'storyBody',
-          copy.story.body.map((paragraph) => `<p>${paragraph}</p>`).join(''),
-        );
-        setText('directionKicker', copy.direction.kicker);
-        setText('directionTitle', copy.direction.title);
-        setText('visionLabel', copy.direction.visionLabel);
-        setText('visionBody', copy.direction.vision);
-        setText('missionLabel', copy.direction.missionLabel);
-        setText('missionBody', copy.direction.mission);
-        setText('logoKicker', copy.logo.kicker);
-        setText('logoTitle', copy.logo.title);
-        setHTML('motiveBody', copy.logo.motiveBody.map((item) => `<p>${item}</p>`).join(''));
-        setText('historyKicker', copy.history.kicker);
-        setText('historyTitle', copy.history.title);
-        setText('productCtaKicker', copy.productCta.kicker);
-        setText('productCtaTitle', copy.productCta.title);
-        setText('productCtaBody', copy.productCta.body);
-        setText('productCtaButton', copy.productCta.button);
-        ['historyTitle'].forEach((id) => {
-          const heading = document.getElementById(id);
-          if (!heading) return;
-          const usesKoreanDisplay = /[가-힣]/.test(heading.textContent);
-          heading.classList.toggle('display-korean', usesKoreanDisplay);
-          heading.classList.toggle('display-latin', !usesKoreanDisplay);
-        });
-        setHTML(
-          'timelineList',
-          copy.history.years
-            .map(
-              (group, index) => `
-                <article data-reveal style="--reveal-delay: ${index * 90}ms" class="grid gap-5 overflow-visible border-t border-[#321506]/18 py-7 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
-                  <div class="sm:pt-1">
-                    <p class="display-latin whitespace-nowrap text-6xl leading-none text-[#d94a00] sm:text-7xl lg:text-[5.5rem] xl:text-8xl">${group.year}</p>
-                  </div>
-                  <div class="divide-y divide-[#321506]/14 border-y border-[#321506]/14 sm:border-t-0">
-                    ${group.items
-                      .map(
-                        (item, itemIndex) => `
-                          <div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm${
-                              itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month ? ' is-empty' : ''
-                            }">${
-                              typeof item === 'string'
-                                ? String(itemIndex + 1).padStart(2, '0')
-                                : itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month
-                                  ? ''
-                                  : item.month || String(itemIndex + 1).padStart(2, '0')
-                            }</span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${typeof item === 'string' ? item : item.text}</p>
-                              ${typeof item === 'string' || !(item.detail || item.amount) ? '' : `<p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(${item.detail || item.amount})</p>`}
-                            </div>
-                          </div>
-                        `,
-                      )
-                      .join('')}
-                  </div>
-                </article>
-              `,
-            )
-            .join(''),
-        );
-        window.MOKDA_FOOTER.render(language);
-        window.MOKDA_I18N.syncLanguageButtons(language);
-        refreshRevealTargets();
-      }
-
-      const revealObserver =
-        'IntersectionObserver' in window
-          ? new IntersectionObserver(
-              (entries) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    revealObserver.unobserve(entry.target);
-                  }
-                });
-              },
-              { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
-            )
-          : null;
-
-      function refreshRevealTargets() {
-        document.querySelectorAll('[data-reveal]').forEach((element) => {
-          element.classList.remove('is-visible');
-          if (revealObserver) revealObserver.observe(element);
-          else element.classList.add('is-visible');
-        });
-      }
-
-      window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
-        language = nextLanguage;
-        renderPage();
-      });
-
-      renderPage();
-    </script>
-    <script src="./site-header.js?v=20260903-1"></script>
+    <script src="/site-i18n.js?v=cf263a2b502b"></script>
+    <script src="/site-footer.js?v=af5af53e836d"></script>
+    <script src="/assets/generated/c88bac000ec9e69d5b33.js?v=c88bac000ec9"></script>
+    <script src="/site-header.js?v=176c9e6ed97c"></script>
+    <script src="/brand-motion.js?v=de1b1c5aa819" defer></script>
   </body>
 </html>

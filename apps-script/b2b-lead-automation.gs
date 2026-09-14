@@ -131,26 +131,9 @@ function isInternalAnalyticsVisitor_(value) {
 
 function doGet(event) {
   const mode = String((event && event.parameter && event.parameter.mode) || '').trim();
-  if (mode === 'demand_support') {
-    return jsonResponse(getDemandSupportFeed(event));
-  }
-  if (mode === 'update_dashboard') {
-    return jsonResponse({ ok: true, result: updateCompleteWebsiteDashboard_() });
-  }
-
-  const chatWebhookUrl = getOptionalProperty(SCRIPT_PROPERTY_KEYS.chatWebhookUrl);
-
-  return jsonResponse({
-    ok: true,
-    service: `${SERVICE_NAME} lead automation`,
-    message: 'Ready to receive MOKDA inquiries.',
-    notification: {
-      hasChatWebhookUrl: Boolean(chatWebhookUrl),
-      chatWebhookUrlLooksValid: isGoogleChatWebhookUrl(chatWebhookUrl),
-      hasNotificationEmail: Boolean(getOptionalProperty(SCRIPT_PROPERTY_KEYS.notificationEmail)),
-    },
-    sheet: getSheetStatus(),
-  });
+  // Administrative functions run only in the authenticated editor or a trigger.
+  if (mode) return jsonResponse({ ok: false, error: 'Endpoint unavailable' });
+  return jsonResponse({ ok: true, service: SERVICE_NAME });
 }
 
 function testEmailNotification() {
@@ -167,14 +150,18 @@ function testEmailNotification() {
 }
 
 function doPost(event) {
+  let reservation = '';
+  let saved = false;
   try {
     const payload = parsePayload(event);
 
     if (isDemandSupportPayload(payload)) {
-      return jsonResponse(appendDemandSupport(payload));
+      return jsonResponse({ ok: false, error: 'Endpoint unavailable' });
     }
 
     if (isFunnelPayload(payload)) {
+      if (payload.events.length > 20) throw new Error('Invalid batch');
+      reservePublicQuota_('analytics', 120);
       const result = appendFunnelEvents(payload);
       return jsonResponse({ ok: true, analytics: true, saved: result.saved });
     }
@@ -184,6 +171,9 @@ function doPost(event) {
     }
 
     validatePayload(payload);
+    const receipt = reserveInquiry_(payload);
+    if (receipt.duplicate) return jsonResponse({ ok: true, saved: true, duplicate: true });
+    reservation = receipt.key;
 
     const language = String(payload.language || 'ES').toUpperCase();
     const source = String(payload.source || 'website').trim();
@@ -222,6 +212,8 @@ function doPost(event) {
       '',
       '',
     ]);
+    saved = true;
+    CacheService.getScriptCache().put(reservation, 'saved', 600);
 
     const notification = notifyLead({
       receivedAt,
@@ -247,11 +239,12 @@ function doPost(event) {
       ok: true,
       saved: true,
       notificationOk: notification.ok,
-      notification,
     });
   } catch (error) {
-    console.error(error);
-    return jsonResponse({ ok: false, error: String(error.message || error) });
+    if (reservation && !saved) CacheService.getScriptCache().remove(reservation);
+    console.error('Inquiry service request failed');
+    // Never expose sheet identifiers, integration responses, or exception details.
+    return jsonResponse(saved ? { ok: true, saved: true } : { ok: false, error: 'Request could not be processed' });
   }
 }
 
@@ -555,8 +548,13 @@ function parsePayload(event) {
     throw new Error('Missing request body');
   }
 
+  if (event.postData.contents.length > 32768 || Number(event.postData.length) > 32768) {
+    throw new Error('Request too large');
+  }
   try {
-    return JSON.parse(event.postData.contents);
+    const payload = JSON.parse(event.postData.contents);
+    if (!payload || typeof payload !== 'object' || Array.isArray(payload)) throw new Error('Invalid object');
+    return payload;
   } catch (error) {
     throw new Error('Invalid JSON request body');
   }
@@ -579,9 +577,66 @@ function validatePayload(payload) {
     throw new Error('Email or WhatsApp is required');
   }
 
+  const limits = { name: 100, company: 160, email: 254, whatsapp: 40, country: 80,
+    purpose: 160, message: 4000, language: 2, source: 60, role: 80, product: 80,
+    pageUrl: 500, userAgent: 500, website: 200 };
+  Object.keys(limits).forEach((field) => {
+    const value = payload[field];
+    if (value != null && (typeof value !== 'string' || value.length > limits[field] || /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(value))) {
+      throw new Error('Invalid field');
+    }
+    payload[field] = (value || '').trim();
+  });
+  if (payload.language && !/^(ES|KR|EN)$/.test(payload.language)) throw new Error('Invalid language');
+  if (payload.type) throw new Error('Unknown request type');
+
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new Error('Invalid email');
   }
+}
+
+function safeSheetCell_(value) {
+  if (typeof value !== 'string') return value;
+  return /^[\s\uFEFF]*[=+\-@]/.test(value) ? "'" + value : value;
+}
+
+function requestDigest_(value) {
+  return Utilities.base64EncodeWebSafe(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, value));
+}
+
+// Quota protection, not authentication: Apps Script does not expose a trustworthy
+// client IP. Cache eviction/restarts can reset these best-effort limits.
+function takeQuota_(cache, key, limit, seconds) {
+  const count = Number(cache.get(key) || 0);
+  if (count >= limit) throw new Error('Request limit reached');
+  cache.put(key, String(count + 1), seconds);
+}
+
+function reservePublicQuota_(kind, limit) {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(1000)) throw new Error('Service busy');
+  try {
+    takeQuota_(CacheService.getScriptCache(), 'quota:' + kind + ':' + Math.floor(Date.now() / 60000), limit, 120);
+  } finally { lock.releaseLock(); }
+}
+
+function reserveInquiry_(payload) {
+  const identity = (payload.email || payload.whatsapp).toLowerCase();
+  // Derive the receipt from the submitted content; retries do not send another alert.
+  const key = 'inquiry:' + requestDigest_(JSON.stringify([identity, payload.name, payload.company,
+    payload.country, payload.purpose, payload.message, payload.product, payload.language]));
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(1000)) throw new Error('Service busy');
+  try {
+    const cache = CacheService.getScriptCache();
+    const receipt = cache.get(key);
+    if (receipt === 'saved') return { key, duplicate: true };
+    if (receipt) throw new Error('Request already processing');
+    takeQuota_(cache, 'quota:inquiry:' + Math.floor(Date.now() / 60000), 30, 120);
+    takeQuota_(cache, 'quota:contact:' + requestDigest_(identity) + ':' + Math.floor(Date.now() / 3600000), 5, 3600);
+    cache.put(key, 'pending', 600);
+    return { key, duplicate: false };
+  } finally { lock.releaseLock(); }
 }
 
 function appendLead(row) {
@@ -604,7 +659,7 @@ function appendLead(row) {
       ensureSheetHeaders(sheet);
     }
 
-    sheet.appendRow(row);
+    sheet.appendRow(row.map(safeSheetCell_));
   } finally {
     lock.releaseLock();
   }

@@ -1,10 +1,11 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { secureHtml, externalizeBlocks } from './static-security.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-08-14';
+const LAST_MODIFIED = '2026-09-13';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -52,15 +53,15 @@ const pages = {
     type: 'CollectionPage',
     ES: {
       title: 'Salsa Coreana | Salsas MOKDA',
-      description: 'K-PEÑO, Para Carnes y Ganjang (Soy Sauce): la primera línea de salsas coreanas de MOKDA para Latinoamérica.',
+      description: 'K-PEÑO y Para Carnes: la primera línea de salsas coreanas de MOKDA para Latinoamérica.',
     },
     KR: {
       title: 'Salsa Coreana | MOKDA 한국 소스 라인업',
-      description: 'K-PEÑO, Para Carnes, Ganjang으로 구성된 MOKDA의 첫 번째 한국 소스 라인업을 확인하세요.',
+      description: 'K-PEÑO와 Para Carnes로 구성된 MOKDA의 첫 번째 한국 소스 라인업을 확인하세요.',
     },
     EN: {
       title: 'Salsa Coreana | MOKDA Sauces',
-      description: 'Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), MOKDA’s first Korean sauce lineup for Latin America.',
+      description: 'Explore K-PEÑO and Para Carnes, MOKDA’s first Korean sauce lineup for Latin America.',
     },
   },
   'qna.html': {
@@ -93,27 +94,6 @@ const pages = {
     EN: {
       title: 'B2B Partnership | MOKDA',
       description: 'Contact MOKDA about distribution, importing, retail, HORECA, and business partnerships across Latin America.',
-    },
-  },
-  'support.html': {
-    route: 'support.html',
-    type: 'WebPage',
-    image: {
-      ES: `${SITE}/assets/og-mokda-social-v2.png`,
-      KR: `${SITE}/assets/og-mokda-social-v2.png`,
-      EN: `${SITE}/assets/og-mokda-social-v2.png`,
-    },
-    ES: {
-      title: 'Apoya el lanzamiento de Salsa Coreana | MOKDA',
-      description: 'Apoya el lanzamiento de Salsa Coreana de MOKDA en Perú, México, Chile y Colombia.',
-    },
-    KR: {
-      title: 'Salsa Coreana 출시 응원 | MOKDA',
-      description: '페루, 멕시코, 칠레와 콜롬비아에서 만나고 싶은 MOKDA Salsa Coreana의 출시를 응원해주세요.',
-    },
-    EN: {
-      title: 'Support the Salsa Coreana Launch | MOKDA',
-      description: 'Support the launch of MOKDA Salsa Coreana in Peru, Mexico, Chile, and Colombia.',
     },
   },
 };
@@ -257,13 +237,24 @@ const sitemapUrls = [];
 
 for (const [fileName, page] of Object.entries(pages)) {
   const source = await readFile(join(ROOT, fileName), 'utf8');
+  await writeFile(join(ROOT, fileName), secureHtml(source), 'utf8');
 
   for (const language of Object.keys(languages)) {
     const outputPath = join(ROOT, languages[language].directory, fileName);
     await mkdir(dirname(outputPath), { recursive: true });
-    await writeFile(outputPath, localizeHtml(source, language, page), 'utf8');
+    await writeFile(outputPath, await externalizeBlocks(localizeHtml(source, language, page), ROOT), 'utf8');
     sitemapUrls.push(routeUrl(language, page));
   }
+}
+
+
+function retiredSupportRedirect(directory, language) {
+  const home = '/' + directory + '/';
+  return '<!doctype html><html lang="' + language + '"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><meta http-equiv="refresh" content="0;url=' + home + '"><link rel="canonical" href="' + SITE + home + '"><title>MOKDA</title></head><body><a href="' + home + '">MOKDA</a></body></html>\n';
+}
+await writeFile(join(ROOT, 'support.html'), retiredSupportRedirect('es', 'es-419'), 'utf8');
+for (const config of Object.values(languages)) {
+  await writeFile(join(ROOT, config.directory, 'support.html'), retiredSupportRedirect(config.directory, config.html), 'utf8');
 }
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

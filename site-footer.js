@@ -19,7 +19,6 @@
         ['Salsa Coreana', 'products.html'],
         ['Preguntas frecuentes', 'qna.html'],
         ['Contacto', 'contact.html'],
-        ['Apoyar el lanzamiento', 'support.html'],
       ],
       copyright: '© 2026 MOKDA. Todos los derechos reservados.',
     },
@@ -42,7 +41,6 @@
         ['Salsa Coreana', 'products.html'],
         ['Frequently asked questions', 'qna.html'],
         ['Contact', 'contact.html'],
-        ['Support the launch', 'support.html'],
       ],
       copyright: '© 2026 MOKDA. All rights reserved.',
     },
@@ -65,7 +63,6 @@
         ['Salsa Coreana', 'products.html'],
         ['자주 묻는 질문', 'qna.html'],
         ['문의', 'contact.html'],
-        ['출시 응원하기', 'support.html'],
       ],
       copyright: '© 2026 MOKDA. 모든 권리 보유.',
     },
@@ -97,7 +94,7 @@
         <div class="grid gap-4 lg:grid-cols-[1.55fr_0.85fr] lg:items-stretch">
           <section class="rounded-2xl bg-white/[0.045] px-4 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
             <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">${footer.businessTitle}</h2>
-            <dl class="mt-4 grid grid-cols-2 items-start gap-x-4 gap-y-4 sm:gap-x-6 lg:grid-cols-4">
+            <dl class="mt-4 grid grid-cols-3 items-start gap-x-3 gap-y-4 sm:gap-x-6">
               <div>
                 <dt class="mb-1 font-bold text-white/68">${footer.companyLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.company}</dd>
@@ -106,11 +103,11 @@
                 <dt class="mb-1 font-bold text-white/68">${footer.ceoLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.ceo}</dd>
               </div>
-              <div class="col-span-2 lg:col-span-1">
+              <div>
                 <dt class="mb-1 font-bold text-white/68">${footer.registrationLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.registration}</dd>
               </div>
-              <div class="col-span-2 lg:col-span-1">
+              <div class="col-span-3">
                 <dt class="mb-1 font-bold text-white/68">${footer.addressLabel}</dt>
                 <dd class="text-white/82">${footer.address}</dd>
               </div>

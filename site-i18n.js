@@ -48,12 +48,14 @@
 
   function getLanguage() {
     const routeLanguage = PATH_LANGUAGES[window.location.pathname.split('/').filter(Boolean)[0]];
-    return normalizeLanguage(routeLanguage || localStorage.getItem(STORAGE_KEY) || 'ES');
+    if (routeLanguage) return normalizeLanguage(routeLanguage);
+    try { return normalizeLanguage(localStorage.getItem(STORAGE_KEY) || 'ES'); }
+    catch { return 'ES'; }
   }
 
   function setLanguage(language) {
     const normalized = normalizeLanguage(language);
-    localStorage.setItem(STORAGE_KEY, normalized);
+    try { localStorage.setItem(STORAGE_KEY, normalized); } catch { /* Route remains authoritative when storage is unavailable. */ }
     return normalized;
   }
 

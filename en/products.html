@@ -2,11 +2,13 @@
 <html lang="en" data-route-language="EN" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-tNJpy4sM0gZPLzmuWBxeRBCEEcf5J5guiLVJ0Tsgi5o='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
     <meta name="mokda-route-language" content="EN" />
-    <meta name="description" content="Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), MOKDA’s first Korean sauce lineup for Latin America." />
+    <meta name="description" content="Explore K-PEÑO and Para Carnes, MOKDA’s first Korean sauce lineup for Latin America." />
     <title>Salsa Coreana | MOKDA Sauces</title>
     <link rel="canonical" href="https://www.mokda.kr/en/products.html" />
     <link rel="alternate" hreflang="es-419" href="https://www.mokda.kr/es/products.html" />
@@ -19,7 +21,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="MOKDA" />
     <meta property="og:title" content="Salsa Coreana | MOKDA Sauces" />
-    <meta property="og:description" content="Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), MOKDA’s first Korean sauce lineup for Latin America." />
+    <meta property="og:description" content="Explore K-PEÑO and Para Carnes, MOKDA’s first Korean sauce lineup for Latin America." />
     <meta property="og:url" content="https://www.mokda.kr/en/products.html" />
     <meta property="og:image" content="https://www.mokda.kr/assets/og-mokda-social-v2.png" />
     <meta property="og:image:secure_url" content="https://www.mokda.kr/assets/og-mokda-social-v2.png" />
@@ -29,116 +31,22 @@
     <meta property="og:image:alt" content="MOKDA Salsa Coreana with sauce-covered nachos and Korean fried chicken" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Salsa Coreana | MOKDA Sauces" />
-    <meta name="twitter:description" content="Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), MOKDA’s first Korean sauce lineup for Latin America." />
+    <meta name="twitter:description" content="Explore K-PEÑO and Para Carnes, MOKDA’s first Korean sauce lineup for Latin America." />
     <meta name="twitter:image" content="https://www.mokda.kr/assets/og-mokda-social-v2.png" />
     <meta name="twitter:image:alt" content="MOKDA Salsa Coreana with sauce-covered nachos and Korean fried chicken" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
-    <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
-    <style>
-      body {
-        font-family: 'Noto Sans', 'Noto Sans KR', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        font-weight: 400;
-        letter-spacing: 0;
-      }
-
-      h1,
-      h2,
-      h3 {
-        letter-spacing: 0;
-      }
-
-      .display-latin {
-        font-family: 'Archivo Black', 'Arial Black', 'Noto Sans', sans-serif;
-        font-weight: 900 !important;
-        letter-spacing: 0;
-      }
-
-      .display-korean {
-        font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
-        font-weight: 800 !important;
-        letter-spacing: 0;
-        line-height: 1.08 !important;
-        word-break: keep-all;
-      }
-
-      .condensed-label {
-        font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
-        font-weight: 400;
-        line-height: 1;
-        letter-spacing: 0;
-      }
-
-      .brand-text-link {
-        display: inline-flex;
-        width: fit-content;
-        align-items: center;
-        gap: 0.55rem;
-        border-bottom: 2px solid currentColor;
-        padding-bottom: 0.35rem;
-        font-family: 'Archivo Black', 'Noto Sans', sans-serif;
-        font-size: 0.82rem;
-        letter-spacing: 0;
-        text-transform: uppercase;
-        transition: gap 260ms ease;
-      }
-
-      .brand-text-link:hover {
-        gap: 0.9rem;
-      }
-
-      .font-black,
-      .font-extrabold {
-        font-weight: 700 !important;
-      }
-
-      .font-semibold {
-        font-weight: 500 !important;
-      }
-
-      .font-medium {
-        font-weight: 400 !important;
-      }
-      .reveal-target {
-        opacity: 0;
-        transform: translateY(30px);
-        transition:
-          opacity 860ms cubic-bezier(0.22, 1, 0.36, 1),
-          transform 860ms cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
-      .reveal-target.opacity-100 {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .product-feature {
-        position: relative;
-      }
-
-      .product-feature img {
-        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
-      .product-feature:hover img {
-        transform: scale(1.035);
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .reveal-target {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
-    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=c61ad77c9f6c" />
+    <link rel="stylesheet" href="/assets/generated/ae7861088a41cd351735.css?v=ae7861088a41" />
+    <link rel="stylesheet" href="/styles/site-typography.css?v=0c054a2cb241" />
+    <link rel="stylesheet" href="/styles/product-experience.css?v=9afbedaf34be" />
+    <link rel="stylesheet" href="/styles/home-reading.css?v=e7d9b52d5028" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=9244f8c3e455" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -148,7 +56,7 @@
       "@id": "https://www.mokda.kr/en/products.html#webpage",
       "url": "https://www.mokda.kr/en/products.html",
       "name": "Salsa Coreana | MOKDA Sauces",
-      "description": "Explore K-PEÑO, Para Carnes, and Ganjang (Soy Sauce), MOKDA’s first Korean sauce lineup for Latin America.",
+      "description": "Explore K-PEÑO and Para Carnes, MOKDA’s first Korean sauce lineup for Latin America.",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://www.mokda.kr/#website"
@@ -178,7 +86,7 @@
 }
     </script>
   </head>
-  <body class="product-page bg-[#f7ddc2] text-neutral-950 antialiased">
+  <body class="product-page products-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
       <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
         <div class="flex items-center">
@@ -211,7 +119,7 @@
     </header>
 
     <main class="pt-20">
-      <section class="overflow-hidden bg-[#f7ddc2]">
+      <section class="product-opening overflow-hidden bg-[#f7ddc2]">
         <div class="mx-auto grid min-h-[650px] w-full max-w-[1600px] lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
           <div class="relative z-10 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
             <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-[#a93600] sm:text-xl">La primera línea de MOKDA</p>
@@ -220,7 +128,7 @@
             <p id="pageSlogan" class="display-latin mt-8 max-w-xl text-balance text-2xl uppercase leading-tight text-[#a93600] sm:text-3xl">NO PUEDES PARAR DE DIPEAR.</p>
           </div>
           <div class="relative min-h-[390px] overflow-hidden lg:min-h-full">
-            <img src="assets/story-vibe-wide-v2.jpg" alt="Línea Salsa Coreana de MOKDA con tacos, pollo y salsas" class="absolute inset-0 h-full w-full object-cover object-center" fetchpriority="high" decoding="async" />
+            <img src="assets/images/brand-story-seoul-kfood-table.webp" alt="Línea Salsa Coreana de MOKDA con tacos, pollo y salsas" class="absolute inset-0 h-full w-full object-cover object-center" fetchpriority="high" decoding="async" />
             <div class="absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-[#f7ddc2] to-transparent lg:block"></div>
           </div>
         </div>
@@ -229,7 +137,7 @@
       <section class="bg-[#321506] px-5 py-8 text-[#f8dfc4] sm:px-8 sm:py-10">
         <div class="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <p class="condensed-label text-base uppercase text-mokdaOrange sm:text-xl">MOKDA / Salsa Coreana</p>
-          <p id="productSummary" class="max-w-xl text-sm font-semibold leading-6 text-[#f8dfc4]/76">K-PEÑO · PARA CARNES · GANJANG (SOY SAUCE)</p>
+          <p id="productSummary" class="max-w-xl text-sm font-semibold leading-6 text-[#f8dfc4]/76">K-PEÑO · PARA CARNES</p>
         </div>
       </section>
 
@@ -244,7 +152,6 @@
             <p id="prod1Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#321506]/72 sm:text-lg">Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.</p>
             <p id="prod1Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#321506]/70">Ideal para tacos, pollo, frituras y snacks.</p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a id="prod1Link" data-product="K-PEÑO" href="/en/support.html?product=original" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-6 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700">Apoyar el lanzamiento</a>
               <a id="prod1B2bLink" data-product="K-PEÑO" href="/en/contact.html?purpose=distribution&product=original" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4]">Consulta B2B</a>
             </div>
           </div>
@@ -254,10 +161,9 @@
           <div class="reveal-target order-2 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:order-1 lg:px-16 xl:px-24">
             <p id="prod2Kicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">Ssamjang</p>
             <h2 id="prod2Title" class="display-latin text-6xl uppercase leading-[0.86] text-[#f8dfc4] sm:text-8xl">Para Carnes</h2>
-            <p id="prod2Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#f8dfc4]/76 sm:text-lg">Ideal para pollo, res, cerdo y carnes asadas, con umami coreano profundo.</p>
-            <p id="prod2Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#f8dfc4]/70">Para acompañar carnes asadas, tacos y parrilladas.</p>
+            <p id="prod2Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#f8dfc4]/76 sm:text-lg">Una salsa coreana de profundo umami que combina con verduras y todo tipo de carnes, asadas, hervidas o al vapor.</p>
+            <p id="prod2Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#f8dfc4]/70">Una salsa emblemática de Corea para dipear carnes.</p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a id="prod2Link" data-product="Para Carnes" href="/en/support.html?product=para-carnes" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-mokdaOrange px-6 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-orange-700">Apoyar el lanzamiento</a>
               <a id="prod2B2bLink" data-product="Para Carnes" href="/en/contact.html?purpose=distribution&product=para-carnes" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#f8dfc4] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#f8dfc4] hover:text-[#321506]">Consulta B2B</a>
             </div>
           </div>
@@ -266,21 +172,6 @@
           </div>
         </article>
 
-        <article id="soy-sauce" data-product="Ganjang (Soy Sauce)" class="product-feature scroll-mt-20 grid bg-[#ef5f18] text-white lg:grid-cols-2 lg:items-stretch">
-          <div class="reveal-target relative min-h-[390px] overflow-hidden sm:min-h-[520px] lg:min-h-[650px]" style="transition-delay: 80ms">
-            <img src="assets/product-food-soy-v1.jpg" alt="Arroz, verduras y ensalada para Salsa Coreana Ganjang" class="absolute inset-0 h-full w-full object-cover object-center" loading="lazy" />
-          </div>
-          <div class="reveal-target flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
-            <p id="prod3Kicker" class="condensed-label mb-4 text-base uppercase text-[#321506]/65 sm:text-xl">Salsa Ganjang</p>
-            <h2 id="prod3Title" class="display-latin text-6xl uppercase leading-[0.86] text-white sm:text-8xl">SOY SAUCE</h2>
-            <p id="prod3Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-white/80 sm:text-lg">Una salsa coreana dulce y salada para tus comidas de todos los días.</p>
-            <p id="prod3Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-white/75">Ideal para arroz, carne, frituras y salteados.</p>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a id="prod3Link" data-product="Ganjang (Soy Sauce)" href="/en/support.html?product=soy-sauce" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#1f0d04]">Apoyar el lanzamiento</a>
-              <a id="prod3B2bLink" data-product="Ganjang (Soy Sauce)" href="/en/contact.html?purpose=distribution&product=soy-sauce" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-white px-6 py-3 text-sm font-extrabold uppercase text-white transition hover:bg-white hover:text-mokdaOrange">Consulta B2B</a>
-            </div>
-          </div>
-        </article>
       </section>
     </main>
 
@@ -316,181 +207,11 @@
         <div id="footerText" class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8"></div>
       </footer>
 
-    <script src="./site-i18n.js?v=20260811-3"></script>
-    <script src="./site-footer.js?v=20260901-1"></script>
-    <script>
-      let language = window.MOKDA_I18N.getLanguage();
-
-      const content = {
-        ES: {
-          nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
-          socialTitle: 'REDES SOCIALES',
-          summary: 'K-PEÑO · PARA CARNES · GANJANG (SOY SAUCE)',
-          title: "Salsa Coreana | Salsas MOKDA",
-          kicker: "La primera línea de MOKDA",
-          headline: "SALSA COREANA",
-          subtitle: "La primera expresión de MOKDA: salsas coreanas creadas para acompañar de forma fácil y natural las comidas cotidianas de Latinoamérica.",
-          slogan: "NO PUEDES PARAR DE DIPEAR.",
-          p1: {
-            kicker: "Gochujang",
-            name: "K-PEÑO",
-            desc: "Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.",
-            uses: "Ideal para tacos, pollo, frituras y snacks."
-          },
-          p2: {
-            kicker: "Ssamjang",
-            name: "Para Carnes",
-            desc: "Ideal para pollo, res, cerdo y carnes asadas, con umami coreano profundo.",
-            uses: "Para acompañar carnes asadas, tacos y parrilladas."
-          },
-          p3: {
-            kicker: "Salsa Ganjang",
-            name: "SOY SAUCE",
-            desc: "Una salsa coreana dulce y salada para tus comidas de todos los días.",
-            uses: "Ideal para arroz, carne, frituras y salteados."
-          },
-          actions: { support: 'Apoyar el lanzamiento', b2b: 'Consulta B2B' }
-        },
-        EN: {
-          nav: { about: 'About us', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contact' },
-          socialTitle: 'SOCIAL',
-          summary: 'K-PEÑO · PARA CARNES · GANJANG (SOY SAUCE)',
-          title: "Salsa Coreana | MOKDA Sauces",
-          kicker: "MOKDA'S FIRST SAUCE LINE",
-          headline: "SALSA COREANA",
-          subtitle: "MOKDA's first expression: Korean sauces created to fit easily and naturally into everyday meals across Latin America.",
-          slogan: "NO PUEDES PARAR DE DIPEAR.",
-          p1: {
-            kicker: "Gochujang",
-            name: "K-PEÑO",
-            desc: "A sauce where the spicy kick of gochujang meets the freshness of jalapeño.",
-            uses: "Made for tacos, chicken, fried food, and snacks."
-          },
-          p2: {
-            kicker: "Ssamjang",
-            name: "Para Carnes",
-            desc: "Ideal for chicken, beef, pork, and grilled meats, with deep Korean umami.",
-            uses: "A Korean dipping sauce for grilled meats, tacos, and barbecue."
-          },
-          p3: {
-            kicker: "Salsa Ganjang",
-            name: "SOY SAUCE",
-            desc: "A sweet and savory Korean-style soy sauce for everyday meals.",
-            uses: "Made for rice, meat, fried food, and stir-fries."
-          },
-          actions: { support: 'Support the launch', b2b: 'B2B inquiry' }
-        },
-        KR: {
-          nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
-          socialTitle: 'MOKDA SNS',
-          summary: 'K-PEÑO · PARA CARNES · GANJANG',
-          title: "Salsa Coreana | MOKDA 한국 소스 라인업",
-          kicker: "MOKDA의 첫 번째 소스 라인",
-          headline: "SALSA COREANA",
-          subtitle: "MOKDA의 첫 번째 표현으로, 라틴아메리카의 일상 음식에 쉽고 자연스럽게 어울리도록 만든 한국 소스입니다.",
-          slogan: "NO PUEDES PARAR DE DIPEAR.",
-          p1: {
-            kicker: "Gochujang",
-            name: "K-PEÑO",
-            desc: "고추장의 매콤함과 할라피뇨의 상큼함이 만난 소스.",
-            uses: "타코, 치킨, 튀김과 스낵에 어울립니다."
-          },
-          p2: {
-            kicker: "Ssamjang",
-            name: "Para Carnes",
-            desc: "닭고기, 소고기, 돼지고기와 구운 고기에 어울리는 깊은 감칠맛의 한국식 소스.",
-            uses: "구운 고기와 바비큐, 타코 속 고기에 찍어 먹는 한국식 소스입니다."
-          },
-          p3: {
-            kicker: "Salsa Ganjang",
-            name: "SOY SAUCE",
-            desc: "일상 음식에 더하기 좋은 달콤짭짤한 감칠맛.",
-            uses: "밥, 고기, 튀김과 볶음요리에 어울립니다."
-          },
-          actions: { support: '출시 응원하기', b2b: 'B2B 문의' }
-        }
-      };
-
-      function setText(id, val) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = val;
-      }
-
-      function renderLanguageButtons() {
-        window.MOKDA_I18N.syncLanguageButtons(language);
-      }
-
-      function renderPage() {
-        const t = content[language];
-        document.title = t.title;
-        document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
-        setText('mobile-about-link', t.nav.about);
-        setText('mobile-products-link', t.nav.products);
-        setText('mobile-qna-link', t.nav.qna);
-        setText('mobile-contact-link', t.nav.contact);
-        setText('socialTitle', t.socialTitle);
-        
-        setText('pageKicker', t.kicker);
-        setText('pageTitle', t.headline);
-        setText('pageSubtitle', t.subtitle);
-        setText('pageSlogan', t.slogan);
-        setText('productSummary', t.summary);
-        
-        setText('prod1Kicker', t.p1.kicker);
-        setText('prod1Title', t.p1.name);
-        setText('prod1Desc', t.p1.desc);
-        setText('prod1Uses', t.p1.uses);
-        setText('prod1Link', t.actions.support);
-        setText('prod1B2bLink', t.actions.b2b);
-        
-        setText('prod2Kicker', t.p2.kicker);
-        setText('prod2Title', t.p2.name);
-        setText('prod2Desc', t.p2.desc);
-        setText('prod2Uses', t.p2.uses);
-        setText('prod2Link', t.actions.support);
-        setText('prod2B2bLink', t.actions.b2b);
-        
-        setText('prod3Kicker', t.p3.kicker);
-        setText('prod3Title', t.p3.name);
-        setText('prod3Desc', t.p3.desc);
-        setText('prod3Uses', t.p3.uses);
-        setText('prod3Link', t.actions.support);
-        setText('prod3B2bLink', t.actions.b2b);
-
-        window.MOKDA_FOOTER.render(language);
-        
-        renderLanguageButtons();
-      }
-
-      window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
-        language = nextLanguage;
-        renderPage();
-      });
-
-      renderPage();
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const observerOptions = {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.remove('opacity-0', 'translate-x-10', '-translate-x-10');
-              entry.target.classList.add('opacity-100', 'translate-x-0');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-target').forEach(el => {
-          observer.observe(el);
-        });
-      });
-    </script>
-    <script src="./site-header.js?v=20260903-1"></script>
+    <script src="/site-i18n.js?v=cf263a2b502b"></script>
+    <script src="/site-footer.js?v=af5af53e836d"></script>
+    <script src="/assets/generated/cdd3743cb113ebcfe339.js?v=cdd3743cb113"></script>
+    <script src="/site-header.js?v=176c9e6ed97c"></script>
+    <script src="/site-product-media.js?v=02d5635d355b"></script>
+    <script src="/brand-motion.js?v=de1b1c5aa819" defer></script>
   </body>
 </html>

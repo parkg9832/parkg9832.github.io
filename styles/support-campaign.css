@@ -135,6 +135,7 @@ textarea {
 }
 
 .support-form {
+  scroll-margin-top: 104px;
   display: grid;
   gap: 0;
   width: 100%;

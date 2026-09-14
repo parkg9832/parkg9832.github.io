@@ -2,6 +2,8 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-JEmmf8EQHN3NGk3bXJFquTQqEhCx7D48sny9Si//Itg=' 'sha256-szpx5SE5gw37taTAh3Jk45DyvXQp7XnAz1LTdbKcSNE=' 'sha256-g9VsMUdlJpF1D1ky2pVWPjJp1kPS9e0vylQXOrAmSTA='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- legacy-route-redirect:start -->
@@ -61,8 +63,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/mokda-tailwind.css" />
     <style>
       html {
@@ -293,11 +294,13 @@
       }
     </style>
     <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
+    <link rel="stylesheet" href="./styles/about-experience.css?v=20260911-4" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="stylesheet" href="./styles/brand-rhythm.css?v=20260912-9" />
   </head>
-  <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
+  <body class="about-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -327,37 +330,34 @@
       </div>
     </header>
 
-    <main class="overflow-hidden">
-      <section id="top" class="cream-grid-bg relative min-h-screen bg-[#f7ddc2] px-4 pb-10 pt-24 sm:px-6 sm:pb-12 sm:pt-28 lg:px-8">
-        <div class="mx-auto flex w-full max-w-7xl flex-col items-center text-center">
-          <div data-reveal class="relative z-10 flex min-h-[380px] w-full flex-col items-center justify-center sm:min-h-[420px] lg:min-h-[475px]">
-            <p id="heroKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-xl"></p>
-            <h1 class="display-latin mx-auto max-w-6xl text-[5.25rem] uppercase leading-[0.77] text-[#d94a00] sm:text-[8.5rem] lg:text-[11rem] xl:text-[13rem]">
-              <span id="heroLine1" class="block"></span>
-            </h1>
-            <p id="heroLine2" class="display-korean mt-5 break-keep text-4xl leading-none text-[#321506] sm:text-6xl lg:text-7xl"></p>
-            <p id="heroBody" class="mx-auto mt-7 max-w-2xl break-keep text-pretty text-base font-semibold leading-8 text-[#321506]/78 sm:text-lg"></p>
+    <main>
+      <section id="top" class="about-opening">
+        <div>
+          <div class="about-opening-copy">
+            <p id="heroKicker" class="condensed-label"></p>
+            <h1 class="display-latin"><span id="heroLine1"></span></h1>
+            <p id="heroLine2" class="display-korean"></p>
+            <p id="heroBody"></p>
           </div>
-          <div data-reveal style="--reveal-delay: 120ms" class="relative mt-4 min-h-[285px] w-full max-w-6xl overflow-hidden rounded-t-[1.5rem] sm:min-h-[390px] lg:mt-2 lg:min-h-[460px] lg:rounded-t-[2rem]">
-            <img src="./assets/images/brand-story-seoul-kfood-table.webp" alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-[52%_60%]" loading="eager" fetchpriority="high" decoding="async" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#321506]/18 via-transparent to-transparent"></div>
-          </div>
+          <figure class="about-opening-photo">
+            <img src="./assets/images/field-chili-1080.webp" alt="MOKDA visiting a chili farm in Korea" width="1071" height="1428" loading="eager" fetchpriority="high" decoding="async" />
+          </figure>
         </div>
       </section>
 
       <section id="story" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div class="mx-auto w-full max-w-6xl">
-          <div class="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
+          <div class="about-story-grid grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
             <figure data-reveal class="about-story-figure">
               <div class="about-story-media relative aspect-[4/5] overflow-hidden bg-[#f7ddc2]">
                 <picture>
-                  <source media="(max-width: 767px)" srcset="./assets/images/field-chili-720.webp" />
-                  <img src="./assets/images/field-chili-1080.webp" alt="MOKDA founder inspecting chili peppers in Korea" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
+                  <source media="(max-width: 767px)" srcset="./assets/images/field-meeting-720.webp" />
+                  <img src="./assets/images/field-meeting-1440.webp" alt="MOKDA preparing for international expansion at a meeting in Korea" width="1440" height="810" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
                 </picture>
               </div>
             </figure>
 
-            <div data-reveal style="--reveal-delay: 100ms" class="pt-1 lg:pt-6">
+            <div data-reveal style="--reveal-delay: 100ms" class="about-story-copy pt-1 lg:pt-6">
               <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-lg"></p>
               <h2 id="storyTitle" class="max-w-xl break-keep text-pretty text-[1.75rem] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
               <div class="my-8 h-0.5 w-12 bg-mokdaOrange sm:my-10"></div>
@@ -386,6 +386,9 @@
           <div data-reveal class="mb-10 max-w-5xl sm:mb-14">
             <p id="historyKicker" class="condensed-label mb-4 text-base uppercase text-[#b73500] sm:text-xl"></p>
             <h2 id="historyTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
+            <figure class="about-history-photo">
+              <img src="./assets/images/field-manufacturing-720.webp" alt="MOKDA — visita a una planta de producción" loading="lazy" width="720" height="1279" />
+            </figure>
           </div>
           <div id="timelineList" class="border-b border-[#321506]/18"></div>
         </div>
@@ -438,7 +441,7 @@
     </main>
 
     <script src="./site-i18n.js?v=20260811-3"></script>
-    <script src="./site-footer.js?v=20260901-2"></script>
+    <script src="./site-footer.js?v=20260912-8"></script>
     <script>
       const pageCopy = {
         ES: {
@@ -683,6 +686,7 @@
         setHTML('motiveBody', copy.logo.motiveBody.map((item) => `<p>${item}</p>`).join(''));
         setText('historyKicker', copy.history.kicker);
         setText('historyTitle', copy.history.title);
+        document.querySelector('.about-history-photo img').alt = language === 'KR' ? 'MOKDA 생산 시설 방문' : language === 'EN' ? 'MOKDA visiting a production facility' : 'MOKDA — visita a una planta de producción';
         setText('productCtaKicker', copy.productCta.kicker);
         setText('productCtaTitle', copy.productCta.title);
         setText('productCtaBody', copy.productCta.body);
@@ -699,7 +703,7 @@
           copy.history.years
             .map(
               (group, index) => `
-                <article data-reveal style="--reveal-delay: ${index * 90}ms" class="grid gap-5 overflow-visible border-t border-[#321506]/18 py-7 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
+                <article class="grid gap-5 overflow-visible border-t border-[#321506]/18 py-7 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
                   <div class="sm:pt-1">
                     <p class="display-latin whitespace-nowrap text-6xl leading-none text-[#d94a00] sm:text-7xl lg:text-[5.5rem] xl:text-8xl">${group.year}</p>
                   </div>
@@ -707,7 +711,7 @@
                     ${group.items
                       .map(
                         (item, itemIndex) => `
-                          <div class="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
+                          <div class="about-timeline-item${item.detail === 'K-Peño / Para Carnes' ? ' about-product-milestone' : ''}${itemIndex === 0 || item.month !== group.items[itemIndex - 1]?.month ? ' about-month-start' : ''} grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
                             <span class="timeline-month condensed-label text-sm${
                               itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month ? ' is-empty' : ''
                             }">${
@@ -720,6 +724,7 @@
                             <div>
                               <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${typeof item === 'string' ? item : item.text}</p>
                               ${typeof item === 'string' || !(item.detail || item.amount) ? '' : `<p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(${item.detail || item.amount})</p>`}
+                              ${item.detail === 'K-Peño / Para Carnes' ? '<img class="about-prototypes" src="./assets/images/mokda-studio-pair-480.webp" alt="K-Peño / Para Carnes" loading="lazy" width="1254" height="1254" />' : ''}
                             </div>
                           </div>
                         `,
@@ -766,6 +771,7 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260903-1"></script>
+    <script src="./site-header.js?v=20260912-8"></script>
+    <script src="./brand-motion.js?v=20260912-9" defer></script>
   </body>
 </html>

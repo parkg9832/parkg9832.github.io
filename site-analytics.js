@@ -70,7 +70,7 @@
       window.dataLayer.push(arguments);
     };
     window.gtag('js', new Date());
-    window.gtag('config', ga4MeasurementId, { send_page_view: true });
+    window.gtag('config', ga4MeasurementId, { send_page_view: true, page_location: window.location.origin + window.location.pathname, page_referrer: document.referrer ? new URL(document.referrer).origin : '' });
 
     if (document.querySelector(`script[data-mokda-ga4="${ga4MeasurementId}"]`)) return;
     const googleTag = document.createElement('script');
@@ -257,7 +257,7 @@
       eventSequence: nextEventSequence(),
       eventSchemaVersion,
       pagePath: clean(`${window.location.pathname}${window.location.hash}`, 300),
-      pageUrl: clean(window.location.href, 500),
+      pageUrl: clean(window.location.origin + window.location.pathname, 500),
       language: getLanguage(),
       device: getDevice(),
       referrerHost: clean(attribution.referrerHost, 150),

@@ -308,6 +308,13 @@
     return new Intl.DateTimeFormat(locale, { month: 'short', day: 'numeric' }).format(date);
   }
 
+  function refreshSupportTimes() {
+    if (document.hidden) return;
+    document.querySelectorAll('#supportFeedList time[datetime]').forEach((time) => {
+      time.textContent = formatSupportTime(time.dateTime);
+    });
+  }
+
   let renderedSupporterCount = 0;
   let supportFeedPublicTotal = 0;
   let supportFeedHasMore = false;
@@ -398,6 +405,7 @@
         code: String(supporter?.countryCode || '').trim().toUpperCase(),
         message: String(supporter?.message || '').trim().slice(0, 180),
         createdAt: String(supporter?.createdAt || '').trim(),
+        example: supportPreviewMode,
       }))
       .filter((supporter) => supporter.name && countryCodes.includes(supporter.code));
 
@@ -854,6 +862,10 @@
   render();
   if (!supportPreviewMode) showSavedSupport(readJson(supportStorageKey));
   loadSupportFeed();
+  // Recalculate labels from the original timestamp, including after a suspended tab resumes.
+  window.setInterval(refreshSupportTimes, 60000);
+  document.addEventListener('visibilitychange', refreshSupportTimes);
+  window.addEventListener('pageshow', refreshSupportTimes);
   if (!supportPreviewMode) {
     window.MOKDA_ANALYTICS?.track('support_page_view', { element: 'demand_support_page' });
   }

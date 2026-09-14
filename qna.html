@@ -2,6 +2,8 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-keJwPiOlnrvmutc9KSMk0LZ3pjQ8+0QeOk3KtYAtISE=' 'sha256-kDfxzf7Zzl6JlGN8gXD9tWU6vuITKbpK+sjTE/PzXGI=' 'sha256-hadIVcL6aUA3boGEyYWqZsquVMbi7hoxweaYdfyB7MY='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- legacy-route-redirect:start -->
@@ -50,7 +52,7 @@
             "inLanguage": "es-419",
             "mainEntity": [
               { "@type": "Question", "name": "¿Qué es MOKDA y qué es Salsa Coreana?", "acceptedAnswer": { "@type": "Answer", "text": "MOKDA es la marca K-Food que conecta sabores de Corea con las mesas cotidianas de Latinoamérica. Salsa Coreana es su primera línea de salsas." } },
-              { "@type": "Question", "name": "¿Qué salsas incluye Salsa Coreana?", "acceptedAnswer": { "@type": "Answer", "text": "La línea está formada por K-PEÑO, Para Carnes y Ganjang (Soy Sauce), tres salsas coreanas pensadas para distintos sabores y momentos de consumo." } },
+              { "@type": "Question", "name": "¿Qué salsas incluye Salsa Coreana?", "acceptedAnswer": { "@type": "Answer", "text": "La línea está formada por K-PEÑO y Para Carnes, dos salsas coreanas pensadas para distintos sabores y momentos de consumo." } },
               { "@type": "Question", "name": "¿Con qué comidas se pueden usar las salsas?", "acceptedAnswer": { "@type": "Answer", "text": "Las salsas pueden combinarse con pollo, carnes asadas, arroz, fideos, verduras, frituras, nachos y otros snacks." } },
               { "@type": "Question", "name": "¿Dónde puedo consultar disponibilidad, ingredientes y alérgenos?", "acceptedAnswer": { "@type": "Answer", "text": "La información oficial se publicará en esta web, en la información de cada salsa y en su envase antes de la venta. Para consultas específicas, utiliza la página de contacto." } },
               { "@type": "Question", "name": "¿MOKDA trabaja con distribuidores, retail y HORECA?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. MOKDA recibe propuestas de distribución, retail, restaurantes, HORECA y colaboración de marca para Latinoamérica." } }
@@ -69,8 +71,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/mokda-tailwind.css?v=20260812-1" />
     <style>
       html {
@@ -230,8 +231,9 @@
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="stylesheet" href="./styles/brand-rhythm.css?v=20260912-9" />
   </head>
-  <body class="bg-[#f7ddc2] text-neutral-950 antialiased">
+  <body class="qna-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="light" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="index.html" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
@@ -262,7 +264,7 @@
     </header>
 
     <main class="overflow-hidden bg-[#f7ddc2]">
-      <section class="brand-grid-bg bg-[#321506] px-4 pb-14 pt-28 text-[#f8dfc4] sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pb-20">
+      <section class="qna-opening brand-grid-bg bg-[#321506] px-4 pb-14 pt-28 text-[#f8dfc4] sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pb-20">
         <div class="mx-auto w-full max-w-6xl text-center">
           <div data-reveal class="mx-auto max-w-5xl">
             <p id="pageKicker" class="condensed-label mb-4 text-sm uppercase text-mokdaOrange sm:text-lg"></p>
@@ -272,7 +274,7 @@
         </div>
       </section>
 
-      <section class="brand-grid-bg bg-[#f7ddc2] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+      <section class="qna-reading brand-grid-bg bg-[#f7ddc2] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div class="mx-auto w-full max-w-5xl">
           <div id="qnaList" data-reveal data-reveal-delay="80" class="grid gap-3 sm:gap-4"></div>
           <div data-reveal data-reveal-delay="140" class="mt-10 text-center">
@@ -312,8 +314,7 @@
     </main>
 
     <script src="./site-i18n.js?v=20260811-3"></script>
-    <script src="./site-footer.js?v=20260901-1"></script>
-    <script src="./site-accordion.js?v=20260719-1"></script>
+    <script src="./site-footer.js?v=20260912-8"></script>
     <script>
       let language = window.MOKDA_I18N.getLanguage();
 
@@ -335,29 +336,29 @@
         {
           ES: {
             question: '¿Qué salsas incluye Salsa Coreana?',
-            answer: 'K-PEÑO combina una base de gochujang con un toque fresco de jalapeño. Para Carnes parte del ssamjang y está pensada para acompañar carnes asadas. Ganjang (Soy Sauce) es una salsa dulce y salada para comidas cotidianas.',
+            answer: 'K-PEÑO combina una base de gochujang con un toque fresco de jalapeño. Para Carnes parte del ssamjang y está pensada para acompañar carnes asadas.',
           },
           EN: {
             question: 'Which products are in the Salsa Coreana line?',
-            answer: 'K-PEÑO blends a gochujang base with a fresh jalapeño lift. Para Carnes is ssamjang-based and designed for grilled meats. Ganjang (Soy Sauce) is a sweet and savory sauce for everyday meals.',
+            answer: 'K-PEÑO blends a gochujang base with a fresh jalapeño lift. Para Carnes is ssamjang-based and designed for grilled meats.',
           },
           KR: {
             question: 'Salsa Coreana에는 어떤 제품이 있나요?',
-            answer: 'K-PEÑO는 고추장에 할라피뇨의 산뜻함을 더한 소스입니다. Para Carnes는 쌈장 기반의 고기용 소스이며, Ganjang은 간장 기반의 달콤짭짤한 일상용 소스입니다.',
+            answer: 'K-PEÑO는 고추장에 할라피뇨의 산뜻함을 더한 소스입니다. Para Carnes는 쌈장 기반의 고기용 소스입니다.',
           },
         },
         {
           ES: {
             question: '¿Con qué comidas se pueden usar las salsas?',
-            answer: 'K-PEÑO va bien con nachos, pollo frito, papas y snacks. Para Carnes acompaña pollo a la brasa, res, cerdo, BBQ y carne asada. Ganjang (Soy Sauce) funciona con arroz, fideos, salteados, verduras y frituras.',
+            answer: 'K-PEÑO va bien con nachos, pollo frito, papas y snacks. Para Carnes acompaña pollo a la brasa, res, cerdo, BBQ y carne asada.',
           },
           EN: {
             question: 'What foods can the sauces be used with?',
-            answer: 'K-PEÑO pairs with nachos, fried chicken, chips, and snacks. Para Carnes works with roasted chicken, beef, pork, BBQ, and grilled meats. Ganjang (Soy Sauce) suits rice, noodles, stir-fries, vegetables, and fried foods.',
+            answer: 'K-PEÑO pairs with nachos, fried chicken, chips, and snacks. Para Carnes works with roasted chicken, beef, pork, BBQ, and grilled meats.',
           },
           KR: {
             question: '어떤 음식에 활용할 수 있나요?',
-            answer: 'K-PEÑO는 나초, 프라이드치킨, 감자칩과 스낵에 잘 어울립니다. Para Carnes는 구운 닭고기, 소고기, 돼지고기와 BBQ에, Ganjang은 밥, 면, 볶음요리, 채소와 튀김에 활용할 수 있습니다.',
+            answer: 'K-PEÑO는 나초, 프라이드치킨, 감자칩과 스낵에 잘 어울립니다. Para Carnes는 구운 닭고기, 소고기, 돼지고기와 BBQ에 활용할 수 있습니다.',
           },
         },
         {
@@ -448,23 +449,18 @@
             const localized = item[language] || item.ES;
             const itemId = `qna-${index}`;
             return `
-              <article data-accordion-item class="qna-item">
-                <button data-accordion-button type="button" class="qna-question-row grid w-full grid-cols-[2rem_minmax(0,1fr)_2.25rem] items-center gap-3 px-4 py-[1.125rem] text-left transition-colors duration-300 sm:grid-cols-[3rem_minmax(0,1fr)_2.5rem] sm:gap-5 sm:px-7 sm:py-6" aria-expanded="false" aria-controls="${itemId}">
-                  <span class="text-xs font-black text-[#a93600]">${String(index + 1).padStart(2, '0')}</span>
-                  <span class="qna-question faq-question block min-w-0 break-keep text-base leading-7 text-[#321506] transition-colors duration-300 sm:text-lg sm:leading-8">${localized.question}</span>
-                  <span class="qna-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#321506] text-lg leading-none text-[#f8dfc4] transition-colors"><span class="qna-glyph">+</span></span>
-                </button>
-                <div id="${itemId}" class="qna-answer" aria-hidden="true">
-                  <div class="min-h-0 overflow-hidden">
-                    <div class="qna-answer-panel"><p class="max-w-4xl px-5 py-6 text-left text-[15px] font-semibold leading-7 text-[#321506]/78 sm:px-[7.25rem] sm:py-8 sm:pr-20 sm:text-base sm:leading-8">${localized.answer}</p></div>
-                  </div>
+              <article class="qna-reading-item" aria-labelledby="${itemId}-title">
+                <span class="qna-reading-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h2 id="${itemId}-title">${localized.question}</h2>
+                  <p>${localized.answer}</p>
                 </div>
               </article>
             `;
           })
           .join('');
 
-        window.MOKDA_ACCORDION.init(list);
+
         bindReveal();
       }
 
@@ -523,6 +519,7 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js?v=20260903-1"></script>
+    <script src="./site-header.js?v=20260912-8"></script>
+    <script src="./brand-motion.js?v=20260912-9" defer></script>
   </body>
 </html>

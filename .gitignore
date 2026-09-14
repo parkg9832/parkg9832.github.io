@@ -39,3 +39,16 @@ Organized_Workspace/
 .playwright-cli/
 output/playwright/
 .superdesign/tmp/
+
+# Local packaging artwork used for visual comparison
+/tmp/design-audit/
+
+# Secrets and local audit material
+.env
+.env.*
+!.env.example
+.clasprc.json
+.clasp.json
+*.pem
+*.key
+/output/

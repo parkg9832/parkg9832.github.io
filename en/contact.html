@@ -2,6 +2,8 @@
 <html lang="en" data-route-language="EN" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-JsMHbN2ph91ioer3jSU8wgeVi6rcxhSFZJ9JQ9c16mU='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
@@ -35,97 +37,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
-    <link rel="stylesheet" href="./assets/mokda-tailwind.css?v=20260812-1" />
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: 'Noto Sans', 'Noto Sans KR', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        font-weight: 400;
-        letter-spacing: 0;
-      }
-
-      .display-latin {
-        font-family: 'Archivo Black', 'Arial Black', 'Noto Sans', sans-serif;
-        font-weight: 900 !important;
-        letter-spacing: 0;
-      }
-
-      .display-korean {
-        font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
-        font-weight: 800 !important;
-        letter-spacing: 0;
-        line-height: 1.08 !important;
-        word-break: keep-all;
-      }
-
-      #pageTitle.display-korean {
-        font-size: clamp(2.5rem, 5vw, 4.5rem) !important;
-      }
-
-      .condensed-label {
-        font-family: 'Bebas Neue', 'Noto Sans', sans-serif;
-        font-weight: 400;
-        line-height: 1;
-        letter-spacing: 0;
-      }
-
-      .brand-grid-bg {
-        background-image:
-          linear-gradient(rgba(248, 223, 196, 0.055) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(248, 223, 196, 0.055) 1px, transparent 1px);
-        background-size: 64px 64px;
-      }
-
-      .font-black,
-      .font-extrabold {
-        font-weight: 700 !important;
-      }
-
-      .font-semibold {
-        font-weight: 500 !important;
-      }
-
-      [data-reveal] {
-        opacity: 0;
-        transform: translateY(28px);
-        transition:
-          opacity 820ms cubic-bezier(0.22, 1, 0.36, 1),
-          transform 820ms cubic-bezier(0.22, 1, 0.36, 1);
-        transition-delay: var(--reveal-delay, 0ms);
-      }
-
-      [data-reveal].is-visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (max-width: 479px) {
-        #pageTitle.display-latin {
-          font-size: clamp(2rem, 9.2vw, 2.25rem) !important;
-          letter-spacing: -0.045em;
-          overflow-wrap: anywhere;
-          word-break: normal !important;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        [data-reveal] {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
-    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=c61ad77c9f6c" />
+    <link rel="stylesheet" href="/assets/generated/3bc26417d63ea156c5fc.css?v=3bc26417d63e" />
+    <link rel="stylesheet" href="/styles/site-typography.css?v=0c054a2cb241" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
@@ -211,11 +126,11 @@
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
               <label class="block">
                 <span id="nameLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="nameInput" type="text" name="name" required autocomplete="name" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="nameInput" maxlength="100" type="text" name="name" required autocomplete="name" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="companyLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="companyInput" type="text" name="company" required autocomplete="organization" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="companyInput" maxlength="160" type="text" name="company" required autocomplete="organization" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="countryLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
@@ -227,16 +142,16 @@
               </label>
               <label class="block">
                 <span id="emailLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="emailInput" type="email" name="email" autocomplete="email" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="emailInput" maxlength="254" type="email" name="email" autocomplete="email" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="whatsappLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="whatsappInput" type="tel" name="whatsapp" autocomplete="tel" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="whatsappInput" maxlength="40" type="tel" name="whatsapp" autocomplete="tel" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <p id="contactMethodHint" class="-mt-1 text-xs font-semibold text-[#321506]/60 sm:col-span-2"></p>
               <label class="block sm:col-span-2">
                 <span id="messageLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <textarea id="messageInput" name="message" rows="5" required class="w-full resize-none rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
+                <textarea id="messageInput" maxlength="4000" name="message" rows="5" required class="w-full resize-none rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
               </label>
             </div>
             <div class="mt-7 flex justify-center">
@@ -282,322 +197,10 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20260811-3"></script>
-    <script src="./site-footer.js?v=20260901-1"></script>
-    <script src="./b2b-config.js"></script>
-    <script>
-      let language = window.MOKDA_I18N.getLanguage();
-
-      const countries = [
-        ['Mexico', { ES: 'México', EN: 'Mexico', KR: '멕시코' }],
-        ['Peru', { ES: 'Perú', EN: 'Peru', KR: '페루' }],
-        ['Colombia', { ES: 'Colombia', EN: 'Colombia', KR: '콜롬비아' }],
-        ['Chile', { ES: 'Chile', EN: 'Chile', KR: '칠레' }],
-        ['Argentina', { ES: 'Argentina', EN: 'Argentina', KR: '아르헨티나' }],
-        ['Puerto Rico', { ES: 'Puerto Rico', EN: 'Puerto Rico', KR: '푸에르토리코' }],
-        ['Korea', { ES: 'Corea', EN: 'Korea', KR: '한국' }],
-        ['Other', { ES: 'Otro país', EN: 'Other country', KR: '기타 국가' }],
-      ];
-
-      const content = {
-        ES: {
-          title: 'Alianza B2B | MOKDA',
-          nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
-          hero: {
-            kicker: 'ALIANZA B2B',
-            title: 'Buscamos socios comerciales',
-            description: 'Consultas para distribución, importación, retail, HORECA y colaboraciones de negocio en Latinoamérica.',
-          },
-          fields: {
-            name: ['Nombre', 'Nombre completo'],
-            email: ['Correo electrónico', 'Correo o WhatsApp'],
-            whatsapp: ['WhatsApp', 'WhatsApp o correo'],
-            country: ['País / Mercado', 'Selecciona un país'],
-            purpose: ['Tipo de empresa', 'Opcional', ['Distribuidor', 'Importador', 'Retail', 'HORECA', 'Otro']],
-            company: ['Empresa', 'Nombre de la empresa'],
-            message: ['Mensaje', 'Cuéntanos brevemente tu propuesta'],
-            submit: 'Enviar consulta B2B',
-            required: 'Completa este campo.',
-            emailError: 'Ingresa un correo válido.',
-            contactMethod: 'Introduce al menos un correo electrónico o WhatsApp.',
-          },
-          messages: {
-            sending: 'Enviando consulta...',
-            success: 'Consulta enviada. Gracias por contactar a MOKDA.',
-            error: 'No se pudo enviar. Inténtalo de nuevo o revisa la conexión.',
-          },
-          social: 'REDES SOCIALES',
-        },
-        EN: {
-          title: 'B2B Partnership | MOKDA',
-          nav: { about: 'About us', products: 'Korean Sauce', qna: 'Q&A', contact: 'Contact' },
-          hero: {
-            kicker: 'B2B PARTNERSHIP',
-            title: 'We are looking for business partners',
-            description: 'For distribution, import, retail, HORECA, and business partnerships across Latin America.',
-          },
-          fields: {
-            name: ['Name', 'Full name'],
-            email: ['Email', 'Email or WhatsApp'],
-            whatsapp: ['WhatsApp', 'WhatsApp or email'],
-            country: ['Country / Market', 'Select a country'],
-            purpose: ['Business type', 'Optional', ['Distributor', 'Importer', 'Retail', 'HORECA', 'Other']],
-            company: ['Company', 'Company name'],
-            message: ['Message', 'Tell us briefly about your proposal'],
-            submit: 'Send B2B inquiry',
-            required: 'Please complete this field.',
-            emailError: 'Please enter a valid email.',
-            contactMethod: 'Enter at least an email address or WhatsApp number.',
-          },
-          messages: {
-            sending: 'Sending inquiry...',
-            success: 'Inquiry sent. Thank you for contacting MOKDA.',
-            error: 'Could not send. Please try again or check the connection.',
-          },
-          social: 'SOCIAL',
-        },
-        KR: {
-          title: 'B2B 문의 | MOKDA',
-          nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
-          hero: {
-            kicker: 'B2B PARTNERSHIP',
-            title: '함께할 비즈니스 파트너를 찾습니다',
-            description: '라틴아메리카 유통, 수입, 리테일, HORECA 및 사업 협력 문의를 받습니다.',
-          },
-          fields: {
-            name: ['이름', '이름을 입력해주세요'],
-            email: ['이메일', '이메일 또는 WhatsApp'],
-            whatsapp: ['WhatsApp', 'WhatsApp 또는 이메일'],
-            country: ['국가 / 시장', '국가 선택'],
-            purpose: ['사업 유형', '선택 입력', ['유통사', '수입사', '리테일', 'HORECA', '기타']],
-            company: ['회사명', '회사명을 입력해주세요'],
-            message: ['문의 내용', '사업 제안을 간단히 적어주세요'],
-            submit: 'B2B 문의 보내기',
-            required: '필수 항목입니다.',
-            emailError: '올바른 이메일을 입력해주세요.',
-            contactMethod: '이메일 또는 WhatsApp 중 하나를 입력해주세요.',
-          },
-          messages: {
-            sending: '문의 전송 중...',
-            success: '문의가 전송되었습니다. MOKDA에 연락해주셔서 감사합니다.',
-            error: '전송하지 못했습니다. 다시 시도하거나 연결 상태를 확인해주세요.',
-          },
-          social: 'MOKDA SNS',
-        },
-      };
-
-      function setText(id, value) {
-        const element = document.getElementById(id);
-        if (element) element.textContent = value;
-      }
-
-      function setPlaceholder(id, value) {
-        const element = document.getElementById(id);
-        if (element) element.setAttribute('placeholder', value);
-      }
-
-      function renderLanguageButtons() {
-        window.MOKDA_I18N.syncLanguageButtons(language);
-      }
-
-      function setFormStatus(type, message) {
-        const status = document.getElementById('formStatus');
-        if (!status) return;
-        status.textContent = message || '';
-        status.className = 'mt-4 min-h-6 text-center text-sm font-bold';
-        if (type === 'success') status.classList.add('text-emerald-700');
-        else if (type === 'error') status.classList.add('text-red-600');
-        else if (type === 'pending') status.classList.add('text-neutral-500');
-      }
-
-      function setFormSubmitting(isSubmitting) {
-        const button = document.getElementById('submitButton');
-        if (!button) return;
-        button.disabled = isSubmitting;
-        button.classList.toggle('cursor-wait', isSubmitting);
-        button.classList.toggle('opacity-70', isSubmitting);
-      }
-
-      function renderForm(fields) {
-        setText('nameLabel', fields.name[0]);
-        setPlaceholder('nameInput', fields.name[1]);
-        setText('emailLabel', fields.email[0]);
-        setPlaceholder('emailInput', fields.email[1]);
-        setText('whatsappLabel', fields.whatsapp[0]);
-        setPlaceholder('whatsappInput', fields.whatsapp[1]);
-        setText('countryLabel', fields.country[0]);
-        setText('purposeLabel', fields.purpose[0]);
-        setText('companyLabel', fields.company[0]);
-        setPlaceholder('companyInput', fields.company[1]);
-        setText('contactMethodHint', fields.contactMethod);
-        setText('messageLabel', fields.message[0]);
-        setPlaceholder('messageInput', fields.message[1]);
-        setText('submitButtonText', fields.submit);
-        document.getElementById('countrySelect').innerHTML = `
-          <option value="" selected disabled>${fields.country[1]}</option>
-          ${countries.map(([value, labels]) => `<option value="${value}">${labels[language]}</option>`).join('')}
-        `;
-        document.getElementById('purposeSelect').innerHTML = `
-          <option value="" selected>${fields.purpose[1]}</option>
-          ${fields.purpose[2].map((label) => `<option value="${label}">${label}</option>`).join('')}
-        `;
-        applyInquiryPreset();
-        ['nameInput', 'companyInput', 'emailInput', 'whatsappInput', 'countrySelect', 'messageInput'].forEach((id) => {
-          const field = document.getElementById(id);
-          if (!field) return;
-          field.setCustomValidity('');
-          field.oninvalid = () => {
-            if (field.validity.typeMismatch) {
-              field.setCustomValidity(fields.emailError || fields.required);
-              return;
-            }
-            field.setCustomValidity(fields.required);
-          };
-          field.oninput = () => field.setCustomValidity('');
-          field.onchange = () => field.setCustomValidity('');
-        });
-        ['emailInput', 'whatsappInput'].forEach((id) => {
-          document.getElementById(id).addEventListener('input', () => {
-            document.getElementById('emailInput').setCustomValidity('');
-            document.getElementById('whatsappInput').setCustomValidity('');
-          });
-        });
-      }
-
-      function applyInquiryPreset() {
-        const params = new URLSearchParams(window.location.search);
-        const purpose = document.getElementById('purposeSelect');
-        if (params.get('purpose') === 'distribution' && purpose?.options[1]) purpose.selectedIndex = 1;
-      }
-
-      function bindReveal() {
-        const elements = document.querySelectorAll('[data-reveal]:not([data-reveal-bound])');
-        if (!('IntersectionObserver' in window)) {
-          elements.forEach((element) => element.classList.add('is-visible'));
-          return;
-        }
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            });
-          },
-          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-        );
-
-        elements.forEach((element) => {
-          const delay = element.getAttribute('data-reveal-delay');
-          if (delay) element.style.setProperty('--reveal-delay', `${delay}ms`);
-          element.setAttribute('data-reveal-bound', 'true');
-          observer.observe(element);
-        });
-      }
-
-      async function submitContactForm(event) {
-        event.preventDefault();
-        const endpoint = window.MOKDA_B2B_WEB_APP_URL;
-        const messages = (content[language] || content.ES).messages;
-
-        if (!endpoint) {
-          setFormStatus('error', messages.error);
-          return;
-        }
-
-        const form = event.currentTarget;
-        const formData = new FormData(form);
-        const email = String(formData.get('email') || '').trim();
-        const whatsapp = String(formData.get('whatsapp') || '').trim();
-        if (!email && !whatsapp) {
-          const emailInput = document.getElementById('emailInput');
-          emailInput.setCustomValidity((content[language] || content.ES).fields.contactMethod);
-          emailInput.reportValidity();
-          return;
-        }
-        const payload = {
-          source: 'b2b-contact-page',
-          language,
-          name: String(formData.get('name') || '').trim(),
-          email,
-          whatsapp,
-          company: String(formData.get('company') || '').trim(),
-          role: '',
-          product: '',
-          country: String(formData.get('country') || '').trim(),
-          purpose: String(formData.get('purpose') || '').trim() || 'Business partnership',
-          message: String(formData.get('message') || '').trim(),
-          website: String(formData.get('website') || '').trim(),
-          pageUrl: window.location.href,
-          userAgent: navigator.userAgent,
-        };
-
-        setFormSubmitting(true);
-        setFormStatus('pending', messages.sending);
-
-        try {
-          const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'text/plain;charset=utf-8',
-            },
-            body: JSON.stringify(payload),
-          });
-
-          const result = await response.json();
-          if (!response.ok || !result.ok || result.saved !== true) {
-            throw new Error(result.error || 'Inquiry submission failed');
-          }
-
-          form.reset();
-          renderForm((content[language] || content.ES).fields);
-          setFormStatus('success', messages.success);
-          window.MOKDA_ANALYTICS?.track(
-            'generate_lead',
-             { element: 'b2b_form' },
-            { immediate: true }
-          );
-        } catch (error) {
-          console.error(error);
-          setFormStatus('error', messages.error);
-        } finally {
-          setFormSubmitting(false);
-        }
-      }
-
-      function renderPage() {
-        const t = content[language] || content.ES;
-        document.title = t.title;
-        document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
-        setText('nav-about', t.nav.about);
-        setText('nav-products', t.nav.products);
-        setText('nav-qna', t.nav.qna);
-        setText('nav-contact', t.nav.contact);
-        setText('pageKicker', t.hero.kicker);
-        setText('pageTitle', t.hero.title);
-        setText('pageDescription', t.hero.description);
-        setText('socialTitle', t.social);
-        ['pageTitle'].forEach((id) => {
-          const heading = document.getElementById(id);
-          heading.classList.toggle('display-latin', language !== 'KR');
-          heading.classList.toggle('display-korean', language === 'KR');
-        });
-        renderForm(t.fields);
-        window.MOKDA_FOOTER.render(language);
-        renderLanguageButtons();
-        bindReveal();
-      }
-
-      window.MOKDA_I18N.bindLanguageButtons((nextLanguage) => {
-        language = nextLanguage;
-        renderPage();
-        setFormStatus('', '');
-      });
-
-      document.getElementById('b2bForm').addEventListener('submit', submitContactForm);
-      renderPage();
-    </script>
-    <script src="./site-header.js?v=20260903-1"></script>
+    <script src="/site-i18n.js?v=cf263a2b502b"></script>
+    <script src="/site-footer.js?v=af5af53e836d"></script>
+    <script src="/b2b-config.js?v=5bb4e7ce99df"></script>
+    <script src="/assets/generated/2b38cdb4577ec8e6af71.js?v=2b38cdb4577e"></script>
+    <script src="/site-header.js?v=176c9e6ed97c"></script>
   </body>
 </html>

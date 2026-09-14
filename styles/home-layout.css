@@ -1,0 +1,119 @@
+/* Homepage hierarchy; shared typography on the other pages stays independent. */
+.home-page #products,
+.home-page #proof,
+.home-page #support,
+.home-page #faq,
+.home-page #contact,
+.home-page #voices {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.home-page #products {
+  border-top: 1px solid rgba(50, 21, 6, 0.12);
+}
+
+.home-page #productsTitle {
+  font-size: clamp(2.25rem, 5.2vw, 4.25rem) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.home-page .home-products-heading {
+  max-width: none;
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.home-page .home-products-heading .editorial-accent::after {
+  width: 48px;
+  height: 3px;
+  margin-top: 16px;
+}
+
+.home-page #productsGrid {
+  gap: 1.5rem;
+}
+
+.home-page .home-product-image {
+  aspect-ratio: 6 / 5;
+}
+
+.home-page .home-product-image h3 {
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  line-height: 1.02;
+}
+
+.home-page .home-product-copy {
+  flex: 1;
+  padding: 1.25rem;
+}
+
+.home-page .home-product-copy .condensed-label {
+  margin-bottom: 0.625rem;
+  font-size: 1rem;
+}
+
+.home-page .home-product-copy span {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.home-page #proofTitle,
+.home-page #supportTitle.home-support-title {
+  font-size: clamp(1.875rem, 3.4vw, 3rem) !important;
+  line-height: 1.1 !important;
+  text-wrap: balance;
+}
+
+.home-page #supportTitle.home-support-title {
+  max-width: 28ch;
+}
+
+.home-page #faqTitle,
+.home-page #b2bTitle,
+.home-page #voicesTitle {
+  font-size: clamp(1.75rem, 3vw, 2.5rem) !important;
+  line-height: 1.12 !important;
+  text-wrap: balance;
+}
+
+.home-page #supportTotal {
+  font-size: clamp(6rem, 16vw, 8rem);
+}
+
+.home-page #productsGrid + div {
+  margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .home-page #productsGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-page .home-product-image {
+    aspect-ratio: 1 / 1;
+  }
+
+  .home-page .home-product-image > div:last-child {
+    bottom: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .home-page .home-product-image .condensed-label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-page .home-product-image > div:last-child {
+    bottom: 1.25rem;
+    left: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .home-page .hero-title.display-korean {
+    font-size: clamp(2.75rem, 13vw, 4.3rem);
+  }
+}

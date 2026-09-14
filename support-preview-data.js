@@ -6,12 +6,11 @@
     '127.0.0.1',
     '0.0.0.0',
     '[::1]',
-    'mokda.kr',
-    'www.mokda.kr',
   ]);
   const previewParameter = 'support_preview';
   const previewValue = '200';
   const campaignCreatedAt = '2026-07-30T16:12:41+09:00';
+  const previewSnapshotAt = '2026-09-01T12:00:00+09:00';
   const countryPlan = [
     { code: 'PE', total: 120, female: 96 },
     { code: 'MX', total: 60, female: 48 },
@@ -98,7 +97,7 @@
   }
 
   function isEnabled() {
-    return isSupportedHost();
+    return isTestMode();
   }
 
   function seededRandom(seed) {
@@ -178,7 +177,7 @@
   function create(language = 'ES') {
     const random = seededRandom(20260730);
     const start = new Date(campaignCreatedAt).getTime();
-    const end = Math.max(start, Date.now());
+    const end = new Date(previewSnapshotAt).getTime();
     const entries = [];
     const totals = {};
     const usedNames = new Set();

@@ -94,7 +94,7 @@
         <div class="grid gap-4 lg:grid-cols-[1.55fr_0.85fr] lg:items-stretch">
           <section class="rounded-2xl bg-white/[0.045] px-4 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
             <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">${footer.businessTitle}</h2>
-            <dl class="mt-4 grid grid-cols-3 items-start gap-x-3 gap-y-4 sm:gap-x-6">
+            <dl class="footer-company-grid mt-4 grid grid-cols-3 items-start gap-x-3 gap-y-4 sm:gap-x-6">
               <div>
                 <dt class="mb-1 font-bold text-white/68">${footer.companyLabel}</dt>
                 <dd class="font-semibold text-white/82">${footer.company}</dd>
@@ -105,7 +105,7 @@
               </div>
               <div>
                 <dt class="mb-1 font-bold text-white/68">${footer.registrationLabel}</dt>
-                <dd class="font-semibold text-white/82">${footer.registration}</dd>
+                <dd class="footer-registration font-semibold text-white/82">${footer.registration}</dd>
               </div>
               <div class="col-span-3">
                 <dt class="mb-1 font-bold text-white/68">${footer.addressLabel}</dt>

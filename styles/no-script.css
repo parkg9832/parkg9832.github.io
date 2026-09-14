@@ -1,0 +1,4 @@
+/* Pre-rendered content stays readable when scripting is unavailable. */
+[data-reveal], .reveal-target { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+#b2bForm button[type="submit"] { display: none; }
+.no-script-notice { margin: 1rem auto; padding: 1rem; max-width: 54rem; color: #321506; background: #fff8ef; font: 1rem/1.6 sans-serif; }

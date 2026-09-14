@@ -71,7 +71,7 @@
   });
   // Reading first: all food pairings are visible without choosing a tab.
   document.getElementById('productsPageCta')?.parentElement.remove();
-  const lead = document.createElement('p');
+  const lead = document.querySelector('.home-lineup-lead') || document.createElement('p');
   lead.className = 'home-lineup-lead';
   lead.textContent = copy.pairLead;
   document.querySelector('.home-products-heading').append(lead);
@@ -90,6 +90,7 @@
   const localText = value => value && typeof value === 'object' ? value[language] || value.ES || value.KR || value.EN || '' : value;
   const actualReviews = (Array.isArray(reviewData) ? reviewData : []).filter(item => item && item.published === true && String(localText(item.quote) || '').trim() && String(item.name || '').trim() && String(item.source || '').trim());
   const reviews = isPreview ? copy.sampleTitle.map((title, i) => ({ name: `${copy.sample} ${i + 1}`, title, quote: copy.sampleQuote, rating: [5, 4, 5][i], product: products[i % 2], sample: true })) : actualReviews;
+  document.getElementById('trial-reviews')?.remove();
   if (reviews.length) {
     const section = document.createElement('section');
     section.id = 'trial-reviews';

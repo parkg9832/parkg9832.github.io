@@ -40,11 +40,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=c61ad77c9f6c" />
     <link rel="stylesheet" href="/assets/generated/477131b6c599582b3c73.css?v=477131b6c599" />
-    <link rel="stylesheet" href="/styles/site-typography.css?v=0c054a2cb241" />
+    <link rel="stylesheet" href="/styles/site-typography.css?v=fa3e73702258" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=9244f8c3e455" />
+    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=b3eaa8b21153" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -83,23 +83,24 @@
   ]
 }
     </script>
-  </head>
+      <noscript><link rel="stylesheet" href="/styles/no-script.css?v=728290c5ed3b" /></noscript>
+</head>
   <body class="qna-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="light" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
       <div class="mx-auto flex h-full w-full max-w-screen-2xl items-center justify-between px-4 md:px-8">
         <a href="/es/" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
-          <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA" class="h-14 w-auto sm:h-16" />
+          <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA" class="h-14 w-auto sm:h-16">
         </a>
         <div class="flex items-center gap-4 md:gap-6">
           <div id="lang-selector" class="relative flex w-fit cursor-pointer items-center rounded-full bg-stone-100 p-1 shadow-sm" aria-label="Language switcher">
-            <div id="lang-bg" class="absolute bottom-1 left-1 top-1 w-10 rounded-full bg-mokdaOrange transition-transform duration-300 ease-in-out sm:w-12"></div>
-            <button id="langES" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="0" translate="no">ES</button>
-            <button id="langKR" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="1" translate="no">KR</button>
-            <button id="langEN" type="button" class="lang-btn relative z-10 h-8 w-10 text-center text-xs font-black transition-colors duration-300 sm:h-10 sm:w-12 sm:text-sm" data-index="2" translate="no">EN</button>
+            <div id="lang-bg" class="absolute bottom-1 left-1 top-1 w-10 rounded-full bg-mokdaOrange transition-transform duration-300 ease-in-out sm:w-12" style="transform: translateX(0%);"></div>
+            <button id="langES" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-[#321506] transition-colors duration-300" data-index="0" translate="no" aria-pressed="true">ES</button>
+            <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-600 hover:text-neutral-950 transition-colors duration-300" data-index="1" translate="no" aria-pressed="false">KR</button>
+            <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-600 hover:text-neutral-950 transition-colors duration-300" data-index="2" translate="no" aria-pressed="false">EN</button>
           </div>
             <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 p-2 text-white ring-1 ring-white/30 transition-all duration-300 hover:scale-105" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
             <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"></path>
             </svg>
           </button>
         </div>
@@ -108,7 +109,7 @@
         <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
           <a id="nav-about" href="/es/about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Sobre nosotros</a>
           <a id="nav-products" href="/es/products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Salsa Coreana</a>
-          <a id="nav-qna" href="/es/qna.html" class="py-2 text-base font-extrabold text-mokdaOrange transition hover:text-orange-700 sm:text-sm">Q&A</a>
+          <a id="nav-qna" href="/es/qna.html" class="py-2 text-base font-extrabold text-mokdaOrange transition hover:text-orange-700 sm:text-sm">Q&amp;A</a>
           <a id="nav-contact" href="/es/contact.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-mokdaOrange sm:text-sm">Contacto</a>
         </div>
       </div>
@@ -117,19 +118,59 @@
     <main class="overflow-hidden bg-[#f7ddc2]">
       <section class="qna-opening brand-grid-bg bg-[#321506] px-4 pb-14 pt-28 text-[#f8dfc4] sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pb-20">
         <div class="mx-auto w-full max-w-6xl text-center">
-          <div data-reveal class="mx-auto max-w-5xl">
-            <p id="pageKicker" class="condensed-label mb-4 text-sm uppercase text-mokdaOrange sm:text-lg"></p>
-            <h1 id="pageTitle" class="display-latin break-keep text-balance text-4xl uppercase leading-[0.94] text-mokdaOrange sm:text-7xl lg:text-[6rem]"></h1>
-            <p id="pageDescription" class="mx-auto mt-6 max-w-2xl text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/72 sm:text-base sm:leading-8"></p>
+          <div data-reveal="" class="mx-auto max-w-5xl">
+            <p id="pageKicker" class="condensed-label mb-4 text-sm uppercase text-mokdaOrange sm:text-lg">Q&amp;A MOKDA</p>
+            <h1 id="pageTitle" class="display-latin break-keep text-balance text-4xl uppercase leading-[0.94] text-mokdaOrange sm:text-7xl lg:text-[6rem]">Preguntas sobre MOKDA</h1>
+            <p id="pageDescription" class="mx-auto mt-6 max-w-2xl text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/72 sm:text-base sm:leading-8">Consulta las preguntas frecuentes sobre Salsa Coreana, sabores, usos, distribución y colaboración.</p>
           </div>
         </div>
       </section>
 
       <section class="qna-reading brand-grid-bg bg-[#f7ddc2] px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
         <div class="mx-auto w-full max-w-5xl">
-          <div id="qnaList" data-reveal data-reveal-delay="80" class="grid gap-3 sm:gap-4"></div>
-          <div data-reveal data-reveal-delay="140" class="mt-10 text-center">
-            <a id="boardContactLink" href="/es/contact.html" class="inline-flex min-h-[3.25rem] items-center justify-center rounded-xl bg-[#321506] px-7 py-3.5 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_10px_24px_rgba(50,21,6,0.12)] transition-all hover:-translate-y-0.5 hover:bg-mokdaOrange hover:text-white focus:outline-none focus:ring-2 focus:ring-mokdaOrange focus:ring-offset-2"></a>
+          <div id="qnaList" data-reveal="" data-reveal-delay="80" class="grid gap-3 sm:gap-4" style="--reveal-delay: 80ms;">
+              <article class="qna-reading-item" aria-labelledby="qna-0-title">
+                <span class="qna-reading-number" aria-hidden="true">01</span>
+                <div>
+                  <h2 id="qna-0-title">¿Qué es MOKDA y qué es Salsa Coreana?</h2>
+                  <p>MOKDA es la marca K-Food que conecta sabores de Corea con las mesas cotidianas de Latinoamérica. Salsa Coreana es la primera línea de MOKDA, creada para disfrutar los sabores de Corea con platos cotidianos.</p>
+                </div>
+              </article>
+
+              <article class="qna-reading-item" aria-labelledby="qna-1-title">
+                <span class="qna-reading-number" aria-hidden="true">02</span>
+                <div>
+                  <h2 id="qna-1-title">¿Qué salsas incluye Salsa Coreana?</h2>
+                  <p>K-PEÑO combina una base de gochujang con un toque fresco de jalapeño. Para Carnes parte del ssamjang y está pensada para acompañar carnes asadas.</p>
+                </div>
+              </article>
+
+              <article class="qna-reading-item" aria-labelledby="qna-2-title">
+                <span class="qna-reading-number" aria-hidden="true">03</span>
+                <div>
+                  <h2 id="qna-2-title">¿Con qué comidas se pueden usar las salsas?</h2>
+                  <p>K-PEÑO va bien con nachos, pollo frito, papas y snacks. Para Carnes acompaña pollo a la brasa, res, cerdo, BBQ y carne asada.</p>
+                </div>
+              </article>
+
+              <article class="qna-reading-item" aria-labelledby="qna-3-title">
+                <span class="qna-reading-number" aria-hidden="true">04</span>
+                <div>
+                  <h2 id="qna-3-title">¿Dónde puedo consultar disponibilidad, ingredientes y alérgenos?</h2>
+                  <p>La disponibilidad puede variar según el mercado. Cuando las salsas estén disponibles, la información oficial de ingredientes, alérgenos, conservación y uso estará disponible en esta web, en la información de cada salsa y en su envase. Para una consulta específica, utiliza la página de contacto.</p>
+                </div>
+              </article>
+
+              <article class="qna-reading-item" aria-labelledby="qna-4-title">
+                <span class="qna-reading-number" aria-hidden="true">05</span>
+                <div>
+                  <h2 id="qna-4-title">¿MOKDA trabaja con distribuidores, retail y HORECA?</h2>
+                  <p>Sí. MOKDA recibe propuestas de distribución, retail, restaurantes, HORECA y colaboración de marca para Latinoamérica. La misma página de contacto también está abierta a preguntas generales de consumidores.</p>
+                </div>
+              </article>
+            </div>
+          <div data-reveal="" data-reveal-delay="140" class="mt-10 text-center" style="--reveal-delay: 140ms;">
+            <a id="boardContactLink" href="/es/contact.html" class="inline-flex min-h-[3.25rem] items-center justify-center rounded-xl bg-[#321506] px-7 py-3.5 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_10px_24px_rgba(50,21,6,0.12)] transition-all hover:-translate-y-0.5 hover:bg-mokdaOrange hover:text-white focus:outline-none focus:ring-2 focus:ring-mokdaOrange focus:ring-offset-2">Hacer una consulta  →</a>
           </div>
         </div>
       </section>
@@ -159,15 +200,51 @@
               </a>
             </div>
           </div>
-          <div id="footerText" class="mt-8"></div>
+          <div id="footerText" class="mt-8">
+      <div class="space-y-4 text-center sm:space-y-5">
+        <nav aria-label="Explorar MOKDA" class="grid grid-cols-2 gap-x-3 gap-y-1 rounded-2xl bg-white/[0.035] p-2 text-[13px] sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-2 sm:px-6 sm:py-4 sm:text-sm">
+          <a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/">Inicio</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/about.html">Nuestra historia</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/products.html">Salsa Coreana</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/qna.html">Preguntas frecuentes</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/contact.html">Contacto</a>
+        </nav>
+        <div class="grid gap-4 lg:grid-cols-[1.55fr_0.85fr] lg:items-stretch">
+          <section class="rounded-2xl bg-white/[0.045] px-4 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
+            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">Información de la empresa</h2>
+            <dl class="footer-company-grid mt-4 grid grid-cols-3 items-start gap-x-3 gap-y-4 sm:gap-x-6">
+              <div>
+                <dt class="mb-1 font-bold text-white/68">Empresa</dt>
+                <dd class="font-semibold text-white/82">MOKDA</dd>
+              </div>
+              <div>
+                <dt class="mb-1 font-bold text-white/68">Representante</dt>
+                <dd class="font-semibold text-white/82">Gyeom Park</dd>
+              </div>
+              <div>
+                <dt class="mb-1 font-bold text-white/68">Registro comercial</dt>
+                <dd class="footer-registration font-semibold text-white/82">161-07-03392</dd>
+              </div>
+              <div class="col-span-3">
+                <dt class="mb-1 font-bold text-white/68">Dirección</dt>
+                <dd class="text-white/82">44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, República de Corea</dd>
+              </div>
+            </dl>
+          </section>
+          <section class="flex flex-col justify-center rounded-2xl bg-white/[0.035] px-5 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
+            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">Propiedad intelectual</h2>
+            <p class="mt-3 text-white/76">El nombre de marca, nombres de productos, diseños de empaque y materiales relacionados de MOKDA están en proceso de protección de marca e IP.</p>
+          </section>
+        </div>
+        <div class="pt-1 text-[11px] font-semibold text-white/66 sm:text-xs">© 2026 MOKDA. Todos los derechos reservados.</div>
+      </div>
+    </div>
         </div>
       </footer>
     </main>
 
     <script src="/site-i18n.js?v=cf263a2b502b"></script>
-    <script src="/site-footer.js?v=af5af53e836d"></script>
+    <script src="/site-footer.js?v=ed1f5bd13291"></script>
     <script src="/assets/generated/9b91dfe8ffdafaec65c1.js?v=9b91dfe8ffda"></script>
     <script src="/site-header.js?v=8aba43bcd847"></script>
-    <script src="/brand-motion.js?v=de1b1c5aa819" defer></script>
-  </body>
+    <script src="/brand-motion.js?v=de1b1c5aa819" defer=""></script>
+
+
+</body>
 </html>

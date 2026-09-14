@@ -8,6 +8,8 @@ The public site uses static HTML; Next.js is a separate development scaffold. Gi
 
 ## Findings and fixes
 
+Follow-up (2026-09-14): deployment version 43 makes the company field optional for consumer inquiries. Name, country, message, and at least one contact method remain required. Type/length validation, formula escaping, receipts and quotas remain unchanged; mocked consumer and missing-contact regressions pass. The original endpoint and manifest are preserved.
+
 | ID | Severity | Evidence before change | Fix / status |
 | --- | --- | --- | --- |
 | SEC-01 | High | `apps-script/b2b-lead-automation.gs`, `doGet`: anonymous `mode=update_dashboard` invoked `updateCompleteWebsiteDashboard_()` | Public GET now only returns minimal health status; management and retired support modes reject requests. Editor/trigger functions and historical data remain. Deployed in version 42. |

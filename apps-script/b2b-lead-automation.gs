@@ -8,7 +8,7 @@ const SCRIPT_PROPERTY_KEYS = {
   notificationEmail: 'NOTIFICATION_EMAIL',
 };
 
-const REQUIRED_PAYLOAD_FIELDS = ['name', 'company', 'country', 'message'];
+const REQUIRED_PAYLOAD_FIELDS = ['name', 'country', 'message'];
 
 const SHEET_HEADERS = [
   'Received At',

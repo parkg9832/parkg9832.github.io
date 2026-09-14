@@ -12,6 +12,7 @@
     "preview:static": "node scripts/serve-static.mjs",
     "test:analytics": "node scripts/analytics-regression.test.mjs",
     "test:security": "node scripts/security-regression.test.mjs",
+    "test:seo": "node scripts/seo-regression.test.mjs",
     "test:support-preview": "node scripts/support-preview-regression.test.mjs",
     "git:sync": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh",
     "push": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh"
@@ -27,6 +28,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
+    "jsdom": "^30.0.1",
     "postcss": "^8.4.39",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.3"

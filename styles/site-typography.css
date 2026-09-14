@@ -19,6 +19,16 @@ body:not(.support-page) {
   letter-spacing: 0;
 }
 
+/* Prefer complete Korean words and balanced headings across route widths. */
+main :is(h1,h2,h3), #footerText :is(dt,dd) { word-break:keep-all; text-wrap:balance; }
+main :is(p,label) { text-wrap:pretty; }
+main :is(input,select,textarea), main :is(article,section)>div { min-width:0; }
+.footer-registration { white-space:nowrap; font-variant-numeric:tabular-nums; }
+@media(max-width:479px) {
+  #footerText .footer-company-grid { grid-template-columns:.75fr 1fr 1.25fr; gap:16px 8px; }
+  #footerText .footer-company-grid :is(dt,dd) { font-size:clamp(.7rem,2.9vw,.8rem); }
+}
+
 main h1.display-latin,
 main h2.display-latin,
 main h3.display-latin {

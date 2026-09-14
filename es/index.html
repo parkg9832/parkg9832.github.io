@@ -43,7 +43,7 @@
     <link rel="preload" as="image" href="/assets/images/hero-mokda-sauce-pour-cutout.webp" type="image/webp" media="(min-width: 768px)" fetchpriority="high" />
     <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=c61ad77c9f6c" />
     <link rel="stylesheet" href="/assets/generated/e009ec7ac71602ced967.css?v=e009ec7ac716" />
-    <link rel="stylesheet" href="/styles/site-typography.css?v=0c054a2cb241" />
+    <link rel="stylesheet" href="/styles/site-typography.css?v=fa3e73702258" />
     <link rel="stylesheet" href="/styles/home-layout.css?v=c0a328a5fdaf" />
     <link rel="stylesheet" href="/styles/home-experience.css?v=9b5fcece358e" />
     <link rel="stylesheet" href="/styles/product-experience.css?v=9afbedaf34be" />
@@ -51,7 +51,7 @@
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=9244f8c3e455" />
+    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=b3eaa8b21153" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -117,26 +117,27 @@
   ]
 }
     </script>
-  </head>
+      <noscript><link rel="stylesheet" href="/styles/no-script.css?v=728290c5ed3b" /></noscript>
+</head>
   <body class="home-page bg-white text-neutral-950 antialiased">
     <main class="min-h-screen overflow-hidden bg-white">
       <header id="main-header" data-menu-initial="dark" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
         <div class="flex items-center justify-between w-full h-full max-w-screen-2xl mx-auto px-4 md:px-8">
           <div class="flex items-center">
             <a href="/es/" class="inline-flex flex-shrink-0 items-center" aria-label="MOKDA home">
-              <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA" class="h-20 w-auto sm:h-24" />
+              <img src="assets/images/mokda-logo-sub.webp" alt="MOKDA" class="h-20 w-auto sm:h-24">
             </a>
           </div>
           <div class="flex items-center gap-4 md:gap-6">
             <div id="lang-selector" class="relative flex items-center bg-stone-100 rounded-full p-1 cursor-pointer w-fit shadow-sm" aria-label="Language switcher">
-              <div id="lang-bg" class="absolute left-1 top-1 bottom-1 w-10 sm:w-12 bg-mokdaOrange rounded-full transition-transform duration-300 ease-in-out"></div>
-              <button id="langES" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="0" translate="no">ES</button>
-              <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="1" translate="no">KR</button>
-              <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black transition-colors duration-300" data-index="2" translate="no">EN</button>
+              <div id="lang-bg" class="absolute left-1 top-1 bottom-1 w-10 sm:w-12 bg-mokdaOrange rounded-full transition-transform duration-300 ease-in-out" style="transform: translateX(0%);"></div>
+              <button id="langES" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-[#321506] transition-colors duration-300" data-index="0" translate="no" aria-pressed="true" disabled="">ES</button>
+              <button id="langKR" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-600 hover:text-neutral-950 transition-colors duration-300" data-index="1" translate="no" aria-pressed="false">KR</button>
+              <button id="langEN" type="button" class="lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-neutral-600 hover:text-neutral-950 transition-colors duration-300" data-index="2" translate="no" aria-pressed="false">EN</button>
             </div>
             <button id="menu-toggle" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full p-2 text-white transition-colors duration-300 hover:bg-white/20" aria-label="Open navigation menu" aria-controls="mobile-menu" aria-expanded="false">
               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path>
               </svg>
             </button>
           </div>
@@ -145,7 +146,7 @@
           <div class="mx-auto flex w-full max-w-screen-2xl flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-center sm:gap-8 md:px-8">
             <a id="mobile-about-link" href="/es/about.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-orange-600 sm:text-sm">Sobre nosotros</a>
             <a id="mobile-products-link" href="/es/products.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-orange-600 sm:text-sm">Salsa Coreana</a>
-            <a id="mobile-qna-link" href="/es/qna.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-orange-600 sm:text-sm">Q&A</a>
+            <a id="mobile-qna-link" href="/es/qna.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-orange-600 sm:text-sm">Q&amp;A</a>
             <a id="mobile-contact-link" href="/es/contact.html" class="py-2 text-base font-extrabold text-neutral-950 transition hover:text-orange-600 sm:text-sm">Contacto</a>
           </div>
         </div>
@@ -153,20 +154,20 @@
 
       <section id="top" class="hero-section relative overflow-hidden bg-[#f7ddc2] text-white">
         <div id="heroSlides" class="relative block h-full w-full overflow-hidden" style="touch-action: pan-y;">
-          <div data-hero-slide="0" data-hero-theme="soft" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0">
+          <div data-hero-slide="0" data-hero-theme="soft" class="hero-slide relative h-full min-w-full snap-center opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0 is-active md:z-10 md:opacity-100" data-hero-layout="standard">
             <div class="absolute inset-0 bg-[#f7ddc2]"></div>
             <div class="hero-sauce-plate absolute bottom-[-2rem] left-1/2 z-10 h-[350px] w-[112%] -translate-x-1/2 sm:h-[470px] md:bottom-[-9rem] md:h-[55vh] md:w-[78vw] md:-translate-x-[56%] lg:bottom-[-9.5rem] lg:h-[58vh] lg:w-[76vw] lg:-translate-x-[54%] xl:w-[72vw]">
               <picture class="hero-media-motion block h-full w-full">
-                <source media="(min-width: 768px)" srcset="/assets/images/hero-mokda-sauce-pour-cutout.webp" />
-                <img src="/assets/images/hero-mokda-sauce-pour-mobile.webp" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" loading="eager" fetchpriority="high" />
+                <source media="(min-width: 768px)" srcset="/assets/images/hero-mokda-sauce-pour-cutout.webp">
+                <img src="/assets/images/hero-mokda-sauce-pour-mobile.webp" alt="" aria-hidden="true" class="h-full w-full object-contain object-bottom" loading="eager" fetchpriority="high">
               </picture>
             </div>
             <div class="hero-content relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 sm:px-6 lg:px-8">
-              <p data-hero-kicker class="hero-motion hero-motion-kicker condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
-              <h1 data-hero-title class="hero-motion hero-motion-title hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
+              <p data-hero-kicker="" class="hero-motion hero-motion-kicker condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2">MOKDA · KOREAN FOOD BRAND</p>
+              <h1 data-hero-title="" class="hero-motion hero-motion-title hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"><span class="hero-title-line">Corea,</span><span class="hero-title-line">más cerca</span><span class="hero-title-line">de ti</span></h1>
               <div class="hero-copy flex flex-col items-center text-center">
-                <p data-hero-subtitle class="hero-motion hero-motion-subtitle max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl"></p>
-                <a data-hero-link data-analytics-event="hero_product_click" href="#products" class="hero-motion hero-motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25"></a>
+                <p data-hero-subtitle="" class="hero-motion hero-motion-subtitle max-w-xl break-keep text-pretty text-base font-semibold leading-relaxed text-[#321506] sm:text-xl">Conectamos los sabores de Corea con tu día a día de una forma fácil y natural.</p>
+                <a data-hero-link="" data-analytics-event="hero_product_click" href="/es/#products" class="hero-motion hero-motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-7 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_8px_24px_rgba(50,21,6,0.16)] transition hover:bg-[#4a200c] focus:outline-none focus:ring-4 focus:ring-orange-500/25">Conoce nuestras salsas</a>
               </div>
             </div>
           </div>
@@ -175,43 +176,62 @@
 
       <section id="products" data-analytics-section="products" class="scroll-mt-20 bg-[#f7ddc2] py-16 sm:py-28 lg:py-32">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="home-products-heading mb-12 max-w-5xl">
+          <div data-reveal="" class="home-products-heading mb-12 max-w-5xl">
             <div class="editorial-accent">
-              <p id="productsKicker" class="condensed-label mb-2 break-keep text-base uppercase text-mokdaOrange sm:text-xl"></p>
-              <h2 id="productsTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.82] text-neutral-950 sm:text-8xl lg:text-[8.4rem]"></h2>
+              <p id="productsKicker" class="condensed-label mb-2 break-keep text-base uppercase text-mokdaOrange sm:text-xl">LINEUP</p>
+              <h2 id="productsTitle" class="display-latin break-keep text-balance text-6xl uppercase leading-[0.82] text-neutral-950 sm:text-8xl lg:text-[8.4rem]">SALSA COREANA</h2>
             </div>
-          </div>
-          <div id="productsGrid" class="grid grid-cols-1 gap-8 lg:grid-cols-3"></div>
-          <div data-reveal class="mt-10 text-center sm:mt-12">
-            <a id="productsPageCta" data-analytics-event="products_page_cta_click" href="/es/products.html" class="inline-flex min-h-14 items-center justify-center gap-3 rounded-lg bg-[#321506] px-8 py-4 text-sm font-extrabold uppercase text-[#f8dfc4] shadow-[0_10px_26px_rgba(50,21,6,0.18)] transition hover:-translate-y-0.5 hover:bg-mokdaOrange hover:text-[#321506] focus:outline-none focus:ring-4 focus:ring-orange-500/25 sm:text-base">
-              <span id="productsPageCtaText"></span>
-              <span aria-hidden="true">→</span>
-            </a>
-          </div>
+          <p class="home-lineup-lead">Salsa Coreana es la primera línea de MOKDA: una forma directa de acercar sabores coreanos a comidas cotidianas.</p></div>
+          <div id="productsGrid" class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+              <div class="home-product-panel" id="home-product-panel-0"><a href="/es/products.html#original" data-product="K-PEÑO" data-reveal="" data-reveal-delay="0" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300" style="--reveal-delay: 0ms;">
+                <div class="home-product-image relative overflow-hidden bg-[#f5d9b8]"><img src="/assets/images/original-nachos-chicken-chips-card.webp" alt="K-PEÑO · Pollo · Nachos" width="900" height="900"></div>
+                <div class="home-product-copy px-5 py-6 sm:px-7 sm:py-7"><div class="home-product-label">
+                    <p class="condensed-label mb-2 break-keep text-base uppercase leading-tight tracking-[0.04em] text-white/85 sm:text-lg">SALSA GOCHUJANG</p>
+                    <h3 class="display-latin break-keep text-4xl uppercase leading-[0.88] text-white sm:text-5xl">K-PEÑO</h3>
+                  </div>
+
+                  <span class="block break-keep text-sm font-medium leading-6 text-slate-700">El picante del gochujang con la frescura del jalapeño</span>
+
+                <p class="home-product-uses">Pollo · Nachos</p></div>
+              </a></div>
+
+              <div class="home-product-panel" id="home-product-panel-1"><a href="/es/products.html#para-carnes" data-product="Para Carnes" data-reveal="" data-reveal-delay="120" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300" style="--reveal-delay: 120ms;">
+                <div class="home-product-image relative overflow-hidden bg-[#f5d9b8]"><img src="/assets/images/para-carnes-grilled-meat-card.webp" alt="Para Carnes · Carne · BBQ" width="900" height="900"></div>
+                <div class="home-product-copy px-5 py-6 sm:px-7 sm:py-7"><div class="home-product-label">
+                    <p class="condensed-label mb-2 break-keep text-base uppercase leading-tight tracking-[0.04em] text-white/85 sm:text-lg">Salsa Ssamjang</p>
+                    <h3 class="display-latin break-keep text-4xl uppercase leading-[0.88] text-white sm:text-5xl">Para Carnes</h3>
+                  </div>
+
+                  <span class="block break-keep text-sm font-medium leading-6 text-slate-700">Una salsa coreana de umami profundo para acompañar todo tipo de carnes: asadas, al vapor o hervidas</span>
+
+                <p class="home-product-uses">Carne · BBQ</p></div>
+              </a></div>
+            </div>
+
         </div>
       </section>
 
       <section id="proof" data-analytics-section="proof" class="scroll-mt-20 overflow-hidden border-y border-[#f8dfc4]/10 bg-[#321506] px-4 py-14 text-[#f8dfc4] sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div class="mx-auto w-full max-w-7xl">
-          <div data-reveal class="mx-auto max-w-3xl text-center">
+          <div data-reveal="" class="mx-auto max-w-3xl text-center">
             <p id="proofKicker" class="condensed-label mb-2 text-sm uppercase tracking-[0.08em] text-mokdaOrange sm:text-base">HECHO EN COREA</p>
             <h2 id="proofTitle" class="display-latin mx-auto max-w-3xl text-[2.25rem] uppercase leading-[0.94] text-[#f8dfc4] sm:text-5xl lg:text-[3rem]">Del ingrediente al mercado</h2>
-            <div id="storyBody" class="mx-auto mt-4 grid max-w-xl gap-2 break-keep text-pretty text-sm font-semibold leading-6 text-[#f8dfc4]/70 sm:text-[15px] sm:leading-7"></div>
+            <div id="storyBody" class="mx-auto mt-4 grid max-w-xl gap-2 break-keep text-pretty text-sm font-semibold leading-6 text-[#f8dfc4]/70 sm:text-[15px] sm:leading-7"><p class="break-keep leading-relaxed">De los ingredientes a la producción, reunimos la esencia de Corea.</p></div>
           </div>
 
-          <div id="field-story" data-analytics-section="field_story" data-reveal data-reveal-delay="100" class="relative mx-auto mt-8 max-w-5xl sm:mt-9">
+          <div id="field-story" data-analytics-section="field_story" data-reveal="" data-reveal-delay="100" class="relative mx-auto mt-8 max-w-5xl sm:mt-9" style="--reveal-delay: 100ms;">
             <div id="proofCarousel" class="relative overflow-hidden touch-pan-y" aria-roledescription="carousel">
               <div id="proofCarouselTrack" class="flex gap-3 will-change-transform sm:gap-4">
-                <figure data-proof-slide class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
+                <figure data-proof-slide="" class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
                   <picture>
-                    <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp" />
-                    <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover object-[center_58%]" width="1071" height="1428" loading="lazy" decoding="async" draggable="false" />
+                    <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp">
+                    <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover object-[center_58%]" width="1071" height="1428" loading="lazy" decoding="async" draggable="false">
                   </picture>
                 </figure>
-                <figure data-proof-slide class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
+                <figure data-proof-slide="" class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
                 <picture>
-                  <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-720.webp" />
-                    <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover object-[center_45%]" width="899" height="1600" loading="lazy" decoding="async" draggable="false" />
+                  <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-720.webp">
+                    <img src="assets/images/field-manufacturing-1080.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover object-[center_45%]" width="899" height="1600" loading="lazy" decoding="async" draggable="false">
                 </picture>
               </figure>
               </div>
@@ -220,85 +240,84 @@
             </div>
           </div>
 
-          <div id="proofList" data-reveal data-reveal-delay="160" class="mx-auto mt-8 grid max-w-4xl grid-cols-3 border-y border-[#f8dfc4]/24 sm:mt-7">
+          <div id="proofList" data-reveal="" data-reveal-delay="160" class="mx-auto mt-8 grid max-w-4xl grid-cols-3 border-y border-[#f8dfc4]/24 sm:mt-7 sm:grid-cols-3" style="--reveal-delay: 160ms;">
             <article id="proofViewsItem" class="flex min-h-[112px] min-w-0 flex-col items-center justify-center py-4 text-center sm:min-h-[128px] sm:py-5">
-              <p id="proofViewsValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
-              <p id="proofViews" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
+              <p id="proofViewsValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl">1M+</p>
+              <p id="proofViews" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5">Visualizaciones en redes sociales</p>
             </article>
             <article class="flex min-h-[112px] min-w-0 flex-col items-center justify-center border-x border-[#f8dfc4]/18 py-4 text-center sm:min-h-[128px] sm:py-5">
               <p id="proofProgramsValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl">9+</p>
-              <p id="proofPrograms" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
+              <p id="proofPrograms" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5">Selecciones en programas institucionales de emprendimiento de Corea</p>
             </article>
             <article class="flex min-h-[112px] min-w-0 flex-col items-center justify-center py-4 text-center sm:min-h-[128px] sm:py-5">
-              <p id="proofExpoValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl"></p>
-              <p id="proofExpo" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5"></p>
+              <p id="proofExpoValue" class="proof-metric-value display-latin text-2xl uppercase leading-none text-mokdaOrange sm:text-3xl">SEP</p>
+              <p id="proofExpo" class="mt-2 px-1 text-[11px] font-extrabold uppercase leading-4 tracking-[0.05em] text-[#f8dfc4]/70 sm:text-sm sm:leading-5">Expoalimentaria Perú 2026 · Participación prevista</p>
             </article>
           </div>
           <div class="mt-7 text-center">
-            <a id="proofHistoryCta" data-analytics-event="proof_history_click" href="/es/about.html#history" class="mx-auto inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-[#321506] shadow-[0_10px_26px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5 hover:bg-[#ff7a32] focus:outline-none focus:ring-4 focus:ring-orange-300/30 sm:px-8 sm:text-base"></a>
+            <a id="proofHistoryCta" data-analytics-event="proof_history_click" href="/es/about.html#history" class="mx-auto inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-[#321506] shadow-[0_10px_26px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5 hover:bg-[#ff7a32] focus:outline-none focus:ring-4 focus:ring-orange-300/30 sm:px-8 sm:text-base">Ver nuestra historia →</a>
           </div>
           <div id="institutionalLogos" class="mt-5 hidden" aria-label="Con el apoyo de"></div>
         </div>
-      </section>
-
-
-      <section id="faq" class="brand-grid-bg scroll-mt-20 bg-[#f7ddc2] py-14 sm:py-20 lg:py-24">
-        <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-8 max-w-3xl text-center">
-            <p class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">FAQ / Q&A</p>
-            <h2 id="faqTitle" class="display-latin text-4xl uppercase leading-[0.94] text-[#321506] sm:text-6xl">Preguntas frecuentes</h2>
-            <a href="/es/qna.html" class="brand-text-link mx-auto mt-6 text-mokdaOrange">
-              <span id="faqCta">Ver Q&A</span> <span class="ml-2">-&gt;</span>
-            </a>
-          </div>
-          <div id="homeFaqList" data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl overflow-hidden border-y border-[#321506]/30">
-              <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">01</span><span id="faqQuestion1" class="home-faq-question">¿Qué significa MOKDA?</span></h3><p id="faqAnswer1">MOKDA viene de la expresión coreana “먹다”, que significa comer.</p></article>
-              <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">02</span><span id="faqQuestion2" class="home-faq-question">¿Qué es Salsa Coreana?</span></h3><p id="faqAnswer2">Es la primera línea de MOKDA: K-PEÑO y Para Carnes, dos salsas pensadas para acompañar comidas cotidianas.</p></article>
-              <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">03</span><span id="faqQuestion3" class="home-faq-question">¿MOKDA acepta consultas?</span></h3><p id="faqAnswer3">Sí. Estamos recibiendo consultas generales y propuestas B2B para Latinoamérica.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" data-analytics-section="contact" class="brand-grid-bg scroll-mt-20 bg-[#321506] pb-16 pt-20 text-[#f8dfc4] sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-28">
+      </section><section id="voices" class="overflow-hidden bg-white py-14 sm:py-16 lg:py-20">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-10 w-full max-w-[860px] text-center">
-            <p id="b2bKicker" class="condensed-label mb-2 text-base uppercase text-mokdaOrange sm:text-lg"></p>
-            <h2 id="b2bTitle" class="display-latin break-keep text-balance text-4xl leading-[0.94] text-mokdaOrange sm:text-6xl md:text-7xl"></h2>
-            <p id="b2bDescription" class="mx-auto mt-4 max-w-2xl break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/70 sm:text-base sm:leading-8"></p>
-          </div>
-          <a id="b2bCta" data-reveal data-reveal-delay="120" data-analytics-event="b2b_cta_click" href="/es/contact.html?purpose=distribution" class="mx-auto flex min-h-14 w-fit items-center justify-center rounded-lg bg-mokdaOrange px-8 py-4 text-center text-sm font-extrabold uppercase text-white transition duration-300 hover:scale-[1.02] hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25">
-            <span id="b2bCtaText"></span>
-          </a>
-        </div>
-      </section>
-
-      <section id="voices" class="overflow-hidden bg-white py-14 sm:py-16 lg:py-20">
-        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
+          <div data-reveal="" class="mx-auto mb-8 max-w-3xl text-center sm:mb-10">
             <p id="voicesKicker" class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">VOCES</p>
-            <h2 id="voicesTitle" class="display-latin text-4xl uppercase leading-[0.96] text-[#321506] sm:text-5xl">Experiencias compartidas con MOKDA</h2>
+            <h2 id="voicesTitle" class="display-latin text-4xl uppercase leading-[0.96] text-[#321506] sm:text-5xl">Lo que dicen quienes conocen MOKDA</h2>
           </div>
-          <div id="voicesList" data-reveal data-reveal-delay="100" class="mx-auto max-w-6xl border-y border-[#321506]/20 lg:grid lg:grid-cols-2 lg:gap-6 lg:border-y-0"></div>
-        </div>
-      </section>
+          <div id="voicesList" data-reveal="" data-reveal-delay="100" class="mx-auto max-w-6xl border-y border-[#321506]/20 lg:grid lg:grid-cols-2 lg:gap-6 lg:border-y-0 home-quotes-reading" style="--reveal-delay: 100ms;">
+            <article aria-label="Jinsoo Park" class="voice-entry py-9 sm:py-11 lg:flex lg:h-full lg:flex-col lg:rounded-[1.5rem] lg:border lg:border-[#321506]/10 lg:bg-white lg:p-8 lg:shadow-[0_12px_32px_rgba(50,21,6,0.06)]">
+              <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left lg:min-h-32">
+                <img src="assets/images/testimonial-park-jinsoo-v1.webp" alt="Jinsoo Park" class="h-28 w-28 shrink-0 rounded-full object-cover object-center ring-2 ring-white sm:h-32 sm:w-32 lg:h-28 lg:w-28" loading="lazy" decoding="async">
+                <div class="min-w-0">
+                <div class="flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1 sm:flex-nowrap sm:justify-start">
+                  <h3 class="break-keep text-xl font-black leading-7 text-[#321506] sm:text-2xl">Jinsoo Park</h3>
+                  <span aria-hidden="true" class="text-sm font-semibold text-[#321506]/35">|</span>
+                  <p class="break-keep text-sm font-bold leading-6 text-[#321506]/78 sm:text-[15px]">CEO de Open Sauce Lab</p>
+                </div>
+                <p class="mt-1 break-keep text-xs font-semibold leading-5 text-[#321506]/55 sm:text-[13px]">Más de 1.000 desarrollos en alimentación y restauración</p>
+                </div>
+              </div>
+              <div class="mt-6 min-w-0 lg:flex lg:flex-1">
+                <blockquote class="relative rounded-[1rem] bg-[#fff8ef]/62 px-5 py-5 text-left text-[15px] font-semibold leading-7 text-[#321506]/88 sm:px-7 sm:py-6 sm:text-base sm:leading-8 lg:flex-1">MOKDA tiene un gran potencial para reinterpretar los sabores de Corea de acuerdo con la cultura gastronómica local y llevarlos al mercado global. Lo confirmé al desarrollar junto a la marca dos salsas para Latinoamérica. Gracias a su capacidad de encontrarse directamente con los consumidores y validar sus salsas en el mercado, espero que el K-Food de MOKDA crezca más allá de Latinoamérica y llegue al mundo.</blockquote>
+              </div>
+            </article>
 
-      <section id="institutions" class="border-y border-[#321506]/10 bg-white py-3">
+            <article aria-label="Juhyeong Noh" class="voice-entry py-9 sm:py-11 lg:flex lg:h-full lg:flex-col lg:rounded-[1.5rem] lg:border lg:border-[#321506]/10 lg:bg-white lg:p-8 lg:shadow-[0_12px_32px_rgba(50,21,6,0.06)]">
+              <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left lg:min-h-32">
+                <img src="assets/images/testimonial-no-juhyeong-upright-v2.png" alt="Juhyeong Noh" class="h-28 w-28 shrink-0 rounded-full object-cover object-center ring-2 ring-white sm:h-32 sm:w-32 lg:h-28 lg:w-28" loading="lazy" decoding="async">
+                <div class="min-w-0">
+                <div class="flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1 sm:flex-nowrap sm:justify-start">
+                  <h3 class="break-keep text-xl font-black leading-7 text-[#321506] sm:text-2xl">Juhyeong Noh</h3>
+                  <span aria-hidden="true" class="text-sm font-semibold text-[#321506]/35">|</span>
+                  <p class="break-keep text-sm font-bold leading-6 text-[#321506]/78 sm:text-[15px]">Nutricionista</p>
+                </div>
+                <p class="mt-1 break-keep text-xs font-semibold leading-5 text-[#321506]/55 sm:text-[13px]">Especialista en alimentación y foodservice</p>
+                </div>
+              </div>
+              <div class="mt-6 min-w-0 lg:flex lg:flex-1">
+                <blockquote class="relative rounded-[1rem] bg-[#fff8ef]/62 px-5 py-5 text-left text-[15px] font-semibold leading-7 text-[#321506]/88 sm:px-7 sm:py-6 sm:text-base sm:leading-8 lg:flex-1">Me pareció especialmente acertada la formulación de esta salsa: utiliza crema vegetal en lugar de crema de origen animal y alulosa en lugar de azúcar para reducir el contenido de azúcares. El sabor está muy logrado, con un equilibrio entre el perfil picante y dulce que prefieren hoy los consumidores coreanos y un umami profundo. Es una salsa coreana versátil que cuida tanto la nutrición como el sabor.</blockquote>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section><section id="institutions" class="border-y border-[#321506]/10 bg-white py-3">
         <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
 
             <div id="institutionsTrack" class="no-scrollbar flex flex-1 gap-6 overflow-x-auto sm:gap-8 lg:gap-10" style="mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);">
-              <div data-institutions-group class="flex shrink-0 gap-6 sm:gap-8 lg:gap-10">
+              <div data-institutions-group="" class="flex shrink-0 gap-6 sm:gap-8 lg:gap-10">
                 <div class="institution-logo-item h-[4.75rem] w-[215px] shrink-0 sm:w-[235px] lg:w-[255px]">
-                  <img src="assets/images/partner-jeonbuk-ccei-v1.webp" alt="전북창조경제혁신센터" loading="lazy" decoding="async" />
+                  <img src="assets/images/partner-jeonbuk-ccei-v1.webp" alt="전북창조경제혁신센터" loading="lazy" decoding="async">
                 </div>
                 <div class="institution-logo-item h-[4.75rem] w-[160px] shrink-0 sm:w-[180px] lg:w-[195px]">
-                  <img src="assets/images/partner-gimje-eda-v1.webp" alt="김제청년공간 E:DA" loading="lazy" decoding="async" />
+                  <img src="assets/images/partner-gimje-eda-v1.webp" alt="김제청년공간 E:DA" loading="lazy" decoding="async">
                 </div>
                 <div class="institution-logo-item h-[4.75rem] w-[150px] shrink-0 sm:w-[170px] lg:w-[185px]">
-                  <img src="assets/images/partner-open-sauce-lab-v1.webp" alt="오픈소스랩 Open Sauce Lab" class="institution-logo-open-sauce" loading="lazy" decoding="async" />
+                  <img src="assets/images/partner-open-sauce-lab-v1.webp" alt="오픈소스랩 Open Sauce Lab" class="institution-logo-open-sauce" loading="lazy" decoding="async">
                 </div>
                 <div class="institution-logo-item h-[4.75rem] w-[100px] shrink-0 sm:w-[112px] lg:w-[124px]">
-                  <img src="assets/images/partner-chamgoeul-mark-v1.png" alt="참고을" class="institution-logo-chamgoeul" loading="lazy" decoding="async" />
+                  <img src="assets/images/partner-chamgoeul-mark-v1.png" alt="참고을" class="institution-logo-chamgoeul" loading="lazy" decoding="async">
                 </div>
               </div>
             </div>
@@ -306,6 +325,41 @@
           </div>
         </div>
       </section>
+
+
+      <section id="faq" class="brand-grid-bg scroll-mt-20 bg-[#f7ddc2] py-14 sm:py-20 lg:py-24">
+        <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div data-reveal="" class="mx-auto mb-8 max-w-3xl text-center">
+            <p class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">FAQ / Q&amp;A</p>
+            <h2 id="faqTitle" class="display-latin text-4xl uppercase leading-[0.94] text-[#321506] sm:text-6xl">Preguntas frecuentes</h2>
+            <a href="/es/qna.html" class="brand-text-link mx-auto mt-6 text-mokdaOrange">
+              <span id="faqCta">Ver Q&amp;A</span> <span class="ml-2">-&gt;</span>
+            </a>
+          </div>
+          <div id="homeFaqList" data-reveal="" data-reveal-delay="120" class="mx-auto max-w-4xl overflow-hidden border-y border-[#321506]/30" style="--reveal-delay: 120ms;">
+              <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">01</span><span id="faqQuestion1" class="home-faq-question">¿Qué significa MOKDA?</span></h3><p id="faqAnswer1">MOKDA viene de la palabra coreana “먹다”, que significa comer. Es una marca K-Food que conecta sabores coreanos con las mesas cotidianas de Latinoamérica.</p></article>
+              <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">02</span><span id="faqQuestion2" class="home-faq-question">¿Qué es Salsa Coreana?</span></h3><p id="faqAnswer2">Es la primera línea de MOKDA: K-PEÑO y Para Carnes, dos salsas pensadas para acompañar comidas cotidianas.</p></article>
+              <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">03</span><span id="faqQuestion3" class="home-faq-question">¿Puedo contactar a MOKDA?</span></h3><p id="faqAnswer3">Sí. Recibimos consultas de consumidores y propuestas de distribución, retail, HORECA y colaboración de marca para Latinoamérica.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" data-analytics-section="contact" class="brand-grid-bg scroll-mt-20 bg-[#321506] pb-16 pt-20 text-[#f8dfc4] sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-28">
+        <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div data-reveal="" class="mx-auto mb-10 w-full max-w-[860px] text-center">
+            <p id="b2bKicker" class="condensed-label mb-2 text-base uppercase text-mokdaOrange sm:text-lg">CONTACTA CON MOKDA</p>
+            <h2 id="b2bTitle" class="display-latin break-keep text-balance text-4xl leading-[0.94] text-mokdaOrange sm:text-6xl md:text-7xl">Alianzas comerciales</h2>
+            <p id="b2bDescription" class="mx-auto mt-4 max-w-2xl break-keep text-pretty text-[15px] font-semibold leading-7 text-[#f8dfc4]/70 sm:text-base sm:leading-8">Conversemos sobre distribución, importación, retail, HORECA y colaboraciones de marca.</p>
+          </div>
+          <a id="b2bCta" data-reveal="" data-reveal-delay="120" data-analytics-event="b2b_cta_click" href="/es/contact.html?purpose=distribution" class="mx-auto flex min-h-14 w-fit items-center justify-center rounded-lg bg-mokdaOrange px-8 py-4 text-center text-sm font-extrabold uppercase text-white transition duration-300 hover:scale-[1.02] hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-orange-500/25" style="--reveal-delay: 120ms;">
+            <span id="b2bCtaText">ENVIAR</span>
+          </a>
+        </div>
+      </section>
+
+
+
+
 
       <footer class="bg-neutral-950 py-10 text-white sm:py-12">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -332,19 +386,55 @@
               </a>
             </div>
           </div>
-          <div id="footerText" class="mt-8"></div>
+          <div id="footerText" class="mt-8">
+      <div class="space-y-4 text-center sm:space-y-5">
+        <nav aria-label="Explorar MOKDA" class="grid grid-cols-2 gap-x-3 gap-y-1 rounded-2xl bg-white/[0.035] p-2 text-[13px] sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-2 sm:px-6 sm:py-4 sm:text-sm">
+          <a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/">Inicio</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/about.html">Nuestra historia</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/products.html">Salsa Coreana</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/qna.html">Preguntas frecuentes</a><a class="flex min-h-9 items-center justify-center px-1 font-bold leading-5 text-white/76 transition hover:text-white focus:text-white sm:min-h-0 sm:px-0" href="/es/contact.html">Contacto</a>
+        </nav>
+        <div class="grid gap-4 lg:grid-cols-[1.55fr_0.85fr] lg:items-stretch">
+          <section class="rounded-2xl bg-white/[0.045] px-4 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
+            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">Información de la empresa</h2>
+            <dl class="footer-company-grid mt-4 grid grid-cols-3 items-start gap-x-3 gap-y-4 sm:gap-x-6">
+              <div>
+                <dt class="mb-1 font-bold text-white/68">Empresa</dt>
+                <dd class="font-semibold text-white/82">MOKDA</dd>
+              </div>
+              <div>
+                <dt class="mb-1 font-bold text-white/68">Representante</dt>
+                <dd class="font-semibold text-white/82">Gyeom Park</dd>
+              </div>
+              <div>
+                <dt class="mb-1 font-bold text-white/68">Registro comercial</dt>
+                <dd class="footer-registration font-semibold text-white/82">161-07-03392</dd>
+              </div>
+              <div class="col-span-3">
+                <dt class="mb-1 font-bold text-white/68">Dirección</dt>
+                <dd class="text-white/82">44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, República de Corea</dd>
+              </div>
+            </dl>
+          </section>
+          <section class="flex flex-col justify-center rounded-2xl bg-white/[0.035] px-5 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
+            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">Propiedad intelectual</h2>
+            <p class="mt-3 text-white/76">El nombre de marca, nombres de productos, diseños de empaque y materiales relacionados de MOKDA están en proceso de protección de marca e IP.</p>
+          </section>
+        </div>
+        <div class="pt-1 text-[11px] font-semibold text-white/66 sm:text-xs">© 2026 MOKDA. Todos los derechos reservados.</div>
+      </div>
+    </div>
         </div>
       </footer>
     </main>
 
     <script src="/site-i18n.js?v=cf263a2b502b"></script>
-    <script src="/site-footer.js?v=af5af53e836d"></script>
+    <script src="/site-footer.js?v=ed1f5bd13291"></script>
     <script src="/b2b-config.js?v=5bb4e7ce99df"></script>
     <script src="/site-contact-config.js?v=bc14670956c6"></script>
     <script src="/assets/generated/9429567d6297d4a9b682.js?v=9429567d6297"></script>
     <script src="/site-header.js?v=8aba43bcd847"></script>
     <script src="/site-reviews-data.js?v=f222b4be0a31"></script>
-    <script src="/home-experience.js?v=4b0fd7dfb6d3"></script>
-    <script src="/brand-motion.js?v=de1b1c5aa819" defer></script>
-  </body>
+    <script src="/home-experience.js?v=1366dcbefbbf"></script>
+    <script src="/brand-motion.js?v=de1b1c5aa819" defer=""></script>
+
+
+</body>
 </html>

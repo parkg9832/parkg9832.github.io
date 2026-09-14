@@ -2,10 +2,11 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { secureHtml, externalizeBlocks } from './static-security.mjs';
+import { prerenderContent } from './prerender-content.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-09-13';
+const LAST_MODIFIED = '2026-09-14';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -224,10 +225,15 @@ function localizeHtml(source, language, page) {
   html = html.replace('</head>', `    <script type="application/ld+json">\n${structuredData(language, page, canonical, metadata)}\n    </script>\n  </head>`);
   html = localizeFontRequests(html, language);
   html = localizeInternalLinks(html, language);
+  html = html.replace('</head>', '    <noscript><link rel="stylesheet" href="/styles/no-script.css" /></noscript>\n</head>');
+  if (page.route === 'contact.html') {
+    const notice = { KR: '문의 전송에는 JavaScript가 필요합니다. 브라우저에서 JavaScript를 켠 뒤 이용해주세요.', ES: 'Para enviar tu consulta, activa JavaScript en el navegador.', EN: 'Enable JavaScript in your browser to send an inquiry.' }[language];
+    html = html.replace('</form>', `</form><noscript><p class="no-script-notice">${notice}</p></noscript>`);
+  }
   if (!html.includes('site-typography.css')) {
     html = html.replace(
       '</head>',
-      '    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />\n  </head>',
+      '    <link rel="stylesheet" href="./styles/site-typography.css?v=20260914-3" />\n  </head>',
     );
   }
   return html;
@@ -242,7 +248,9 @@ for (const [fileName, page] of Object.entries(pages)) {
   for (const language of Object.keys(languages)) {
     const outputPath = join(ROOT, languages[language].directory, fileName);
     await mkdir(dirname(outputPath), { recursive: true });
-    await writeFile(outputPath, await externalizeBlocks(localizeHtml(source, language, page), ROOT), 'utf8');
+    const localized = localizeHtml(source, language, page);
+    const rendered = await prerenderContent(localized, ROOT, routeUrl(language, page));
+    await writeFile(outputPath, (await externalizeBlocks(rendered, ROOT)).replace(/^[\t ]+$/gm, ''), 'utf8');
     sitemapUrls.push(routeUrl(language, page));
   }
 }

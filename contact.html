@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-hCJXA2uJ8MYoTzblvms3+Zf7q0fyIuaLsES50hPcB6o=' 'sha256-X8tlPKb3iB99YvneDLcwZMgHB6NTISVWVJjFeJ52J00=' 'sha256-BtPyNDvneGtfFKxreMOzsoPqQHxc9JrgY8Z2p1+YJeU='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-hCJXA2uJ8MYoTzblvms3+Zf7q0fyIuaLsES50hPcB6o=' 'sha256-X8tlPKb3iB99YvneDLcwZMgHB6NTISVWVJjFeJ52J00=' 'sha256-4bGwU2yBDRoBKmE/U7fOeVmYgDdxtaiowxmQqZpGSKo='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -155,7 +155,7 @@
         }
       }
     </style>
-    <link rel="stylesheet" href="./styles/site-typography.css?v=20260810-4" />
+    <link rel="stylesheet" href="./styles/site-typography.css?v=20260914-3" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
@@ -207,7 +207,7 @@
               </label>
               <label class="block">
                 <span id="companyLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
-                <input id="companyInput" maxlength="160" type="text" name="company" required autocomplete="organization" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
+                <input id="companyInput" maxlength="160" type="text" name="company" autocomplete="organization" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none" />
               </label>
               <label class="block">
                 <span id="countryLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
@@ -275,7 +275,7 @@
     </main>
 
     <script src="./site-i18n.js?v=20260811-3"></script>
-    <script src="./site-footer.js?v=20260912-8"></script>
+    <script src="./site-footer.js?v=20260914-3"></script>
     <script src="./b2b-config.js"></script>
     <script>
       let language = window.MOKDA_I18N.getLanguage();
@@ -298,17 +298,17 @@
           hero: {
             kicker: 'ALIANZA B2B',
             title: 'Buscamos socios comerciales',
-            description: 'Consultas para distribución, importación, retail, HORECA y colaboraciones de negocio en Latinoamérica.',
+            description: 'Consultas para distribución, importación, retail, HORECA y colaboraciones de negocio en Latinoamérica. También recibimos consultas generales sobre nuestros productos.',
           },
           fields: {
             name: ['Nombre', 'Nombre completo'],
             email: ['Correo electrónico', 'Correo o WhatsApp'],
             whatsapp: ['WhatsApp', 'WhatsApp o correo'],
             country: ['País / Mercado', 'Selecciona un país'],
-            purpose: ['Tipo de empresa', 'Opcional', ['Distribuidor', 'Importador', 'Retail', 'HORECA', 'Otro']],
-            company: ['Empresa', 'Nombre de la empresa'],
-            message: ['Mensaje', 'Cuéntanos brevemente tu propuesta'],
-            submit: 'Enviar consulta B2B',
+            purpose: ['Tipo de consulta', 'Opcional', ['Distribuidor', 'Importador', 'Retail', 'HORECA', 'Consulta general', 'Otro']],
+            company: ['Empresa (opcional)', 'Nombre de la empresa, si corresponde'],
+            message: ['Mensaje', 'Cuéntanos tu consulta o propuesta'],
+            submit: 'Enviar consulta',
             required: 'Completa este campo.',
             emailError: 'Ingresa un correo válido.',
             contactMethod: 'Introduce al menos un correo electrónico o WhatsApp.',
@@ -326,17 +326,17 @@
           hero: {
             kicker: 'B2B PARTNERSHIP',
             title: 'We are looking for business partners',
-            description: 'For distribution, import, retail, HORECA, and business partnerships across Latin America.',
+            description: 'For distribution, import, retail, HORECA, and business partnerships across Latin America. General product questions are also welcome.',
           },
           fields: {
             name: ['Name', 'Full name'],
             email: ['Email', 'Email or WhatsApp'],
             whatsapp: ['WhatsApp', 'WhatsApp or email'],
             country: ['Country / Market', 'Select a country'],
-            purpose: ['Business type', 'Optional', ['Distributor', 'Importer', 'Retail', 'HORECA', 'Other']],
-            company: ['Company', 'Company name'],
-            message: ['Message', 'Tell us briefly about your proposal'],
-            submit: 'Send B2B inquiry',
+            purpose: ['Inquiry type', 'Optional', ['Distributor', 'Importer', 'Retail', 'HORECA', 'General inquiry', 'Other']],
+            company: ['Company (optional)', 'Company name, if applicable'],
+            message: ['Message', 'Tell us your question or proposal'],
+            submit: 'Send inquiry',
             required: 'Please complete this field.',
             emailError: 'Please enter a valid email.',
             contactMethod: 'Enter at least an email address or WhatsApp number.',
@@ -354,17 +354,17 @@
           hero: {
             kicker: 'B2B PARTNERSHIP',
             title: '함께할 비즈니스 파트너를 찾습니다',
-            description: '라틴아메리카 유통, 수입, 리테일, HORECA 및 사업 협력 문의를 받습니다.',
+            description: '라틴아메리카 유통, 수입, 리테일, HORECA 및 사업 협력 문의를 받습니다. 제품에 관한 일반 문의도 보내실 수 있습니다.',
           },
           fields: {
             name: ['이름', '이름을 입력해주세요'],
             email: ['이메일', '이메일 또는 WhatsApp'],
             whatsapp: ['WhatsApp', 'WhatsApp 또는 이메일'],
             country: ['국가 / 시장', '국가 선택'],
-            purpose: ['사업 유형', '선택 입력', ['유통사', '수입사', '리테일', 'HORECA', '기타']],
-            company: ['회사명', '회사명을 입력해주세요'],
-            message: ['문의 내용', '사업 제안을 간단히 적어주세요'],
-            submit: 'B2B 문의 보내기',
+            purpose: ['문의 유형', '선택 입력', ['유통사', '수입사', '리테일', 'HORECA', '일반 문의', '기타']],
+            company: ['회사명 (선택)', '회사가 있는 경우 입력해주세요'],
+            message: ['문의 내용', '궁금한 점이나 사업 제안을 적어주세요'],
+            submit: '문의 보내기',
             required: '필수 항목입니다.',
             emailError: '올바른 이메일을 입력해주세요.',
             contactMethod: '이메일 또는 WhatsApp 중 하나를 입력해주세요.',

@@ -106,7 +106,8 @@ assert.match(appsScriptSource, /isInternalAnalyticsVisitor_\(row\[5\]\)/);
 
 // TEST 12: GA4 loads only after privacy, host, and internal-browser guards have passed.
 assert.match(analyticsSource, /G-TGLJ91TKZF/);
-assert.match(analyticsSource, /window\.gtag\('config', ga4MeasurementId, \{ send_page_view: true,/);
+assert.match(analyticsSource, /const config = \{ send_page_view: true,/);
+assert.match(analyticsSource, /window\.gtag\('config', ga4MeasurementId, config\)/);
 assert.match(analyticsSource, /page_location: window\.location\.origin \+ window\.location\.pathname/);
 assert.match(analyticsSource, /googletagmanager\.com\/gtag\/js\?id=/);
 assert.ok(

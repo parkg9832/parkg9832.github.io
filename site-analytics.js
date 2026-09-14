@@ -65,12 +65,19 @@
   }
 
   function initializeGa4() {
+    if (verificationMode || attribution.utmMedium === 'verification') return;
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function gtag() {
       window.dataLayer.push(arguments);
     };
     window.gtag('js', new Date());
-    window.gtag('config', ga4MeasurementId, { send_page_view: true, page_location: window.location.origin + window.location.pathname, page_referrer: document.referrer ? new URL(document.referrer).origin : '' });
+    const config = { send_page_view: true, page_location: window.location.origin + window.location.pathname, page_referrer: document.referrer ? new URL(document.referrer).origin : '' };
+    // Preserve campaign attribution without sending arbitrary query parameters.
+    for (const [parameter, field, limit] of [['utm_source', 'campaign_source', 100], ['utm_medium', 'campaign_medium', 100], ['utm_campaign', 'campaign_name', 150]]) {
+      const value = clean(queryParameters.get(parameter), limit);
+      if (value) config[field] = value;
+    }
+    window.gtag('config', ga4MeasurementId, config);
 
     if (document.querySelector(`script[data-mokda-ga4="${ga4MeasurementId}"]`)) return;
     const googleTag = document.createElement('script');
@@ -80,7 +87,6 @@
     document.head.appendChild(googleTag);
   }
 
-  initializeGa4();
 
   // Public, write-only Apps Script web endpoint. No secret or API key is stored in the browser.
   const endpoint =
@@ -224,6 +230,7 @@
   const visitorId = getVisitorId();
   const session = getSession();
   const attribution = getAttribution(session.id);
+  initializeGa4();
   const pageInstanceId = randomId();
   const debugEvents = [];
   let activeStartedAt = document.visibilityState === 'visible' ? performance.now() : null;
@@ -248,7 +255,10 @@
   function buildEvent(name, details = {}) {
     const sectionName = clean(details.section_name || details.section, 80);
     const scrollPercent = Number.parseInt(details.scroll_percent ?? details.scrollDepth, 10);
-    const productName = normalizeProduct(details.product_name || details.product);
+    const inquiryProduct = /\/contact(?:\.html|\/)?$/i.test(window.location.pathname)
+      ? ({ original: 'K-Peño', 'para-carnes': 'Para Carnes' }[queryParameters.get('product')] || '')
+      : '';
+    const productName = normalizeProduct(details.product_name || details.product || inquiryProduct);
     const visitorDaypart = getVisitorDaypart();
     return {
       name: clean(name, 50),

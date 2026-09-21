@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-plTsNu8yHRaUncYn3a6FjhCWK/sfr2DfUXxTUVehNv8='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-4SB6XRiMs2S8FrkpeMdS9eG0ek/X4OBxE6UrlVQTx5I='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -239,6 +239,7 @@
             <p id="prod1Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#321506]/72 sm:text-lg">Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.</p>
             <p id="prod1Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#321506]/70">Ideal para tacos, pollo, frituras y snacks.</p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a id="prod1DetailLink" href="kpeno.html" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#ef5f18] hover:text-[#321506]">Ver detalle</a>
               <a id="prod1B2bLink" data-product="K-PEÑO" href="contact.html?purpose=distribution&product=original" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4]">Consulta B2B</a>
             </div>
           </div>
@@ -251,6 +252,7 @@
             <p id="prod2Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#f8dfc4]/76 sm:text-lg">Una salsa coreana de profundo umami que combina con verduras y todo tipo de carnes, asadas, hervidas o al vapor.</p>
             <p id="prod2Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#f8dfc4]/70">Una salsa emblemática de Corea para dipear carnes.</p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a id="prod2DetailLink" href="para-carnes.html" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f8dfc4] px-6 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#ef5f18] hover:text-[#321506]">Ver detalle</a>
               <a id="prod2B2bLink" data-product="Para Carnes" href="contact.html?purpose=distribution&product=para-carnes" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#f8dfc4] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#f8dfc4] hover:text-[#321506]">Consulta B2B</a>
             </div>
           </div>
@@ -321,7 +323,7 @@
             desc: "Una salsa coreana de profundo umami que combina con verduras y todo tipo de carnes, asadas, hervidas o al vapor.",
             uses: "Una salsa emblemática de Corea para dipear carnes."
           },
-          actions: { b2b: 'Consulta B2B' }
+          actions: { detail: 'Ver detalle', b2b: 'Consulta B2B' }
         },
         EN: {
           nav: { about: 'About us', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contact' },
@@ -344,7 +346,7 @@
             desc: "A Korean sauce with deep umami for vegetables and all kinds of meat, whether grilled, boiled or steamed.",
             uses: "A signature Korean dipping sauce for meat."
           },
-          actions: { b2b: 'B2B inquiry' }
+          actions: { detail: 'View details', b2b: 'B2B inquiry' }
         },
         KR: {
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
@@ -367,7 +369,7 @@
             desc: "구운 고기, 삶은 고기, 찐 고기 등 모든 고기와 채소에 어울리는 깊은 감칠맛의 한국 소스.",
             uses: "한국의 대표 고기용 디핑소스입니다."
           },
-          actions: { b2b: 'B2B 문의' }
+          actions: { detail: '제품 상세 보기', b2b: 'B2B 문의' }
         }
       };
 
@@ -400,12 +402,14 @@
         setText('prod1Title', t.p1.name);
         setText('prod1Desc', t.p1.desc);
         setText('prod1Uses', t.p1.uses);
+        setText('prod1DetailLink', t.actions.detail);
         setText('prod1B2bLink', t.actions.b2b);
         
         setText('prod2Kicker', t.p2.kicker);
         setText('prod2Title', t.p2.name);
         setText('prod2Desc', t.p2.desc);
         setText('prod2Uses', t.p2.uses);
+        setText('prod2DetailLink', t.actions.detail);
         setText('prod2B2bLink', t.actions.b2b);
         
 

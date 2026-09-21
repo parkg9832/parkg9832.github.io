@@ -5,7 +5,7 @@ import { runInContext } from 'node:vm';
 
 // Build-only rendering of trusted repository content. No external resources,
 // analytics, form submission, timers or motion scripts run during generation.
-const renderScripts = new Set(['site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-reviews-data.js', 'site-product-media.js', 'home-experience.js']);
+const renderScripts = new Set(['site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-reviews-data.js', 'site-product-media.js', 'home-experience.js', 'product-detail.js']);
 
 export async function prerenderContent(html, root, url) {
   const dom = new JSDOM(html, { url, runScripts: 'outside-only' });

@@ -723,7 +723,7 @@
   }
 
   const pageName = window.location.pathname.split('/').pop() || 'index.html';
-  const currentGroup = pageName === 'products.html'
+  const currentGroup = ['products.html', 'kpeno.html', 'para-carnes.html'].includes(pageName)
     ? 'products'
     : pageName === 'qna.html' || pageName === 'contact.html'
       ? 'connect'

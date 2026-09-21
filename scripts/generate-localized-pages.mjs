@@ -6,7 +6,7 @@ import { prerenderContent } from './prerender-content.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-09-14';
+const LAST_MODIFIED = '2026-09-21';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -65,6 +65,20 @@ const pages = {
       description: 'Explore K-PEÑO and Para Carnes, MOKDA’s first Korean sauce lineup for Latin America.',
     },
   },
+  'kpeno.html': {
+    route: 'kpeno.html',
+    type: 'ProductPage',
+    ES: { title: 'K-PEÑO | Salsa Coreana MOKDA', description: 'Conoce K-PEÑO, la Salsa Coreana de MOKDA con gochujang y jalapeño.' },
+    KR: { title: 'K-PEÑO 제품 상세 | MOKDA', description: '고추장과 할라피뇨를 담은 MOKDA K-PEÑO의 제품 상세를 확인하세요.' },
+    EN: { title: 'K-PEÑO Product Details | MOKDA', description: 'Discover K-PEÑO, MOKDA’s Korean table sauce with gochujang and jalapeño.' },
+  },
+  'para-carnes.html': {
+    route: 'para-carnes.html',
+    type: 'ProductPage',
+    ES: { title: 'Para Carnes | Salsa Coreana MOKDA', description: 'Conoce Para Carnes, la Salsa Coreana de MOKDA inspirada en el ssamjang.' },
+    KR: { title: 'Para Carnes 제품 상세 | MOKDA', description: '쌈장에서 영감을 받은 MOKDA Para Carnes의 제품 상세를 확인하세요.' },
+    EN: { title: 'Para Carnes Product Details | MOKDA', description: 'Discover Para Carnes, MOKDA’s Korean sauce inspired by ssamjang.' },
+  },
   'qna.html': {
     route: 'qna.html',
     type: 'WebPage',
@@ -115,7 +129,7 @@ function alternateLinks(page) {
 function localizeInternalLinks(html, language) {
   const prefix = languages[language].directory;
   return html.replace(
-    /href="(index|about|products|qna|contact|support)\.html([^"#?]*)([?#][^"]*)?"/g,
+    /href="(index|about|products|kpeno|para-carnes|qna|contact|support)\.html([^"#?]*)([?#][^"]*)?"/g,
     (_match, pageName, extraPath, suffix = '') => {
       const route = pageName === 'index' ? '' : `${pageName}.html${extraPath || ''}`;
       return `href="/${prefix}/${route}${suffix}"`;

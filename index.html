@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-GImpl21HpKJarsX5FCOBB6eHmVun2KC9nbsTaGhGxmc=' 'sha256-7Wo2xj/jKXRJuI1AkpgMVobG7MO4gaRynMSvz1OEWEM=' 'sha256-MwGbocJ8tenAgU6xzHNJHA+QjExTI6CKQ5+1aR7qMaI=' 'sha256-7YJaQASCvwuUTPlL0kcR8deYR1Q4K0BnA23RK0wyu2U='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-GImpl21HpKJarsX5FCOBB6eHmVun2KC9nbsTaGhGxmc=' 'sha256-7Wo2xj/jKXRJuI1AkpgMVobG7MO4gaRynMSvz1OEWEM=' 'sha256-MwGbocJ8tenAgU6xzHNJHA+QjExTI6CKQ5+1aR7qMaI=' 'sha256-ieWa0bfMD5sHGEVJkFdMuPx/jgwhq3HhndZ+nBKDJZI='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1830,7 +1830,7 @@
               const category = item.category ? (item.category[lang] || item.category['ES']) : item.koreanName;
               const name = typeof item.name === 'object' ? (item.name[lang] || item.name.ES) : item.name;
               return `
-              <a href="products.html#${['original', 'para-carnes'][index] || ''}" data-product="${name}" data-reveal data-reveal-delay="${index * 120}" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300">
+              <a href="${['kpeno.html', 'para-carnes.html'][index] || 'products.html'}" data-product="${name}" data-reveal data-reveal-delay="${index * 120}" class="product-photo-card group flex min-w-0 flex-col overflow-hidden rounded-[1.2rem] bg-white text-left transition-all duration-300">
                 <div class="home-product-image relative overflow-hidden bg-[#f5d9b8]">
                   <img src="${item.foodImage || item.textureImage || item.image}" alt="" aria-hidden="true" class="product-food-image h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" loading="lazy" />
                   <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/6 to-transparent"></div>

@@ -23,16 +23,16 @@
   const numbers = ['01','02','03','04','05','06','07','08','09'];
   const content = document.getElementById('productDetailContent');
   content.innerHTML = `
-    <section class="detail-intro detail-page-${detail.color}">
-      <div>
+    <section class="detail-image-sequence detail-page-${detail.color}" aria-label="${detail.product}">
+      <div class="detail-sequence-nav">
         <a class="detail-back" href="products.html#${id === 'kpeno' ? 'original' : 'para-carnes'}">← ${copy.back}</a>
-        <p class="detail-kicker">${copy.kicker} · ${detail.category}</p>
-        <h1 class="detail-title">${copy.title}</h1>
-        <p class="detail-subtitle">${copy.subtitle}</p>
+        <div class="detail-visually-hidden">
+          <p>${copy.kicker} · ${detail.category}</p>
+          <h1>${copy.title}</h1>
+          <p>${copy.subtitle}</p>
+        </div>
       </div>
-    </section>
-    <section class="detail-image-sequence" aria-label="${detail.product}">
-      <div>${numbers.map((number, index) => {
+      <div class="detail-artworks">${numbers.map((number, index) => {
         const loading = index === 0 ? 'fetchpriority="high"' : index > 6 ? 'loading="lazy"' : '';
         return `<figure class="detail-artwork" data-detail-section="${number}"><img src="${base}${number}.jpg" alt="${detail.product} · ${index + 1}" ${loading} decoding="async" /></figure>`;
       }).join('')}</div>

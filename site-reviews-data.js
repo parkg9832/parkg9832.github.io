@@ -1,3 +1,87 @@
-// Add permission-cleared trial reviews here. See docs/HOMEPAGE_DESIGN.md.
-// No ratings or reviews are published until actual records are supplied.
-window.MOKDA_TRIAL_REVIEWS = [];
+// Permission-cleared tasting reviews reproduced from product detail artwork 07.
+window.MOKDA_TRIAL_REVIEWS = [
+  {
+    published: true,
+    name: '@susibel.encorea · Peruana 🇵🇪',
+    source: 'Product tasting review',
+    rating: 5,
+    product: 'Para Carnes',
+    photo: '/assets/images/reviews/review-susibel.jpg',
+    title: { KR: '고기와 잘 어울려요', ES: 'Perfecta con carne', EN: 'Perfect with meat' },
+    quote: {
+      KR: '파라 카르네스는 구운 고기나 찐 고기와 정말 잘 어울려요. 정말 맛있어요!',
+      ES: 'La salsa Para Carnes combina de maravilla con carne a la parrilla o al vapor. ¡Está buenísima!',
+      EN: 'Para Carnes goes wonderfully with grilled or steamed meat. It is delicious!',
+    },
+  },
+  {
+    published: true,
+    name: '@adriandjah · Mexicano 🇲🇽',
+    source: 'Product tasting review',
+    rating: 5,
+    product: 'Salsa Coreana',
+    photo: '/assets/images/reviews/review-adriandjah.jpg',
+    title: { KR: '정통 한국의 맛', ES: 'Sabor coreano auténtico', EN: 'Authentic Korean flavor' },
+    quote: {
+      KR: '정말 마음에 들었어요. 정통 한국의 맛이 나고, 꼭 구매하고 싶어요.',
+      ES: 'Me encantó. Tiene un auténtico sabor coreano y, sin duda, la compraría.',
+      EN: 'I loved it. It has an authentic Korean flavor, and I would definitely buy it.',
+    },
+  },
+  {
+    published: true,
+    name: '@morita.artist · Colombiana 🇨🇴',
+    source: 'Product tasting review',
+    rating: 5,
+    product: 'K-PEÑO',
+    photo: '/assets/images/reviews/review-morita.jpg',
+    title: { KR: '달콤하고 매콤하게', ES: 'Dulce y picante', EN: 'Sweet and spicy' },
+    quote: {
+      KR: '달콤하고 매콤해서 정말 맛있어요. 기분 좋게 즐길 수 있는 매운맛이에요.',
+      ES: 'Es dulce, picante y riquísima. Tiene un picor agradable que se disfruta.',
+      EN: 'It is sweet, spicy and delicious. The heat is pleasant and enjoyable.',
+    },
+  },
+  {
+    published: true,
+    name: '@aranzazu_design · Mexicana 🇲🇽',
+    source: 'Product tasting review',
+    rating: 5,
+    product: 'Salsa Coreana',
+    photo: '/assets/images/reviews/review-aranzazu.jpg',
+    title: { KR: '한입에 한국으로', ES: 'Un viaje a Corea', EN: 'A trip to Korea' },
+    quote: {
+      KR: '정말 맛있어요. 한국에 가지 않아도 한국에 온 듯한 느낌을 줘요.',
+      ES: 'Están buenísimas. Te transportan a Corea sin estar en Corea.',
+      EN: 'They are delicious. They take you to Korea without being in Korea.',
+    },
+  },
+  {
+    published: true,
+    name: 'Kang Mine · Coreana 🇰🇷',
+    source: 'Product tasting review',
+    rating: 5,
+    product: 'Salsa Coreana',
+    photo: '/assets/images/reviews/review-kang-mine.jpg',
+    title: { KR: '한국인의 선택', ES: 'La elección de una coreana', EN: 'A Korean perspective' },
+    quote: {
+      KR: '한국인으로서 말하자면, 한국에서 판매되는 많은 소스보다도 더 맛있어요.',
+      ES: 'Como coreana, diría que está incluso más rica que muchas salsas que se venden en Corea.',
+      EN: 'As a Korean, I would say it tastes even better than many sauces sold in Korea.',
+    },
+  },
+  {
+    published: true,
+    name: 'Kim Tae Yun · Coreano 🇰🇷',
+    source: 'Product tasting review',
+    rating: 5,
+    product: 'K-PEÑO',
+    photo: '/assets/images/reviews/review-kim-tae-yun.jpg',
+    title: { KR: '치킨과 완벽한 조합', ES: 'Increíble con pollo', EN: 'Amazing with chicken' },
+    quote: {
+      KR: '치킨과 정말 잘 어울려요! 달콤하고 매콤한 현대적인 한국의 맛이에요.',
+      ES: '¡Queda increíble con el pollo! Tiene un sabor coreano moderno, dulce y picante.',
+      EN: 'It is amazing with chicken! It has a modern Korean flavor that is sweet and spicy.',
+    },
+  },
+];

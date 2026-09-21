@@ -21,7 +21,6 @@
 .home-page #proofCarouselTrack > figure img { filter:none; transform:none; }
 .home-page #voicesList.home-quotes-reading { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; border:0; overflow:visible; }
 .home-page #voicesList.home-quotes-reading .voice-entry { width:100%; min-width:0; }
-.home-reviews-reading { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; }
 .home-page #institutionsTrack { overflow:visible; mask-image:none!important; -webkit-mask-image:none!important; }
 .home-page #institutionsTrack [data-institutions-group] { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); align-items:center; width:100%; gap:2rem; }
 .home-page #institutionsTrack .institution-logo-item { width:100%; min-width:0; }
@@ -50,7 +49,6 @@
   .home-pairing-gallery p { margin:0; font-size:.85rem; }
   .home-page #voicesList.home-quotes-reading { grid-template-columns:1fr; }
   .home-page #voicesList.home-quotes-reading .voice-entry { padding:1.5rem; }
-  .home-reviews-reading { grid-template-columns:1fr; }
   .home-page #institutionsTrack [data-institutions-group] { grid-template-columns:1fr 1fr; gap:1.5rem; }
   .home-page .support-marquee-group { grid-template-columns:1fr; }
   .home-page .support-message-card { padding:1.25rem; }

@@ -179,7 +179,7 @@ function structuredData(language, page, canonical, metadata) {
         slogan: 'Comer Corea · 한국을 먹다',
         description: 'Marca K-Food que conecta sabores de Corea con las mesas cotidianas de Latinoamérica.',
         sameAs: [
-          'https://www.instagram.com/salsa_coreana/',
+          'https://www.instagram.com/mokda_official/',
           'https://www.tiktok.com/@salsa_coreana',
           'https://www.threads.com/@salsa_coreana',
         ],

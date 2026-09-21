@@ -829,7 +829,7 @@
         </div>
         <div class="mokda-mobile-menu-footer">
           <div class="mokda-mobile-menu-social" aria-label="MOKDA SNS">
-            <a href="https://www.instagram.com/salsa_coreana/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.instagram.com/mokda_official/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <a href="https://www.tiktok.com/@salsa_coreana" target="_blank" rel="noopener noreferrer">TikTok</a>
             <a href="https://www.threads.com/@salsa_coreana" target="_blank" rel="noopener noreferrer">Threads</a>
           </div>

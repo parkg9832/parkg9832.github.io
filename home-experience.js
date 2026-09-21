@@ -41,7 +41,7 @@
   copy.pairTitle = approved.products.lineTitle;
   copy.pairLead = approved.salsa.description;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const foodPhotos = ['original-nachos-chicken-chips-card.webp', 'para-carnes-grilled-meat-card.webp'];
+  const foodPhotos = ['kpeno-pairing-editorial-20260921.jpg', 'para-carnes-pairing-editorial-20260921.jpg'];
   const products = ['K-PEÑO', 'Para Carnes'];
   const anchors = ['original', 'para-carnes'];
 
@@ -98,13 +98,13 @@
     section.setAttribute('aria-labelledby', 'trialTitle');
     section.innerHTML = `<div class="home-section-heading"><p class="home-eyebrow">${copy.trialKicker}</p><h2 id="trialTitle">${copy.trials}</h2>${isPreview ? `<p class="home-preview-label">${copy.preview}</p>` : ''}</div><div class="home-trial-track"></div>`;
     const track = section.querySelector('.home-trial-track');
-    track.innerHTML = reviews.map(item => {
+    const reviewCards = reviews.map(item => {
       const rating = typeof item.rating === 'number' && Number.isInteger(item.rating) && item.rating >= 1 && item.rating <= 5 ? item.rating : null;
       const photo = typeof item.photo === 'string' && /^\/assets\/images\/[a-zA-Z0-9_./-]+$/.test(item.photo) && !item.photo.includes('..') ? item.photo : '';
       return `<article class="home-trial-card">${item.sample ? `<span class="home-sample-label">${copy.sample}</span>` : ''}${photo ? `<img src="${escape(photo)}" alt="${escape(localText(item.product))}" loading="lazy">` : ''}<div class="home-trial-card-body"><p class="home-eyebrow">${escape(localText(item.product))}</p>${rating ? `<p class="home-stars" aria-label="${copy.rating} ${rating}"><span aria-hidden="true">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</span></p>` : ''}<h3>${escape(localText(item.title))}</h3><blockquote>${escape(localText(item.quote))}</blockquote><p class="home-review-author">${escape(item.name)}</p></div></article>`;
     }).join('');
-    voices.before(section);
-    track.classList.add('home-reviews-reading');
+    track.innerHTML = `<div class="home-trial-group">${reviewCards}</div><div class="home-trial-group" aria-hidden="true">${reviewCards}</div>`;
+    document.getElementById('proof').before(section);
   }
 
   document.getElementById(`lang${language}`).disabled = true;

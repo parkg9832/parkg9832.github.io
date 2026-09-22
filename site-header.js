@@ -837,12 +837,24 @@
       </nav>
     `;
 
+    const backgroundRegions = [...document.body.children].filter(element => element.matches('main,footer'));
+    const priorInertState = new Map();
+
     function setMenuOpen(isOpen) {
       header.classList.toggle('is-mobile-menu-open', isOpen);
       document.documentElement.classList.toggle('mokda-menu-lock', isOpen);
       menuToggle.setAttribute('aria-expanded', String(isOpen));
       menuToggle.setAttribute('aria-label', isOpen ? copy.closeMenu : copy.openMenu);
       mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+      backgroundRegions.forEach(element => {
+        if (isOpen) {
+          if (!priorInertState.has(element)) priorInertState.set(element, element.inert);
+          element.inert = true;
+        } else if (priorInertState.has(element)) {
+          element.inert = priorInertState.get(element);
+          priorInertState.delete(element);
+        }
+      });
       if (!isOpen) mobileMenu.scrollTop = 0;
     }
 
@@ -855,6 +867,17 @@
     });
 
     document.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab' && menuToggle.getAttribute('aria-expanded') === 'true') {
+        const focusable = [...header.querySelectorAll('a[href],button:not([disabled])')]
+          .filter(element => element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+        const first = focusable[0];
+        const last = focusable.at(-1);
+        if ((event.shiftKey && document.activeElement === first) || (!event.shiftKey && document.activeElement === last)) {
+          event.preventDefault();
+          (event.shiftKey ? last : first)?.focus();
+        }
+        return;
+      }
       if (event.key !== 'Escape' || menuToggle.getAttribute('aria-expanded') !== 'true') return;
       setMenuOpen(false);
       menuToggle.focus();

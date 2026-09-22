@@ -21,8 +21,14 @@
   const copy = detail[language] || detail.ES;
   const base = '/assets/images/detail-pages/' + detail.slug + '-detail-';
   const numbers = ['01','02','03','04','05','06','07','08','09'];
+  // Intrinsic sizes reserve the entire sequence before lazy images arrive.
+  const imageHeights = id === 'kpeno'
+    ? [1355,1090,1042,737,3622,1655,1833,1310,2323]
+    : [1419,1090,1042,737,3622,1781,1833,1305,2323];
+  const inquiryProduct = id === 'kpeno' ? 'original' : 'para-carnes';
   const content = document.getElementById('productDetailContent');
-  content.innerHTML = `
+  // Localized pages already contain this markup; keep loaded images in place.
+  if (!content.querySelector('.detail-artworks')) content.innerHTML = `
     <section class="detail-image-sequence detail-page-${detail.color}" aria-label="${detail.product}">
       <div class="detail-sequence-nav">
         <a class="detail-back" href="products.html#${id === 'kpeno' ? 'original' : 'para-carnes'}">← ${copy.back}</a>
@@ -33,12 +39,12 @@
         </div>
       </div>
       <div class="detail-artworks">${numbers.map((number, index) => {
-        const loading = index === 0 ? 'fetchpriority="high"' : index > 6 ? 'loading="lazy"' : '';
-        return `<figure class="detail-artwork" data-detail-section="${number}"><img src="${base}${number}.jpg" alt="${detail.product} · ${index + 1}" ${loading} decoding="async" /></figure>`;
+        const loading = index === 0 ? 'fetchpriority="high"' : 'loading="lazy"';
+        return `<figure class="detail-artwork" data-detail-section="${number}"><img src="${base}${number}.jpg" alt="${detail.product} · ${index + 1}" width="900" height="${imageHeights[index]}" ${loading} decoding="async" /></figure>`;
       }).join('')}</div>
       <p class="detail-source-note">Salsa Coreana · ${detail.product}</p>
     </section>
-    <section class="detail-inquiry"><div><div><p>${copy.inquiryKicker}</p><h2>${copy.inquiryTitle}</h2></div><a href="contact.html?purpose=distribution&product=${detail.slug}">${copy.inquiry} →</a></div></section>`;
+    <section class="detail-inquiry"><div><div><p>${copy.inquiryKicker}</p><h2>${copy.inquiryTitle}</h2></div><a href="contact.html?purpose=distribution&product=${inquiryProduct}">${copy.inquiry} →</a></div></section>`;
   window.MOKDA_FOOTER?.render(language);
   window.MOKDA_I18N.syncLanguageButtons(language);
   window.MOKDA_I18N.bindLanguageButtons(() => {});

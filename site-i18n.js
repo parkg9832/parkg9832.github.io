@@ -1,35 +1,5 @@
 (() => {
-  const navigationEntry = window.performance?.getEntriesByType?.('navigation')?.[0];
-  const isPageReload = navigationEntry
-    ? navigationEntry.type === 'reload'
-    : window.performance?.navigation?.type === 1;
-
-  if (isPageReload) {
-    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
-    let reloadScrollLock = true;
-    const resetReloadScroll = () => {
-      if (!reloadScrollLock) return;
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      if (document.body) document.body.scrollTop = 0;
-    };
-    const keepReloadAtTop = () => {
-      if (reloadScrollLock && window.scrollY !== 0) window.requestAnimationFrame(resetReloadScroll);
-    };
-    window.addEventListener('scroll', keepReloadAtTop, { passive: true });
-    resetReloadScroll();
-    window.addEventListener('load', () => {
-      window.requestAnimationFrame(() => window.requestAnimationFrame(resetReloadScroll));
-    }, { once: true });
-    window.addEventListener('pageshow', () => {
-      window.requestAnimationFrame(resetReloadScroll);
-    }, { once: true });
-    window.setTimeout(() => {
-      resetReloadScroll();
-      reloadScrollLock = false;
-      window.removeEventListener('scroll', keepReloadAtTop);
-    }, 900);
-  }
+  // Keep native scroll restoration, including reloads and links to a section.
 
   const STORAGE_KEY = 'mokdaLanguage';
   const LANGUAGES = ['ES', 'KR', 'EN'];
@@ -133,7 +103,7 @@
 
       button.addEventListener('click', () => {
         const nextLanguage = setLanguage(lang);
-        const nextPath = getLocalizedPath(nextLanguage);
+        const nextPath = `${getLocalizedPath(nextLanguage)}${window.location.search}${window.location.hash}`;
         const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
 
         if (currentPath !== nextPath) {

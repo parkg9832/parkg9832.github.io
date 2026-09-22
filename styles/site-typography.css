@@ -23,6 +23,8 @@ body:not(.support-page) {
 main :is(h1,h2,h3), #footerText :is(dt,dd) { word-break:keep-all; text-wrap:balance; }
 main :is(p,label) { text-wrap:pretty; }
 main :is(input,select,textarea), main :is(article,section)>div { min-width:0; }
+#b2bForm #submitButton { color:#321506; }
+#b2bForm #submitButton:hover { background:#ff9461; }
 .footer-registration { white-space:nowrap; font-variant-numeric:tabular-nums; }
 @media(max-width:479px) {
   #footerText .footer-company-grid { grid-template-columns:.75fr 1fr 1.25fr; gap:16px 8px; }
@@ -300,6 +302,9 @@ body.support-page {
 }
 
 @media (max-width: 639px) {
+  #b2bForm :is(input,select,textarea) {
+    font-size: 16px;
+  }
   :root {
     --mokda-type-page-title: clamp(3rem, 14vw, 4.5rem);
     --mokda-type-section-title: clamp(2.5rem, 11vw, 3.75rem);

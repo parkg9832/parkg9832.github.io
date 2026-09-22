@@ -218,7 +218,7 @@
 .about-page #identity .about-identity-logo { max-width:200px!important; }
 .about-page #logoTitle { font-size:clamp(2rem,3vw,2.75rem)!important; margin-top:14px; max-width:none; }
 .about-page #identity #motiveBody { margin-top:20px; max-width:45rem; font-weight:400; }
-.about-page #historyTitle { font-size:clamp(2rem,3.2vw,2.8rem)!important; }
+.about-page #historyTitle { max-width:none; font-size:clamp(1.75rem,2.35vw,2.4rem)!important; }
 .about-page .about-history-photo { width:min(100%,270px); }
 .about-page #timelineList .display-latin { font-size:clamp(3rem,5vw,4.25rem); }
 .about-page #timelineList .about-timeline-item { padding-block:8px; }
@@ -233,6 +233,7 @@
 
 /* Product pages keep food photography, with taste and uses on separate levels. */
 .products-page .product-opening>div { min-height:540px; max-width:1440px; grid-template-columns:1fr 1fr; }
+.products-page .product-opening>div>div { min-width:0; }
 .products-page .product-opening>div>div:first-child { padding:64px var(--brand-gutter); }
 .products-page #pageTitle { font-size:clamp(3.3rem,6.6vw,6rem); line-height:.98; letter-spacing:-.035em; }
 .products-page #pageSubtitle { font-weight:400; font-size:1rem; line-height:1.8; }
@@ -286,6 +287,7 @@
 @media(max-width:767px) {
   .products-page,.qna-page { --brand-gutter:20px; }
   .home-page .home-products-heading { grid-template-columns:1fr; gap:20px; }
+  .home-page .hero-title { font-size:clamp(2rem,12vw,4.3rem); line-height:1; }
   .home-page .home-product-image { aspect-ratio:4/5; }
   .home-page .home-product-copy { min-height:0; }
   .home-page #productsGrid { gap:40px; }
@@ -304,8 +306,11 @@
   .about-page #identity #motiveBody { margin-top:24px; }
   .about-page .about-history-photo { width:100%; }
   .about-page #historyTitle { font-size:clamp(1.6rem,6vw,2rem)!important; }
+  .about-page #history:has(#timelineList>article:only-child) #historyTitle { grid-column:1/-1; grid-row:2; margin-block:8px 16px; }
+  .about-page #history:has(#timelineList>article:only-child) .about-history-photo { grid-row:3; }
   .about-page #timelineList .about-product-milestone>div { grid-template-columns:minmax(0,1fr) 96px; }
   .products-page .product-opening>div>div:first-child { padding:48px 20px; }
+  .products-page #pageTitle { font-size:clamp(2.75rem,10.5vw,4rem); }
   .products-page .product-opening>div>div:last-child { min-height:300px; }
   .products-page .product-feature>div:not(.product-food-only) { padding:40px 20px; }
   .products-page .product-food-only { width:100%; min-height:0!important; aspect-ratio:4/5; margin-block:0; border-radius:0; box-shadow:none; }

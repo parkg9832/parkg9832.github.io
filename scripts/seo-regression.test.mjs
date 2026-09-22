@@ -24,6 +24,11 @@ for (const lang of ['ko', 'es', 'en']) {
       assert(doc.querySelector('#productDetailContent h1')?.textContent.trim(), `${lang}/${page}: missing product heading`);
       assert(doc.querySelector('.detail-inquiry a[href*="contact.html"]'), `${lang}/${page}: missing inquiry CTA`);
       assert.equal(doc.querySelectorAll('[data-detail-section="07"]').length, 1, `${lang}/${page}: verified testimonial panel missing`);
+      const pictures = [...doc.querySelectorAll('.detail-artwork img')];
+      assert(pictures.every(img => img.width === 900 && img.height > 0), 'Detail images must reserve layout space');
+      assert(pictures.slice(1).every(img => img.getAttribute('loading') === 'lazy'), 'Below-fold detail artwork must load on demand');
+      const inquiry = new URL(doc.querySelector('.detail-inquiry a').getAttribute('href'), 'https://www.mokda.kr');
+      assert.equal(inquiry.searchParams.get('product'), page === 'kpeno' ? 'original' : 'para-carnes', 'Inquiry must preserve the product accepted by the contact form');
     }
     if (page === 'qna') assert.equal(doc.querySelectorAll('#qnaList article').length, 5);
     if (page === 'contact') {

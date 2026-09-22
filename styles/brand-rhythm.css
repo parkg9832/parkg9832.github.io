@@ -53,6 +53,7 @@
 .home-page #proofHistoryCta { margin:0; border-radius:999px; }
 /* Quotes, FAQ and invitation each keep a distinct reading role. */
 .home-page #voices { background:var(--brand-paper); }
+.home-page #voices { padding-top:clamp(48px,5vw,72px); padding-bottom:clamp(48px,5vw,72px); }
 .home-page #voicesList.home-quotes-reading { gap:56px; }
 .home-page #voicesList.home-quotes-reading .voice-entry { background:transparent; border:0; border-top:1px solid #32150638; padding:28px 0 0; border-radius:0; }
 .home-page #voicesList blockquote { font-size:1.125rem; line-height:1.85; }

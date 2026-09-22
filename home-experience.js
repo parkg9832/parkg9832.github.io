@@ -41,7 +41,7 @@
   copy.pairTitle = approved.products.lineTitle;
   copy.pairLead = approved.salsa.description;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const foodPhotos = ['kpeno-food-product-20260922.webp', 'para-carnes-food-product-20260922.webp'];
+  const foodPhotos = ['kpeno-food-product-front-20260922.webp', 'para-carnes-food-product-front-20260922.webp'];
   const products = ['K-PEÑO', 'Para Carnes'];
   const anchors = ['original', 'para-carnes'];
 

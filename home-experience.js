@@ -78,7 +78,6 @@
 
   const voices = document.getElementById('voices');
   document.getElementById('proof').after(voices);
-  voices.after(document.getElementById('institutions'));
   document.querySelectorAll('#voicesList blockquote').forEach(quote => {
     const full = quote.textContent.replace(/^\s*“\s*/, '').trim();
     quote.textContent = full;

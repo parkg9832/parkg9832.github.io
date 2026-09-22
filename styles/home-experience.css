@@ -95,22 +95,19 @@
 .home-carousel-controls span { font-size: .75rem; min-width: 3rem; text-align: center; font-variant-numeric: tabular-nums; }
 .home-carousel-controls .home-carousel-pause { margin-left: .5rem; border: 0; }
 .home-carousel-controls button:disabled { opacity: .4; cursor: default; }
-.home-trial-reviews { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #32150624; color: #321506; overflow: hidden; }
-.home-trial-summary { display: flex; align-items: center; gap: .7rem; margin-bottom: 1rem; color: #75462d; font-size: .7rem; letter-spacing: .08em; }
-.home-trial-summary > span { color: #b43c08; letter-spacing: .09em; }
-.home-trial-summary strong { font-weight: 800; }
-.home-trial-summary em { font-style: normal; opacity: .7; }
+.home-trial-reviews { margin-top: clamp(3rem, 5vw, 4.5rem); margin-bottom: clamp(1.5rem, 3vw, 2.5rem); color: #321506; overflow: hidden; }
 .home-trial-track { display: flex; width: max-content; animation: home-review-marquee 46s linear infinite; will-change: transform; }
-.home-trial-group { display: flex; gap: .75rem; padding-right: .75rem; }
+.home-trial-group { display: flex; gap: 1rem; padding-right: 1rem; }
 .home-trial-track:hover,
 .home-trial-track:focus-within { animation-play-state: paused; }
-.home-trial-card { display: grid; grid-template-columns: 96px minmax(0,1fr); width: 292px; height: 132px; flex: 0 0 auto; border: 1px solid #32150620; background: #fffdf9; position: relative; border-radius: .2rem; overflow: hidden; }
-.home-trial-card > img { width: 96px; height: 132px; object-fit: cover; }
-.home-trial-card-body { min-width: 0; padding: .8rem .9rem; }
-.home-trial-card .home-eyebrow { overflow: hidden; font-size: .62rem; text-overflow: ellipsis; white-space: nowrap; }
-.home-trial-card blockquote { display: -webkit-box; margin-top: .35rem; overflow: hidden; color: #5a3826; font-size: .75rem; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-.home-review-author { margin-top: .45rem; overflow: hidden; color: #75462d; font-size: .65rem; text-overflow: ellipsis; white-space: nowrap; }
-.home-stars { margin-top: .25rem; color: #b43c08; font-size: .72rem; letter-spacing: .08em; }
+.home-trial-card { display: flex; width: 196px; height: 260px; flex: 0 0 auto; flex-direction: column; border: 1px solid #3215061c; background: #fffdf9; position: relative; border-radius: .55rem; overflow: hidden; box-shadow: 0 8px 24px rgba(50,21,6,.055); }
+.home-trial-card > img { width: 100%; height: 146px; object-fit: cover; }
+.home-trial-card-body { display: flex; min-width: 0; flex: 1; flex-direction: column; padding: .72rem .8rem .78rem; }
+.home-trial-card blockquote { display: -webkit-box; margin-top: .42rem; overflow: hidden; color: #5a3826; font-size: .68rem; line-height: 1.52; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.home-review-author { display: block; min-width: 0; margin-top: .34rem; line-height: 1.15; }
+.home-review-author strong { display: block; overflow: hidden; color: #321506; font-size: .65rem; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+.home-review-author span { display: block; margin-top: .14rem; overflow: hidden; color: #8a6956; font-size: .52rem; text-overflow: ellipsis; white-space: nowrap; }
+.home-stars { color: #b43c08; font-size: .7rem; line-height: 1; letter-spacing: .1em; }
 .home-preview-label { margin-top: 1rem; font-size: .9rem; border-left: 3px solid #321506; padding-left: .75rem; }
 .home-sample-label { display: block; margin-bottom: .35rem; color: #75462d; font-size: .6rem; }
 @keyframes home-review-marquee { to { transform: translateX(-50%); } }
@@ -154,11 +151,15 @@
   .home-page #voicesList .voice-entry > div:first-child > div > div > span { display: none; }
   .home-page #voicesList .voice-entry > div:first-child p { font-size: .75rem; line-height: 1.55; }
   .home-page #voicesList blockquote { font-size: 1rem; }
-  .home-trial-reviews { margin-top: 2rem; padding-top: 1.1rem; }
-  .home-trial-card { grid-template-columns: 82px minmax(0,1fr); width: 258px; height: 116px; }
-  .home-trial-card > img { width: 82px; height: 116px; }
-  .home-trial-card-body { padding: .7rem .75rem; }
-  .home-trial-card blockquote { font-size: .7rem; }
+  .home-trial-reviews { margin-top: 2.75rem; margin-bottom: 1.5rem; }
+  .home-trial-group { gap: .8rem; padding-right: .8rem; }
+  .home-trial-card { width: 176px; height: 236px; }
+  .home-trial-card > img { height: 128px; }
+  .home-trial-card-body { padding: .62rem .7rem .68rem; }
+  .home-trial-card blockquote { margin-top: .36rem; font-size: .65rem; line-height: 1.48; }
+  .home-review-author { margin-top: .28rem; }
+  .home-review-author strong { font-size: .62rem; }
+  .home-review-author span { margin-top: .12rem; font-size: .5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .home-page *, .home-page *::before, .home-page *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

@@ -13,7 +13,6 @@
     KR: {
       tabs: ['치킨 · 나초', '고기 · 바비큐', '밥 · 채소'],
       trials: '먹어본 사람들의 이야기', trialKicker: 'AT YOUR TABLE',
-      reviewSummary: '실제 시식 후기',
       preview: '디자인 미리보기 · 실제 후기가 아닙니다', sample: '예시 카드',
       sampleQuote: '이 자리에 실제 체험단의 후기와 음식 사진이 들어갑니다.',
       sampleTitle: ['한 입의 첫인상', '우리 집 식탁에서', '다시 곁들이고 싶은 맛'],
@@ -22,7 +21,6 @@
     ES: {
       tabs: ['Pollo · Nachos', 'Carne · BBQ', 'Arroz · Verduras'],
       trials: 'Historias desde la mesa', trialKicker: 'EN TU MESA',
-      reviewSummary: 'RESEÑAS REALES',
       preview: 'Vista previa de diseño · No son reseñas reales', sample: 'Tarjeta de ejemplo',
       sampleQuote: 'Aquí aparecerán una reseña real y la foto compartida por quien probó la salsa.',
       sampleTitle: ['La primera impresión', 'En nuestra mesa', 'Un sabor para repetir'],
@@ -31,7 +29,6 @@
     EN: {
       tabs: ['Chicken · Nachos', 'Meat · BBQ', 'Rice · Vegetables'],
       trials: 'Stories from the table', trialKicker: 'AT YOUR TABLE',
-      reviewSummary: 'REAL TASTING REVIEWS',
       preview: 'Design preview · These are not real reviews', sample: 'Sample card',
       sampleQuote: 'A real tasting review and a photo shared by the reviewer will appear here.',
       sampleTitle: ['A first impression', 'At our table', 'A taste to come back to'],
@@ -100,12 +97,14 @@
     section.className = 'home-trial-reviews';
     section.setAttribute('role', 'region');
     section.setAttribute('aria-label', copy.trials);
-    section.innerHTML = `<div class="home-trial-summary"><span aria-hidden="true">★★★★★</span><strong>${reviews.length} ${copy.reviewSummary}</strong>${isPreview ? `<em>${copy.preview}</em>` : ''}</div><div class="home-trial-track"></div>`;
+    section.innerHTML = `<div class="home-trial-track"></div>`;
     const track = section.querySelector('.home-trial-track');
     const reviewCards = reviews.map(item => {
       const rating = typeof item.rating === 'number' && Number.isInteger(item.rating) && item.rating >= 1 && item.rating <= 5 ? item.rating : null;
       const photo = typeof item.photo === 'string' && /^\/assets\/images\/[a-zA-Z0-9_./-]+$/.test(item.photo) && !item.photo.includes('..') ? item.photo : '';
-      return `<article class="home-trial-card">${photo ? `<img src="${escape(photo)}" alt="${escape(localText(item.product))}" loading="lazy">` : ''}<div class="home-trial-card-body">${item.sample ? `<span class="home-sample-label">${copy.sample}</span>` : ''}<p class="home-eyebrow">${escape(localText(item.product))}</p>${rating ? `<p class="home-stars" aria-label="${copy.rating} ${rating}"><span aria-hidden="true">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</span></p>` : ''}<blockquote>${escape(localText(item.quote))}</blockquote><p class="home-review-author">${escape(item.name)}</p></div></article>`;
+      const [reviewerName, ...reviewerMetaParts] = String(item.name || '').split(' · ');
+      const reviewerMeta = reviewerMetaParts.join(' · ');
+      return `<article class="home-trial-card">${photo ? `<img src="${escape(photo)}" alt="${escape(localText(item.product))}" loading="lazy">` : ''}<div class="home-trial-card-body">${item.sample ? `<span class="home-sample-label">${copy.sample}</span>` : ''}${rating ? `<p class="home-stars" aria-label="${copy.rating} ${rating}"><span aria-hidden="true">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</span></p>` : ''}<p class="home-review-author"><strong>${escape(reviewerName)}</strong>${reviewerMeta ? `<span>${escape(reviewerMeta)}</span>` : ''}</p><blockquote>${escape(localText(item.quote))}</blockquote></div></article>`;
     }).join('');
     track.innerHTML = `<div class="home-trial-group">${reviewCards}</div><div class="home-trial-group" aria-hidden="true">${reviewCards}</div>`;
     document.getElementById('voicesList').after(section);

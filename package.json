@@ -13,6 +13,7 @@
     "test:analytics": "node scripts/analytics-regression.test.mjs",
     "test:security": "node scripts/security-regression.test.mjs",
     "test:seo": "node scripts/seo-regression.test.mjs",
+    "test:seo:live": "node scripts/seo-live-audit.mjs",
     "test:navigation": "node scripts/navigation-regression.test.mjs",
     "test:integrity": "node scripts/site-integrity.test.mjs",
     "test:support-preview": "node scripts/support-preview-regression.test.mjs",

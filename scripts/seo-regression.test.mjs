@@ -3,11 +3,31 @@ import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
 
 const root = new URL('../', import.meta.url);
+const languages = { ko: 'ko-KR', es: 'es-419', en: 'en' };
+const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact'];
+const urlFor = (lang, page) => `https://www.mokda.kr/${lang}/${page === 'index' ? '' : `${page}.html`}`;
+const sitemap = await readFile(new URL('sitemap.xml', root), 'utf8');
+const robots = await readFile(new URL('robots.txt', root), 'utf8');
+assert.match(robots, /^Sitemap: https:\/\/www\.mokda\.kr\/sitemap\.xml\s*$/m);
+const listedUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+assert.equal(listedUrls.length, 21);
+assert.equal(new Set(listedUrls).size, listedUrls.length);
 for (const lang of ['ko', 'es', 'en']) {
-  for (const page of ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact']) {
+  for (const page of pages) {
     const html = await readFile(new URL(`${lang}/${page}.html`, root), 'utf8');
     const { window } = new JSDOM(html);
     const doc = window.document;
+    const canonical = urlFor(lang, page);
+    assert.equal(doc.documentElement.lang, languages[lang], `${lang}/${page}: html language`);
+    assert.equal(doc.querySelector('link[rel="canonical"]')?.href, canonical, `${lang}/${page}: canonical`);
+    assert.equal(doc.querySelector('meta[name="robots"]')?.content.includes('noindex'), false, `${lang}/${page}: unexpectedly noindex`);
+    assert(doc.querySelector('meta[name="description"]')?.content.trim(), `${lang}/${page}: description`);
+    assert(doc.title.trim(), `${lang}/${page}: title`);
+    for (const [alternateLang, hreflang] of Object.entries(languages)) {
+      assert.equal(doc.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`)?.href, urlFor(alternateLang, page), `${lang}/${page}: ${hreflang} alternate`);
+    }
+    assert.equal(doc.querySelector('link[rel="alternate"][hreflang="x-default"]')?.href, urlFor('es', page));
+    assert(listedUrls.includes(canonical), `${lang}/${page}: missing from sitemap`);
     assert.equal(doc.querySelectorAll('h1').length, 1);
     assert(doc.querySelector('h1').textContent.trim(), `${lang}/${page}: empty initial heading`);
     assert(doc.querySelector('main').textContent.trim().length > (page === 'kpeno' || page === 'para-carnes' ? 200 : 300));
@@ -40,4 +60,4 @@ for (const lang of ['ko', 'es', 'en']) {
     window.close();
   }
 }
-console.log('SEO regressions passed: 21 complete initial documents, real content, links, form options, no pre-bound animations.');
+console.log('SEO regressions passed: 21 complete localized documents, canonical/hreflang/sitemap consistency, content and crawlable links.');

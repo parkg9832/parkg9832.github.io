@@ -69,6 +69,10 @@ assert.match(secured, /script-src-attr 'none'/);
 assert.match(secured, /form-action 'none'/);
 assert.ok(!secured.match(/script-src [^;]*unsafe-/));
 assert.equal(secureHtml(secured), secured);
+const retiredPage = await readFile(new URL('coming-soon.html', root), 'utf8');
+assert.match(retiredPage, /name="robots" content="noindex,follow"/);
+assert.match(retiredPage, /rel="canonical" href="https:\/\/www\.mokda\.kr\/es\/"/);
+assert.doesNotMatch(retiredPage, /<script\b|cdn\.tailwindcss\.com/i, 'Retired page must not load an unpinned third-party script');
 for (const locale of ['ko', 'es', 'en']) for (const page of ['index', 'about', 'products', 'qna', 'contact']) {
   const built = await readFile(new URL(`${locale}/${page}.html`, root), 'utf8');
   assert.match(built, /Content-Security-Policy/);

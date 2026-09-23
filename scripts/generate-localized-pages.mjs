@@ -223,6 +223,9 @@ function localizeHtml(source, language, page) {
   html = html.replace(/(<meta\s+name="viewport"[^>]*>)/i, `$1\n    <base href="/" />\n    <meta name="mokda-route-language" content="${language}" />`);
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${metadata.title}</title>`);
   html = html.replace(/<meta(?:\s+id="[^"]+")?\s+name="description"[\s\S]*?\/\s*>/i, `    <meta name="description" content="${metadata.description}" />`);
+  if (!/<meta\s+name="robots"(?:\s|>)/i.test(html)) {
+    html = html.replace('  </head>', '    <meta name="robots" content="index, follow, max-image-preview:large" />\n  </head>');
+  }
   html = html.replace(/\s*<link\s+rel="alternate"\s+hreflang="[^"]+"[^>]*>/gi, '');
   html = html.replace(/<link\s+rel="canonical"[^>]*>/i, `<link rel="canonical" href="${canonical}" />\n${alternateLinks(page)}`);
   html = replaceMeta(html, 'property="og:locale"', config.og);

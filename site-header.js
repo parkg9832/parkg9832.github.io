@@ -837,7 +837,15 @@
       </nav>
     `;
 
-    const backgroundRegions = [...document.body.children].filter(element => element.matches('main,footer'));
+    // The home header lives inside <main>; never make the open menu's ancestor inert.
+    const backgroundRegions = [];
+    for (let branch = header; branch.parentElement; branch = branch.parentElement) {
+      const parent = branch.parentElement;
+      backgroundRegions.push(...[...parent.children].filter(element =>
+        element !== branch && element instanceof HTMLElement && !element.matches('script,style,link')
+      ));
+      if (parent === document.body) break;
+    }
     const priorInertState = new Map();
 
     function setMenuOpen(isOpen) {

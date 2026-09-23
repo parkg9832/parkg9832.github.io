@@ -41,7 +41,7 @@
   copy.pairTitle = approved.products.lineTitle;
   copy.pairLead = approved.salsa.description;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const foodPhotos = ['kpeno-food-product-front-20260922.webp', 'para-carnes-food-product-front-20260922.webp'];
+  const foodPhotos = ['kpeno-food-product-centered-20260922.webp', 'para-carnes-food-product-centered-20260922.webp'];
   const products = ['K-PEÑO', 'Para Carnes'];
   const anchors = ['original', 'para-carnes'];
 
@@ -58,7 +58,7 @@
     const food = document.createElement('img');
     food.src = '/assets/images/' + foodPhotos[i];
     food.alt = products[i] + ' · ' + copy.tabs[i];
-    food.width = 900; food.height = 900;
+    food.width = 960; food.height = 1280;
     food.loading = 'eager'; food.decoding = 'async';
     food.fetchPriority = i === 0 ? 'high' : 'auto';
     frame.replaceChildren(food);

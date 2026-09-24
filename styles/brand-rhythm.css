@@ -246,7 +246,6 @@
 .products-page #pageSlogan { font-size:clamp(1.3rem,2vw,1.85rem); max-width:22ch; margin-top:28px; }
 .products-page .product-opening img { object-position:62% center; }
 .products-page .product-opening>div>div:last-child>div { display:none; }
-.products-page main>section:nth-child(2) { padding:22px var(--brand-gutter); }
 .products-page .product-feature>div:not(.product-food-only) { padding:64px var(--brand-gutter); }
 .products-page .product-food-only { min-height:570px; }
 .products-page .product-feature h2 { font-size:clamp(2.7rem,4.8vw,4.3rem); letter-spacing:-.035em; line-height:1.04; }
@@ -258,7 +257,7 @@
 /* Five readable answers: no accordion interaction required. */
 .qna-page main { background:#fff8ef; }
 .qna-page .brand-grid-bg { background-image:none; }
-.qna-page .qna-opening { background:#fff8ef; color:#321506; padding:152px var(--brand-gutter) 48px; }
+.qna-page .qna-opening { background:#f8dfc4; color:#321506; padding:152px var(--brand-gutter) 48px; }
 .qna-page .qna-opening>div { max-width:var(--brand-width); text-align:left; }
 .qna-page .qna-opening [data-reveal] { max-width:none; margin:0; }
 .qna-page #pageKicker { font:700 .75rem/1.5 'Noto Sans','Noto Sans KR',sans-serif; letter-spacing:.1em; color:#a93600; }

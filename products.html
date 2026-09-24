@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-4SB6XRiMs2S8FrkpeMdS9eG0ek/X4OBxE6UrlVQTx5I='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-MKRfgem6+aoQ4N0Mv3YSH0K8f7D7bcyr7KOJCADoaGM='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -171,7 +171,7 @@
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="stylesheet" href="./styles/brand-rhythm.css?v=20260922-visual2" />
+    <link rel="stylesheet" href="./styles/brand-rhythm.css?v=20260923-layout1" />
   </head>
   <body class="product-page products-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
@@ -218,13 +218,6 @@
             <img src="assets/images/brand-story-seoul-kfood-table.webp" alt="Línea Salsa Coreana de MOKDA con tacos, pollo y salsas" class="absolute inset-0 h-full w-full object-cover object-center" fetchpriority="high" decoding="async" />
             <div class="absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-[#f7ddc2] to-transparent lg:block"></div>
           </div>
-        </div>
-      </section>
-
-      <section class="bg-[#321506] px-5 py-8 text-[#f8dfc4] sm:px-8 sm:py-10">
-        <div class="mx-auto flex max-w-7xl flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <p class="condensed-label text-base uppercase text-mokdaOrange sm:text-xl">MOKDA / Salsa Coreana</p>
-          <p id="productSummary" class="max-w-xl text-sm font-semibold leading-6 text-[#f8dfc4]/76">K-PEÑO · PARA CARNES</p>
         </div>
       </section>
 
@@ -297,7 +290,7 @@
       </footer>
 
     <script src="./site-i18n.js?v=20260922-audit1"></script>
-    <script src="./site-footer.js?v=20260914-3"></script>
+    <script src="./site-footer.js?v=20260923-legal1"></script>
     <script>
       let language = window.MOKDA_I18N.getLanguage();
 
@@ -305,7 +298,6 @@
         ES: {
           nav: { about: 'Sobre nosotros', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contacto' },
           socialTitle: 'REDES SOCIALES',
-          summary: 'K-PEÑO · PARA CARNES',
           title: "Salsa Coreana | Salsas MOKDA",
           kicker: "La primera línea de MOKDA",
           headline: "SALSA COREANA",
@@ -328,7 +320,6 @@
         EN: {
           nav: { about: 'About us', products: 'Salsa Coreana', qna: 'Q&A', contact: 'Contact' },
           socialTitle: 'SOCIAL',
-          summary: 'K-PEÑO · PARA CARNES',
           title: "Salsa Coreana | MOKDA Sauces",
           kicker: "MOKDA'S FIRST SAUCE LINE",
           headline: "SALSA COREANA",
@@ -351,7 +342,6 @@
         KR: {
           nav: { about: '브랜드 소개', products: 'Salsa Coreana', qna: 'Q&A', contact: '문의' },
           socialTitle: 'MOKDA SNS',
-          summary: 'K-PEÑO · PARA CARNES',
           title: "Salsa Coreana | MOKDA 한국 소스 라인업",
           kicker: "MOKDA의 첫 번째 소스 라인",
           headline: "SALSA COREANA",
@@ -396,7 +386,6 @@
         setText('pageTitle', t.headline);
         setText('pageSubtitle', t.subtitle);
         setText('pageSlogan', t.slogan);
-        setText('productSummary', t.summary);
         
         setText('prod1Kicker', t.p1.kicker);
         setText('prod1Title', t.p1.name);
@@ -447,7 +436,7 @@
         });
       });
     </script>
-    <script src="./site-header.js?v=20260922-visual2"></script>
+    <script src="./site-header.js?v=20260923-menu1"></script>
     <script src="./site-product-media.js?v=20260912-6"></script>
     <script src="./brand-motion.js?v=20260912-9" defer></script>
   </body>

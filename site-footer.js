@@ -72,6 +72,73 @@
     return Object.hasOwn(FOOTER_COPY, language) ? language : 'ES';
   }
 
+  const footerStyle = document.createElement('style');
+  footerStyle.textContent = `
+    #footerText .mokda-footer-legal {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);
+      gap: 32px 72px;
+      margin-top: 28px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 248, 239, .22);
+      text-align: left;
+    }
+    #footerText .mokda-footer-legal h2 {
+      margin: 0 0 14px;
+      color: #ef8954;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    #footerText .mokda-footer-company {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, max-content));
+      gap: 8px 24px;
+      margin: 0;
+    }
+    #footerText .mokda-footer-company > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 7px;
+      min-width: 0;
+      color: rgba(255, 248, 239, .77);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+    #footerText .mokda-footer-company > div:last-child { grid-column: 1 / -1; }
+    #footerText .mokda-footer-company dt { color: rgba(255, 248, 239, .5); font-weight: 500; }
+    #footerText .mokda-footer-company dd { margin: 0; overflow-wrap: anywhere; }
+    #footerText .mokda-footer-ip p {
+      max-width: 420px;
+      margin: 0;
+      color: rgba(255, 248, 239, .67);
+      font-size: 12px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+    #footerText .mokda-footer-copyright {
+      margin: 26px 0 0;
+      padding-top: 17px;
+      border-top: 1px solid rgba(255, 248, 239, .12);
+      color: rgba(255, 248, 239, .52);
+      font-size: 11px;
+      line-height: 1.5;
+      text-align: left;
+    }
+    @media (max-width: 1100px) {
+      #footerText .mokda-footer-legal { grid-template-columns: 1fr; gap: 25px; }
+    }
+    @media (max-width: 767px) {
+      #footerText .mokda-footer-legal { grid-template-columns: 1fr; gap: 25px; margin-top: 24px; padding-top: 25px; }
+      #footerText .mokda-footer-company { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 14px; }
+      #footerText .mokda-footer-company > div:nth-child(n + 3) { grid-column: 1 / -1; }
+      #footerText .mokda-footer-copyright { margin-top: 25px; }
+    }
+  `;
+  document.head.appendChild(footerStyle);
+
   function render(language) {
     const element = document.getElementById('footerText');
     if (!element) return;
@@ -87,38 +154,38 @@
       })
       .join('');
     element.innerHTML = `
-      <div class="space-y-4 text-center sm:space-y-5">
+      <div class="text-center">
         <nav aria-label="${footer.navigationLabel}" class="grid grid-cols-2 gap-x-3 gap-y-1 rounded-2xl bg-white/[0.035] p-2 text-[13px] sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-2 sm:px-6 sm:py-4 sm:text-sm">
           ${navigationLinks}
         </nav>
-        <div class="grid gap-4 lg:grid-cols-[1.55fr_0.85fr] lg:items-stretch">
-          <section class="rounded-2xl bg-white/[0.045] px-4 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
-            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">${footer.businessTitle}</h2>
-            <dl class="footer-company-grid mt-4 grid grid-cols-3 items-start gap-x-3 gap-y-4 sm:gap-x-6">
+        <div class="mokda-footer-legal">
+          <section class="mokda-footer-business">
+            <h2>${footer.businessTitle}</h2>
+            <dl class="mokda-footer-company">
               <div>
-                <dt class="mb-1 font-bold text-white/68">${footer.companyLabel}</dt>
-                <dd class="font-semibold text-white/82">${footer.company}</dd>
+                <dt>${footer.companyLabel}</dt>
+                <dd>${footer.company}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/68">${footer.ceoLabel}</dt>
-                <dd class="font-semibold text-white/82">${footer.ceo}</dd>
+                <dt>${footer.ceoLabel}</dt>
+                <dd>${footer.ceo}</dd>
               </div>
               <div>
-                <dt class="mb-1 font-bold text-white/68">${footer.registrationLabel}</dt>
-                <dd class="footer-registration font-semibold text-white/82">${footer.registration}</dd>
+                <dt>${footer.registrationLabel}</dt>
+                <dd>${footer.registration}</dd>
               </div>
-              <div class="col-span-3">
-                <dt class="mb-1 font-bold text-white/68">${footer.addressLabel}</dt>
-                <dd class="text-white/82">${footer.address}</dd>
+              <div>
+                <dt>${footer.addressLabel}</dt>
+                <dd>${footer.address}</dd>
               </div>
             </dl>
           </section>
-          <section class="flex flex-col justify-center rounded-2xl bg-white/[0.035] px-5 py-5 text-sm leading-6 text-white/70 sm:px-7 sm:py-6">
-            <h2 class="text-xs font-bold uppercase tracking-[0.12em] text-mokdaOrange">${footer.ipTitle}</h2>
-            <p class="mt-3 text-white/76">${footer.ip}</p>
+          <section class="mokda-footer-ip">
+            <h2>${footer.ipTitle}</h2>
+            <p>${footer.ip}</p>
           </section>
         </div>
-        <div class="pt-1 text-[11px] font-semibold text-white/66 sm:text-xs">${footer.copyright}</div>
+        <p class="mokda-footer-copyright">${footer.copyright}</p>
       </div>
     `;
   }

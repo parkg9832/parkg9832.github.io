@@ -546,32 +546,26 @@
 
       .mokda-nav-panel {
         position: absolute;
-        top: 80px;
+        top: 100%;
         right: 0;
         left: 0;
         z-index: 60;
-        display: block;
+        display: none;
         overflow: hidden;
         height: 132px;
         color: #fff8ef;
         background: #321506;
         border-top: 3px solid #ef5f18;
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-8px);
-        visibility: hidden;
-        transition:
-          opacity 220ms ease,
-          transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
-          visibility 0s linear 280ms;
       }
 
       .mokda-site-header.is-nav-open .mokda-nav-panel {
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateY(0);
-        visibility: visible;
-        transition-delay: 0s;
+        display: block;
+        animation: mokda-nav-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes mokda-nav-panel-in {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
       .mokda-nav-panel-inner {
@@ -678,6 +672,10 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .mokda-site-header.is-nav-open .mokda-nav-panel {
+        animation: none;
+      }
+
       .mokda-nav-panel,
       .mokda-nav-trigger::after,
       .mokda-nav-panel-link,

@@ -1,4 +1,3 @@
-// Editorial source. Manage locally with npm run manage:news.
 window.MOKDA_NEWS = {
   "publishedDate": "2026-10-07",
   "imageDescriptions": {
@@ -44,7 +43,7 @@ window.MOKDA_NEWS = {
       "category": "news",
       "location": "Lima, Perú",
       "publishedDate": "2026-10-07",
-      "image": "expo-people",
+      "image": "expo-booth",
       "gallery": [],
       "related": [
         "expoalimentaria-2026",
@@ -66,8 +65,8 @@ window.MOKDA_NEWS = {
       "KR": {
         "title": "KOTRA 해외시장뉴스에 소개된 MOKDA",
         "summary": "Expoalimentaria 2026 현장 기사에 MOKDA와 박겸 대표 인터뷰가 실렸습니다.",
-        "imageAlt": "Expoalimentaria 2026 MOKDA 부스에서 방문객과 함께한 박겸 대표와 소스 제품",
-        "imageCaption": "Expoalimentaria 2026의 MOKDA 부스에서 촬영한 현장 사진입니다.",
+        "imageAlt": "Expoalimentaria 2026의 MOKDA 부스 전체와 Salsa Coreana 제품 진열",
+        "imageCaption": "자료사진: Expoalimentaria 2026의 MOKDA 부스.",
         "sections": [
           [
             "박람회에서 전한 MOKDA 이야기",
@@ -78,8 +77,8 @@ window.MOKDA_NEWS = {
       "ES": {
         "title": "MOKDA en una entrevista de KOTRA",
         "summary": "El reportaje de Expoalimentaria 2026 incluye a MOKDA y una entrevista con su fundador, Gyeom Park.",
-        "imageAlt": "Gyeom Park con una visitante y las salsas en el stand de MOKDA en Expoalimentaria 2026",
-        "imageCaption": "Foto del stand de MOKDA durante Expoalimentaria 2026.",
+        "imageAlt": "El stand de MOKDA y la presentación de Salsa Coreana en Expoalimentaria 2026",
+        "imageCaption": "Foto de archivo: el stand de MOKDA en Expoalimentaria 2026.",
         "sections": [
           [
             "MOKDA desde la feria",
@@ -90,8 +89,8 @@ window.MOKDA_NEWS = {
       "EN": {
         "title": "MOKDA featured in a KOTRA interview",
         "summary": "KOTRA’s Expoalimentaria 2026 report features MOKDA and an interview with founder Gyeom Park.",
-        "imageAlt": "Gyeom Park with a visitor and sauces at the MOKDA booth at Expoalimentaria 2026",
-        "imageCaption": "A photograph from the MOKDA booth at Expoalimentaria 2026.",
+        "imageAlt": "The MOKDA booth and Salsa Coreana display at Expoalimentaria 2026",
+        "imageCaption": "Archive photograph: the MOKDA stand at Expoalimentaria 2026.",
         "sections": [
           [
             "MOKDA’s story from the fair",
@@ -180,7 +179,16 @@ window.MOKDA_NEWS = {
       "homeFeatured": true,
       "homeOrder": 1,
       "videoPoster": "expo-video",
-      "videoDescriptions": {"KR":"MOKDA 부스 방문객과 제품을 들고 함께한 현장 영상", "ES":"Un video de una visita al stand de MOKDA", "EN":"A video of visitors at the MOKDA booth"}
+      "videoDescriptions": {
+        "KR": "MOKDA 부스 방문객과 제품을 들고 함께한 현장 영상",
+        "ES": "Un video de una visita al stand de MOKDA",
+        "EN": "A video of visitors at the MOKDA booth"
+      },
+      "cardTitles": {
+        "ES": "Expoalimentaria 2026",
+        "KR": "Expoalimentaria 2026",
+        "EN": "Expoalimentaria 2026"
+      }
     },
     {
       "id": "kpop-style",
@@ -232,7 +240,16 @@ window.MOKDA_NEWS = {
       "homeFeatured": true,
       "homeOrder": 2,
       "videoPoster": "kpop-video",
-      "videoDescriptions": {"KR":"KPOP STYLE 무대에서 관객들에게 인사하는 MOKDA의 영상", "ES":"MOKDA saluda al público desde el escenario de KPOP STYLE", "EN":"MOKDA greeting the audience from the KPOP STYLE stage"}
+      "videoDescriptions": {
+        "KR": "KPOP STYLE 무대에서 관객들에게 인사하는 MOKDA의 영상",
+        "ES": "MOKDA saluda al público desde el escenario de KPOP STYLE",
+        "EN": "MOKDA greeting the audience from the KPOP STYLE stage"
+      },
+      "cardTitles": {
+        "ES": "KPOP STYLE",
+        "KR": "KPOP STYLE",
+        "EN": "KPOP STYLE"
+      }
     },
     {
       "id": "kotra-lima",
@@ -355,7 +372,12 @@ window.MOKDA_NEWS = {
       "homeFeatured": true,
       "homeOrder": 3,
       "videoAsCover": true,
-      "videoPoster": "congreso-video"
+      "videoPoster": "congreso-video",
+      "cardTitles": {
+        "ES": "En el canal del Congreso",
+        "KR": "페루 국회방송에 소개된 MOKDA",
+        "EN": "On Peru’s Congress TV"
+      }
     },
     {
       "id": "creators",
@@ -444,14 +466,14 @@ window.MOKDA_NEWS = {
   "copy": {
     "ES": {
       "title": "Novedades MOKDA",
-      "intro": "Ferias, actividades de la marca, medios y colaboraciones. Las historias de MOKDA, en un solo lugar.",
-      "homeTitle": "MOKDA en movimiento",
+      "intro": "Eventos, medios y colaboraciones.",
+      "homeTitle": "Novedades",
       "kicker": "NOVEDADES",
       "all": "Todo",
       "news": "Noticias y medios",
       "events": "Eventos",
       "collaborations": "Colaboraciones",
-      "viewAll": "Ver todas las novedades",
+      "viewAll": "Ver todo",
       "read": "Leer más",
       "more": "Más historias",
       "creatorsTitle": "MOKDA × creadores",
@@ -462,7 +484,7 @@ window.MOKDA_NEWS = {
       "openVideo": "Abrir video",
       "date": "Publicado",
       "event": "Evento",
-      "sources": "Publicaciones originales",
+      "sources": "Fuentes",
       "photos": "En imágenes",
       "back": "Todas las novedades",
       "products": "Descubre Salsa Coreana",
@@ -492,14 +514,14 @@ window.MOKDA_NEWS = {
     },
     "KR": {
       "title": "MOKDA 소식",
-      "intro": "박람회, 브랜드 활동, 미디어와 협업. MOKDA의 이야기를 모았습니다.",
-      "homeTitle": "MOKDA가 만나는 세상",
+      "intro": "행사, 미디어, 콜라보 이야기.",
+      "homeTitle": "MOKDA 소식",
       "kicker": "MOKDA 소식",
       "all": "전체",
       "news": "소식·미디어",
       "events": "행사",
       "collaborations": "콜라보",
-      "viewAll": "모든 소식 보기",
+      "viewAll": "전체 보기",
       "read": "자세히 보기",
       "more": "다른 소식",
       "creatorsTitle": "MOKDA × 크리에이터",
@@ -510,7 +532,7 @@ window.MOKDA_NEWS = {
       "openVideo": "영상 직접 열기",
       "date": "게시일",
       "event": "행사일",
-      "sources": "출처 및 보도",
+      "sources": "출처",
       "photos": "사진으로 보는 현장",
       "back": "모든 소식",
       "products": "Salsa Coreana 알아보기",
@@ -540,14 +562,14 @@ window.MOKDA_NEWS = {
     },
     "EN": {
       "title": "MOKDA Updates",
-      "intro": "Trade shows, brand activities, media and collaborations. Explore MOKDA’s stories in one place.",
-      "homeTitle": "MOKDA in motion",
+      "intro": "Events, media and collaborations.",
+      "homeTitle": "Latest from MOKDA",
       "kicker": "UPDATES",
       "all": "All",
       "news": "News & Media",
       "events": "Events",
       "collaborations": "Collaborations",
-      "viewAll": "View all updates",
+      "viewAll": "View all",
       "read": "Read the story",
       "more": "More stories",
       "creatorsTitle": "MOKDA × creators",
@@ -589,5 +611,37 @@ window.MOKDA_NEWS = {
   },
   "settings": {
     "homeCreators": false
+  },
+  "imageCaptions": {
+    "expo-booth": {
+      "ES": "El stand de MOKDA",
+      "KR": "MOKDA 부스",
+      "EN": "The MOKDA stand"
+    },
+    "expo-products": {
+      "ES": "Salsa Coreana en la feria",
+      "KR": "현장에서 소개한 Salsa Coreana",
+      "EN": "Salsa Coreana at the fair"
+    },
+    "expo-interview": {
+      "ES": "Una entrevista en el stand",
+      "KR": "부스 인터뷰",
+      "EN": "An interview at the stand"
+    },
+    "expo-visitors": {
+      "ES": "Con visitantes de la feria",
+      "KR": "박람회 방문객과 함께",
+      "EN": "With visitors at the fair"
+    },
+    "expo-venue": {
+      "ES": "Expoalimentaria, Lima",
+      "KR": "Expoalimentaria, 리마",
+      "EN": "Expoalimentaria, Lima"
+    },
+    "kpop-crowd": {
+      "ES": "En el escenario de KPOP STYLE",
+      "KR": "KPOP STYLE 무대에서",
+      "EN": "On stage at KPOP STYLE"
+    }
   }
 };

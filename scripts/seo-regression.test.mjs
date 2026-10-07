@@ -33,7 +33,28 @@ for (const lang of ['ko', 'es', 'en']) {
     assert(listedUrls.includes(canonical), `${lang}/${page}: missing from sitemap`);
     assert.equal(doc.querySelectorAll('h1').length, 1);
     assert(doc.querySelector('h1').textContent.trim(), `${lang}/${page}: empty initial heading`);
-    assert(doc.querySelector('main').textContent.trim().length > (page === 'kpeno' || page === 'para-carnes' ? 200 : 300));
+    if (page === 'news') {
+      // A concise archive needs crawlable stories rather than filler to reach a text quota.
+      const cards = [...doc.querySelectorAll('[data-news-card]')];
+      assert.equal(cards.length, newsData.stories.length, `${lang}/${page}: complete archive`);
+      for (const story of newsData.stories) {
+        const card = cards.find(card => card.dataset.newsCard === story.id);
+        assert.equal(card?.querySelector('h3')?.textContent, story[{ko:'KR',es:'ES',en:'EN'}[lang]].title);
+        assert.equal(card.querySelector('a').getAttribute('href'), `/${lang}/news-${story.id}.html`);
+      }
+    } else if (page.startsWith('news-')) {
+      const story = newsData.stories.find(story => `news-${story.id}` === page);
+      const content = story[{ko:'KR',es:'ES',en:'EN'}[lang]];
+      assert.equal(doc.querySelector('h1').textContent, content.title);
+      if (story.id === 'creators') {
+        assert.equal(doc.querySelectorAll('[data-news-video]').length, newsData.creators.length, 'Crawlable video collection');
+      } else {
+        const paragraphs = [...doc.querySelectorAll('.news-article-body > p')].map(p => p.textContent);
+        for (const [, body] of content.sections) assert(paragraphs.includes(body), `${lang}/${page}: factual article content`);
+      }
+    } else {
+      assert(doc.querySelector('main').textContent.trim().length > (page === 'kpeno' || page === 'para-carnes' ? 200 : 300));
+    }
     assert(doc.querySelector('#footerText a[href]'), 'Crawlable footer links');
     assert.equal(doc.querySelectorAll('[data-reveal-bound]').length, 0);
     for (const block of doc.querySelectorAll('script[type="application/ld+json"]')) JSON.parse(block.textContent);

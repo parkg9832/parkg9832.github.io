@@ -37,7 +37,7 @@
         label: 'CONTACTO',
         links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact']]
       },
-      news: { label: 'NOVEDADES', links: [['Todas las novedades', ''], ['Noticias y medios', 'news'], ['Eventos', 'events'], ['Colaboraciones', 'collaborations']] },
+      news: { label: 'NOVEDADES', links: [['Todas las novedades', '']] },
       navigation: 'Navegación principal',
       menuLabel: 'MENÚ',
       openMenu: 'Abrir menú',
@@ -56,7 +56,7 @@
         label: '문의',
         links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact']]
       },
-      news: { label: 'MOKDA 소식', links: [['모든 소식', ''], ['소식·미디어', 'news'], ['행사', 'events'], ['콜라보', 'collaborations']] },
+      news: { label: 'MOKDA 소식', links: [['모든 소식', '']] },
       navigation: '주요 메뉴',
       menuLabel: 'MENU',
       openMenu: '메뉴 열기',
@@ -75,7 +75,7 @@
         label: 'CONTACT',
         links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact']]
       },
-      news: { label: 'UPDATES', links: [['All updates', ''], ['News & Media', 'news'], ['Events', 'events'], ['Collaborations', 'collaborations']] },
+      news: { label: 'UPDATES', links: [['All updates', '']] },
       navigation: 'Primary navigation',
       menuLabel: 'MENU',
       openMenu: 'Open menu',
@@ -722,7 +722,7 @@
   function groupHref(group, target) {
     if (group.key === 'news') {
       const href = window.MOKDA_I18N?.getLocalizedPath(window.MOKDA_I18N.getLanguage(), '/news.html') || 'news.html';
-      return target ? `${href}?category=${target}` : href;
+      return href;
     }
     if (group.key === 'brand') return addHash(hrefs.about, target);
     if (group.key === 'products') return addHash(hrefs.products, target);

@@ -10,9 +10,9 @@
       '#proof>div>div:first-child', '#proofCarouselTrack>figure',
     ],
     'about-page': [
-      '.about-opening-copy', '.about-opening-photo', '#storyTitle', '#storyBody',
-      '.about-story-figure', '#identity figure', '#motiveBody', '#historyTitle',
-      '.about-history-photo', '#products-transition>div',
+      '.about-opening-copy', '.about-opening-scenes', '.about-chapter-heading', '#storyBody',
+      '.about-story-figure', '.about-food-pair', '#identity figure', '#motiveBody',
+      '.about-journey-card', '#products-transition>div',
     ],
     'products-page': ['.product-opening>div>div:first-child', '.product-feature>div'],
     'qna-page': ['.qna-opening [data-reveal]', '.qna-reading-item'],
@@ -30,9 +30,9 @@
       if (!entry.isIntersecting) continue;
       observer.unobserve(entry.target);
       if (reduced.matches || document.body.classList.contains('motion-paused')) continue;
-      const photo = entry.target.matches('figure,.home-product-panel,.about-opening-photo');
+      const photo = entry.target.matches('figure,.home-product-panel,.about-opening-scenes,.about-food-pair,.about-journey-card');
       const animation = entry.target.animate(
-        [{ opacity: photo ? .78 : .88, transform: `translateY(${photo ? 14 : 8}px)` },
+        [{ opacity: photo ? .92 : .88, transform: `translateY(${photo ? 12 : 8}px)` },
           { opacity: 1, transform: 'translateY(0)' }],
         { duration: photo ? 580 : 420, easing: 'cubic-bezier(.22,1,.36,1)' },
       );

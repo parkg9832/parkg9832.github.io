@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-JEmmf8EQHN3NGk3bXJFquTQqEhCx7D48sny9Si//Itg=' 'sha256-szpx5SE5gw37taTAh3Jk45DyvXQp7XnAz1LTdbKcSNE=' 'sha256-g9VsMUdlJpF1D1ky2pVWPjJp1kPS9e0vylQXOrAmSTA='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-JEmmf8EQHN3NGk3bXJFquTQqEhCx7D48sny9Si//Itg=' 'sha256-szpx5SE5gw37taTAh3Jk45DyvXQp7XnAz1LTdbKcSNE=' 'sha256-g8AuD6hLplc9i3+1uofxJeAIrr/yXQYZBZlbpRissn0='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -294,11 +294,11 @@
       }
     </style>
     <link rel="stylesheet" href="./styles/site-typography.css?v=20260922-audit1" />
-    <link rel="stylesheet" href="./styles/about-experience.css?v=20260911-4" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="stylesheet" href="./styles/brand-rhythm.css?v=20260923-layout1" />
+    <link rel="stylesheet" href="./styles/brand-rhythm.css?v=20261007-centered" />
+    <link rel="stylesheet" href="./styles/about-experience.css?v=20261007-chapters" />
   </head>
   <body class="about-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed left-0 top-0 z-50 h-20 w-full bg-transparent transition-all duration-300">
@@ -339,74 +339,75 @@
             <p id="heroLine2" class="display-korean"></p>
             <p id="heroBody"></p>
           </div>
-          <figure class="about-opening-photo">
-            <img src="./assets/images/field-chili-1080.webp" alt="MOKDA visiting a chili farm in Korea" width="1071" height="1428" loading="eager" fetchpriority="high" decoding="async" />
+          <div class="about-opening-scenes">
+            <figure class="about-opening-photo">
+              <picture><source media="(max-width:767px)" srcset="./assets/images/field-chili-720.webp" /><img src="./assets/images/field-chili-1080.webp" alt="MOKDA visiting a chili farm in Korea" width="1071" height="1428" fetchpriority="high" decoding="async" /></picture>
+            </figure>
+            <figure class="about-opening-market">
+              <picture><source media="(max-width:767px)" srcset="./assets/images/news/expo-people-640.webp" /><img src="./assets/images/news/expo-people.webp" alt="MOKDA at Expoalimentaria 2026 in Peru" width="1200" height="900" decoding="async" /></picture>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal>
+            <p id="storyKicker" class="condensed-label"></p>
+            <h2 id="storyTitle"></h2>
+          </header>
+          <div id="storyBody" class="about-centered-copy" data-reveal></div>
+          <figure class="about-story-figure" data-reveal>
+            <picture><source media="(max-width:767px)" srcset="./assets/images/field-meeting-720.webp" /><img src="./assets/images/field-meeting-1440.webp" alt="MOKDA preparing for international expansion at a meeting in Korea" width="1440" height="810" loading="lazy" decoding="async" /></picture>
           </figure>
         </div>
       </section>
 
-      <section id="story" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto w-full max-w-6xl">
-          <div class="about-story-grid grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
-            <figure data-reveal class="about-story-figure">
-              <div class="about-story-media relative aspect-[4/5] overflow-hidden bg-[#f7ddc2]">
-                <picture>
-                  <source media="(max-width: 767px)" srcset="./assets/images/field-meeting-720.webp" />
-                  <img src="./assets/images/field-meeting-1440.webp" alt="MOKDA preparing for international expansion at a meeting in Korea" width="1440" height="810" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy" />
-                </picture>
-              </div>
-            </figure>
-
-            <div data-reveal style="--reveal-delay: 100ms" class="about-story-copy pt-1 lg:pt-6">
-              <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-lg"></p>
-              <h2 id="storyTitle" class="max-w-xl break-keep text-pretty text-[1.75rem] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
-              <div class="my-8 h-0.5 w-12 bg-mokdaOrange sm:my-10"></div>
-              <div id="storyBody" class="story-copy max-w-xl break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"></div>
-            </div>
+      <section id="direction" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal>
+            <p id="directionKicker" class="condensed-label"></p>
+            <h2 id="directionTitle"></h2>
+          </header>
+          <p id="missionBody" class="about-centered-copy" data-reveal></p>
+          <div class="about-food-pair" data-reveal>
+            <img src="./assets/images/kpeno-food-product-centered-20260922.webp" alt="MOKDA K-PEÑO with food" width="960" height="1280" loading="lazy" decoding="async" />
+            <img src="./assets/images/para-carnes-food-product-centered-20260922.webp" alt="MOKDA Para Carnes with grilled meat" width="960" height="1280" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
 
-      <section id="identity" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
-          <figure data-reveal class="surface-depth flex min-h-[300px] items-center justify-center overflow-hidden bg-[#321506] p-8 sm:min-h-[390px] sm:p-12">
-            <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="about-identity-logo h-auto w-full max-w-[430px] object-contain" />
-          </figure>
-          <div data-reveal style="--reveal-delay: 120ms">
-            <p id="logoKicker" class="condensed-label text-base uppercase text-[#b73500] sm:text-lg"></p>
-            <h2 id="logoTitle" class="mt-5 max-w-xl break-keep text-pretty text-3xl font-extrabold leading-[1.18] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]"></h2>
-            <div class="mt-8 h-0.5 w-12 bg-mokdaOrange"></div>
-            <div id="motiveBody" class="mt-8 max-w-xl space-y-5 break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"></div>
-          </div>
+      <section id="identity" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal>
+            <p id="logoKicker" class="condensed-label"></p>
+            <h2 id="logoTitle"></h2>
+          </header>
+          <figure data-reveal><img src="./assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="about-identity-logo" width="500" height="500" loading="lazy" decoding="async" /></figure>
+          <div id="motiveBody" class="about-centered-copy" data-reveal></div>
         </div>
       </section>
 
-      <section id="history" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div class="mx-auto w-full max-w-7xl">
-          <div data-reveal class="mb-10 max-w-5xl sm:mb-14">
-            <p id="historyKicker" class="condensed-label mb-4 text-base uppercase text-[#b73500] sm:text-xl"></p>
-            <h2 id="historyTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]"></h2>
-            <figure class="about-history-photo">
-              <img src="./assets/images/field-manufacturing-lab-3x4-20260922.webp" alt="MOKDA — visita a una planta de producción" loading="lazy" width="960" height="1280" />
-            </figure>
-          </div>
-          <div id="timelineList" class="border-b border-[#321506]/18"></div>
+      <section id="history" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal>
+            <p id="historyKicker" class="condensed-label"></p>
+            <h2 id="historyTitle"></h2>
+          </header>
+          <div id="journeyHighlights" class="about-journey-highlights"></div>
+          <details class="about-history-records">
+            <summary id="historyRecordsTitle"></summary>
+            <div id="timelineList"></div>
+          </details>
         </div>
       </section>
 
-      <section id="products-transition" class="scroll-mt-24 bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8">
-        <div class="mx-auto grid w-full max-w-6xl items-end gap-9 md:grid-cols-[minmax(0,1fr)_auto] md:gap-16">
-          <div data-reveal>
-            <p id="productCtaKicker" class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg"></p>
-            <h2 id="productCtaTitle" class="mt-4 max-w-3xl break-keep text-pretty text-3xl font-extrabold leading-[1.16] tracking-[-0.03em] sm:text-4xl lg:text-5xl"></h2>
-            <p id="productCtaBody" class="mt-5 max-w-2xl break-keep text-pretty text-base font-medium leading-8 text-[#f8dfc4]/76 sm:text-lg"></p>
-          </div>
-          <a href="products.html" class="group inline-flex min-h-12 w-fit items-center gap-3 rounded-full bg-mokdaOrange px-6 py-3 font-extrabold text-white transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#321506]">
-            <span id="productCtaButton"></span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-none stroke-current stroke-2 transition-transform duration-300 group-hover:translate-x-1">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </a>
+      <section id="products-transition" class="about-chapter">
+        <div data-reveal>
+          <p id="productCtaKicker" class="condensed-label"></p>
+          <h2 id="productCtaTitle"></h2>
+          <p id="productCtaBody" class="about-centered-copy"></p>
+          <a href="products.html" class="about-product-cta"><span id="productCtaButton"></span><span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -440,7 +441,7 @@
       </footer>
     </main>
 
-    <script src="./site-i18n.js?v=20261007-news"></script>
+    <script src="./site-i18n.js?v=20261007-links"></script>
     <script src="./site-footer.js?v=20261007-news"></script>
     <script>
       const pageCopy = {
@@ -669,6 +670,12 @@
         setText('heroLine1', copy.hero.line1);
         setText('heroLine2', copy.hero.line2);
         setText('heroBody', copy.hero.body);
+        const imageAlts = {
+          KR: ['한국의 고추밭을 방문한 MOKDA', '페루 Expoalimentaria 2026의 MOKDA와 Salsa Coreana', '한국에서 해외 진출을 준비하는 MOKDA의 업무 미팅', 'K-PEÑO와 함께한 음식', '구운 고기와 Para Carnes', 'MOKDA 로고와 한글 먹다'],
+          ES: ['MOKDA visitando un campo de chiles en Corea', 'MOKDA y Salsa Coreana en Expoalimentaria 2026, Perú', 'Reunión de MOKDA en Corea para preparar su expansión internacional', 'Comida con K-PEÑO', 'Carne asada con Para Carnes', 'Logotipo MOKDA y su nombre en coreano'],
+          EN: ['MOKDA visiting a chili farm in Korea', 'MOKDA and Salsa Coreana at Expoalimentaria 2026 in Peru', 'MOKDA preparing for international expansion at a meeting in Korea', 'Food paired with K-PEÑO', 'Grilled meat with Para Carnes', 'MOKDA logo and its Korean name'],
+        }[language];
+        document.querySelectorAll('#top img, #story img, #direction img, #identity img').forEach((image, i) => { image.alt = imageAlts[i]; });
         setText('storyKicker', copy.story.kicker);
         setText('storyTitle', copy.story.title);
         setHTML(
@@ -686,7 +693,7 @@
         setHTML('motiveBody', copy.logo.motiveBody.map((item) => `<p>${item}</p>`).join(''));
         setText('historyKicker', copy.history.kicker);
         setText('historyTitle', copy.history.title);
-        document.querySelector('.about-history-photo img').alt = language === 'KR' ? 'MOKDA 생산 시설 방문' : language === 'EN' ? 'MOKDA visiting a production facility' : 'MOKDA — visita a una planta de producción';
+
         setText('productCtaKicker', copy.productCta.kicker);
         setText('productCtaTitle', copy.productCta.title);
         setText('productCtaBody', copy.productCta.body);
@@ -698,44 +705,15 @@
           heading.classList.toggle('display-korean', usesKoreanDisplay);
           heading.classList.toggle('display-latin', !usesKoreanDisplay);
         });
-        setHTML(
-          'timelineList',
-          copy.history.years
-            .map(
-              (group, index) => `
-                <article class="grid gap-5 overflow-visible border-t border-[#321506]/18 py-7 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
-                  <div class="sm:pt-1">
-                    <p class="display-latin whitespace-nowrap text-6xl leading-none text-[#d94a00] sm:text-7xl lg:text-[5.5rem] xl:text-8xl">${group.year}</p>
-                  </div>
-                  <div class="divide-y divide-[#321506]/14 border-y border-[#321506]/14 sm:border-t-0">
-                    ${group.items
-                      .map(
-                        (item, itemIndex) => `
-                          <div class="about-timeline-item${item.detail === 'K-Peño / Para Carnes' ? ' about-product-milestone' : ''}${itemIndex === 0 || item.month !== group.items[itemIndex - 1]?.month ? ' about-month-start' : ''} grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm${
-                              itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month ? ' is-empty' : ''
-                            }">${
-                              typeof item === 'string'
-                                ? String(itemIndex + 1).padStart(2, '0')
-                                : itemIndex > 0 && item.month === group.items[itemIndex - 1]?.month
-                                  ? ''
-                                  : item.month || String(itemIndex + 1).padStart(2, '0')
-                            }</span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">${typeof item === 'string' ? item : item.text}</p>
-                              ${typeof item === 'string' || !(item.detail || item.amount) ? '' : `<p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(${item.detail || item.amount})</p>`}
-                              ${item.detail === 'K-Peño / Para Carnes' ? '<img class="about-prototypes" src="./assets/images/mokda-studio-pair-480.webp" alt="K-Peño / Para Carnes" loading="lazy" width="1254" height="1254" />' : ''}
-                            </div>
-                          </div>
-                        `,
-                      )
-                      .join('')}
-                  </div>
-                </article>
-              `,
-            )
-            .join(''),
-        );
+        const journeyCopy = {
+          KR: { records: '2026년 자세한 기록 보기', labels: ['제품을 준비하는 과정', '첫 번째 Salsa Coreana', '페루에서 만난 사람들'], dates: ['제품 개발', '2026.08', '2026.09'], notes: ['생산 시설을 방문하며 소스의 제조 과정을 살폈습니다.', 'K-PEÑO와 Para Carnes, 두 가지 시제품을 선보였습니다.', 'Expoalimentaria에서 바이어들과 MOKDA의 소스를 나눴습니다.'] },
+          ES: { records: 'Ver la trayectoria completa de 2026', labels: ['Preparar el producto', 'La primera Salsa Coreana', 'Encuentros en Perú'], dates: ['Desarrollo de producto', '2026.08', '2026.09'], notes: ['Visitas a instalaciones de producción para conocer el proceso de las salsas.', 'Presentación de dos prototipos: K-PEÑO y Para Carnes.', 'MOKDA compartió sus salsas con compradores en Expoalimentaria.'] },
+          EN: { records: 'Explore the full 2026 record', labels: ['Preparing the product', 'The first Salsa Coreana', 'Meeting people in Peru'], dates: ['Product development', '2026.08', '2026.09'], notes: ['Visits to production facilities to learn about the sauce-making process.', 'Two prototypes introduced: K-PEÑO and Para Carnes.', 'MOKDA shared its sauces with buyers at Expoalimentaria.'] },
+        }[language];
+        setText('historyRecordsTitle', journeyCopy.records);
+        const journeyImages = ['field-manufacturing-lab-3x4-20260922.webp', 'mokda-studio-pair-480.webp', 'news/expo-visitors.webp'];
+        setHTML('journeyHighlights', journeyImages.map((image, i) => `<article class="about-journey-card"><figure><img src="./assets/images/${image}" alt="${journeyCopy.labels[i]}" loading="lazy" decoding="async" /></figure><div><p class="condensed-label">${journeyCopy.dates[i]}</p><h3>${journeyCopy.labels[i]}</h3><p>${journeyCopy.notes[i]}</p></div></article>`).join(''));
+        setHTML('timelineList', copy.history.years.map(group => `<article class="about-record-year"><h3>${group.year}</h3><ol>${group.items.map(item => `<li class="about-timeline-item"><span class="timeline-month">${group.year}.${item.month}</span><div><p>${item.text}</p>${item.detail ? `<p>${item.detail}</p>` : ''}</div></li>`).join('')}</ol></article>`).join(''));
         window.MOKDA_FOOTER.render(language);
         window.MOKDA_I18N.syncLanguageButtons(language);
         refreshRevealTargets();
@@ -771,7 +749,7 @@
 
       renderPage();
     </script>
-    <script src="./site-header.js?v=20261007-news"></script>
-    <script src="./brand-motion.js?v=20261007-news" defer></script>
+    <script src="./site-header.js?v=20261007-editorial"></script>
+    <script src="./brand-motion.js?v=20261007-chapters" defer></script>
   </body>
 </html>

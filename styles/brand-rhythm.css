@@ -333,3 +333,24 @@
 @media(prefers-reduced-motion:reduce) {
   .about-page #timelineList .timeline-month,.home-page .home-product-image>img { transition:none; }
 }
+
+/* Section introductions use centered alignment by default. */
+.home-page .home-products-heading { display:block; text-align:center; max-width:860px; margin-inline:auto; }
+.home-page .home-lineup-lead { max-width:720px; margin:20px auto 0; padding:0; }
+.home-page .home-product-copy { text-align:center; }
+.home-page .home-product-label { justify-content:center; }
+.home-page #proof>div { display:flex; flex-direction:column; gap:36px; }
+.home-page #proof>div>div:first-child { text-align:center; max-width:800px; padding:0; margin:auto; }
+.home-page #proofTitle { margin-inline:auto; }
+.home-page #storyBody { margin-inline:auto; max-width:720px; }
+.home-page #field-story { width:100%; max-width:760px; margin:auto; }
+.home-page #proofCarouselTrack { gap:24px; }
+.home-page #proofCarouselTrack>figure { aspect-ratio:3/4; border-radius:12px; }
+.home-page #faq>div { display:block; max-width:860px; }
+.home-page #faq>div>div:first-child { position:static; text-align:center; margin-bottom:36px; }
+.home-page #faqTitle { text-align:center; margin-inline:auto; }
+.home-page #faqCta { margin-inline:auto; }
+.home-page #contact>div { display:block; text-align:center; }
+.home-page #contact>div>div,.home-page #b2bTitle,.home-page #b2bDescription { text-align:center; margin-inline:auto; }
+.home-page #contact>div>div:first-child { margin-bottom:28px; }
+.home-page #voicesTitle { text-align:center; max-width:none; }

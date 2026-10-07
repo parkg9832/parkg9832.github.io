@@ -26,4 +26,22 @@ for (const [path, targetLanguage, expected] of [
   assert.equal(window.history.scrollRestoration, 'auto');
   dom.close();
 }
-console.log('Navigation regressions passed: product context, section links, campaign parameters and native scroll restoration.');
+// Fresh section links align after page construction, without overriding a reader.
+for (const [navigationType, readerMoved, expected] of [['navigate', false, 1], ['navigate', true, 0], ['reload', false, 0], ['back_forward', false, 0]]) {
+  const { window: dom } = new JSDOM('<section id="home-news"></section>', { url: 'https://www.mokda.kr/ko/#home-news' });
+  const events = new Map();
+  let aligned = 0;
+  dom.document.getElementById('home-news').scrollIntoView = () => { aligned++; };
+  const window = {
+    location: dom.location,
+    performance: { getEntriesByType: () => [{ type: navigationType }] },
+    addEventListener: (name, callback) => events.set(name, callback),
+    requestAnimationFrame: callback => callback(),
+  };
+  vm.runInNewContext(source, { window, document: dom.document, localStorage: dom.localStorage, URL });
+  if (readerMoved) events.get('wheel')?.();
+  events.get('load')?.();
+  assert.equal(aligned, expected, `${navigationType}: preserve reader movement and history`);
+  dom.close();
+}
+console.log('Navigation regressions passed: product context, section links, campaign parameters, fresh deep links and native scroll restoration.');

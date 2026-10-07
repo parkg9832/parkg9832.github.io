@@ -38,14 +38,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=a5114b130e35" />
+    <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=559af6a18fad" />
     <link rel="stylesheet" href="/assets/generated/81d5e2e1da773e7a9975.css?v=81d5e2e1da77" />
     <link rel="stylesheet" href="/styles/site-typography.css?v=6f4fc5d9ca2e" />
-    <link rel="stylesheet" href="/styles/about-experience.css?v=91eaee469f43" />
     <link rel="icon" type="image/png" sizes="480x480" href="/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
-    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=af9e13446c89" />
+    <link rel="stylesheet" href="/styles/brand-rhythm.css?v=6a6b4c0375f5" />
+    <link rel="stylesheet" href="/styles/about-experience.css?v=f44185787ea8" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -125,155 +125,75 @@
             <p id="heroLine2" class="display-korean">한국을 먹다</p>
             <p id="heroBody">MOKDA es una marca K-Food que conecta la cultura gastronómica de Corea con la vida cotidiana de Latinoamérica.</p>
           </div>
-          <figure class="about-opening-photo">
-            <img src="./assets/images/field-chili-1080.webp" alt="MOKDA visiting a chili farm in Korea" width="1071" height="1428" loading="eager" fetchpriority="high" decoding="async">
+          <div class="about-opening-scenes">
+            <figure class="about-opening-photo">
+              <picture><source media="(max-width:767px)" srcset="./assets/images/field-chili-720.webp"><img src="./assets/images/field-chili-1080.webp" alt="MOKDA visitando un campo de chiles en Corea" width="1071" height="1428" fetchpriority="high" decoding="async"></picture>
+            </figure>
+            <figure class="about-opening-market">
+              <picture><source media="(max-width:767px)" srcset="./assets/images/news/expo-people-640.webp"><img src="./assets/images/news/expo-people.webp" alt="MOKDA y Salsa Coreana en Expoalimentaria 2026, Perú" width="1200" height="900" decoding="async"></picture>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="story" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal="">
+            <p id="storyKicker" class="condensed-label">Historia de Marca</p>
+            <h2 id="storyTitle">Una historia que comenzó alrededor de la mesa</h2>
+          </header>
+          <div id="storyBody" class="about-centered-copy" data-reveal=""><p>MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a Latinoamérica con una sola maleta.</p><p>Al compartir la mesa con amigos latinoamericanos, entendió que la comida va más allá del sabor. Es una de las formas más directas de conocer una cultura y a las personas que la viven.</p><p>Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA acerca Corea a las mesas cotidianas de Latinoamérica.</p></div>
+          <figure class="about-story-figure" data-reveal="">
+            <picture><source media="(max-width:767px)" srcset="./assets/images/field-meeting-720.webp"><img src="./assets/images/field-meeting-1440.webp" alt="Reunión de MOKDA en Corea para preparar su expansión internacional" width="1440" height="810" loading="lazy" decoding="async"></picture>
           </figure>
         </div>
       </section>
 
-      <section id="story" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto w-full max-w-6xl">
-          <div class="about-story-grid grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 xl:gap-24">
-            <figure data-reveal="" class="about-story-figure">
-              <div class="about-story-media relative aspect-[4/5] overflow-hidden bg-[#f7ddc2]">
-                <picture>
-                  <source media="(max-width: 767px)" srcset="./assets/images/field-meeting-720.webp">
-                  <img src="./assets/images/field-meeting-1440.webp" alt="MOKDA preparing for international expansion at a meeting in Korea" width="1440" height="810" class="absolute inset-0 h-full w-full object-cover object-[50%_65%]" loading="lazy">
-                </picture>
-              </div>
-            </figure>
-
-            <div data-reveal="" style="--reveal-delay: 100ms" class="about-story-copy pt-1 lg:pt-6">
-              <p id="storyKicker" class="condensed-label mb-5 text-base uppercase text-[#b73500] sm:text-lg">Historia de Marca</p>
-              <h2 id="storyTitle" class="max-w-xl break-keep text-pretty text-[1.75rem] font-extrabold leading-[1.2] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]">Una historia que comenzó alrededor de la mesa</h2>
-              <div class="my-8 h-0.5 w-12 bg-mokdaOrange sm:my-10"></div>
-              <div id="storyBody" class="story-copy max-w-xl break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"><p>MOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a Latinoamérica con una sola maleta.</p><p>Al compartir la mesa con amigos latinoamericanos, entendió que la comida va más allá del sabor. Es una de las formas más directas de conocer una cultura y a las personas que la viven.</p><p>Con ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA acerca Corea a las mesas cotidianas de Latinoamérica.</p></div>
-            </div>
+      <section id="direction" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal="">
+            <p id="directionKicker" class="condensed-label">LO QUE CREEMOS</p>
+            <h2 id="directionTitle">La comida conecta culturas.</h2>
+          </header>
+          <p id="missionBody" class="about-centered-copy" data-reveal="">Conectar los sabores de Corea con la vida cotidiana de Latinoamérica de forma fácil y natural.</p>
+          <div class="about-food-pair" data-reveal="">
+            <img src="./assets/images/kpeno-food-product-centered-20260922.webp" alt="Comida con K-PEÑO" width="960" height="1280" loading="lazy" decoding="async">
+            <img src="./assets/images/para-carnes-food-product-centered-20260922.webp" alt="Carne asada con Para Carnes" width="960" height="1280" loading="lazy" decoding="async">
           </div>
         </div>
       </section>
 
-      <section id="identity" class="scroll-mt-24 bg-[#fff8ef] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
-        <div class="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-16">
-          <figure data-reveal="" class="surface-depth flex min-h-[300px] items-center justify-center overflow-hidden bg-[#321506] p-8 sm:min-h-[390px] sm:p-12">
-            <img src="assets/images/mokda-logo-main.webp" alt="MOKDA Korean Food Brand" class="about-identity-logo h-auto w-full max-w-[430px] object-contain">
-          </figure>
-          <div data-reveal="" style="--reveal-delay: 120ms">
-            <p id="logoKicker" class="condensed-label text-base uppercase text-[#b73500] sm:text-lg">MOKDA</p>
-            <h2 id="logoTitle" class="mt-5 max-w-xl break-keep text-pretty text-3xl font-extrabold leading-[1.18] tracking-[-0.03em] text-[#321506] sm:text-4xl lg:text-[2.75rem]">El nombre y el símbolo</h2>
-            <div class="mt-8 h-0.5 w-12 bg-mokdaOrange"></div>
-            <div id="motiveBody" class="mt-8 max-w-xl space-y-5 break-keep text-pretty text-base font-medium leading-8 text-[#321506]/82 sm:text-lg sm:leading-9"><p>MOKDA viene de la palabra coreana 먹다, que significa “comer”.</p><p>El gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión. “MOKDA” y el coreano “먹다” muestran el origen coreano de la marca.</p></div>
-          </div>
+      <section id="identity" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal="">
+            <p id="logoKicker" class="condensed-label">MOKDA</p>
+            <h2 id="logoTitle">El nombre y el símbolo</h2>
+          </header>
+          <figure data-reveal=""><img src="./assets/images/mokda-logo-main.webp" alt="Logotipo MOKDA y su nombre en coreano" class="about-identity-logo" width="500" height="500" loading="lazy" decoding="async"></figure>
+          <div id="motiveBody" class="about-centered-copy" data-reveal=""><p>MOKDA viene de la palabra coreana 먹다, que significa “comer”.</p><p>El gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión. “MOKDA” y el coreano “먹다” muestran el origen coreano de la marca.</p></div>
         </div>
       </section>
 
-      <section id="history" class="cream-grid-bg scroll-mt-24 bg-[#f7ddc2] px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-        <div class="mx-auto w-full max-w-7xl">
-          <div data-reveal="" class="mb-10 max-w-5xl sm:mb-14">
-            <p id="historyKicker" class="condensed-label mb-4 text-base uppercase text-[#b73500] sm:text-xl">Nuestra trayectoria</p>
-            <h2 id="historyTitle" class="display-latin text-balance text-5xl uppercase leading-[0.9] text-[#321506] sm:text-7xl lg:text-[6rem]">De Corea a Latinoamérica</h2>
-            <figure class="about-history-photo">
-              <img src="./assets/images/field-manufacturing-lab-3x4-20260922.webp" alt="MOKDA — visita a una planta de producción" loading="lazy" width="960" height="1280">
-            </figure>
-          </div>
-          <div id="timelineList" class="border-b border-[#321506]/18">
-                <article class="grid gap-5 overflow-visible border-t border-[#321506]/18 py-7 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-9 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[16rem_minmax(0,1fr)]">
-                  <div class="sm:pt-1">
-                    <p class="display-latin whitespace-nowrap text-6xl leading-none text-[#d94a00] sm:text-7xl lg:text-[5.5rem] xl:text-8xl">2026</p>
-                  </div>
-                  <div class="divide-y divide-[#321506]/14 border-y border-[#321506]/14 sm:border-t-0">
-
-                          <div class="about-timeline-item about-month-start grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm">04</span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Selección en un programa de apoyo a jóvenes preemprendedores</p>
-                              <p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(Jeonbuk Center for Creative Economy &amp; Innovation · Programa H.I.N.T)</p>
-
-                            </div>
-                          </div>
-
-                          <div class="about-timeline-item about-month-start grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm">06</span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Selección en un programa de apoyo a jóvenes preemprendedores</p>
-                              <p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(Jeonbuk Center for Creative Economy &amp; Innovation · Programa de Jóvenes Innovadores de Ciudades y Condados)</p>
-
-                            </div>
-                          </div>
-
-                          <div class="about-timeline-item grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm is-empty"></span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Selección en un programa de apoyo a jóvenes preemprendedores</p>
-                              <p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(Jeonbuk State Contents Convergence Agency · Apoyo a la producción de prototipos)</p>
-
-                            </div>
-                          </div>
-
-                          <div class="about-timeline-item about-month-start grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm">08</span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Selección en un programa de apoyo a empresas exportadoras</p>
-                              <p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(Jeonbuk Center for Creative Economy &amp; Innovation · Programa Sales-Up)</p>
-
-                            </div>
-                          </div>
-
-                          <div class="about-timeline-item grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm is-empty"></span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Selección en un programa de apoyo a jóvenes startups en etapa inicial</p>
-                              <p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(Jeonbuk Center for Creative Economy &amp; Innovation · Programa Jump-Up)</p>
-
-                            </div>
-                          </div>
-
-                          <div class="about-timeline-item grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm is-empty"></span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Selección en un programa de apoyo a empresas exportadoras</p>
-                              <p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(Jeonbuk Business Agency · Trade Master Youth)</p>
-
-                            </div>
-                          </div>
-
-                          <div class="about-timeline-item about-product-milestone grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm is-empty"></span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Lanzamiento de dos prototipos de Salsa Coreana</p>
-                              <p class="mt-1.5 break-keep text-sm font-semibold leading-6 text-[#6f2b14] sm:text-base">(K-Peño / Para Carnes)</p>
-                              <img class="about-prototypes" src="./assets/images/mokda-studio-pair-480.webp" alt="K-Peño / Para Carnes" loading="lazy" width="1254" height="1254">
-                            </div>
-                          </div>
-
-                          <div class="about-timeline-item about-month-start grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-4 py-5 sm:grid-cols-[3rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
-                            <span class="timeline-month condensed-label text-sm">09</span>
-                            <div>
-                              <p class="break-keep text-base font-extrabold leading-7 text-[#321506]/86 sm:text-lg sm:leading-8">Participación en Expoalimentaria Perú 2026</p>
-
-
-                            </div>
-                          </div>
-
-                  </div>
-                </article>
-              </div>
+      <section id="history" class="about-chapter">
+        <div>
+          <header class="about-chapter-heading" data-reveal="">
+            <p id="historyKicker" class="condensed-label">Nuestra trayectoria</p>
+            <h2 id="historyTitle" class="display-latin">De Corea a Latinoamérica</h2>
+          </header>
+          <div id="journeyHighlights" class="about-journey-highlights"><article class="about-journey-card"><figure><img src="./assets/images/field-manufacturing-lab-3x4-20260922.webp" alt="Preparar el producto" loading="lazy" decoding="async"></figure><div><p class="condensed-label">Desarrollo de producto</p><h3>Preparar el producto</h3><p>Visitas a instalaciones de producción para conocer el proceso de las salsas.</p></div></article><article class="about-journey-card"><figure><img src="./assets/images/mokda-studio-pair-480.webp" alt="La primera Salsa Coreana" loading="lazy" decoding="async"></figure><div><p class="condensed-label">2026.08</p><h3>La primera Salsa Coreana</h3><p>Presentación de dos prototipos: K-PEÑO y Para Carnes.</p></div></article><article class="about-journey-card"><figure><img src="./assets/images/news/expo-visitors.webp" alt="Encuentros en Perú" loading="lazy" decoding="async"></figure><div><p class="condensed-label">2026.09</p><h3>Encuentros en Perú</h3><p>MOKDA compartió sus salsas con compradores en Expoalimentaria.</p></div></article></div>
+          <details class="about-history-records">
+            <summary id="historyRecordsTitle">Ver la trayectoria completa de 2026</summary>
+            <div id="timelineList"><article class="about-record-year"><h3>2026</h3><ol><li class="about-timeline-item"><span class="timeline-month">2026.04</span><div><p>Selección en un programa de apoyo a jóvenes preemprendedores</p><p>Jeonbuk Center for Creative Economy &amp; Innovation · Programa H.I.N.T</p></div></li><li class="about-timeline-item"><span class="timeline-month">2026.06</span><div><p>Selección en un programa de apoyo a jóvenes preemprendedores</p><p>Jeonbuk Center for Creative Economy &amp; Innovation · Programa de Jóvenes Innovadores de Ciudades y Condados</p></div></li><li class="about-timeline-item"><span class="timeline-month">2026.06</span><div><p>Selección en un programa de apoyo a jóvenes preemprendedores</p><p>Jeonbuk State Contents Convergence Agency · Apoyo a la producción de prototipos</p></div></li><li class="about-timeline-item"><span class="timeline-month">2026.08</span><div><p>Selección en un programa de apoyo a empresas exportadoras</p><p>Jeonbuk Center for Creative Economy &amp; Innovation · Programa Sales-Up</p></div></li><li class="about-timeline-item"><span class="timeline-month">2026.08</span><div><p>Selección en un programa de apoyo a jóvenes startups en etapa inicial</p><p>Jeonbuk Center for Creative Economy &amp; Innovation · Programa Jump-Up</p></div></li><li class="about-timeline-item"><span class="timeline-month">2026.08</span><div><p>Selección en un programa de apoyo a empresas exportadoras</p><p>Jeonbuk Business Agency · Trade Master Youth</p></div></li><li class="about-timeline-item"><span class="timeline-month">2026.08</span><div><p>Lanzamiento de dos prototipos de Salsa Coreana</p><p>K-Peño / Para Carnes</p></div></li><li class="about-timeline-item"><span class="timeline-month">2026.09</span><div><p>Participación en Expoalimentaria Perú 2026</p></div></li></ol></article></div>
+          </details>
         </div>
       </section>
 
-      <section id="products-transition" class="scroll-mt-24 bg-[#321506] px-4 py-16 text-[#f8dfc4] sm:px-6 sm:py-20 lg:px-8">
-        <div class="mx-auto grid w-full max-w-6xl items-end gap-9 md:grid-cols-[minmax(0,1fr)_auto] md:gap-16">
-          <div data-reveal="">
-            <p id="productCtaKicker" class="condensed-label text-base uppercase text-mokdaOrange sm:text-lg">SALSA COREANA</p>
-            <h2 id="productCtaTitle" class="mt-4 max-w-3xl break-keep text-pretty text-3xl font-extrabold leading-[1.16] tracking-[-0.03em] sm:text-4xl lg:text-5xl">Descubre Salsa Coreana</h2>
-            <p id="productCtaBody" class="mt-5 max-w-2xl break-keep text-pretty text-base font-medium leading-8 text-[#f8dfc4]/76 sm:text-lg">Conoce cómo MOKDA acerca los sabores de Corea a las mesas de todos los días.</p>
-          </div>
-          <a href="/es/products.html" class="group inline-flex min-h-12 w-fit items-center gap-3 rounded-full bg-mokdaOrange px-6 py-3 font-extrabold text-white transition-transform duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-[#321506]">
-            <span id="productCtaButton">Conocer Salsa Coreana</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5 fill-none stroke-current stroke-2 transition-transform duration-300 group-hover:translate-x-1">
-              <path d="M5 12h14M13 6l6 6-6 6"></path>
-            </svg>
-          </a>
+      <section id="products-transition" class="about-chapter">
+        <div data-reveal="">
+          <p id="productCtaKicker" class="condensed-label">SALSA COREANA</p>
+          <h2 id="productCtaTitle">Descubre Salsa Coreana</h2>
+          <p id="productCtaBody" class="about-centered-copy">Conoce cómo MOKDA acerca los sabores de Corea a las mesas de todos los días.</p>
+          <a href="/es/products.html" class="about-product-cta"><span id="productCtaButton">Conocer Salsa Coreana</span><span aria-hidden="true">↗</span></a>
         </div>
       </section>
 
@@ -341,11 +261,11 @@
       </footer>
     </main>
 
-    <script src="/site-i18n.js?v=faf79b07db3e"></script>
+    <script src="/site-i18n.js?v=29f3c5b215d4"></script>
     <script src="/site-footer.js?v=b9b135649eb6"></script>
-    <script src="/assets/generated/c88bac000ec9e69d5b33.js?v=c88bac000ec9"></script>
-    <script src="/site-header.js?v=53d93f0dddef"></script>
-    <script src="/brand-motion.js?v=11e722fde306" defer=""></script>
+    <script src="/assets/generated/97780768ae72cde4350e.js?v=97780768ae72"></script>
+    <script src="/site-header.js?v=4b404b0a42aa"></script>
+    <script src="/brand-motion.js?v=e9b4765c63f2" defer=""></script>
 
 
 </body>

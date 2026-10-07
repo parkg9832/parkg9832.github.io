@@ -128,4 +128,22 @@
     setLanguage,
     syncLanguageButtons,
   };
+
+  // The home renders its food and news sections after the initial HTML is read.
+  // Align a fresh deep link after that layout settles; preserve reload/back history.
+  const initialHash = window.location.hash;
+  const navigationType = window.performance?.getEntriesByType?.('navigation')[0]?.type;
+  if (initialHash && navigationType === 'navigate') {
+    let readerMoved = false;
+    const markReaderMoved = () => { readerMoved = true; };
+    ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(name => window.addEventListener(name, markReaderMoved, { once: true, passive: true }));
+    window.addEventListener('load', () => {
+      window.requestAnimationFrame(() => {
+        if (readerMoved || window.location.hash !== initialHash) return;
+        let id;
+        try { id = decodeURIComponent(initialHash.slice(1)); } catch { return; }
+        document.getElementById(id)?.scrollIntoView({ behavior: 'instant', block: 'start' });
+      });
+    }, { once: true });
+  }
 })();

@@ -75,6 +75,15 @@ for (const lang of ['ko', 'es', 'en']) {
       assert.equal(inquiry.searchParams.get('product'), page === 'kpeno' ? 'original' : 'para-carnes', 'Inquiry must preserve the product accepted by the contact form');
     }
     if (page === 'qna') assert.equal(doc.querySelectorAll('#qnaList article').length, 5);
+    if (page === 'about') {
+      assert.equal(doc.querySelectorAll('#journeyHighlights article').length, 3, 'Three verified journey highlights');
+      assert.equal(doc.querySelectorAll('#timelineList li').length, 8, 'Full factual history retained in initial HTML');
+      assert(doc.querySelector('details.about-history-records summary')?.textContent.trim(), 'Accessible full-history control');
+      assert.match(doc.querySelector('#timelineList').textContent, /2026\.08/);
+      assert.match(doc.querySelector('#timelineList').textContent, /Expoalimentaria/);
+      assert(doc.querySelector('#directionTitle')?.textContent.trim(), 'Food and cultural direction is rendered');
+      assert(doc.querySelector('#products-transition a[href*="products.html"]'), 'Story continues to products');
+    }
     if (page === 'contact') {
       assert.equal(doc.querySelector('#companyInput').required, false);
       assert.equal(doc.querySelector('#nameInput').required, true);

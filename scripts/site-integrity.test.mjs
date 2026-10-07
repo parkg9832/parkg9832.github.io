@@ -1,3 +1,4 @@
+import { loadNews } from './news-store.mjs';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -6,6 +7,8 @@ import { JSDOM } from 'jsdom';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const origin = 'https://www.mokda.kr';
+const newsData = (await loadNews(root)).data;
+const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.map(story => 'news-' + story.id)];
 const documents = new Map();
 const assets = new Set();
 let links = 0;
@@ -14,7 +17,7 @@ function readDocument(path) {
   return documents.get(path).window.document;
 }
 for (const lang of ['es', 'ko', 'en']) {
-  for (const page of ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact']) {
+  for (const page of pages) {
     const path = `/${lang}/${page}.html`;
     const doc = readDocument(path);
     const ids = [...doc.querySelectorAll('[id]')].map(el => el.id);
@@ -38,4 +41,4 @@ for (const lang of ['es', 'ko', 'en']) {
   }
 }
 for (const dom of documents.values()) dom.window.close();
-console.log(`Site integrity passed: 21 pages, ${links} internal links, ${assets.size} unique referenced assets, image descriptions and unique IDs.`);
+console.log(`Site integrity passed: ${documents.size} documents, ${links} internal links, ${assets.size} unique referenced assets, image descriptions and unique IDs.`);

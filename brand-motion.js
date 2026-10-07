@@ -1,6 +1,6 @@
 /* Motion enhances already visible HTML; search and keyboard access never depend on it. */
 (() => {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const reduced = window.MOKDA_MOTION_PREFERENCE || (window.MOKDA_MOTION_PREFERENCE = matchMedia('(prefers-reduced-motion: reduce)'));
   if (reduced.matches || !('IntersectionObserver' in window) || !Element.prototype.animate) return;
 
   const groups = {
@@ -8,7 +8,6 @@
       '[data-hero-kicker]', '[data-hero-title]', '.hero-copy',
       '.home-products-heading', '.home-product-panel',
       '#proof>div>div:first-child', '#proofCarouselTrack>figure',
-      '#voicesTitle', '.voice-entry', '.home-faq-reading', '#contact>div',
     ],
     'about-page': [
       '.about-opening-copy', '.about-opening-photo', '#storyTitle', '#storyBody',

@@ -1,0 +1,24 @@
+(() => {
+  'use strict';
+  const categories = ['all', 'news', 'events', 'collaborations'];
+  const normalize = text => String(text || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase().trim();
+  const published = (data, story) => story.publishedDate || data.publishedDate;
+  const ordered = data => [...data.stories].sort((a, b) => published(data, b).localeCompare(published(data, a)));
+  function archive(data, { language = 'ES', category = 'all', query = '', page = 1 } = {}) {
+    category = categories.includes(category) ? category : 'all';
+    query = String(query).trim().slice(0, 150);
+    const terms = normalize(query).split(/\s+/).filter(Boolean);
+    const matches = ordered(data).filter(story => {
+      if (category !== 'all' && story.category !== category) return false;
+      const copy = story[language] || story.ES;
+      const text = normalize([copy.title, copy.summary, story.location, ...copy.sections.flat()].join(' '));
+      return terms.every(term => text.includes(term));
+    });
+    const pageSize = 9;
+    const pages = Math.max(1, Math.ceil(matches.length / pageSize));
+    page = Math.min(pages, Math.max(1, Number.parseInt(page, 10) || 1));
+    return { category, query, page, pages, pageSize, total: matches.length, matches, visible: matches.slice((page - 1) * pageSize, page * pageSize) };
+  }
+  const featured = data => ordered(data).filter(story => story.homeFeatured).sort((a, b) => (a.homeOrder || 99) - (b.homeOrder || 99)).slice(0, 3);
+  window.MOKDA_NEWS_MODEL = { archive, ordered, featured, published };
+})();

@@ -19,6 +19,8 @@ const mimeTypes = {
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
+  '.mp4': 'video/mp4',
+  '.vtt': 'text/vtt; charset=utf-8',
 };
 
 createServer(async (request, response) => {
@@ -39,8 +41,17 @@ createServer(async (request, response) => {
     if (withinRoot.startsWith('..') || !mimeTypes[extname(filePath).toLowerCase()]) throw new Error('Private file');
     if (extname(filePath) === '.txt' && parts.join('/') !== 'robots.txt') throw new Error('Private text');
     const fileStat = await stat(filePath);
-    response.writeHead(200, {
-      'Content-Length': fileStat.size,
+    const range = request.headers.range;
+    const parsedRange = range && /^bytes=(\d+)-(\d*)$/.exec(range);
+    const start = parsedRange ? Number(parsedRange[1]) : 0;
+    const end = parsedRange && parsedRange[2] ? Math.min(Number(parsedRange[2]), fileStat.size - 1) : fileStat.size - 1;
+    if (range && (!parsedRange || start > end || start >= fileStat.size)) {
+      response.writeHead(416, { 'Content-Range': `bytes */${fileStat.size}` }); response.end(); return;
+    }
+    response.writeHead(range ? 206 : 200, {
+      'Content-Length': end - start + 1,
+      'Accept-Ranges': 'bytes',
+      ...(range ? { 'Content-Range': `bytes ${start}-${end}/${fileStat.size}` } : {}),
       'Content-Type': mimeTypes[extname(filePath).toLowerCase()] || 'application/octet-stream',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
@@ -48,7 +59,7 @@ createServer(async (request, response) => {
       'Cache-Control': pathname.startsWith('/assets/generated/') ? 'public, max-age=31536000, immutable' : 'no-cache',
     });
     if (request.method === 'HEAD') { response.end(); return; }
-    createReadStream(filePath).pipe(response);
+    createReadStream(filePath, { start, end }).pipe(response);
   } catch {
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Not found');

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="mokda-session" content="__SESSION__"><title>MOKDA 소식 관리</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header class="manager-header"><a href="/"><img src="/brand-logo.webp" alt="MOKDA" width="94" height="72"></a><div><p class="eyebrow">콘텐츠 관리</p><h1>MOKDA 소식</h1></div><a class="preview-link" href="http://127.0.0.1:4177/ko/news.html" target="_blank" rel="noopener">소식 미리보기 ↗</a></header>
+<main><aside><div class="sidebar-heading"><h2>등록된 소식</h2><button type="button" id="newStory">＋ 새 소식</button></div><div id="storyList"></div><p class="sidebar-note">로컬에서 등록·수정합니다.<br>저장하면 3개 언어 미리보기가 갱신됩니다.<br>운영 사이트 배포는 별도로 진행합니다.</p></aside>
+<section class="editor"><div class="editor-heading"><div><p class="eyebrow" id="editorMode">소식 수정</p><h2 id="editorTitle">불러오는 중</h2></div><span id="homeBadge"></span></div>
+<p id="status" role="status" aria-live="polite"></p>
+<form id="editorForm" novalidate>
+<section class="editor-section"><h3>기본 정보</h3><div class="fields two-cols">
+<label>소식 주소 <span>영문 소문자·숫자·하이픈</span><input id="storyId" maxlength="80" placeholder="예: food-expo-2027"></label>
+<label>분류<select id="category"><option value="news">소식·미디어</option><option value="events">행사</option><option value="collaborations">콜라보</option></select></label>
+<label>게시일<input id="publishedDate" type="date"></label><label>장소 <span>선택</span><input id="location" maxlength="100" placeholder="예: Lima, Perú"></label>
+<label>행사 시작일 <span>확인한 경우에만</span><input id="eventDate" type="date"></label><label>행사 종료일 <span>선택</span><input id="eventEndDate" type="date"></label>
+<label>홈 노출 위치<select id="homePosition"><option value="0">소식 목록에만 표시</option><option value="1">홈 대표 소식</option><option value="2">홈 카드 1</option><option value="3">홈 카드 2</option></select><span>선택한 위치의 기존 소식은 목록에 유지됩니다.</span></label>
+<label class="checkbox-label"><input id="homeCreators" type="checkbox">홈에 크리에이터 협업 영상 표시</label>
+</div></section>
+<section class="editor-section"><div class="section-bar"><h3>사진과 영상</h3><label class="upload-button">＋ 미디어 추가<input id="mediaUpload" type="file" accept="image/jpeg,image/png,image/webp,video/mp4" hidden></label></div><p class="help">사진은 WebP로, MP4 영상은 웹 재생용으로 변환합니다. 최대 100MB.</p>
+<div class="media-fields"><img id="coverPreview" alt="선택한 표지 이미지" width="240" height="160"><div class="fields"><label>표지 이미지<select id="image"></select></label><label>현장 영상 <span>선택</span><select id="video"></select></label><label>갤러리 이미지 <span>쉼표로 구분 · 선택</span><textarea id="gallery" rows="2" placeholder="expo-products, expo-interview"></textarea></label></div></div></section>
+<section class="editor-section"><h3>언어별 내용</h3><p class="help">3개 언어의 제목·요약·사진 설명·본문을 입력해주세요. 본문은 ‘## 소제목’ 다음 줄에 내용을 적습니다.</p><div class="language-tabs" role="tablist" aria-label="편집 언어"><button type="button" role="tab" id="tabKR" data-lang="KR" aria-controls="panelKR">한국어</button><button type="button" role="tab" id="tabES" data-lang="ES" aria-controls="panelES">Español</button><button type="button" role="tab" id="tabEN" data-lang="EN" aria-controls="panelEN">English</button></div><div id="languageEditors"></div></section>
+<section class="editor-section"><h3>관련 소식 <span>선택</span></h3><div id="relatedStories" class="related-options"></div></section>
+<div class="save-bar"><span>기존 내용은 저장 전 자동으로 백업됩니다.</span><button type="submit" id="saveStory">저장하고 미리보기 갱신 ↗</button></div>
+</form></section></main><script src="/app.js"></script></body></html>

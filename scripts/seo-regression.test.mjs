@@ -1,16 +1,19 @@
+import { loadNews } from './news-store.mjs';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
 
 const root = new URL('../', import.meta.url);
 const languages = { ko: 'ko-KR', es: 'es-419', en: 'en' };
-const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact'];
+const newsData = (await loadNews(fileURLToPath(new URL('../', import.meta.url)))).data;
+const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.map(story => 'news-' + story.id)];
 const urlFor = (lang, page) => `https://www.mokda.kr/${lang}/${page === 'index' ? '' : `${page}.html`}`;
 const sitemap = await readFile(new URL('sitemap.xml', root), 'utf8');
 const robots = await readFile(new URL('robots.txt', root), 'utf8');
 assert.match(robots, /^Sitemap: https:\/\/www\.mokda\.kr\/sitemap\.xml\s*$/m);
 const listedUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
-assert.equal(listedUrls.length, 21);
+assert.equal(listedUrls.length, pages.length * Object.keys(languages).length);
 assert.equal(new Set(listedUrls).size, listedUrls.length);
 for (const lang of ['ko', 'es', 'en']) {
   for (const page of pages) {
@@ -60,4 +63,4 @@ for (const lang of ['ko', 'es', 'en']) {
     window.close();
   }
 }
-console.log('SEO regressions passed: 21 complete localized documents, canonical/hreflang/sitemap consistency, content and crawlable links.');
+console.log(`SEO regressions passed: ${pages.length * Object.keys(languages).length} complete localized documents, canonical/hreflang/sitemap consistency, content and crawlable links.`);

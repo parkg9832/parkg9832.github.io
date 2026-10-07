@@ -6,7 +6,7 @@
   const LANG_INDEX = { ES: 0, KR: 1, EN: 2 };
   const LANGUAGE_PATHS = { ES: 'es', KR: 'ko', EN: 'en' };
   const PATH_LANGUAGES = { es: 'ES', ko: 'KR', en: 'EN' };
-  const LOCALIZED_PAGES = new Set(['index.html', 'about.html', 'products.html', 'kpeno.html', 'para-carnes.html', 'qna.html', 'contact.html', 'support.html']);
+  const LOCALIZED_PAGES = new Set(['index.html', 'about.html', 'products.html', 'kpeno.html', 'para-carnes.html', 'qna.html', 'contact.html', 'support.html', 'news.html', 'news-expoalimentaria-2026.html', 'news-kpop-style.html', 'news-kotra-lima.html', 'news-congreso.html', 'news-creators.html']);
   const ACTIVE_BUTTON_CLASS =
     'lang-btn relative z-10 w-10 h-8 sm:w-12 sm:h-10 text-center text-xs sm:text-sm font-black text-[#321506] transition-colors duration-300';
   const INACTIVE_BUTTON_CLASS =
@@ -39,7 +39,7 @@
   function getCurrentPageName(pathname = window.location.pathname) {
     const segments = pathname.split('/').filter(Boolean);
     const lastSegment = segments.at(-1) || 'index.html';
-    return LOCALIZED_PAGES.has(lastSegment) ? lastSegment : 'index.html';
+    return (LOCALIZED_PAGES.has(lastSegment) || /^news-[a-z0-9-]+\.html$/.test(lastSegment)) ? lastSegment : 'index.html';
   }
 
   function getLocalizedPath(language, pathname = window.location.pathname) {
@@ -65,7 +65,8 @@
 
       if (url.origin !== window.location.origin) return;
       const pageName = getCurrentPageName(url.pathname);
-      const isLocalizedPage = LOCALIZED_PAGES.has(url.pathname.split('/').filter(Boolean).at(-1) || 'index.html');
+      const linkedPage = url.pathname.split('/').filter(Boolean).at(-1) || 'index.html';
+      const isLocalizedPage = LOCALIZED_PAGES.has(linkedPage) || /^news-[a-z0-9-]+\.html$/.test(linkedPage);
       const isHomePath = url.pathname === '/' || /^\/(es|ko|en)\/?$/.test(url.pathname);
       if (!isLocalizedPage && !isHomePath) return;
 

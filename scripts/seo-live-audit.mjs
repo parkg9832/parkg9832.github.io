@@ -1,9 +1,12 @@
+import { loadNews } from './news-store.mjs';
+import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { JSDOM } from 'jsdom';
 
 const origin = 'https://www.mokda.kr';
 const languages = { es: 'es-419', ko: 'ko-KR', en: 'en' };
-const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact'];
+const newsData = (await loadNews(fileURLToPath(new URL('../', import.meta.url)))).data;
+const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.map(story => 'news-' + story.id)];
 const urlFor = (lang, page) => `${origin}/${lang}/${page === 'index' ? '' : `${page}.html`}`;
 
 async function get(url) {
@@ -15,7 +18,7 @@ async function get(url) {
 const [robots, sitemap] = await Promise.all([get(`${origin}/robots.txt`), get(`${origin}/sitemap.xml`)]);
 assert.match(robots, /Sitemap: https:\/\/www\.mokda\.kr\/sitemap\.xml/);
 const listed = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]));
-assert.equal(listed.size, pages.length * Object.keys(languages).length, 'Sitemap must contain 21 unique URLs');
+assert.equal(listed.size, pages.length * Object.keys(languages).length, 'Sitemap must contain all localized URLs');
 
 for (const page of pages) {
   await Promise.all(Object.entries(languages).map(async ([lang, code]) => {
@@ -38,4 +41,4 @@ for (const page of pages) {
     }
   }));
 }
-console.log('Live SEO audit passed: robots.txt, sitemap.xml and 21 HTTP 200 pages with coherent language, canonical, hreflang and HTML content.');
+console.log(`Live SEO audit passed: robots.txt, sitemap.xml and ${pages.length * Object.keys(languages).length} HTTP 200 pages with coherent language, canonical, hreflang and HTML content.`);

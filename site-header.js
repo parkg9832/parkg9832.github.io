@@ -37,6 +37,7 @@
         label: 'CONTACTO',
         links: [['Preguntas frecuentes', 'qna'], ['Enviar consulta', 'contact']]
       },
+      news: { label: 'NOVEDADES', links: [['Todas las novedades', ''], ['Noticias y medios', 'news'], ['Eventos', 'events'], ['Colaboraciones', 'collaborations']] },
       navigation: 'Navegación principal',
       menuLabel: 'MENÚ',
       openMenu: 'Abrir menú',
@@ -55,6 +56,7 @@
         label: '문의',
         links: [['자주 묻는 질문', 'qna'], ['문의 보내기', 'contact']]
       },
+      news: { label: 'MOKDA 소식', links: [['모든 소식', ''], ['소식·미디어', 'news'], ['행사', 'events'], ['콜라보', 'collaborations']] },
       navigation: '주요 메뉴',
       menuLabel: 'MENU',
       openMenu: '메뉴 열기',
@@ -73,6 +75,7 @@
         label: 'CONTACT',
         links: [['Frequently asked questions', 'qna'], ['Send an inquiry', 'contact']]
       },
+      news: { label: 'UPDATES', links: [['All updates', ''], ['News & Media', 'news'], ['Events', 'events'], ['Collaborations', 'collaborations']] },
       navigation: 'Primary navigation',
       menuLabel: 'MENU',
       openMenu: 'Open menu',
@@ -261,6 +264,7 @@
     .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group:nth-child(1) { transition-delay: 130ms; }
     .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group:nth-child(2) { transition-delay: 180ms; }
     .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group:nth-child(3) { transition-delay: 230ms; }
+    .mokda-site-header.is-mobile-menu-open .mokda-mobile-nav-group:nth-child(4) { transition-delay: 280ms; }
 
     .mokda-mobile-nav-heading {
       display: grid;
@@ -459,7 +463,7 @@
       }
 
       .mokda-mobile-menu-groups {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 26px;
       }
 
@@ -711,17 +715,24 @@
   const groups = [
     { key: 'brand', page: 'about', ...copy.brand },
     { key: 'products', page: 'products', ...copy.products },
+    { key: 'news', page: 'news', ...copy.news },
     { key: 'connect', page: 'connect', ...copy.connect }
   ];
 
   function groupHref(group, target) {
+    if (group.key === 'news') {
+      const href = window.MOKDA_I18N?.getLocalizedPath(window.MOKDA_I18N.getLanguage(), '/news.html') || 'news.html';
+      return target ? `${href}?category=${target}` : href;
+    }
     if (group.key === 'brand') return addHash(hrefs.about, target);
     if (group.key === 'products') return addHash(hrefs.products, target);
     return target === 'qna' ? hrefs.qna : hrefs.contact;
   }
 
   const pageName = window.location.pathname.split('/').pop() || 'index.html';
-  const currentGroup = ['products.html', 'kpeno.html', 'para-carnes.html'].includes(pageName)
+  const currentGroup = pageName === 'news.html' || pageName.startsWith('news-')
+    ? 'news'
+    : ['products.html', 'kpeno.html', 'para-carnes.html'].includes(pageName)
     ? 'products'
     : pageName === 'qna.html' || pageName === 'contact.html'
       ? 'connect'

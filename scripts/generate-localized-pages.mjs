@@ -3,10 +3,11 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { secureHtml, externalizeBlocks } from './static-security.mjs';
 import { prerenderContent } from './prerender-content.mjs';
+import { generateNewsSources } from './generate-news-sources.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-09-22';
+const LAST_MODIFIED = '2026-10-07';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -112,6 +113,7 @@ const pages = {
     },
   },
 };
+Object.assign(pages, await generateNewsSources(ROOT));
 
 function routeUrl(language, page) {
   const prefix = languages[language].directory;
@@ -129,7 +131,7 @@ function alternateLinks(page) {
 function localizeInternalLinks(html, language) {
   const prefix = languages[language].directory;
   return html.replace(
-    /href="(index|about|products|kpeno|para-carnes|qna|contact|support)\.html([^"#?]*)([?#][^"]*)?"/g,
+    /href="(index|about|products|kpeno|para-carnes|qna|contact|support|news(?:-[a-z0-9-]+)?)\.html([^"#?]*)([?#][^"]*)?"/g,
     (_match, pageName, extraPath, suffix = '') => {
       const route = pageName === 'index' ? '' : `${pageName}.html${extraPath || ''}`;
       return `href="/${prefix}/${route}${suffix}"`;
@@ -141,10 +143,14 @@ function localizeFontRequests(html, language) {
   return html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"']+/g, SITE_FONT_REQUEST);
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 function replaceMeta(html, selector, value) {
   const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const pattern = new RegExp(`(<meta[^>]*${escaped}[^>]*content=")[^"]*("[^>]*>)`, 'i');
-  return html.replace(pattern, `$1${value}$2`);
+  return html.replace(pattern, (_, before, after) => before + escapeHtml(value) + after);
 }
 
 function structuredData(language, page, canonical, metadata) {
@@ -158,6 +164,15 @@ function structuredData(language, page, canonical, metadata) {
       inLanguage: languages[language].html,
       isPartOf: { '@id': `${SITE}/#website` },
       about: { '@id': `${SITE}/#organization` },
+      ...(page.publishedDate ? {
+        datePublished: page.publishedDate,
+        dateModified: page.publishedDate,
+        author: { '@type': 'Organization', name: 'MOKDA', url: SITE },
+        publisher: { '@id': `${SITE}/#organization` },
+        image: page.image[language],
+        headline: metadata.title.split('|')[0].trim(),
+        mainEntityOfPage: canonical,
+      } : {}),
     },
   ];
 
@@ -221,8 +236,8 @@ function localizeHtml(source, language, page) {
     return `<html lang="${config.html}" data-route-language="${language}"${cleanAttributes}>`;
   });
   html = html.replace(/(<meta\s+name="viewport"[^>]*>)/i, `$1\n    <base href="/" />\n    <meta name="mokda-route-language" content="${language}" />`);
-  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${metadata.title}</title>`);
-  html = html.replace(/<meta(?:\s+id="[^"]+")?\s+name="description"[\s\S]*?\/\s*>/i, `    <meta name="description" content="${metadata.description}" />`);
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(metadata.title)}</title>`);
+  html = html.replace(/<meta(?:\s+id="[^"]+")?\s+name="description"[\s\S]*?\/\s*>/i, `    <meta name="description" content="${escapeHtml(metadata.description)}" />`);
   if (!/<meta\s+name="robots"(?:\s|>)/i.test(html)) {
     html = html.replace('  </head>', '    <meta name="robots" content="index, follow, max-image-preview:large" />\n  </head>');
   }

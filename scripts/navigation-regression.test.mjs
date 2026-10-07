@@ -8,6 +8,8 @@ for (const [path, targetLanguage, expected] of [
   ['/es/contact.html?purpose=distribution&product=para-carnes', 'KR', '/ko/contact.html?purpose=distribution&product=para-carnes'],
   ['/ko/about.html#history', 'EN', '/en/about.html#history'],
   ['/en/?utm_source=partner#products', 'ES', '/es/?utm_source=partner#products'],
+  ['/es/news.html?category=events', 'KR', '/ko/news.html?category=events'],
+  ['/ko/news-congreso.html#creators', 'EN', '/en/news-congreso.html#creators'],
 ]) {
   const { window: dom } = new JSDOM('<button id="langES"></button><button id="langKR"></button><button id="langEN"></button>', { url: `https://www.mokda.kr${path}` });
   let assigned;

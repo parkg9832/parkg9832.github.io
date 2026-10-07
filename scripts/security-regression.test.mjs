@@ -1,3 +1,4 @@
+import { loadNews } from './news-store.mjs';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
@@ -8,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { secureHtml } from './static-security.mjs';
 
 const root = new URL('../', import.meta.url);
+const newsPages = (await loadNews(fileURLToPath(root))).data.stories.map(story => 'news-' + story.id);
 const cacheMap = new Map();
 const cache = { get: key => cacheMap.get(key), put: (key, value) => cacheMap.set(key, value), remove: key => cacheMap.delete(key) };
 const context = vm.createContext({ console: { error() {} }, Date,
@@ -73,7 +75,7 @@ const retiredPage = await readFile(new URL('coming-soon.html', root), 'utf8');
 assert.match(retiredPage, /name="robots" content="noindex,follow"/);
 assert.match(retiredPage, /rel="canonical" href="https:\/\/www\.mokda\.kr\/es\/"/);
 assert.doesNotMatch(retiredPage, /<script\b|cdn\.tailwindcss\.com/i, 'Retired page must not load an unpinned third-party script');
-for (const locale of ['ko', 'es', 'en']) for (const page of ['index', 'about', 'products', 'qna', 'contact']) {
+for (const locale of ['ko', 'es', 'en']) for (const page of ['index', 'about', 'products', 'qna', 'contact', 'news', ...newsPages]) {
   const built = await readFile(new URL(`${locale}/${page}.html`, root), 'utf8');
   assert.match(built, /Content-Security-Policy/);
   assert.ok(!/<script>([\s\S]*?)<\/script>/.test(built), 'Executable inline scripts must be externalized');
@@ -94,5 +96,12 @@ try {
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
   assert.equal((await fetch('http://127.0.0.1:4191/ko/', { method: 'POST' })).status, 405);
+  const media = 'http://127.0.0.1:4191/assets/videos/news/creator-shuri.mp4';
+  const partial = await fetch(media, {headers:{Range:'bytes=0-127'}});
+  assert.equal(partial.status,206,'Video range requests support seeking');
+  assert.equal(partial.headers.get('content-type'),'video/mp4');
+  assert.match(partial.headers.get('content-range'),/^bytes 0-127\/\d+$/);
+  assert.equal((await partial.arrayBuffer()).byteLength,128);
+  assert.equal((await fetch(media,{headers:{Range:'bytes=999999999-'}})).status,416);
 } finally { server.kill(); }
 console.log('Security regressions passed: public endpoints, schema/size bounds, formula safety, receipts, quotas, CSP, private paths.');

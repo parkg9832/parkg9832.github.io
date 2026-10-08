@@ -7,7 +7,7 @@
     'home-page': [
       '[data-hero-kicker]', '[data-hero-title]', '.hero-copy',
       '.home-products-heading', '.home-product-panel',
-      '#proof>div>div:first-child', '#proofCarouselTrack>figure',
+      '.home-history-heading',
     ],
     'about-page': [
       '.about-chapter-heading', '#storyBody', '.about-story-figure',

@@ -39,7 +39,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=559af6a18fad" />
+    <link rel="stylesheet" href="/assets/mokda-tailwind.css?v=697a4aa704fa" />
     <link rel="stylesheet" href="/assets/generated/85d1e9e1e463901de1c1.css?v=85d1e9e1e463" />
     <link rel="stylesheet" href="/styles/site-typography.css?v=6f4fc5d9ca2e" />
     <link rel="stylesheet" href="/styles/site-news.css?v=81f30b9e0153" />
@@ -51,6 +51,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="stylesheet" href="/styles/brand-rhythm.css?v=43d12e46adfb" />
+    <link rel="stylesheet" href="/styles/home-history.css?v=6019a1a7c3a7" />
       <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -204,39 +205,20 @@
         </div>
       </section>
 
-      <section id="proof" data-analytics-section="proof" class="scroll-mt-20 overflow-hidden border-y border-[#f8dfc4]/10 bg-[#321506] px-4 py-14 text-[#f8dfc4] sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div class="mx-auto w-full max-w-7xl">
-          <div data-reveal="" class="mx-auto max-w-3xl text-center">
-            <p id="proofKicker" class="condensed-label mb-2 text-sm uppercase tracking-[0.08em] text-mokdaOrange sm:text-base">HECHO EN COREA</p>
-            <h2 id="proofTitle" class="display-latin mx-auto max-w-3xl text-[2.25rem] uppercase leading-[0.94] text-[#f8dfc4] sm:text-5xl lg:text-[3rem]">Del ingrediente al mercado</h2>
-            <div id="storyBody" class="mx-auto mt-4 grid max-w-xl gap-2 break-keep text-pretty text-sm font-semibold leading-6 text-[#f8dfc4]/70 sm:text-[15px] sm:leading-7"><p class="break-keep leading-relaxed">De los ingredientes a la producción, reunimos la esencia de Corea.</p></div>
-          </div>
-
-          <div id="field-story" data-analytics-section="field_story" data-reveal="" data-reveal-delay="100" class="relative mx-auto mt-8 max-w-5xl sm:mt-9" style="--reveal-delay: 100ms;">
-            <div id="proofCarousel" class="relative overflow-hidden touch-pan-y" aria-roledescription="carousel">
-              <div id="proofCarouselTrack" class="flex gap-3 will-change-transform sm:gap-4">
-                <figure data-proof-slide="" class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
-                  <picture>
-                    <source media="(max-width: 767px)" srcset="assets/images/field-chili-720.webp">
-                    <img src="assets/images/field-chili-1080.webp" alt="MOKDA conociendo de cerca los chiles en el campo" class="absolute inset-0 h-full w-full object-cover object-[center_58%]" width="1071" height="1428" loading="lazy" decoding="async" draggable="false">
-                  </picture>
-                </figure>
-                <figure data-proof-slide="" class="relative aspect-[4/3] w-[82%] shrink-0 overflow-hidden rounded-[1.25rem] bg-neutral-800 shadow-[0_18px_40px_rgba(0,0,0,0.22)] sm:aspect-[16/9] sm:w-[74%] sm:rounded-[1.5rem] lg:w-[70%]">
-                <picture>
-                    <source media="(max-width: 767px)" srcset="assets/images/field-manufacturing-lab-3x4-20260922.webp">
-                    <img src="assets/images/field-manufacturing-lab-3x4-20260922.webp" alt="MOKDA revisando el proceso en una instalación de fabricación de alimentos" class="absolute inset-0 h-full w-full object-cover object-center" width="960" height="1280" loading="lazy" decoding="async" draggable="false">
-                </picture>
-              </figure>
-              </div>
-
-
-            </div>
-          </div>
-
-          <div class="mt-7 text-center">
-            <a id="proofHistoryCta" data-analytics-event="proof_history_click" href="/es/about.html#history" class="mx-auto inline-flex min-h-14 items-center justify-center rounded-lg bg-mokdaOrange px-7 py-4 text-sm font-extrabold uppercase text-[#321506] shadow-[0_10px_26px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5 hover:bg-[#ff7a32] focus:outline-none focus:ring-4 focus:ring-orange-300/30 sm:px-8 sm:text-base">Ver nuestra historia →</a>
-          </div>
-          <div id="institutionalLogos" class="mt-5 hidden" aria-label="Con el apoyo de"></div>
+      <section id="proof" data-analytics-section="proof" class="home-history scroll-mt-20" aria-labelledby="proofTitle">
+        <picture class="home-history-photo" aria-hidden="true">
+          <source media="(max-width: 767px)" srcset="assets/images/brand-story-wide-20261008-800.webp">
+          <img src="assets/images/brand-story-wide-20261008.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
+        </picture>
+        <div class="home-history-content">
+          <header class="home-history-heading">
+            <p id="proofKicker" class="condensed-label">NUESTRA HISTORIA</p>
+            <h2 id="proofTitle" class="display-latin">Sabores de Corea,
+para tu mesa</h2>
+            <div id="storyBody">Elegimos los ingredientes y afinamos nuestras salsas para acercar los sabores de Corea a la comida de cada día en Latinoamérica.</div>
+          </header>
+          <ol id="homeHistoryMilestones" class="home-history-milestones"><li><span class="home-history-year">2024</span><span class="home-history-event">Nace la idea</span></li><li><span class="home-history-year">2025</span><span class="home-history-event">Desarrollo de salsas</span></li><li><span class="home-history-year">2026</span><span class="home-history-event">Expoalimentaria, Perú</span></li></ol>
+          <a id="proofHistoryCta" class="home-history-link" data-analytics-event="proof_history_click" href="/es/about.html#history">Conoce nuestra historia →</a>
         </div>
       </section><section id="voices" class="overflow-hidden bg-white py-14 sm:py-16 lg:py-20">
         <div class="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -383,14 +365,14 @@
     <script src="/site-footer.js?v=b9b135649eb6"></script>
     <script src="/b2b-config.js?v=5bb4e7ce99df"></script>
     <script src="/site-contact-config.js?v=bc14670956c6"></script>
-    <script src="/assets/generated/9d0f877989e660e11d39.js?v=9d0f877989e6"></script>
+    <script src="/assets/generated/c7118041cdeaacb86104.js?v=c7118041cdea"></script>
     <script src="/site-header.js?v=e0b8459aba4c"></script>
     <script src="/site-reviews-data.js?v=d7d42ca2d7c0"></script>
     <script src="/home-experience.js?v=cd9c72024154"></script>
     <script src="/site-news-data.js?v=bd5e42faad95"></script>
     <script src="/site-news-model.js?v=98e2899faa36"></script>
     <script src="/site-news.js?v=0291fb001c21"></script>
-    <script src="/brand-motion.js?v=6f501d65482e" defer=""></script>
+    <script src="/brand-motion.js?v=f2894a1093a8" defer=""></script>
 
 
 </body>

@@ -55,6 +55,43 @@
         }
       },
       "updatedAt": "2026-09-01T15:23:10.1632602+09:00"
+    },
+    "home-brand-preview": {
+      "targetKind": "existing-ui",
+      "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "baselineDraftId": "a6df97f2-5800-440b-944a-ce7dae0bf02e",
+      "activeDraftId": "a6df97f2-5800-440b-944a-ce7dae0bf02e",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        ".superdesign/init/theme.md",
+        "index.html:880:896",
+        "styles/home-history.css",
+        "styles/brand-rhythm.css",
+        "styles/site-typography.css",
+        "brand-motion.js",
+        "tailwind.config.ts"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "e2d25d5e4e885044cdea5a6ba4d2d3710a0c0e4d7620553436ceab0040f51c6b",
+        ".superdesign/init/theme.md": "84fc3919dde75752c455f3611cb872c79ebeb8d4c4bca146dba4d111ef6db2ee",
+        "index.html": "5ad0ae43663f4b89190f393113f87f49e86ced93a596f61ed96b98f9795fa2e4",
+        "styles/home-history.css": "6019a1a7c3a7a7fc711c23c7532d788f997ec1e6f5f95b0b1112a34298473587",
+        "styles/brand-rhythm.css": "43d12e46adfb803fb80fb32d8a33bb7e42cdf97d605d7d7381522c925226b348",
+        "styles/site-typography.css": "6f4fc5d9ca2e3759e116f030c331b38c03374d15483f18a6aeb9728e929e347a",
+        "brand-motion.js": "f2894a1093a8ed0b29eb7536efd00363e085d432f454f25d42fed21672ef9801",
+        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
+      },
+      "components": [],
+      "drafts": {
+        "a6df97f2-5800-440b-944a-ce7dae0bf02e": {
+          "title": "MOKDA home brand history preview",
+          "visualDirection": "soft founder photograph, centered copy and three understated year milestones",
+          "currentVersion": 3,
+          "baselineVersion": 1
+        }
+      },
+      "updatedAt": "2026-10-08T11:10:45.909Z"
     }
   }
 }

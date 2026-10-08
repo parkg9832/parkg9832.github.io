@@ -266,3 +266,29 @@ html[lang^="ko"] .news-card h3 { word-break:keep-all; }
  .news-story-hero { margin-bottom:32px; }
  .news-meta { padding-inline:0; font-size:10px; }
 }
+
+/* Archive rows stay compact without changing home cards or story pages. */
+.news-listing .news-stories-grid { grid-template-columns:minmax(0,1fr); gap:0; border-top:1px solid #32150620; }
+.news-listing .news-archive-row { border-bottom:1px solid #32150620; }
+.news-listing .news-archive-row .news-card-link { display:grid; grid-template-columns:172px minmax(0,1fr) 28px; align-items:center; gap:28px; padding:20px 0; border:0; border-radius:0; background:transparent; }
+.news-listing .news-archive-row .news-card-image { width:172px; height:104px; aspect-ratio:auto; border-radius:8px; }
+.news-listing .news-archive-row .news-card-copy { min-height:0; padding:0; text-align:left; }
+.news-listing .news-archive-row .news-card-meta { justify-content:flex-start; gap:8px 16px; margin-bottom:8px; }
+.news-listing .news-archive-row .news-card-meta :is(.news-kicker,time) { font-size:11px; }
+.news-listing .news-archive-row h3 { font-size:21px; line-height:1.45; text-wrap:pretty; overflow-wrap:anywhere; }
+.news-listing .news-archive-arrow { justify-self:end; font-size:24px; line-height:1; color:var(--news-muted); }
+.news-listing .news-archive-row .news-card-link:hover h3 { color:#a93600; text-decoration:underline; text-underline-offset:4px; }
+.news-listing .news-archive-row .news-card-link:hover .news-archive-arrow { color:#a93600; }
+@media(max-width:767px) {
+ .news-listing .news-archive-row .news-card-link { grid-template-columns:96px minmax(0,1fr) 18px; gap:16px; padding-block:18px; }
+ .news-listing .news-archive-row .news-card-image { width:96px; height:76px; border-radius:6px; }
+ .news-listing .news-archive-row .news-card-meta { gap:4px 10px; margin-bottom:6px; }
+ .news-listing .news-archive-row .news-card-meta :is(.news-kicker,time) { font-size:10px; }
+ .news-listing .news-archive-row h3 { font-size:16px; line-height:1.45; }
+ .news-listing .news-archive-arrow { font-size:20px; }
+}
+@media(max-width:359px) {
+ .news-listing .news-archive-row .news-card-link { grid-template-columns:80px minmax(0,1fr) 16px; gap:12px; }
+ .news-listing .news-archive-row .news-card-image { width:80px; height:68px; }
+ .news-listing .news-archive-row h3 { font-size:15px; }
+}

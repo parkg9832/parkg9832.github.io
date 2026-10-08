@@ -92,6 +92,43 @@
         }
       },
       "updatedAt": "2026-10-08T11:10:45.909Z"
+    },
+    "/es/news.html": {
+      "targetKind": "existing-ui",
+      "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "baselineDraftId": "96f297c0-3188-4252-a4f6-b522d9d05bf4",
+      "activeDraftId": "96f297c0-3188-4252-a4f6-b522d9d05bf4",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        ".superdesign/init/theme.md",
+        "news.html",
+        "site-news.js",
+        "styles/site-news.css",
+        "styles/site-typography.css",
+        "scripts/generate-news-sources.mjs",
+        "tailwind.config.ts"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "e2d25d5e4e885044cdea5a6ba4d2d3710a0c0e4d7620553436ceab0040f51c6b",
+        ".superdesign/init/theme.md": "84fc3919dde75752c455f3611cb872c79ebeb8d4c4bca146dba4d111ef6db2ee",
+        "news.html": "728cccb0e77d70c47b5ae1e7d2a5ead54cd2f457d8abe0b9978886466d2487c0",
+        "site-news.js": "e3c9ad41041272aabe146842e01a70b128ca17701364d2bcbe9891f1b18c5db7",
+        "styles/site-news.css": "2b01d1effe4559d6b8f9c8f8d350f5b96c0ea8fe27da05be71c9429ecf556236",
+        "styles/site-typography.css": "6f4fc5d9ca2e3759e116f030c331b38c03374d15483f18a6aeb9728e929e347a",
+        "scripts/generate-news-sources.mjs": "290062ce5659ac33882779470fbc568413a4a4a575dbbd52615f7f04b1e1776f",
+        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
+      },
+      "components": [],
+      "drafts": {
+        "96f297c0-3188-4252-a4f6-b522d9d05bf4": {
+          "title": "MOKDA news archive",
+          "visualDirection": "small thumbnails and article headlines in horizontal rows, centered archive introduction",
+          "baselineVersion": 1,
+          "currentVersion": 2
+        }
+      },
+      "updatedAt": "2026-10-08T11:41:19.267Z"
     }
   }
 }

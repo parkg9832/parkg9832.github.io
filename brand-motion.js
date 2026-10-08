@@ -10,9 +10,9 @@
       '#proof>div>div:first-child', '#proofCarouselTrack>figure',
     ],
     'about-page': [
-      '.about-opening-copy', '.about-opening-scenes', '.about-chapter-heading', '#storyBody',
-      '.about-story-figure', '.about-food-pair', '#identity figure', '#motiveBody',
-      '.about-journey-card', '#products-transition>div',
+      '.about-chapter-heading', '#storyBody', '.about-story-figure',
+      '.about-ingredients-figure', '#ingredientsBody', '#identity figure', '#motiveBody',
+      '.about-history-year', '#products-transition>div',
     ],
     'products-page': ['.product-opening>div>div:first-child', '.product-feature>div'],
     'qna-page': ['.qna-opening [data-reveal]', '.qna-reading-item'],
@@ -30,7 +30,7 @@
       if (!entry.isIntersecting) continue;
       observer.unobserve(entry.target);
       if (reduced.matches || document.body.classList.contains('motion-paused')) continue;
-      const photo = entry.target.matches('figure,.home-product-panel,.about-opening-scenes,.about-food-pair,.about-journey-card');
+      const photo = entry.target.matches('figure,.home-product-panel');
       const animation = entry.target.animate(
         [{ opacity: photo ? .92 : .88, transform: `translateY(${photo ? 12 : 8}px)` },
           { opacity: 1, transform: 'translateY(0)' }],
@@ -42,7 +42,7 @@
   }, { threshold: .03, rootMargin: '0px 0px -20px 0px' });
   document.querySelectorAll(selector).forEach(node => observer.observe(node));
 
-  const milestones = document.querySelectorAll('.about-timeline-item');
+  const milestones = document.querySelectorAll('.about-history-year');
   const reading = milestones.length ? new IntersectionObserver(entries => {
     entries.forEach(entry => entry.target.classList.toggle('is-reading', entry.isIntersecting));
   }, { rootMargin: '-25% 0px -40% 0px', threshold: 0 }) : null;

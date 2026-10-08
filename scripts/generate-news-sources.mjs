@@ -31,8 +31,8 @@ export async function generateNewsSources(root) {
       .replace(/<link rel="canonical"[^>]+>/, `<link rel="canonical" href="https://www.mokda.kr/es/${filename}" />`)
       .replace(/<body[^>]+>/, `<body class="news-page antialiased"${story.id ? ` data-news-story="${story.id}"` : ''}>`)
       .replace(/<main id="productDetailContent"><\/main>/, '<main id="newsContent"></main>')
-      .replace(/styles\/product-detail-pages\.css[^" ]*/, 'styles/site-news.css?v=20261007-centered')
-      .replace(/<script src="product-detail\.js[^>]+><\/script>/, '<script src="site-news-data.js?v=20261007-editorial"></script>\n    <script src="site-news-model.js?v=20261007-2"></script>\n    <script src="site-news.js?v=20261007-editorial"></script>');
+      .replace(/styles\/product-detail-pages\.css[^" ]*/, 'styles/site-news.css?v=20261008-rhythm')
+      .replace(/<script src="product-detail\.js[^>]+><\/script>/, '<script src="site-news-data.js?v=20261007-editorial"></script>\n    <script src="site-news-model.js?v=20261007-2"></script>\n    <script src="site-news.js?v=20261008-rhythm"></script>');
     html = html.replace('</head>', `    <meta property="og:type" content="${story.id ? 'article' : 'website'}" />
     <meta property="og:title" content="${esTitle}" />
     <meta property="og:description" content="${esDescription}" />

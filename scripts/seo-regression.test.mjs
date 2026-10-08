@@ -76,12 +76,16 @@ for (const lang of ['ko', 'es', 'en']) {
     }
     if (page === 'qna') assert.equal(doc.querySelectorAll('#qnaList article').length, 5);
     if (page === 'about') {
-      assert.equal(doc.querySelectorAll('#journeyHighlights article').length, 3, 'Three verified journey highlights');
-      assert.equal(doc.querySelectorAll('#timelineList li').length, 8, 'Full factual history retained in initial HTML');
-      assert(doc.querySelector('details.about-history-records summary')?.textContent.trim(), 'Accessible full-history control');
-      assert.match(doc.querySelector('#timelineList').textContent, /2026\.08/);
+      assert.equal(doc.querySelectorAll('main>section.about-opening,#direction,#journeyHighlights,details.about-history-records').length, 0, 'Removed brand sections must not be regenerated');
+      assert.equal(doc.querySelectorAll('#timelineList li').length, 5, 'Five owner-supplied milestones in open chronology');
+      assert.equal(doc.querySelectorAll('#timelineList .about-history-year').length, 3, '2024–2026 year groups');
+      assert.match(doc.querySelector('#timelineList').textContent, /2024[\s\S]*2025[\s\S]*2026/);
+      assert.equal(doc.querySelectorAll('#story img,#ingredients img').length, 2, 'Only the two specified photographs');
+      for (const photo of doc.querySelectorAll('#story img,#ingredients img')) {
+        assert.equal(Number(photo.getAttribute('width')) / Number(photo.getAttribute('height')), 16/9, 'Full landscape photograph');
+      }
       assert.match(doc.querySelector('#timelineList').textContent, /Expoalimentaria/);
-      assert(doc.querySelector('#directionTitle')?.textContent.trim(), 'Food and cultural direction is rendered');
+      assert(doc.querySelector('#ingredientsTitle')?.textContent.trim(), 'Ingredient story is rendered without JavaScript');
       assert(doc.querySelector('#products-transition a[href*="products.html"]'), 'Story continues to products');
     }
     if (page === 'contact') {

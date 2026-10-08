@@ -7,7 +7,7 @@ import { generateNewsSources } from './generate-news-sources.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-10-07';
+const LAST_MODIFIED = '2026-10-08';
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 

@@ -30,7 +30,7 @@
     let section=document.getElementById('home-news');
     if(!section&&featured.length){
       section=document.createElement('section');section.id='home-news';section.className='home-news';section.setAttribute('aria-labelledby','homeNewsTitle');
-      section.innerHTML=`<div class="news-container"><div class="home-news-heading"><h2 id="homeNewsTitle" class="${typography}">${esc(copy.homeTitle)}</h2><a class="news-text-link home-news-more" href="${path('news.html')}">${esc(copy.viewAll)} <span aria-hidden="true">↗</span></a></div><div class="home-news-grid" tabindex="0" aria-label="${esc(copy.title)}">${featured.map(story=>card(story,true)).join('')}</div></div>`;
+      section.innerHTML=`<div class="news-container"><div class="home-news-heading"><p class="home-news-kicker">MOKDA NEWS</p><h2 id="homeNewsTitle" class="${typography}">${esc(copy.homeTitle)}</h2></div><div class="home-news-grid" tabindex="0" aria-label="${esc(copy.title)}">${featured.map(story=>card(story,true)).join('')}</div><div class="home-news-footer"><a class="news-text-link home-news-more" href="${path('news.html')}">${esc(copy.viewAll)} <span aria-hidden="true">↗</span></a></div></div>`;
     }
     if(section)(document.getElementById('faq')||proof).before(section);
   }

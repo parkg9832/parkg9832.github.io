@@ -211,6 +211,30 @@ html[lang^="ko"] .news-card h3 { word-break:keep-all; }
 /* Centered section introductions, with generous media width. */
 .home-news-heading { flex-direction:column; gap:12px; text-align:center; margin-bottom:28px; }
 .home-news-heading h2 { font-size:clamp(28px,3vw,40px); }
+
+/* Home uses the same section rhythm and open photographic panels as products. */
+.home-page #home-news { padding:var(--brand-space,96px) var(--brand-gutter,24px); background:var(--brand-paper,#fff8ef); scroll-margin-top:80px; }
+.home-page #home-news>.news-container { max-width:var(--brand-width,1200px); margin:auto; padding:0; }
+.home-page .home-news-heading { gap:0; margin-bottom:40px; }
+.home-page .home-news-kicker { margin:0 0 16px; font:700 .75rem/1.5 'Noto Sans','Noto Sans KR',sans-serif; letter-spacing:.1em; color:#a93600; }
+.home-page #homeNewsTitle { font:800 var(--brand-title,48px)/1.12 'Noto Sans','Noto Sans KR',sans-serif; letter-spacing:-.035em; text-align:center; }
+.home-page .home-news-grid { gap:32px; }
+.home-page #home-news .news-card-link { background:transparent; border:0; border-radius:0; }
+.home-page #home-news .news-card-image { border-radius:12px; }
+.home-page #home-news .news-card-copy { padding:24px 8px 0; min-height:0; text-align:center; }
+.home-page #home-news .news-card-meta { justify-content:center; margin-bottom:12px; }
+.home-page #home-news .news-card h3 { font-size:clamp(20px,2vw,24px); font-weight:800; line-height:1.4; }
+.home-page #home-news .news-card-link:hover h3 { color:#a93600; }
+.home-page .home-news-footer { display:flex; justify-content:center; margin-top:40px; }
+.home-page .home-news-more { min-height:48px; padding:12px 24px; border:1px solid #32150680; border-radius:999px; font-size:14px; }
+.home-page .home-news-more:hover { background:#f8dfc4; }
+@media(max-width:767px) {
+ .home-page .home-news-heading { margin-bottom:28px; }
+ .home-page .home-news-grid { gap:20px; }
+ .home-page #home-news .news-card-copy { padding:18px 4px 0; }
+ .home-page #home-news .news-card h3 { font-size:20px; }
+ .home-page .home-news-footer { margin-top:28px; }
+}
 .news-card-copy { text-align:center; }
 .news-card-meta { justify-content:center; flex-wrap:wrap; }
 .news-listing-head { display:flex; flex-direction:column; align-items:center; gap:28px; text-align:center; background:#f8dfc4; border:0; border-radius:16px; padding:44px 24px; }

@@ -27,7 +27,7 @@
     es: {
       brand: {
         label: 'MOKDA',
-        links: [['Nuestra historia', ''], ['Identidad', 'identity'], ['Trayectoria', 'history']]
+        links: [['Nuestra historia', ''], ['Nuestros ingredientes', 'ingredients'], ['Identidad', 'identity'], ['Trayectoria', 'history']]
       },
       products: {
         label: 'SALSA COREANA',
@@ -46,7 +46,7 @@
     ko: {
       brand: {
         label: 'MOKDA',
-        links: [['브랜드 스토리', ''], ['브랜드 아이덴티티', 'identity'], ['브랜드 연혁', 'history']]
+        links: [['브랜드 스토리', ''], ['원재료 이야기', 'ingredients'], ['브랜드 아이덴티티', 'identity'], ['브랜드 연혁', 'history']]
       },
       products: {
         label: 'SALSA COREANA',
@@ -65,7 +65,7 @@
     en: {
       brand: {
         label: 'MOKDA',
-        links: [['Our story', ''], ['Brand identity', 'identity'], ['Our journey', 'history']]
+        links: [['Our story', ''], ['Our ingredients', 'ingredients'], ['Brand identity', 'identity'], ['Our history', 'history']]
       },
       products: {
         label: 'SALSA COREANA',

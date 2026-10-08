@@ -235,7 +235,6 @@
 .about-page #timelineList .about-product-milestone>div { max-width:none; grid-template-columns:minmax(0,1fr) 128px; }
 .about-page #timelineList .timeline-month { transition:color .3s; }
 .about-page #timelineList .is-reading .timeline-month { color:#d94a00; }
-.about-page #timelineList .is-reading>div>p:first-child { text-decoration:underline; text-decoration-color:#ef5f1855; text-underline-offset:6px; }
 
 /* Product pages keep food photography, with taste and uses on separate levels. */
 .products-page .product-opening>div { min-height:540px; max-width:1440px; grid-template-columns:1fr 1fr; }
@@ -354,3 +353,8 @@
 .home-page #contact>div>div,.home-page #b2bTitle,.home-page #b2bDescription { text-align:center; margin-inline:auto; }
 .home-page #contact>div>div:first-child { margin-bottom:28px; }
 .home-page #voicesTitle { text-align:center; max-width:none; }
+.home-page .home-pairing-intro { display:block; max-width:860px; margin-inline:auto; text-align:center; }
+.home-page .home-pairing-intro :is(h2,p) { margin-inline:auto; }
+.home-page .home-pairing-intro>p { margin-top:24px; }
+.home-page :is(#pairingTitle,#supportTitle.home-support-title) { text-align:center; margin-inline:auto; }
+.home-page #support>div>div:first-child { text-align:center; }

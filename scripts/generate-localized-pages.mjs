@@ -7,7 +7,9 @@ import { generateNewsSources } from './generate-news-sources.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-10-08';
+const LAST_MODIFIED = '2026-10-09';
+const BRAND_IMAGE = `${SITE}/assets/images/mokda-logo-main.webp`;
+const BRAND_IMAGE_ALT = { ES: 'Logotipo de MOKDA', KR: 'MOKDA 로고', EN: 'MOKDA logo' };
 const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
@@ -21,6 +23,7 @@ const pages = {
   'index.html': {
     route: '',
     type: 'WebPage',
+    brandImage: true,
     ES: {
       title: 'MOKDA | Salsa Coreana para Latinoamérica',
       description: 'MOKDA conecta Corea con Latinoamérica a través de Salsa Coreana, su primera línea de salsas para comidas cotidianas.',
@@ -37,6 +40,7 @@ const pages = {
   'about.html': {
     route: 'about.html',
     type: 'AboutPage',
+    brandImage: true,
     ES: {
       title: 'Sobre MOKDA | K-Food entre Corea y Latinoamérica',
       description: 'Conoce la historia, identidad y trayectoria de MOKDA, la marca K-Food que conecta Corea con Latinoamérica.',
@@ -164,6 +168,17 @@ function structuredData(language, page, canonical, metadata) {
       inLanguage: languages[language].html,
       isPartOf: { '@id': `${SITE}/#website` },
       about: { '@id': `${SITE}/#organization` },
+      ...(page.brandImage ? {
+        image: BRAND_IMAGE,
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: BRAND_IMAGE,
+          contentUrl: BRAND_IMAGE,
+          width: 500,
+          height: 500,
+          caption: BRAND_IMAGE_ALT[language],
+        },
+      } : {}),
       ...(page.publishedDate ? {
         datePublished: page.publishedDate,
         dateModified: page.publishedDate,
@@ -186,11 +201,12 @@ function structuredData(language, page, canonical, metadata) {
         url: `${SITE}/`,
         logo: {
           '@type': 'ImageObject',
-          url: `${SITE}/favicon.png`,
-          width: 192,
-          height: 192,
+          url: BRAND_IMAGE,
+          contentUrl: BRAND_IMAGE,
+          width: 500,
+          height: 500,
         },
-        image: `${SITE}/assets/og-mokda-social-v2.png`,
+        image: BRAND_IMAGE,
         slogan: 'Comer Corea · 한국을 먹다',
         description: 'Marca K-Food que conecta sabores de Corea con las mesas cotidianas de Latinoamérica.',
         sameAs: [
@@ -247,6 +263,17 @@ function localizeHtml(source, language, page) {
   html = replaceMeta(html, 'property="og:title"', metadata.title);
   html = replaceMeta(html, 'property="og:description"', metadata.description);
   html = replaceMeta(html, 'property="og:url"', canonical);
+  if (page.brandImage) {
+    html = replaceMeta(html, 'property="og:image"', BRAND_IMAGE);
+    html = replaceMeta(html, 'property="og:image:secure_url"', BRAND_IMAGE);
+    html = replaceMeta(html, 'property="og:image:type"', 'image/webp');
+    html = replaceMeta(html, 'property="og:image:width"', '500');
+    html = replaceMeta(html, 'property="og:image:height"', '500');
+    html = replaceMeta(html, 'property="og:image:alt"', BRAND_IMAGE_ALT[language]);
+    html = replaceMeta(html, 'name="twitter:card"', 'summary');
+    html = replaceMeta(html, 'name="twitter:image"', BRAND_IMAGE);
+    html = replaceMeta(html, 'name="twitter:image:alt"', BRAND_IMAGE_ALT[language]);
+  }
   if (page.image?.[language]) {
     html = replaceMeta(html, 'property="og:image"', page.image[language]);
     html = replaceMeta(html, 'name="twitter:image"', page.image[language]);

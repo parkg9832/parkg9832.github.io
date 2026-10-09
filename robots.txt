@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /assets/images/testimonial-no-juhyeong-v1.webp
+Disallow: /assets/images/testimonial-no-juhyeong-upright-v2.png
 
 Sitemap: https://www.mokda.kr/sitemap.xml

@@ -12,6 +12,10 @@ const urlFor = (lang, page) => `https://www.mokda.kr/${lang}/${page === 'index' 
 const sitemap = await readFile(new URL('sitemap.xml', root), 'utf8');
 const robots = await readFile(new URL('robots.txt', root), 'utf8');
 assert.match(robots, /^Sitemap: https:\/\/www\.mokda\.kr\/sitemap\.xml\s*$/m);
+for (const portrait of ['testimonial-no-juhyeong-v1.webp', 'testimonial-no-juhyeong-upright-v2.png']) {
+  assert(robots.includes(`Disallow: /assets/images/${portrait}`), 'Testimonial portrait must not be a search image candidate');
+}
+assert(!robots.includes('Disallow: /assets/images/mokda-logo-main.webp'), 'Brand logo must remain crawlable');
 const listedUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 assert.equal(listedUrls.length, pages.length * Object.keys(languages).length);
 assert.equal(new Set(listedUrls).size, listedUrls.length);
@@ -58,7 +62,28 @@ for (const lang of ['ko', 'es', 'en']) {
     }
     assert(doc.querySelector('#footerText a[href]'), 'Crawlable footer links');
     assert.equal(doc.querySelectorAll('[data-reveal-bound]').length, 0);
-    for (const block of doc.querySelectorAll('script[type="application/ld+json"]')) JSON.parse(block.textContent);
+    const graph = [...doc.querySelectorAll('script[type="application/ld+json"]')].flatMap(block => {
+      const data = JSON.parse(block.textContent);
+      return data['@graph'] || [data];
+    });
+    if (page === 'index' || page === 'about') {
+      const image = doc.querySelector('meta[property="og:image"]')?.content;
+      const webPage = graph.find(node => node['@id'] === `${canonical}#webpage`);
+      assert.equal(image, 'https://www.mokda.kr/assets/images/mokda-logo-main.webp');
+      assert.equal(doc.querySelector('meta[property="og:image:secure_url"]')?.content, image);
+      assert.equal(doc.querySelector('meta[name="twitter:image"]')?.content, image);
+      assert.equal(doc.querySelector('meta[property="og:image:type"]')?.content, 'image/webp');
+      assert.equal(doc.querySelector('meta[property="og:image:width"]')?.content, '500');
+      assert.equal(doc.querySelector('meta[property="og:image:height"]')?.content, '500');
+      assert.equal(webPage?.primaryImageOfPage?.url, image);
+      assert.equal(webPage?.image, image);
+      assert.equal(webPage.primaryImageOfPage.caption, doc.querySelector('meta[property="og:image:alt"]')?.content);
+      if (page === 'index') {
+        const organization = graph.find(node => node['@type'] === 'Organization');
+        assert.equal(organization?.logo?.url, image);
+        assert.equal(organization?.image, image);
+      }
+    }
     if (page === 'index') {
       assert.equal(doc.querySelectorAll('.home-lineup-lead').length, 1);
       assert.equal(doc.querySelectorAll('#productsGrid .product-photo-card').length, 2);

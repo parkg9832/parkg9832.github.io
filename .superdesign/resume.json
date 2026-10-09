@@ -129,6 +129,62 @@
         }
       },
       "updatedAt": "2026-10-08T11:41:19.267Z"
+    },
+    "home-news": {
+      "targetKind": "existing-ui",
+      "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "baselineDraftId": "9001a0e5-fe7f-49b6-af4b-cd48e3736487",
+      "activeDraftId": "9001a0e5-fe7f-49b6-af4b-cd48e3736487",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        ".superdesign/init/theme.md",
+        "site-news.js:1:61",
+        "site-news-data.js:1:460",
+        "site-news-data.js:764:839",
+        "styles/site-news.css",
+        "styles/brand-rhythm.css:1:42",
+        "styles/site-typography.css",
+        "tailwind.config.ts"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "e2d25d5e4e885044cdea5a6ba4d2d3710a0c0e4d7620553436ceab0040f51c6b",
+        ".superdesign/init/theme.md": "84fc3919dde75752c455f3611cb872c79ebeb8d4c4bca146dba4d111ef6db2ee",
+        "site-news.js": "8f8f01ad736264b2fcead223142b796f79dc0c8b99ed65be5609605fe69f624e",
+        "site-news-data.js": "f3168d7a3294111a3b7e6d3b2ac8d70cf8d055408c2ae2fbf5925eb2326bfba9",
+        "styles/site-news.css": "ad214010814f4dc10218aa4ba33269c1d38c4b04c7c017079001b53d84bf9927",
+        "styles/brand-rhythm.css": "43d12e46adfb803fb80fb32d8a33bb7e42cdf97d605d7d7381522c925226b348",
+        "styles/site-typography.css": "6f4fc5d9ca2e3759e116f030c331b38c03374d15483f18a6aeb9728e929e347a",
+        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
+      },
+      "components": [],
+      "drafts": {
+        "9001a0e5-fe7f-49b6-af4b-cd48e3736487": {
+          "title": "MOKDA homepage news preview",
+          "baselineVersion": 1,
+          "currentVersion": 4,
+          "visualDirection": "one lead photograph and three compact supporting rows, centered copy, archive link at the top",
+          "previewUrl": "https://p.superdesign.dev/draft/9001a0e5-fe7f-49b6-af4b-cd48e3736487"
+        },
+        "26bec3ed-de0e-42eb-9af8-649af976f3d3": {
+          "title": "MOKDA homepage news preview ES",
+          "currentVersion": 3,
+          "language": "es-419",
+          "parentDraftId": "9001a0e5-fe7f-49b6-af4b-cd48e3736487",
+          "visualDirection": "one lead photograph and three compact supporting rows, centered copy, archive link at the top",
+          "previewUrl": "https://p.superdesign.dev/draft/26bec3ed-de0e-42eb-9af8-649af976f3d3"
+        },
+        "983dfc80-ab2f-4f1c-8c7f-4af01af56cdd": {
+          "title": "MOKDA homepage news preview EN",
+          "currentVersion": 4,
+          "language": "en",
+          "parentDraftId": "9001a0e5-fe7f-49b6-af4b-cd48e3736487",
+          "visualDirection": "one lead photograph and three compact supporting rows, centered copy, archive link at the top",
+          "previewUrl": "https://p.superdesign.dev/draft/983dfc80-ab2f-4f1c-8c7f-4af01af56cdd"
+        }
+      },
+      "reviewStatus": "user-approved-for-implementation",
+      "updatedAt": "2026-10-09T12:31:47.384Z"
     }
   }
 }

@@ -16,7 +16,7 @@
   const picture=(name,alt,extra='')=>{const [width,height]=data.imageDimensions?.[name]||[1200,900];return `<picture><source media="(max-width:639px)" srcset="${media(name+'-640')}"><img src="${media(name)}" alt="${esc(alt)}" width="${width}" height="${height}" decoding="async" ${extra}></picture>`;};
   const cover=(story,extra='')=>story.id==='creators'?`<div class="news-cover-collage">${data.creators.slice(0,3).map(c=>`<img src="${media(c.image+'-640')}" alt="${esc(c.name)}" width="360" height="640" loading="lazy" decoding="async">`).join('')}</div>`:picture(story.image,storyCopy(story).imageAlt,extra);
   const category=story=>model.categoryOf(story);
-  const tag=story=>`<p class="news-kicker">${esc(copy[category(story)])}${story.location?' <span aria-hidden="true">/</span> '+esc(story.location):''}</p>`;
+  const tag=story=>{const location=model.locationOf(data,story,language);return `<p class="news-kicker">${esc(copy[category(story)])}${location?' <span aria-hidden="true">/</span> '+esc(location):''}</p>`;};
   const supportingPhotos=story=>[...new Set(story.gallery)].filter(name=>name!==story.image);
   const photoAlbum=story=>supportingPhotos(story);
   const photoDescription=(story,name)=>data.imageDescriptions?.[name]?.[language]||storyCopy(story).imageAlt;
@@ -45,11 +45,17 @@
   }
   const proof=document.getElementById('proof');
   if(proof){
-    const featured=model.featured(data).slice(0,3);
+    const featured=model.featured(data);
+    const leadStory=featured.find(story=>story.homeOrder===1),supportStories=featured.filter(story=>story!==leadStory);
+    const homeCard=(story,lead=false)=>{
+      const text=storyCopy(story),title=story.cardTitles?.[language]||text.title;
+      const visual=story.videoAsCover&&story.videoPoster?picture(story.videoPoster,text.imageAlt,'loading="lazy"'):cover(story,'loading="lazy"');
+      return `<article class="news-card ${lead?'home-news-lead':'home-news-support'}" data-news-card="${story.id}" data-category="${category(story)}"><a class="news-card-link" href="${storyPath(story)}" aria-label="${esc(text.title)}"><div class="news-card-image">${visual}</div><div class="news-card-copy"><p class="news-kicker">${esc(copy[category(story)])}</p><h3>${esc(title)}</h3>${lead?`<p class="home-news-summary">${esc(text.summary)}</p>`:`<span class="home-news-read">${esc(copy.read)} <span aria-hidden="true">↗</span></span>`}</div></a></article>`;
+    };
     let section=document.getElementById('home-news');
     if(!section&&featured.length){
       section=document.createElement('section');section.id='home-news';section.className='home-news';section.setAttribute('aria-labelledby','homeNewsTitle');
-      section.innerHTML=`<div class="news-container"><div class="home-news-heading"><p class="home-news-kicker">MOKDA NEWS</p><h2 id="homeNewsTitle" class="${typography}">${esc(copy.homeTitle)}</h2></div><div class="home-news-grid" tabindex="0" aria-label="${esc(copy.title)}">${featured.map(story=>card(story,true)).join('')}</div><div class="home-news-footer"><a class="news-text-link home-news-more" href="${path('news.html')}">${esc(copy.viewAll)} <span aria-hidden="true">↗</span></a></div></div>`;
+      section.innerHTML=`<div class="news-container"><div class="home-news-heading"><div><p class="home-news-kicker">MOKDA NEWS</p><h2 id="homeNewsTitle" class="${typography}">${esc(copy.homeTitle)}</h2></div><a class="news-text-link home-news-more" href="${path('news.html')}">${esc(copy.archiveLink)} <span aria-hidden="true">↗</span></a></div><div class="home-news-grid${leadStory?'':' is-without-lead'}">${leadStory?homeCard(leadStory,true):''}<div class="home-news-supporting">${supportStories.map(story=>homeCard(story)).join('')}</div></div></div>`;
     }
     if(section)(document.getElementById('faq')||proof).before(section);
   }
@@ -59,7 +65,8 @@
 
         const text=storyCopy(story),collection=story.id==='creators';
         const heading=`<header class="news-article-heading${collection?' is-video-collection':''}">${tag(story)}<h1 class="${typography}">${esc(text.title)}</h1><p class="news-article-lead">${esc(text.summary)}</p></header>`;
-        const visual=collection?'':`<figure class="news-article-cover${story.videoAsCover?' is-video-cover':''}">${story.videoAsCover?videoPreview(story):cover(story,'fetchpriority="high"')}${text.imageCaption?`<figcaption class="news-cover-caption">${esc(text.imageCaption)}</figcaption>`:''}</figure>`;
+        const [imageWidth,imageHeight]=data.imageDimensions?.[story.image]||[1200,900];
+        const visual=collection?'':`<figure class="news-article-cover${story.videoAsCover?' is-video-cover':imageHeight>imageWidth?' is-portrait-cover':''}">${story.videoAsCover?videoPreview(story):cover(story,'fetchpriority="high"')}${text.imageCaption?`<figcaption class="news-cover-caption">${esc(text.imageCaption)}</figcaption>`:''}</figure>`;
         const body=collection?'':`<div class="news-article-body">${text.sections.map(([,body])=>`<p>${esc(body)}</p>`).join('')}${story.sources?.length?`<section class="news-sources"><h2>${esc(copy.sources)}</h2><div>${story.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.labels?.[language]||source.label)} ↗</a>`).join('')}</div></section>`:''}</div>`;
         main.innerHTML=`<div class="news-container news-detail"><a class="news-back" href="${path('news.html')}">← ${esc(copy.back)}</a><div class="news-story-hero${collection?' is-collection':''}">${heading}${visual}</div>${body}${gallery(story)}${collection?creators():''}</div>`;
 

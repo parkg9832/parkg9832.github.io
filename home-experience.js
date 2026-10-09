@@ -11,7 +11,7 @@
   });
   const copy = {
     KR: {
-      tabs: ['치킨 · 나초 · 엠빠나다 · 피자 · 고기 · 타코', '구운 고기 · 찐 고기 · 삶은 고기 · 오이 · 파프리카'],
+      tabs: ['치킨 · 나초 · 엠빠나다 · 피자 · 고기 · 타코', '구운 고기 · 찐 고기 · 삶은 고기 · 채소'],
       trials: '먹어본 사람들의 이야기', trialKicker: 'AT YOUR TABLE',
       preview: '디자인 미리보기 · 실제 후기가 아닙니다', sample: '예시 카드',
       sampleQuote: '이 자리에 실제 체험단의 후기와 음식 사진이 들어갑니다.',
@@ -19,7 +19,7 @@
       rating: '5점 만점에',
     },
     ES: {
-      tabs: ['Pollo · Nachos · Empanadas · Pizza · Carne · Tacos', 'Carne asada · Carne al vapor · Carne cocida · Pepino · Pimiento'],
+      tabs: ['Pollo · Nachos · Empanadas · Pizza · Carne · Tacos', 'Carne asada · Carne al vapor · Carne cocida · Vegetales'],
       trials: 'Historias desde la mesa', trialKicker: 'EN TU MESA',
       preview: 'Vista previa de diseño · No son reseñas reales', sample: 'Tarjeta de ejemplo',
       sampleQuote: 'Aquí aparecerán una reseña real y la foto compartida por quien probó la salsa.',
@@ -27,7 +27,7 @@
       rating: 'de 5 estrellas:',
     },
     EN: {
-      tabs: ['Chicken · Nachos · Empanadas · Pizza · Meat · Tacos', 'Grilled meat · Steamed meat · Boiled meat · Cucumber · Bell pepper'],
+      tabs: ['Chicken · Nachos · Empanadas · Pizza · Meat · Tacos', 'Grilled meat · Steamed meat · Boiled meat · Vegetables'],
       trials: 'Stories from the table', trialKicker: 'AT YOUR TABLE',
       preview: 'Design preview · These are not real reviews', sample: 'Sample card',
       sampleQuote: 'A real tasting review and a photo shared by the reviewer will appear here.',
@@ -103,7 +103,10 @@
       const rating = typeof item.rating === 'number' && Number.isInteger(item.rating) && item.rating >= 1 && item.rating <= 5 ? item.rating : null;
       const photo = typeof item.photo === 'string' && /^\/assets\/images\/[a-zA-Z0-9_./-]+$/.test(item.photo) && !item.photo.includes('..') ? item.photo : '';
       const [reviewerName, ...reviewerMetaParts] = String(item.name || '').split(' · ');
-      const reviewerMeta = reviewerMetaParts.join(' · ');
+      const reviewerMetaRaw = reviewerMetaParts.join(' · ');
+      const reviewCountries = { '🇵🇪':{KR:'페루',EN:'Peru'}, '🇲🇽':{KR:'멕시코',EN:'Mexico'}, '🇨🇴':{KR:'콜롬비아',EN:'Colombia'}, '🇰🇷':{KR:'한국',EN:'Korea'} };
+      const countryFlag = Object.keys(reviewCountries).find(flag => reviewerMetaRaw.includes(flag));
+      const reviewerMeta = countryFlag && language !== 'ES' ? `${reviewCountries[countryFlag][language]} ${countryFlag}` : reviewerMetaRaw;
       return `<article class="home-trial-card">${photo ? `<img src="${escape(photo)}" alt="${escape(localText(item.product))}" loading="lazy">` : ''}<div class="home-trial-card-body">${item.sample ? `<span class="home-sample-label">${copy.sample}</span>` : ''}${rating ? `<p class="home-stars" aria-label="${copy.rating} ${rating}"><span aria-hidden="true">${'★'.repeat(rating)}${'☆'.repeat(5 - rating)}</span></p>` : ''}<p class="home-review-author"><strong>${escape(reviewerName)}</strong>${reviewerMeta ? `<span>${escape(reviewerMeta)}</span>` : ''}</p><blockquote>${escape(localText(item.quote))}</blockquote></div></article>`;
     }).join('');
     track.innerHTML = `<div class="home-trial-group">${reviewCards}</div><div class="home-trial-group" aria-hidden="true">${reviewCards}</div>`;

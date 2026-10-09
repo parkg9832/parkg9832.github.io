@@ -22,6 +22,7 @@
     page = Math.min(pages, Math.max(1, Number.parseInt(page, 10) || 1));
     return { category, query, page, pages, pageSize, total: matches.length, matches, visible: matches.slice((page - 1) * pageSize, page * pageSize) };
   }
-  const featured = data => ordered(data).filter(story => story.homeFeatured).sort((a, b) => (a.homeOrder || 99) - (b.homeOrder || 99)).slice(0, 3);
-  window.MOKDA_NEWS_MODEL = { archive, ordered, featured, published, displayDate, categoryOf };
+  const featured = data => ordered(data).filter(story => story.homeFeatured).sort((a, b) => (a.homeOrder || 99) - (b.homeOrder || 99)).slice(0, 4);
+  const locationOf = (data, story, language) => data.locationLabels?.[story.location]?.[language] || story.location || '';
+  window.MOKDA_NEWS_MODEL = { archive, ordered, featured, published, displayDate, categoryOf, locationOf };
 })();

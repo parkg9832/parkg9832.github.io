@@ -30,13 +30,15 @@ try{
  const html=await (await fetch(origin)).text();const token=/name="mokda-session" content="([a-f0-9]+)"/.exec(html)[1];
  const response=await fetch(origin+'/api/news');assert.equal(response.headers.get('x-frame-options'),'DENY');
  const initial=await response.json();
- const from=initial.data.stories[0];
+ const from=initial.data.stories.find(story=>story.homeFeatured&&story.homeOrder===1);
  const draft={...structuredClone(from),homePosition:0};delete draft.related;
  for(const category of ['news','press','events','collaborations']){
   const record=await validateStory(fixture,{...draft,category},initial.data);
   assert.equal(record.category,category==='press'?'press':'news','Normalize legacy activity categories without changing press coverage');
  }
  await assert.rejects(validateStory(fixture,{...draft,category:'unknown'},initial.data),error=>error.status===400,'Reject categories outside the supported or legacy values');
+ assert.equal((await validateStory(fixture,{...draft,homePosition:4},initial.data)).homeOrder,4,'The third supporting story remains editable in the fourth home slot');
+ await assert.rejects(validateStory(fixture,{...draft,homePosition:5},initial.data),error=>error.status===400,'Reject home positions outside the four available slots');
  const existingData=structuredClone(initial.data),existing=existingData.stories.find(story=>story.id===from.id);
  existing.related=[existingData.stories.find(story=>story.id!==from.id).id];
  assert.deepEqual((await validateStory(fixture,draft,existingData)).related,existing.related,'Omitting the removed related-stories field must preserve existing editorial data');
@@ -52,6 +54,7 @@ try{
  try{
   assert.deepEqual(Array.from(ui.window.document.querySelectorAll('#category option'),option=>[option.value,option.textContent]),[['news','소식'],['press','언론사 보도자료']]);
   assert.equal(ui.window.document.getElementById('related'),null,'The manager must not offer the removed related-stories editor');
+  assert(ui.window.document.querySelector('#homePosition option[value="4"]'),'The manager offers the third supporting home card');
   ui.window.eval(await readFile(join(fixture,'scripts/news-manager-ui/app.js'),'utf8'));await settleUI();
   for(const category of ['press','news','events','collaborations']){
    const button=ui.window.document.querySelector(`[data-story="fixture-ui-${category}"]`);assert(button,'Every story remains selectable after the category change');
@@ -91,7 +94,7 @@ try{
  const result=await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify({record:updated,revision:after.revision,create:false})});assert.equal(result.status,200);const saved=await result.json();assert.equal(saved.built,true,saved.warning);
  assert.equal(saved.data.stories.find(s=>s.id==='fixture-new-event').category,'press','The API must retain an explicitly selected press category');
  const escaped=new JSDOM(await readFile(join(fixture,'en/news-fixture-new-event.html'),'utf8'));assert.equal(escaped.window.document.querySelector('h1').textContent,updated.EN.title);assert.equal(escaped.window.document.querySelector('h1 markup'),null);escaped.window.close();
- const home=new JSDOM(await readFile(join(fixture,'en/index.html'),'utf8'));assert.equal(home.window.document.querySelectorAll('[data-home-feature]').length,0,'An empty leading slot must not promote a smaller card');assert.equal(home.window.document.querySelectorAll('#home-news [data-news-card]').length,2);home.window.close();
+ const home=new JSDOM(await readFile(join(fixture,'en/index.html'),'utf8'));assert.equal(home.window.document.querySelectorAll('.home-news-lead').length,0,'An empty leading slot must not promote a smaller card');assert.equal(home.window.document.querySelectorAll('#home-news [data-news-card]').length,3);home.window.close();
  assert((await readdir(join(fixture,'output/news-manager/backups'))).length>=2);
  const bad={...updated,id:'../escape'};assert.equal((await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify({record:bad,revision:saved.revision,create:true})})).status,400);
  const image=await readFile(join(root,'assets/images/news/expo-booth.webp'));

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import vm from 'node:vm';
 import { JSDOM } from 'jsdom';
 
@@ -44,4 +44,49 @@ for (const [navigationType, readerMoved, expected] of [['navigate', false, 1], [
   assert.equal(aligned, expected, `${navigationType}: preserve reader movement and history`);
   dom.close();
 }
-console.log('Navigation regressions passed: product context, section links, campaign parameters, fresh deep links and native scroll restoration.');
+
+// Each public page exposes the same official accounts once, whether its social
+// banner is authored in the page or supplied by the shared footer.
+const footerSource = readFileSync(new URL('../site-footer.js', import.meta.url), 'utf8');
+const officialSocialLinks = [
+  ['Instagram', 'https://www.instagram.com/mokda_official/'],
+  ['TikTok', 'https://www.tiktok.com/@salsa_coreana'],
+  ['Threads', 'https://www.threads.com/@salsa_coreana'],
+];
+let footerPages = 0;
+for (const [locale, language, navigationLabel] of [
+  ['es', 'ES', 'Explorar MOKDA'],
+  ['en', 'EN', 'Explore MOKDA'],
+  ['ko', 'KR', 'MOKDA 둘러보기'],
+]) {
+  const directory = new URL(`../${locale}/`, import.meta.url);
+  for (const page of readdirSync(directory).filter(name => name.endsWith('.html'))) {
+    const html = readFileSync(new URL(page, directory), 'utf8');
+    const { window: dom } = new JSDOM(html, { url: `https://www.mokda.kr/${locale}/${page}` });
+    if (!dom.document.getElementById('footerText')) { dom.close(); continue; }
+    vm.runInNewContext(footerSource, { window: dom, document: dom.document });
+    dom.MOKDA_FOOTER.render(language);
+    dom.MOKDA_FOOTER.render(language);
+    const navigation = dom.document.querySelector('#footerText nav');
+    assert.equal(navigation.getAttribute('aria-label'), navigationLabel, `${locale}/${page}: localized footer navigation`);
+    assert.equal(navigation.querySelectorAll('a').length, 6);
+    for (const link of navigation.querySelectorAll('a')) {
+      assert.equal(new URL(link.href).pathname.startsWith(`/${locale}/`), true, `${locale}/${page}: footer preserves language`);
+    }
+    const socialLinks = [...dom.document.querySelectorAll('#socialBanner a, #footerText .mokda-footer-social-links a')];
+    assert.equal(socialLinks.length, 3, `${locale}/${page}: official social links must be available without duplicates`);
+    for (const [label, href] of officialSocialLinks) {
+      const link = socialLinks.find(item => item.getAttribute('aria-label') === label);
+      assert.ok(link, `${locale}/${page}: named ${label} icon`);
+      assert.equal(link.href, href);
+      assert.equal(link.target, '_blank');
+      assert.ok(link.relList.contains('noopener'));
+      assert.ok(link.relList.contains('noreferrer'));
+      assert.ok(link.querySelector('svg[aria-hidden="true"]'));
+    }
+    footerPages++;
+    dom.close();
+  }
+}
+assert.ok(footerPages >= 40, 'Shared footer coverage includes every localized news article and main page');
+console.log(`Navigation regressions passed: product context, section links, campaign parameters, fresh deep links, native scroll restoration and official social navigation on ${footerPages} pages.`);

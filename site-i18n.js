@@ -31,8 +31,8 @@
 
   function getHtmlLang(language) {
     const normalized = normalizeLanguage(language);
-    if (normalized === 'KR') return 'ko';
-    if (normalized === 'ES') return 'es';
+    if (normalized === 'KR') return 'ko-KR';
+    if (normalized === 'ES') return 'es-419';
     return 'en';
   }
 

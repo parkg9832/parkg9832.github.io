@@ -120,7 +120,7 @@
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
-html[lang='ko'] .home-page :is(#supportTitle,#pairingTitle) {
+html[lang^='ko'] .home-page :is(#supportTitle,#pairingTitle) {
   font-family: 'Noto Sans KR','Noto Sans',sans-serif;
   font-weight: 800 !important;
 }

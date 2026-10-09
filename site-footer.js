@@ -11,8 +11,9 @@
       addressLabel: 'Dirección',
       address: '44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, República de Corea',
       ipTitle: 'Propiedad intelectual',
-      ip: 'El nombre de marca, nombres de productos, diseños de empaque y materiales relacionados de MOKDA están en proceso de protección de marca e IP.',
+      ip: 'El nombre de la marca, los nombres de los productos, los diseños de empaque y los materiales relacionados de MOKDA están en proceso de protección mediante marcas y otros derechos de propiedad intelectual.',
       navigationLabel: 'Explorar MOKDA',
+      socialLabel: 'Redes sociales',
       navigation: [
         ['Inicio', ''],
         ['Nuestra historia', 'about.html'],
@@ -34,8 +35,9 @@
       addressLabel: 'Address',
       address: '44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, Republic of Korea',
       ipTitle: 'Intellectual Property',
-      ip: 'MOKDA brand name, product names, package designs, and related materials are under trademark and IP protection process.',
+      ip: 'MOKDA’s brand name, product names, packaging designs, and related materials are undergoing trademark and intellectual property protection procedures.',
       navigationLabel: 'Explore MOKDA',
+      socialLabel: 'Follow MOKDA',
       navigation: [
         ['Home', ''],
         ['Our story', 'about.html'],
@@ -59,6 +61,7 @@
       ipTitle: '지식재산권',
       ip: 'MOKDA의 브랜드명, 제품명, 패키지 디자인 및 관련 자료는 상표권 및 지식재산권 보호 절차를 진행 중입니다.',
       navigationLabel: 'MOKDA 둘러보기',
+      socialLabel: 'MOKDA SNS',
       navigation: [
         ['홈', ''],
         ['브랜드 소개', 'about.html'],
@@ -71,12 +74,61 @@
     },
   };
 
+  const SOCIAL_LINKS = [
+    {
+      label: 'Instagram',
+      href: 'https://www.instagram.com/mokda_official/',
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>',
+    },
+    {
+      label: 'TikTok',
+      href: 'https://www.tiktok.com/@salsa_coreana',
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M16.55 3c.24 2.08 1.42 3.55 3.45 4.13v3.16a7.45 7.45 0 0 1-3.36-.86v5.91c0 3.48-2.31 5.66-5.63 5.66-3.03 0-5.01-1.88-5.01-4.72 0-3.12 2.42-4.95 5.77-4.62v3.22c-1.49-.27-2.42.29-2.42 1.31 0 .85.66 1.42 1.63 1.42 1.1 0 1.82-.69 1.82-2.17V3h3.75Z"></path></svg>',
+    },
+    {
+      label: 'Threads',
+      href: 'https://www.threads.com/@salsa_coreana',
+      icon: '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.6 10.8c-.28-3.24-2.18-5.04-5.32-5.04-3.63 0-5.91 2.45-5.91 6.24 0 3.97 2.36 6.24 5.91 6.24 2.84 0 4.73-1.38 5.35-3.54.54-1.9-.64-3.34-2.86-3.51-2.17-.17-3.53.76-3.53 2.18 0 1.04.82 1.72 2.05 1.72 1.33 0 2.13-.72 2.13-1.85 0-2.28-2.21-3.69-5.13-3.24"></path><path d="M19.28 8.08C18.12 4.84 15.72 3 12.2 3 7.22 3 4 6.55 4 12s3.22 9 8.2 9c3.65 0 6.24-1.93 7.3-5.14"></path></svg>',
+    },
+  ];
+
   function normalizeLanguage(language) {
     return Object.hasOwn(FOOTER_COPY, language) ? language : 'ES';
   }
 
   const footerStyle = document.createElement('style');
   footerStyle.textContent = `
+    #footerText .mokda-footer-social {
+      margin-bottom: 28px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 248, 239, .14);
+      text-align: center;
+    }
+    #footerText .mokda-footer-social p {
+      margin: 0 0 16px;
+      color: #ef8954;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.5;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    #footerText .mokda-footer-social-links { display: flex; justify-content: center; gap: 20px; }
+    #footerText .mokda-footer-social-links a {
+      display: inline-flex;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      color: #fff8ef;
+      transition: color 180ms ease;
+    }
+    #footerText .mokda-footer-social-links svg { width: 34px; height: 34px; }
+    #footerText .mokda-footer-social-links a:hover { color: #ef8954; }
+    #footerText :is(.mokda-footer-social-links, .mokda-footer-navigation) a:focus-visible {
+      outline: 2px solid #ef8954;
+      outline-offset: 4px;
+    }
     #footerText .mokda-footer-legal {
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(240px, 1fr);
@@ -150,6 +202,14 @@
     const footer = FOOTER_COPY[normalizedLanguage];
     const localizedPrefix = { ES: 'es', EN: 'en', KR: 'ko' }[normalizedLanguage];
     const routePrefix = window.location.pathname.match(/^\/(es|en|ko)(?:\/|$)/)?.[1] || localizedPrefix;
+    const socialLinks = document.getElementById('socialBanner') ? '' : `
+      <div class="mokda-footer-social">
+        <p>${footer.socialLabel}</p>
+        <div class="mokda-footer-social-links">
+          ${SOCIAL_LINKS.map(({ label, href, icon }) => `<a href="${href}" target="_blank" rel="noopener noreferrer" aria-label="${label}">${icon}</a>`).join('')}
+        </div>
+      </div>
+    `;
     const navigationLinks = footer.navigation
       .map(([label, route]) => {
         const href = route ? `/${routePrefix}/${route}` : `/${routePrefix}/`;
@@ -158,7 +218,8 @@
       .join('');
     element.innerHTML = `
       <div class="text-center">
-        <nav aria-label="${footer.navigationLabel}" class="grid grid-cols-2 gap-x-3 gap-y-1 rounded-2xl bg-white/[0.035] p-2 text-[13px] sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-2 sm:px-6 sm:py-4 sm:text-sm">
+        ${socialLinks}
+        <nav aria-label="${footer.navigationLabel}" class="mokda-footer-navigation grid grid-cols-2 gap-x-3 gap-y-1 py-2 text-[13px] sm:flex sm:flex-wrap sm:justify-center sm:gap-x-7 sm:gap-y-2 sm:py-4 sm:text-sm">
           ${navigationLinks}
         </nav>
         <div class="mokda-footer-legal">

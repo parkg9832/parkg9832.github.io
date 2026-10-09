@@ -10,7 +10,8 @@
 }
 .home-history-photo {
   position:absolute;
-  inset:-8px -30% -8px 10%;
+  inset:-8px clamp(-520px,-30vw,-240px) -8px auto;
+  width:min(120%,2100px);
   z-index:-2;
   pointer-events:none;
   mask-image:linear-gradient(90deg,transparent,#000 24%);
@@ -20,7 +21,7 @@
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:50% 42%;
+  object-position:50% top;
   filter:blur(2px) saturate(.72);
 }
 .home-page #proof.home-history::before {
@@ -105,9 +106,9 @@
 .home-page #proof.home-history #proofHistoryCta:focus-visible { outline:3px solid #f8dfc4; outline-offset:5px; }
 @media(max-width:767px) {
   .home-page #proof.home-history { padding:64px 20px 56px; }
-  .home-history-photo { inset:-8px -8px; mask-image:none; }
+  .home-history-photo { inset:-8px -8px; width:auto; mask-image:none; }
   .home-page #proof.home-history::before { background:linear-gradient(180deg,rgba(37,16,8,.73),rgba(37,16,8,.76) 50%,rgba(37,16,8,.92)); }
-  .home-history-photo img { object-position:53% center; }
+  .home-history-photo img { object-position:53% top; }
   .home-page #proof.home-history #proofTitle { font-size:clamp(1.8rem,7.5vw,2.6rem)!important; }
   .home-page #proof.home-history #storyBody { max-width:400px; font-size:14px; line-height:1.8; margin-top:22px; }
   .home-history-milestones { margin:40px 0 32px; }

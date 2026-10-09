@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-JEmmf8EQHN3NGk3bXJFquTQqEhCx7D48sny9Si//Itg=' 'sha256-szpx5SE5gw37taTAh3Jk45DyvXQp7XnAz1LTdbKcSNE=' 'sha256-QKPICRW1TedJShfkworg3ltYyoBKpke+qpEhyCu3mZ8='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-JEmmf8EQHN3NGk3bXJFquTQqEhCx7D48sny9Si//Itg=' 'sha256-szpx5SE5gw37taTAh3Jk45DyvXQp7XnAz1LTdbKcSNE=' 'sha256-3hitL55PU+WGlbd8BCPmIwuzv1ywKtdGRGRKakIqlkA='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -692,7 +692,7 @@
 
       function renderPage() {
         const copy = pageCopy[language] || pageCopy.ES;
-        document.documentElement.lang = copy.lang;
+        document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
         document.title = copy.title;
         document.getElementById('meta-description')?.setAttribute('content', copy.metaDescription);
         document.getElementById('og-title')?.setAttribute('content', copy.title);

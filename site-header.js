@@ -99,14 +99,17 @@
 
     .mokda-header-bar {
       height: 80px !important;
+      width: 100% !important;
       max-width: 1440px !important;
+      margin-inline: auto !important;
+      box-sizing: border-box;
       padding: 0 18px !important;
       background: transparent !important;
     }
 
     .mokda-header-bar a[aria-label="MOKDA home"] img {
       width: auto;
-      height: 104px !important;
+      height: 94px !important;
       display: block;
       filter: saturate(1.06) contrast(1.05);
     }
@@ -383,7 +386,7 @@
       }
 
       .mokda-header-bar a[aria-label="MOKDA home"] img {
-        height: 96px !important;
+        height: 88px !important;
       }
 
       .mokda-header-bar > div:last-child {
@@ -426,7 +429,7 @@
       }
 
       .mokda-header-bar a[aria-label="MOKDA home"] img {
-        height: 78px !important;
+        height: 74px !important;
       }
 
       .mokda-header-bar > div:last-child {
@@ -494,7 +497,7 @@
       }
 
       .mokda-header-bar a[aria-label="MOKDA home"] img {
-        height: 108px !important;
+        height: 96px !important;
       }
 
       .mokda-desktop-nav {

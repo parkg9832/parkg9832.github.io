@@ -25,7 +25,7 @@ export async function validateStory(root,input,data) {
   const existing=data.stories.find(s=>s.id===input.id);
   const record={...existing,id:input.id,category:input.category==='press'?'press':'news',publishedDate:validDate(input.publishedDate,'게시일',true),location:string(input.location||'','장소',100,false)};
   const position=Number(input.homePosition||0);
-  if(!Number.isInteger(position)||position<0||position>3)fail('홈 노출 위치를 확인해주세요.');
+  if(!Number.isInteger(position)||position<0||position>4)fail('홈 노출 위치를 확인해주세요.');
   record.homeFeatured=position>0;record.homeOrder=position||99;
   for(const key of ['image','video']){
     const value=input[key]||'';

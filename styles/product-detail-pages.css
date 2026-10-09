@@ -23,3 +23,253 @@
   .product-detail-page .detail-inquiry > div { align-items:flex-start; flex-direction:column; }
 }
 @media (prefers-reduced-motion:reduce) { .product-detail-page * { scroll-behavior:auto; } }
+
+/* Readable English and Korean product presentations, with the Spanish original retained. */
+.product-detail-page .detail-localized-nav {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding: 22px clamp(20px, 4vw, 48px);
+}
+
+.product-detail-page .detail-localized-nav .detail-back {
+  color: #321506;
+}
+
+.product-detail-page .detail-localized-nav .detail-back:hover {
+  color: #a93600;
+}
+
+.product-detail-page .detail-localized-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  background: #f8dfc4;
+}
+
+.product-detail-page .detail-localized-hero.detail-page-para-carnes {
+  background: #321506;
+  color: #fff8ef;
+}
+
+.product-detail-page .detail-localized-photo {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.product-detail-page .detail-localized-photo img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.product-detail-page .detail-localized-introduction {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(44px, 6vw, 80px) clamp(20px, 4vw, 64px);
+  text-align: center;
+}
+
+.product-detail-page .detail-localized-kicker {
+  max-width: 36rem;
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1.7;
+  letter-spacing: .07em;
+}
+
+.product-detail-page .detail-localized-introduction h1 {
+  max-width: 100%;
+  margin-top: 20px;
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.product-detail-page .detail-page-kpeno h1 {
+  color: #c53316;
+}
+
+.product-detail-page .detail-localized-subtitle {
+  max-width: 32rem;
+  margin-top: 24px;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.product-detail-page .detail-localized-taste {
+  max-width: 32rem;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid currentColor;
+}
+
+.product-detail-page .detail-localized-taste h2 {
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.product-detail-page .detail-localized-taste p {
+  margin-top: 10px;
+  font-size: .9375rem;
+  line-height: 1.75;
+}
+
+.product-detail-page .detail-localized-reading {
+  max-width: 1240px;
+  margin-inline: auto;
+  padding: clamp(44px, 6vw, 80px) clamp(20px, 4vw, 48px);
+  text-align: center;
+}
+
+.product-detail-page .detail-localized-reading h2 {
+  max-width: 32rem;
+  margin-inline: auto;
+  font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
+  font-size: clamp(1.375rem, 2.4vw, 1.875rem);
+  line-height: 1.35;
+  letter-spacing: -.015em;
+  word-break: normal;
+}
+
+.product-detail-page .detail-localized-features {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 36px;
+}
+
+.product-detail-page .detail-localized-features p,
+.product-detail-page .detail-localized-story p {
+  max-width: 38rem;
+  margin: 20px auto 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #5a3826;
+}
+
+.product-detail-page .detail-localized-information {
+  margin-top: clamp(44px, 6vw, 72px);
+  padding-top: clamp(36px, 5vw, 56px);
+  border-top: 1px solid #32150630;
+}
+
+.product-detail-page .detail-localized-information dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 36px;
+  margin-top: 24px;
+}
+
+.product-detail-page .detail-localized-information dl > div {
+  padding: 22px 0;
+  border-bottom: 1px solid #32150620;
+}
+
+.product-detail-page .detail-localized-information dt {
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.product-detail-page .detail-localized-information dd {
+  margin: 10px 0 0;
+  font-size: .9375rem;
+  line-height: 1.75;
+  color: #5a3826;
+}
+
+.product-detail-page .detail-information-note {
+  max-width: 48rem;
+  margin: 24px auto 0;
+  font-size: .8125rem;
+  line-height: 1.75;
+  color: #75462d;
+}
+
+.product-detail-page .detail-localized-story {
+  margin-top: clamp(44px, 6vw, 72px);
+}
+
+.product-detail-page .detail-original-brochure {
+  margin-top: clamp(44px, 6vw, 72px);
+  border-block: 1px solid #32150630;
+}
+
+.product-detail-page .detail-original-brochure summary {
+  padding: 22px 0;
+  cursor: pointer;
+  font-size: .9375rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.product-detail-page .detail-original-brochure .detail-artworks {
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+
+.product-detail-page :is(a, summary):focus-visible {
+  outline: 3px solid #ef5f18;
+  outline-offset: 4px;
+}
+
+html[lang^='ko'] .product-detail-page .detail-localized-reading h2 {
+  font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
+  font-weight: 800;
+  word-break: keep-all;
+}
+
+html[lang^='ko'] .product-detail-page :is(.detail-localized-subtitle, .detail-localized-taste p, .detail-localized-reading p, .detail-localized-information dd) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+  .product-detail-page .detail-localized-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: max(560px, 50vw);
+  }
+
+  .product-detail-page .detail-localized-photo {
+    aspect-ratio: auto;
+  }
+
+  .product-detail-page .detail-page-kpeno .detail-localized-photo img {
+    object-position: center 34%;
+  }
+
+  .product-detail-page .detail-localized-features,
+  .product-detail-page .detail-localized-information dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-detail-page .detail-localized-features {
+    gap: 48px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .product-detail-page .detail-localized-introduction {
+    padding: 48px 28px;
+  }
+
+  .product-detail-page .detail-localized-introduction h1 {
+    font-size: clamp(2rem, 4.3vw, 2.7rem);
+  }
+
+  .product-detail-page .detail-localized-subtitle {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+}

@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-keJwPiOlnrvmutc9KSMk0LZ3pjQ8+0QeOk3KtYAtISE=' 'sha256-kDfxzf7Zzl6JlGN8gXD9tWU6vuITKbpK+sjTE/PzXGI=' 'sha256-3gtu8BTWbf6zSdZOLckOljxFUHVoHkVWk1Ck8YU5ZE4='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-keJwPiOlnrvmutc9KSMk0LZ3pjQ8+0QeOk3KtYAtISE=' 'sha256-kDfxzf7Zzl6JlGN8gXD9tWU6vuITKbpK+sjTE/PzXGI=' 'sha256-PWOAhcnOsBPgAZC6RAc/uI5MwaCKhPYwVFuXHUcq71E='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -209,6 +209,16 @@
         transition: background-color 360ms ease;
       }
 
+      .qna-page main > .qna-reading {
+        padding-top: 52px;
+      }
+
+      @media (max-width: 767px) {
+        .qna-page main > .qna-reading {
+          padding-top: 36px;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -350,15 +360,15 @@
         {
           ES: {
             question: '¿Con qué comidas se pueden usar las salsas?',
-            answer: 'K-PEÑO va bien con pollo, nachos, empanadas, pizza, carne y tacos. Para Carnes acompaña carnes asadas, al vapor o cocidas, además de verduras como pepino y pimiento.',
+            answer: 'K-PEÑO va bien con pollo, nachos, empanadas, pizza, carne y tacos. Para Carnes acompaña carnes asadas, al vapor o cocidas, además de vegetales.',
           },
           EN: {
             question: 'What foods can the sauces be used with?',
-            answer: 'K-PEÑO pairs with chicken, nachos, empanadas, pizza, meat, and tacos. Para Carnes complements grilled, steamed, or boiled meat, as well as vegetables such as cucumber and bell pepper.',
+            answer: 'K-PEÑO pairs with chicken, nachos, empanadas, pizza, meat, and tacos. Para Carnes complements grilled, steamed, or boiled meat, as well as vegetables.',
           },
           KR: {
             question: '어떤 음식에 활용할 수 있나요?',
-            answer: 'K-PEÑO는 치킨, 나초, 엠빠나다, 피자, 고기, 타코 등에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 오이, 파프리카 등 고기와 채소에 곁들이기 좋습니다.',
+            answer: 'K-PEÑO는 치킨, 나초, 엠빠나다, 피자, 고기, 타코 등에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 채소에 곁들이기 좋습니다.',
           },
         },
         {

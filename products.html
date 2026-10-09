@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-MKRfgem6+aoQ4N0Mv3YSH0K8f7D7bcyr7KOJCADoaGM='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-XpoGmAIvOQjGCABEkK8d7DJcPiAXBHrK2UFdMlWpx3I='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -149,14 +149,6 @@
         position: relative;
       }
 
-      .product-feature img {
-        transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
-      .product-feature:hover img {
-        transform: scale(1.035);
-      }
-
       @media (prefers-reduced-motion: reduce) {
         .reveal-target {
           opacity: 1;
@@ -172,6 +164,7 @@
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <link rel="stylesheet" href="./styles/brand-rhythm.css?v=20261008-centered" />
+    <link rel="stylesheet" href="./styles/product-layout.css?v=20261009-1" />
   </head>
   <body class="product-page products-page bg-[#f7ddc2] text-neutral-950 antialiased">
     <header id="main-header" data-menu-initial="dark" class="fixed top-0 left-0 w-full z-50 h-20 transition-all duration-300 bg-transparent">
@@ -207,31 +200,25 @@
 
     <main class="pt-20">
       <section class="product-opening overflow-hidden bg-[#f7ddc2]">
-        <div class="mx-auto grid min-h-[650px] w-full max-w-[1600px] lg:grid-cols-[0.82fr_1.18fr] lg:items-stretch">
-          <div class="relative z-10 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
+        <div class="product-introduction">
             <p id="pageKicker" class="condensed-label mb-5 text-base uppercase text-[#a93600] sm:text-xl">La primera línea de MOKDA</p>
             <h1 id="pageTitle" class="display-latin max-w-3xl break-keep text-balance text-6xl uppercase leading-[0.86] text-[#321506] sm:text-8xl lg:text-[7rem]">SALSA COREANA</h1>
             <p id="pageSubtitle" class="mt-7 max-w-xl text-pretty text-base font-semibold leading-7 text-[#321506]/82 sm:text-lg sm:leading-8">La primera expresión de MOKDA: salsas coreanas creadas para acompañar de forma fácil y natural las comidas cotidianas de Latinoamérica.</p>
             <p id="pageSlogan" class="display-latin mt-8 max-w-xl text-balance text-2xl uppercase leading-tight text-[#a93600] sm:text-3xl">NO PUEDES PARAR DE DIPEAR.</p>
-          </div>
-          <div class="relative min-h-[390px] overflow-hidden lg:min-h-full">
-            <img src="assets/images/brand-story-seoul-kfood-table.webp" alt="Línea Salsa Coreana de MOKDA con tacos, pollo y salsas" class="absolute inset-0 h-full w-full object-cover object-center" fetchpriority="high" decoding="async" />
-            <div class="absolute inset-y-0 left-0 hidden w-28 bg-gradient-to-r from-[#f7ddc2] to-transparent lg:block"></div>
-          </div>
         </div>
       </section>
 
       <section class="overflow-hidden">
         <article id="original" data-product="K-PEÑO" class="product-feature scroll-mt-20 grid bg-[#fff8ef] lg:grid-cols-2 lg:items-stretch">
-          <div class="product-food-only reveal-target relative min-h-[390px] overflow-hidden sm:min-h-[520px] lg:min-h-[650px]" style="transition-delay: 80ms">
+          <div class="product-food-only overflow-hidden">
             <img src="assets/images/kpeno-food-product-centered-20260922.webp" alt="Botella de Salsa Coreana K-PEÑO de frente junto a pollo, nachos y salsa" class="absolute inset-0 h-full w-full object-cover object-center" width="960" height="1280" loading="lazy" decoding="async" />
           </div>
-          <div class="reveal-target flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:px-16 xl:px-24">
+          <div class="product-feature-copy">
             <p id="prod1Kicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">Gochujang</p>
             <h2 id="prod1Title" class="display-latin text-6xl uppercase leading-[0.86] text-[#ef3b1f] sm:text-8xl">K-PEÑO</h2>
             <p id="prod1Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#321506]/72 sm:text-lg">Una salsa donde el picante del gochujang se encuentra con la frescura del jalapeño.</p>
             <p id="prod1Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#321506]/70">Ideal para tacos, pollo, frituras y snacks.</p>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div class="product-feature-actions mt-8 flex flex-col gap-3 sm:flex-row">
               <a id="prod1DetailLink" href="kpeno.html" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#ef5f18] hover:text-[#321506]">Ver detalle</a>
               <a id="prod1B2bLink" data-product="K-PEÑO" href="contact.html?purpose=distribution&product=original" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#321506] px-6 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#321506] hover:text-[#f8dfc4]">Consulta B2B</a>
             </div>
@@ -239,17 +226,17 @@
         </article>
 
         <article id="para-carnes" data-product="Para Carnes" class="product-feature scroll-mt-20 grid bg-[#321506] text-[#f8dfc4] lg:grid-cols-2 lg:items-stretch">
-          <div class="reveal-target order-2 flex flex-col justify-center px-5 py-14 sm:px-10 sm:py-20 lg:order-1 lg:px-16 xl:px-24">
+          <div class="product-feature-copy">
             <p id="prod2Kicker" class="condensed-label mb-4 text-base uppercase text-mokdaOrange sm:text-xl">Ssamjang</p>
             <h2 id="prod2Title" class="display-latin text-6xl uppercase leading-[0.86] text-[#f8dfc4] sm:text-8xl">Para Carnes</h2>
             <p id="prod2Desc" class="mt-6 max-w-lg text-base font-semibold leading-8 text-[#f8dfc4]/76 sm:text-lg">Una salsa coreana de profundo umami que combina con verduras y todo tipo de carnes, asadas, hervidas o al vapor.</p>
             <p id="prod2Uses" class="mt-5 max-w-lg text-sm font-extrabold uppercase tracking-[0.06em] text-[#f8dfc4]/70">Una salsa emblemática de Corea para dipear carnes.</p>
-            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div class="product-feature-actions mt-8 flex flex-col gap-3 sm:flex-row">
               <a id="prod2DetailLink" href="para-carnes.html" class="inline-flex min-h-12 items-center justify-center rounded-lg bg-[#f8dfc4] px-6 py-3 text-sm font-extrabold uppercase text-[#321506] transition hover:bg-[#ef5f18] hover:text-[#321506]">Ver detalle</a>
               <a id="prod2B2bLink" data-product="Para Carnes" href="contact.html?purpose=distribution&product=para-carnes" class="inline-flex min-h-12 items-center justify-center rounded-lg border-2 border-[#f8dfc4] px-6 py-3 text-sm font-extrabold uppercase text-[#f8dfc4] transition hover:bg-[#f8dfc4] hover:text-[#321506]">Consulta B2B</a>
             </div>
           </div>
-          <div class="product-food-only reveal-target relative order-1 min-h-[390px] overflow-hidden sm:min-h-[520px] lg:order-2 lg:min-h-[650px]" style="transition-delay: 80ms">
+          <div class="product-food-only overflow-hidden">
             <img src="assets/images/para-carnes-food-product-centered-20260922.webp" alt="Botella de Salsa Coreana Para Carnes de frente junto a carne asada y vegetales" class="absolute inset-0 h-full w-full object-cover object-center" width="960" height="1280" loading="lazy" decoding="async" />
           </div>
         </article>
@@ -324,7 +311,7 @@
           kicker: "MOKDA'S FIRST SAUCE LINE",
           headline: "SALSA COREANA",
           subtitle: "MOKDA's first expression: Korean sauces created to fit easily and naturally into everyday meals across Latin America.",
-          slogan: "NO PUEDES PARAR DE DIPEAR.",
+          slogan: "YOU CAN’T STOP DIPPING.",
           p1: {
             kicker: "Gochujang",
             name: "K-PEÑO",
@@ -346,7 +333,7 @@
           kicker: "MOKDA의 첫 번째 소스 라인",
           headline: "SALSA COREANA",
           subtitle: "MOKDA의 첫 번째 표현으로, 라틴아메리카의 일상 음식에 쉽고 자연스럽게 어울리도록 만든 한국 소스입니다.",
-          slogan: "NO PUEDES PARAR DE DIPEAR.",
+          slogan: "계속 찍어 먹게 되는 맛.",
           p1: {
             kicker: "Gochujang",
             name: "K-PEÑO",

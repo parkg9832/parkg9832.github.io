@@ -76,7 +76,14 @@ for(const lang of ['es','ko','en']){
  for(const button of c.querySelectorAll('[data-news-video]')){button.focus();button.click();const wrapper=button.nextElementSibling,video=wrapper.querySelector('video');assert(wrapper.classList.contains('news-inline-player'));assert.equal(button.hidden,true);assert.equal(c.querySelectorAll('video').length,1);assert(statSync(new URL(video.getAttribute('src').slice(1),root)).size>10000);wrapper.querySelector('.news-inline-close').click();assert.equal(video.hasAttribute('src'),false);assert.equal(c.querySelectorAll('video').length,0);assert.equal(button.hidden,false);assert.equal(c.activeElement,button);}
  const buttons=c.querySelectorAll('[data-news-video]');buttons[0].click();const previous=c.querySelector('video');buttons[1].click();assert.equal(previous.hasAttribute('src'),false);assert.equal(c.querySelectorAll('video').length,1);assert.equal(buttons[0].hidden,false);c.querySelector('video').dispatchEvent(new creators.window.Event('error'));assert.equal(c.querySelector('.news-inline-error').hidden,false);c.dispatchEvent(new creators.window.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));assert.equal(c.querySelectorAll('video').length,0);assert.equal(c.activeElement,buttons[1]);
  assert.equal(c.querySelectorAll('dialog').length,0);const toggle=c.querySelector('[data-conveyor="toggle"]');toggle.click();assert.equal(toggle.getAttribute('aria-pressed'),'true');toggle.click();assert.equal(toggle.getAttribute('aria-pressed'),'false');creators.window.close();
- const home=new JSDOM(read(`${lang}/index.html`));assert.equal(home.window.document.querySelectorAll('#home-news .home-news-grid .news-card').length,3);assert.equal(home.window.document.querySelectorAll('#home-news .news-feature,#home-news .news-card-summary,#home-news .news-card-read').length,0);assert.equal(home.window.document.querySelectorAll('#home-news a').length,4);assert.equal(home.window.document.querySelectorAll('#home-news [data-news-video]').length,0);home.window.close();
+ const home=new JSDOM(read(`${lang}/index.html`)),hd=home.window.document;
+ assert.equal(hd.querySelectorAll('#home-news .home-news-lead').length,1);
+ assert.equal(hd.querySelector('.home-news-lead').dataset.newsCard,'expoalimentaria-2026');
+ assert.deepEqual([...hd.querySelectorAll('.home-news-support')].map(node=>node.dataset.newsCard),['kpop-style','congreso','kotra-interview']);
+ assert.equal(hd.querySelectorAll('#home-news a').length,5,'Each story and the archive have one link');
+ assert.equal(hd.querySelectorAll('#home-news [data-news-video]').length,0,'Home images navigate to stories without loading players');
+ assert.equal(hd.querySelectorAll('.home-news-summary').length,1,'Only the main story has a summary');
+ assert(hd.querySelector('.home-news-heading .home-news-more'),'The archive link belongs to the section header');home.window.close();
  verifyPhotoViewer(lang,language,false);
  verifyPhotoViewer(lang,language,true);
  verifyGalleryNavigation(lang,false);

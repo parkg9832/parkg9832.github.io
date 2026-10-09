@@ -19,6 +19,4 @@
     visual.classList.add('product-food-only');
     food.alt = `${definitions[key].name} · ${labels.food}`;
   });
-  const heroAlt = { KR: '타코, 치킨과 함께 소개하는 MOKDA Salsa Coreana', ES: 'Línea Salsa Coreana de MOKDA con tacos, pollo y salsas', EN: 'MOKDA Salsa Coreana with tacos, chicken and sauces' }[language];
-  document.querySelector('main img').alt = heroAlt;
 })();

@@ -1,5 +1,10 @@
 window.MOKDA_NEWS = {
   "publishedDate": "2026-10-07",
+  "locationLabels": {
+    "Lima, Perú": { "ES": "Lima, Perú", "KR": "리마, 페루", "EN": "Lima, Peru" },
+    "Perú": { "ES": "Perú", "KR": "페루", "EN": "Peru" },
+    "Gimje, Corea del Sur": { "ES": "Gimje, Corea del Sur", "KR": "김제, 대한민국", "EN": "Gimje, South Korea" }
+  },
   "imageDescriptions": {
     "expo-booth": {
       "ES": "El stand de MOKDA y la presentación de Salsa Coreana en Expoalimentaria 2026",
@@ -75,8 +80,8 @@ window.MOKDA_NEWS = {
           }
         }
       ],
-      "homeFeatured": false,
-      "homeOrder": 99,
+      "homeFeatured": true,
+      "homeOrder": 4,
       "KR": {
         "title": "페루 국제 식음료 박람회 '엑스포알리멘타리아 2026(Expoalimentaria 2026)' 참관기",
         "summary": "KOTRA 해외시장뉴스 · 리마무역관 지정주 · 2026년 10월 6일",

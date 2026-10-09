@@ -76,8 +76,8 @@ html[lang^="ko"] .news-card h3 { word-break:keep-all; }
 .news-detail .news-article-heading .news-display.news-korean { font-weight:800; letter-spacing:-.04em; }
 .news-article-lead { max-width:720px; margin:0 auto; color:var(--news-muted); font-size:16px; line-height:1.8; text-wrap:pretty; }
 .news-article-cover { max-width:900px; min-width:0; margin:0 auto; }
-.news-article-cover > picture { display:block; overflow:hidden; border-radius:10px; background:#f3e5d5; }
-.news-article-cover > picture img { display:block; width:100%; height:auto; max-height:520px; object-fit:contain; }
+.news-article-cover > picture { display:block; }
+.news-article-cover > picture img { display:block; width:auto; max-width:100%; height:auto; max-height:520px; margin-inline:auto; border-radius:10px; }
 .news-article-cover.is-video-cover .news-video-preview { aspect-ratio:16/9; }
 .news-article-cover.is-video-cover :is(picture,img) { height:100%; max-height:none; }
 .news-cover-caption { margin:0; padding:12px 0 0; color:var(--news-muted); font-size:11px; line-height:1.65; text-align:center; }

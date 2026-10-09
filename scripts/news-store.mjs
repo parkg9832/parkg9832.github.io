@@ -46,7 +46,7 @@ export async function validateStory(root,input,data) {
   record.related=[...new Set(input.related)];
   const start=validDate(input.eventDate,'행사 시작일'),end=validDate(input.eventEndDate,'행사 종료일');
   if(end&&(!start||end<start))fail('행사 종료일은 시작일 이후로 입력해주세요.');
-  if(start)record.eventDate=start;else delete record.eventDate;
+  if(start){record.eventDate=start;delete record.dateUnconfirmed;}else delete record.eventDate;
   if(end)record.eventEndDate=end;else delete record.eventEndDate;
   for(const lang of ['KR','ES','EN']){
     const copy=input[lang];if(!copy||typeof copy!=='object')fail(`${lang} 내용을 입력해주세요.`);

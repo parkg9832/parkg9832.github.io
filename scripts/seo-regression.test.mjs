@@ -36,8 +36,9 @@ for (const lang of ['ko', 'es', 'en']) {
     if (page === 'news') {
       // A concise archive needs crawlable stories rather than filler to reach a text quota.
       const cards = [...doc.querySelectorAll('[data-news-card]')];
-      assert.equal(cards.length, newsData.stories.length, `${lang}/${page}: complete archive`);
-      for (const story of newsData.stories) {
+      const listedStories = newsData.stories.filter(story => story.archiveVisible !== false);
+      assert.equal(cards.length, listedStories.length, `${lang}/${page}: complete archive`);
+      for (const story of listedStories) {
         const card = cards.find(card => card.dataset.newsCard === story.id);
         assert.equal(card?.querySelector('h3')?.textContent, story[{ko:'KR',es:'ES',en:'EN'}[lang]].title);
         assert.equal(card.querySelector('a').getAttribute('href'), `/${lang}/news-${story.id}.html`);

@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
+import { createHash } from 'node:crypto';
 
 const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -9,6 +10,10 @@ export async function generateNewsSources(root) {
   runInNewContext(await readFile(join(root, 'site-news-data.js'), 'utf8'), context, { timeout: 2000 });
   const data = context.window.MOKDA_NEWS;
   const template = await readFile(join(root, 'kpeno.html'), 'utf8');
+  const newsScripts = await Promise.all(['site-news-data.js', 'site-news-model.js', 'site-news.js'].map(async name => {
+    const hash = createHash('sha256').update(await readFile(join(root, name))).digest('hex').slice(0, 12);
+    return `<script src="${name}?v=${hash}"></script>`;
+  }));
   const pages = {};
   const entries = [{ id: null, image: 'expo-booth' }, ...data.stories];
   for (const story of entries) {
@@ -32,7 +37,7 @@ export async function generateNewsSources(root) {
       .replace(/<body[^>]+>/, `<body class="news-page antialiased"${story.id ? ` data-news-story="${story.id}"` : ''}>`)
       .replace(/<main id="productDetailContent"><\/main>/, '<main id="newsContent"></main>')
       .replace(/styles\/product-detail-pages\.css[^" ]*/, 'styles/site-news.css?v=20261008-rows1')
-      .replace(/<script src="product-detail\.js[^>]+><\/script>/, '<script src="site-news-data.js?v=20261008-news2"></script>\n    <script src="site-news-model.js?v=20261008-news2"></script>\n    <script src="site-news.js?v=20261008-news2"></script>');
+      .replace(/<script src="product-detail\.js[^>]+><\/script>/, newsScripts.join('\n    '));
     html = html.replace('</head>', `    <meta property="og:type" content="${story.id ? 'article' : 'website'}" />
     <meta property="og:title" content="${esTitle}" />
     <meta property="og:description" content="${esDescription}" />

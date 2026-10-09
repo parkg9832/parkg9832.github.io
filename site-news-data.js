@@ -35,6 +35,11 @@ window.MOKDA_NEWS = {
       "ES": "Un saludo de MOKDA desde el escenario de KPOP STYLE",
       "KR": "KPOP STYLE 무대에서 인사하는 MOKDA",
       "EN": "MOKDA greeting the audience from the KPOP STYLE stage"
+    },
+    "gimje-youth-day-group": {
+      "KR": "2026 김제 청년의 날 기념행사 참석자들의 단체사진",
+      "ES": "Foto grupal de los participantes en el Día de la Juventud de Gimje 2026",
+      "EN": "A group photograph of participants at Gimje’s 2026 Youth Day celebration"
     }
   },
   "stories": [
@@ -457,7 +462,7 @@ window.MOKDA_NEWS = {
       "category": "news",
       "location": "Gimje, Corea del Sur",
       "publishedDate": "2026-10-08",
-      "image": "mokda-brand-news",
+      "image": "gimje-hint-presentation",
       "gallery": [],
       "related": [
         "gimje-youth-day"
@@ -466,49 +471,49 @@ window.MOKDA_NEWS = {
       "homeOrder": 99,
       "KR": {
         "title": "MOKDA, 김제 청년예비창업 도전지원사업 ‘힌트’ 선정",
-        "summary": "김제에서 이어가는 MOKDA의 창업 소식.",
-        "imageAlt": "MOKDA 브랜드 로고",
-        "imageCaption": "브랜드 이미지: MOKDA.",
+        "summary": "김제와 전북의 농산물로 중남미 수출용 소스를 개발하는 MOKDA의 창업 계획이 선정됐습니다.",
+        "imageAlt": "김제 청년 예비창업 도전 지원사업 힌트 심사에서 사업 계획을 발표하는 박겸 대표",
+        "imageCaption": "힌트 사업 심사 현장. 사진 출처: 전라일보(2026년 4월 14일 기사).",
         "sections": [
           [
             "힌트 선정",
-            "한국식 소스 브랜드 MOKDA가 2026 김제청년 예비창업 도전 지원사업 ‘힌트(H.I.N.T.)’에 선정됐습니다. 최종 선정 결과는 2026년 3월 13일 공식 공고로 발표됐습니다."
+            "MOKDA가 2026 김제 청년 예비창업 도전 지원사업 ‘힌트(H.I.N.T.)’에 선정됐습니다. 최종 결과는 3월 13일 발표됐습니다. 박겸 대표는 김제와 전북 농산물을 활용한 중남미 수출용 퓨전 칠리소스 개발 계획으로 참여했습니다."
           ],
           [
-            "김제에서 이어가는 창업 과정",
-            "이번 선정은 MOKDA가 김제에서 사업을 준비하며 이어온 창업 과정의 한 단계입니다."
+            "지역 자원으로 준비하는 창업",
+            "힌트는 지역 자원을 바탕으로 한 청년 창업 아이템의 사업화를 돕는 프로그램입니다. 창업 교육과 전문가 컨설팅, 네트워킹 등을 지원하며, MOKDA의 개발 계획은 전라일보의 선정 소식에도 소개됐습니다."
           ]
         ]
       },
       "ES": {
         "title": "MOKDA es seleccionada para el programa HINT de Gimje",
-        "summary": "Un paso en el desarrollo de MOKDA en Gimje, Corea del Sur.",
-        "imageAlt": "El logotipo de MOKDA",
-        "imageCaption": "Imagen de marca: MOKDA.",
+        "summary": "Una propuesta de salsas para Latinoamérica con productos agrícolas de Gimje y Jeonbuk.",
+        "imageAlt": "Gyeom Park presenta su propuesta durante la evaluación del programa HINT de Gimje",
+        "imageCaption": "Evaluación del programa HINT. Foto: Jeolla Ilbo, artículo del 14 de abril de 2026.",
         "sections": [
           [
-            "Programa HINT",
-            "MOKDA fue seleccionada para HINT, el programa de Gimje que apoya a jóvenes que se preparan para emprender. Los resultados finales de la convocatoria de 2026 se publicaron el 13 de marzo."
+            "Selección para HINT",
+            "MOKDA fue seleccionada para HINT, el programa de emprendimiento joven de Gimje. Los resultados se anunciaron el 13 de marzo de 2026. Gyeom Park presentó una propuesta de salsa de chile de fusión con productos agrícolas de Gimje y Jeonbuk, destinada a Latinoamérica."
           ],
           [
-            "El desarrollo de MOKDA en Gimje",
-            "La selección forma parte del proceso de creación y desarrollo de la marca de salsas coreanas en Gimje, Corea del Sur."
+            "Emprender con recursos locales",
+            "El programa apoya el desarrollo de negocios con formación, asesoría especializada y encuentros entre emprendedores. Jeolla Ilbo también presentó la propuesta de MOKDA en su cobertura de los proyectos seleccionados."
           ]
         ]
       },
       "EN": {
         "title": "MOKDA selected for Gimje’s HINT startup program",
-        "summary": "A step in MOKDA’s development in Gimje, South Korea.",
-        "imageAlt": "The MOKDA brand logo",
-        "imageCaption": "Brand image: MOKDA.",
+        "summary": "A sauce development plan for Latin America using agricultural products from Gimje and Jeonbuk.",
+        "imageAlt": "Gyeom Park presents his business proposal during the evaluation for Gimje’s HINT program",
+        "imageCaption": "HINT program evaluation. Photo: Jeolla Ilbo, article published April 14, 2026.",
         "sections": [
           [
-            "HINT selection",
-            "MOKDA was selected for Gimje’s 2026 HINT program, which supports young people preparing to start a business. The final selection results were announced on March 13, 2026."
+            "Selected for HINT",
+            "MOKDA was selected for Gimje’s HINT program for young aspiring entrepreneurs. Results were announced on March 13, 2026. Gyeom Park presented a plan for a fusion chili sauce using agricultural products from Gimje and Jeonbuk for Latin America."
           ],
           [
-            "MOKDA’s startup journey in Gimje",
-            "The selection is part of the Korean sauce brand’s startup journey in Gimje, South Korea."
+            "Starting with local resources",
+            "The program supports business development through training, expert consulting and networking. Jeolla Ilbo also featured MOKDA’s proposal in its coverage of the selected projects."
           ]
         ]
       },
@@ -522,6 +527,15 @@ window.MOKDA_NEWS = {
             "ES": "E:DA Gimje · Resultados de selección del programa HINT (en coreano)",
             "EN": "E:DA Gimje · HINT program selection results (in Korean)"
           }
+        },
+        {
+          "label": "전라일보 · 김제시, 지역 자원 기반 청년 창업 3팀 선정 · 2026-04-14",
+          "url": "https://www.jeollailbo.com/news/articleView.html?idxno=797440",
+          "labels": {
+            "KR": "전라일보 · 김제시, 지역 자원 기반 청년 창업 3팀 선정… 사업화 지원 본격 추진 · 2026-04-14",
+            "ES": "Jeolla Ilbo · Proyectos seleccionados para HINT en Gimje · 14 abr 2026",
+            "EN": "Jeolla Ilbo · Projects selected for Gimje’s HINT program · Apr 14, 2026"
+          }
         }
       ]
     },
@@ -531,19 +545,21 @@ window.MOKDA_NEWS = {
       "location": "Gimje, Corea del Sur",
       "publishedDate": "2026-10-08",
       "eventDate": "2026-09-17",
-      "image": "mokda-brand-news",
-      "gallery": [],
+      "image": "gimje-youth-day-award",
+      "gallery": [
+        "gimje-youth-day-group"
+      ],
       "related": [
         "gimje-hint"
       ],
       "sources": [
         {
-          "url": "https://www.etnews.com/20260918000160",
-          "label": "전자신문 · 2026 김제 청년의 날 행사 보도",
+          "label": "전북중앙 · ‘청년이 진정한 주인공’ …김제 청년의 날 기념행사 · 2026-09-20",
+          "url": "https://www.jjn.co.kr/news/articleView.html?idxno=1052644",
           "labels": {
-            "KR": "전자신문 · 2026 김제 청년의 날 행사 보도",
-            "ES": "Electronic Times · Día de la Juventud de Gimje 2026 (en coreano)",
-            "EN": "Electronic Times · Gimje Youth Day 2026 coverage (in Korean)"
+            "KR": "전북중앙 · ‘청년이 진정한 주인공’ …김제 청년의 날 기념행사 · 2026-09-20",
+            "ES": "Jeonbuk Joongang · Celebración del Día de la Juventud de Gimje · 20 sep 2026",
+            "EN": "Jeonbuk Joongang · Gimje’s Youth Day celebration · Sep 20, 2026"
           }
         },
         {
@@ -561,36 +577,48 @@ window.MOKDA_NEWS = {
       "KR": {
         "title": "박겸 MOKDA 대표, 김제 청년의 날 표창장 수상",
         "summary": "청년의 권익과 지역사회 발전에 기여한 공로를 인정받았습니다.",
-        "imageAlt": "MOKDA 브랜드 로고",
-        "imageCaption": "브랜드 이미지: MOKDA.",
+        "imageAlt": "김제 청년의 날 기념행사에서 표창장을 받는 MOKDA 박겸 대표",
+        "imageCaption": "2026년 9월 17일, 김제청년공간 E:DA에서 열린 청년의 날 표창 수여 현장.",
         "sections": [
           [
-            "김제 청년의 날",
-            "한국식 소스 브랜드 MOKDA의 박겸 대표가 김제 청년의 날을 맞아 표창장을 받았습니다. 이번 표창은 청년의 권익과 지역사회 발전에 기여한 공로를 인정받아 수여됐습니다."
+            "청년의 날 표창",
+            "MOKDA의 박겸 대표가 김제 청년의 날을 맞아 표창장을 받았습니다. 청년의 권익과 지역사회 발전에 기여한 공로를 인정받아 수여된 표창입니다."
+          ],
+          [
+            "김제에서 함께한 청년의 날",
+            "기념행사는 2026년 9월 17일 김제청년공간 E:DA에서 열렸습니다. 청년 유공 표창과 함께 청년들이 고민을 나누고 서로 교류하는 프로그램이 진행됐으며, 행사 소식은 전북중앙에도 보도됐습니다."
           ]
         ]
       },
       "ES": {
         "title": "Gyeom Park, fundador de MOKDA, recibe un reconocimiento en el Día de la Juventud de Gimje",
         "summary": "Un reconocimiento por su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local.",
-        "imageAlt": "El logotipo de MOKDA",
-        "imageCaption": "Imagen de marca: MOKDA.",
+        "imageAlt": "Gyeom Park, fundador de MOKDA, recibe un diploma en el Día de la Juventud de Gimje",
+        "imageCaption": "Entrega del reconocimiento en E:DA Gimje, el 17 de septiembre de 2026.",
         "sections": [
           [
-            "Día de la Juventud de Gimje",
-            "Gyeom Park, fundador de la marca de salsas coreanas MOKDA, recibió un diploma de reconocimiento con motivo del Día de la Juventud de Gimje, en Corea del Sur. La distinción reconoce su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local."
+            "Reconocimiento en el Día de la Juventud",
+            "Gyeom Park, fundador de MOKDA, recibió un diploma de reconocimiento en el Día de la Juventud de Gimje. La distinción reconoce su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local."
+          ],
+          [
+            "Un encuentro en Gimje",
+            "La celebración tuvo lugar el 17 de septiembre de 2026 en E:DA Gimje, con reconocimientos a jóvenes y actividades de diálogo e intercambio. Jeonbuk Joongang publicó una crónica del evento."
           ]
         ]
       },
       "EN": {
         "title": "MOKDA founder Gyeom Park receives a commendation on Gimje’s Youth Day",
         "summary": "Recognized for contributions to young people’s rights and interests and local community development.",
-        "imageAlt": "The MOKDA brand logo",
-        "imageCaption": "Brand image: MOKDA.",
+        "imageAlt": "MOKDA founder Gyeom Park receives a certificate at Gimje’s Youth Day celebration",
+        "imageCaption": "The commendation presentation at E:DA Gimje on September 17, 2026.",
         "sections": [
           [
-            "Gimje Youth Day",
-            "Gyeom Park, founder of the Korean sauce brand MOKDA, received a certificate of commendation on the occasion of Gimje’s Youth Day in South Korea. The commendation recognizes his contributions to young people’s rights and interests and the development of the local community."
+            "Youth Day commendation",
+            "MOKDA founder Gyeom Park received a certificate of commendation on Gimje’s Youth Day. It recognizes his contributions to young people’s rights and interests and to local community development."
+          ],
+          [
+            "A gathering in Gimje",
+            "The celebration took place on September 17, 2026, at E:DA Gimje, with youth commendations and activities for discussion and exchange. Jeonbuk Joongang reported on the event."
           ]
         ]
       }
@@ -812,6 +840,37 @@ window.MOKDA_NEWS = {
       "ES": "En el escenario de KPOP STYLE",
       "KR": "KPOP STYLE 무대에서",
       "EN": "On stage at KPOP STYLE"
+    },
+    "gimje-youth-day-group": {
+      "KR": "김제 청년의 날 기념행사 참석자들과 함께. 2026년 9월 17일, 김제청년공간 E:DA.",
+      "ES": "Con los participantes de la celebración en E:DA Gimje, el 17 de septiembre de 2026.",
+      "EN": "With participants at the celebration in E:DA Gimje on September 17, 2026."
     }
+  },
+  "imageDimensions": {
+    "gimje-youth-day-award": [
+      1256,
+      582
+    ],
+    "gimje-youth-day-award-640": [
+      640,
+      297
+    ],
+    "gimje-youth-day-group": [
+      909,
+      512
+    ],
+    "gimje-youth-day-group-640": [
+      640,
+      360
+    ],
+    "gimje-hint-presentation": [
+      600,
+      419
+    ],
+    "gimje-hint-presentation-640": [
+      600,
+      419
+    ]
   }
 };

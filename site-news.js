@@ -11,7 +11,7 @@
   const storyCopy=story=>story[language]||story.ES,typography=language==='KR'?'news-display news-korean':'news-display';
   const date=value=>new Intl.DateTimeFormat({ES:'es-419',KR:'ko-KR',EN:'en'}[language],{year:'numeric',month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(value+'T12:00:00Z'));
   const storyDate=story=>{const start=model.displayDate(data,story);return start?`<time datetime="${start}">${esc(date(start))}</time>${story.eventEndDate?` – <time datetime="${story.eventEndDate}">${esc(date(story.eventEndDate))}</time>`:''}`:'';};
-  const picture=(name,alt,extra='')=>`<picture><source media="(max-width:639px)" srcset="${media(name+'-640')}"><img src="${media(name)}" alt="${esc(alt)}" width="1200" height="900" decoding="async" ${extra}></picture>`;
+  const picture=(name,alt,extra='')=>{const [width,height]=data.imageDimensions?.[name]||[1200,900];return `<picture><source media="(max-width:639px)" srcset="${media(name+'-640')}"><img src="${media(name)}" alt="${esc(alt)}" width="${width}" height="${height}" decoding="async" ${extra}></picture>`;};
   const cover=(story,extra='')=>story.id==='creators'?`<div class="news-cover-collage">${data.creators.slice(0,3).map(c=>`<img src="${media(c.image+'-640')}" alt="${esc(c.name)}" width="360" height="640" loading="lazy" decoding="async">`).join('')}</div>`:picture(story.image,storyCopy(story).imageAlt,extra);
   const tag=story=>`<p class="news-kicker">${esc(copy[story.category])}${story.location?' <span aria-hidden="true">/</span> '+esc(story.location):''}</p>`;
   function card(story,home=false){

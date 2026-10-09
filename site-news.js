@@ -58,7 +58,7 @@
     if(!main.children.length){if(story){
 
         const text=storyCopy(story),collection=story.id==='creators';
-        const heading=`<header class="news-article-heading${collection?' is-video-collection':''}">${tag(story)}<h1 class="${typography}">${esc(text.title)}</h1><p class="news-article-lead">${esc(text.summary)}</p>${model.displayDate(data,story)?`<div class="news-meta"><span>${esc(story.eventDate?copy.event:copy.date)} ${storyDate(story)}</span></div>`:''}</header>`;
+        const heading=`<header class="news-article-heading${collection?' is-video-collection':''}">${tag(story)}<h1 class="${typography}">${esc(text.title)}</h1><p class="news-article-lead">${esc(text.summary)}</p></header>`;
         const visual=collection?'':`<figure class="news-article-cover${story.videoAsCover?' is-video-cover':''}">${story.videoAsCover?videoPreview(story):cover(story,'fetchpriority="high"')}${text.imageCaption?`<figcaption class="news-cover-caption">${esc(text.imageCaption)}</figcaption>`:''}</figure>`;
         const body=collection?'':`<div class="news-article-body">${text.sections.map(([,body])=>`<p>${esc(body)}</p>`).join('')}${story.sources?.length?`<section class="news-sources"><h2>${esc(copy.sources)}</h2><div>${story.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.labels?.[language]||source.label)} ↗</a>`).join('')}</div></section>`:''}</div>`;
         main.innerHTML=`<div class="news-container news-detail"><a class="news-back" href="${path('news.html')}">← ${esc(copy.back)}</a><div class="news-story-hero${collection?' is-collection':''}">${heading}${visual}</div>${body}${gallery(story)}${collection?creators():''}</div>`;

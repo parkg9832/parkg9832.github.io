@@ -77,7 +77,13 @@ try{
  for(const lang of ['ko','es','en']){
   const page=new JSDOM(await readFile(join(fixture,lang,'news-fixture-new-event.html'),'utf8'));
   assert(page.window.document.querySelector('main h1').textContent.trim());assert.match(page.window.document.querySelector('link[rel="canonical"]').href,new RegExp('/'+lang+'/news-fixture-new-event.html$'));
-  assert.match(page.window.document.querySelector('.news-meta').textContent,/2027/);page.window.close();
+  const detail=page.window.document,metadataArticle=JSON.parse(detail.querySelector('script[type="application/ld+json"]').textContent)['@graph'].find(node=>node['@type']==='Article');
+  assert.equal(detail.querySelectorAll('.news-article-heading .news-meta,.news-article-heading time').length,0,'A generated article omits visible event and publication date rows');
+  assert.equal(metadataArticle.datePublished,input.publishedDate,'The manager preserves the publication date in generated article metadata');
+  assert.equal(after.data.stories.find(story=>story.id===input.id).publishedDate,input.publishedDate,'The saved publication record remains editable');
+  const archive=new JSDOM(await readFile(join(fixture,lang,'news.html'),'utf8'));
+  assert.deepEqual(Array.from(archive.window.document.querySelectorAll(`[data-news-card="${input.id}"] time`),time=>time.dateTime),[input.eventDate||input.publishedDate,...(input.eventEndDate?[input.eventEndDate]:[])],'Generated archive dates retain the event or publication date');
+  archive.window.close();page.window.close();
  }
  assert.match(await readFile(join(fixture,'sitemap.xml'),'utf8'),/news-fixture-new-event\.html/);
  assert.equal((await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify(payload)})).status,409,'Reject stale writes');

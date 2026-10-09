@@ -33,6 +33,13 @@ for(const lang of ['es','ko','en']){
   assert.equal(item.querySelector('.news-kicker').textContent.trim(),labels[story.category]);
   const detail=start(lang,'news-'+story.id),dd=detail.window.document;
   assert.equal(dd.querySelectorAll('.news-related,.news-next').length,0,'Article details have no next-story section');
+  assert.equal(dd.querySelectorAll('.news-article-heading .news-meta,.news-article-heading time').length,0,'Article headings omit event and publication date rows');
+  const metadataArticle=JSON.parse(dd.querySelector('script[type="application/ld+json"]').textContent)['@graph'].find(node=>node['@type']==='Article');
+  assert.equal(metadataArticle.datePublished,story.publishedDate||w.MOKDA_NEWS.publishedDate,'Removing the visible date does not erase the article publication record');
+  const archiveDates=story.dateUnconfirmed?[]:[story.eventDate||story.publishedDate||w.MOKDA_NEWS.publishedDate,...(story.eventEndDate?[story.eventEndDate]:[])];
+  assert.deepEqual([...item.querySelectorAll('time')].map(time=>time.dateTime),archiveDates,'Archive dates continue to use the event date or confirmed publication date');
+  assert.equal(w.MOKDA_NEWS_MODEL.published(w.MOKDA_NEWS,story),metadataArticle.datePublished);
+  assert.equal(w.MOKDA_NEWS_MODEL.displayDate(w.MOKDA_NEWS,story),archiveDates[0]||'','Unconfirmed event dates remain unpublished in the archive');
   assert(dd.querySelector('.news-article-heading .news-kicker').textContent.startsWith(labels[story.category]),'Article classification matches the archive');
   assert.equal(dd.querySelectorAll('.news-article-cover').length,1,'One cover is displayed above the article');
   assert.equal(dd.querySelectorAll('.news-article-cover [data-news-photo],.news-cover-photo').length,0,'The main photo is displayed without an enlargement action');
@@ -58,6 +65,7 @@ for(const lang of ['es','ko','en']){
  const direct=start(lang,'news','?category=collaborations&utm_source=partner');assert.equal(direct.window.document.querySelectorAll('[data-news-card]:not([hidden])').length,7);assert.equal(new URL(direct.window.location.href).searchParams.has('category'),false);assert.equal(new URL(direct.window.location.href).searchParams.get('utm_source'),'partner');direct.window.close();
  for(const id of ['gimje-hint','gimje-youth-day']){const detail=start(lang,'news-'+id);assert(detail.window.document.querySelector('h1').textContent.trim());detail.window.close();}
  const creators=start(lang,'news-creators'),c=creators.window.document;
+ assert.equal(c.querySelectorAll('.news-article-heading .news-meta,.news-article-heading time').length,0,'The creator collection uses the same date-free article heading');
  assert.equal(c.querySelectorAll('[data-news-video]').length,5);
  assert.equal(c.querySelectorAll('.news-video-card > p').length,0,'Remove repetitive mini headlines');
  assert(!/처음 만나는 Salsa Coreana|식탁에서 만난 Salsa Coreana|La primera presentación|Salsa Coreana en la mesa/.test(c.body.textContent));
@@ -164,4 +172,4 @@ gd.querySelector('[data-news-page="3"]').click();assert.equal(gd.querySelectorAl
 gd.getElementById('newsSearch').value='KPOP';gd.querySelector('[data-search-news]').click();assert.equal(new URL(gw.location.href).searchParams.has('page'),false);assert.equal(gd.querySelectorAll('[data-news-card]:not([hidden])').length,1);
 const model=gw.MOKDA_NEWS_MODEL;assert.equal(model.archive(gw.MOKDA_NEWS,{language:'ES',query:'Peru'}).total,25);assert.equal(model.archive(gw.MOKDA_NEWS,{page:999}).page,3);assert.equal(model.archive(gw.MOKDA_NEWS,{language:'ES',query:'creadores'}).total,0,'Search excludes the removed collection');
 growing.window.close();
-console.log('News regressions passed: growing archive/search/history, two classifications, static covers and 3-language horizontal media galleries, reduced-motion/keyboard/bounds/resize cleanup, native/fallback photo viewer navigation/focus/cleanup/error handling, 5 inline players and conveyor controls.');
+console.log('News regressions passed: growing archive/search/history, two classifications, date-free article headings with preserved archive dates and publication metadata, static covers and 3-language horizontal media galleries, reduced-motion/keyboard/bounds/resize cleanup, native/fallback photo viewer navigation/focus/cleanup/error handling, 5 inline players and conveyor controls.');

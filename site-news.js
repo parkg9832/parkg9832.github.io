@@ -5,7 +5,8 @@
   const language=window.MOKDA_I18N.getLanguage(),copy=data.copy[language]||data.copy.ES;
   const prefix={ES:'es',KR:'ko',EN:'en'}[language];
   const motionCopy={KR:{previous:'이전 영상',next:'다음 영상',pause:'자동 이동 멈추기',resume:'자동 이동 켜기'},ES:{previous:'Video anterior',next:'Siguiente video',pause:'Pausar desplazamiento',resume:'Activar desplazamiento'},EN:{previous:'Previous video',next:'Next video',pause:'Pause movement',resume:'Start movement'}}[language];
-  const photoCopy={KR:{open:'사진 크게 보기',title:'현장 사진',hint:'사진을 누르면 크게 볼 수 있습니다.',previous:'이전 사진',next:'다음 사진',close:'사진 닫기',error:'사진을 불러오지 못했습니다.',original:'원본 사진 보기'},ES:{open:'Ver foto ampliada',title:'Fotos del evento',hint:'Selecciona una foto para verla en tamaño completo.',previous:'Foto anterior',next:'Foto siguiente',close:'Cerrar foto',error:'No se pudo cargar la foto.',original:'Ver foto original'},EN:{open:'View full photo',title:'Event photographs',hint:'Select a photo to view it at full size.',previous:'Previous photo',next:'Next photo',close:'Close photo',error:'The photo could not be loaded.',original:'View original photo'}}[language];
+  const photoCopy={KR:{open:'사진 크게 보기',title:'현장 사진',gallery:'행사 현장 갤러리',previous:'이전 사진',next:'다음 사진',close:'사진 닫기',error:'사진을 불러오지 못했습니다.',original:'원본 사진 보기'},ES:{open:'Ver foto ampliada',title:'Fotos del evento',gallery:'Galería del evento',previous:'Foto anterior',next:'Foto siguiente',close:'Cerrar foto',error:'No se pudo cargar la foto.',original:'Ver foto original'},EN:{open:'View full photo',title:'Event photographs',gallery:'Event gallery',previous:'Previous photo',next:'Next photo',close:'Close photo',error:'The photo could not be loaded.',original:'View original photo'}}[language];
+  const galleryCopy={KR:{previous:'이전 현장 사진·영상',next:'다음 현장 사진·영상'},ES:{previous:'Fotos y videos anteriores',next:'Siguientes fotos y videos'},EN:{previous:'Previous event photos and videos',next:'Next event photos and videos'}}[language];
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const path=page=>`/${prefix}/${page}`,storyPath=story=>path(`news-${story.id}.html`);
   const media=name=>`/assets/images/news/${name}.webp`,videoPath=name=>`/assets/videos/news/${name}.mp4`;
@@ -17,17 +18,15 @@
   const category=story=>model.categoryOf(story);
   const tag=story=>`<p class="news-kicker">${esc(copy[category(story)])}${story.location?' <span aria-hidden="true">/</span> '+esc(story.location):''}</p>`;
   const supportingPhotos=story=>[...new Set(story.gallery)].filter(name=>name!==story.image);
-  const photoAlbum=story=>[...(story.videoAsCover?[]:[story.image]),...supportingPhotos(story)];
+  const photoAlbum=story=>supportingPhotos(story);
   const photoDescription=(story,name)=>data.imageDescriptions?.[name]?.[language]||storyCopy(story).imageAlt;
   const photoCaption=(story,name)=>data.imageCaptions?.[name]?.[language]||(name===story.image?storyCopy(story).imageCaption:'')||photoDescription(story,name);
   function gallery(story){
-    const photos=supportingPhotos(story),album=photoAlbum(story);
-    if(!photos.length)return '';
-    const groups=[];
-    for(let offset=0;offset<photos.length;offset+=4){
-      groups.push(`<div class="news-gallery-group">${photos.slice(offset,offset+4).map(name=>`<figure><button type="button" class="news-photo-thumb" data-news-photo="${album.indexOf(name)}" aria-label="${esc(photoCopy.open+' · '+photoDescription(story,name))}">${picture(name,photoDescription(story,name),'loading="lazy"')}<span class="news-photo-expand" aria-hidden="true">⤢</span></button><figcaption>${esc(photoCaption(story,name))}</figcaption></figure>`).join('')}</div>`);
-    }
-    return `<section class="news-gallery"><header><h2 class="${typography}">${esc(copy.photos)}</h2><p>${esc(photoCopy.hint)}</p></header><div class="news-gallery-grid">${groups.join('')}</div></section>`;
+    const photos=supportingPhotos(story),hasVideo=story.video&&!story.videoAsCover;
+    if(!photos.length&&!hasVideo)return '';
+    const items=photos.map((name,index)=>`<div class="news-gallery-item"><button type="button" class="news-photo-thumb" data-news-photo="${index}" aria-label="${esc(photoCopy.open+' · '+photoDescription(story,name))}">${picture(name,photoDescription(story,name),'loading="lazy"')}</button></div>`);
+    if(hasVideo)items.push(`<div class="news-gallery-item is-video">${videoPreview(story)}</div>`);
+    return `<section class="news-gallery" aria-labelledby="newsGalleryTitle"><header><h2 id="newsGalleryTitle" class="${typography}">${esc(photoCopy.gallery)}</h2><div class="news-gallery-controls"${items.length<2?' hidden':''}><button type="button" data-gallery-nav="previous" aria-controls="newsGalleryRail" aria-label="${esc(galleryCopy.previous)}" disabled>←</button><button type="button" data-gallery-nav="next" aria-controls="newsGalleryRail" aria-label="${esc(galleryCopy.next)}">→</button></div></header><div class="news-gallery-rail${items.length===1?' is-single':''}" id="newsGalleryRail" role="region" aria-labelledby="newsGalleryTitle" tabindex="0">${items.join('')}</div></section>`;
   }
   function card(story,home=false){
     const text=storyCopy(story);
@@ -60,10 +59,9 @@
 
         const text=storyCopy(story),collection=story.id==='creators';
         const heading=`<header class="news-article-heading${collection?' is-video-collection':''}">${tag(story)}<h1 class="${typography}">${esc(text.title)}</h1><p class="news-article-lead">${esc(text.summary)}</p>${model.displayDate(data,story)?`<div class="news-meta"><span>${esc(story.eventDate?copy.event:copy.date)} ${storyDate(story)}</span></div>`:''}</header>`;
-        const visual=collection?'':`<figure class="news-article-cover${story.videoAsCover?' is-video-cover':''}">${story.videoAsCover?videoPreview(story):`<button type="button" class="news-cover-photo" data-news-photo="0" aria-label="${esc(photoCopy.open+' · '+text.imageAlt)}">${cover(story,'fetchpriority="high"')}<span class="news-photo-expand" aria-hidden="true">⤢</span></button>`}${text.imageCaption?`<figcaption class="news-cover-caption">${esc(text.imageCaption)}</figcaption>`:''}</figure>`;
+        const visual=collection?'':`<figure class="news-article-cover${story.videoAsCover?' is-video-cover':''}">${story.videoAsCover?videoPreview(story):cover(story,'fetchpriority="high"')}${text.imageCaption?`<figcaption class="news-cover-caption">${esc(text.imageCaption)}</figcaption>`:''}</figure>`;
         const body=collection?'':`<div class="news-article-body">${text.sections.map(([,body])=>`<p>${esc(body)}</p>`).join('')}${story.sources?.length?`<section class="news-sources"><h2>${esc(copy.sources)}</h2><div>${story.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.labels?.[language]||source.label)} ↗</a>`).join('')}</div></section>`:''}</div>`;
-        const footage=story.video&&!story.videoAsCover?`<section class="news-event-video${story.video==='expo-visit'?' is-portrait':''}"><h2 class="${typography}">${esc(copy.footage)}</h2>${videoPreview(story)}</section>`:'';
-        main.innerHTML=`<div class="news-container news-detail"><a class="news-back" href="${path('news.html')}">← ${esc(copy.back)}</a><div class="news-story-hero${collection?' is-collection':''}">${heading}${visual}</div>${body}${footage}${gallery(story)}${collection?creators():''}</div>`;
+        main.innerHTML=`<div class="news-container news-detail"><a class="news-back" href="${path('news.html')}">← ${esc(copy.back)}</a><div class="news-story-hero${collection?' is-collection':''}">${heading}${visual}</div>${body}${gallery(story)}${collection?creators():''}</div>`;
 
     }else{main.innerHTML=`<div class="news-container news-listing"><div class="news-listing-head"><header class="news-page-heading"><p class="news-kicker">MOKDA / ${esc(copy.archiveLabel)}</p><h1 class="${typography}">${esc(copy.title)}</h1><p>${esc(copy.intro)}</p></header><div class="news-archive-tools"><div class="news-search" role="search"><label class="news-visually-hidden" for="newsSearch">${esc(copy.search)}</label><input type="search" id="newsSearch" maxlength="150" placeholder="${esc(copy.searchPlaceholder)}"><button type="button" data-search-news aria-label="${esc(copy.search)}">⌕</button></div></div></div><div class="news-archive-meta"><p class="news-result-status" role="status" aria-live="polite"></p><button type="button" class="news-text-link" data-clear-search hidden>${esc(copy.clearSearch)} ×</button></div><section class="news-stories" aria-labelledby="newsMoreTitle"><h2 id="newsMoreTitle" class="news-visually-hidden">${esc(copy.archiveLabel)}</h2><div class="news-stories-grid" id="newsStories">${model.ordered(data).map(story=>archiveCard(story)).join('')}</div><div id="newsEmpty" class="news-empty" hidden><p>${esc(copy.noResults)}</p><button type="button" class="news-button" data-reset-news>${esc(copy.all)}</button></div></section><nav class="news-pagination" aria-label="${esc(copy.pagination)}"></nav></div>`;}}
     window.MOKDA_FOOTER?.render(language);window.MOKDA_I18N.syncLanguageButtons(language);window.MOKDA_I18N.bindLanguageButtons(()=>{});
@@ -83,7 +81,32 @@
       main.querySelector('[data-search-news]').addEventListener('click',()=>{clearTimeout(timer);change({q:input.value.trim(),page:1});});main.querySelector('[data-clear-search]').addEventListener('click',()=>{change({q:'',page:1});input.focus();});main.querySelector('[data-reset-news]').addEventListener('click',()=>change({q:'',page:1}));window.addEventListener('popstate',apply);
     }
     main.querySelector('[data-copy-news]')?.addEventListener('click',async()=>{const status=main.querySelector('.news-share-status');try{await navigator.clipboard.writeText(location.href);status.textContent=copy.copied;}catch{status.textContent=copy.copyError;}});
-    if(story)bindPhotoViewer(story);
+    if(story){bindGallery();bindPhotoViewer(story);}
+  }
+  function bindGallery(){
+    const rail=main.querySelector('.news-gallery-rail');
+    if(!rail)return;
+    const previous=main.querySelector('[data-gallery-nav="previous"]'),next=main.querySelector('[data-gallery-nav="next"]');
+    const behavior=()=>window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'instant':'smooth';
+    function sync(){
+      if(!rail.clientWidth)return;
+      const end=Math.max(0,rail.scrollWidth-rail.clientWidth);
+      previous.disabled=rail.scrollLeft<=2;next.disabled=rail.scrollLeft>=end-2;
+    }
+    function move(direction){
+      const step=rail.querySelector('.news-gallery-item').getBoundingClientRect().width+parseFloat(getComputedStyle(rail).gap||0);
+      rail.scrollBy({left:direction*step,behavior:behavior()});
+    }
+    previous.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
+    rail.addEventListener('keydown',event=>{
+      if(event.target!==rail)return;
+      if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();move(event.key==='ArrowLeft'?-1:1);}
+      else if(event.key==='Home'||event.key==='End'){event.preventDefault();rail.scrollTo({left:event.key==='Home'?0:rail.scrollWidth-rail.clientWidth,behavior:behavior()});}
+    });
+    rail.addEventListener('scroll',sync,{passive:true});window.addEventListener('resize',sync);
+    const observer=typeof ResizeObserver==='function'?new ResizeObserver(sync):null;observer?.observe(rail);
+    window.addEventListener('pagehide',()=>{observer?.disconnect();window.removeEventListener('resize',sync);rail.removeEventListener('scroll',sync);});
+    sync();
   }
   function bindPhotoViewer(story){
     const triggers=[...main.querySelectorAll('[data-news-photo]')],photos=photoAlbum(story);
@@ -113,7 +136,7 @@
     function create(){
       dialog=document.createElement('dialog');dialog.className='news-photo-dialog';
       dialog.setAttribute('aria-labelledby','newsPhotoTitle');dialog.setAttribute('aria-describedby','newsPhotoCaption');
-      dialog.innerHTML=`<div class="news-photo-shell"><header class="news-photo-header"><h2 id="newsPhotoTitle">${esc(photoCopy.title)}</h2><button type="button" class="news-photo-close" aria-label="${esc(photoCopy.close)}">×</button></header><div class="news-photo-stage"><img alt="" decoding="async"><div class="news-photo-error" role="status" hidden><p>${esc(photoCopy.error)}</p><a target="_blank" rel="noopener noreferrer">${esc(photoCopy.original)} ↗</a></div></div><footer class="news-photo-footer"><button type="button" data-photo-nav="previous" aria-label="${esc(photoCopy.previous)}">←</button><div><p class="news-photo-caption" id="newsPhotoCaption"></p><p class="news-photo-count" aria-live="polite"></p></div><button type="button" data-photo-nav="next" aria-label="${esc(photoCopy.next)}">→</button></footer></div>`;
+      dialog.innerHTML=`<div class="news-photo-shell"><header class="news-photo-header"><h2 id="newsPhotoTitle">${esc(photoCopy.title)}</h2><button type="button" class="news-photo-close" aria-label="${esc(photoCopy.close)}">×</button></header><div class="news-photo-stage"><img alt="" decoding="async"><div class="news-photo-error" role="status" hidden><p>${esc(photoCopy.error)}</p><a target="_blank" rel="noopener noreferrer">${esc(photoCopy.original)} ↗</a></div></div><footer class="news-photo-footer"><button type="button" data-photo-nav="previous" aria-label="${esc(photoCopy.previous)}">←</button><div><p class="news-photo-caption news-visually-hidden" id="newsPhotoCaption"></p><p class="news-photo-count" aria-live="polite"></p></div><button type="button" data-photo-nav="next" aria-label="${esc(photoCopy.next)}">→</button></footer></div>`;
       document.body.append(dialog);
       image=dialog.querySelector('img');caption=dialog.querySelector('.news-photo-caption');count=dialog.querySelector('.news-photo-count');error=dialog.querySelector('.news-photo-error');previous=dialog.querySelector('[data-photo-nav="previous"]');next=dialog.querySelector('[data-photo-nav="next"]');
       dialog.querySelector('.news-photo-close').addEventListener('click',()=>close());

@@ -21,9 +21,9 @@ function validDate(value,label,required=false){
 export async function validateStory(root,input,data) {
   if(!input||typeof input!=='object'||Array.isArray(input))fail('소식 내용이 필요합니다.');
   if(typeof input.id!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(input.id)||input.id.length>80)fail('주소는 영문 소문자·숫자·하이픈으로 입력해주세요.');
-  if(!['news','events','collaborations'].includes(input.category))fail('분류를 선택해주세요.');
+  if(!['news','press','events','collaborations'].includes(input.category))fail('분류를 선택해주세요.');
   const existing=data.stories.find(s=>s.id===input.id);
-  const record={...existing,id:input.id,category:input.category,publishedDate:validDate(input.publishedDate,'게시일',true),location:string(input.location||'','장소',100,false)};
+  const record={...existing,id:input.id,category:input.category==='press'?'press':'news',publishedDate:validDate(input.publishedDate,'게시일',true),location:string(input.location||'','장소',100,false)};
   const position=Number(input.homePosition||0);
   if(!Number.isInteger(position)||position<0||position>3)fail('홈 노출 위치를 확인해주세요.');
   record.homeFeatured=position>0;record.homeOrder=position||99;
@@ -42,8 +42,10 @@ export async function validateStory(root,input,data) {
     try{await stat(join(root,'assets/images/news',value+'.webp'));}catch{fail('갤러리 이미지를 찾을 수 없습니다.');}
     record.gallery.push(value);
   }
-  if(!Array.isArray(input.related)||input.related.length>6||input.related.some(id=>id===record.id||!data.stories.some(s=>s.id===id)))fail('관련 소식을 확인해주세요.');
-  record.related=[...new Set(input.related)];
+  if(input.related!==undefined){
+    if(!Array.isArray(input.related)||input.related.length>6||input.related.some(id=>id===record.id||!data.stories.some(s=>s.id===id)))fail('관련 소식을 확인해주세요.');
+    record.related=[...new Set(input.related)];
+  }else record.related=[...(existing?.related||[])];
   const start=validDate(input.eventDate,'행사 시작일'),end=validDate(input.eventEndDate,'행사 종료일');
   if(end&&(!start||end<start))fail('행사 종료일은 시작일 이후로 입력해주세요.');
   if(start){record.eventDate=start;delete record.dateUnconfirmed;}else delete record.eventDate;

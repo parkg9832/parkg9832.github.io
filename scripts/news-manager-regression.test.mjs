@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {once} from 'node:events';
 import {JSDOM} from 'jsdom';
 import {createNewsManager} from './news-manager.mjs';
-import {loadNews} from './news-store.mjs';
+import {loadNews,validateStory} from './news-store.mjs';
 
 const root=fileURLToPath(new URL('../',import.meta.url));
 await mkdir(join(root,'output'),{recursive:true});
@@ -31,13 +31,47 @@ try{
  const response=await fetch(origin+'/api/news');assert.equal(response.headers.get('x-frame-options'),'DENY');
  const initial=await response.json();
  const from=initial.data.stories[0];
- const input={...structuredClone(from),id:'fixture-new-event',publishedDate:'2027-01-12',homePosition:1};
+ const draft={...structuredClone(from),homePosition:0};delete draft.related;
+ for(const category of ['news','press','events','collaborations']){
+  const record=await validateStory(fixture,{...draft,category},initial.data);
+  assert.equal(record.category,category==='press'?'press':'news','Normalize legacy activity categories without changing press coverage');
+ }
+ await assert.rejects(validateStory(fixture,{...draft,category:'unknown'},initial.data),error=>error.status===400,'Reject categories outside the supported or legacy values');
+ const existingData=structuredClone(initial.data),existing=existingData.stories.find(story=>story.id===from.id);
+ existing.related=[existingData.stories.find(story=>story.id!==from.id).id];
+ assert.deepEqual((await validateStory(fixture,draft,existingData)).related,existing.related,'Omitting the removed related-stories field must preserve existing editorial data');
+ assert.deepEqual((await validateStory(fixture,{...draft,related:[]},existingData)).related,[],'An explicit legacy request can still clear related stories');
+ assert.deepEqual((await validateStory(fixture,{...draft,id:'fixture-new-without-related'},initial.data)).related,[],'A new story without related input starts with an empty list');
+
+ const ui=new JSDOM(html,{url:origin,runScripts:'outside-only'}),uiSnapshot=structuredClone(initial);
+ uiSnapshot.data.stories=['press','news','events','collaborations'].map(category=>({...structuredClone(from),id:'fixture-ui-'+category,category}));
+ let uiPayload;
+ ui.window.fetch=async(url,options={})=>{if(options.method==='POST')uiPayload=JSON.parse(options.body);return {ok:true,json:async()=>({...uiSnapshot,built:true})};};
+ ui.window.confirm=()=>true;
+ const settleUI=async()=>{for(let turn=0;turn<4;turn++)await new Promise(resolve=>setImmediate(resolve));};
+ try{
+  assert.deepEqual(Array.from(ui.window.document.querySelectorAll('#category option'),option=>[option.value,option.textContent]),[['news','소식'],['press','언론사 보도자료']]);
+  assert.equal(ui.window.document.getElementById('related'),null,'The manager must not offer the removed related-stories editor');
+  ui.window.eval(await readFile(join(fixture,'scripts/news-manager-ui/app.js'),'utf8'));await settleUI();
+  for(const category of ['press','news','events','collaborations']){
+   const button=ui.window.document.querySelector(`[data-story="fixture-ui-${category}"]`);assert(button,'Every story remains selectable after the category change');
+   assert.match(button.querySelector('span').textContent,new RegExp('^'+(category==='press'?'언론사 보도자료':'소식')+' / '));
+   button.click();assert.equal(ui.window.document.getElementById('category').value,category==='press'?'press':'news','Editing a legacy story must select the supported replacement category');
+  }
+  ui.window.document.getElementById('editorForm').dispatchEvent(new ui.window.Event('submit',{bubbles:true,cancelable:true}));await settleUI();
+  assert.equal(uiPayload.record.category,'news');
+  assert.equal(Object.hasOwn(uiPayload.record,'related'),false,'Saving the simplified form must not silently erase preserved related metadata');
+ }finally{ui.window.close();}
+
+ const input={...structuredClone(from),id:'fixture-new-event',category:'events',publishedDate:'2027-01-12',homePosition:1};delete input.related;
  const headers={'Content-Type':'application/json',Origin:origin,'X-Mokda-Session':token};
  const payload={record:input,revision:initial.revision,create:true,homeCreators:true};
  assert.equal((await fetch(origin+'/api/news',{method:'POST',headers:{...headers,Origin:'https://example.invalid'},body:JSON.stringify(payload)})).status,403);
  assert.equal((await fetch(origin+'/api/news',{method:'POST',headers:{...headers,'X-Mokda-Session':'wrong'},body:JSON.stringify(payload)})).status,403);
  const created=await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify(payload)});assert.equal(created.status,200);const after=await created.json();assert.equal(after.built,true,after.warning);
  assert(after.data.stories.some(s=>s.id==='fixture-new-event'));
+ assert.equal(after.data.stories.find(s=>s.id==='fixture-new-event').category,'news');
+ assert.deepEqual(after.data.stories.find(s=>s.id==='fixture-new-event').related,[]);
  assert.equal(after.data.stories.find(s=>s.id===from.id).homeFeatured,false,'Move the selected home slot without deleting the previous story');
  assert.equal(after.data.stories.filter(s=>s.homeFeatured&&s.homeOrder===1).length,1);
  for(const lang of ['ko','es','en']){
@@ -47,8 +81,9 @@ try{
  }
  assert.match(await readFile(join(fixture,'sitemap.xml'),'utf8'),/news-fixture-new-event\.html/);
  assert.equal((await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify(payload)})).status,409,'Reject stale writes');
- const updated={...input,homePosition:0};for(const lang of ['KR','ES','EN'])updated[lang].title='Fixture title with "quotes" & <markup>';
+ const updated={...input,category:'press',homePosition:0};for(const lang of ['KR','ES','EN'])updated[lang].title='Fixture title with "quotes" & <markup>';
  const result=await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify({record:updated,revision:after.revision,create:false})});assert.equal(result.status,200);const saved=await result.json();assert.equal(saved.built,true,saved.warning);
+ assert.equal(saved.data.stories.find(s=>s.id==='fixture-new-event').category,'press','The API must retain an explicitly selected press category');
  const escaped=new JSDOM(await readFile(join(fixture,'en/news-fixture-new-event.html'),'utf8'));assert.equal(escaped.window.document.querySelector('h1').textContent,updated.EN.title);assert.equal(escaped.window.document.querySelector('h1 markup'),null);escaped.window.close();
  const home=new JSDOM(await readFile(join(fixture,'en/index.html'),'utf8'));assert.equal(home.window.document.querySelectorAll('[data-home-feature]').length,0,'An empty leading slot must not promote a smaller card');assert.equal(home.window.document.querySelectorAll('#home-news [data-news-card]').length,2);home.window.close();
  assert((await readdir(join(fixture,'output/news-manager/backups'))).length>=2);
@@ -61,5 +96,5 @@ try{
  assert.equal((await fetch(origin+'/scripts/news-store.mjs')).status,404);
  assert.equal((await loadNews(fixture)).data.stories.length,initial.data.stories.length+1);
  assert.equal(await readFile(join(root,'site-news-data.js'),'utf8'),productionBefore,'Keep synthetic fixtures out of the real site');
- console.log('News manager regressions passed: isolated creation/editing, 3-language generation/sitemap, slot replacement, stale-write and CSRF rejection, automatic backups, image/video uploads and escaping.');
+ console.log('News manager regressions passed: two-category editing and legacy normalization, related-metadata preservation, isolated creation/editing, 3-language generation/sitemap, slot replacement, stale-write and CSRF rejection, automatic backups, image/video uploads and escaping.');
 }finally{server.close();await once(server,'close');}

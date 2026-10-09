@@ -5,6 +5,7 @@
   const language=window.MOKDA_I18N.getLanguage(),copy=data.copy[language]||data.copy.ES;
   const prefix={ES:'es',KR:'ko',EN:'en'}[language];
   const motionCopy={KR:{previous:'이전 영상',next:'다음 영상',pause:'자동 이동 멈추기',resume:'자동 이동 켜기'},ES:{previous:'Video anterior',next:'Siguiente video',pause:'Pausar desplazamiento',resume:'Activar desplazamiento'},EN:{previous:'Previous video',next:'Next video',pause:'Pause movement',resume:'Start movement'}}[language];
+  const photoCopy={KR:{open:'사진 크게 보기',title:'현장 사진',hint:'사진을 누르면 크게 볼 수 있습니다.',previous:'이전 사진',next:'다음 사진',close:'사진 닫기',error:'사진을 불러오지 못했습니다.',original:'원본 사진 보기'},ES:{open:'Ver foto ampliada',title:'Fotos del evento',hint:'Selecciona una foto para verla en tamaño completo.',previous:'Foto anterior',next:'Foto siguiente',close:'Cerrar foto',error:'No se pudo cargar la foto.',original:'Ver foto original'},EN:{open:'View full photo',title:'Event photographs',hint:'Select a photo to view it at full size.',previous:'Previous photo',next:'Next photo',close:'Close photo',error:'The photo could not be loaded.',original:'View original photo'}}[language];
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const path=page=>`/${prefix}/${page}`,storyPath=story=>path(`news-${story.id}.html`);
   const media=name=>`/assets/images/news/${name}.webp`,videoPath=name=>`/assets/videos/news/${name}.mp4`;
@@ -13,16 +14,30 @@
   const storyDate=story=>{const start=model.displayDate(data,story);return start?`<time datetime="${start}">${esc(date(start))}</time>${story.eventEndDate?` – <time datetime="${story.eventEndDate}">${esc(date(story.eventEndDate))}</time>`:''}`:'';};
   const picture=(name,alt,extra='')=>{const [width,height]=data.imageDimensions?.[name]||[1200,900];return `<picture><source media="(max-width:639px)" srcset="${media(name+'-640')}"><img src="${media(name)}" alt="${esc(alt)}" width="${width}" height="${height}" decoding="async" ${extra}></picture>`;};
   const cover=(story,extra='')=>story.id==='creators'?`<div class="news-cover-collage">${data.creators.slice(0,3).map(c=>`<img src="${media(c.image+'-640')}" alt="${esc(c.name)}" width="360" height="640" loading="lazy" decoding="async">`).join('')}</div>`:picture(story.image,storyCopy(story).imageAlt,extra);
-  const tag=story=>`<p class="news-kicker">${esc(copy[story.category])}${story.location?' <span aria-hidden="true">/</span> '+esc(story.location):''}</p>`;
+  const category=story=>model.categoryOf(story);
+  const tag=story=>`<p class="news-kicker">${esc(copy[category(story)])}${story.location?' <span aria-hidden="true">/</span> '+esc(story.location):''}</p>`;
+  const supportingPhotos=story=>[...new Set(story.gallery)].filter(name=>name!==story.image);
+  const photoAlbum=story=>[...(story.videoAsCover?[]:[story.image]),...supportingPhotos(story)];
+  const photoDescription=(story,name)=>data.imageDescriptions?.[name]?.[language]||storyCopy(story).imageAlt;
+  const photoCaption=(story,name)=>data.imageCaptions?.[name]?.[language]||(name===story.image?storyCopy(story).imageCaption:'')||photoDescription(story,name);
+  function gallery(story){
+    const photos=supportingPhotos(story),album=photoAlbum(story);
+    if(!photos.length)return '';
+    const groups=[];
+    for(let offset=0;offset<photos.length;offset+=4){
+      groups.push(`<div class="news-gallery-group">${photos.slice(offset,offset+4).map(name=>`<figure><button type="button" class="news-photo-thumb" data-news-photo="${album.indexOf(name)}" aria-label="${esc(photoCopy.open+' · '+photoDescription(story,name))}">${picture(name,photoDescription(story,name),'loading="lazy"')}<span class="news-photo-expand" aria-hidden="true">⤢</span></button><figcaption>${esc(photoCaption(story,name))}</figcaption></figure>`).join('')}</div>`);
+    }
+    return `<section class="news-gallery"><header><h2 class="${typography}">${esc(copy.photos)}</h2><p>${esc(photoCopy.hint)}</p></header><div class="news-gallery-grid">${groups.join('')}</div></section>`;
+  }
   function card(story,home=false){
     const text=storyCopy(story);
     const title=home===true?(story.cardTitles?.[language]||text.title):text.title;
     const visual=home&&story.videoAsCover&&story.videoPoster?picture(story.videoPoster,text.imageAlt,'loading="lazy"'):cover(story,'loading="lazy"');
-    return `<article class="news-card" data-news-card="${story.id}" data-category="${story.category}"><a class="news-card-link" href="${storyPath(story)}" aria-label="${esc(text.title)}"><div class="news-card-image">${visual}</div><div class="news-card-copy"><div class="news-card-meta"><p class="news-kicker">${esc(copy[story.category])}</p>${home?'':storyDate(story)}</div><h3>${esc(title)}</h3></div></a></article>`;
+    return `<article class="news-card" data-news-card="${story.id}" data-category="${category(story)}"><a class="news-card-link" href="${storyPath(story)}" aria-label="${esc(text.title)}"><div class="news-card-image">${visual}</div><div class="news-card-copy"><div class="news-card-meta"><p class="news-kicker">${esc(copy[category(story)])}</p>${home?'':storyDate(story)}</div><h3>${esc(title)}</h3></div></a></article>`;
   }
   function archiveCard(story){
     const text=storyCopy(story);
-    return `<article class="news-card news-archive-row" data-news-card="${story.id}" data-category="${story.category}"><a class="news-card-link" href="${storyPath(story)}" aria-label="${esc(text.title)}"><div class="news-card-image">${cover(story,'loading="lazy"')}</div><div class="news-card-copy"><div class="news-card-meta"><p class="news-kicker">${esc(copy[story.category])}</p>${storyDate(story)}</div><h3>${esc(text.title)}</h3></div><span class="news-archive-arrow" aria-hidden="true">↗</span></a></article>`;
+    return `<article class="news-card news-archive-row" data-news-card="${story.id}" data-category="${category(story)}"><a class="news-card-link" href="${storyPath(story)}" aria-label="${esc(text.title)}"><div class="news-card-image">${cover(story,'loading="lazy"')}</div><div class="news-card-copy"><div class="news-card-meta"><p class="news-kicker">${esc(copy[category(story)])}</p>${storyDate(story)}</div><h3>${esc(text.title)}</h3></div><span class="news-archive-arrow" aria-hidden="true">↗</span></a></article>`;
   }
   function creators(){return `<section class="news-creators" id="creators" aria-labelledby="newsCreatorsTitle"><div class="news-creators-heading"><div><p class="news-kicker">${esc(copy.collaborations)}</p><h2 id="newsCreatorsTitle" class="${typography}">${esc(copy.creatorsTitle)}</h2>${document.body.dataset.newsStory==='creators'?'':`<p>${esc(copy.creatorsIntro)}</p>`}</div><div class="news-creators-actions">${document.body.dataset.newsStory!=='creators'?`<a class="news-text-link" href="${path('news-creators.html')}">${esc(copy.read)} ↗</a>`:''}<div class="news-conveyor-controls"><button type="button" data-conveyor="previous" aria-controls="newsCreatorRail" aria-label="${esc(motionCopy.previous)}">←</button><button type="button" data-conveyor="toggle" aria-controls="newsCreatorRail" aria-label="${esc(motionCopy.pause)}" aria-pressed="false">Ⅱ</button><button type="button" data-conveyor="next" aria-controls="newsCreatorRail" aria-label="${esc(motionCopy.next)}">→</button></div></div></div><div class="news-video-grid" id="newsCreatorRail" tabindex="0" aria-label="${esc(copy.creatorsTitle)}">${data.creators.map(c=>`<article class="news-video-card"><button type="button" class="news-video-preview" data-news-video="${c.video}" data-video-title="${esc('MOKDA × '+c.name)}" data-video-summary="${esc(copy.creatorVideo)}" aria-label="${esc(copy.watch+' · '+c.name)}"><img src="${media(c.image+'-640')}" alt="${esc('MOKDA × '+c.name)}" width="360" height="640" loading="lazy" decoding="async"><span class="news-video-duration">${esc(c.duration)}</span><span class="news-play" aria-hidden="true">▶</span></button><h3>${esc(c.name)}</h3></article>`).join('')}</div></section>`;}
   function videoPreview(story) {
@@ -44,15 +59,11 @@
     if(!main.children.length){if(story){
 
         const text=storyCopy(story),collection=story.id==='creators';
-        const nextLabel={KR:'다음 소식',ES:'Más de MOKDA',EN:'More from MOKDA'}[language];
         const heading=`<header class="news-article-heading${collection?' is-video-collection':''}">${tag(story)}<h1 class="${typography}">${esc(text.title)}</h1><p class="news-article-lead">${esc(text.summary)}</p>${model.displayDate(data,story)?`<div class="news-meta"><span>${esc(story.eventDate?copy.event:copy.date)} ${storyDate(story)}</span></div>`:''}</header>`;
-        const visual=collection?'':`<figure class="news-article-cover${story.videoAsCover?' is-video-cover':''}">${story.videoAsCover?videoPreview(story):cover(story,'fetchpriority="high"')}${text.imageCaption?`<figcaption class="news-cover-caption">${esc(text.imageCaption)}</figcaption>`:''}</figure>`;
+        const visual=collection?'':`<figure class="news-article-cover${story.videoAsCover?' is-video-cover':''}">${story.videoAsCover?videoPreview(story):`<button type="button" class="news-cover-photo" data-news-photo="0" aria-label="${esc(photoCopy.open+' · '+text.imageAlt)}">${cover(story,'fetchpriority="high"')}<span class="news-photo-expand" aria-hidden="true">⤢</span></button>`}${text.imageCaption?`<figcaption class="news-cover-caption">${esc(text.imageCaption)}</figcaption>`:''}</figure>`;
         const body=collection?'':`<div class="news-article-body">${text.sections.map(([,body])=>`<p>${esc(body)}</p>`).join('')}${story.sources?.length?`<section class="news-sources"><h2>${esc(copy.sources)}</h2><div>${story.sources.map(source=>`<a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(source.labels?.[language]||source.label)} ↗</a>`).join('')}</div></section>`:''}</div>`;
         const footage=story.video&&!story.videoAsCover?`<section class="news-event-video${story.video==='expo-visit'?' is-portrait':''}"><h2 class="${typography}">${esc(copy.footage)}</h2>${videoPreview(story)}</section>`:'';
-        const gallery=story.gallery.length?`<section class="news-gallery"><h2 class="${typography}">${esc(copy.photos)}</h2><div>${story.gallery.map(name=>{const description=data.imageDescriptions?.[name]?.[language]||text.imageAlt;return `<figure>${picture(name,description,'loading="lazy"')}<figcaption>${esc(data.imageCaptions?.[name]?.[language]||description)}</figcaption></figure>`;}).join('')}</div></section>`:'';
-        const related=story.related.map(id=>data.stories.find(item=>item.id===id)).filter(Boolean);
-        const next=related.length?`<section class="news-related"><h2>${esc(nextLabel)}</h2><div class="news-next-grid">${related.map(item=>`<a class="news-next-link" href="${storyPath(item)}" aria-label="${esc(storyCopy(item).title)}"><div class="news-next-image">${cover(item,'loading="lazy"')}</div><div class="news-next-copy"><p class="news-kicker">${esc(copy[item.category])}</p><h3>${esc(item.cardTitles?.[language]||storyCopy(item).title)}</h3></div><span class="news-next-arrow" aria-hidden="true">↗</span></a>`).join('')}</div></section>`:'';
-        main.innerHTML=`<div class="news-container news-detail"><a class="news-back" href="${path('news.html')}">← ${esc(copy.back)}</a><div class="news-story-hero${collection?' is-collection':''}">${heading}${visual}</div>${body}${footage}${gallery}${collection?creators():''}${next}</div>`;
+        main.innerHTML=`<div class="news-container news-detail"><a class="news-back" href="${path('news.html')}">← ${esc(copy.back)}</a><div class="news-story-hero${collection?' is-collection':''}">${heading}${visual}</div>${body}${footage}${gallery(story)}${collection?creators():''}</div>`;
 
     }else{main.innerHTML=`<div class="news-container news-listing"><div class="news-listing-head"><header class="news-page-heading"><p class="news-kicker">MOKDA / ${esc(copy.archiveLabel)}</p><h1 class="${typography}">${esc(copy.title)}</h1><p>${esc(copy.intro)}</p></header><div class="news-archive-tools"><div class="news-search" role="search"><label class="news-visually-hidden" for="newsSearch">${esc(copy.search)}</label><input type="search" id="newsSearch" maxlength="150" placeholder="${esc(copy.searchPlaceholder)}"><button type="button" data-search-news aria-label="${esc(copy.search)}">⌕</button></div></div></div><div class="news-archive-meta"><p class="news-result-status" role="status" aria-live="polite"></p><button type="button" class="news-text-link" data-clear-search hidden>${esc(copy.clearSearch)} ×</button></div><section class="news-stories" aria-labelledby="newsMoreTitle"><h2 id="newsMoreTitle" class="news-visually-hidden">${esc(copy.archiveLabel)}</h2><div class="news-stories-grid" id="newsStories">${model.ordered(data).map(story=>archiveCard(story)).join('')}</div><div id="newsEmpty" class="news-empty" hidden><p>${esc(copy.noResults)}</p><button type="button" class="news-button" data-reset-news>${esc(copy.all)}</button></div></section><nav class="news-pagination" aria-label="${esc(copy.pagination)}"></nav></div>`;}}
     window.MOKDA_FOOTER?.render(language);window.MOKDA_I18N.syncLanguageButtons(language);window.MOKDA_I18N.bindLanguageButtons(()=>{});
@@ -72,6 +83,65 @@
       main.querySelector('[data-search-news]').addEventListener('click',()=>{clearTimeout(timer);change({q:input.value.trim(),page:1});});main.querySelector('[data-clear-search]').addEventListener('click',()=>{change({q:'',page:1});input.focus();});main.querySelector('[data-reset-news]').addEventListener('click',()=>change({q:'',page:1}));window.addEventListener('popstate',apply);
     }
     main.querySelector('[data-copy-news]')?.addEventListener('click',async()=>{const status=main.querySelector('.news-share-status');try{await navigator.clipboard.writeText(location.href);status.textContent=copy.copied;}catch{status.textContent=copy.copyError;}});
+    if(story)bindPhotoViewer(story);
+  }
+  function bindPhotoViewer(story){
+    const triggers=[...main.querySelectorAll('[data-news-photo]')],photos=photoAlbum(story);
+    if(!triggers.length)return;
+    let dialog,image,caption,count,error,previous,next,index=0,returnFocus;
+    function restore(){
+      document.body.classList.remove('news-photo-open');
+      image?.removeAttribute('src');
+      const target=returnFocus;returnFocus=null;
+      if(target?.isConnected)target.focus({preventScroll:true});
+    }
+    function close(restoreFocus=true){
+      if(!dialog?.open)return;
+      if(!restoreFocus)returnFocus=null;
+      if(typeof dialog.close==='function')dialog.close();
+      else{dialog.removeAttribute('open');restore();}
+    }
+    function show(nextIndex){
+      if(!Number.isInteger(nextIndex)||nextIndex<0||nextIndex>=photos.length)return;
+      index=nextIndex;
+      const name=photos[index];
+      image.hidden=false;error.hidden=true;image.alt=photoDescription(story,name);image.src=media(name);
+      error.querySelector('a').href=media(name);
+      caption.textContent=photoCaption(story,name);count.textContent=`${index+1} / ${photos.length}`;
+      previous.disabled=index===0;next.disabled=index===photos.length-1;
+    }
+    function create(){
+      dialog=document.createElement('dialog');dialog.className='news-photo-dialog';
+      dialog.setAttribute('aria-labelledby','newsPhotoTitle');dialog.setAttribute('aria-describedby','newsPhotoCaption');
+      dialog.innerHTML=`<div class="news-photo-shell"><header class="news-photo-header"><h2 id="newsPhotoTitle">${esc(photoCopy.title)}</h2><button type="button" class="news-photo-close" aria-label="${esc(photoCopy.close)}">×</button></header><div class="news-photo-stage"><img alt="" decoding="async"><div class="news-photo-error" role="status" hidden><p>${esc(photoCopy.error)}</p><a target="_blank" rel="noopener noreferrer">${esc(photoCopy.original)} ↗</a></div></div><footer class="news-photo-footer"><button type="button" data-photo-nav="previous" aria-label="${esc(photoCopy.previous)}">←</button><div><p class="news-photo-caption" id="newsPhotoCaption"></p><p class="news-photo-count" aria-live="polite"></p></div><button type="button" data-photo-nav="next" aria-label="${esc(photoCopy.next)}">→</button></footer></div>`;
+      document.body.append(dialog);
+      image=dialog.querySelector('img');caption=dialog.querySelector('.news-photo-caption');count=dialog.querySelector('.news-photo-count');error=dialog.querySelector('.news-photo-error');previous=dialog.querySelector('[data-photo-nav="previous"]');next=dialog.querySelector('[data-photo-nav="next"]');
+      dialog.querySelector('.news-photo-close').addEventListener('click',()=>close());
+      previous.addEventListener('click',()=>show(index-1));next.addEventListener('click',()=>show(index+1));
+      dialog.addEventListener('close',restore);
+      dialog.addEventListener('cancel',event=>{event.preventDefault();close();});
+      dialog.addEventListener('click',event=>{if(event.target!==dialog)return;const box=dialog.getBoundingClientRect();if(event.clientX<box.left||event.clientX>box.right||event.clientY<box.top||event.clientY>box.bottom)close();});
+      dialog.addEventListener('keydown',event=>{
+        if(event.key==='Escape'){event.preventDefault();close();}
+        else if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();show(index+(event.key==='ArrowLeft'?-1:1));}
+        else if(event.key==='Tab'){
+          const focusable=[...dialog.querySelectorAll('button:not(:disabled),a[href]')].filter(node=>!node.closest('[hidden]'));
+          const first=focusable[0],last=focusable.at(-1);
+          if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+          else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+        }
+      });
+      image.addEventListener('error',()=>{if(dialog.open&&image.hasAttribute('src')){image.hidden=true;error.hidden=false;}});
+    }
+    triggers.forEach(trigger=>trigger.addEventListener('click',()=>{
+      const selected=Number(trigger.dataset.newsPhoto);
+      if(!Number.isInteger(selected)||selected<0||selected>=photos.length)return;
+      if(!dialog)create();returnFocus=trigger;show(selected);
+      if(typeof dialog.showModal==='function')dialog.showModal();
+      else{dialog.setAttribute('open','');dialog.setAttribute('aria-modal','true');}
+      document.body.classList.add('news-photo-open');dialog.querySelector('.news-photo-close').focus({preventScroll:true});
+    }));
+    window.addEventListener('pagehide',()=>close(false));
   }
   // The requested video replaces its thumbnail in place. Only one player exists.
   let active;
@@ -98,7 +168,7 @@
     player.play().catch(() => { /* Native controls remain available if autoplay is denied. */ });
   }
   document.querySelectorAll('[data-news-video]').forEach(button => button.addEventListener('click', () => openVideo(button)));
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&active&&!document.fullscreenElement){event.preventDefault();closeVideo();}});
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!event.defaultPrevented&&active&&!document.fullscreenElement){event.preventDefault();closeVideo();}});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)active?.player.pause();});
   window.addEventListener('pagehide',()=>closeVideo(false));
 

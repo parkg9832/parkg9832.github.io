@@ -40,12 +40,17 @@ window.MOKDA_NEWS = {
       "KR": "2026 김제 청년의 날 기념행사 참석자들의 단체사진",
       "ES": "Foto grupal de los participantes en el Día de la Juventud de Gimje 2026",
       "EN": "A group photograph of participants at Gimje’s 2026 Youth Day celebration"
+    },
+    "expo-official-mokda": {
+      "KR": "Expoalimentaria 2026 MOKDA 부스에서 방문객에게 Salsa Coreana를 소개하는 모습",
+      "ES": "Salsa Coreana se presenta a una visitante en el stand de MOKDA en Expoalimentaria 2026",
+      "EN": "Introducing Salsa Coreana to a visitor at the MOKDA booth during Expoalimentaria 2026"
     }
   },
   "stories": [
     {
       "id": "kotra-interview",
-      "category": "news",
+      "category": "press",
       "location": "Lima, Perú",
       "publishedDate": "2026-10-06",
       "image": "kotra-article-preview",
@@ -106,11 +111,11 @@ window.MOKDA_NEWS = {
     },
     {
       "id": "expoalimentaria-2026",
-      "category": "events",
+      "category": "news",
       "location": "Lima, Perú",
       "eventDate": "2026-09-23",
       "eventEndDate": "2026-09-25",
-      "image": "expo-people",
+      "image": "expo-official-mokda",
       "gallery": [
         "expo-booth",
         "expo-products",
@@ -133,12 +138,21 @@ window.MOKDA_NEWS = {
             "ES": "KOTRA · Reportaje de Expoalimentaria 2026 (en coreano)",
             "EN": "KOTRA · Expoalimentaria 2026 report (in Korean)"
           }
+        },
+        {
+          "url": "https://www.instagram.com/p/DdpvNc-lQ3O/",
+          "label": "Expoalimentaria 공식 인스타그램 · 2026-09-23",
+          "labels": {
+            "KR": "Expoalimentaria 공식 인스타그램 · MOKDA 부스 사진 · 2026-09-23",
+            "ES": "Instagram oficial de Expoalimentaria · El stand de MOKDA · 23 sep 2026",
+            "EN": "Expoalimentaria’s official Instagram · The MOKDA booth · Sep 23, 2026"
+          }
         }
       ],
       "ES": {
         "title": "MOKDA lleva el sabor de Corea a Expoalimentaria 2026",
         "summary": "Salsa Coreana, encuentros con compradores e ideas para acompañar la comida peruana.",
-        "imageAlt": "Gyeom Park con una visitante y las salsas en el stand de MOKDA en Expoalimentaria 2026",
+        "imageAlt": "Salsa Coreana se presenta a una visitante en el stand de MOKDA en Expoalimentaria 2026",
         "sections": [
           [
             "MOKDA lleva el sabor de Corea a Expoalimentaria 2026",
@@ -148,12 +162,13 @@ window.MOKDA_NEWS = {
             "MOKDA lleva el sabor de Corea a Expoalimentaria 2026",
             "Según relató Gyeom Park a KOTRA, algunos visitantes propusieron combinar las salsas con pollo a la brasa, hamburguesas y empanadas. La feria permitió a MOKDA escuchar esas propuestas y las preguntas de los compradores sobre sus productos."
           ]
-        ]
+        ],
+        "imageCaption": "El stand de MOKDA en el Instagram oficial de Expoalimentaria. Foto: @expoalimentaria · 23 de septiembre de 2026."
       },
       "KR": {
         "title": "Expoalimentaria 2026에 한국의 맛을 선보인 MOKDA",
         "summary": "페루 리마에서 Salsa Coreana를 소개하고 바이어들과 만났습니다.",
-        "imageAlt": "Expoalimentaria 2026 MOKDA 부스에서 방문객과 함께한 박겸 대표와 소스 제품",
+        "imageAlt": "Expoalimentaria 2026 MOKDA 부스에서 방문객에게 Salsa Coreana를 소개하는 모습",
         "sections": [
           [
             "Expoalimentaria 2026에 한국의 맛을 선보인 MOKDA",
@@ -163,12 +178,13 @@ window.MOKDA_NEWS = {
             "Expoalimentaria 2026에 한국의 맛을 선보인 MOKDA",
             "방문객과의 대화에서는 현지 음식에 소스를 활용할 구체적인 아이디어가 나왔습니다. 박겸 대표가 KOTRA 인터뷰에서 전한 내용에 따르면, 일부 방문객은 폴로 아 라 브라사, 햄버거, 엠파나다에 곁들이는 방법을 제안했습니다. MOKDA는 이런 의견과 제품에 대한 바이어들의 질문을 현장에서 직접 들었습니다."
           ]
-        ]
+        ],
+        "imageCaption": "Expoalimentaria 공식 인스타그램에 소개된 MOKDA 부스. 사진: @expoalimentaria · 2026년 9월 23일."
       },
       "EN": {
         "title": "MOKDA brings the taste of Korea to Expoalimentaria 2026",
         "summary": "Introducing Salsa Coreana, meeting buyers and exploring pairings with Peruvian food.",
-        "imageAlt": "Gyeom Park with a visitor and sauces at the MOKDA booth at Expoalimentaria 2026",
+        "imageAlt": "Introducing Salsa Coreana to a visitor at the MOKDA booth during Expoalimentaria 2026",
         "sections": [
           [
             "MOKDA brings the taste of Korea to Expoalimentaria 2026",
@@ -178,7 +194,8 @@ window.MOKDA_NEWS = {
             "MOKDA brings the taste of Korea to Expoalimentaria 2026",
             "In his KOTRA interview, Gyeom Park reported that visitors suggested pairing the sauces with pollo a la brasa, burgers and empanadas. The fair gave MOKDA an opportunity to hear these ideas and buyers’ questions about its products."
           ]
-        ]
+        ],
+        "imageCaption": "The MOKDA booth featured on Expoalimentaria’s official Instagram. Photo: @expoalimentaria · September 23, 2026."
       },
       "publishedDate": "2026-10-07",
       "homeFeatured": true,
@@ -197,7 +214,7 @@ window.MOKDA_NEWS = {
     },
     {
       "id": "kpop-style",
-      "category": "events",
+      "category": "news",
       "location": "Perú",
       "image": "kpop-group",
       "gallery": [
@@ -334,7 +351,7 @@ window.MOKDA_NEWS = {
     },
     {
       "id": "congreso",
-      "category": "news",
+      "category": "press",
       "location": "Lima, Perú",
       "eventDate": "2026-09-23",
       "image": "congreso-broadcast",
@@ -412,7 +429,7 @@ window.MOKDA_NEWS = {
     },
     {
       "id": "creators",
-      "category": "collaborations",
+      "category": "news",
       "archiveVisible": false,
       "image": "creator-morita",
       "gallery": [],
@@ -668,9 +685,10 @@ window.MOKDA_NEWS = {
       "homeTitle": "Novedades",
       "kicker": "NOVEDADES",
       "all": "Todo",
-      "news": "Noticias y medios",
-      "events": "Eventos",
-      "collaborations": "Colaboraciones",
+      "news": "Novedades",
+      "press": "En medios",
+      "events": "Novedades",
+      "collaborations": "Novedades",
       "viewAll": "Ver todo",
       "read": "Leer más",
       "more": "Más historias",
@@ -716,9 +734,10 @@ window.MOKDA_NEWS = {
       "homeTitle": "MOKDA 소식",
       "kicker": "MOKDA 소식",
       "all": "전체",
-      "news": "소식·미디어",
-      "events": "행사",
-      "collaborations": "콜라보",
+      "news": "소식",
+      "press": "언론사 보도자료",
+      "events": "소식",
+      "collaborations": "소식",
       "viewAll": "전체 보기",
       "read": "자세히 보기",
       "more": "다른 소식",
@@ -764,9 +783,10 @@ window.MOKDA_NEWS = {
       "homeTitle": "Latest from MOKDA",
       "kicker": "UPDATES",
       "all": "All",
-      "news": "News & Media",
-      "events": "Events",
-      "collaborations": "Collaborations",
+      "news": "Updates",
+      "press": "Press coverage",
+      "events": "Updates",
+      "collaborations": "Updates",
       "viewAll": "View all",
       "read": "Read the story",
       "more": "More stories",
@@ -845,6 +865,11 @@ window.MOKDA_NEWS = {
       "KR": "김제 청년의 날 기념행사 참석자들과 함께. 2026년 9월 17일, 김제청년공간 E:DA.",
       "ES": "Con los participantes de la celebración en E:DA Gimje, el 17 de septiembre de 2026.",
       "EN": "With participants at the celebration in E:DA Gimje on September 17, 2026."
+    },
+    "expo-official-mokda": {
+      "KR": "Expoalimentaria 공식 인스타그램에 소개된 MOKDA 부스. 사진: @expoalimentaria · 2026년 9월 23일.",
+      "ES": "El stand de MOKDA en el Instagram oficial de Expoalimentaria. Foto: @expoalimentaria · 23 de septiembre de 2026.",
+      "EN": "The MOKDA booth featured on Expoalimentaria’s official Instagram. Photo: @expoalimentaria · September 23, 2026."
     }
   },
   "imageDimensions": {
@@ -871,6 +896,14 @@ window.MOKDA_NEWS = {
     "gimje-hint-presentation-640": [
       600,
       419
+    ],
+    "expo-official-mokda": [
+      1440,
+      960
+    ],
+    "expo-official-mokda-640": [
+      640,
+      427
     ]
   }
 };

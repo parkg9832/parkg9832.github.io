@@ -19,7 +19,11 @@ for(const lang of ['es','ko','en']){
  assert.equal(d.querySelector('[data-news-card="kpop-style"] time').dateTime,'2026-09-27');
  assert.deepEqual([...d.querySelectorAll('[data-news-card="expoalimentaria-2026"] time')].map(t=>t.dateTime),['2026-09-23','2026-09-25']);
  assert.equal(d.querySelector('[data-news-card="congreso"] time').dateTime,'2026-09-23');
- assert.equal(d.querySelector('[data-news-card="kotra-lima"] time'),null,'Do not substitute an upload date for an unconfirmed meeting date');
+ assert.equal(d.querySelector('[data-news-card="kotra-lima"] time').dateTime,'2026-09-28','Use the verified meeting date rather than its upload or publication date');
+ const meeting=w.MOKDA_NEWS.stories.find(story=>story.id==='kotra-lima');
+ assert.equal(meeting.publishedDate,'2026-10-07','Keep the meeting event date separate from the publication date');
+ assert.equal(meeting.image,'kotra-lima-meeting','Use the uploaded KOTRA office photo');
+ assert.equal(w.MOKDA_NEWS_MODEL.displayDate(w.MOKDA_NEWS,{eventDate:'2026-09-28',dateUnconfirmed:true}),'','Keep unconfirmed dates hidden');
  assert.equal(d.querySelector('[data-news-card]').dataset.newsCard,'kotra-interview','Order the archive by actual event or source dates');
  assert.equal(d.querySelectorAll('[data-news-video]').length,0,'Archive contains stories rather than a promotional video section');
  assert.equal(d.querySelectorAll('.news-feature').length,0);

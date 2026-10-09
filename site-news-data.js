@@ -45,6 +45,11 @@ window.MOKDA_NEWS = {
       "KR": "Expoalimentaria 2026 MOKDA 부스에서 방문객에게 Salsa Coreana를 소개하는 모습",
       "ES": "Salsa Coreana se presenta a una visitante en el stand de MOKDA en Expoalimentaria 2026",
       "EN": "Introducing Salsa Coreana to a visitor at the MOKDA booth during Expoalimentaria 2026"
+    },
+    "kotra-lima-meeting": {
+      "KR": "KOTRA 리마 무역관에서 담당자와 함께한 MOKDA 대표",
+      "ES": "El representante de MOKDA con una integrante del equipo de KOTRA en su oficina de Lima",
+      "EN": "MOKDA’s representative with a KOTRA staff member at the Lima office"
     }
   },
   "stories": [
@@ -290,8 +295,11 @@ window.MOKDA_NEWS = {
       "id": "kotra-lima",
       "category": "news",
       "location": "Lima, Perú",
-      "image": "expo-products",
-      "gallery": [],
+      "eventDate": "2026-09-28",
+      "image": "kotra-lima-meeting",
+      "gallery": [
+        "kotra-lima-meeting"
+      ],
       "related": [
         "expoalimentaria-2026",
         "congreso"
@@ -299,12 +307,11 @@ window.MOKDA_NEWS = {
       "ES": {
         "title": "MOKDA se reúne con la oficina de KOTRA en Lima",
         "summary": "Una conversación con la dirección y el equipo de KOTRA sobre exportación y preparación para el mercado local.",
-        "imageAlt": "Salsa Coreana en la mesa de presentación de MOKDA",
-        "imageCaption": "Imagen: mesa de presentación de MOKDA en Expoalimentaria 2026.",
+        "imageAlt": "El representante de MOKDA con una integrante del equipo de KOTRA en su oficina de Lima",
         "sections": [
           [
             "MOKDA se reúne con la oficina de KOTRA en Lima",
-            "Durante su visita a Perú, MOKDA se reunió con la dirección de la oficina de KOTRA en Lima para conversar sobre distintos aspectos de la exportación."
+            "El 28 de septiembre de 2026, durante su visita a Perú, MOKDA se reunió con la dirección de la oficina de KOTRA en Lima para conversar sobre distintos aspectos de la exportación."
           ],
           [
             "MOKDA se reúne con la oficina de KOTRA en Lima",
@@ -315,12 +322,11 @@ window.MOKDA_NEWS = {
       "KR": {
         "title": "MOKDA, KOTRA LIMA 무역관 미팅 진행",
         "summary": "관장 및 실무진과 수출 전반과 현지 진출을 위한 실무 사항을 논의했습니다.",
-        "imageAlt": "MOKDA 제품 소개 테이블에 진열된 Salsa Coreana",
-        "imageCaption": "사진: Expoalimentaria 2026의 MOKDA 제품 소개 테이블.",
+        "imageAlt": "KOTRA 리마 무역관에서 담당자와 함께한 MOKDA 대표",
         "sections": [
           [
             "MOKDA, KOTRA LIMA 무역관 미팅 진행",
-            "MOKDA는 페루 방문 중 KOTRA LIMA 무역관 관장과 만나 수출 전반에 대해 이야기를 나눴습니다."
+            "MOKDA는 2026년 9월 28일 KOTRA LIMA 무역관을 방문해 관장과 수출 전반에 대해 이야기를 나눴습니다."
           ],
           [
             "MOKDA, KOTRA LIMA 무역관 미팅 진행",
@@ -331,12 +337,11 @@ window.MOKDA_NEWS = {
       "EN": {
         "title": "MOKDA meets with KOTRA’s Lima office",
         "summary": "Discussing export plans and practical preparations with the head of the office and its staff.",
-        "imageAlt": "Salsa Coreana on MOKDA’s product display table",
-        "imageCaption": "Image: MOKDA’s product display table at Expoalimentaria 2026.",
+        "imageAlt": "MOKDA’s representative with a KOTRA staff member at the Lima office",
         "sections": [
           [
             "MOKDA meets with KOTRA’s Lima office",
-            "During its visit to Peru, MOKDA met with the head of KOTRA’s Lima office to discuss a range of export-related matters."
+            "On September 28, 2026, MOKDA visited KOTRA’s Lima office and met with its head to discuss a range of export-related matters."
           ],
           [
             "MOKDA meets with KOTRA’s Lima office",
@@ -346,8 +351,7 @@ window.MOKDA_NEWS = {
       },
       "publishedDate": "2026-10-07",
       "homeFeatured": false,
-      "homeOrder": 99,
-      "dateUnconfirmed": true
+      "homeOrder": 99
     },
     {
       "id": "congreso",
@@ -904,6 +908,14 @@ window.MOKDA_NEWS = {
     "expo-official-mokda-640": [
       640,
       427
+    ],
+    "kotra-lima-meeting": [
+      1440,
+      811
+    ],
+    "kotra-lima-meeting-640": [
+      640,
+      360
     ]
   }
 };

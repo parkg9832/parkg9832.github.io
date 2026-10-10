@@ -312,9 +312,7 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
 .home-page #home-news .home-news-support { border-bottom:1px solid #32150624; }
 .home-page #home-news .home-news-support .news-card-link { display:grid; grid-template-columns:132px minmax(0,1fr); gap:20px; align-items:center; min-height:140px; padding:16px 0; }
 .home-page #home-news .home-news-support .news-card-image { width:132px; height:94px; aspect-ratio:auto; border-radius:8px; }
-.home-page #home-news .home-news-support h3 { margin:6px 0 8px; font-size:17px; line-height:1.5; }
-.home-page #home-news .home-news-read { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; line-height:1.2; letter-spacing:.01em; color:var(--news-muted); }
-.home-page #home-news .home-news-read span { font-size:16px; }
+.home-page #home-news .home-news-support h3 { margin:6px 0 0; font-size:17px; line-height:1.5; }
 .home-page #home-news .news-card-link:hover h3 { text-decoration:underline; text-underline-offset:4px; }
 @media(min-width:768px) and (max-width:1023px) {
  .home-page #home-news .home-news-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; }

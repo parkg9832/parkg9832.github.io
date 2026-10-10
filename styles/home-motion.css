@@ -1,0 +1,30 @@
+/* Keep the photograph's frame still; the actual image and link affordance respond. */
+.home-page .product-photo-card .home-product-image { overflow:hidden; }
+.home-page .product-photo-card .home-product-image > img { transform:scale(1); }
+.home-page .product-photo-card .home-product-label h3,
+.home-page .product-photo-card .home-product-copy::after { transition:color 220ms ease; }
+.home-page .product-photo-card:focus-visible { outline:3px solid #a93600; outline-offset:6px; }
+.home-page .product-photo-card:focus-visible .home-product-label h3,
+.home-page .product-photo-card:focus-visible .home-product-copy::after { color:#a93600; }
+
+@media (hover:hover) and (pointer:fine) {
+  .home-page .product-photo-card:hover .home-product-label h3,
+  .home-page .product-photo-card:hover .home-product-copy::after { color:#a93600; }
+}
+
+@media (prefers-reduced-motion:no-preference) {
+  .home-page .product-photo-card .home-product-image > img { transition:transform 600ms cubic-bezier(.22,1,.36,1); }
+  .home-page .product-photo-card .home-product-copy::after { transition:transform 300ms cubic-bezier(.22,1,.36,1),color 220ms ease; }
+  .home-page .product-photo-card:focus-visible .home-product-image > img { transform:scale(1.035); }
+  .home-page .product-photo-card:focus-visible .home-product-copy::after { transform:translate(3px,-3px); }
+}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .home-page .product-photo-card:hover .home-product-image > img { transform:scale(1.035); }
+  .home-page .product-photo-card:hover .home-product-copy::after { transform:translate(3px,-3px); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .home-page .product-photo-card .home-product-image > img,
+  .home-page .product-photo-card .home-product-copy::after { transform:none; transition:none; }
+}

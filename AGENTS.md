@@ -21,6 +21,9 @@ Before starting work in this project, read `MOKDA_HARNESS.md`.
 
 ## Important Files
 
+- Website motion follows `docs/WEBSITE_MOTION.md`; use the shared motion scripts and keep form inputs, status messages and active media steady.
+- The user has authorized completing website changes through verified commit, push and production deployment (2026-10-10). Follow the canonical harness's website deployment rule unless the latest request limits a change to review or preview.
+
 - `b2b-config.js`: B2B Google Apps Script Web App URL configuration.
 - `apps-script/b2b-lead-automation.gs`: B2B lead receiver, Google Sheets save, and email notification logic.
 - `B2B_AUTOMATION_SETUP.md`: setup instructions for B2B lead automation.

@@ -275,7 +275,6 @@
 .qna-page .qna-reading [data-reveal]:last-child { text-align:left; margin-top:28px; }
 .qna-page #boardContactLink { border-radius:999px; box-shadow:none; font-size:14px; font-weight:700; line-height:1.2; letter-spacing:.01em; }
 @media(hover:hover) and (prefers-reduced-motion:no-preference) {
-  .home-page .home-product-image>img { transition:none; }
   :is(.home-page,.about-page,.products-page,.qna-page) main a { transition:background-color .2s,color .2s; }
 }
 @media(max-width:1023px) {

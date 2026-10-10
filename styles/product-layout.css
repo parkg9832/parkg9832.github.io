@@ -22,6 +22,9 @@
 
 .products-page .product-feature {
   grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
 }
 
 .products-page .product-feature > .product-food-only {
@@ -64,7 +67,23 @@
   max-width: 32rem;
 }
 
+.products-page :is(#prod1Desc, #prod2Desc) {
+  margin-top: 28px;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+.products-page :is(#prod1Uses, #prod2Uses) {
+  margin-top: 20px;
+  padding-top: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
 .products-page .product-feature-actions {
+  margin-top: 28px;
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -72,7 +91,10 @@
 }
 
 .products-page .product-feature-actions a {
+  min-height: 52px;
   max-width: 100%;
+  font-size: 1rem;
+  line-height: 1.2;
   text-align: center;
 }
 
@@ -84,11 +106,14 @@ html:not([lang^='ko']) .products-page .product-feature p {
 @media (min-width: 768px) {
   .products-page .product-feature {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    min-height: max(560px, 50vw);
+    min-height: clamp(560px, 50vw, 720px);
   }
 
   .products-page .product-feature > .product-food-only {
     aspect-ratio: auto;
+    max-height: 720px;
+    align-self: center;
+    height: 100%;
   }
 
   .products-page #original > .product-food-only img {
@@ -104,6 +129,13 @@ html:not([lang^='ko']) .products-page .product-feature p {
   }
 }
 
+@media (min-width: 1024px) {
+  .products-page :is(#prod1Desc, #prod2Desc) {
+    font-size: 1.25rem;
+    line-height: 1.7;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .products-page .product-feature > .product-feature-copy {
     padding: 48px 28px;
@@ -113,8 +145,8 @@ html:not([lang^='ko']) .products-page .product-feature p {
     font-size: clamp(2rem, 4.3vw, 2.7rem);
   }
 
-  .products-page .product-feature p[id$='Desc'] {
-    font-size: 1rem;
+  .products-page :is(#prod1Desc, #prod2Desc) {
+    font-size: 1.125rem;
     line-height: 1.75;
   }
 

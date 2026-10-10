@@ -1,0 +1,46 @@
+/* Animate only controls and photographs that already link to another view. */
+.news-page .news-card-link .news-card-image img,
+.news-page .news-photo-thumb img { transform:scale(1); }
+.news-page .news-archive-arrow { transition:color 220ms ease; }
+.news-page .news-card-link:focus-visible .news-archive-arrow { color:#a93600; }
+
+@media (hover:hover) and (pointer:fine) {
+  .news-page .news-card-link:hover .news-archive-arrow { color:#a93600; }
+}
+
+@media (prefers-reduced-motion:no-preference) {
+  .news-page .news-card-link .news-card-image img,
+  .news-page .news-photo-thumb img { transition:transform 600ms cubic-bezier(.22,1,.36,1); }
+  .news-page .news-archive-arrow { transition:transform 300ms cubic-bezier(.22,1,.36,1),color 220ms ease; }
+  .about-page .about-product-cta > span[aria-hidden],
+  .contact-page #submitButton svg { transition:transform 300ms cubic-bezier(.22,1,.36,1); }
+  .products-page .product-feature-actions > a,
+  .product-detail-page .detail-inquiry a { transition:transform 220ms ease,background-color 220ms ease,color 220ms ease; }
+  .news-page .news-card-link:focus-visible .news-card-image img,
+  .news-page .news-photo-thumb:focus-visible img { transform:scale(1.035); }
+  .news-page .news-card-link:focus-visible .news-archive-arrow { transform:translate(3px,-3px); }
+  .about-page .about-product-cta:focus-visible > span[aria-hidden],
+  .contact-page #submitButton:focus-visible svg { transform:translateX(3px); }
+  .products-page .product-feature-actions > a:focus-visible,
+  .product-detail-page .detail-inquiry a:focus-visible { transform:translateY(-2px); }
+}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .news-page .news-card-link:hover .news-card-image img,
+  .news-page .news-photo-thumb:hover img { transform:scale(1.035); }
+  .news-page .news-card-link:hover .news-archive-arrow { transform:translate(3px,-3px); }
+  .about-page .about-product-cta:hover > span[aria-hidden],
+  .contact-page #submitButton:hover svg { transform:translateX(3px); }
+  .products-page .product-feature-actions > a:hover,
+  .product-detail-page .detail-inquiry a:hover { transform:translateY(-2px); }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .news-page .news-card-link .news-card-image img,
+  .news-page .news-photo-thumb img,
+  .news-page .news-archive-arrow,
+  .about-page .about-product-cta > span[aria-hidden],
+  .contact-page #submitButton svg,
+  .products-page .product-feature-actions > a,
+  .product-detail-page .detail-inquiry a { transform:none!important; transition:none; }
+}

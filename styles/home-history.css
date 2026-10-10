@@ -41,7 +41,7 @@
   text-align:center;
 }
 .home-history-heading { width:100%; margin:0 auto; }
-.home-page #proofKicker { margin:0 0 22px; color:#f8dfc4; font-size:12px; line-height:1.5; letter-spacing:.08em; }
+.home-page #proofKicker { margin:0 0 22px; color:#ff9457; font-size:12px; line-height:1.5; letter-spacing:.08em; }
 .home-page #proof.home-history #proofTitle {
   margin:0 auto;
   max-width:850px;
@@ -58,7 +58,7 @@
   max-width:600px;
   margin:24px auto 0;
   padding:0;
-  color:#fff8ef;
+  color:#ecd6c2;
   font-size:16px;
   font-weight:400;
   line-height:1.75;
@@ -82,8 +82,8 @@
   padding:0 20px;
 }
 .home-history-milestones li+li { border-left:1px solid rgba(248,223,196,.28); }
-.home-history-year { font-family:"Archivo Black",sans-serif; font-size:40px; line-height:1.15; letter-spacing:-.04em; }
-.home-history-event { max-width:240px; color:#f8dfc4; font-size:14px; line-height:1.65; word-break:keep-all; text-wrap:balance; }
+.home-history-year { color:#ff9457; font-family:"Archivo Black",sans-serif; font-size:40px; line-height:1.15; letter-spacing:-.04em; }
+.home-history-event { max-width:240px; color:#ecd6c2; font-size:14px; line-height:1.65; word-break:keep-all; text-wrap:balance; }
 .home-page #proof.home-history #proofHistoryCta {
   display:inline-flex;
   align-items:center;
@@ -91,10 +91,10 @@
   min-height:50px;
   padding:12px 24px;
   margin:0;
-  border:1px solid rgba(255,248,239,.65);
+  border:1px solid #ef5f18;
   border-radius:4px;
-  background:transparent;
-  color:#fff8ef;
+  background:#ef5f18;
+  color:#321506;
   box-shadow:none;
   font-size:14px;
   font-weight:700;
@@ -104,7 +104,7 @@
   text-align:center;
   transition:background .2s,color .2s;
 }
-.home-page #proof.home-history #proofHistoryCta:hover { background:#fff8ef; color:#321506; }
+.home-page #proof.home-history #proofHistoryCta:hover { background:#ff7a32; border-color:#ff7a32; }
 .home-page #proof.home-history #proofHistoryCta:focus-visible { outline:3px solid #f8dfc4; outline-offset:5px; }
 @media(max-width:767px) {
   .home-page #proof.home-history { padding:64px 20px 56px; }

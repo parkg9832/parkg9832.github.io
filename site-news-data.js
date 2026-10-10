@@ -1,9 +1,21 @@
 window.MOKDA_NEWS = {
   "publishedDate": "2026-10-07",
   "locationLabels": {
-    "Lima, Perú": { "ES": "Lima, Perú", "KR": "리마, 페루", "EN": "Lima, Peru" },
-    "Perú": { "ES": "Perú", "KR": "페루", "EN": "Peru" },
-    "Gimje, Corea del Sur": { "ES": "Gimje, Corea del Sur", "KR": "김제, 대한민국", "EN": "Gimje, South Korea" }
+    "Lima, Perú": {
+      "ES": "Lima, Perú",
+      "KR": "리마, 페루",
+      "EN": "Lima, Peru"
+    },
+    "Perú": {
+      "ES": "Perú",
+      "KR": "페루",
+      "EN": "Peru"
+    },
+    "Gimje, Corea del Sur": {
+      "ES": "Gimje, Corea del Sur",
+      "KR": "김제, 대한민국",
+      "EN": "Gimje, South Korea"
+    }
   },
   "imageDescriptions": {
     "expo-booth": {
@@ -90,7 +102,7 @@ window.MOKDA_NEWS = {
         "sections": [
           [
             "페루 국제 식음료 박람회 '엑스포알리멘타리아 2026(Expoalimentaria 2026)' 참관기",
-            "KOTRA의 Expoalimentaria 2026 참관기에 MOKDA와 박겸 대표 인터뷰가 소개됐습니다. 브랜드와 소스 개발, 현지 반응, 중남미 시장 진출 준비를 다룬 원문은 아래 출처에서 확인할 수 있습니다."
+            "KOTRA 해외시장뉴스가 Expoalimentaria 2026 참관기에 MOKDA 박겸 대표의 인터뷰를 실었습니다. 박 대표는 소스 개발 과정과 박람회 방문객들의 반응, 중남미 시장 진출을 위한 준비에 관해 이야기했습니다."
           ]
         ]
       },
@@ -102,7 +114,7 @@ window.MOKDA_NEWS = {
         "sections": [
           [
             "Crónica de Expoalimentaria 2026, la feria internacional de alimentos y bebidas de Perú",
-            "La crónica de KOTRA sobre Expoalimentaria 2026 incluye a MOKDA y una entrevista con su fundador, Gyeom Park. El artículo presenta la marca, el desarrollo de sus salsas, las reacciones en la feria y la preparación para el mercado latinoamericano. La fuente enlazada contiene el artículo completo en coreano."
+            "KOTRA publicó un reportaje sobre Expoalimentaria 2026 que incluye una entrevista con Gyeom Park, fundador de MOKDA. Park habla del desarrollo de las salsas, las reacciones de los visitantes y los preparativos para entrar al mercado latinoamericano."
           ]
         ]
       },
@@ -114,7 +126,7 @@ window.MOKDA_NEWS = {
         "sections": [
           [
             "A visit to Peru’s international food and beverage fair, Expoalimentaria 2026",
-            "KOTRA’s Expoalimentaria 2026 report features MOKDA and an interview with founder Gyeom Park. It introduces the brand, sauce development, reactions at the fair and preparations for the Latin American market. The complete Korean article is available through the source link below."
+            "KOTRA’s report on Expoalimentaria 2026 includes an interview with MOKDA founder Gyeom Park. He discusses how the sauces were developed, visitors’ responses at the fair and preparations to enter the Latin American market."
           ]
         ]
       }
@@ -160,52 +172,52 @@ window.MOKDA_NEWS = {
         }
       ],
       "ES": {
-        "title": "MOKDA lleva el sabor de Corea a Expoalimentaria 2026",
-        "summary": "Salsa Coreana, encuentros con compradores e ideas para acompañar la comida peruana.",
+        "title": "MOKDA presenta Salsa Coreana en Expoalimentaria 2026",
+        "summary": "Del 23 al 25 de septiembre, MOKDA presentó sus salsas a visitantes y compradores en Lima.",
         "imageAlt": "Salsa Coreana se presenta a una visitante en el stand de MOKDA en Expoalimentaria 2026",
         "sections": [
           [
-            "MOKDA lleva el sabor de Corea a Expoalimentaria 2026",
-            "MOKDA participó en Expoalimentaria 2026, celebrada del 23 al 25 de septiembre en Lima, donde presentó Salsa Coreana y se reunió con compradores. El stand también recibió la visita del presidente del Congreso del Perú y del ministro de Desarrollo Agrario y Riego."
+            "Expoalimentaria 2026",
+            "MOKDA participó en Expoalimentaria 2026, celebrada del 23 al 25 de septiembre en Lima. En su stand presentó Salsa Coreana y se reunió con compradores. También recibió la visita del presidente del Congreso del Perú y del ministro de Desarrollo Agrario y Riego."
           ],
           [
-            "MOKDA lleva el sabor de Corea a Expoalimentaria 2026",
-            "Según relató Gyeom Park a KOTRA, algunos visitantes propusieron combinar las salsas con pollo a la brasa, hamburguesas y empanadas. La feria permitió a MOKDA escuchar esas propuestas y las preguntas de los compradores sobre sus productos."
+            "Expoalimentaria 2026",
+            "Algunos visitantes sugirieron acompañar pollo a la brasa, hamburguesas y empanadas con las salsas. Gyeom Park contó estas propuestas en su entrevista con KOTRA."
           ]
         ],
-        "imageCaption": "El stand de MOKDA en el Instagram oficial de Expoalimentaria. Foto: @expoalimentaria · 23 de septiembre de 2026."
+        "imageCaption": "Foto: Instagram oficial de Expoalimentaria (@expoalimentaria), 23 de septiembre de 2026."
       },
       "KR": {
-        "title": "Expoalimentaria 2026에 한국의 맛을 선보인 MOKDA",
-        "summary": "페루 리마에서 Salsa Coreana를 소개하고 바이어들과 만났습니다.",
+        "title": "MOKDA, 페루 Expoalimentaria 2026에서 Salsa Coreana 소개",
+        "summary": "리마에서 바이어들과 만나고, 페루 음식에 소스를 곁들이는 방법에 대한 의견을 들었습니다.",
         "imageAlt": "Expoalimentaria 2026 MOKDA 부스에서 방문객에게 Salsa Coreana를 소개하는 모습",
         "sections": [
           [
-            "Expoalimentaria 2026에 한국의 맛을 선보인 MOKDA",
-            "MOKDA는 2026년 9월 23일부터 25일까지 페루 리마에서 열린 Expoalimentaria 2026에 참가해 Salsa Coreana를 선보이고 바이어들과 만났습니다. 부스에는 페루 국회의장과 농업관개부 장관도 방문했습니다."
+            "Expoalimentaria 2026 참가",
+            "MOKDA는 2026년 9월 23일부터 25일까지 페루 리마에서 열린 Expoalimentaria 2026에 참가했습니다. 부스에서 Salsa Coreana를 소개하고 바이어들과 만났으며, 페루 국회의장과 농업관개부 장관도 부스를 찾았습니다."
           ],
           [
-            "Expoalimentaria 2026에 한국의 맛을 선보인 MOKDA",
-            "방문객과의 대화에서는 현지 음식에 소스를 활용할 구체적인 아이디어가 나왔습니다. 박겸 대표가 KOTRA 인터뷰에서 전한 내용에 따르면, 일부 방문객은 폴로 아 라 브라사, 햄버거, 엠파나다에 곁들이는 방법을 제안했습니다. MOKDA는 이런 의견과 제품에 대한 바이어들의 질문을 현장에서 직접 들었습니다."
+            "Expoalimentaria 2026 참가",
+            "박겸 대표는 KOTRA 인터뷰에서 방문객들이 폴로 아 라 브라사, 햄버거, 엠파나다에 소스를 곁들이는 방법을 제안했다고 전했습니다."
           ]
         ],
-        "imageCaption": "Expoalimentaria 공식 인스타그램에 소개된 MOKDA 부스. 사진: @expoalimentaria · 2026년 9월 23일."
+        "imageCaption": "사진: Expoalimentaria 공식 인스타그램(@expoalimentaria), 2026년 9월 23일."
       },
       "EN": {
-        "title": "MOKDA brings the taste of Korea to Expoalimentaria 2026",
-        "summary": "Introducing Salsa Coreana, meeting buyers and exploring pairings with Peruvian food.",
+        "title": "MOKDA presents Salsa Coreana at Expoalimentaria 2026",
+        "summary": "MOKDA met buyers in Lima and introduced its Korean sauces to visitors.",
         "imageAlt": "Introducing Salsa Coreana to a visitor at the MOKDA booth during Expoalimentaria 2026",
         "sections": [
           [
-            "MOKDA brings the taste of Korea to Expoalimentaria 2026",
-            "MOKDA participated in Expoalimentaria 2026 in Lima from September 23 to 25, introducing Salsa Coreana and meeting buyers. The booth also received visits from the president of Peru’s Congress and the minister of Agrarian Development and Irrigation."
+            "Expoalimentaria 2026",
+            "MOKDA presented Salsa Coreana and met buyers at Expoalimentaria 2026 in Lima from September 23 to 25. The president of Peru’s Congress and the minister of Agrarian Development and Irrigation also visited the booth."
           ],
           [
-            "MOKDA brings the taste of Korea to Expoalimentaria 2026",
-            "In his KOTRA interview, Gyeom Park reported that visitors suggested pairing the sauces with pollo a la brasa, burgers and empanadas. The fair gave MOKDA an opportunity to hear these ideas and buyers’ questions about its products."
+            "Expoalimentaria 2026",
+            "In his KOTRA interview, founder Gyeom Park said visitors had suggested serving the sauces with pollo a la brasa, burgers and empanadas."
           ]
         ],
-        "imageCaption": "The MOKDA booth featured on Expoalimentaria’s official Instagram. Photo: @expoalimentaria · September 23, 2026."
+        "imageCaption": "Photo: Expoalimentaria’s official Instagram (@expoalimentaria), September 23, 2026."
       },
       "publishedDate": "2026-10-07",
       "homeFeatured": true,
@@ -236,47 +248,35 @@ window.MOKDA_NEWS = {
         "expoalimentaria-2026"
       ],
       "ES": {
-        "title": "K-pop y sabor coreano: MOKDA se suma a KPOP STYLE",
-        "summary": "Un saludo desde el escenario y un sorteo de Salsa Coreana con los fans en Perú.",
+        "title": "MOKDA sortea Salsa Coreana en KPOP STYLE",
+        "summary": "La marca saludó al público desde el escenario y sorteó sus salsas entre los asistentes en Perú.",
         "imageAlt": "Una foto de grupo con Salsa Coreana en KPOP STYLE",
         "sections": [
           [
-            "K-pop y sabor coreano: MOKDA se suma a KPOP STYLE",
-            "MOKDA participó en KPOP STYLE en Perú con un saludo desde el escenario y un sorteo de Salsa Coreana entre los asistentes. La actividad reunió música, cultura coreana y las salsas de la marca en un mismo encuentro."
-          ],
-          [
-            "K-pop y sabor coreano: MOKDA se suma a KPOP STYLE",
-            "Las fotos de grupo con los productos y las imágenes tomadas desde el escenario recogen el momento compartido con el público. El sorteo ya finalizó."
+            "KPOP STYLE",
+            "MOKDA participó en KPOP STYLE, en Perú, el 27 de septiembre de 2026. La marca saludó al público desde el escenario, realizó un sorteo de Salsa Coreana y se tomó una foto grupal con los asistentes y las salsas."
           ]
         ]
       },
       "KR": {
-        "title": "K-pop과 한국의 맛, KPOP STYLE에 함께한 MOKDA",
-        "summary": "무대인사와 Salsa Coreana 증정 추첨으로 페루의 K-pop 팬들과 만났습니다.",
+        "title": "MOKDA, 페루 KPOP STYLE에서 무대인사·소스 증정",
+        "summary": "K-pop 팬들과 인사를 나누고 Salsa Coreana 추첨 이벤트를 진행했습니다.",
         "imageAlt": "KPOP STYLE에서 Salsa Coreana를 들고 함께 찍은 단체사진",
         "sections": [
           [
-            "K-pop과 한국의 맛, KPOP STYLE에 함께한 MOKDA",
-            "MOKDA는 페루 KPOP STYLE 행사에서 무대인사를 하고, 관객을 대상으로 Salsa Coreana 증정 추첨을 진행했습니다. 음악과 한국 문화, MOKDA 소스가 한 행사에서 만났습니다."
-          ],
-          [
-            "K-pop과 한국의 맛, KPOP STYLE에 함께한 MOKDA",
-            "소스를 들고 찍은 단체사진과 무대에서 관객석을 향해 촬영한 사진에 팬들과 함께한 순간을 담았습니다. 현장 추첨 이벤트는 종료됐습니다."
+            "KPOP STYLE 참가",
+            "2026년 9월 27일, MOKDA는 페루 KPOP STYLE 무대에서 관객들에게 인사를 전했습니다. 현장에서는 Salsa Coreana를 증정하는 추첨을 진행했고, 참가자들과 소스를 들고 단체사진도 찍었습니다."
           ]
         ]
       },
       "EN": {
-        "title": "K-pop and Korean flavor: MOKDA joins KPOP STYLE",
-        "summary": "A stage greeting and a Salsa Coreana prize draw with fans in Peru.",
+        "title": "MOKDA gives away Salsa Coreana at KPOP STYLE in Peru",
+        "summary": "A greeting from the stage and a Salsa Coreana prize draw for K-pop fans.",
         "imageAlt": "A group photograph holding Salsa Coreana at KPOP STYLE",
         "sections": [
           [
-            "K-pop and Korean flavor: MOKDA joins KPOP STYLE",
-            "MOKDA joined KPOP STYLE in Peru with a greeting from the stage and a Salsa Coreana prize draw for attendees. The event brought together music, Korean culture and the brand’s sauces."
-          ],
-          [
-            "K-pop and Korean flavor: MOKDA joins KPOP STYLE",
-            "Group photos with the products and images taken from the stage capture the moments shared with the audience. The prize draw has ended."
+            "KPOP STYLE",
+            "MOKDA took part in KPOP STYLE in Peru on September 27, 2026. MOKDA greeted fans from the stage, held a Salsa Coreana prize draw and posed for a group photo with attendees holding the sauces."
           ]
         ]
       },
@@ -311,46 +311,34 @@ window.MOKDA_NEWS = {
       ],
       "ES": {
         "title": "MOKDA se reúne con la oficina de KOTRA en Lima",
-        "summary": "Una conversación con la dirección y el equipo de KOTRA sobre exportación y preparación para el mercado local.",
+        "summary": "La reunión abordó la preparación de las exportaciones y la entrada al mercado peruano.",
         "imageAlt": "El representante de MOKDA con una integrante del equipo de KOTRA en su oficina de Lima",
         "sections": [
           [
-            "MOKDA se reúne con la oficina de KOTRA en Lima",
-            "El 28 de septiembre de 2026, durante su visita a Perú, MOKDA se reunió con la dirección de la oficina de KOTRA en Lima para conversar sobre distintos aspectos de la exportación."
-          ],
-          [
-            "MOKDA se reúne con la oficina de KOTRA en Lima",
-            "La marca también intercambió ideas con el equipo de la oficina sobre cuestiones prácticas para preparar las exportaciones y entrar al mercado local. El encuentro formó parte de las actividades de MOKDA en Perú junto con su participación en Expoalimentaria 2026."
+            "Reunión con KOTRA en Lima",
+            "MOKDA visitó la oficina de KOTRA en Lima el 28 de septiembre de 2026. Gyeom Park conversó con la dirección sobre las exportaciones de MOKDA y con el personal de la oficina sobre los preparativos para exportar y entrar al mercado peruano."
           ]
         ]
       },
       "KR": {
         "title": "MOKDA, KOTRA LIMA 무역관 미팅 진행",
-        "summary": "관장 및 실무진과 수출 전반과 현지 진출을 위한 실무 사항을 논의했습니다.",
+        "summary": "리마 무역관 관장과 실무진을 만나 수출 준비와 페루 시장 진출을 논의했습니다.",
         "imageAlt": "KOTRA 리마 무역관에서 담당자와 함께한 MOKDA 대표",
         "sections": [
           [
-            "MOKDA, KOTRA LIMA 무역관 미팅 진행",
-            "MOKDA는 2026년 9월 28일 KOTRA LIMA 무역관을 방문해 관장과 수출 전반에 대해 이야기를 나눴습니다."
-          ],
-          [
-            "MOKDA, KOTRA LIMA 무역관 미팅 진행",
-            "이어 무역관 실무진과 수출 준비와 현지 진출에 필요한 실무 사항에 대해 의견을 나눴습니다. 이번 미팅은 Expoalimentaria 2026 참가와 함께 진행한 MOKDA의 페루 현지 활동입니다."
+            "KOTRA 리마 무역관 방문",
+            "2026년 9월 28일 MOKDA가 KOTRA LIMA 무역관을 방문했습니다. 박겸 대표는 관장과 수출 전반에 관한 이야기를 나눈 뒤, 실무진과 현지 시장 진출에 필요한 준비 사항을 논의했습니다."
           ]
         ]
       },
       "EN": {
         "title": "MOKDA meets with KOTRA’s Lima office",
-        "summary": "Discussing export plans and practical preparations with the head of the office and its staff.",
+        "summary": "The meeting covered export plans and preparations for entering the Peruvian market.",
         "imageAlt": "MOKDA’s representative with a KOTRA staff member at the Lima office",
         "sections": [
           [
-            "MOKDA meets with KOTRA’s Lima office",
-            "On September 28, 2026, MOKDA visited KOTRA’s Lima office and met with its head to discuss a range of export-related matters."
-          ],
-          [
-            "MOKDA meets with KOTRA’s Lima office",
-            "The brand also spoke with the office’s staff about practical preparations for exporting and entering the local market. The meeting was part of MOKDA’s activities in Peru alongside its participation in Expoalimentaria 2026."
+            "Meeting with KOTRA in Lima",
+            "MOKDA visited KOTRA’s Lima office on September 28, 2026. Founder Gyeom Park discussed exports with the head of the office, then spoke with staff about the practical steps needed to prepare exports and enter the Peruvian market."
           ]
         ]
       },
@@ -371,46 +359,34 @@ window.MOKDA_NEWS = {
       ],
       "ES": {
         "title": "El presidente del Congreso peruano visita el stand de MOKDA",
-        "summary": "Congreso TV registra el encuentro y la presentación de Salsa Coreana en Expoalimentaria 2026.",
+        "summary": "Congreso TV transmitió la visita y la presentación de Salsa Coreana en Expoalimentaria 2026.",
         "imageAlt": "Una imagen de la televisión del Congreso del Perú muestra el stand de MOKDA",
         "sections": [
           [
-            "El presidente del Congreso peruano visita el stand de MOKDA",
-            "Miguel Ángel Torres Morales, presidente del Congreso del Perú, visitó el stand de MOKDA durante Expoalimentaria 2026. Durante la visita, Gyeom Park, fundador de la marca, presentó Salsa Coreana."
-          ],
-          [
-            "El presidente del Congreso peruano visita el stand de MOKDA",
-            "La visita quedó registrada en la cobertura de Congreso TV. El fragmento muestra el encuentro en el stand y la presentación de las salsas, y puede verse en esta página."
+            "Visita al stand de MOKDA",
+            "El 23 de septiembre de 2026, Miguel Ángel Torres Morales, presidente del Congreso del Perú, visitó el stand de MOKDA en Expoalimentaria. Gyeom Park, fundador de la marca, le presentó Salsa Coreana. Congreso TV transmitió el encuentro durante su cobertura de la feria."
           ]
         ]
       },
       "KR": {
         "title": "페루 국회의장, MOKDA 부스 방문",
-        "summary": "Expoalimentaria 2026의 MOKDA 부스 방문과 소스 소개가 페루 국회방송에 담겼습니다.",
+        "summary": "페루 국회방송 Congreso TV가 박람회 부스 방문과 소스 소개 장면을 중계했습니다.",
         "imageAlt": "MOKDA 부스가 등장하는 페루 국회방송의 박람회 현장 영상",
         "sections": [
           [
-            "페루 국회의장, MOKDA 부스 방문",
-            "페루 국회의장 미겔 앙헬 토레스 모랄레스가 Expoalimentaria 2026의 MOKDA 부스를 방문했습니다. 박겸 대표가 현장에서 Salsa Coreana를 소개했습니다."
-          ],
-          [
-            "페루 국회의장, MOKDA 부스 방문",
-            "이 방문은 페루 국회방송 Congreso TV의 현장 중계에 담겼습니다. 이 페이지에서는 부스에서의 만남과 소스 소개 장면이 담긴 방송 영상을 볼 수 있습니다."
+            "페루 국회의장 부스 방문",
+            "2026년 9월 23일 페루 국회의장 미겔 앙헬 토레스 모랄레스가 Expoalimentaria 2026의 MOKDA 부스를 방문했습니다. 박겸 대표는 현장에서 Salsa Coreana를 소개했고, 이 장면은 페루 국회방송 Congreso TV의 박람회 중계에 담겼습니다."
           ]
         ]
       },
       "EN": {
         "title": "The president of Peru’s Congress visits the MOKDA booth",
-        "summary": "Congreso TV captures the visit and introduction of Salsa Coreana at Expoalimentaria 2026.",
+        "summary": "Congreso TV covered the visit and sauce presentation at Expoalimentaria 2026.",
         "imageAlt": "A frame from Peru’s congressional television shows MOKDA at the fair",
         "sections": [
           [
-            "The president of Peru’s Congress visits the MOKDA booth",
-            "Miguel Ángel Torres Morales, president of Peru’s Congress, visited the MOKDA booth during Expoalimentaria 2026. MOKDA founder Gyeom Park introduced Salsa Coreana during the visit."
-          ],
-          [
-            "The president of Peru’s Congress visits the MOKDA booth",
-            "The visit was captured in Congreso TV’s coverage. The segment showing the meeting at the booth and the sauce introduction can be watched on this page."
+            "Visit to the MOKDA booth",
+            "Miguel Ángel Torres Morales, president of Peru’s Congress, visited the MOKDA booth at Expoalimentaria 2026 on September 23. Founder Gyeom Park introduced Salsa Coreana during the visit, which appeared in Congreso TV’s live coverage of the fair."
           ]
         ]
       },
@@ -431,9 +407,9 @@ window.MOKDA_NEWS = {
       "videoAsCover": true,
       "videoPoster": "congreso-video",
       "cardTitles": {
-        "ES": "En el canal del Congreso",
+        "ES": "MOKDA en Congreso TV",
         "KR": "페루 국회방송에 소개된 MOKDA",
-        "EN": "On Peru’s Congress TV"
+        "EN": "MOKDA on Peru’s Congreso TV"
       }
     },
     {
@@ -447,35 +423,35 @@ window.MOKDA_NEWS = {
         "expoalimentaria-2026"
       ],
       "ES": {
-        "title": "Salsa Coreana con creadores",
-        "summary": "Cinco creadores presentan, prueban y comparten las salsas de MOKDA.",
+        "title": "Salsa Coreana en videos de cinco creadores",
+        "summary": "Cinco videos con presentaciones, degustaciones y comidas con las salsas de MOKDA.",
         "imageAlt": "Morita Artist presenta Salsa Coreana de MOKDA en su video",
         "sections": [
           [
-            "Colaboraciones en video",
-            "Presentaciones, primeras pruebas y comidas con Salsa Coreana, desde la experiencia de cinco creadores."
+            "Videos con creadores",
+            "Los cinco videos de colaboración incluyen presentaciones de las salsas de MOKDA, degustaciones y comidas con Salsa Coreana."
           ]
         ]
       },
       "KR": {
-        "title": "크리에이터와 함께한 MOKDA",
-        "summary": "제품 소개부터 시식까지, 다섯 크리에이터의 Salsa Coreana 협업 영상.",
+        "title": "Salsa Coreana 크리에이터 협업 영상",
+        "summary": "제품 소개와 시식, 음식에 곁들이는 모습을 담은 협업 영상 5편.",
         "imageAlt": "MOKDA Salsa Coreana를 소개하는 Morita Artist의 협업 영상",
         "sections": [
           [
             "크리에이터 협업 영상",
-            "제품 소개와 첫 시식, 음식에 곁들이는 모습을 다섯 크리에이터의 경험으로 전합니다."
+            "다섯 크리에이터와 협업한 영상에는 제품 소개와 시식, 음식에 소스를 곁들이는 모습이 담겨 있습니다."
           ]
         ]
       },
       "EN": {
-        "title": "Salsa Coreana with creators",
-        "summary": "Five creators introduce, taste and share MOKDA sauces.",
+        "title": "Salsa Coreana in videos by five creators",
+        "summary": "Five collaboration videos with product introductions, tastings and meals featuring MOKDA sauces.",
         "imageAlt": "Morita Artist presenting MOKDA Salsa Coreana in her collaboration video",
         "sections": [
           [
-            "Creator collaborations",
-            "Product introductions, first tastes and meals with Salsa Coreana, shared by five creators."
+            "Creator videos",
+            "The five collaboration videos include product introductions, tastings and meals featuring Salsa Coreana."
           ]
         ]
       },
@@ -497,49 +473,49 @@ window.MOKDA_NEWS = {
       "homeOrder": 99,
       "KR": {
         "title": "MOKDA, 김제 청년예비창업 도전지원사업 ‘힌트’ 선정",
-        "summary": "김제와 전북의 농산물로 중남미 수출용 소스를 개발하는 MOKDA의 창업 계획이 선정됐습니다.",
+        "summary": "김제와 전북 농산물을 활용한 중남미 수출용 소스 개발 계획으로 선정됐습니다.",
         "imageAlt": "김제 청년 예비창업 도전 지원사업 힌트 심사에서 사업 계획을 발표하는 박겸 대표",
         "imageCaption": "힌트 사업 심사 현장. 사진 출처: 전라일보(2026년 4월 14일 기사).",
         "sections": [
           [
             "힌트 선정",
-            "MOKDA가 2026 김제 청년 예비창업 도전 지원사업 ‘힌트(H.I.N.T.)’에 선정됐습니다. 최종 결과는 3월 13일 발표됐습니다. 박겸 대표는 김제와 전북 농산물을 활용한 중남미 수출용 퓨전 칠리소스 개발 계획으로 참여했습니다."
+            "MOKDA가 2026 김제 청년 예비창업 도전 지원사업 ‘힌트(H.I.N.T.)’에 선정됐습니다. 박겸 대표는 김제와 전북 농산물을 활용한 중남미 수출용 퓨전 칠리소스 개발 계획을 제안했으며, 최종 선정 결과는 3월 13일 발표됐습니다."
           ],
           [
-            "지역 자원으로 준비하는 창업",
-            "힌트는 지역 자원을 바탕으로 한 청년 창업 아이템의 사업화를 돕는 프로그램입니다. 창업 교육과 전문가 컨설팅, 네트워킹 등을 지원하며, MOKDA의 개발 계획은 전라일보의 선정 소식에도 소개됐습니다."
+            "힌트 선정",
+            "힌트는 지역 자원을 활용해 사업을 시작하려는 청년에게 창업 교육과 전문가 컨설팅, 네트워킹을 지원하는 사업입니다. 전라일보는 선정 소식을 보도하면서 MOKDA의 개발 계획도 소개했습니다."
           ]
         ]
       },
       "ES": {
-        "title": "MOKDA es seleccionada para el programa HINT de Gimje",
-        "summary": "Una propuesta de salsas para Latinoamérica con productos agrícolas de Gimje y Jeonbuk.",
+        "title": "MOKDA, seleccionada para el programa de emprendimiento HINT de Gimje",
+        "summary": "El proyecto propone desarrollar salsas para Latinoamérica con productos agrícolas de Gimje y Jeonbuk.",
         "imageAlt": "Gyeom Park presenta su propuesta durante la evaluación del programa HINT de Gimje",
         "imageCaption": "Evaluación del programa HINT. Foto: Jeolla Ilbo, artículo del 14 de abril de 2026.",
         "sections": [
           [
-            "Selección para HINT",
-            "MOKDA fue seleccionada para HINT, el programa de emprendimiento joven de Gimje. Los resultados se anunciaron el 13 de marzo de 2026. Gyeom Park presentó una propuesta de salsa de chile de fusión con productos agrícolas de Gimje y Jeonbuk, destinada a Latinoamérica."
+            "Programa HINT",
+            "MOKDA fue seleccionada para HINT, el programa de Gimje para jóvenes que quieren emprender. Los resultados se anunciaron el 13 de marzo de 2026. Gyeom Park presentó un proyecto para desarrollar una salsa de chile con productos agrícolas de Gimje y Jeonbuk para el mercado latinoamericano."
           ],
           [
-            "Emprender con recursos locales",
-            "El programa apoya el desarrollo de negocios con formación, asesoría especializada y encuentros entre emprendedores. Jeolla Ilbo también presentó la propuesta de MOKDA en su cobertura de los proyectos seleccionados."
+            "Programa HINT",
+            "HINT ofrece formación, asesoría especializada y encuentros entre emprendedores para poner en marcha proyectos que utilizan recursos locales. Jeolla Ilbo incluyó la propuesta de MOKDA en su nota sobre los proyectos seleccionados."
           ]
         ]
       },
       "EN": {
         "title": "MOKDA selected for Gimje’s HINT startup program",
-        "summary": "A sauce development plan for Latin America using agricultural products from Gimje and Jeonbuk.",
+        "summary": "A plan to develop sauces for Latin America using ingredients from Gimje and Jeonbuk.",
         "imageAlt": "Gyeom Park presents his business proposal during the evaluation for Gimje’s HINT program",
         "imageCaption": "HINT program evaluation. Photo: Jeolla Ilbo, article published April 14, 2026.",
         "sections": [
           [
-            "Selected for HINT",
-            "MOKDA was selected for Gimje’s HINT program for young aspiring entrepreneurs. Results were announced on March 13, 2026. Gyeom Park presented a plan for a fusion chili sauce using agricultural products from Gimje and Jeonbuk for Latin America."
+            "HINT selection",
+            "MOKDA was selected for Gimje’s 2026 HINT program for young aspiring entrepreneurs. The results were announced on March 13. Founder Gyeom Park submitted a plan to develop fusion chili sauces for Latin America using agricultural products from Gimje and Jeonbuk."
           ],
           [
-            "Starting with local resources",
-            "The program supports business development through training, expert consulting and networking. Jeolla Ilbo also featured MOKDA’s proposal in its coverage of the selected projects."
+            "HINT selection",
+            "HINT supports young people starting businesses with local resources through training, expert advice and networking. Jeolla Ilbo featured MOKDA’s proposal in its report on the selected projects."
           ]
         ]
       },
@@ -601,50 +577,38 @@ window.MOKDA_NEWS = {
       "homeFeatured": false,
       "homeOrder": 99,
       "KR": {
-        "title": "박겸 MOKDA 대표, 김제 청년의 날 표창장 수상",
-        "summary": "청년의 권익과 지역사회 발전에 기여한 공로를 인정받았습니다.",
+        "title": "박겸 MOKDA 대표, 김제 청년의 날 표창장 받아",
+        "summary": "9월 17일 김제청년공간 E:DA에서 열린 기념행사에서 표창장을 받았습니다.",
         "imageAlt": "김제 청년의 날 기념행사에서 표창장을 받는 MOKDA 박겸 대표",
         "imageCaption": "2026년 9월 17일, 김제청년공간 E:DA에서 열린 청년의 날 표창 수여 현장.",
         "sections": [
           [
             "청년의 날 표창",
-            "MOKDA의 박겸 대표가 김제 청년의 날을 맞아 표창장을 받았습니다. 청년의 권익과 지역사회 발전에 기여한 공로를 인정받아 수여된 표창입니다."
-          ],
-          [
-            "김제에서 함께한 청년의 날",
-            "기념행사는 2026년 9월 17일 김제청년공간 E:DA에서 열렸습니다. 청년 유공 표창과 함께 청년들이 고민을 나누고 서로 교류하는 프로그램이 진행됐으며, 행사 소식은 전북중앙에도 보도됐습니다."
+            "MOKDA 박겸 대표가 2026년 9월 17일 김제청년공간 E:DA에서 열린 청년의 날 기념행사에서 표창장을 받았습니다. 청년의 권익과 지역사회 발전에 기여한 공로로 받은 표창입니다. 행사에서는 청년 유공 표창과 함께 청년들의 대화와 교류 프로그램도 진행됐으며, 전북중앙이 행사 소식을 보도했습니다."
           ]
         ]
       },
       "ES": {
-        "title": "Gyeom Park, fundador de MOKDA, recibe un reconocimiento en el Día de la Juventud de Gimje",
-        "summary": "Un reconocimiento por su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local.",
+        "title": "Gyeom Park, fundador de MOKDA, recibe un reconocimiento en Gimje",
+        "summary": "La distinción se entregó en el Día de la Juventud por su contribución a los jóvenes y a la comunidad.",
         "imageAlt": "Gyeom Park, fundador de MOKDA, recibe un diploma en el Día de la Juventud de Gimje",
         "imageCaption": "Entrega del reconocimiento en E:DA Gimje, el 17 de septiembre de 2026.",
         "sections": [
           [
-            "Reconocimiento en el Día de la Juventud",
-            "Gyeom Park, fundador de MOKDA, recibió un diploma de reconocimiento en el Día de la Juventud de Gimje. La distinción reconoce su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local."
-          ],
-          [
-            "Un encuentro en Gimje",
-            "La celebración tuvo lugar el 17 de septiembre de 2026 en E:DA Gimje, con reconocimientos a jóvenes y actividades de diálogo e intercambio. Jeonbuk Joongang publicó una crónica del evento."
+            "Día de la Juventud",
+            "Gyeom Park, fundador de MOKDA, recibió un certificado de reconocimiento en la celebración del Día de la Juventud de Gimje, el 17 de septiembre de 2026 en E:DA Gimje. La distinción reconoce su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local. La ceremonia también incluyó actividades de diálogo e intercambio entre jóvenes. Jeonbuk Joongang publicó una nota sobre el evento."
           ]
         ]
       },
       "EN": {
         "title": "MOKDA founder Gyeom Park receives a commendation on Gimje’s Youth Day",
-        "summary": "Recognized for contributions to young people’s rights and interests and local community development.",
+        "summary": "The commendation was presented at E:DA Gimje on September 17, 2026.",
         "imageAlt": "MOKDA founder Gyeom Park receives a certificate at Gimje’s Youth Day celebration",
         "imageCaption": "The commendation presentation at E:DA Gimje on September 17, 2026.",
         "sections": [
           [
             "Youth Day commendation",
-            "MOKDA founder Gyeom Park received a certificate of commendation on Gimje’s Youth Day. It recognizes his contributions to young people’s rights and interests and to local community development."
-          ],
-          [
-            "A gathering in Gimje",
-            "The celebration took place on September 17, 2026, at E:DA Gimje, with youth commendations and activities for discussion and exchange. Jeonbuk Joongang reported on the event."
+            "MOKDA founder Gyeom Park received a certificate of commendation at Gimje’s Youth Day celebration on September 17, 2026, at E:DA Gimje. It recognized his contributions to young people’s rights and interests and to local community development. The event also included discussion and exchange activities for young people. Jeonbuk Joongang reported on the celebration."
           ]
         ]
       }
@@ -689,8 +653,8 @@ window.MOKDA_NEWS = {
   ],
   "copy": {
     "ES": {
-      "title": "Novedades MOKDA",
-      "intro": "Noticias de la marca, eventos y apariciones en medios.",
+      "title": "Novedades de MOKDA",
+      "intro": "Ferias, eventos y noticias de MOKDA.",
       "homeTitle": "Novedades",
       "kicker": "NOVEDADES",
       "all": "Todo",
@@ -702,7 +666,7 @@ window.MOKDA_NEWS = {
       "read": "Leer más",
       "more": "Más historias",
       "creatorsTitle": "MOKDA × creadores",
-      "creatorsIntro": "Cinco creadores comparten Salsa Coreana.",
+      "creatorsIntro": "Videos de cinco creadores con Salsa Coreana.",
       "watch": "Ver video",
       "close": "Cerrar video",
       "videoError": "No se pudo cargar el video. Intenta abrirlo directamente.",
@@ -719,27 +683,27 @@ window.MOKDA_NEWS = {
       "copyLink": "Copiar enlace",
       "copied": "Enlace copiado",
       "copyError": "Copia el enlace desde la barra de direcciones.",
-      "noResults": "No hay historias que coincidan. Prueba con otra palabra clave.",
-      "results": "historias",
+      "noResults": "No se encontraron novedades. Prueba con otra palabra.",
+      "results": "novedades",
       "related": "Más de MOKDA",
       "videoSummary": "Sobre este video",
       "footage": "Video del evento",
       "latest": "Más novedades",
-      "homeIntro": "Encuentros y momentos para compartir el sabor de Corea.",
+      "homeIntro": "MOKDA en ferias, eventos y medios.",
       "search": "Buscar novedades",
       "searchPlaceholder": "Busca por título o palabra clave",
       "clearSearch": "Borrar búsqueda",
-      "archiveLabel": "Todas las historias",
+      "archiveLabel": "Todas las novedades",
       "previous": "Anterior",
       "next": "Siguiente",
       "pagination": "Páginas de novedades",
       "creatorVideo": "Una colaboración con MOKDA",
-      "archiveIntro": "Descubre más de MOKDA",
-      "archiveLink": "Explora todas las novedades"
+      "archiveIntro": "Más novedades de MOKDA",
+      "archiveLink": "Ver todas las novedades"
     },
     "KR": {
       "title": "MOKDA 소식",
-      "intro": "브랜드 소식과 현장의 이야기.",
+      "intro": "박람회와 행사, 수출 준비와 언론 보도 소식을 모았습니다.",
       "homeTitle": "MOKDA 소식",
       "kicker": "MOKDA 소식",
       "all": "전체",
@@ -751,7 +715,7 @@ window.MOKDA_NEWS = {
       "read": "자세히 보기",
       "more": "다른 소식",
       "creatorsTitle": "MOKDA × 크리에이터",
-      "creatorsIntro": "다섯 크리에이터가 전하는 Salsa Coreana.",
+      "creatorsIntro": "Salsa Coreana 크리에이터 협업 영상 5편.",
       "watch": "영상 보기",
       "close": "영상 닫기",
       "videoError": "영상을 불러오지 못했습니다. 직접 열어 다시 확인해주세요.",
@@ -763,7 +727,7 @@ window.MOKDA_NEWS = {
       "back": "모든 소식",
       "products": "Salsa Coreana 알아보기",
       "contactTitle": "MOKDA에 문의하세요",
-      "contactBody": "유통, 행사 참여, 콘텐츠 협업에 관한 이야기를 기다립니다.",
+      "contactBody": "유통, 행사 참여, 콘텐츠 협업 문의를 받습니다.",
       "contact": "문의하기",
       "copyLink": "링크 복사",
       "copied": "링크를 복사했습니다",
@@ -774,21 +738,21 @@ window.MOKDA_NEWS = {
       "videoSummary": "영상 소개",
       "footage": "행사 현장 영상",
       "latest": "더 많은 MOKDA 소식",
-      "homeIntro": "사람들과 만나고, 한국의 맛을 나누는 MOKDA의 현장.",
+      "homeIntro": "박람회, 현지 활동, 언론에 소개된 MOKDA 소식.",
       "search": "소식 검색",
       "searchPlaceholder": "제목이나 키워드로 검색",
       "clearSearch": "검색 초기화",
-      "archiveLabel": "모든 이야기",
+      "archiveLabel": "모든 소식",
       "previous": "이전",
       "next": "다음",
       "pagination": "소식 페이지",
       "creatorVideo": "MOKDA와 함께한 크리에이터 협업 영상",
-      "archiveIntro": "더 많은 소식이 궁금하다면",
-      "archiveLink": "모든 소식 둘러보기"
+      "archiveIntro": "더 많은 MOKDA 소식",
+      "archiveLink": "전체 소식 보기"
     },
     "EN": {
       "title": "MOKDA Updates",
-      "intro": "Brand updates, events and media coverage.",
+      "intro": "Trade fairs, events and news from MOKDA.",
       "homeTitle": "Latest from MOKDA",
       "kicker": "UPDATES",
       "all": "All",
@@ -800,7 +764,7 @@ window.MOKDA_NEWS = {
       "read": "Read the story",
       "more": "More stories",
       "creatorsTitle": "MOKDA × creators",
-      "creatorsIntro": "Five creators share Salsa Coreana.",
+      "creatorsIntro": "Salsa Coreana in videos by five creators.",
       "watch": "Watch video",
       "close": "Close video",
       "videoError": "The video could not load. Try opening it directly.",
@@ -823,7 +787,7 @@ window.MOKDA_NEWS = {
       "videoSummary": "About this video",
       "footage": "Event footage",
       "latest": "More from MOKDA",
-      "homeIntro": "Meeting people and sharing the taste of Korea.",
+      "homeIntro": "Events, export meetings and media coverage.",
       "search": "Search updates",
       "searchPlaceholder": "Search by title or keyword",
       "clearSearch": "Clear search",
@@ -831,9 +795,9 @@ window.MOKDA_NEWS = {
       "previous": "Previous",
       "next": "Next",
       "pagination": "Updates pages",
-      "creatorVideo": "A creator collaboration with MOKDA",
-      "archiveIntro": "Discover more from MOKDA",
-      "archiveLink": "Explore all updates"
+      "creatorVideo": "MOKDA collaboration video",
+      "archiveIntro": "More updates",
+      "archiveLink": "All updates"
     }
   },
   "settings": {

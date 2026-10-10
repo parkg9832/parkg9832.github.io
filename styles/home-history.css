@@ -41,14 +41,14 @@
   text-align:center;
 }
 .home-history-heading { width:100%; margin:0 auto; }
-.home-page #proofKicker { margin:0 0 22px; color:#f8dfc4; font-size:13px; letter-spacing:.16em; }
+.home-page #proofKicker { margin:0 0 22px; color:#f8dfc4; font-size:12px; line-height:1.5; letter-spacing:.08em; }
 .home-page #proof.home-history #proofTitle {
   margin:0 auto;
   max-width:850px;
   color:#fff8ef;
   font-size:clamp(2.1rem,4.1vw,3.6rem)!important;
   line-height:1.16!important;
-  letter-spacing:-.045em;
+  letter-spacing:-.035em;
   text-transform:none;
   white-space:pre-line;
   text-wrap:balance;
@@ -59,9 +59,9 @@
   margin:24px auto 0;
   padding:0;
   color:#fff8ef;
-  font-size:15px;
+  font-size:16px;
   font-weight:400;
-  line-height:1.85;
+  line-height:1.75;
   text-align:center;
   text-wrap:pretty;
   word-break:keep-all;
@@ -97,7 +97,9 @@
   color:#fff8ef;
   box-shadow:none;
   font-size:14px;
-  font-weight:600;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:.01em;
   text-transform:none;
   text-align:center;
   transition:background .2s,color .2s;
@@ -110,11 +112,11 @@
   .home-page #proof.home-history::before { background:linear-gradient(180deg,rgba(37,16,8,.73),rgba(37,16,8,.76) 50%,rgba(37,16,8,.92)); }
   .home-history-photo img { object-position:53% top; }
   .home-page #proof.home-history #proofTitle { font-size:clamp(1.8rem,7.5vw,2.6rem)!important; }
-  .home-page #proof.home-history #storyBody { max-width:400px; font-size:14px; line-height:1.8; margin-top:22px; }
+  .home-page #proof.home-history #storyBody { max-width:400px; margin-top:22px; }
   .home-history-milestones { margin:40px 0 32px; }
   .home-history-milestones li { gap:8px; padding:0 9px; }
   .home-history-year { font-size:clamp(23px,7vw,32px); }
-  .home-history-event { font-size:12px; line-height:1.6; }
+  .home-history-event { font-size:13px; line-height:1.6; }
 }
 @media(prefers-reduced-motion:reduce) {
   .home-page #proof.home-history #proofHistoryCta { transition:none; }

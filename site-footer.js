@@ -98,6 +98,15 @@
 
   const footerStyle = document.createElement('style');
   footerStyle.textContent = `
+    #footerText {
+      font-family: var(--mokda-font-body, 'Noto Sans');
+    }
+    #footerText .mokda-footer-navigation a {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: .01em;
+    }
     #footerText .mokda-footer-social {
       margin-bottom: 28px;
       padding-bottom: 28px;
@@ -107,7 +116,7 @@
     #footerText .mokda-footer-social p {
       margin: 0 0 16px;
       color: #ef8954;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 700;
       line-height: 1.5;
       letter-spacing: .08em;
@@ -141,10 +150,10 @@
     #footerText .mokda-footer-legal h2 {
       margin: 0 0 14px;
       color: #ef8954;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       line-height: 1.5;
-      letter-spacing: .1em;
+      letter-spacing: .025em;
       text-transform: uppercase;
     }
     #footerText .mokda-footer-company {
@@ -159,8 +168,8 @@
       gap: 0 7px;
       min-width: 0;
       color: rgba(255, 248, 239, .77);
-      font-size: 12px;
-      line-height: 1.75;
+      font-size: 13px;
+      line-height: 1.65;
     }
     #footerText .mokda-footer-company > div:last-child { grid-column: 1 / -1; }
     #footerText .mokda-footer-company dt { color: rgba(255, 248, 239, .5); font-weight: 500; }
@@ -169,8 +178,8 @@
       max-width: 420px;
       margin: 0;
       color: rgba(255, 248, 239, .67);
-      font-size: 12px;
-      line-height: 1.75;
+      font-size: 13px;
+      line-height: 1.65;
       word-break: keep-all;
     }
     #footerText .mokda-footer-copyright {
@@ -178,7 +187,7 @@
       padding-top: 17px;
       border-top: 1px solid rgba(255, 248, 239, .12);
       color: rgba(255, 248, 239, .52);
-      font-size: 11px;
+      font-size: 12px;
       line-height: 1.5;
       text-align: left;
     }

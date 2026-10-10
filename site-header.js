@@ -235,7 +235,7 @@
       color: #ef5f18;
       font-family: 'Bebas Neue', 'Noto Sans KR', sans-serif;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 400;
       letter-spacing: 0.08em;
       line-height: 1;
     }
@@ -281,7 +281,7 @@
       color: #ef5f18;
       font-family: 'Bebas Neue', 'Noto Sans KR', sans-serif;
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 400;
       letter-spacing: 0.08em;
     }
 
@@ -290,16 +290,17 @@
       color: #fff8ef;
       font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
       font-size: clamp(28px, 8vw, 42px);
-      font-weight: 900;
+      font-weight: 400;
       letter-spacing: -0.035em;
-      line-height: 0.96;
+      line-height: 1.12;
       text-decoration: none;
       transition: color 220ms ease;
     }
 
     html:lang(ko) .mokda-mobile-nav-title {
       font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
-      font-weight: 900;
+      font-weight: 800;
+      line-height: 1.18;
       letter-spacing: -0.04em;
     }
 
@@ -400,7 +401,7 @@
 
       .mokda-header-bar #lang-selector .lang-btn {
         height: 44px !important;
-        font-size: 11px !important;
+        font-size: 12px !important;
       }
 
       .mokda-header-bar #menu-toggle {
@@ -519,7 +520,7 @@
         gap: 8px;
         padding: 2px 0 0;
         color: rgba(50, 21, 6, 0.72);
-        font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+        font-family: var(--mokda-font-body);
         font-size: 13px;
         font-weight: 700;
         letter-spacing: 0;
@@ -531,7 +532,7 @@
       .mokda-nav-trigger::after {
         content: '+';
         color: #ef5f18;
-        font-family: 'Noto Sans', 'Noto Sans KR', sans-serif;
+        font-family: var(--mokda-font-body);
         font-size: 15px;
         font-weight: 800;
         transition: transform 440ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -591,14 +592,15 @@
         color: #ef5f18;
         font-family: 'Archivo Black', 'Noto Sans KR', sans-serif;
         font-size: clamp(22px, 2vw, 30px);
-        font-weight: 900;
+        font-weight: 400;
         letter-spacing: 0;
-        line-height: 0.96;
+        line-height: 1.12;
       }
 
       html:lang(ko) .mokda-nav-panel-title {
         font-family: 'Noto Sans KR', 'Noto Sans', sans-serif;
         font-weight: 800;
+        line-height: 1.18;
       }
 
       .mokda-nav-panel-links {

@@ -1,19 +1,27 @@
 :root {
+  --mokda-font-body: 'Noto Sans', 'Noto Sans KR', ui-sans-serif, system-ui, sans-serif;
+  --mokda-font-display-latin: 'Archivo Black', 'Noto Sans', 'Noto Sans KR', sans-serif;
+  --mokda-font-display-korean: 'Noto Sans KR', 'Noto Sans', sans-serif;
   --mokda-type-page-title: clamp(3.25rem, 7vw, 7rem);
   --mokda-type-section-title: clamp(2.75rem, 5vw, 5.25rem);
   --mokda-type-feature-title: clamp(3.25rem, 6.5vw, 6rem);
   --mokda-type-card-title: clamp(2rem, 3.5vw, 3.5rem);
-  --mokda-type-label: clamp(1.125rem, 0.35vw + 1.05rem, 1.25rem);
-  --mokda-type-body: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
-  --mokda-type-body-small: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
-  --mokda-type-meta: 0.875rem;
-  --mokda-leading-display: 0.92;
-  --mokda-leading-korean-display: 1.08;
-  --mokda-leading-body: 1.72;
-  --mokda-tracking-label: 0.045em;
+  --mokda-type-label: 0.75rem;
+  --mokda-type-body: 1rem;
+  --mokda-type-body-small: 0.875rem;
+  --mokda-type-meta: 0.8125rem;
+  --mokda-leading-display: 1.12;
+  --mokda-leading-korean-display: 1.18;
+  --mokda-leading-body: 1.75;
+  --mokda-tracking-label: 0.08em;
+}
+
+html[lang^="ko"] {
+  --mokda-font-body: 'Noto Sans KR', 'Noto Sans', ui-sans-serif, system-ui, sans-serif;
 }
 
 body:not(.support-page) {
+  font-family: var(--mokda-font-body);
   font-size: 1rem;
   line-height: var(--mokda-leading-body);
   letter-spacing: 0;
@@ -44,30 +52,23 @@ main .display-korean {
 
 main .condensed-label,
 footer .condensed-label {
+  font-family: var(--mokda-font-body);
   font-size: var(--mokda-type-label);
-  line-height: 1.12;
+  font-weight: 700;
+  line-height: 1.5;
   letter-spacing: var(--mokda-tracking-label);
 }
 
 footer .condensed-label {
-  font-size: 1.125rem;
+  font-size: var(--mokda-type-label);
 }
 
 .lang-btn {
+  font-family: var(--mokda-font-body);
   font-size: 0.75rem;
+  font-weight: 700 !important;
   line-height: 1;
   letter-spacing: 0.01em;
-}
-
-#mobile-menu a,
-#main-header nav a,
-#main-header nav button {
-  line-height: 1.2;
-  letter-spacing: 0.005em;
-}
-
-#mobile-menu a {
-  font-size: 1rem;
 }
 
 #pageTitle.display-latin {
@@ -110,10 +111,22 @@ footer .condensed-label {
 }
 
 #productLineTitle,
-#motiveTitle,
-#socialTitle {
+#motiveTitle {
   font-size: var(--mokda-type-card-title);
   line-height: 1.02;
+}
+
+#socialBanner #socialTitle {
+  font-family: var(--mokda-font-body);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.025em;
+}
+
+/* Campaign openings retain their established, compact display line spacing. */
+.home-page .hero-title.display-korean {
+  line-height: 1.08 !important;
 }
 
 #heroBody,
@@ -129,28 +142,39 @@ footer .condensed-label {
   line-height: var(--mokda-leading-body);
 }
 
+#pageSubtitle,
+#pageDescription {
+  font-weight: 400 !important;
+}
+
 #productLineDescription,
 #motiveBody,
 .qna-answer-panel p,
 .home-faq-answer-panel p,
 .product-photo-card span,
 #contactMethodHint {
+  font-size: var(--mokda-type-body);
+  line-height: var(--mokda-leading-body);
+}
+
+.home-page #contactMethodHint,
+body:has(#b2bForm) #contactMethodHint {
   font-size: var(--mokda-type-body-small);
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .product-photo-card span {
   color: #321506;
   font-weight: 600;
-  line-height: 1.72;
+  line-height: var(--mokda-leading-body);
 }
 
 .qna-question,
 .home-faq-question,
 .faq-question {
-  font-size: clamp(1.0625rem, 0.4vw + 1rem, 1.25rem);
+  font-size: 18px;
   line-height: 1.55;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 #proofViews,
@@ -162,8 +186,8 @@ footer .condensed-label {
 #prod3Uses,
 figcaption {
   font-size: var(--mokda-type-meta);
-  line-height: 1.45;
-  letter-spacing: 0.045em;
+  line-height: 1.6;
+  letter-spacing: 0;
 }
 
 .support-total-number {
@@ -177,8 +201,10 @@ figcaption {
 .brand-text-link,
 main a[class*="min-h-"],
 main button[type="submit"] {
+  font-family: var(--mokda-font-body);
   font-size: 0.875rem;
-  line-height: 1.15;
+  font-weight: 700 !important;
+  line-height: 1.2;
   letter-spacing: 0.01em;
 }
 
@@ -188,11 +214,13 @@ main legend {
   line-height: 1.45;
 }
 
-main input,
-main select,
-main textarea {
+#b2bForm :is(input, select, textarea),
+main :is(input, select, textarea) {
+  font-family: var(--mokda-font-body);
   font-size: 1rem;
+  font-weight: 400;
   line-height: 1.5;
+  letter-spacing: 0;
 }
 
 body.support-page {
@@ -302,9 +330,6 @@ body.support-page {
 }
 
 @media (max-width: 639px) {
-  #b2bForm :is(input,select,textarea) {
-    font-size: 16px;
-  }
   :root {
     --mokda-type-page-title: clamp(3rem, 14vw, 4.5rem);
     --mokda-type-section-title: clamp(2.5rem, 11vw, 3.75rem);

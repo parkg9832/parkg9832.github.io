@@ -111,7 +111,7 @@
   --home-type-section: clamp(2rem,3.6vw,3.25rem);
   --home-type-body: 1rem;
   --home-type-label: .75rem;
-  --home-leading-body: 1.7;
+  --home-leading-body: 1.75;
 }
 .home-page :is(#proofTitle,#voicesTitle,#faqTitle,#supportTitle.home-support-title,#pairingTitle) {
   font-size: var(--home-type-section) !important;

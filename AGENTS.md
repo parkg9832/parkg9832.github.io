@@ -13,6 +13,12 @@ Before starting work in this project, read `MOKDA_HARNESS.md`.
 - Current MOKDA website project.
 - Contains the public website, static pages, Next.js files, product assets, B2B inquiry configuration, and Apps Script source for B2B lead handling.
 
+## Website Typography
+
+- Read `docs/WEBSITE_TYPOGRAPHY.md` before changing website typography or adding page text styles.
+- Apply its role-based font, size, weight, spacing, and responsive verification rules to all three languages.
+- Keep this project standard in that document; do not copy the canonical MOKDA harness.
+
 ## Important Files
 
 - `b2b-config.js`: B2B Google Apps Script Web App URL configuration.

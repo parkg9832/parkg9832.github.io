@@ -1,5 +1,5 @@
 // Public contact configuration. Use digits only, including country code.
-// Example: '821012345678'. Leave blank until the official MOKDA WhatsApp number is confirmed.
+// Official WhatsApp Business number supplied by MOKDA on 2026-10-11.
 window.MOKDA_CONTACT = {
-  whatsappNumber: '',
+  whatsappNumber: '821021227815',
 };

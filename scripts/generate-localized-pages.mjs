@@ -7,7 +7,7 @@ import { generateNewsSources } from './generate-news-sources.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://www.mokda.kr';
-const LAST_MODIFIED = '2026-10-09';
+const LAST_MODIFIED = '2026-10-11';
 const BRAND_IMAGE = `${SITE}/assets/images/mokda-logo-main.webp`;
 const BRAND_IMAGE_ALT = { ES: 'Logotipo de MOKDA', KR: 'MOKDA 로고', EN: 'MOKDA logo' };
 const SITE_FONT_REQUEST =
@@ -147,6 +147,17 @@ function localizeFontRequests(html, language) {
   return html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"']+/g, SITE_FONT_REQUEST);
 }
 
+function addHelpAssets(html) {
+  if (!html.includes('styles/site-help.css')) {
+    html = html.replace(/<\/head>/i, '    <link rel="stylesheet" href="./styles/site-help.css" />\n</head>');
+  }
+  // Rebuild this small block in dependency order without growing whitespace on repeated runs.
+  html = html.replace(/^[ \t]*<script\b[^>]*\bsrc=["'](?:\.\/)?(?:site-help-data|site-chat-intents|site-help)\.js["'][^>]*><\/script>[ \t]*\r?\n?/gm, '');
+  const scripts = html.includes('site-contact-config.js') ? [] : ['site-contact-config.js'];
+  scripts.push('site-help-data.js', 'site-chat-intents.js', 'site-help.js');
+  return html.replace(/[ \t\r\n]*<\/body>/i, `\n${scripts.map(name => `    <script defer src="./${name}"></script>`).join('\n')}\n</body>`);
+}
+
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
@@ -255,7 +266,7 @@ function localizeHtml(source, language, page) {
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(metadata.title)}</title>`);
   html = html.replace(/<meta(?:\s+id="[^"]+")?\s+name="description"[\s\S]*?\/\s*>/i, `    <meta name="description" content="${escapeHtml(metadata.description)}" />`);
   if (!/<meta\s+name="robots"(?:\s|>)/i.test(html)) {
-    html = html.replace('  </head>', '    <meta name="robots" content="index, follow, max-image-preview:large" />\n  </head>');
+    html = html.replace(/<\/head>/i, '    <meta name="robots" content="index, follow, max-image-preview:large" />\n  </head>');
   }
   html = html.replace(/\s*<link\s+rel="alternate"\s+hreflang="[^"]+"[^>]*>/gi, '');
   html = html.replace(/<link\s+rel="canonical"[^>]*>/i, `<link rel="canonical" href="${canonical}" />\n${alternateLinks(page)}`);
@@ -301,7 +312,7 @@ function localizeHtml(source, language, page) {
 const sitemapUrls = [];
 
 for (const [fileName, page] of Object.entries(pages)) {
-  const source = await readFile(join(ROOT, fileName), 'utf8');
+  const source = addHelpAssets(await readFile(join(ROOT, fileName), 'utf8'));
   await writeFile(join(ROOT, fileName), secureHtml(source), 'utf8');
 
   for (const language of Object.keys(languages)) {

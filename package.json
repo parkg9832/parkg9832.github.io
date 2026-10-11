@@ -16,6 +16,7 @@
     "test:seo:live": "node scripts/seo-live-audit.mjs",
     "test:navigation": "node scripts/navigation-regression.test.mjs",
     "test:news": "node scripts/news-regression.test.mjs",
+    "test:help": "node scripts/chat-intents.test.mjs && node scripts/help-regression.test.mjs",
     "manage:news": "node scripts/news-manager.mjs",
     "test:news-manager": "node scripts/news-manager-regression.test.mjs",
     "test:integrity": "node scripts/site-integrity.test.mjs",

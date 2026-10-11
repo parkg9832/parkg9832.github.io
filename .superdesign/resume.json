@@ -185,6 +185,50 @@
       },
       "reviewStatus": "user-approved-for-implementation",
       "updatedAt": "2026-10-09T12:31:47.384Z"
+    },
+    "shared-mokda-chat": {
+      "targetKind": "existing-ui",
+      "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "baselineDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+      "activeDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        ".superdesign/init/theme.md:1:55",
+        "site-help.js",
+        "styles/site-help.css"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
+        ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
+        "site-help.js": "f2aef869c31a93dc3f03a87ad5fc3fae8560a7408add8567fc6cad108b3e035e",
+        "styles/site-help.css": "5b8514711f16e3c276e7dd7bbfc76aefaedcdc5b3564f7fd0117b7f90ec1ac5c"
+      },
+      "referenceIds": [
+        "f83028b3-4144-4d0e-91f1-bb216d34fb09",
+        "049a9fe7-8954-415d-8173-4b07d7e9cba7",
+        "assets-images-mokda-logo-main.webp"
+      ],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "assets-images-mokda-logo-main.webp",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/brand-assets/assets-images-mokda-logo-main.webp/mokda-logo-main.webp",
+          "sourcePath": "assets/images/mokda-logo-main.webp"
+        }
+      },
+      "components": [],
+      "drafts": {
+        "18e009e9-4212-47f9-bcbd-0157aab087b6": {
+          "title": "MOKDA Current Chat Widget",
+          "baselineVersion": 1,
+          "currentVersion": 2,
+          "visualDirection": "Approved white/charcoal local messenger, mobile full-screen and WhatsApp",
+          "previewUrl": "https://p.superdesign.dev/draft/18e009e9-4212-47f9-bcbd-0157aab087b6"
+        }
+      },
+      "updatedAt": "2026-10-11T05:48:06.575Z",
+      "approvedByUser": true,
+      "implementationScope": "Local guidance and WhatsApp only; no AI backend"
     }
   }
 }

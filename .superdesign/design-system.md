@@ -1,5 +1,9 @@
 # MOKDA public website design system
 
+## Shared messenger exception — 2026-10-11
+
+The user explicitly permits a neutral support-messenger design independent of the website palette. This exception applies only to `#mokda-help`: white `#ffffff`, conversation ground `#f3f5f8`, charcoal `#20252d`, text `#1f2937`, muted `#64748b`, borders `#e2e8f0`, and WhatsApp green `#167347`. Keep Noto Sans / Noto Sans KR. Header18px/700, messages and input16px, helper text13px, buttons14px with44px targets. Use24px desktop panel radius,16px bubbles, a soft neutral shadow, and a60px circular launcher. Desktop panel approximately400×650px; mobile full-screen with safe areas, stable composer and visual-viewport keyboard handling. Short panel/bubble transitions and automatic-response dots respect reduced motion. Retain the exact MOKDA logo. Clearly label automated guidance; do not fabricate online staff, unread counts or human typing. On2026-10-11 the user chose no AI server for this phase: local verified guidance and explicit WhatsApp handoff to the configured official number.
+
 MOKDA is a Korean K-Food brand connecting Korean food culture with everyday life in Latin America. The website should feel warm, youthful, confident, and food-led—not corporate, ornamental, luxury-coded, or template-like.
 
 ## Brand foundation

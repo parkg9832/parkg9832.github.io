@@ -1,71 +1,72 @@
-/* Floating, non-modal chat. Answers and inputs remain steady while in use. */
+/* Neutral messenger, scoped to protect the website's existing visual system. */
 #mokda-help, #mokda-help * { box-sizing: border-box; }
-#mokda-help { font-family: var(--mokda-font-body, 'Noto Sans', sans-serif); color: #321506; }
-#mokda-help :is(button,input,a) { font-family: inherit; -webkit-tap-highlight-color: transparent; }
-#mokda-help button { cursor: pointer; }
-#mokda-help :is(button,input,a):focus-visible { outline: 3px solid #b5410b; outline-offset: 3px; }
-#mokda-help .help-launcher {
-  position: fixed; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); z-index: 81;
-  display: grid; place-items: center; width: 60px; height: 60px; padding: 16px; border: 0; border-radius: 50%;
-  background: #ef5f18; color: #321506; box-shadow: 0 4px 18px #32150630;
-}
+#mokda-help { font-family: var(--mokda-font-body, 'Noto Sans', sans-serif); color: #1f2937; }
+#mokda-help [hidden] { display: none !important; }
+#mokda-help :is(button,textarea,a) { font-family: inherit; letter-spacing: 0; -webkit-tap-highlight-color: transparent; text-transform: none; }
+#mokda-help button { cursor: pointer; margin: 0; }
+#mokda-help :is(button,textarea,a):focus-visible { outline: 3px solid #475569; outline-offset: 3px; }
+#mokda-help svg { display: block; width: 22px; height: 22px; flex: none; }
+#mokda-help .help-launcher { position: fixed; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); z-index: 81; display: grid; place-items: center; width: 60px; height: 60px; padding: 16px; border: 0; border-radius: 50%; background: #20252d; color: #fff; box-shadow: 0 8px 24px #18223033; transition: background 150ms, transform 150ms; }
 #mokda-help .help-launcher svg { width: 28px; height: 28px; }
-#mokda-help .help-dismiss-icon, #mokda-help .help-launcher[aria-expanded="true"] .help-chat-icon { display: none; }
-#mokda-help .help-launcher[aria-expanded="true"] .help-dismiss-icon { display: block; }
 html.mokda-menu-lock #mokda-help { visibility: hidden; }
-#mokda-help .help-dialog {
-  position: fixed; inset: auto 24px 98px auto; margin: 0; padding: 0; z-index: 80;
-  width: 390px; height: 610px; max-width: calc(100vw - 32px); max-height: calc(100dvh - 122px);
-  overflow: hidden; border: 1px solid #32150618; border-radius: 20px; background: #fff8ef; color: #321506; box-shadow: 0 14px 55px #3215062e;
-}
-#mokda-help .help-dialog[open] { display: flex; flex-direction: column; }
-#mokda-help .help-header { display: flex; align-items: center; gap: 12px; padding: 18px 16px 18px 20px; background: #f8dfc4; flex: none; }
-#mokda-help .help-brand { display: block; width: 44px; height: 44px; object-fit: contain; flex: none; }
+#mokda-help .help-dialog { position: fixed; inset: auto max(24px, env(safe-area-inset-right)) 98px auto; margin: 0; padding: 0; z-index: 80; width: 400px; height: 650px; max-width: calc(100vw - 32px); max-height: calc(100dvh - 122px); overflow: hidden; border: 1px solid #e2e8f0; border-radius: 24px; background: #fff; color: #1f2937; box-shadow: 0 20px 60px #18223026, 0 4px 12px #1822300a; }
+#mokda-help .help-dialog[open] { display: flex; flex-direction: column; animation: help-open 220ms cubic-bezier(.2,.8,.2,1) both; }
+#mokda-help.help-closing .help-dialog[open] { animation: help-close 160ms ease-in both; }
+#mokda-help .help-header { display: flex; align-items: center; gap: 10px; padding: 16px; border-bottom: 1px solid #e2e8f0; background: #fff; flex: none; }
+#mokda-help .help-brand-frame { width: 48px; height: 48px; padding: 4px; border: 1px solid #e2e8f0; border-radius: 12px; flex: none; }
+#mokda-help .help-brand { display: block; width: 100%; height: 100%; object-fit: contain; }
 #mokda-help .help-heading { min-width: 0; flex: 1; }
 #mokda-help .help-heading h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.4; letter-spacing: 0; }
-#mokda-help .help-heading p { margin: 4px 0 0; font-size: 13px; line-height: 1.5; letter-spacing: 0; color: #6f4b35; }
-#mokda-help .help-close { display: grid; place-items: center; width: 44px; height: 44px; padding: 10px; border: 0; border-radius: 50%; background: transparent; color: #321506; flex: none; }
-#mokda-help .help-close svg { width: 22px; height: 22px; }
-#mokda-help .help-content { flex: 1; min-height: 0; padding: 18px 20px 22px; overflow-y: auto; overscroll-behavior: contain; }
-#mokda-help .help-auto-label { margin: 0 0 16px; font-size: 12px; line-height: 1.5; letter-spacing: 0; color: #806450; text-align: center; }
-#mokda-help .help-conversation { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-#mokda-help .help-message { max-width: 100%; padding: 14px 16px; border-radius: 14px; overflow-wrap: anywhere; font-size: 16px; font-weight: 400; line-height: 1.75; letter-spacing: 0; }
+#mokda-help .help-heading p { margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: #64748b; }
+#mokda-help :is(.help-close,.help-reset) { display: grid; place-items: center; width: 44px; height: 44px; padding: 10px; border: 0; border-radius: 50%; background: transparent; color: #64748b; flex: none; }
+#mokda-help .help-reset svg { width: 19px; height: 19px; }
+#mokda-help .help-content { flex: 1; min-height: 0; padding: 20px; overflow-y: auto; overscroll-behavior: contain; background: #f3f5f8; scrollbar-width: thin; }
+#mokda-help .help-auto-label { margin: 0 0 20px; font-size: 13px; line-height: 1.5; color: #64748b; text-align: center; }
+#mokda-help .help-conversation { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+#mokda-help .help-message { max-width: 92%; padding: 13px 16px; border-radius: 16px; overflow-wrap: anywhere; font-size: 16px; font-weight: 400; line-height: 1.75; letter-spacing: 0; text-align: left; }
 #mokda-help .help-message p { margin: 0; white-space: pre-wrap; }
-#mokda-help .help-message:focus { outline: none; }
-#mokda-help .help-message-bot { background: #f1e8de; border-top-left-radius: 4px; }
-#mokda-help .help-message-user { align-self: flex-end; background: #f8dfc4; border-top-right-radius: 4px; }
-#mokda-help .help-detail-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; color: #a63a08; font-size: 14px; font-weight: 700; line-height: 1.5; text-decoration: underline; text-underline-offset: 4px; }
-#mokda-help .help-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-#mokda-help .help-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; width: 100%; }
-#mokda-help .help-choice { min-height: 44px; max-width: 100%; padding: 10px 13px; border: 1px solid #b54a172f; border-radius: 12px; background: #fff8ef; color: #963508; font-size: 14px; font-weight: 600; line-height: 1.5; letter-spacing: 0; text-align: left; overflow-wrap: anywhere; }
-#mokda-help .help-topic { display: flex; align-items: center; justify-content: center; text-align: center; }
-#mokda-help .help-question { width: 100%; }
-#mokda-help .help-quick { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-#mokda-help :is(.help-other,.help-quick-question) { border-radius: 22px; }
-#mokda-help .help-footer { flex: none; padding: 12px 16px 16px; background: #fff8ef; border-top: 1px solid #32150614; }
-#mokda-help .help-tools { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
-#mokda-help .help-reset { min-height: 44px; padding: 8px 4px; border: 0; background: transparent; color: #745543; font-size: 13px; font-weight: 600; line-height: 1.5; }
-#mokda-help .help-contact { display: inline-flex; align-items: center; justify-content: flex-end; min-height: 44px; color: #963508; font-size: 14px; font-weight: 700; line-height: 1.5; text-decoration: none; text-align: right; }
-#mokda-help .help-composer { display: flex; align-items: center; gap: 8px; margin: 0; }
-#mokda-help .help-composer input { width: 100%; min-width: 0; min-height: 48px; padding: 12px 14px; border: 1px solid #32150626; border-radius: 12px; background: #fffdf9; color: #321506; font-size: 16px; line-height: 1.5; letter-spacing: 0; }
-#mokda-help .help-composer input::placeholder { color: #806450; opacity: 1; }
-#mokda-help .help-composer button { display: grid; place-items: center; width: 48px; height: 48px; flex: none; padding: 12px; border: 0; border-radius: 12px; background: #ef5f18; color: #321506; }
-#mokda-help .help-composer svg { width: 24px; height: 24px; }
+#mokda-help .help-message-bot { background: #fff; border: 1px solid #e2e8f0; border-bottom-left-radius: 5px; }
+#mokda-help .help-message-user { align-self: flex-end; background: #20252d; color: #fff; border-bottom-right-radius: 5px; }
+#mokda-help .help-arriving { animation: help-message 140ms ease-out; }
+#mokda-help .help-detail-link { display: flex; align-items: center; width: fit-content; min-height: 44px; margin-top: 6px; color: #20252d; font-size: 14px; font-weight: 700; line-height: 1.5; text-decoration: none; }
+#mokda-help .help-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+#mokda-help .help-options:empty { display: none; }
+#mokda-help .help-choice { min-height: 44px; max-width: 100%; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 24px; background: #fff; color: #334155; font-size: 14px; font-weight: 600; line-height: 1.5; text-align: left; overflow-wrap: anywhere; text-decoration: none; transform: none; transition: border-color 150ms, background 150ms; }
+#mokda-help .help-processing { margin-top: 18px; padding: 14px 16px; width: fit-content; background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; }
+#mokda-help .help-dots { display: flex; gap: 5px; }
+#mokda-help .help-dots i { width: 6px; height: 6px; border-radius: 50%; background: #64748b; animation: help-dot 900ms ease-in-out infinite; }
+#mokda-help .help-dots i:nth-child(2) { animation-delay: 100ms; }
+#mokda-help .help-dots i:nth-child(3) { animation-delay: 200ms; }
+#mokda-help .help-sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#mokda-help .help-latest { position: absolute; bottom: 214px; left: 50%; transform: translateX(-50%); min-height: 44px; padding: 8px 14px; border: 1px solid #cbd5e1; border-radius: 22px; background: #fff; color: #334155; font-size: 14px; box-shadow: 0 4px 12px #1822301a; white-space: nowrap; }
+#mokda-help .help-footer { flex: none; padding: 12px 16px; background: #fff; border-top: 1px solid #e2e8f0; }
+#mokda-help .help-contact { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 10px; border: 1px solid #cfe4d9; border-radius: 12px; background: #f7fbf8; color: #167347; font-size: 14px; font-weight: 700; line-height: 1.5; text-decoration: none; text-align: center; }
+#mokda-help .help-whatsapp-icon svg { width: 18px; height: 18px; }
+#mokda-help .help-composer { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; padding: 7px 7px 7px 12px; border: 1px solid #dbe1e8; border-radius: 16px; background: #fff; }
+#mokda-help .help-composer textarea { display: block; resize: none; width: 100%; min-width: 0; height: 48px; padding: 12px 0; border: 0; border-radius: 6px; background: transparent; color: #1f2937; font-size: 16px; line-height: 1.5; letter-spacing: 0; }
+#mokda-help .help-composer textarea::placeholder { color: #64748b; opacity: 1; }
+#mokda-help .help-composer:focus-within { border-color: #94a3b8; box-shadow: 0 0 0 2px #e2e8f0; }
+#mokda-help .help-composer textarea:focus-visible { outline: none; }
+#mokda-help .help-composer button { display: grid; place-items: center; width: 48px; height: 48px; flex: none; padding: 12px; border: 0; border-radius: 50%; background: #20252d; color: #fff; }
+#mokda-help .help-composer button:disabled { cursor: default; opacity: .45; }
+#mokda-help .help-disclosure { margin: 10px 0 0; color: #64748b; font-size: 13px; line-height: 1.5; text-align: center; }
+#mokda-help .help-form-link { display: flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 2px; color: #475569; font-size: 13px; line-height: 1.5; text-decoration: underline; text-underline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) {
-  #mokda-help :is(.help-launcher,.help-composer button):hover { background: #ff7a32; }
-  #mokda-help .help-choice:hover { background: #f8dfc4; border-color: #b54a1770; }
-  #mokda-help .help-close:hover { background: #3215060d; }
-  #mokda-help :is(.help-contact,.help-reset):hover { color: #321506; text-decoration: underline; text-underline-offset: 4px; }
+  #mokda-help .help-launcher:hover { background: #374151; transform: translateY(-2px); }
+  #mokda-help :is(.help-close,.help-reset,.help-choice):hover { background: #edf0f4; }
+  #mokda-help .help-choice:hover { border-color: #94a3b8; }
+  #mokda-help .help-contact:hover { background: #ecf5ef; }
+  #mokda-help .help-detail-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
-@media (max-width: 479px) {
-  #mokda-help .help-launcher { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: 56px; height: 56px; padding: 14px; }
-  #mokda-help .help-dialog { inset: auto 12px max(86px, calc(env(safe-area-inset-bottom) + 74px)) 12px; width: auto; max-width: none; height: 610px; max-height: calc(100dvh - 110px); border-radius: 18px; }
-  #mokda-help .help-header { padding: 14px 12px 14px 16px; gap: 10px; }
-  #mokda-help .help-content { padding: 16px 16px 20px; }
-  #mokda-help .help-message { padding: 12px 14px; }
-  #mokda-help .help-footer { padding: 10px 12px 12px; }
-}
-@media (max-height: 500px) {
-  #mokda-help .help-dialog { top: 12px; bottom: 12px; height: auto; max-height: calc(100dvh - 24px); }
-  #mokda-help .help-launcher[aria-expanded="true"] { visibility: hidden; }
-}
+#mokda-help.help-mobile .help-dialog { inset: var(--help-view-top, 0px) auto auto var(--help-view-left, 0px); width: var(--help-view-width, 100vw); height: var(--help-view-height, 100dvh); max-width: none; max-height: none; border: 0; border-radius: 0; box-shadow: none; }
+#mokda-help.help-mobile .help-dialog::backdrop { background: #f3f5f8; }
+#mokda-help.help-mobile .help-header { padding-top: max(12px, env(safe-area-inset-top)); padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
+#mokda-help.help-mobile .help-footer { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+#mokda-help.help-mobile.help-open .help-launcher { visibility: hidden; }
+@media (max-width: 479px) { #mokda-help .help-launcher { right: max(16px, env(safe-area-inset-right)); bottom: max(16px, env(safe-area-inset-bottom)); width: 56px; height: 56px; } }
+@media (max-height: 500px) { #mokda-help .help-dialog { inset: 12px 24px 12px auto; height: auto; max-height: calc(100dvh - 24px); } #mokda-help .help-disclosure { display: none; } #mokda-help .help-header { padding-block: 8px; } #mokda-help .help-footer { padding-block: 8px; } #mokda-help .help-composer { margin-top: 8px; } #mokda-help.help-open .help-launcher { visibility: hidden; } }
+@keyframes help-open { from { opacity: 0; transform: translateY(10px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes help-close { to { opacity: 0; transform: translateY(8px); } }
+@keyframes help-message { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+@keyframes help-dot { 50% { opacity: .4; transform: translateY(-2px); } }
+@media (prefers-reduced-motion: reduce) { #mokda-help *, #mokda-help *::before, #mokda-help *::after { animation: none !important; transition: none !important; } #mokda-help .help-launcher:hover { transform: none; } }

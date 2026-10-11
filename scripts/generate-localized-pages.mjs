@@ -152,9 +152,9 @@ function addHelpAssets(html) {
     html = html.replace(/<\/head>/i, '    <link rel="stylesheet" href="./styles/site-help.css" />\n</head>');
   }
   // Rebuild this small block in dependency order without growing whitespace on repeated runs.
-  html = html.replace(/^[ \t]*<script\b[^>]*\bsrc=["'](?:\.\/)?(?:site-help-data|site-chat-intents|site-help)\.js["'][^>]*><\/script>[ \t]*\r?\n?/gm, '');
+  html = html.replace(/^[ \t]*<script\b[^>]*\bsrc=["'](?:\.\/)?(?:site-help-data|site-chat-intents|site-chat-engine|site-help)\.js["'][^>]*><\/script>[ \t]*\r?\n?/gm, '');
   const scripts = html.includes('site-contact-config.js') ? [] : ['site-contact-config.js'];
-  scripts.push('site-help-data.js', 'site-chat-intents.js', 'site-help.js');
+  scripts.push('site-help-data.js', 'site-chat-intents.js', 'site-chat-engine.js', 'site-help.js');
   return html.replace(/[ \t\r\n]*<\/body>/i, `\n${scripts.map(name => `    <script defer src="./${name}"></script>`).join('\n')}\n</body>`);
 }
 

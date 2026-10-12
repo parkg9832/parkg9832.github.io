@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import worker, { allowedOrigin, readBody } from '../src/index.js';
+import { createWorker, allowedOrigin, readBody } from '../src/index.js';
 import { MODEL, validateRequest, sanitizeEntities, buildPrompt, parseAnswer, generateReply } from '../src/chat.js';
 import { RESPONSE_FORMAT, ENTITY_VALUES } from '../src/response-contract.js';
 import { ChatLimiter } from '../src/limiter.js';
@@ -12,7 +12,17 @@ import { extractPublicDocument, validateCompanyKnowledge } from '../scripts/gene
 
 const input = (language = 'KR') => ({ language, messages: [{ role: 'user', content: '타코에 어떤 소스가 어울려요?' }] });
 const answer = (text = 'K-PEÑO는 타코와 잘 어울립니다.') => ({ response: JSON.stringify({ text, interpretation: { intent: 'pairings', audience: 'b2c', product: 'kpeno', country: '', businessType: '', quantity: '', food: 'tacos', heatPreference: '' } }) });
-const request = (body = input(), origin = 'https://www.mokda.kr') => new Request('https://chat.example/chat', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', 'CF-Connecting-IP': '192.0.2.1' }, body: JSON.stringify(body) });
+let tokenSequence = 0;
+const request = (body = input(), origin = 'https://www.mokda.kr') => new Request('https://chat.example/chat', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', 'CF-Connecting-IP': '192.0.2.1' }, body: JSON.stringify({ turnstileToken: `valid-fixture-token-${++tokenSequence}`, ...body }) });
+const redeemedTokens = new Set();
+const worker = createWorker({ siteverifyFetch: async (url, init) => {
+  assert.equal(url, 'https://challenges.cloudflare.com/turnstile/v0/siteverify');
+  const payload = JSON.parse(init.body);
+  assert.equal(payload.secret, 'fixture-secret');
+  if (redeemedTokens.has(payload.response)) return Response.json({ success: false, 'error-codes': ['timeout-or-duplicate'] });
+  redeemedTokens.add(payload.response);
+  return Response.json({ success: true, hostname: 'www.mokda.kr', action: 'mokda_chat', challenge_ts: new Date().toISOString() });
+} });
 
 function memoryStorage() {
   const store = new Map();
@@ -24,7 +34,7 @@ function memoryStorage() {
 function environment(ai = { run: async () => answer() }, dailyLimit = '80') {
   const storage = memoryStorage();
   const limiter = new ChatLimiter({ storage }, { DAILY_AI_LIMIT: dailyLimit });
-  return { AI: ai, CHAT_LIMITER: { idFromName: name => name, get: () => ({ fetch: (url, init) => limiter.fetch(new Request(url, init)) }) }, storage };
+  return { AI: ai, TURNSTILE_SECRET: 'fixture-secret', CHAT_LIMITER: { idFromName: name => name, get: () => ({ fetch: (url, init) => limiter.fetch(new Request(url, init)) }) }, storage };
 }
 
 test('only canonical production origins, optional localhost and no wildcard', () => {
@@ -281,8 +291,10 @@ test('quota rejection returns retry header and never calls the model again', asy
   assert.equal(calls, 1);
 });
 
-test('health reports bindings only and cannot generate a reply', async () => {
+test('health reports protected availability only and cannot generate a reply', async () => {
   const response = await worker.fetch(new Request('https://chat.example/health'), environment());
   assert.deepEqual(await response.json(), { ok: true, service: 'mokda-chat', ai: true });
+  const unprotected = environment(); delete unprotected.TURNSTILE_SECRET;
+  assert.deepEqual(await (await worker.fetch(new Request('https://chat.example/health'), unprotected)).json(), { ok: true, service: 'mokda-chat', ai: false });
   assert.equal((await worker.fetch(new Request('https://chat.example/other'), {})).status, 404);
 });

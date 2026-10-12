@@ -42,6 +42,8 @@ function setup() {
   });
   vm.runInContext(source, context);
   context.jsonResponse = value => value;
+  // This suite isolates reservations; the provider contract has its own suite.
+  context.verifyInquiryTurnstile_ = () => {};
   context.translateToSpanish = context.translateToKorean = text => { state.translations++; return text; };
   context.appendLead = () => { if (state.failSave) throw new Error('private-sheet-details'); state.saves++; };
   context.notifyLead = () => { state.notifications++; return { ok: true }; };
@@ -129,5 +131,5 @@ for (const failure of ['failRead', 'failWrite']) {
 
 // Never log raw integration errors: they may contain URLs, translated inquiry text or service details.
 assert.doesNotMatch(source, /console\.(?:warn|error)\([^\n]*(?:error\.message|error\})/);
-assert.doesNotMatch(source, /getContentText\(\)/);
+assert.doesNotMatch(source, /console\.(?:warn|error)\([^\n]*(?:getContentText|secret|turnstileToken)/);
 console.log(`Inquiry quota regressions passed: ${assertions} checks; persistent cap, cache eviction, rotation, midnight, retries, failures and bounded private state.`);

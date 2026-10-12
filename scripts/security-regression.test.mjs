@@ -18,19 +18,21 @@ for (const directory of ['workers', 'apps-script', 'scripts', 'docs', 'output', 
 }
 const cacheMap = new Map();
 const cache = { get: key => cacheMap.get(key), put: (key, value) => cacheMap.set(key, value), remove: key => cacheMap.delete(key) };
-const scriptProperties = new Map();
+const scriptProperties = new Map([['TURNSTILE_SECRET', 'mock-turnstile-secret']]);
 const properties = { getProperty: key => scriptProperties.get(key) ?? null, setProperty(key, value) { scriptProperties.set(key, String(value)); return this; } };
 const context = vm.createContext({ console: { error() {} }, Date,
   CacheService: { getScriptCache: () => cache },
   PropertiesService: { getScriptProperties: () => properties },
   LockService: { getScriptLock: () => ({ tryLock: () => true, waitLock() {}, releaseLock() {} }) },
+  UrlFetchApp: { fetch: () => ({ getResponseCode: () => 200,
+    getContentText: () => JSON.stringify({ success: true, hostname: 'www.mokda.kr', action: 'mokda_inquiry' }) }) },
   Utilities: { DigestAlgorithm: { SHA_256: 'sha256' }, computeDigest: (_, value) => createHash('sha256').update(value).digest(), base64EncodeWebSafe: value => value.toString('base64url'),
     formatDate(date, timeZone, format) { assert.equal(timeZone, 'Asia/Seoul'); assert.equal(format, 'yyyy-MM-dd'); return new Date(date.getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10); } },
 });
 vm.runInContext(await readFile(new URL('apps-script/b2b-lead-automation.gs', root), 'utf8'), context);
 context.jsonResponse = value => value;
 const request = payload => ({ postData: { contents: JSON.stringify(payload) } });
-const lead = () => ({ name: 'Test', company: 'Test company', country: 'Peru', email: 'test@example.invalid', message: 'Test inquiry', language: 'EN' });
+const lead = () => ({ name: 'Test', company: 'Test company', country: 'Peru', email: 'test@example.invalid', message: 'Test inquiry', language: 'EN', turnstileToken: 'mock-token' });
 for (const mode of ['update_dashboard', 'demand_support', 'anything']) {
   assert.equal(context.doGet({ parameter: { mode } }).ok, false);
 }
@@ -79,6 +81,11 @@ const html = '<meta charset="utf-8"><script>console.log("ok")</script>';
 const secured = secureHtml(html);
 assert.match(secured, /script-src-attr 'none'/);
 assert.match(secured, /form-action 'none'/);
+assert.match(secured, /object-src 'none'/);
+assert.match(secured, /frame-src https:\/\/challenges\.cloudflare\.com(?:\s|;)/);
+assert.match(secured, /script-src [^;]*https:\/\/challenges\.cloudflare\.com(?:\s|;)/);
+assert.match(secured, /connect-src [^;]*https:\/\/challenges\.cloudflare\.com(?:\s|;)/);
+assert.doesNotMatch(secured, /(?:script|connect|frame)-src [^;]*https:\/\/(?:\*\.)?cloudflare\.com(?:\s|;)/, 'Turnstile permits its challenge origin only');
 assert.ok(!secured.match(/script-src [^;]*unsafe-/));
 assert.match(secured, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
 assert.doesNotMatch(secured, /connect-src [^;]*https:\/\/\*\.workers\.dev/);
@@ -90,6 +97,7 @@ assert.doesNotMatch(retiredPage, /<script\b|cdn\.tailwindcss\.com/i, 'Retired pa
 for (const locale of ['', 'ko', 'es', 'en']) for (const page of publicPages) {
   const built = await readFile(new URL(`${locale ? locale + '/' : ''}${page}.html`, root), 'utf8');
   assert.match(built, /Content-Security-Policy/);
+  assert.match(built, /frame-src https:\/\/challenges\.cloudflare\.com(?:\s|;)/);
   assert.match(built, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
   assert.ok(built.indexOf('Content-Security-Policy') < built.indexOf('<script'), 'CSP precedes all script elements');
   if (locale) assert.ok(!/<script>([\s\S]*?)<\/script>/.test(built), 'Localized executable inline scripts must be externalized');
@@ -123,3 +131,4 @@ try {
 } finally { server.kill(); }
 console.log(`Security regressions passed: public endpoints, schema/size bounds, formula safety, receipts, quotas, CSP across ${publicPages.length * 4} source/localized pages, publishing exclusions and private paths.`);
 await import('./inquiry-quota.test.mjs');
+await import('./inquiry-turnstile.test.mjs');

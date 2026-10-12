@@ -4,11 +4,13 @@ const LEAD_SHEET_NAME = 'Sheet1';
 // Site-specific safety budget; this is independent of Google's account quotas.
 const PUBLIC_INQUIRY_DAILY_LIMIT = 80;
 const PUBLIC_INQUIRY_DAILY_PROPERTY = 'PUBLIC_INQUIRY_DAILY_BUDGET';
+const INQUIRY_TURNSTILE_HOSTS = ['www.mokda.kr', 'mokda.kr', 'parkg9832.github.io'];
 
 const SCRIPT_PROPERTY_KEYS = {
   sheetId: 'SHEET_ID',
   chatWebhookUrl: 'CHAT_WEBHOOK_URL',
   notificationEmail: 'NOTIFICATION_EMAIL',
+  turnstileSecret: 'TURNSTILE_SECRET',
 };
 
 const REQUIRED_PAYLOAD_FIELDS = ['name', 'country', 'message'];
@@ -174,6 +176,7 @@ function doPost(event) {
     }
 
     validatePayload(payload);
+    verifyInquiryTurnstile_(payload.turnstileToken);
     const receipt = reserveInquiry_(payload);
     if (receipt.duplicate) return jsonResponse({ ok: true, saved: true, duplicate: true });
     reservation = receipt.key;
@@ -582,7 +585,7 @@ function validatePayload(payload) {
 
   const limits = { name: 100, company: 160, email: 254, whatsapp: 40, country: 80,
     purpose: 160, message: 4000, language: 2, source: 60, role: 80, product: 80,
-    pageUrl: 500, userAgent: 500, website: 200 };
+    pageUrl: 500, userAgent: 500, website: 200, turnstileToken: 2048 };
   Object.keys(limits).forEach((field) => {
     const value = payload[field];
     if (value != null && (typeof value !== 'string' || value.length > limits[field] || /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/.test(value))) {
@@ -595,6 +598,31 @@ function validatePayload(payload) {
 
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     throw new Error('Invalid email');
+  }
+}
+
+// Validate every submission on the server. Siteverify enforces expiry and single
+// use, so neither a forged browser origin nor a direct /exec request is enough.
+// Apps Script does not expose a trustworthy client IP; never forward payload IPs.
+function verifyInquiryTurnstile_(token) {
+  if (typeof token !== 'string' || !token.trim() || token.length > 2048) {
+    throw new Error('Verification required');
+  }
+  const secret = getRequiredProperty(SCRIPT_PROPERTY_KEYS.turnstileSecret);
+  const response = UrlFetchApp.fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify({ secret, response: token }),
+    muteHttpExceptions: true,
+    followRedirects: false,
+  });
+  if (response.getResponseCode() !== 200) throw new Error('Verification unavailable');
+  const content = response.getContentText();
+  if (content.length > 8192) throw new Error('Invalid verification');
+  const result = JSON.parse(content);
+  if (!result || typeof result !== 'object' || Array.isArray(result) || result.success !== true ||
+      INQUIRY_TURNSTILE_HOSTS.indexOf(result.hostname) === -1 || result.action !== 'mokda_inquiry') {
+    throw new Error('Invalid verification');
   }
 }
 

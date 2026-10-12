@@ -19,6 +19,7 @@
 SHEET_ID=EXISTING_OPERATING_SHEET_ID
 CHAT_WEBHOOK_URL=YOUR_GOOGLE_CHAT_INCOMING_WEBHOOK_URL
 NOTIFICATION_EMAIL=YOUR_EMAIL_FOR_B2B_ALERTS
+TURNSTILE_SECRET=SERVER_SIDE_VERIFICATION_SECRET
 ```
 
 유효한 Google Chat Incoming Webhook이 있으면 Chat으로 알립니다. 없거나 Chat 전송에 실패하면 설정된 이메일로 알림을 시도합니다. 알림 실패와 관계없이 이미 저장된 문의는 저장 성공으로 처리하며, 원문을 유지합니다.
@@ -37,9 +38,10 @@ NOTIFICATION_EMAIL=YOUR_EMAIL_FOR_B2B_ALERTS
 1. 고객이 홈페이지 B2B 폼을 제출합니다.
 2. 웹사이트가 Apps Script Web App으로 데이터를 보냅니다.
 3. 서버가 본문 32KB, 필드 타입·길이, 언어와 연락처를 검사합니다. honeypot과 잘못된 요청은 번역·저장·알림을 실행하지 않습니다.
-4. Script Lock 안에서 중복 receipt와 단기 제한을 확인하고, 하루 처리 예산을 예약합니다.
-5. 원문을 보존하며 한국어·스페인어 번역을 준비합니다. 번역이 실패하면 원문을 사용합니다.
-6. 모든 문의·번역 셀의 수식 시작 문자를 escape한 뒤 Sheet에 저장합니다. 저장 후 가능한 채널로 알립니다.
+4. 서버가 매 요청 Turnstile 토큰을 검증합니다. 성공 여부, `mokda_inquiry` action과 정확한 공식 hostname을 확인하고 위조·만료·재사용·검증 장애는 저장·번역·알림·예산 예약 전에 거절합니다. 공개 sitekey만 브라우저에 두며 비밀값은 Script Properties에 저장합니다.
+5. Script Lock 안에서 중복 receipt와 단기 제한을 확인하고, 하루 처리 예산을 예약합니다.
+6. 원문을 보존하며 한국어·스페인어 번역을 준비합니다. 번역이 실패하면 원문을 사용합니다.
+7. 모든 문의·번역 셀의 수식 시작 문자를 escape한 뒤 Sheet에 저장합니다. 저장 후 가능한 채널로 알립니다.
 
 문의 단기 제한은 전역 분당 30건, 동일 연락처 시간당 5건입니다. CacheService 기반이므로 캐시가 사라지면 이 단기 제한과 10분 중복 receipt가 초기화될 수 있습니다.
 
@@ -49,8 +51,8 @@ NOTIFICATION_EMAIL=YOUR_EMAIL_FOR_B2B_ALERTS
 
 분석 수집은 기존 분당 120개 batch, batch당 20개 event 제한을 유지합니다. 분석 데이터는 방문자가 제출한 값이므로 인증된 매출·고객 정보로 취급하지 않습니다.
 
-Apps Script는 신뢰할 수 있는 요청 IP를 제공하지 않으며, 이 방어는 봇 인증이나 전체 DDoS 차단을 보장하지 않습니다. 공개 문의의 저장·번역·알림 작업량을 제한하고 기존 정상 문의 흐름을 유지합니다.
+Apps Script는 신뢰할 수 있는 요청 IP를 제공하지 않아 브라우저가 보낸 IP는 검증 근거로 쓰지 않습니다. 직접 공개 Web App 주소에 요청해도 같은 Turnstile 검증을 수행합니다. 검증 토큰은 5분 유효하며 일회용이므로 재시도에는 새 토큰이 필요합니다. 전체 DDoS나 Google 계정 전체의 서비스 할당량까지 보장하는 방어는 아닙니다. 분석 이벤트는 문의 검증과 분리하며 기존 제한을 유지합니다. [Turnstile 서버 검증](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
 
 ## 검증
 
-`npm run test:security`에는 문의 endpoint의 모의 검증과 `scripts/inquiry-quota.test.mjs`가 포함됩니다. 일일 경계, 캐시 삭제, 연락처 교체, 한국시간 자정, 중복 재요청, 저장 실패, 속성 손상·읽기·쓰기 실패와 Lock 경합을 실제 서비스 쓰기 없이 검사합니다.
+`npm run test:security`에는 문의 endpoint의 모의 검증, `scripts/inquiry-quota.test.mjs`, `scripts/inquiry-turnstile.test.mjs`가 포함됩니다. 일일 경계, 캐시 삭제, 연락처 교체, 한국시간 자정, 중복 재요청, 저장 실패, 속성 손상·읽기·쓰기 실패와 Lock 경합, 위조·재사용 토큰·잘못된 hostname/action·검증 서비스 장애를 실제 서비스 쓰기 없이 검사합니다.

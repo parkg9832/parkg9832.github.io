@@ -24,6 +24,7 @@
 
 ```json
 {
+  "turnstileToken": "fresh-single-use-browser-token",
   "language": "ES",
   "messages": [
     { "role": "user", "content": "Quiero ofrecer las salsas en mi restaurante en Perú." }
@@ -67,7 +68,15 @@
 
 AI 요청은 서버에서 10초 후 응답을 포기한다. 모델 실행이 서버 내부에서 즉시 취소된다고 보장하지는 않는다. 브라우저는 12초 제한과 규칙 기반 fallback을 둔다. 서버 오류, 무료 한도, 속도 제한이 발생해도 문의 조건을 완화하거나 즉시 WhatsApp을 노출하지 않는다.
 
-`GET /health`는 Worker 응답과 binding 설정 유무만 확인한다. 실제 모델 호출 성공 여부를 증명하지 않는다. 공개 활성화 확인은 정상 origin의 `/chat` 요청과 실제 홈페이지 상담 흐름으로 진행한다.
+`GET /health`는 Worker 응답과 AI·limiter·검증 비밀값의 설정 유무만 확인한다. 실제 모델 호출 성공 여부를 증명하지 않는다. 공개 활성화 확인은 정상 origin의 `/chat` 요청과 실제 홈페이지 상담 흐름으로 진행한다.
+
+## 방문자 검증 · 2026-10-13
+
+`site-turnstile.js`는 실제 AI 질문이나 문의 제출 때 Cloudflare 위젯을 지연 로드한다. 각 요청의 `turnstileToken`을 서버에서 다시 확인하며, 토큰을 브라우저 저장소에 보관하거나 재사용하지 않는다. 모바일 모달에서는 필요한 확인 버튼이 상담창 안에 나타난다. 홈페이지에는 공개 sitekey만 두고 검증 비밀값은 Worker의 `TURNSTILE_SECRET`에 저장한다.
+
+Worker는 Siteverify 성공, `mokda_chat` action과 요청 Origin의 정확한 hostname을 확인한 뒤 기존 AI 할당량을 예약한다. 토큰 누락·위조·재사용은 403, 검증 서비스 장애·비밀값 누락은 503으로 차단한다. 검증 실패 시 모델 호출과 AI 할당량 사용은 없다. 직접 workers.dev 주소로 호출해도 같은 검증을 수행한다. 검증에 실패하거나 AI가 제한되면 기본 자동 안내는 유지한다. [공식 서버 검증](https://developers.cloudflare.com/turnstile/get-started/server-side-validation/)
+
+배포 순서는 새 프런트엔드 공개 확인 → Worker 보호 활성화 → 문의 서버 보호 활성화다. 기존 클라이언트의 문의가 전환 중 실패하지 않도록 프런트엔드의 token 전송을 먼저 확인한다. 등록기관·네임서버 변경은 대표님의 최신 지시에 따라 이번 범위에서 제외한다.
 
 ## 비용과 속도 제한
 

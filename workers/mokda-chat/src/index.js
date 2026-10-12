@@ -1,4 +1,5 @@
 import { validateRequest, generateReply } from './chat.js';
+import { turnstileConfigured, verifyTurnstile } from './turnstile.js';
 export { ChatLimiter } from './limiter.js';
 
 const ORIGINS = new Set(['https://www.mokda.kr', 'https://mokda.kr', 'https://parkg9832.github.io']);
@@ -43,36 +44,46 @@ async function visitorKey(request) {
   return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
 
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
-    const origin = allowedOrigin(request.headers.get('origin'), env);
-    if (url.pathname === '/health' && request.method === 'GET') return reply({ ok: true, service: 'mokda-chat', ai: Boolean(env.AI && env.CHAT_LIMITER) }, 200, origin);
-    if (url.pathname !== '/chat') return reply({ error: 'not_found' }, 404, origin);
-    if (!origin) return reply({ error: 'origin_not_allowed' }, 403, '');
-    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Max-Age': '600' } });
-    if (request.method !== 'POST') return reply({ error: 'method_not_allowed' }, 405, origin, { Allow: 'POST, OPTIONS' });
-    if (!/^application\/json(?:\s*;|$)/i.test(request.headers.get('content-type') || '')) return reply({ error: 'unsupported_content_type' }, 415, origin);
-    let input;
-    try { input = validateRequest(await readBody(request)); } catch (error) { return reply({ error: error.message === 'body_too_large' ? 'body_too_large' : 'invalid_request' }, error.message === 'body_too_large' ? 413 : 400, origin); }
-    // Missing quota protection is a hard failure, never an unlimited AI fallback.
-    if (!env.AI || !env.CHAT_LIMITER) return reply({ error: 'ai_unavailable' }, 503, origin);
-    try {
-      const id = env.CHAT_LIMITER.idFromName('mokda-chat-global-v1');
-      const quotaResponse = await env.CHAT_LIMITER.get(id).fetch('https://limiter.internal/check', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: await visitorKey(request) }) });
-      if (!quotaResponse.ok) return reply({ error: 'ai_unavailable' }, 503, origin);
-      const quota = await quotaResponse.json();
-      if (!quota.allowed) return reply({ error: 'rate_limited' }, 429, origin, { 'Retry-After': String(quota.retryAfter || 60) });
-      const answer = await generateReply(input, env);
-      if (new TextEncoder().encode(JSON.stringify(answer)).byteLength > 2500) return reply({ error: 'invalid_ai_response' }, 502, origin);
-      return reply(answer, 200, origin);
-    } catch (error) {
-      // No request content, upstream error text, headers or credentials are logged.
-      if (error.message === 'invalid_ai_response') {
-        const reasons = ['json_format', 'json_parse', 'interpretation_fields', 'visitor_quantity', 'company_topic', 'text_constraints', 'response_size'];
-        return reply({ error: 'invalid_ai_response', ...(reasons.includes(error.reason) ? { reason: error.reason } : {}) }, 502, origin);
+export function createWorker({ siteverifyFetch = fetch, siteverifyTimeoutMs = 5000 } = {}) {
+  return {
+    async fetch(request, env) {
+      const url = new URL(request.url);
+      const origin = allowedOrigin(request.headers.get('origin'), env);
+      if (url.pathname === '/health' && request.method === 'GET') return reply({ ok: true, service: 'mokda-chat', ai: Boolean(env.AI && env.CHAT_LIMITER && turnstileConfigured(env)) }, 200, origin);
+      if (url.pathname !== '/chat') return reply({ error: 'not_found' }, 404, origin);
+      if (!origin) return reply({ error: 'origin_not_allowed' }, 403, '');
+      if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Max-Age': '600' } });
+      if (request.method !== 'POST') return reply({ error: 'method_not_allowed' }, 405, origin, { Allow: 'POST, OPTIONS' });
+      if (!/^application\/json(?:\s*;|$)/i.test(request.headers.get('content-type') || '')) return reply({ error: 'unsupported_content_type' }, 415, origin);
+      let input, token;
+      try {
+        const payload = await readBody(request);
+        input = validateRequest(payload);
+        token = payload.turnstileToken;
+      } catch (error) { return reply({ error: error.message === 'body_too_large' ? 'body_too_large' : 'invalid_request' }, error.message === 'body_too_large' ? 413 : 400, origin); }
+      // Missing quota protection is a hard failure, never an unlimited AI fallback.
+      if (!env.AI || !env.CHAT_LIMITER) return reply({ error: 'ai_unavailable' }, 503, origin);
+      const verification = await verifyTurnstile({ token, secret: env.TURNSTILE_SECRET, origin, remoteip: request.headers.get('cf-connecting-ip') }, siteverifyFetch, siteverifyTimeoutMs);
+      if (!verification.valid) return reply({ error: verification.unavailable ? 'bot_verification_unavailable' : 'bot_verification_failed' }, verification.unavailable ? 503 : 403, origin);
+      try {
+        const id = env.CHAT_LIMITER.idFromName('mokda-chat-global-v1');
+        const quotaResponse = await env.CHAT_LIMITER.get(id).fetch('https://limiter.internal/check', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: await visitorKey(request) }) });
+        if (!quotaResponse.ok) return reply({ error: 'ai_unavailable' }, 503, origin);
+        const quota = await quotaResponse.json();
+        if (!quota.allowed) return reply({ error: 'rate_limited' }, 429, origin, { 'Retry-After': String(quota.retryAfter || 60) });
+        const answer = await generateReply(input, env);
+        if (new TextEncoder().encode(JSON.stringify(answer)).byteLength > 2500) return reply({ error: 'invalid_ai_response' }, 502, origin);
+        return reply(answer, 200, origin);
+      } catch (error) {
+        // No request content, upstream error text, headers or credentials are logged.
+        if (error.message === 'invalid_ai_response') {
+          const reasons = ['json_format', 'json_parse', 'interpretation_fields', 'visitor_quantity', 'company_topic', 'text_constraints', 'response_size'];
+          return reply({ error: 'invalid_ai_response', ...(reasons.includes(error.reason) ? { reason: error.reason } : {}) }, 502, origin);
+        }
+        return reply({ error: error.message === 'ai_timeout' ? 'ai_timeout' : 'ai_unavailable' }, error.message === 'ai_timeout' ? 504 : 503, origin);
       }
-      return reply({ error: error.message === 'ai_timeout' ? 'ai_timeout' : 'ai_unavailable' }, error.message === 'ai_timeout' ? 504 : 503, origin);
-    }
-  },
-};
+    },
+  };
+}
+
+export default createWorker();

@@ -5,7 +5,7 @@
   "scripts": {
     "knowledge": "node scripts/generate-knowledge.mjs",
     "test": "node --test test/*.test.mjs",
-    "check": "node --check src/index.js && node --check src/chat.js && node --check src/limiter.js",
+    "check": "node --check src/index.js && node --check src/chat.js && node --check src/limiter.js && node --check src/turnstile.js",
     "dev": "npx wrangler dev",
     "deploy:check": "npx wrangler deploy --dry-run",
     "deploy": "npx wrangler deploy"

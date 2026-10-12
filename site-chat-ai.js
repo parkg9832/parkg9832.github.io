@@ -18,8 +18,12 @@
     for (const key of ['country', 'quantity', 'food', 'heatPreference']) if (typeof value[key] === 'string') result[key] = value[key].replace(/[<>\x00-\x1f]/g, '').slice(0, key === 'quantity' ? 40 : 80);
     return result;
   }
-  function answer({ messages, language, context, decision, signal }) {
+  async function answer({ messages, language, context, decision, signal }) {
     const url = endpoint(); if (!url) return Promise.resolve(null);
+    let turnstileToken;
+    try { turnstileToken = await window.MOKDA_TURNSTILE.token('mokda_chat', { signal, language }); }
+    catch { return null; }
+    if (signal?.aborted) return null;
     const controller = new AbortController(), timer = window.setTimeout(() => controller.abort(), 12000);
     const abort = () => controller.abort(); signal?.addEventListener('abort', abort, { once: true });
     if (signal?.aborted) abort();
@@ -29,6 +33,7 @@
     if (entities.country === 'USA') entities.country = 'United States';
     if (entities.businessType === 'retail') entities.businessType = 'retailer';
     const payload = {
+      turnstileToken,
       language: ['KR', 'ES', 'EN'].includes(language) ? language : 'ES',
       messages: messages.slice(-6).map(item => ({ role: item.role === 'user' ? 'user' : 'assistant', content: String(item.text).slice(0, 500) })),
       context: entities,

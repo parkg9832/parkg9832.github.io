@@ -9,14 +9,14 @@ export function secureHtml(html) {
   const hashes = [...html.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)]
     .map(match => `'sha256-${hash(match[1])}'`);
   const policy = [
-    "default-src 'self'", "base-uri 'self'", "object-src 'none'", "frame-src 'none'",
+    "default-src 'self'", "base-uri 'self'", "object-src 'none'", "frame-src https://challenges.cloudflare.com",
     "form-action 'none'", // Contact uses fetch; never submit personal data as a GET fallback.
-    "script-src 'self' https://www.googletagmanager.com " + [...new Set(hashes)].join(' '),
+    "script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com " + [...new Set(hashes)].join(' '),
     "script-src-attr 'none'",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com", // Existing responsive style attributes.
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com",
-    "connect-src 'self' https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com",
+    "connect-src 'self' https://challenges.cloudflare.com https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com",
   ].join('; ');
   return html.replace(/(<meta\s+charset=[^>]+>)/i, `$1\n    <meta http-equiv="Content-Security-Policy" content="${policy}" />\n    <meta name="referrer" content="strict-origin-when-cross-origin" />`);
 }

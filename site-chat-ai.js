@@ -18,11 +18,15 @@
     for (const key of ['country', 'quantity', 'food', 'heatPreference']) if (typeof value[key] === 'string') result[key] = value[key].replace(/[<>\x00-\x1f]/g, '').slice(0, key === 'quantity' ? 40 : 80);
     return result;
   }
+  // Non-sensitive DOM diagnostics let operating checks distinguish verified
+  // requests from local fallback without exposing tokens or conversation text.
+  const status = value => document.getElementById('mokda-help')?.setAttribute('data-ai-status', String(value));
   async function answer({ messages, language, context, decision, signal }) {
     const url = endpoint(); if (!url) return Promise.resolve(null);
+    status('verifying');
     let turnstileToken;
     try { turnstileToken = await window.MOKDA_TURNSTILE.token('mokda_chat', { signal, language }); }
-    catch { return null; }
+    catch { status('verification_unavailable'); return null; }
     if (signal?.aborted) return null;
     const controller = new AbortController(), timer = window.setTimeout(() => controller.abort(), 12000);
     const abort = () => controller.abort(); signal?.addEventListener('abort', abort, { once: true });
@@ -41,13 +45,14 @@
     };
     return fetch(url, { method: 'POST', credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: controller.signal })
       .then(async response => {
+        status(response.status);
         if (!response.ok) return null;
         const raw = await response.text(); if (raw.length > 7000) return null;
         const result = JSON.parse(raw);
         const text = typeof result.text === 'string' && result.text.length <= 1200 ? result.text.trim() : '';
         // Links and handoff controls are always rendered from verified local data.
         return { text: /https?:\/\/|www\.|<\/?(?:script|iframe)|wa\.me/i.test(text) ? '' : text, interpretation: interpretation(result.interpretation) };
-      }).catch(() => null).finally(() => { window.clearTimeout(timer); signal?.removeEventListener('abort', abort); });
+      }).catch(() => { status('request_unavailable'); return null; }).finally(() => { window.clearTimeout(timer); signal?.removeEventListener('abort', abort); });
   }
   window.MOKDA_CHAT_AI_CLIENT = Object.freeze({ isEnabled: () => !!endpoint(), answer });
 })();

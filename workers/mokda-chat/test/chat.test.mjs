@@ -264,7 +264,8 @@ test('per-visitor daily limit applies across minute changes', async () => {
   const storage = memoryStorage();
   const limiter = new ChatLimiter({ storage }, { DAILY_AI_LIMIT: '80' });
   const actualNow = Date.now;
-  let now = actualNow();
+  // Keep this same-day scenario away from midnight regardless of CI wall time.
+  let now = Date.parse('2026-10-12T12:00:00Z');
   Date.now = () => now;
   try {
     const key = 'e'.repeat(64);
@@ -277,6 +278,26 @@ test('per-visitor daily limit applies across minute changes', async () => {
     const denied = await limiter.fetch(new Request('https://limiter.internal/check', { method: 'POST', body: JSON.stringify({ key }) }));
     assert.equal((await denied.json()).reason, 'visitor_limit');
     assert.equal(storage.store.get('usage').count, 20);
+  } finally { Date.now = actualNow; }
+});
+
+test('UTC midnight intentionally resets the visitor and global daily counters', async () => {
+  const storage = memoryStorage();
+  const limiter = new ChatLimiter({ storage }, { DAILY_AI_LIMIT: '80' });
+  const actualNow = Date.now;
+  let now = Date.parse('2026-10-12T23:59:59Z');
+  Date.now = () => now;
+  const check = () => limiter.fetch(new Request('https://limiter.internal/check', { method: 'POST', body: JSON.stringify({ key: 'd'.repeat(64) }) })).then(response => response.json());
+  try {
+    for (let index = 0; index < 3; index++) assert.equal((await check()).allowed, true);
+    assert.equal((await check()).reason, 'visitor_limit');
+    assert.equal(storage.store.get('usage').day, '2026-10-12');
+    assert.equal(storage.store.get('usage').count, 3);
+    now += 2000;
+    assert.equal((await check()).allowed, true);
+    assert.equal(storage.store.get('usage').day, '2026-10-13');
+    assert.equal(storage.store.get('usage').count, 1);
+    assert.equal(storage.store.get('usage').visitors['d'.repeat(64)].count, 1);
   } finally { Date.now = actualNow; }
 });
 

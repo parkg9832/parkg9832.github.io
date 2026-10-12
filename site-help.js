@@ -9,7 +9,9 @@
   const lang = copy[candidate] ? candidate : 'ES';
   const text = copy[lang], prefix = { KR: 'ko', ES: 'es', EN: 'en' }[lang];
   const KEY = 'mokdaChatSessionV2', DRAFT = 'mokdaChatInquiryDraft', TTL = 4 * 60 * 60 * 1000, MAX_MESSAGES = 24;
-  const questions = window.MOKDA_HELP_DATA[lang].categories.flatMap(category => category.questions), engine = window.MOKDA_CHAT_ENGINE;
+  const questions = window.MOKDA_HELP_DATA[lang].categories.flatMap(category => category.questions), engine = window.MOKDA_CHAT_ENGINE, ai = window.MOKDA_CHAT_AI_CLIENT;
+  const guidance = { KR: '제품·구매·협업 자동 안내', ES: 'Guía de salsas, compras y colaboración', EN: 'Sauce, buying and partnership guidance' };
+  const aiDisclosure = { KR: 'AI 자동 안내 · 대화 내용을 AI가 처리합니다', ES: 'Guía con IA · La IA procesa esta conversación', EN: 'AI guidance · This conversation is processed by AI' };
   const field = document.getElementById('messageInput');
   if (field) { try { const draft = sessionStorage.getItem(DRAFT); sessionStorage.removeItem(DRAFT); if (draft && !field.value) field.value = draft.slice(0, 1200); } catch { /* Form remains available. */ } }
   const icon = paths => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
@@ -30,9 +32,9 @@
   const processing = find('.help-processing'), latest = find('.help-latest'), formLink = find('.help-form-link');
   launcher.setAttribute('aria-label', text.launcher); closeButton.setAttribute('aria-label', text.close); resetButton.setAttribute('aria-label', text.reset); resetButton.title = text.reset;
   find('.help-heading p').textContent = text.subtitle; find('.help-auto-label').textContent = text.auto; input.placeholder = text.input;
-  input.setAttribute('aria-label', text.input); send.setAttribute('aria-label', text.send); find('.help-disclosure').textContent = text.disclosure;
+  input.setAttribute('aria-label', text.input); send.setAttribute('aria-label', text.send); find('.help-disclosure').textContent = ai?.isEnabled() ? aiDisclosure[lang] : guidance[lang];
   find('.help-sr').textContent = text.processing; latest.textContent = `${text.latest} ↓`; formLink.textContent = text.contact;
-  let transcript = [], context = {}, timer = null, pending = null, epoch = 0, following = true, closing = false, modal = false;
+  let transcript = [], context = {}, timer = null, pending = null, epoch = 0, following = true, closing = false, modal = false, request = null, ready = true, delayDone = false;
   let previousOverflow = '', scrollY = 0, restoredOpen = false;
   const compact = () => window.innerWidth <= 600 || (window.innerWidth <= 900 && window.innerHeight <= 500);
   const reduced = () => !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -40,6 +42,8 @@
   function persist() { try { sessionStorage.setItem(KEY, JSON.stringify({ version: 2, at: Date.now(), transcript, context, draft: input.value.slice(0, 500), open: dialog.open && !closing })); } catch { /* Private browsing still supports this page's chat. */ } }
   function handoffSummary() { return engine?.summary(context, context.language || lang) || `${context.lastQuestion || 'MOKDA'}`; }
   function updateHandoff() {
+    const eligible = context.handoffEligible === true && !pending;
+    handoff.hidden = !eligible; formLink.hidden = !eligible; root.classList.toggle('help-handoff', eligible);
     const number = String(window.MOKDA_CONTACT?.whatsappNumber || '').trim().replace(/[+\s().-]/g, ''), valid = /^[1-9]\d{7,14}$/.test(number);
     const path = `contact.html${context.purpose === 'collaboration' ? '?purpose=collaboration' : ['export', 'horeca', 'pricing'].includes(context.purpose) ? '?purpose=distribution' : ''}`;
     formLink.href = internalPath(path); find('.help-contact-text').textContent = valid ? text.whatsapp : text.contact;
@@ -50,33 +54,61 @@
   function renderMessage(item, animate = true) {
     const bubble = element('div', `help-message help-message-${item.role}${animate ? ' help-arriving' : ''}`);
     bubble.setAttribute('aria-label', item.role === 'user' ? text.user : text.bot); bubble.appendChild(element('p', '', item.text));
-    (item.sources || []).slice(0, 2).forEach(link => { const a = element('a', 'help-detail-link', `${link.label} ↗`); a.href = internalPath(link.path); a.addEventListener('click', foldForNavigation); bubble.appendChild(a); });
+    (item.sources || []).slice(0, 2).forEach(link => {
+      const a = element('a', 'help-detail-link', `${link.label} ↗`);
+      if (link.url === 'https://www.instagram.com/mokda_official/') { a.href = link.url; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+      else { a.href = internalPath(link.path); a.addEventListener('click', foldForNavigation); }
+      bubble.appendChild(a);
+    });
     conversation.appendChild(bubble); while (conversation.children.length > MAX_MESSAGES) conversation.firstElementChild.remove();
   }
   function add(role, value, sources = []) { const item = { role, text: String(value).slice(0, 2000), sources }; transcript.push(item); transcript = transcript.slice(-MAX_MESSAGES); renderMessage(item); persist(); }
   function scrollBottom() { content.scrollTop = content.scrollHeight; following = true; latest.hidden = true; }
   function showOptions(result) {
     options.replaceChildren(); if (result?.handoff) return;
+    if (!result && engine?.initialReplies) result = { quickReplies: engine.initialReplies(lang) };
+    if (Array.isArray(result?.quickReplies)) {
+      result.quickReplies.slice(0, 3).forEach(item => { if (typeof item?.label !== 'string' || typeof item?.question !== 'string') return;
+        const button = element('button', 'help-choice', item.label.slice(0, 60)); button.type = 'button'; button.addEventListener('click', () => submit(item.question, false)); options.appendChild(button);
+      }); return;
+    }
     const ids = result ? text.moreIds : text.ids, names = result ? text.more : text.quick;
     ids.forEach((id, index) => { const q = questions.find(item => item.id === id); if (!q) return;
-      const button = element('button', 'help-choice', names[index]); button.type = 'button'; button.addEventListener('click', () => submit(q.question)); options.appendChild(button);
+      const button = element('button', 'help-choice', names[index]); button.type = 'button'; button.addEventListener('click', () => submit(q.question, false)); options.appendChild(button);
     });
   }
-  function cancelPending() { epoch++; if (timer !== null) window.clearTimeout(timer); timer = null; pending = null; processing.hidden = true; send.disabled = !input.value.trim(); }
+  function cancelPending() { epoch++; if (timer !== null) window.clearTimeout(timer); request?.abort(); request = null; timer = null; pending = null; processing.hidden = true; ready = true; delayDone = false; send.disabled = !input.value.trim(); }
   function complete() {
     if (!pending) return;
-    const result = pending; pending = null; timer = null; processing.hidden = true; context = result.context || context;
+    const result = pending; pending = null; timer = null; request = null; processing.hidden = true; context = result.context || context;
     add('bot', result.text, result.sources); showOptions(result); updateHandoff(); send.disabled = !input.value.trim();
     if (following) scrollBottom(); else latest.hidden = false; persist();
   }
-  function submit(value) {
+  function submit(value, useAI = true) {
     const question = value.trim().slice(0, 500); if (!question || pending) return;
     following = true; add('user', question); options.replaceChildren();
     const fallback = questions.find(item => item.id === window.MOKDA_CHAT_INTENTS?.match(question, lang));
-    pending = engine?.reply(question, { language: lang, context }) || { text: fallback?.answer || questions.find(item => item.id === 'contact').answer, context: { lastQuestion: question, language: lang }, sources: fallback?.link ? [fallback.link] : [], handoff: true };
+    const previous = { ...context };
+    pending = engine?.reply(question, { language: lang, context: previous }) || { text: fallback?.answer || questions.find(item => item.id === 'choose').answer, context: { lastQuestion: question, language: lang, handoffEligible: false }, sources: fallback?.link ? [fallback.link] : [], handoff: false };
     context = pending.context || context; updateHandoff();
     input.value = ''; send.disabled = true; processing.hidden = false; scrollBottom(); const turn = epoch;
-    timer = window.setTimeout(() => { if (turn === epoch) complete(); }, reduced() ? 0 : 280); persist();
+    ready = true; delayDone = false;
+    // Brief automated preparation, never a claim that a human is typing.
+    const delay = 1400 + Math.min(500, Math.round(pending.text.length * 1.2));
+    timer = window.setTimeout(() => { delayDone = true; if (turn === epoch && ready) complete(); }, delay);
+    if (useAI && ai?.isEnabled() && !['greeting', 'send_status', 'automated_status', 'out_of_scope', 'explicit_human', 'product_issue', 'document_request'].includes(pending.decision?.reason)) {
+      ready = false; request = new AbortController();
+      ai.answer({ messages: transcript, language: context.language || lang, context: previous, decision: { ...pending.decision, intent: pending.intent }, signal: request.signal }).then(result => {
+        if (turn !== epoch || !pending) return;
+        if (result) {
+          const decided = engine.reply(question, { language: lang, context: previous, interpretation: result.interpretation });
+          if (decided.aiTextAllowed && result.text) decided.text = result.text;
+          pending = decided; context = decided.context; updateHandoff();
+        }
+        ready = true; if (delayDone) complete();
+      }).catch(() => { if (turn === epoch && pending) { ready = true; if (delayDone) complete(); } });
+    }
+    persist();
   }
   function restart() { cancelPending(); context = {}; transcript = []; input.value = ''; conversation.replaceChildren(); add('bot', engine?.greeting(lang) || questions[0].answer); showOptions(); updateHandoff(); scrollBottom(); persist(); }
   function viewport() {
@@ -118,16 +150,16 @@
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && dialog.open && root.contains(document.activeElement)) { event.preventDefault(); close(); } });
   window.addEventListener('resize', () => { viewport(); const needsModal = compact() && typeof dialog.showModal === 'function'; if (dialog.open && needsModal !== modal && !closing) { dialog.addEventListener('close', open, { once: true }); dialog.close(); } });
   window.visualViewport?.addEventListener('resize', viewport); window.visualViewport?.addEventListener('scroll', viewport);
-  window.addEventListener('pagehide', () => { if (timer !== null) window.clearTimeout(timer); complete(); persist(); unlockPage(); });
+  window.addEventListener('pagehide', () => { if (timer !== null) window.clearTimeout(timer); request?.abort(); complete(); epoch++; persist(); unlockPage(); });
   try {
     const saved = JSON.parse(sessionStorage.getItem(KEY) || 'null');
     if (saved?.version === 2 && Date.now() - saved.at < TTL && saved.at <= Date.now() && Array.isArray(saved.transcript)) {
-      transcript = saved.transcript.slice(-MAX_MESSAGES).filter(item => ['user', 'bot'].includes(item?.role) && typeof item.text === 'string').map(item => ({ role: item.role, text: item.text.slice(0, 2000), sources: Array.isArray(item.sources) ? item.sources.filter(link => typeof link?.label === 'string' && typeof link?.path === 'string').slice(0, 2) : [] }));
+      transcript = saved.transcript.slice(-MAX_MESSAGES).filter(item => ['user', 'bot'].includes(item?.role) && typeof item.text === 'string').map(item => ({ role: item.role, text: item.text.slice(0, 2000), sources: Array.isArray(item.sources) ? item.sources.filter(link => typeof link?.label === 'string' && (typeof link?.path === 'string' || link?.url === 'https://www.instagram.com/mokda_official/')).slice(0, 2) : [] }));
       context = engine?.reply('', { language: lang, context: saved.context }).context || {}; context.language = lang;
       context.lastQuestion = typeof saved.context?.lastQuestion === 'string' ? saved.context.lastQuestion.slice(0, 500) : '';
       input.value = typeof saved.draft === 'string' ? saved.draft.slice(0, 500) : ''; restoredOpen = saved.open === true;
     }
   } catch { /* Corrupt or unavailable storage starts a clean conversation. */ }
-  if (transcript.length) { transcript.forEach(item => renderMessage(item, false)); showOptions(transcript.length > 1 ? { handoff: !!context.purpose } : undefined); updateHandoff(); } else restart();
+  if (transcript.length) { transcript.forEach(item => renderMessage(item, false)); showOptions(transcript.length > 1 ? engine?.reply('', { language: lang, context }) : undefined); updateHandoff(); } else restart();
   send.disabled = !input.value.trim(); viewport(); if (restoredOpen) open();
 })();

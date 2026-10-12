@@ -70,6 +70,8 @@ const secured = secureHtml(html);
 assert.match(secured, /script-src-attr 'none'/);
 assert.match(secured, /form-action 'none'/);
 assert.ok(!secured.match(/script-src [^;]*unsafe-/));
+assert.match(secured, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
+assert.doesNotMatch(secured, /connect-src [^;]*https:\/\/\*\.workers\.dev/);
 assert.equal(secureHtml(secured), secured);
 const retiredPage = await readFile(new URL('coming-soon.html', root), 'utf8');
 assert.match(retiredPage, /name="robots" content="noindex,follow"/);
@@ -78,6 +80,7 @@ assert.doesNotMatch(retiredPage, /<script\b|cdn\.tailwindcss\.com/i, 'Retired pa
 for (const locale of ['ko', 'es', 'en']) for (const page of ['index', 'about', 'products', 'qna', 'contact', 'news', ...newsPages]) {
   const built = await readFile(new URL(`${locale}/${page}.html`, root), 'utf8');
   assert.match(built, /Content-Security-Policy/);
+  assert.match(built, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
   assert.ok(!/<script>([\s\S]*?)<\/script>/.test(built), 'Executable inline scripts must be externalized');
   assert.ok(!/\son(?:load|click)=/.test(built));
   for (const match of built.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {

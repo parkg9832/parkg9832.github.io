@@ -43,6 +43,8 @@ html.mokda-menu-lock #mokda-help { visibility: hidden; }
 #mokda-help .help-contact { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 8px 10px; border: 1px solid #cfe4d9; border-radius: 12px; background: #f7fbf8; color: #167347; font-size: 14px; font-weight: 700; line-height: 1.5; text-decoration: none; text-align: center; }
 #mokda-help .help-whatsapp-icon svg { width: 18px; height: 18px; }
 #mokda-help .help-composer { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; padding: 7px 7px 7px 12px; border: 1px solid #dbe1e8; border-radius: 16px; background: #fff; }
+#mokda-help:not(.help-handoff) .help-composer { margin-top: 0; }
+#mokda-help:not(.help-handoff) .help-latest { bottom: 124px; }
 #mokda-help .help-composer textarea { display: block; resize: none; width: 100%; min-width: 0; height: 48px; padding: 12px 0; border: 0; border-radius: 6px; background: transparent; color: #1f2937; font-size: 16px; line-height: 1.5; letter-spacing: 0; }
 #mokda-help .help-composer textarea::placeholder { color: #64748b; opacity: 1; }
 #mokda-help .help-composer:focus-within { border-color: #94a3b8; box-shadow: 0 0 0 2px #e2e8f0; }

@@ -3,3 +3,6 @@
 window.MOKDA_CONTACT = {
   whatsappNumber: '821021227815',
 };
+
+// Public Worker URL only. AI credentials never belong in the website.
+window.MOKDA_CHAT_AI = { enabled: true, endpoint: 'https://mokda-chat.mokda-chat-worker.workers.dev/chat' };

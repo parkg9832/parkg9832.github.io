@@ -1,0 +1,13 @@
+{
+  "name": "mokda-chat-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "knowledge": "node scripts/generate-knowledge.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "node --check src/index.js && node --check src/chat.js && node --check src/limiter.js",
+    "dev": "npx wrangler dev",
+    "deploy:check": "npx wrangler deploy --dry-run",
+    "deploy": "npx wrangler deploy"
+  }
+}

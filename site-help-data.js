@@ -1,4 +1,4 @@
-/* Public FAQ copy. Availability and commercial terms are confirmed through contact. */
+/* Public guidance. Consumer sales in Korea; Latin America is seeking local buyers. */
 window.MOKDA_HELP_DATA = {
   KR: {
     categories: [
@@ -21,8 +21,8 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'ingredients',
             question: '원재료와 알레르겐은 어디서 확인하나요?',
-            answer: '제품 소개 자료에는 K-PEÑO의 우유·대두·밀·토마토와 Para Carnes의 대두·밀 함유가 안내되어 있습니다. Para Carnes 레시피에는 참깨와 참기름도 포함됩니다. 전체 원재료와 최신 알레르겐 표기는 제품 패키지를 확인하고, 추가로 필요한 정보는 문의해주세요.',
-            link: { label: '제품 정보 문의하기', path: 'contact.html' },
+            answer: '제품 소개 자료에는 K-PEÑO의 우유·대두·밀·토마토와 Para Carnes의 대두·밀 함유가 안내되어 있습니다. Para Carnes 레시피에는 참깨와 참기름도 포함됩니다. 전체 원재료와 최신 알레르겐 표기는 실제 제품 패키지를 확인해주세요.',
+            link: { label: '제품 정보 보기', path: 'products.html' },
           },
           {
             id: 'storage',
@@ -39,13 +39,13 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'buy',
             question: '어디에서 구매할 수 있나요?',
-            answer: '판매 여부와 구매 경로는 국가별로 확인이 필요합니다. 구매하려는 국가와 관심 제품을 알려주세요.',
-            link: { label: '구매 가능 여부 문의하기', path: 'contact.html' },
+            answer: '한국에서는 제품을 판매하고 있으며, 구매 안내는 MOKDA 공식 인스타그램에서 확인할 수 있습니다. 중남미에서는 아직 소비자에게 직접 판매하지 않고 현지 수입·유통 바이어를 찾고 있습니다.',
+            link: { label: '제품 살펴보기', path: 'products.html' },
           },
           {
             id: 'pricing',
             question: '가격, 최소 주문 수량과 샘플은 어떻게 확인하나요?',
-            answer: '가격, 최소 주문 수량(MOQ), 샘플 제공 여부는 문의로 확인해주세요. 관심 제품, 판매 국가와 예상 수량을 함께 남겨주시면 상담에 도움이 됩니다.',
+            answer: '사업 거래의 가격, 최소 주문 수량(MOQ), 샘플과 수출 조건은 판매 국가와 거래 방식에 따라 확인합니다. 국가, 사업 유형과 관심 제품을 먼저 알려주세요. 예상 수량도 있다면 함께 남겨주시면 됩니다.',
             link: { label: '거래 조건 문의하기', path: 'contact.html?purpose=distribution' },
           },
           {
@@ -105,7 +105,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'contact',
             question: '찾는 답변이 없으면 어떻게 문의하나요?',
-            answer: '아래 상담 버튼으로 담당자에게 질문을 남겨주세요. 문의 페이지에서도 제품에 관한 질문이나 사업 제안을 보낼 수 있습니다.',
+            answer: '궁금한 내용을 이 상담창에 적어주세요. 제품과 구매에 관한 내용을 먼저 안내하고, 개별 확인이 필요한 거래 조건이나 제품 문제는 담당자 상담으로 연결합니다.',
             link: { label: '문의 페이지 열기', path: 'contact.html' },
           },
         ],
@@ -133,8 +133,8 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'ingredients',
             question: '¿Dónde consulto ingredientes y alérgenos?',
-            answer: 'La presentación del producto indica leche, soya, trigo y tomate en K-PEÑO, y soya y trigo en Para Carnes. La receta de Para Carnes también incluye sésamo y aceite de sésamo. Revisa el envase para confirmar la lista completa y actualizada de ingredientes y alérgenos, o contáctanos si necesitas más información.',
-            link: { label: 'Consultar información del producto', path: 'contact.html' },
+            answer: 'La presentación del producto indica leche, soya, trigo y tomate en K-PEÑO, y soya y trigo en Para Carnes. La receta de Para Carnes también incluye sésamo y aceite de sésamo. Revisa tu envase para confirmar la lista completa y actualizada de ingredientes y alérgenos.',
+            link: { label: 'Ver información del producto', path: 'products.html' },
           },
           {
             id: 'storage',
@@ -151,13 +151,13 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'buy',
             question: '¿Dónde puedo comprar las salsas?',
-            answer: 'Necesitamos confirmar la disponibilidad y los puntos de compra para tu país. Contáctanos e indica en qué país estás y qué salsa te interesa.',
-            link: { label: 'Consultar disponibilidad', path: 'contact.html' },
+            answer: 'Actualmente vendemos al consumidor en Corea; la información de compra está en el Instagram oficial de MOKDA. Todavía no vendemos directamente al consumidor en Latinoamérica y estamos buscando importadores y distribuidores locales.',
+            link: { label: 'Conocer las salsas', path: 'products.html' },
           },
           {
             id: 'pricing',
             question: '¿Cómo consulto precios, pedido mínimo y muestras?',
-            answer: 'Contáctanos para confirmar precios, cantidad mínima de pedido (MOQ) y disponibilidad de muestras. Indica la salsa que te interesa, el país de venta y la cantidad estimada.',
+            answer: 'Los precios comerciales, el pedido mínimo (MOQ), las muestras y las condiciones de exportación se confirman según el país y la operación. Indica primero tu país, el tipo de negocio y las salsas de interés. Si tienes una cantidad estimada, también puedes compartirla.',
             link: { label: 'Consultar condiciones comerciales', path: 'contact.html?purpose=distribution' },
           },
           {
@@ -217,7 +217,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'contact',
             question: '¿Qué hago si no encuentro mi respuesta?',
-            answer: 'Usa el botón de abajo para contactar al equipo. También puedes enviar tu pregunta sobre las salsas o tu propuesta comercial desde la página de contacto.',
+            answer: 'Escribe aquí lo que te gustaría saber. Primero te orientamos sobre los productos y las compras. Si hacen falta una revisión de condiciones comerciales o una solución a un problema del producto, puedes continuar con el equipo.',
             link: { label: 'Ir a contacto', path: 'contact.html' },
           },
         ],
@@ -245,8 +245,8 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'ingredients',
             question: 'Where can I check ingredients and allergens?',
-            answer: 'The product presentation lists milk, soy, wheat and tomato in K-PEÑO, and soy and wheat in Para Carnes. The Para Carnes recipe also includes sesame and sesame oil. Check the packaging for the complete current ingredient and allergen information, or contact us if you need more details.',
-            link: { label: 'Ask about product information', path: 'contact.html' },
+            answer: 'The product presentation lists milk, soy, wheat and tomato in K-PEÑO, and soy and wheat in Para Carnes. The Para Carnes recipe also includes sesame and sesame oil. Check your packaging for the complete current ingredient and allergen information.',
+            link: { label: 'View product information', path: 'products.html' },
           },
           {
             id: 'storage',
@@ -263,13 +263,13 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'buy',
             question: 'Where can I buy the sauces?',
-            answer: 'Availability and places to buy need to be confirmed for your country. Contact our team with your country and the sauce you are interested in.',
-            link: { label: 'Ask about availability', path: 'contact.html' },
+            answer: 'We currently sell to consumers in Korea; purchase information is available on MOKDA’s official Instagram. We are not yet selling directly to consumers in Latin America and are looking for local importers and distributors.',
+            link: { label: 'Explore the sauces', path: 'products.html' },
           },
           {
             id: 'pricing',
             question: 'How do I check prices, minimum orders and samples?',
-            answer: 'Contact us to confirm prices, minimum order quantities (MOQ) and sample availability. Let us know which sauce you are interested in, the country of sale and your estimated quantity.',
+            answer: 'Business pricing, minimum orders (MOQ), samples and export terms are confirmed for each country and transaction. First share your country, business type and sauces of interest. You can also include an estimated quantity if you have one.',
             link: { label: 'Ask about commercial terms', path: 'contact.html?purpose=distribution' },
           },
           {
@@ -329,7 +329,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'contact',
             question: 'What if I cannot find my answer?',
-            answer: 'Use the button below to contact our team. You can also send a product question or business proposal through the contact page.',
+            answer: 'Tell us what you would like to know in this chat. We first help with product and buying questions. Commercial terms that need individual review or product problems can then be handled by our team.',
             link: { label: 'Open the contact page', path: 'contact.html' },
           },
         ],

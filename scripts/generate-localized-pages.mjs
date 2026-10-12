@@ -1,6 +1,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { secureHtml, externalizeBlocks } from './static-security.mjs';
 import { prerenderContent } from './prerender-content.mjs';
 import { generateNewsSources } from './generate-news-sources.mjs';
@@ -11,7 +12,7 @@ const LAST_MODIFIED = '2026-10-11';
 const BRAND_IMAGE = `${SITE}/assets/images/mokda-logo-main.webp`;
 const BRAND_IMAGE_ALT = { ES: 'Logotipo de MOKDA', KR: 'MOKDA 로고', EN: 'MOKDA logo' };
 const SITE_FONT_REQUEST =
-  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Black+Han+Sans&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
+  'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
 const languages = {
   ES: { directory: 'es', html: 'es-419', hreflang: 'es-419', og: 'es_419' },
@@ -147,15 +148,19 @@ function localizeFontRequests(html, language) {
   return html.replace(/https:\/\/fonts\.googleapis\.com\/css2\?[^"']+/g, SITE_FONT_REQUEST);
 }
 
-function addHelpAssets(html) {
+async function addHelpAssets(html) {
   if (!html.includes('styles/site-help.css')) {
     html = html.replace(/<\/head>/i, '    <link rel="stylesheet" href="./styles/site-help.css" />\n</head>');
   }
   // Rebuild this small block in dependency order without growing whitespace on repeated runs.
-  html = html.replace(/^[ \t]*<script\b[^>]*\bsrc=["'](?:\.\/)?(?:site-company-knowledge|site-help-data|site-chat-intents|site-chat-engine|site-chat-ai|site-help)\.js["'][^>]*><\/script>[ \t]*\r?\n?/gm, '');
+  html = html.replace(/^[ \t]*<script\b[^>]*\bsrc=["'](?:\.\/)?(?:site-company-knowledge|site-help-data|site-chat-intents|site-chat-engine|site-chat-ai|site-help|site-help-loader)\.js["'][^>]*><\/script>[ \t]*\r?\n?/gm, '');
   const scripts = html.includes('site-contact-config.js') ? [] : ['site-contact-config.js'];
-  scripts.push('site-company-knowledge.js', 'site-help-data.js', 'site-chat-intents.js', 'site-chat-engine.js', 'site-chat-ai.js', 'site-help.js');
-  return html.replace(/[ \t\r\n]*<\/body>/i, `\n${scripts.map(name => `    <script defer src="./${name}"></script>`).join('\n')}\n</body>`);
+  const assets = await Promise.all(['site-company-knowledge.js', 'site-help-data.js', 'site-chat-intents.js', 'site-chat-engine.js', 'site-chat-ai.js', 'site-help.js'].map(async name => {
+    const version = createHash('sha256').update(await readFile(join(ROOT, name))).digest('hex').slice(0, 12);
+    return `/${name}?v=${version}`;
+  }));
+  const block = [...scripts.map(name => `    <script defer src="./${name}"></script>`), `    <script defer src="./site-help-loader.js" data-chat-assets="${escapeHtml(JSON.stringify(assets))}"></script>`];
+  return html.replace(/[ \t\r\n]*<\/body>/i, `\n${block.join('\n')}\n</body>`);
 }
 
 function escapeHtml(value) {
@@ -312,7 +317,7 @@ function localizeHtml(source, language, page) {
 const sitemapUrls = [];
 
 for (const [fileName, page] of Object.entries(pages)) {
-  const source = addHelpAssets(await readFile(join(ROOT, fileName), 'utf8'));
+  const source = await addHelpAssets(await readFile(join(ROOT, fileName), 'utf8'));
   await writeFile(join(ROOT, fileName), secureHtml(source), 'utf8');
 
   for (const language of Object.keys(languages)) {

@@ -30,7 +30,10 @@ export async function prerenderContent(html, root, url) {
     const body = window.document.body.innerHTML;
     if (!window.document.querySelector('h1')?.textContent.trim()) throw new Error('Prerendered H1 is empty: ' + url);
     // Preserve the original head, metadata, script bytes and CSP hash inputs.
-    return html.replace(/(<body\b[^>]*>)[\s\S]*?(<\/body>)/i, (_match, open, close) => open + body + close);
+    const language = window.MOKDA_I18N.getLanguage();
+    if (!['KR', 'ES', 'EN'].includes(language)) throw new Error('Invalid prerender language: ' + url);
+    // Runtime scripts bind controls to this content instead of rebuilding it.
+    return html.replace(/(<body\b[^>]*>)[\s\S]*?(<\/body>)/i, (_match, open, close) => open.replace(/>$/, ` data-content-language="${language}">`) + body + close);
   } finally {
     window.close();
   }

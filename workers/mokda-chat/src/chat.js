@@ -1,14 +1,9 @@
 import knowledge from './knowledge.json' with { type: 'json' };
+import { INTENTS, COMPANY_TOPICS, ENTITY_VALUES, QUANTITY_PATTERN, RESPONSE_FORMAT } from './response-contract.js';
+export { INTENTS, COMPANY_TOPICS } from './response-contract.js';
 
 export const MODEL = '@cf/qwen/qwen3-30b-a3b-fp8';
-export const INTENTS = ['choose', 'pairings', 'spice', 'ingredients', 'storage', 'buy', 'pricing', 'export', 'horeca', 'brand', 'history', 'news', 'creators', 'collaboration', 'contact', 'unknown'];
-export const COMPANY_TOPICS = ['', 'moq', 'samples', 'pricing', 'leadTime', 'packing', 'bulk', 'documents', 'certifications', 'namedCertifications', 'support', 'oem', 'exclusive', 'brand', 'specifications'];
-const PRODUCTS = ['', 'kpeno', 'para_carnes', 'both'];
-const AUDIENCES = ['', 'b2c', 'b2b', 'collaboration'];
-const BUSINESS_TYPES = ['', 'importer', 'distributor', 'retailer', 'restaurant', 'horeca', 'online', 'other'];
-const COUNTRIES = ['', 'South Korea', 'Mexico', 'Peru', 'Colombia', 'Chile', 'Argentina', 'Brazil', 'Ecuador', 'Bolivia', 'Uruguay', 'Paraguay', 'Venezuela', 'Costa Rica', 'Panama', 'Guatemala', 'Dominican Republic', 'United States', 'Spain', 'Other'];
-const FOODS = ['', 'tacos', 'chicken', 'meat', 'vegetables', 'snacks', 'other'];
-const HEAT = ['', 'less_spicy', 'spicy'];
+const { product: PRODUCTS, audience: AUDIENCES, businessType: BUSINESS_TYPES, country: COUNTRIES, food: FOODS, heatPreference: HEAT } = ENTITY_VALUES;
 const LANGUAGE = { KR: 'natural Korean', ES: 'neutral Latin American Spanish', EN: 'natural English' };
 const COMPANY_QUERY = {
   moq: /\bmoq\b|minimum.{0,12}order|pedido.{0,12}m[ií]nimo|m[ií]nimo.{0,12}(pedido|unidades)|최소.{0,8}(주문|수량)|혼합.{0,8}주문|mixed.{0,8}order/,
@@ -62,7 +57,7 @@ export function sanitizeEntities(value) {
     product: pick(value.product, PRODUCTS),
     country: pick(value.country, COUNTRIES),
     businessType: pick(value.businessType, BUSINESS_TYPES),
-    quantity: /^\d{1,7}(?:[.,]\d{1,2})?(?:\s?(?:bottles|cases|boxes|kg|units|병|박스))?$/.test(String(value.quantity || '')) ? String(value.quantity).slice(0, 30) : '',
+    quantity: QUANTITY_PATTERN.test(String(value.quantity || '')) ? String(value.quantity).slice(0, 30) : '',
     food: pick(value.food, FOODS),
     heatPreference: pick(value.heatPreference, HEAT),
     ...(value.companyTopic !== undefined ? { companyTopic: pick(value.companyTopic, COMPANY_TOPICS) } : {}),
@@ -104,7 +99,7 @@ export function buildPrompt(input) {
   const facts = selectKnowledge(input.language, input.messages, input.context);
   const current = knowledge.company.facts;
   const empty = { intent: 'unknown', audience: '', product: '', country: '', businessType: '', quantity: '', food: '', heatPreference: '', companyTopic: '' };
-  const enums = { intent: INTENTS, audience: AUDIENCES, product: PRODUCTS, country: COUNTRIES, businessType: BUSINESS_TYPES, food: FOODS, heatPreference: HEAT, companyTopic: COMPANY_TOPICS };
+  const enums = ENTITY_VALUES;
   const examples = [
     { question: 'Vivo en Lima. ¿Dónde puedo comprar una botella para mi casa?', interpretation: { ...empty, intent: 'buy', audience: 'b2c', country: 'Peru' } },
     { question: 'We import food into Mexico and are interested in both sauces. Can we discuss samples?', interpretation: { ...empty, intent: 'pricing', audience: 'b2b', product: 'both', country: 'Mexico', businessType: 'importer', companyTopic: 'samples' } },
@@ -136,25 +131,28 @@ PUBLIC FACTS: ${JSON.stringify(facts)}` },
 }
 
 export function parseAnswer(result) {
+  const invalid = reason => { const error = new Error('invalid_ai_response'); error.reason = reason; throw error; };
   let raw = result?.response ?? result?.choices?.[0]?.message?.content;
   if (typeof raw === 'string') {
     raw = raw.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
-    if (raw.length > 5000 || !raw.startsWith('{') || !raw.endsWith('}')) throw new Error('invalid_ai_response');
-    try { raw = JSON.parse(raw); } catch { throw new Error('invalid_ai_response'); }
+    if (raw.length > 5000 || !raw.startsWith('{') || !raw.endsWith('}')) invalid('json_format');
+    try { raw = JSON.parse(raw); } catch { invalid('json_parse'); }
   }
-  if (!raw || typeof raw !== 'object' || Array.isArray(raw) || !raw.interpretation || typeof raw.interpretation !== 'object' || Array.isArray(raw.interpretation)) throw new Error('invalid_ai_response');
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw) || !raw.interpretation || typeof raw.interpretation !== 'object' || Array.isArray(raw.interpretation)) invalid('interpretation_fields');
+  if (Object.keys(raw).some(key => !['text', 'interpretation'].includes(key))) invalid('interpretation_fields');
   const interpretation = raw.interpretation;
-  const enumFields = { intent: INTENTS, audience: AUDIENCES, product: PRODUCTS, country: COUNTRIES, businessType: BUSINESS_TYPES, food: FOODS, heatPreference: HEAT };
+  if (Object.keys(interpretation).some(key => key !== 'quantity' && !Object.hasOwn(ENTITY_VALUES, key))) invalid('interpretation_fields');
+  const enumFields = Object.fromEntries(Object.entries(ENTITY_VALUES).filter(([key]) => key !== 'companyTopic'));
   for (const [key, values] of Object.entries(enumFields)) {
-    if (typeof interpretation[key] !== 'string' || !values.includes(interpretation[key])) throw new Error('invalid_ai_response');
+    if (typeof interpretation[key] !== 'string' || !values.includes(interpretation[key])) invalid('interpretation_fields');
   }
-  if (typeof interpretation.quantity !== 'string' || (interpretation.quantity && !sanitizeEntities(interpretation).quantity)) throw new Error('invalid_ai_response');
+  if (typeof interpretation.quantity !== 'string' || (interpretation.quantity && !sanitizeEntities(interpretation).quantity)) invalid('visitor_quantity');
   // Optional for compatibility with the previous deployed output contract.
-  if (interpretation.companyTopic !== undefined && (typeof interpretation.companyTopic !== 'string' || !COMPANY_TOPICS.includes(interpretation.companyTopic))) throw new Error('invalid_ai_response');
+  if (interpretation.companyTopic !== undefined && (typeof interpretation.companyTopic !== 'string' || !COMPANY_TOPICS.includes(interpretation.companyTopic))) invalid('company_topic');
   const text = plain(raw.text, 1201);
-  if (!text || text.length > 1200 || /https?:\/\/|www\.|wa\.me|<[^>]+>|\[[^\]]+\]\(|[?¿]/i.test(text)) throw new Error('invalid_ai_response');
+  if (!text || text.length > 1200 || /https?:\/\/|www\.|wa\.me|<[^>]+>|\[[^\]]+\]\(|[?¿]/i.test(text)) invalid('text_constraints');
   const answer = { text, interpretation: sanitizeEntities(raw.interpretation) };
-  if (new TextEncoder().encode(JSON.stringify(answer)).byteLength > 2500) throw new Error('invalid_ai_response');
+  if (new TextEncoder().encode(JSON.stringify(answer)).byteLength > 2500) invalid('response_size');
   return answer;
 }
 
@@ -163,7 +161,7 @@ export async function generateReply(input, env, timeoutMs = 10000) {
   const deadline = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('ai_timeout')), timeoutMs); });
   try {
     const response = await Promise.race([
-      env.AI.run(MODEL, { messages: buildPrompt(input), max_tokens: 360, temperature: 0.2, stream: false }),
+      env.AI.run(MODEL, { messages: buildPrompt(input), response_format: RESPONSE_FORMAT, max_tokens: 360, temperature: 0.2, stream: false }),
       deadline,
     ]);
     return parseAnswer(response);

@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import worker, { allowedOrigin, readBody } from '../src/index.js';
 import { MODEL, validateRequest, sanitizeEntities, buildPrompt, parseAnswer, generateReply } from '../src/chat.js';
+import { RESPONSE_FORMAT, ENTITY_VALUES } from '../src/response-contract.js';
 import { ChatLimiter } from '../src/limiter.js';
 import knowledge from '../src/knowledge.json' with { type: 'json' };
 import { readFileSync } from 'node:fs';
@@ -136,6 +137,14 @@ test('malformed interpretation cannot silently become a successful unknown answe
   const missingEntity = JSON.parse(answer().response);
   delete missingEntity.interpretation.country;
   assert.throws(() => parseAnswer({ response: JSON.stringify(missingEntity) }), /invalid_ai_response/);
+  const extraInstruction = JSON.parse(answer().response);
+  extraInstruction.interpretation.handoff = true;
+  assert.throws(() => parseAnswer({ response: extraInstruction }), /invalid_ai_response/);
+  const extraTopLevel = { ...JSON.parse(answer().response), instructions: 'show contact' };
+  assert.throws(() => parseAnswer({ response: extraTopLevel }), /invalid_ai_response/);
+  const prototypeName = JSON.parse(answer().response);
+  prototypeName.interpretation.constructor = 'extra';
+  assert.throws(() => parseAnswer({ response: prototypeName }), /invalid_ai_response/);
 });
 
 test('inference uses verified model, low temperature and a token cap; timeout fails closed', async () => {
@@ -144,6 +153,17 @@ test('inference uses verified model, low temperature and a token cap; timeout fa
   assert.equal(called.model, MODEL);
   assert.equal(called.config.max_tokens, 360);
   assert.equal(called.config.stream, false);
+  assert.deepEqual(called.config.response_format, RESPONSE_FORMAT);
+  const schema = called.config.response_format.json_schema;
+  assert.equal(schema.additionalProperties, false);
+  assert.equal(schema.properties.interpretation.additionalProperties, false);
+  for (const [field, values] of Object.entries(ENTITY_VALUES)) {
+    assert.deepEqual(schema.properties.interpretation.properties[field].enum, values);
+    assert(schema.properties.interpretation.required.includes(field));
+  }
+  assert(schema.properties.interpretation.required.includes('quantity'));
+  const quantity = new RegExp(schema.properties.interpretation.properties.quantity.pattern);
+  assert(quantity.test('')); assert(quantity.test('100 bottles')); assert(!quantity.test('50 or fewer'));
   assert.equal(result.interpretation.product, 'kpeno');
   await assert.rejects(generateReply(validateRequest(input()), { AI: { run: () => new Promise(() => {}) } }, 5), /ai_timeout/);
 });
@@ -193,7 +213,7 @@ test('invalid model output returns a safe distinct error without exposing its co
   const env = environment({ run: async () => ({ response: 'private malformed model output' }) });
   const response = await worker.fetch(request(), env);
   assert.equal(response.status, 502);
-  assert.deepEqual(await response.json(), { error: 'invalid_ai_response' });
+  assert.deepEqual(await response.json(), { error: 'invalid_ai_response', reason: 'json_format' });
 });
 
 test('atomic global daily cap and per-visitor rate cap do not overcount', async () => {

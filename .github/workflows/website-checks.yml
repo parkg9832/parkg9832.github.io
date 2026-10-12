@@ -1,0 +1,26 @@
+name: Website checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=moderate
+      - run: npm run generate:i18n
+      - run: node workers/mokda-chat/scripts/generate-knowledge.mjs
+      - run: npm run typecheck && npm run build
+      - run: npm run test:analytics && npm run test:seo && npm run test:navigation && npm run test:integrity
+      - run: npm run test:news && npm run test:news-manager && npm run test:support-preview
+      - run: npm run test:help && npm run test:performance && npm run test:security
+      - run: node --test workers/mokda-chat/test/*.test.mjs

@@ -5,17 +5,27 @@ import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
 import vm from 'node:vm';
+import { JSDOM } from 'jsdom';
 import { fileURLToPath } from 'node:url';
 import { secureHtml } from './static-security.mjs';
 
 const root = new URL('../', import.meta.url);
 const newsPages = (await loadNews(fileURLToPath(root))).data.stories.map(story => 'news-' + story.id);
+const publicPages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsPages];
+const publishingConfig = await readFile(new URL('_config.yml', root), 'utf8');
+for (const directory of ['workers', 'apps-script', 'scripts', 'docs', 'output', 'node_modules', 'app', 'components']) {
+  assert.match(publishingConfig, new RegExp('^\\s+- ' + directory + '\\s*$', 'm'), `${directory} must be excluded from GitHub Pages publishing`);
+}
 const cacheMap = new Map();
 const cache = { get: key => cacheMap.get(key), put: (key, value) => cacheMap.set(key, value), remove: key => cacheMap.delete(key) };
+const scriptProperties = new Map();
+const properties = { getProperty: key => scriptProperties.get(key) ?? null, setProperty(key, value) { scriptProperties.set(key, String(value)); return this; } };
 const context = vm.createContext({ console: { error() {} }, Date,
   CacheService: { getScriptCache: () => cache },
+  PropertiesService: { getScriptProperties: () => properties },
   LockService: { getScriptLock: () => ({ tryLock: () => true, waitLock() {}, releaseLock() {} }) },
-  Utilities: { DigestAlgorithm: { SHA_256: 'sha256' }, computeDigest: (_, value) => createHash('sha256').update(value).digest(), base64EncodeWebSafe: value => value.toString('base64url') },
+  Utilities: { DigestAlgorithm: { SHA_256: 'sha256' }, computeDigest: (_, value) => createHash('sha256').update(value).digest(), base64EncodeWebSafe: value => value.toString('base64url'),
+    formatDate(date, timeZone, format) { assert.equal(timeZone, 'Asia/Seoul'); assert.equal(format, 'yyyy-MM-dd'); return new Date(date.getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10); } },
 });
 vm.runInContext(await readFile(new URL('apps-script/b2b-lead-automation.gs', root), 'utf8'), context);
 context.jsonResponse = value => value;
@@ -77,22 +87,26 @@ const retiredPage = await readFile(new URL('coming-soon.html', root), 'utf8');
 assert.match(retiredPage, /name="robots" content="noindex,follow"/);
 assert.match(retiredPage, /rel="canonical" href="https:\/\/www\.mokda\.kr\/es\/"/);
 assert.doesNotMatch(retiredPage, /<script\b|cdn\.tailwindcss\.com/i, 'Retired page must not load an unpinned third-party script');
-for (const locale of ['ko', 'es', 'en']) for (const page of ['index', 'about', 'products', 'qna', 'contact', 'news', ...newsPages]) {
-  const built = await readFile(new URL(`${locale}/${page}.html`, root), 'utf8');
+for (const locale of ['', 'ko', 'es', 'en']) for (const page of publicPages) {
+  const built = await readFile(new URL(`${locale ? locale + '/' : ''}${page}.html`, root), 'utf8');
   assert.match(built, /Content-Security-Policy/);
   assert.match(built, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
-  assert.ok(!/<script>([\s\S]*?)<\/script>/.test(built), 'Executable inline scripts must be externalized');
-  assert.ok(!/\son(?:load|click)=/.test(built));
-  for (const match of built.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+  assert.ok(built.indexOf('Content-Security-Policy') < built.indexOf('<script'), 'CSP precedes all script elements');
+  if (locale) assert.ok(!/<script>([\s\S]*?)<\/script>/.test(built), 'Localized executable inline scripts must be externalized');
+  const document = new JSDOM(built);
+  assert.equal([...document.window.document.querySelectorAll('*')].some(node => [...node.attributes].some(attribute => /^on[a-z]+$/i.test(attribute.name))), false, 'No executable HTML event-handler attributes');
+  document.window.close();
+  assert.ok(!/script-src [^;]*unsafe-/i.test(built), 'Script policy must not allow inline handlers or eval');
+  for (const match of built.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)) {
     const hash = createHash('sha256').update(match[1].replace(/\r\n?/g, '\n')).digest('base64');
-    assert.ok(built.includes('sha256-' + hash));
+    assert.ok(built.includes('sha256-' + hash), `${locale ? locale + '/' : ''}${page}.html inline-script hash must match its CSP`);
   }
 }
 
 const server = spawn(process.execPath, [fileURLToPath(new URL('serve-static.mjs', import.meta.url)), '4191'], { stdio: ['ignore', 'pipe', 'pipe'] });
 try {
   await Promise.race([once(server.stdout, 'data'), once(server, 'exit').then(() => { throw new Error('Preview failed to start'); })]);
-  for (const path of ['/.git/config', '/.env', '/apps-script/b2b-lead-automation.gs', '/docs/FOUR_PAGE_REFINEMENT.md', '/package-lock.json', '/%ZZ', '/..%5C.env']) {
+  for (const path of ['/.git/config', '/.env', '/apps-script/b2b-lead-automation.gs', '/workers/mokda-chat/src/chat.js', '/workers/mokda-chat/wrangler.jsonc', '/workers/mokda-chat/.dev.vars', '/output/chat-knowledge/intake.json', '/scripts/news-manager.mjs', '/docs/FOUR_PAGE_REFINEMENT.md', '/package-lock.json', '/%ZZ', '/..%5C.env']) {
     assert.equal((await fetch('http://127.0.0.1:4191' + path)).status, 404, path);
   }
   const response = await fetch('http://127.0.0.1:4191/ko/');
@@ -107,4 +121,5 @@ try {
   assert.equal((await partial.arrayBuffer()).byteLength,128);
   assert.equal((await fetch(media,{headers:{Range:'bytes=999999999-'}})).status,416);
 } finally { server.kill(); }
-console.log('Security regressions passed: public endpoints, schema/size bounds, formula safety, receipts, quotas, CSP, private paths.');
+console.log(`Security regressions passed: public endpoints, schema/size bounds, formula safety, receipts, quotas, CSP across ${publicPages.length * 4} source/localized pages, publishing exclusions and private paths.`);
+await import('./inquiry-quota.test.mjs');

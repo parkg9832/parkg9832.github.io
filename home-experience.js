@@ -1,6 +1,11 @@
 (() => {
   'use strict';
   const language = window.MOKDA_I18N.getLanguage();
+  const isPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) && new URLSearchParams(location.search).get('review_preview') === '1';
+  // The generator already applies these editorial transforms. Preserve the
+  // rendered images, reviews and card nodes when the page is opened.
+  const prerendered = document.body.dataset.contentLanguage === language;
+  if (prerendered && !isPreview) return;
   const fieldAlts = {
     KR: ['고추 산지를 직접 살펴보는 MOKDA', '식품 제조 현장에서 생산 공정을 확인하는 MOKDA', '한국에서 해외 진출을 준비하는 MOKDA의 업무 미팅'],
     EN: ['MOKDA visiting a chili farm', 'MOKDA reviewing production at a food manufacturing facility', 'MOKDA preparing for international expansion at a meeting in Korea'],
@@ -43,49 +48,47 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const foodPhotos = ['kpeno-food-product-centered-20260922.webp', 'para-carnes-food-product-centered-20260922.webp'];
   const products = ['K-PEÑO', 'Para Carnes'];
-  const anchors = ['original', 'para-carnes'];
+  if (!prerendered) {
+    const grid = document.getElementById('productsGrid');
+    const productCards = [...grid.children];
+    productCards.forEach((card, i) => {
+      const frame = card.querySelector('.home-product-image');
+      const title = frame.lastElementChild;
+      title.className = 'home-product-label';
+      const description = card.querySelector('.home-product-copy');
+      description.querySelector('.condensed-label')?.remove();
+      description.prepend(title);
+      frame.querySelector('div')?.remove();
+      const food = document.createElement('img');
+      food.src = '/assets/images/' + foodPhotos[i];
+      food.alt = products[i] + ' · ' + copy.tabs[i];
+      food.width = 960; food.height = 1280;
+      food.setAttribute('loading', 'lazy'); food.setAttribute('decoding', 'async');
+      frame.replaceChildren(food);
+      const uses = document.createElement('p');
+      uses.className = 'home-product-uses';
+      uses.textContent = copy.tabs[i];
+      description.append(uses);
+      const panel = document.createElement('div');
+      panel.className = 'home-product-panel'; panel.id = `home-product-panel-${i}`;
+      card.before(panel); panel.append(card);
+    });
+    // Reading first: all food pairings are visible without choosing a tab.
+    document.getElementById('productsPageCta')?.parentElement.remove();
+    const lead = document.querySelector('.home-lineup-lead') || document.createElement('p');
+    lead.className = 'home-lineup-lead';
+    lead.textContent = copy.pairLead;
+    document.querySelector('.home-products-heading').append(lead);
 
-  const grid = document.getElementById('productsGrid');
-  const productCards = [...grid.children];
-  productCards.forEach((card, i) => {
-    const frame = card.querySelector('.home-product-image');
-    const title = frame.lastElementChild;
-    title.className = 'home-product-label';
-    const description = card.querySelector('.home-product-copy');
-    description.querySelector('.condensed-label')?.remove();
-    description.prepend(title);
-    frame.querySelector('div')?.remove();
-    const food = document.createElement('img');
-    food.src = '/assets/images/' + foodPhotos[i];
-    food.alt = products[i] + ' · ' + copy.tabs[i];
-    food.width = 960; food.height = 1280;
-    food.loading = 'eager'; food.decoding = 'async';
-    food.fetchPriority = i === 0 ? 'high' : 'auto';
-    frame.replaceChildren(food);
-    const uses = document.createElement('p');
-    uses.className = 'home-product-uses';
-    uses.textContent = copy.tabs[i];
-    description.append(uses);
-    const panel = document.createElement('div');
-    panel.className = 'home-product-panel'; panel.id = `home-product-panel-${i}`;
-    card.before(panel); panel.append(card);
-  });
-  // Reading first: all food pairings are visible without choosing a tab.
-  document.getElementById('productsPageCta')?.parentElement.remove();
-  const lead = document.querySelector('.home-lineup-lead') || document.createElement('p');
-  lead.className = 'home-lineup-lead';
-  lead.textContent = copy.pairLead;
-  document.querySelector('.home-products-heading').append(lead);
+    const voices = document.getElementById('voices');
+    document.getElementById('proof').after(voices);
+    document.querySelectorAll('#voicesList blockquote').forEach(quote => {
+      const full = quote.textContent.replace(/^\s*“\s*/, '').trim();
+      quote.textContent = full;
+    });
+    document.getElementById('voicesList').classList.add('home-quotes-reading');
+  }
 
-  const voices = document.getElementById('voices');
-  document.getElementById('proof').after(voices);
-  document.querySelectorAll('#voicesList blockquote').forEach(quote => {
-    const full = quote.textContent.replace(/^\s*“\s*/, '').trim();
-    quote.textContent = full;
-  });
-  document.getElementById('voicesList').classList.add('home-quotes-reading');
-
-  const isPreview = ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) && new URLSearchParams(location.search).get('review_preview') === '1';
   const reviewData = window.MOKDA_TRIAL_REVIEWS;
   const localText = value => value && typeof value === 'object' ? value[language] || value.ES || value.KR || value.EN || '' : value;
   const actualReviews = (Array.isArray(reviewData) ? reviewData : []).filter(item => item && item.published === true && String(localText(item.quote) || '').trim() && String(item.name || '').trim() && String(item.source || '').trim());

@@ -162,4 +162,5 @@
   } catch { /* Corrupt or unavailable storage starts a clean conversation. */ }
   if (transcript.length) { transcript.forEach(item => renderMessage(item, false)); showOptions(transcript.length > 1 ? engine?.reply('', { language: lang, context }) : undefined); updateHandoff(); } else restart();
   send.disabled = !input.value.trim(); viewport(); if (restoredOpen) open();
+  window.MOKDA_HELP_UI = { open };
 })();

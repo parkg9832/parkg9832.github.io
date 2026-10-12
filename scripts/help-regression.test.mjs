@@ -202,9 +202,12 @@ for (const url of process.env.MOKDA_HELP_SKIP_INTEGRATION === '1' ? [] : urls) {
   const path = url.pathname.slice(1) + (url.pathname.endsWith('/') ? 'index.html' : '');
   const dom = new JSDOM(read(path), { url: url.href }); const d = dom.window.document;
   const loaded = [...d.querySelectorAll('script[src]')].map(script => new URL(script.src).pathname);
-  const required = scripts.map(file => `/${file}`);
+  const required = ['/site-contact-config.js', '/site-help-loader.js'];
   for (const src of required) assert.equal(loaded.filter(value => value === src).length, 1, `${path}: ${src}`);
   const order = required.map(src => loaded.indexOf(src)); assert.deepEqual(order, [...order].sort((a, b) => a - b));
+  const manifest = JSON.parse(d.querySelector('script[src*="site-help-loader.js"]').dataset.chatAssets);
+  assert.deepEqual(manifest.map(value => new URL(value, url).pathname), scripts.slice(1).map(file => `/${file}`));
+  for (const file of scripts.slice(1)) assert(!loaded.includes(`/${file}`), `${path}: closed chat must not load ${file}`);
   assert.equal([...d.querySelectorAll('link[rel="stylesheet"]')].filter(link => new URL(link.href).pathname === '/styles/site-help.css').length, 1); dom.window.close();
 }
 console.log(`Messenger checks passed: ${checks} localized answer/context checks, B2C availability and Instagram, B2B qualification, gated contact controls, preparation delays, AI cancellation/fallback, product/country/quantity corrections, WhatsApp encoding, preserved composer focus, session recovery, input safety and modal cleanup. ${process.env.MOKDA_HELP_SKIP_INTEGRATION === '1' ? 'Page integration skipped until regeneration.' : '48 page integrations passed.'} Native layout/keyboard behavior is verified separately in the browser.`);

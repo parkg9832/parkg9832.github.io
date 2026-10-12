@@ -208,6 +208,7 @@
     if (!element) return;
 
     const normalizedLanguage = normalizeLanguage(language);
+    if (element.dataset.footerLanguage === normalizedLanguage) return;
     const footer = FOOTER_COPY[normalizedLanguage];
     const localizedPrefix = { ES: 'es', EN: 'en', KR: 'ko' }[normalizedLanguage];
     const routePrefix = window.location.pathname.match(/^\/(es|en|ko)(?:\/|$)/)?.[1] || localizedPrefix;
@@ -261,6 +262,7 @@
         <p class="mokda-footer-copyright">${footer.copyright}</p>
       </div>
     `;
+    element.dataset.footerLanguage = normalizedLanguage;
   }
 
   window.MOKDA_FOOTER = { render };

@@ -68,7 +68,10 @@ export default {
       return reply(answer, 200, origin);
     } catch (error) {
       // No request content, upstream error text, headers or credentials are logged.
-      if (error.message === 'invalid_ai_response') return reply({ error: 'invalid_ai_response' }, 502, origin);
+      if (error.message === 'invalid_ai_response') {
+        const reasons = ['json_format', 'json_parse', 'interpretation_fields', 'visitor_quantity', 'company_topic', 'text_constraints', 'response_size'];
+        return reply({ error: 'invalid_ai_response', ...(reasons.includes(error.reason) ? { reason: error.reason } : {}) }, 502, origin);
+      }
       return reply({ error: error.message === 'ai_timeout' ? 'ai_timeout' : 'ai_unavailable' }, error.message === 'ai_timeout' ? 504 : 503, origin);
     }
   },

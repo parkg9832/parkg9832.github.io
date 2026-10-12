@@ -1,6 +1,9 @@
 const SERVICE_NAME = 'MOKDA Inquiry';
 const TIME_ZONE = 'Asia/Seoul';
 const LEAD_SHEET_NAME = 'Sheet1';
+// Site-specific safety budget; this is independent of Google's account quotas.
+const PUBLIC_INQUIRY_DAILY_LIMIT = 80;
+const PUBLIC_INQUIRY_DAILY_PROPERTY = 'PUBLIC_INQUIRY_DAILY_BUDGET';
 
 const SCRIPT_PROPERTY_KEYS = {
   sheetId: 'SHEET_ID',
@@ -604,12 +607,35 @@ function requestDigest_(value) {
   return Utilities.base64EncodeWebSafe(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, value));
 }
 
-// Quota protection, not authentication: Apps Script does not expose a trustworthy
-// client IP. Cache eviction/restarts can reset these best-effort limits.
+// Short-window quota protection, not authentication: Apps Script does not expose
+// a trustworthy client IP. Cache eviction can reset these best-effort limits.
 function takeQuota_(cache, key, limit, seconds) {
   const count = Number(cache.get(key) || 0);
   if (count >= limit) throw new Error('Request limit reached');
   cache.put(key, String(count + 1), seconds);
+}
+
+// Called only while holding the script lock. One persistent, bounded record
+// contains no contact details and survives cache eviction. Failures consume the
+// reservation too, so repeated translation/mail failures cannot reopen budget.
+function reserveDailyInquiryBudget_() {
+  const properties = PropertiesService.getScriptProperties();
+  const today = Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd');
+  const previous = properties.getProperty(PUBLIC_INQUIRY_DAILY_PROPERTY);
+  let count = 0;
+  if (previous != null && previous !== '') {
+    let state;
+    try { state = JSON.parse(previous); } catch (error) { throw new Error('Invalid inquiry budget'); }
+    if (!state || typeof state !== 'object' || Array.isArray(state) ||
+        Object.keys(state).length !== 2 || typeof state.day !== 'string' ||
+        !/^\d{4}-\d{2}-\d{2}$/.test(state.day) || state.day > today ||
+        !Number.isInteger(state.count) || state.count < 0 || state.count > PUBLIC_INQUIRY_DAILY_LIMIT) {
+      throw new Error('Invalid inquiry budget');
+    }
+    if (state.day === today) count = state.count;
+  }
+  if (count >= PUBLIC_INQUIRY_DAILY_LIMIT) throw new Error('Daily inquiry limit reached');
+  properties.setProperty(PUBLIC_INQUIRY_DAILY_PROPERTY, JSON.stringify({ day: today, count: count + 1 }));
 }
 
 function reservePublicQuota_(kind, limit) {
@@ -634,6 +660,7 @@ function reserveInquiry_(payload) {
     if (receipt) throw new Error('Request already processing');
     takeQuota_(cache, 'quota:inquiry:' + Math.floor(Date.now() / 60000), 30, 120);
     takeQuota_(cache, 'quota:contact:' + requestDigest_(identity) + ':' + Math.floor(Date.now() / 3600000), 5, 3600);
+    reserveDailyInquiryBudget_();
     cache.put(key, 'pending', 600);
     return { key, duplicate: false };
   } finally { lock.releaseLock(); }
@@ -710,13 +737,13 @@ function notifyLead(lead) {
     console.warn('No notification channel configured. Add CHAT_WEBHOOK_URL or NOTIFICATION_EMAIL.');
     return { channel: 'none', ok: false, error: 'Missing NOTIFICATION_EMAIL and valid CHAT_WEBHOOK_URL' };
   } catch (error) {
-    console.error(`Notification failed: ${error.message || error}`);
+    console.error('Inquiry notification failed');
 
     if (notificationEmail) {
       return tryNotifyEmail(lead, notificationEmail);
     }
 
-    return { channel: 'none', ok: false, error: String(error.message || error) };
+    return { channel: 'none', ok: false, error: 'Notification failed' };
   }
 }
 
@@ -725,8 +752,8 @@ function tryNotifyEmail(lead, email) {
     notifyEmail(lead, email);
     return { channel: 'email', ok: true };
   } catch (error) {
-    console.error(`Email notification failed: ${error.message || error}`);
-    return { channel: 'email', ok: false, error: String(error.message || error) };
+    console.error('Inquiry email notification failed');
+    return { channel: 'email', ok: false, error: 'Email notification failed' };
   }
 }
 
@@ -743,7 +770,7 @@ function notifyGoogleChatWebhook(lead, webhookUrl) {
 
   const statusCode = response.getResponseCode();
   if (statusCode < 200 || statusCode >= 300) {
-    throw new Error(`Google Chat webhook returned HTTP ${statusCode}: ${response.getContentText()}`);
+    throw new Error('Google Chat notification was rejected');
   }
 }
 
@@ -834,7 +861,7 @@ function safeTranslate(value, sourceLanguage, targetLanguage) {
   try {
     return LanguageApp.translate(text, sourceLanguage, targetLanguage);
   } catch (error) {
-    console.warn(`Translation failed (${sourceLanguage} -> ${targetLanguage}): ${error.message || error}`);
+    console.warn('Inquiry translation failed; original text retained');
     return text;
   }
 }
@@ -872,7 +899,7 @@ function refreshDashboardIfNeeded_() {
   try {
     updateCompleteWebsiteDashboard_();
   } catch (error) {
-    console.error(`Support dashboard refresh failed: ${error.message || error}`);
+    console.error('Website dashboard refresh failed');
   }
 }
 

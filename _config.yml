@@ -6,6 +6,7 @@ exclude:
   - components
   - public
   - apps-script
+  - workers
   - scripts
   - docs
   - output
@@ -25,3 +26,4 @@ exclude:
   - tailwind.config.ts
   - translations.ts
   - sync.sh
+  - security_best_practices_report.md

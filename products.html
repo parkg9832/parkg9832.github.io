@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-wE/tMXnCahVZT8lepp477AyMLwRdLsJg0WPHDCZ3dic='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'self' https://www.googletagmanager.com 'sha256-8EtZpnVJPaE8E4UndTE+uFrEY5+Hnu8HqiVzgL495pc=' 'sha256-J9zndwR+4c+wsKpV3Km4tgGCIBJOoxw550hy1LQeedM=' 'sha256-K4AoW0w49K8Lyn5N4hgplHF1i40p+6hEhjmCEFjHGBw='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -366,6 +366,10 @@
       }
 
       function renderPage() {
+        if (document.body.dataset.contentLanguage === language) {
+          renderLanguageButtons();
+          return;
+        }
         const t = content[language];
         document.title = t.title;
         document.documentElement.lang = window.MOKDA_I18N.getHtmlLang(language);
@@ -436,11 +440,6 @@
     <script src="./site-product-media.js?v=20260912-6"></script>
     <script src="./brand-motion.js?v=20261010-site" defer></script>
       <script defer src="./site-contact-config.js"></script>
-    <script defer src="./site-company-knowledge.js"></script>
-    <script defer src="./site-help-data.js"></script>
-    <script defer src="./site-chat-intents.js"></script>
-    <script defer src="./site-chat-engine.js"></script>
-    <script defer src="./site-chat-ai.js"></script>
-    <script defer src="./site-help.js"></script>
+    <script defer src="./site-help-loader.js" data-chat-assets="[&quot;/site-company-knowledge.js?v=107e3b9bcd5f&quot;,&quot;/site-help-data.js?v=04678749eb84&quot;,&quot;/site-chat-intents.js?v=c0590831cc4e&quot;,&quot;/site-chat-engine.js?v=8bc851ee2608&quot;,&quot;/site-chat-ai.js?v=43bb8192d391&quot;,&quot;/site-help.js?v=18f2d7b7b8b3&quot;]"></script>
 </body>
 </html>

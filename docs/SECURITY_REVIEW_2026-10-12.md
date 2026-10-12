@@ -48,3 +48,9 @@ GitHub Pages 저장소 파일만으로 HTTP 헤더를 추가할 수 없다. 실�
 - `npm audit --omit=dev`는 0건이다. CSS 파서도 공식 패치 7.1.6으로 고정하고 기존 디자인 생성과 빌드를 확인했다.
 - 개발 의존성 전체 감사에는 `braces`의 미수정 재귀 깊이 문제와 이를 사용하는 Tailwind 3 도구 경로 5건이 남는다. 이 도구는 신뢰하는 저장소의 고정 CSS/파일 패턴을 빌드할 때만 사용하며 공개 Pages나 Worker에서 실행하지 않는다. 임의 CSS·glob 패턴을 방문자로부터 받아 컴파일하는 기능은 없다. [공식 보안 공지](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)의 수정 버전은 현재 없다. Tailwind 4 강제 전환이나 검사를 숨겨 전체 취약점이 0이라고 표현하지 않는다.
 - Next 개발·로컬 실행도 127.0.0.1에만 바인딩한다. 공개 호스팅의 헤더/강한 봇 판별에 관한 3절의 경계는 그대로 남는다.
+
+## 6. 운영 반영 확인
+
+코드 커밋 `5e194da968e11b2718bb02a1e661d17bc0663ca8`의 Website checks와 Pages build and deployment는 모두 성공했다. 이후 확인한 운영 HTML 48개는 로컬 원본과 일치했고, 참조 자산 107개가 정상 응답했다. Worker 코드·설정, Apps Script 코드, 원문 상담 기록, 점검 문서, 편집 스크립트, 환경 파일과 Git 설정 경로 8개는 404였다. SEC-20261012-01의 운영 노출 차단도 확인됐다.
+
+활성 Worker `f69ee0cc-cc36-40b8-ba43-170ab9981cca`에서 실제 세 언어 대화가 HTTP 200을 반환했다. 실제 운영 Chrome 상담창에서도 한국어 MOQ·샘플 질문에 응답했고, 일반 안내에서 WhatsApp 버튼을 숨기는 조건을 확인했다. 문의 서버 v44의 인증된 소스 조회와 부작용 없는 운영 GET 검사도 통과했다. 로컬 상세 증거는 배포에서 제외된 `output/performance/`, `output/chat-knowledge/`, `output/apps-script-security-20261012/`, `output/playwright/refactor/`에 보관한다.

@@ -22,7 +22,7 @@ await copyFile(join(root,'assets/images/mokda-logo-main.webp'),join(fixture,'ass
 await copyFile(join(root,'assets/mokda-tailwind.css'),join(fixture,'assets/mokda-tailwind.css'));
 await mkdir(join(fixture,'assets/videos/news'),{recursive:true});
 for(const name of await readdir(join(root,'assets/videos/news')))await writeFile(join(fixture,'assets/videos/news',name),Buffer.from('fixture-only'));
-process.env.MOKDA_FFMPEG=join(root,'output/tools/ffmpeg/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe');
+process.env.MOKDA_FFMPEG ||= process.platform === 'win32' ? join(root,'output/tools/ffmpeg/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe') : '/usr/bin/ffmpeg';
 const productionBefore=await readFile(join(root,'site-news-data.js'),'utf8');
 const port=4189,origin=`http://127.0.0.1:${port}`,server=createNewsManager({root:fixture,port});
 server.listen(port,'127.0.0.1');await once(server,'listening');

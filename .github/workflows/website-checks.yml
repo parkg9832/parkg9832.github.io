@@ -9,6 +9,9 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      MOKDA_FFMPEG: /usr/bin/ffmpeg
+      NEXT_TELEMETRY_DISABLED: 1
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
@@ -16,6 +19,8 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - name: Ensure video test runtime
+        run: test -x /usr/bin/ffmpeg || (sudo apt-get update && sudo apt-get install --no-install-recommends -y ffmpeg)
       - run: npm audit --omit=dev --audit-level=moderate
       - run: npm run generate:i18n
       - run: node workers/mokda-chat/scripts/generate-knowledge.mjs

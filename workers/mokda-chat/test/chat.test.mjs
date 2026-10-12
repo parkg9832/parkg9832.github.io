@@ -189,6 +189,13 @@ test('success response stores counts only and hides upstream exceptions', async 
   assert.equal((await worker.fetch(request(), { AI: env.AI })).status, 503);
 });
 
+test('invalid model output returns a safe distinct error without exposing its content', async () => {
+  const env = environment({ run: async () => ({ response: 'private malformed model output' }) });
+  const response = await worker.fetch(request(), env);
+  assert.equal(response.status, 502);
+  assert.deepEqual(await response.json(), { error: 'invalid_ai_response' });
+});
+
 test('atomic global daily cap and per-visitor rate cap do not overcount', async () => {
   const storage = memoryStorage();
   const limiter = new ChatLimiter({ storage }, { DAILY_AI_LIMIT: '4' });

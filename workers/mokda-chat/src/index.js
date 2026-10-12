@@ -68,6 +68,7 @@ export default {
       return reply(answer, 200, origin);
     } catch (error) {
       // No request content, upstream error text, headers or credentials are logged.
+      if (error.message === 'invalid_ai_response') return reply({ error: 'invalid_ai_response' }, 502, origin);
       return reply({ error: error.message === 'ai_timeout' ? 'ai_timeout' : 'ai_unavailable' }, error.message === 'ai_timeout' ? 504 : 503, origin);
     }
   },

@@ -19,7 +19,7 @@
       human: '아래 WhatsApp에서 담당자에게 문의하실 수 있어요. 지금까지 알려주신 내용을 초안으로 준비했고, 실제 전송은 WhatsApp에서 직접 해주세요.',
       status: '이 창은 자동 안내라 담당자의 접속 상태는 확인할 수 없어요. 제품이나 거래에 관한 질문은 여기서 먼저 안내해드릴 수 있습니다.',
       noSend: '아직 담당자에게 메시지가 전송되지는 않았어요. 상담 연결이 필요한 경우 WhatsApp에서 내용을 확인하고 직접 보내주세요.',
-      lessSpicy: 'K-PEÑO는 매콤한 제품이에요. Para Carnes의 매운맛을 수치로 비교하거나 맵지 않다고 보장할 자료는 현재 없으니, 각 제품의 맛 설명을 먼저 확인해주세요.',
+      lessSpicy: 'K-PEÑO는 매콤한 소스예요. 두 제품의 매운맛을 수치로 비교하는 기준은 정하지 않았습니다. Para Carnes가 맵지 않다고 보장하기는 어려우니 각 제품의 맛 설명을 먼저 확인해주세요.',
       safety: '개인별 섭취 안전이나 무함유·인증 여부는 이 안내로 보증할 수 없어요. 실제 제품의 최신 원재료·알레르겐 표시를 확인해주세요.',
       labelReview: '최신 라벨이나 별도 제품 자료 확인이 필요하신 경우 담당자에게 요청하실 수 있어요. 아래 WhatsApp에 확인하려는 내용을 함께 남겨주세요.',
       issue: '제품 상태나 주문 문제는 개별 확인이 필요해요. 아래 WhatsApp으로 제품명과 구매처, 문제가 생긴 내용을 보내주세요. 사진이 있다면 함께 전달해주시면 확인에 도움이 됩니다.',
@@ -119,11 +119,52 @@
   const issue = /(?:제품|병|소스|배송|주문).{0,20}(?:깨[졌짐]|파손|누수|샌|새요|누락|오배송|변질)|환불|반품|\b(?:damaged|broken|leaking|refund|return my order|producto danado|botella rota|derrame|reembolso|devolucion)\b/;
   const labelRequest = /(?:최신|실제|추가|정확한).{0,15}(?:라벨|알레르|원재료|성분|제품\s*자료).{0,20}(?:확인|보내|받|요청)|(?:라벨|제품\s*자료).{0,20}(?:보내|요청)|\b(?:send|request|need|enviar|solicitar|necesito)\b.{0,45}\b(?:current label|latest label|allergen documents?|product documents?|etiqueta actual|ficha tecnica|documentacion)\b/;
   const outside = /날씨|비트코인|api\s*key|토큰|고객.*삭제|\b(?:weather|clima|bitcoin|delete|password|politics|programming)\b|<\/?[a-z]/;
-  const fields = ['product', 'productOrigin', 'country', 'city', 'quantity', 'purpose', 'channel', 'heat_preference', 'food', 'lastQuestion', 'topic', 'language', 'audience', 'businessType', 'funnelStage', 'pendingField', 'proposal', 'issue'];
+  const fields = ['product', 'productOrigin', 'country', 'city', 'quantity', 'purpose', 'channel', 'heat_preference', 'food', 'lastQuestion', 'topic', 'language', 'audience', 'businessType', 'funnelStage', 'pendingField', 'proposal', 'issue', 'companyTopic'];
   const allowedIntents = new Set(['choose', 'pairings', 'heat', 'spice', 'storage', 'ingredients', 'allergens', 'buy', 'pricing', 'export', 'horeca', 'brand', 'history', 'news', 'creators', 'collaboration', 'human', 'contact', 'issue', 'unknown']);
+  const companyPatterns = [
+    ['namedCertifications', /\b(?:haccp|iso(?:\s*\d+)?|halal|kosher|fssc|brc|gmp)\b|할랄|코셔|해썹/],
+    ['moq', /\b(?:moq|minimum order|minimum quantity|pedido minimo|cantidad minima|mix(?:ed)? order|mixed carton)\b|최소\s*(?:주문|수량)|혼합\s*(?:주문|가능)|섞어.{0,15}(?:주문|가능)/],
+    ['samples', /\b(?:samples?|muestras?)\b|샘플/],
+    ['packing', /\b(?:(?:bottles?|units?)\s*(?:per|in)\s*(?:a |each )?(?:case|carton|box)|(?:case|carton|box)\s*(?:size|count|pack)|unidades\s*por\s*caja|botellas\s*(?:por|en)\s*(?:una\s*)?caja)\b|(?:박스|상자).{0,15}(?:몇|수량|구성|단위)|몇\s*개.{0,12}(?:박스|상자)/],
+    ['bulk', /\b(?:bulk|foodservice|large formats?|large packs?|granel|formatos? grandes?|gran formato)\b|대용량|벌크/],
+    ['documents', /\b(?:catalog\w*|brochure\w*|technical (?:sheet|data)|product (?:documents?|presentation)|nutrition\w* (?:table|information|facts)|test reports?|ficha tecnica|fichas tecnicas|documentacion|analisis|informacion nutricional)\b|카탈로그|소개서|시험\s*성적서|시험\s*자료|성분표|영양\s*정보|제품\s*자료/],
+    ['certifications', /\b(?:certificat\w*|certificac\w*|certificad\w*)\b|인증/],
+    ['leadTime', /\b(?:lead time|dispatch|ship(?:ping)? time|delivery time|production time|plazo\s*(?:de\s*)?(?:entrega|produccion|envio)|tiempo\s*(?:de\s*)?(?:entrega|produccion|envio))\b|출고|납기|생산\s*기간|배송\s*기간/],
+    ['pricing', /\b(?:prices?|pricing|quotation|quote|cotizacion|precios?)\b|가격|단가|견적/],
+    ['support', /\b(?:support hours?|business hours?|response time|contact languages?|speak spanish|speak korean|horario|horarios|tiempo de respuesta|idiomas?)\b|상담\s*(?:시간|언어|가능)|답장|응답\s*시간|시차/],
+    ['oem', /\b(?:oem|private label|own brand|marca propia)\b|자체\s*(?:상표|브랜드)|프라이빗\s*라벨/],
+    ['exclusive', /\b(?:exclusiv\w*|exclusive distribut\w*)\b|독점/],
+    ['brand', /\b(?:latin american chefs?|chefs? latinoamerican\w*|sensory (?:evaluation|test)|evaluacion sensorial|only korean sauce|unique korean sauce|salsa coreana unica|target\w* latin america)\b|중남미\s*셰프|관능\s*평가|유일.{0,15}(?:소스|브랜드)|중남미.{0,20}(?:타겟|겨냥|개발)|차별점|제품\s*강점/],
+    ['specifications', /\b(?:bottle (?:size|weight)|net weight|grams?|shelf life|expiry|expiration|origin|peso neto|vida util|origen|tamano\s*(?:de\s*)?(?:botella|envase))\b|제품\s*용량|병\s*용량|몇\s*(?:g|그램)|소비기한|유통기한|원산지|제조국/],
+  ];
+  const companyTopics = new Set(companyPatterns.map(([topic]) => topic));
+  function companyAnswers(language) { return window.MOKDA_COMPANY_KNOWLEDGE?.answers?.[language] || null; }
+  function companyMatches(question, interpretation, language) {
+    const answers = companyAnswers(language);
+    if (!answers) return [];
+    const n = normalize(question), topics = companyPatterns.filter(([, pattern]) => pattern.test(n)).map(([topic]) => topic);
+    if (topics.includes('namedCertifications') && topics.includes('certifications')) topics.splice(topics.indexOf('certifications'), 1);
+    if (!topics.length && !ingredients.test(n) && !storage.test(n) && companyTopics.has(interpretation?.companyTopic)) topics.push(interpretation.companyTopic);
+    return topics.filter(topic => typeof answers[topic] === 'string' && answers[topic]);
+  }
+  function commercialRequest(question, topics, context) {
+    const n = normalize(question);
+    if (context.audience === 'B2C') return false;
+    if (!topics.some(topic => ['samples', 'pricing', 'oem', 'exclusive', 'bulk'].includes(topic))) return false;
+    if (context.audience === 'B2B' && context.country && ['importer', 'distributor', 'retail', 'restaurant', 'other'].includes(context.businessType) && ['kpeno', 'para_carnes', 'both'].includes(context.product)) return true;
+    // Availability and policy questions are answered before collecting business details.
+    const informational = /조건|정책|무료|몇\s*개|최대|가능한가|가능하|있나요|어떻게|궁금|알고\s*싶|\b(?:policy|policies|free|limits?|how many|want to know|do you (?:offer|provide|have)|can you (?:offer|provide)|gratis|gratuitas?|condiciones|politica|cuantas|ofrecen|tienen|se puede|quiero saber)\b/.test(n);
+    const proposal = /(?:견적|샘플|독점|oem|대용량|가격|자체\s*(?:상표|브랜드)).{0,35}(?:받고\s*싶|요청|진행|논의|제안|문의하고\s*싶)|(?:요청|논의|제안).{0,25}(?:견적|샘플|독점|oem)|\b(?:want|would like|need|request|send|discuss|quiero|quisiera|necesito|solicito|enviame|cotizar)\b/.test(n);
+    const directRequest = /받고\s*싶|요청|진행|논의|제안|문의하고\s*싶|\b(?:request|send|discuss|solicito|enviame|cotizar)\b|\b(?:would like|quiero|quisiera)\b.{0,30}\b(?:samples?|muestras?|quote|cotizacion)\b/.test(n) && !/알고\s*싶|\b(?:want to know|quiero saber)\b/.test(n);
+    return proposal && (!informational || directRequest) || Boolean(context.audience === 'B2B' && context.businessType && topics.some(topic => ['samples', 'pricing', 'oem', 'exclusive', 'bulk'].includes(topic)) && !informational);
+  }
+  function actualDocumentRequest(question) {
+    return /(?:카탈로그|소개서|성적서|자료|성분표|인증서|영양\s*정보).{0,20}(?:보내|요청|받고\s*싶)|(?:보내|요청).{0,20}(?:카탈로그|소개서|자료|성적서)|\b(?:send|please send|request|enviame|envien|mandame|solicito)\b/.test(normalize(question));
+  }
   function interpreted(value) {
     if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
     const result = {};
+    if (companyTopics.has(value.companyTopic)) result.companyTopic = value.companyTopic;
     if (allowedIntents.has(value.intent)) result.intent = ['heat', 'spice'].includes(value.intent) ? 'choose' : value.intent === 'allergens' ? 'ingredients' : value.intent;
     if (['B2C', 'B2B', 'b2c', 'b2b'].includes(value.audience)) result.audience = value.audience.toUpperCase();
     if (['kpeno', 'para_carnes', 'both'].includes(value.product)) result.product = value.product;
@@ -259,6 +300,7 @@
     }
     const questions = window.MOKDA_HELP_DATA?.[lang]?.categories.flatMap(category => category.questions) || [];
     const ai = interpreted(interpretation), ids = [], add = id => { if (!ids.includes(id)) ids.push(id); };
+    const company = companyMatches(question, ai, lang);
     const social = /^(?:안녕(?:하세요)?|반갑습니다|감사합니다|고마워요?|hola|buenos dias|buenas tardes|buenas noches|gracias|muchas gracias|hello|hi|hey|thanks|thank you|good morning|good evening)[!?.\s¡¿]*$/.test(n);
     const declinedHandoff = /(?:와츠앱|왓츠앱|whatsapp).{0,15}(?:말고|싫|안\s*할)|\b(?:no quiero|do not want|don't want|not)\b.{0,20}\bwhatsapp\b/.test(n);
     const switched = context.language !== (previous.language || language);
@@ -275,7 +317,10 @@
     if (!ids.length && /역사|연혁|시작\s*이야기|historia|how.*start/.test(n)) add('history');
     if (!ids.length && /국회방송|기사|소식|뉴스|congreso|expoalimentaria|noticias|news/.test(n)) add('news');
     if (!ids.length && ai.intent && !['unknown', 'human', 'contact', 'issue'].includes(ai.intent)) add(ai.intent);
+    if (!company.length && ids.includes('brand') && companyAnswers(lang)?.brand) company.push('brand');
     const changed = ['product', 'country', 'quantity', 'channel', 'audience', 'businessType'].some(key => context[key] !== previous[key]);
+    const companyFollowup = !company.length && previous.pendingField && changed && companyTopics.has(previous.companyTopic) && !ingredients.test(n) && !storage.test(n) && !foodQuestion && !/맵|매[워운콤]|맛|\b(?:spicy|picante|flavor|flavour|sabor)\b/.test(n);
+    if (companyFollowup && companyAnswers(lang)?.[previous.companyTopic]) company.push(previous.companyTopic);
     if (!ids.length && changed && !outside.test(n)) add(previous.topic || (context.audience === 'B2B' ? 'export' : context.audience === 'B2C' ? 'buy' : 'choose'));
     if (!ids.length && previous.pendingField === 'proposal' && context.proposal) add('collaboration');
     if (!ids.length && (switched || /그거|그럼|은요|는요|\b(?:esa|eso|that|it|which|otra|other)\b/.test(n)) && previous.topic) add(previous.topic);
@@ -284,6 +329,8 @@
     }
     let text = '', handoff = false, quickReplies = [], sources = [], reason = 'self_service', stage = 'resolved', pending = '', missingFields = [], intent = ids[0] || 'unknown', category = 'general';
     const commercialIntent = ids.find(id => ['pricing', 'export', 'horeca', 'buy'].includes(id));
+    // A consumer asking to buy or for prices/samples receives the current retail policy first.
+    if (context.audience === 'B2C' && commercialIntent && company.some(topic => ['pricing', 'moq', 'samples', 'bulk', 'leadTime'].includes(topic))) company.splice(0);
     const detailOnly = previous.lastQuestion && changed && !ingredients.test(n) && !storage.test(n) && !price.test(n) && !foodQuestion && !buying.test(n) && !business.test(n);
     if (!social && !switched && !human.test(n) && !/보냈|전송.*됐|already send|already sent|enviado|enviaste/.test(n)) context.lastQuestion = correctInquiry(question, context, previous, detailOnly || Boolean(previous.pendingField && changed && !price.test(n) && !buying.test(n)));
     if (social) {
@@ -295,6 +342,29 @@
     else if (human.test(n) && !declinedHandoff) { text = t.human; handoff = true; reason = 'explicit_human'; category = 'service'; intent = 'human'; stage = 'handoff'; }
     else if (outside.test(n)) { text = t.outside; quickReplies = quick(t.initial); reason = 'out_of_scope'; stage = 'clarify'; }
     else if (issue.test(n)) { text = t.issue; handoff = true; context.purpose = 'issue'; reason = 'product_issue'; category = 'service'; intent = 'issue'; stage = 'handoff'; }
+    else if (company.length) {
+      const answers = companyAnswers(lang), chunks = company.slice(0, 3).map(topic => answers[topic]);
+      for (const extra of ids.filter(id => ['storage', 'ingredients'].includes(id))) {
+        if (extra === 'ingredients' && company.some(topic => ['documents', 'certifications', 'namedCertifications'].includes(topic))) continue;
+        const answer = questions.find(item => item.id === extra)?.answer;
+        if (answer) chunks.push(answer);
+      }
+      context.companyTopic = company[0]; text = chunks.join('\n\n'); category = 'company'; reason = 'company_guidance';
+      intent = company.includes('brand') ? 'brand' : company.some(topic => ['documents', 'certifications', 'namedCertifications'].includes(topic)) ? 'ingredients' : company.includes('support') ? 'contact' : 'pricing';
+      if (company.includes('namedCertifications') || company.includes('documents') && actualDocumentRequest(question)) {
+        text += `\n\n${t.labelReview}`; handoff = true; context.purpose = 'label'; stage = 'handoff'; category = 'service'; reason = company.includes('namedCertifications') ? 'specific_certification_review' : 'document_request'; intent = 'ingredients';
+      } else if (companyFollowup || commercialRequest(question, company, context)) {
+        context.audience = 'B2B'; context.purpose = 'pricing'; intent = 'pricing';
+        const qualified = qualify(context, t);
+        ({ handoff, quickReplies, stage, missingFields } = qualified); pending = qualified.pending;
+        const prompt = qualified.text.startsWith(`${t.commercial}\n\n`) ? qualified.text.slice(t.commercial.length + 2) : qualified.text;
+        text += `\n\n${prompt}`; category = 'B2B'; reason = handoff ? 'qualified_business' : 'qualify_business';
+      } else {
+        quickReplies = quick(company.includes('brand') || company.includes('specifications') ? t.productFollow : [t.quote]);
+        if (company.includes('brand')) sources = [{ label: questions.find(item => item.id === 'brand')?.link?.label || t.guide, path: 'about.html' }];
+        else if (company.includes('specifications')) sources = [productSource(context, t)];
+      }
+    }
     else if (labelRequest.test(n)) { text = t.labelReview; handoff = true; context.purpose = 'label'; reason = 'document_request'; category = 'service'; intent = 'ingredients'; stage = 'handoff'; sources = [productSource(context, t)]; }
     else if (commercialIntent) {
       intent = commercialIntent; context.purpose = commercialIntent; sources = [productSource(context, t)];
@@ -337,6 +407,7 @@
         sources = [productSource(context, t)]; quickReplies = quick(context.audience === 'B2B' ? [t.quote] : t.productFollow);
       }
     } else { text = t.unknown; quickReplies = quick(t.initial); reason = 'clarify_unknown'; stage = 'clarify'; category = 'clarify'; }
+    if (!company.length && !social && !switched) delete context.companyTopic;
     if (!social && !switched) context.topic = intent;
     context.funnelStage = stage; context.pendingField = pending; context.handoffEligible = handoff;
     const aiTextAllowed = !handoff && ['product', 'general'].includes(category) && !ids.includes('ingredients') && !social && reason === 'self_service';

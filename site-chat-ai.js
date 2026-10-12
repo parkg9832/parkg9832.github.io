@@ -1,5 +1,6 @@
 (() => {
   const allowedIntents = new Set(['choose', 'pairings', 'spice', 'ingredients', 'storage', 'buy', 'pricing', 'export', 'horeca', 'brand', 'history', 'news', 'creators', 'collaboration', 'contact', 'unknown']);
+  const companyTopics = new Set(['moq', 'samples', 'pricing', 'leadTime', 'packing', 'bulk', 'documents', 'certifications', 'namedCertifications', 'support', 'oem', 'exclusive', 'brand', 'specifications']);
   function endpoint() {
     try {
       const c = window.MOKDA_CHAT_AI, u = new URL(c?.endpoint || '');
@@ -10,6 +11,7 @@
     if (!value || typeof value !== 'object') return {};
     const result = {};
     if (allowedIntents.has(value.intent)) result.intent = value.intent;
+    if (companyTopics.has(value.companyTopic)) result.companyTopic = value.companyTopic;
     if (['B2C', 'B2B', 'b2c', 'b2b'].includes(value.audience)) result.audience = value.audience.toUpperCase();
     if (['kpeno', 'para_carnes', 'both'].includes(value.product)) result.product = value.product;
     if (['importer', 'distributor', 'retail', 'retailer', 'restaurant', 'horeca', 'online', 'other'].includes(value.businessType)) result.businessType = value.businessType === 'retailer' ? 'retail' : value.businessType === 'horeca' ? 'restaurant' : value.businessType;

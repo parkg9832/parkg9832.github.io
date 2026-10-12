@@ -15,6 +15,14 @@ function fixture({ enabled = true, url = endpoint, respond } = {}) {
   return { dom, w, calls, timers, client: w.MOKDA_CHAT_AI_CLIENT };
 }
 let checks = 0;
+for (const topic of ['moq', 'samples', 'pricing', 'leadTime', 'packing', 'bulk', 'documents', 'certifications', 'namedCertifications', 'support', 'oem', 'exclusive', 'brand', 'specifications']) {
+  const f = fixture({ respond: async () => ({ ok: true, text: async () => JSON.stringify({ text: 'Company guidance.', interpretation: { intent: 'pricing', companyTopic: topic } }) }) });
+  assert.equal((await f.client.answer(input)).interpretation.companyTopic, topic); f.dom.window.close(); checks++;
+}
+for (const topic of ['invented', ['moq'], { topic: 'moq' }, true]) {
+  const f = fixture({ respond: async () => ({ ok: true, text: async () => JSON.stringify({ text: 'Company guidance.', interpretation: { intent: 'pricing', companyTopic: topic } }) }) });
+  assert.equal((await f.client.answer(input)).interpretation.companyTopic, undefined); f.dom.window.close(); checks++;
+}
 for (const { enabled, url } of [
   { enabled: false, url: endpoint }, { enabled: 'true', url: endpoint },
   ...['', 'http://mokda.example.workers.dev/chat', 'https://www.mokda.kr/chat', 'https://evilworkers.dev/chat', 'https://mokda.example.workers.dev/other', 'https://user:secret@mokda.example.workers.dev/chat', 'https://mokda.example.workers.dev/chat?token=value', 'https://mokda.example.workers.dev/chat#fragment'].map(url => ({ enabled: true, url })),

@@ -21,13 +21,13 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'ingredients',
             question: '원재료와 알레르겐은 어디서 확인하나요?',
-            answer: '제품 소개 자료에는 K-PEÑO의 우유·대두·밀·토마토와 Para Carnes의 대두·밀 함유가 안내되어 있습니다. Para Carnes 레시피에는 참깨와 참기름도 포함됩니다. 전체 원재료와 최신 알레르겐 표기는 실제 제품 패키지를 확인해주세요.',
+            answer: 'K-PEÑO에는 우유·대두·밀·토마토가 들어갑니다. Para Carnes에는 대두·밀이 들어가며 참깨와 참기름도 사용합니다. 전체 원재료와 알레르겐은 구매하신 제품의 패키지에서 확인해주세요.',
             link: { label: '제품 정보 보기', path: 'products.html' },
           },
           {
             id: 'storage',
             question: '소스는 어떻게 보관하나요?',
-            answer: '제품 소개 자료에서는 개봉 전 상온 보관, 개봉 후 냉장 보관으로 안내합니다. 실제 제품 패키지에 적힌 보관 방법과 소비기한을 확인해주세요.',
+            answer: '개봉 전에는 상온에 보관하고, 개봉 후에는 냉장 보관해주세요. 소비기한과 자세한 보관 안내는 구매하신 제품의 패키지에서 확인할 수 있습니다.',
             link: { label: '제품 정보 보기', path: 'products.html' },
           },
         ],
@@ -133,13 +133,13 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'ingredients',
             question: '¿Dónde consulto ingredientes y alérgenos?',
-            answer: 'La presentación del producto indica leche, soya, trigo y tomate en K-PEÑO, y soya y trigo en Para Carnes. La receta de Para Carnes también incluye sésamo y aceite de sésamo. Revisa tu envase para confirmar la lista completa y actualizada de ingredientes y alérgenos.',
+            answer: 'K-PEÑO contiene leche, soya, trigo y tomate. Para Carnes contiene soya y trigo, y también usamos sésamo y aceite de sésamo en su receta. Revisa el envase que compraste para consultar la lista completa de ingredientes y alérgenos.',
             link: { label: 'Ver información del producto', path: 'products.html' },
           },
           {
             id: 'storage',
             question: '¿Cómo debo conservar las salsas?',
-            answer: 'La presentación del producto indica conservarlas a temperatura ambiente antes de abrir y refrigerarlas después de abrir. Revisa las instrucciones de conservación y la fecha de vencimiento en el envase que tienes.',
+            answer: 'Conserva las salsas a temperatura ambiente antes de abrir y refrigéralas después de abrir. Consulta la fecha de vencimiento y las instrucciones de conservación en el envase que compraste.',
             link: { label: 'Ver las salsas', path: 'products.html' },
           },
         ],
@@ -245,13 +245,13 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'ingredients',
             question: 'Where can I check ingredients and allergens?',
-            answer: 'The product presentation lists milk, soy, wheat and tomato in K-PEÑO, and soy and wheat in Para Carnes. The Para Carnes recipe also includes sesame and sesame oil. Check your packaging for the complete current ingredient and allergen information.',
+            answer: 'K-PEÑO contains milk, soy, wheat and tomato. Para Carnes contains soy and wheat, and we also use sesame and sesame oil in its recipe. Check your product packaging for the complete ingredient and allergen information.',
             link: { label: 'View product information', path: 'products.html' },
           },
           {
             id: 'storage',
             question: 'How should I store the sauces?',
-            answer: 'The product presentation says to store them at room temperature before opening and refrigerate after opening. Check the storage instructions and expiry date on your product packaging.',
+            answer: 'Store the sauces at room temperature before opening and refrigerate them after opening. Check the expiry date and storage instructions on your product packaging.',
             link: { label: 'View the sauces', path: 'products.html' },
           },
         ],
@@ -337,3 +337,16 @@ window.MOKDA_HELP_DATA = {
     ],
   },
 };
+
+// Company-confirmed facts are shared with the AI service; preserve the old data contract.
+(() => {
+  for (const [language, data] of Object.entries(window.MOKDA_HELP_DATA)) {
+    const answers = window.MOKDA_COMPANY_KNOWLEDGE?.answers?.[language];
+    if (!answers) continue;
+    const questions = data.categories.flatMap(category => category.questions);
+    const pricing = questions.find(question => question.id === 'pricing');
+    if (pricing && answers.pricing && answers.moq && answers.samples) pricing.answer = [answers.pricing, answers.moq, answers.samples].join('\n\n');
+    const brand = questions.find(question => question.id === 'brand');
+    if (brand && answers.brand) brand.answer = answers.brand;
+  }
+})();

@@ -1,7 +1,7 @@
 // Public contact configuration. Use digits only, including country code.
-// Official WhatsApp Business number supplied by MOKDA on 2026-10-11.
+// Official WhatsApp Business number corrected by MOKDA on 2026-10-12.
 window.MOKDA_CONTACT = {
-  whatsappNumber: '821021227815',
+  whatsappNumber: '821022127815',
 };
 
 // Public Worker URL only. AI credentials never belong in the website.

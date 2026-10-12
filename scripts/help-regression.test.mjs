@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { JSDOM, VirtualConsole } from 'jsdom';
 const root = new URL('../', import.meta.url), read = file => readFileSync(new URL(file, root), 'utf8');
-const scripts = ['site-contact-config.js', 'site-help-data.js', 'site-chat-intents.js', 'site-chat-engine.js', 'site-chat-ai.js', 'site-help.js'];
+const scripts = ['site-contact-config.js', 'site-company-knowledge.js', 'site-help-data.js', 'site-chat-intents.js', 'site-chat-engine.js', 'site-chat-ai.js', 'site-help.js'];
 const KEY = 'mokdaChatSessionV2';
 const settings = {
   KR: { prefix: 'ko', greeting: '안녕하세요', price: 'K-PEÑO 수입 거래 가격이 궁금해요', country: '페루 수입사입니다, 100병', correction: '100병 말고 10병이에요', thanks: '고마워요', role: '나', human: '담당자와 상담하고 싶어요' },
@@ -35,6 +35,7 @@ const latest = f => f.d.querySelector('.help-conversation').lastElementChild;
 let checks = 0;
 for (const [lang, s] of Object.entries(settings)) {
   const f = start(lang); const { w, d, submit, flush } = f;
+  assert.equal(w.MOKDA_CONTACT.whatsappNumber, '821022127815', 'Official number matches the owner correction');
   const dialog = d.querySelector('dialog'), input = d.querySelector('textarea'), launcher = d.querySelector('.help-launcher');
   assert.equal(dialog.open, false); assert.match(latest(f).textContent, new RegExp(s.greeting));
   assert(d.querySelector('.help-contact').hidden); assert(d.querySelector('.help-form-link').hidden);
@@ -79,7 +80,7 @@ const fixture = start('KR'); const e = fixture.w.MOKDA_CHAT_ENGINE;
 let c = {};
 for (const [query, expected] of [
   ['타코랑 먹어도 되나요?', { product: 'kpeno', topic: 'pairings' }],
-  ['가격이랑 개봉 후 보관은요?', { product: 'kpeno', purpose: 'pricing' }],
+  ['가격이랑 개봉 후 보관은요?', { product: 'kpeno', companyTopic: 'pricing' }],
   ['페루로 100병이요', { country: 'Peru', quantity: '100병' }],
   ['페루가 아니라 멕시코', { country: 'Mexico' }],
   ['100병 말고 10병', { quantity: '10병' }],
@@ -88,7 +89,7 @@ for (const [query, expected] of [
 ]) {
   const r = e.reply(query, { language: 'KR', context: c }); c = r.context;
   for (const [key, value] of Object.entries(expected)) assert.equal(c[key], value, `${query}: ${key}`);
-  if (/가격이랑/.test(query)) { assert.match(r.text, /냉장/); assert.match(r.text, /개인|사업/); assert.equal(r.handoff, false); }
+  if (/가격이랑/.test(query)) { assert.match(r.text, /냉장/); assert.match(r.text, /개별 견적/); assert.equal(r.handoff, false); }
   checks++;
 }
 for (const lang of Object.keys(settings)) {

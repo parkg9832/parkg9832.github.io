@@ -96,7 +96,7 @@
     // Brief automated preparation, never a claim that a human is typing.
     const delay = 1400 + Math.min(500, Math.round(pending.text.length * 1.2));
     timer = window.setTimeout(() => { delayDone = true; if (turn === epoch && ready) complete(); }, delay);
-    if (useAI && ai?.isEnabled() && !['greeting', 'send_status', 'automated_status', 'out_of_scope', 'explicit_human', 'product_issue', 'document_request'].includes(pending.decision?.reason)) {
+    if (useAI && ai?.isEnabled() && !['greeting', 'send_status', 'automated_status', 'out_of_scope', 'explicit_human', 'product_issue', 'document_request', 'specific_certification_review'].includes(pending.decision?.reason)) {
       ready = false; request = new AbortController();
       ai.answer({ messages: transcript, language: context.language || lang, context: previous, decision: { ...pending.decision, intent: pending.intent }, signal: request.signal }).then(result => {
         if (turn !== epoch || !pending) return;

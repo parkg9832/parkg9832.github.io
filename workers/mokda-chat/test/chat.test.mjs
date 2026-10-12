@@ -3,6 +3,11 @@ import assert from 'node:assert/strict';
 import worker, { allowedOrigin, readBody } from '../src/index.js';
 import { MODEL, validateRequest, sanitizeEntities, buildPrompt, parseAnswer, generateReply } from '../src/chat.js';
 import { ChatLimiter } from '../src/limiter.js';
+import knowledge from '../src/knowledge.json' with { type: 'json' };
+import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
+import { createHash } from 'node:crypto';
+import { extractPublicDocument, validateCompanyKnowledge } from '../scripts/generate-knowledge.mjs';
 
 const input = (language = 'KR') => ({ language, messages: [{ role: 'user', content: '타코에 어떤 소스가 어울려요?' }] });
 const answer = (text = 'K-PEÑO는 타코와 잘 어울립니다.') => ({ response: JSON.stringify({ text, interpretation: { intent: 'pairings', audience: 'b2c', product: 'kpeno', country: '', businessType: '', quantity: '', food: 'tacos', heatPreference: '' } }) });
@@ -54,7 +59,7 @@ test('all language prompts include business policy and server-only public facts'
     assert.match(prompt[0].content, /South Korea/);
     assert.match(prompt[0].content, /individual international shipping there are not available/);
     assert.match(prompt[0].content, /not create links/);
-    assert.match(prompt[0].content, /stock.*shipping/);
+    assert.match(prompt[0].content, /stock.*shipping/i);
     assert.match(prompt[0].content, /non-spicy or milder/);
     assert.match(prompt[0].content, /individual STRINGS, never arrays/);
     assert.match(prompt[0].content, /"intent":"pricing","audience":"b2b","product":"both","country":"Mexico","businessType":"importer"/);
@@ -66,6 +71,52 @@ test('all language prompts include business policy and server-only public facts'
   const prompt = buildPrompt(malicious);
   assert.doesNotMatch(prompt[0].content, /ACTUAL PRICE IS/);
   assert.match(prompt[1].content, /ACTUAL PRICE IS/);
+});
+
+test('current shared company facts and translations reach the model without private intake', () => {
+  const source = readFileSync(new URL('../../../site-company-knowledge.js', import.meta.url), 'utf8');
+  const sandbox = { window: {} }; vm.runInNewContext(source, sandbox);
+  const company = validateCompanyKnowledge(sandbox.window.MOKDA_COMPANY_KNOWLEDGE);
+  assert.deepEqual(knowledge.company, company);
+  assert.equal(knowledge.sourceHashes['site-company-knowledge.js'], createHash('sha256').update(source).digest('hex'));
+  for (const language of ['KR', 'ES', 'EN']) {
+    assert.equal(knowledge.languages[language].faqs.find(q => q.id === 'brand').text, company.answers[language].brand);
+    const prompt = buildPrompt(validateRequest({ language, messages: [{ role: 'user', content: 'MOQ and samples, cartons, support and certifications' }] }))[0].content;
+    assert.match(prompt, /Standard MOQ is 1,000/); assert.match(prompt, /below 50 units \(not 50\)/);
+    assert.match(prompt, /international sample freight is paid by the buyer/);
+    assert.match(prompt, /Cartons contain 12 bottles/); assert.match(prompt, /Speak in MOKDA's own voice/);
+    assert.match(prompt, /Do not affirm any named certificate/); assert.match(prompt, /Never claim MOKDA is the only brand/);
+    assert.doesNotMatch(prompt, /call_58c6|intakeRounds|rawAnswer|questionItemId/);
+    assert(prompt.length < 15000);
+  }
+  const contaminated = structuredClone(company); contaminated.facts.privateContact = 'not public';
+  assert.throws(() => validateCompanyKnowledge(contaminated), /Invalid public company knowledge/);
+  const missing = structuredClone(company); delete missing.answers.ES.moq;
+  assert.throws(() => validateCompanyKnowledge(missing), /Invalid public company knowledge/);
+});
+
+test('company topic is optional for old clients and validated for new responses', () => {
+  assert.equal(parseAnswer(answer()).interpretation.companyTopic, undefined);
+  for (const topic of ['moq', 'samples', 'packing', 'namedCertifications', 'brand']) {
+    const result = JSON.parse(answer().response); result.interpretation.companyTopic = topic;
+    assert.equal(parseAnswer({ response: result }).interpretation.companyTopic, topic);
+  }
+  for (const invalid of ['fake', ['moq'], true, null]) {
+    const result = JSON.parse(answer().response); result.interpretation.companyTopic = invalid;
+    assert.throws(() => parseAnswer({ response: result }), /invalid_ai_response/);
+  }
+});
+
+test('public product definitions keep labels and values together and exclude private forms', () => {
+  const html = '<main><h1>Sauce</h1><dl><div><dt>Weight</dt><dd>330 g</dd></div><div><dt>Shelf life</dt><dd>12 months</dd></div></dl><form><p>Private input</p></form></main>';
+  const full = extractPublicDocument(html, 'fixture.html');
+  assert.match(full.text, /Weight: 330 g/); assert.match(full.text, /Shelf life: 12 months/); assert.doesNotMatch(full.text, /Private input/);
+  const short = extractPublicDocument(html, 'fixture.html', 20);
+  assert.match(short.text, /Weight: 330 g/); assert.doesNotMatch(short.text, /Shelf life/);
+  for (const language of ['KR', 'EN']) {
+    const product = knowledge.languages[language].docs.find(doc => doc.id === 'kpeno');
+    assert.match(product.text, /330 g/); assert.match(product.text, /12(?:개월| months)/);
+  }
 });
 
 test('strict JSON output and bounded plain text reject links, HTML and bad format', () => {

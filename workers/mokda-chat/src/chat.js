@@ -164,6 +164,17 @@ export async function generateReply(input, env, timeoutMs = 10000) {
       env.AI.run(MODEL, { messages: buildPrompt(input), response_format: RESPONSE_FORMAT, max_tokens: 360, temperature: 0.2, stream: false }),
       deadline,
     ]);
-    return parseAnswer(response);
+    const answer = parseAnswer(response);
+    // Policy numbers (MOQ, sample limits, bottle size) are not an order quantity.
+    // Keep an extracted amount only when the visitor actually supplied it.
+    if (answer.interpretation.quantity) {
+      const amount = value => Number(String(value).replace(/(?<=\d)[,.](?=\d{3}(?:\D|$))/g, '').replace(',', '.').match(/^\d+(?:\.\d+)?/)?.[0]);
+      const wanted = amount(answer.interpretation.quantity);
+      const stated = input.messages.filter(message => message.role === 'user').flatMap(message =>
+        [...message.content.matchAll(/(?<!\d)\d{1,7}(?:[.,]\d{1,3})?(?!\d)/g)].map(match => amount(match[0])));
+      const carried = input.context.quantity && amount(input.context.quantity) === wanted;
+      if (!carried && !stated.includes(wanted)) answer.interpretation.quantity = '';
+    }
+    return answer;
   } finally { clearTimeout(timer); }
 }

@@ -168,6 +168,17 @@ test('inference uses verified model, low temperature and a token cap; timeout fa
   await assert.rejects(generateReply(validateRequest(input()), { AI: { run: () => new Promise(() => {}) } }, 5), /ai_timeout/);
 });
 
+test('company policy amounts cannot become an unstated visitor order quantity', async () => {
+  const ai = quantity => ({ AI: { run: async () => { const value = JSON.parse(answer().response); value.interpretation.quantity = quantity; return { response: value }; } } });
+  const basic = validateRequest({ language: 'KR', messages: [{ role: 'assistant', content: '최소 주문수량은 1,000개입니다.' }, { role: 'user', content: '샘플 제공 조건을 알려주세요' }] });
+  assert.equal((await generateReply(basic, ai('1000 units'))).interpretation.quantity, '');
+  assert.equal((await generateReply(basic, ai('1,00'))).interpretation.quantity, '');
+  const explicit = validateRequest({ language: 'KR', messages: [{ role: 'user', content: '1,000개 주문을 협의하고 싶어요' }] });
+  assert.equal((await generateReply(explicit, ai('1000 units'))).interpretation.quantity, '1000 units');
+  const carried = validateRequest({ ...input(), context: { quantity: '100 bottles' } });
+  assert.equal((await generateReply(carried, ai('100 bottles'))).interpretation.quantity, '100 bottles');
+});
+
 test('bounded streaming body rejects huge chunked data without Content-Length', async () => {
   const oversized = new Request('https://chat.example/chat', { method: 'POST', body: 'x'.repeat(12001) });
   await assert.rejects(readBody(oversized), /body_too_large/);

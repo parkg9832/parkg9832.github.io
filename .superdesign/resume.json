@@ -242,6 +242,94 @@
         "greetingDelayMs": 1000,
         "implementationAuthorization": "User goal explicitly authorizes subtle color, mascot naming and delayed first greeting changes; prior approvedByUser flag applied to v2 only"
       }
+    },
+    "home-video-hero": {
+      "targetKind": "new-ui",
+      "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "activeDraftId": "9cbeff69-d6a2-497e-a0fb-49854b900e80",
+      "designSystemPath": ".superdesign/design-system.md",
+      "contextFiles": [
+        ".superdesign/design-system.md",
+        ".superdesign/init/theme.md:1:55",
+        "index.html:133:271",
+        "index.html:738:786",
+        "index.html:818:870",
+        "index.html:986:1012",
+        "site-header.js",
+        "styles/site-typography.css",
+        "styles/home-layout.css",
+        "styles/home-experience.css",
+        "home-hero-video.js",
+        "tailwind.config.ts"
+      ],
+      "fingerprints": {
+        ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
+        ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
+        "index.html": "3ed904ff89d65226124aba8a5a380792555d1091b2ca09e18dc0663642aef7a5",
+        "site-header.js": "749b8890e045307c34d187eef04263d6e3beda47b6ede357e369bc1e9164f83e",
+        "styles/site-typography.css": "5dc687d0561207756b8a366a2c42a5f07f14feec848910ce206cbfba101eb87c",
+        "styles/home-layout.css": "c0a328a5fdafb77609acccc6f81d77265e1b0fef9d0a4eb1f178e8afd1ccc1cd",
+        "styles/home-experience.css": "0620596f084361056054e34db55a4a8ffa53d433a2b6c62f96670acde38ebd50",
+        "home-hero-video.js": "336fc017bfbca2e424368107c0c57510378173527090a6b8e60c6459bdf53bdf",
+        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
+      },
+      "referenceIds": [
+        "assets-images-mokda-logo-sub.webp",
+        "6daa18dd-e38f-469e-8dde-b06908db4e0a"
+      ],
+      "brandAssets": {
+        "logo": {
+          "assetKey": "assets-images-mokda-logo-sub.webp",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/brand-assets/assets-images-mokda-logo-sub.webp/mokda-logo-sub.webp",
+          "sourcePath": "assets/images/mokda-logo-sub.webp"
+        }
+      },
+      "contentAssets": {
+        "desktopPoster": {
+          "nodeId": "6daa18dd-e38f-469e-8dde-b06908db4e0a",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/content-assets/home-video-hero-desktop-poster/mokda-hero-desktop-20261013.webp",
+          "sourcePath": "assets/images/mokda-hero-desktop-20261013.webp",
+          "purpose": "content"
+        },
+        "desktopVideo": {
+          "url": "https://www.mokda.kr/assets/videos/hero/mokda-field-desktop-20261013.mp4",
+          "sourcePath": "assets/videos/hero/mokda-field-desktop-20261013.mp4",
+          "publicVerification": "pending-root-production-deployment"
+        }
+      },
+      "components": [
+        {
+          "name": "MokdaHeroHeader",
+          "id": "ba1cd6ec-90f4-4adc-b2b6-5ed358e543a3",
+          "sourcePath": "site-header.js",
+          "logoAssetKey": "assets-images-mokda-logo-sub.webp"
+        }
+      ],
+      "drafts": {
+        "9cbeff69-d6a2-497e-a0fb-49854b900e80": {
+          "title": "MOKDA home video hero preview",
+          "currentVersion": 2,
+          "visualDirection": "Existing centered three-language campaign geometry and authentic MOKDA navigation over exact real bottle studio poster and muted product/event montage background",
+          "previewUrl": "https://p.superdesign.dev/draft/9cbeff69-d6a2-497e-a0fb-49854b900e80"
+        }
+      },
+      "canvasReview": {
+        "verifiedVersion": 2,
+        "authoredHtmlMatchesSavedHtml": true,
+        "noImportWarnings": true,
+        "exactLogoPositions": 1,
+        "exactPosterUrlPresent": true,
+        "mutedLoopPlaysinlineVideoPresent": true,
+        "threeLanguageCopyPresent": true,
+        "pausePositionDesktop": "left:24px;bottom:24px",
+        "pausePositionMobile": "left:20px;bottom:20px",
+        "renderedReviewPerformed": false,
+        "verification": "Direct import refetched and byte-equivalent to authored HTML. Canvas rendering and production video playback remain user/root review items."
+      },
+      "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "authoringMethod": "free-direct-html-import",
+      "approvedByUser": false,
+      "updatedAt": "2026-10-13T09:27:58.548Z"
     }
   }
 }

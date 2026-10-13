@@ -34,7 +34,7 @@ for (const [locale, language] of [['ko', 'KR'], ['es', 'ES'], ['en', 'EN']]) for
   for (const [selector, node] of nodes) { assert.equal(d.querySelector(selector), node, `${locale}/${page}: ${selector} must survive runtime binding`); retained++; }
   assert.equal(d.querySelector('h1')?.textContent, heading, 'Runtime must preserve the generated heading');
   assert.deepEqual(errors, [], `${locale}/${page}: content scripts have no runtime errors`);
-  assert.equal(d.querySelectorAll('video[src]').length, 0, 'Video downloads begin only after explicit playback');
+  assert.equal(d.querySelectorAll('video[src]').length, 0, 'Content rendering never starts video downloads');
   assert.equal(d.querySelectorAll('script[src*="site-chat-engine.js"],script[src*="site-help-data.js"],script[src*="site-company-knowledge.js"],script[src*="site-chat-ai.js"]:not([data-chat-assets])').length, 0, 'Closed chat does not load the full conversation engine');
   assert.equal(d.querySelectorAll('script[src*="site-help-loader.js"]').length, 1);
   if (page === 'index') {

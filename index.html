@@ -849,7 +849,13 @@
       <section id="top" class="hero-section relative overflow-hidden bg-[#f7ddc2] text-white">
         <div id="heroSlides" class="relative block h-full w-full overflow-hidden" style="touch-action: pan-y;">
           <div data-hero-slide="0" data-hero-theme="soft" class="relative h-full min-w-full snap-center bg-[#f7ddc2] opacity-100 transition-opacity duration-[1200ms] ease-in-out md:absolute md:inset-0 md:min-w-0">
-            <div class="absolute inset-0 bg-[#f7ddc2]"></div>
+            <div data-hero-media class="hero-video-media" data-video-state="poster">
+              <picture class="hero-video-poster">
+                <source media="(max-width: 767px)" srcset="/assets/images/mokda-hero-mobile-20261013.webp" />
+                <img src="/assets/images/mokda-hero-desktop-20261013.webp" width="1280" height="720" alt="" fetchpriority="high" decoding="async" />
+              </picture>
+              <video id="homeHeroVideo" data-hero-video data-desktop-src="/assets/videos/hero/mokda-field-desktop-20261013.mp4" data-mobile-src="/assets/videos/hero/mokda-field-mobile-20261013.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            </div>
             <div class="hero-content relative z-20 mx-auto flex h-full w-full max-w-[1480px] flex-col px-4 sm:px-6 lg:px-8">
               <p data-hero-kicker class="hero-motion hero-motion-kicker condensed-label mx-auto mb-4 text-center text-base uppercase text-[#a93600] sm:text-xl md:mb-2"></p>
               <h1 data-hero-title class="hero-motion hero-motion-title hero-title display-latin mx-auto max-w-[1080px] text-center uppercase text-[#d94d0b]"></h1>
@@ -860,6 +866,7 @@
             </div>
           </div>
         </div>
+        <button type="button" data-hero-video-toggle class="hero-video-toggle" aria-controls="homeHeroVideo" hidden></button>
       </section>
 
       <section id="products" data-analytics-section="products" class="scroll-mt-20 bg-[#f7ddc2] py-16 sm:py-28 lg:py-32">
@@ -1851,6 +1858,7 @@
     <script src="./site-header.js?v=20261010-typography"></script>
     <script src="./site-reviews-data.js?v=20260921-2"></script>
     <script src="./home-experience.js?v=20260922-visual2"></script>
+    <script src="./home-hero-video.js" defer></script>
     <script src="./site-news-data.js?v=20261007-editorial"></script>
     <script src="./site-news-model.js?v=20261007-2"></script>
     <script src="./site-news.js?v=20261010-preview"></script>

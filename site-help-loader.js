@@ -37,7 +37,7 @@
   const launcher = document.createElement('button'); launcher.type = 'button'; launcher.className = 'help-launcher';
   launcher.setAttribute('aria-label', text.open); launcher.setAttribute('aria-haspopup', 'dialog'); launcher.setAttribute('aria-expanded', 'false');
   // Constant SVG; no visitor input is parsed as markup.
-  launcher.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8 8 0 0 1-8 8H6l-3 2v-10a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"/><path d="M8 10h8M8 14h5"/></svg>';
+  launcher.innerHTML = '<span class="help-launcher-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M2 10v5M22 10v5"/><circle cx="12" cy="2" r="1" fill="currentColor" stroke="none"/><rect x="4" y="6" width="16" height="14" rx="4"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><path d="M9 16h6"/></svg><span class="help-launcher-label" translate="no">AI</span></span>';
   const status = document.createElement('div'); status.className = 'help-load-status'; status.hidden = true; status.setAttribute('role', 'status');
   root.append(launcher, status); document.body.append(root);
   let loading = false;

@@ -21,9 +21,10 @@
   if (field) { try { const draft = sessionStorage.getItem(DRAFT); sessionStorage.removeItem(DRAFT); if (draft && !field.value) field.value = draft.slice(0, 1200); } catch { /* Form remains available. */ } }
   const icon = paths => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
   const x = icon('<path d="m6 6 12 12M18 6 6 18"/>');
+  const launcherMark = `<span class="help-launcher-mark" aria-hidden="true">${icon('<path d="M12 3v3M2 10v5M22 10v5"/><circle cx="12" cy="2" r="1" fill="currentColor" stroke="none"/><rect x="4" y="6" width="16" height="14" rx="4"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><path d="M9 16h6"/>')}<span class="help-launcher-label" translate="no">AI</span></span>`;
   const root = document.createElement('aside'); root.id = 'mokda-help'; root.lang = { KR: 'ko-KR', ES: 'es-419', EN: 'en' }[lang];
   root.innerHTML = `
-    <button type="button" class="help-launcher" aria-haspopup="dialog" aria-controls="mokda-help-dialog" aria-expanded="false">${icon('<path d="M21 11.5a8 8 0 0 1-8 8H6l-3 2v-10a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8Z"/><path d="M8 10h8M8 14h5"/>')}</button>
+    <button type="button" class="help-launcher" aria-haspopup="dialog" aria-controls="mokda-help-dialog" aria-expanded="false">${launcherMark}</button>
     <dialog id="mokda-help-dialog" class="help-dialog" aria-labelledby="mokda-help-title" aria-modal="false">
       <div class="help-header"><div class="help-brand-frame"><img class="help-brand" src="/assets/images/meokrangi-chat-avatar-20261013.webp" width="44" height="44" alt="" /></div><div class="help-heading"><h2 id="mokda-help-title">MOK-LANG</h2><p></p></div><button type="button" class="help-reset">${icon('<path d="M3 11a9 9 0 1 1 2.4 7M3 4v7h7"/>')}</button><button type="button" class="help-close">${x}</button></div>
       <div class="help-content"><p class="help-auto-label"></p><div class="help-conversation" role="log" aria-live="polite" aria-relevant="additions" aria-atomic="false"></div><div class="help-processing" role="status" hidden><span class="help-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="help-sr"></span></div><div class="help-options"></div></div>

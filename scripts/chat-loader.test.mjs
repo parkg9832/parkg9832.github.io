@@ -50,11 +50,14 @@ let checks = 0;
 for (const lang of ['KR', 'ES', 'EN']) for (const width of [390, 1440]) {
   const f = start({ lang, width });
   assert.equal(f.loaded.length, 0); assert.equal(f.d.querySelector('dialog'), null);
-  const stub = f.d.querySelector('.help-launcher'); stub.click(); stub.click();
+  const stub = f.d.querySelector('.help-launcher'), launcherMark = stub.innerHTML;
+  assert.equal(stub.querySelector('.help-launcher-label')?.textContent, 'AI');
+  stub.click(); stub.click();
   assert.equal(f.loaded.length, 1, 'Double clicking does not start duplicate dependency loads');
   await f.finish();
   assert.deepEqual(f.loaded, names.map(name => `/${name}`));
   assert(f.d.querySelector('dialog').open); assert.equal(f.d.querySelectorAll('#mokda-help').length, 1);
+  assert.equal(f.d.querySelector('.help-launcher').innerHTML, launcherMark, 'The same bot mark survives deferred chat loading');
   assert.equal(f.d.querySelector('dialog').getAttribute('aria-modal'), String(width <= 600));
   assert(f.d.querySelector('.help-contact').hidden);
   assert.equal(f.d.querySelectorAll('.help-message').length, 0, 'The first open shows preparation before the greeting');

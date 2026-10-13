@@ -265,7 +265,7 @@
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "index.html": "3ed904ff89d65226124aba8a5a380792555d1091b2ca09e18dc0663642aef7a5",
+        "index.html": "5ff23d0b19b1c4a41a65f31ce57feb4c50f2f22fcd237293c8a6625cd2c5e722",
         "site-header.js": "749b8890e045307c34d187eef04263d6e3beda47b6ede357e369bc1e9164f83e",
         "styles/site-typography.css": "5dc687d0561207756b8a366a2c42a5f07f14feec848910ce206cbfba101eb87c",
         "styles/home-layout.css": "c0a328a5fdafb77609acccc6f81d77265e1b0fef9d0a4eb1f178e8afd1ccc1cd",
@@ -274,8 +274,7 @@
         "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
       },
       "referenceIds": [
-        "assets-images-mokda-logo-sub.webp",
-        "6daa18dd-e38f-469e-8dde-b06908db4e0a"
+        "assets-images-mokda-logo-sub.webp"
       ],
       "brandAssets": {
         "logo": {
@@ -286,15 +285,16 @@
       },
       "contentAssets": {
         "desktopPoster": {
-          "nodeId": "6daa18dd-e38f-469e-8dde-b06908db4e0a",
-          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/content-assets/home-video-hero-desktop-poster/mokda-hero-desktop-20261013.webp",
-          "sourcePath": "assets/images/mokda-hero-desktop-20261013.webp",
-          "purpose": "content"
+          "url": "https://www.mokda.kr/assets/images/mokda-hero-desktop-20261013-v2.webp",
+          "sourcePath": "assets/images/mokda-hero-desktop-20261013-v2.webp",
+          "purpose": "content",
+          "source": "public-website-url-reference",
+          "publicVerification": "pending-publication"
         },
         "desktopVideo": {
-          "url": "https://www.mokda.kr/assets/videos/hero/mokda-field-desktop-20261013.mp4",
-          "sourcePath": "assets/videos/hero/mokda-field-desktop-20261013.mp4",
-          "publicVerification": "pending-root-production-deployment"
+          "url": "https://www.mokda.kr/assets/videos/hero/mokda-field-desktop-20261013-v2.mp4",
+          "sourcePath": "assets/videos/hero/mokda-field-desktop-20261013-v2.mp4",
+          "publicVerification": "pending-publication"
         }
       },
       "components": [
@@ -308,13 +308,13 @@
       "drafts": {
         "9cbeff69-d6a2-497e-a0fb-49854b900e80": {
           "title": "MOKDA home video hero preview",
-          "currentVersion": 2,
-          "visualDirection": "Existing centered three-language campaign geometry and authentic MOKDA navigation over exact real bottle studio poster and muted product/event montage background",
+          "currentVersion": 3,
+          "visualDirection": "Existing centered ES/KR/EN campaign geometry and authentic MOKDA navigation over real field interview footage and interview still; generated studio cutout and tasting scene removed from final root montage",
           "previewUrl": "https://p.superdesign.dev/draft/9cbeff69-d6a2-497e-a0fb-49854b900e80"
         }
       },
       "canvasReview": {
-        "verifiedVersion": 2,
+        "verifiedVersion": 3,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
         "exactLogoPositions": 1,
@@ -324,12 +324,18 @@
         "pausePositionDesktop": "left:24px;bottom:24px",
         "pausePositionMobile": "left:20px;bottom:20px",
         "renderedReviewPerformed": false,
-        "verification": "Direct import refetched and byte-equivalent to authored HTML. Canvas rendering and production video playback remain user/root review items."
+        "verification": "Same draft v3 refetched and byte-identical to authored HTML. Only public poster/video URLs and the existing production contrast overlay changed. Root owns publication and live playback verification.",
+        "generatedStudioPosterRemoved": true,
+        "intendedChangesOnly": true,
+        "overlayMatchesProduction": true,
+        "publicMediaStatus": "pending-publication",
+        "closedChatLauncherPresent": false
       },
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "authoringMethod": "free-direct-html-import",
       "approvedByUser": false,
-      "updatedAt": "2026-10-13T09:27:58.548Z"
+      "updatedAt": "2026-10-13T10:09:16.830Z",
+      "assetTransferNote": "Private interview image pixel upload was rejected by automatic approval review. No retry or workaround was used; the draft references the user-authorized public website URLs only."
     }
   }
 }

@@ -6,8 +6,11 @@
 #mokda-help button { cursor: pointer; margin: 0; }
 #mokda-help :is(button,textarea,a):focus-visible { outline: 3px solid var(--help-accent); outline-offset: 3px; }
 #mokda-help svg { display: block; width: 22px; height: 22px; flex: none; }
-#mokda-help .help-launcher { position: fixed; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); z-index: 81; display: grid; place-items: center; width: 60px; height: 60px; padding: 16px; border: 0; border-radius: 50%; background: #20252d; color: #fff; box-shadow: 0 8px 24px #18223033; transition: background 150ms, transform 150ms; }
-#mokda-help .help-launcher svg { width: 28px; height: 28px; }
+#mokda-help .help-launcher { position: fixed; right: max(24px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); z-index: 81; display: grid; place-items: center; box-sizing: border-box; width: 60px; height: 60px; padding: 0; border: 2px solid #fff8ef; border-radius: 50%; background: #ef5f18; color: #fff8ef; box-shadow: 0 8px 24px #32150640; transition: background 150ms, transform 150ms; }
+#mokda-help .help-launcher-mark { display: grid; justify-items: center; align-content: center; gap: 1px; pointer-events: none; }
+#mokda-help .help-launcher svg { width: 26px; height: 26px; }
+#mokda-help .help-launcher-label { color: #321506; font-size: 9px; font-weight: 800; line-height: 1; letter-spacing: .06em; }
+#mokda-help .help-launcher:focus-visible { outline: 3px solid #321506; outline-offset: 4px; box-shadow: 0 0 0 4px #fff8ef, 0 8px 24px #32150640; }
 #mokda-help .help-load-status { position: fixed; right: max(24px, env(safe-area-inset-right)); bottom: 98px; z-index: 81; max-width: min(320px, calc(100vw - 32px)); padding: 14px 18px; border: 1px solid var(--help-line); border-radius: 16px; background: #fff5eb; color: var(--help-ink); font-size: 14px; line-height: 1.5; box-shadow: 0 8px 24px #1822301a; }
 #mokda-help .help-load-status a { display: inline-flex; align-items: center; min-height: 44px; color: #20252d; font-weight: 700; }
 html.mokda-menu-lock #mokda-help { visibility: hidden; }
@@ -57,7 +60,7 @@ html.mokda-menu-lock #mokda-help { visibility: hidden; }
 #mokda-help .help-disclosure { margin: 10px 0 0; color: var(--help-muted); font-size: 13px; line-height: 1.5; text-align: center; }
 #mokda-help .help-form-link { display: flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 2px; color: var(--help-muted); font-size: 13px; line-height: 1.5; text-decoration: underline; text-underline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) {
-  #mokda-help .help-launcher:hover { background: #374151; transform: translateY(-2px); }
+  #mokda-help .help-launcher:hover { background: #da500e; transform: translateY(-2px); }
   #mokda-help :is(.help-close,.help-reset,.help-choice):hover { background: #f8e8da; }
   #mokda-help .help-choice:hover { border-color: #ca7443; }
   #mokda-help .help-contact:hover { background: #ecf5ef; }

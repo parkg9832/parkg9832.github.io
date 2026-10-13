@@ -10,6 +10,18 @@ function start({ lang = 'EN', width = 1440, saved, draft, manifest = assets, blo
   const errors = [], vc = new VirtualConsole(); vc.on('jsdomError', error => errors.push(error.message));
   const dom = new JSDOM('<html><head></head><body><main><textarea id="messageInput"></textarea></main></body></html>', { url: `https://www.mokda.kr/${{ KR: 'ko', ES: 'es', EN: 'en' }[lang]}/`, runScripts: 'outside-only', virtualConsole: vc });
   const w = dom.window, d = w.document, pending = [], loaded = [];
+  const timers = new Map(); let now = 0, nextTimer = 0;
+  w.setTimeout = (run, delay = 0) => { const id = ++nextTimer; timers.set(id, { run, at: now + delay }); return id; };
+  w.clearTimeout = id => timers.delete(id);
+  const advance = duration => {
+    const end = now + duration;
+    for (;;) {
+      const due = [...timers].filter(([, item]) => item.at <= end).sort((a, b) => a[1].at - b[1].at)[0];
+      if (!due) break;
+      timers.delete(due[0]); now = due[1].at; due[1].run();
+    }
+    now = end;
+  };
   d.documentElement.dataset.routeLanguage = lang; w.innerWidth = width; w.matchMedia = () => ({ matches: false }); w.scrollTo = () => {};
   Object.assign(w.HTMLDialogElement.prototype, { show() { this.setAttribute('open', ''); }, showModal() { this.setAttribute('open', ''); }, close() { this.removeAttribute('open'); } });
   if (saved !== undefined) w.sessionStorage.setItem('mokdaChatSessionV2', saved);
@@ -32,7 +44,7 @@ function start({ lang = 'EN', width = 1440, saved, draft, manifest = assets, blo
       await settle();
     }
   };
-  return { dom, w, d, loaded, errors, finish, reload: () => { current = bootstrap; w.eval(read('site-help-loader.js')); } };
+  return { dom, w, d, loaded, errors, finish, advance, reload: () => { current = bootstrap; w.eval(read('site-help-loader.js')); } };
 }
 let checks = 0;
 for (const lang of ['KR', 'ES', 'EN']) for (const width of [390, 1440]) {
@@ -44,7 +56,11 @@ for (const lang of ['KR', 'ES', 'EN']) for (const width of [390, 1440]) {
   assert.deepEqual(f.loaded, names.map(name => `/${name}`));
   assert(f.d.querySelector('dialog').open); assert.equal(f.d.querySelectorAll('#mokda-help').length, 1);
   assert.equal(f.d.querySelector('dialog').getAttribute('aria-modal'), String(width <= 600));
-  assert(f.d.querySelector('.help-contact').hidden); assert.equal(f.d.querySelectorAll('.help-choice').length, 3);
+  assert(f.d.querySelector('.help-contact').hidden);
+  assert.equal(f.d.querySelectorAll('.help-message').length, 0, 'The first open shows preparation before the greeting');
+  assert.equal(f.d.querySelector('.help-processing').hidden, false);
+  f.advance(999); assert.equal(f.d.querySelectorAll('.help-choice').length, 0);
+  f.advance(1); assert.equal(f.d.querySelectorAll('.help-choice').length, 3);
   assert.equal(f.w.MOKDA_CONTACT.whatsappNumber, '821022127815');
   f.reload(); assert.equal(f.d.querySelectorAll('#mokda-help').length, 1); assert.deepEqual(f.errors, []);
   f.dom.window.close(); checks++;

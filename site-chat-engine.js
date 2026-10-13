@@ -4,7 +4,7 @@
   const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').normalize('NFC').toLowerCase().replace(/[‐‑–—]/g, '-');
   const copy = {
     KR: {
-      greeting: '안녕하세요! 어떤 소스가 궁금하세요? 제품을 살펴보거나 구매·사업 문의를 이어갈 수 있어요.', thanks: '네! 다른 궁금한 점도 편하게 물어보세요.',
+      greeting: '안녕하세요! MOKDA 마스코트 먹랑이입니다. 좋은 하루 보내고 계신가요? 무엇을 도와드릴까요?', thanks: '네! 다른 궁금한 점도 편하게 물어보세요.',
       unknown: '어떤 내용이 궁금하신지 조금만 더 알려주시겠어요? 제품의 맛과 활용법, 구매 가능 국가, 사업 거래를 안내해드릴 수 있어요.',
       outside: '여기서는 MOKDA 제품과 구매·사업 거래를 안내해드려요. 소스나 구매에 관해 궁금한 점이 있으신가요?',
       audience: '개인적으로 드실 제품을 찾으시나요, 아니면 수입·유통이나 매장에서 판매·사용할 제품을 찾으시나요?',
@@ -36,7 +36,7 @@
       businessNames: { importer: '수입사', distributor: '유통사', retail: '소매 매장', restaurant: '레스토랑·HORECA', other: '기타 사업' },
     },
     ES: {
-      greeting: '¡Hola! ¿Qué te gustaría saber de nuestras salsas? Podemos ayudarte con los productos, las compras y las consultas comerciales.', thanks: '¡Con gusto! Puedes hacerme otra pregunta.',
+      greeting: '¡Hola! Soy MOK-LANG, la mascota de MOKDA. ¿Cómo va tu día? ¿En qué te puedo ayudar?', thanks: '¡Con gusto! Puedes hacerme otra pregunta.',
       unknown: '¿Puedes contarme un poco más? Te puedo orientar sobre sabores, formas de usar las salsas, dónde comprarlas o consultas comerciales.',
       outside: 'Aquí te ayudamos con los productos MOKDA, compras y consultas comerciales. ¿Qué te gustaría saber de nuestras salsas?',
       audience: '¿Las buscas para consumo personal o para importar, distribuir, vender o usar en tu negocio?',
@@ -68,7 +68,7 @@
       businessNames: { importer: 'Importadora', distributor: 'Distribuidora', retail: 'Tienda', restaurant: 'Restaurante / HORECA', other: 'Otro negocio' },
     },
     EN: {
-      greeting: 'Hi! What would you like to know about our sauces? We can help with products, buying and business inquiries.', thanks: 'You’re welcome! Feel free to ask another question.',
+      greeting: 'Hi! I’m MOK-LANG, the MOKDA mascot. How’s your day going? How can I help you?', thanks: 'You’re welcome! Feel free to ask another question.',
       unknown: 'Could you tell me a little more? I can help with flavors, serving ideas, where to buy, or business inquiries.',
       outside: 'Here we help with MOKDA products, buying and business inquiries. What would you like to know about our sauces?',
       audience: 'Are you looking for personal use, or to import, distribute, sell or use the sauces in your business?',

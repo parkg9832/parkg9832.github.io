@@ -5,7 +5,14 @@ import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
 
 const root = new URL('../', import.meta.url);
-const languages = { ko: 'ko-KR', es: 'es-419', en: 'en' };
+// HTML may use the BCP 47 LATAM code; Google's hreflang region codes do not support es-419.
+const languages = {
+  ko: { html: 'ko-KR', hreflang: 'ko-KR' },
+  es: { html: 'es-419', hreflang: 'es' },
+  en: { html: 'en', hreflang: 'en' },
+};
+// Schema.org types used by the current site, checked against the official vocabulary.
+const supportedSchemaTypes = new Set(['WebPage', 'AboutPage', 'CollectionPage', 'ContactPage', 'Article', 'NewsArticle', 'Organization', 'WebSite', 'BreadcrumbList']);
 const newsData = (await loadNews(fileURLToPath(new URL('../', import.meta.url)))).data;
 const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.map(story => 'news-' + story.id)];
 const urlFor = (lang, page) => `https://www.mokda.kr/${lang}/${page === 'index' ? '' : `${page}.html`}`;
@@ -19,20 +26,27 @@ assert(!robots.includes('Disallow: /assets/images/mokda-logo-main.webp'), 'Brand
 const listedUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
 assert.equal(listedUrls.length, pages.length * Object.keys(languages).length);
 assert.equal(new Set(listedUrls).size, listedUrls.length);
+const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>\s*<\/url>/g)];
+assert.equal(sitemapEntries.length, listedUrls.length, 'Every sitemap entry must preserve its recorded modification date');
+for (const [, url, lastModified] of sitemapEntries) {
+  const productDetail = /\/(kpeno|para-carnes)\.html$/.test(url);
+  assert.equal(lastModified, productDetail ? '2026-10-13' : '2026-10-11', `${url}: only the corrected product detail metadata has a new modification date`);
+}
 for (const lang of ['ko', 'es', 'en']) {
   for (const page of pages) {
     const html = await readFile(new URL(`${lang}/${page}.html`, root), 'utf8');
     const { window } = new JSDOM(html);
     const doc = window.document;
     const canonical = urlFor(lang, page);
-    assert.equal(doc.documentElement.lang, languages[lang], `${lang}/${page}: html language`);
+    assert.equal(doc.documentElement.lang, languages[lang].html, `${lang}/${page}: html language`);
     assert.equal(doc.querySelector('link[rel="canonical"]')?.href, canonical, `${lang}/${page}: canonical`);
     assert.equal(doc.querySelector('meta[name="robots"]')?.content.includes('noindex'), false, `${lang}/${page}: unexpectedly noindex`);
     assert(doc.querySelector('meta[name="description"]')?.content.trim(), `${lang}/${page}: description`);
     assert(doc.title.trim(), `${lang}/${page}: title`);
-    for (const [alternateLang, hreflang] of Object.entries(languages)) {
+    for (const [alternateLang, { hreflang }] of Object.entries(languages)) {
       assert.equal(doc.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`)?.href, urlFor(alternateLang, page), `${lang}/${page}: ${hreflang} alternate`);
     }
+    assert.equal(doc.querySelectorAll('link[rel="alternate"][hreflang="es-419"]').length, 0, 'Google hreflang must use its supported Spanish code');
     assert.equal(doc.querySelector('link[rel="alternate"][hreflang="x-default"]')?.href, urlFor('es', page));
     assert(listedUrls.includes(canonical), `${lang}/${page}: missing from sitemap`);
     assert.equal(doc.querySelectorAll('h1').length, 1);
@@ -66,6 +80,16 @@ for (const lang of ['ko', 'es', 'en']) {
       const data = JSON.parse(block.textContent);
       return data['@graph'] || [data];
     });
+    for (const node of graph) {
+      for (const type of [].concat(node['@type'] || [])) {
+        assert(supportedSchemaTypes.has(type), `${lang}/${page}: unsupported Schema.org page type ${type}`);
+      }
+    }
+    if (page === 'kpeno' || page === 'para-carnes') {
+      const webPage = graph.find(node => node['@id'] === `${canonical}#webpage`);
+      assert.equal(webPage?.['@type'], 'WebPage', 'Product detail page must use a standard WebPage type');
+      assert.equal(webPage.inLanguage, languages[lang].html, 'Structured language preserves the actual content locale');
+    }
     if (page === 'index' || page === 'about') {
       const image = doc.querySelector('meta[property="og:image"]')?.content;
       const webPage = graph.find(node => node['@id'] === `${canonical}#webpage`);

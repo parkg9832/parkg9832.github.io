@@ -196,13 +196,15 @@
         ".superdesign/design-system.md",
         ".superdesign/init/theme.md:1:55",
         "site-help.js",
-        "styles/site-help.css"
+        "styles/site-help.css",
+        "site-chat-engine.js"
       ],
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "site-help.js": "f2aef869c31a93dc3f03a87ad5fc3fae8560a7408add8567fc6cad108b3e035e",
-        "styles/site-help.css": "5b8514711f16e3c276e7dd7bbfc76aefaedcdc5b3564f7fd0117b7f90ec1ac5c"
+        "site-help.js": "451faafd0ff1b645d7ef7131e622e02260905808a8615e6aa8a49d3c4a72a6d2",
+        "styles/site-help.css": "8a2a9454fbb77627a4680b8ae553c3e079efe4f5facaabf4b80d0b679d320541",
+        "site-chat-engine.js": "b4fa0d062b1fb962ea208fda79def6e692422ed85607840492408377a20a757a"
       },
       "referenceIds": [
         "f83028b3-4144-4d0e-91f1-bb216d34fb09",
@@ -221,14 +223,25 @@
         "18e009e9-4212-47f9-bcbd-0157aab087b6": {
           "title": "MOKDA Current Chat Widget",
           "baselineVersion": 1,
-          "currentVersion": 2,
-          "visualDirection": "Approved white/charcoal local messenger, mobile full-screen and WhatsApp",
+          "currentVersion": 4,
+          "visualDirection": "Existing 400px white messenger with subtle apricot header, cream conversation, brown text, restrained orange accents, MOK-LANG mascot greeting after 1s preparation",
           "previewUrl": "https://p.superdesign.dev/draft/18e009e9-4212-47f9-bcbd-0157aab087b6"
         }
       },
-      "updatedAt": "2026-10-11T05:48:06.575Z",
-      "approvedByUser": true,
-      "implementationScope": "Local guidance and WhatsApp only; no AI backend"
+      "updatedAt": "2026-10-13T03:26:42.855Z",
+      "approvedByUser": false,
+      "implementationScope": "Existing AI guidance and WhatsApp funnel retained; warm visual accents, MOK-LANG mascot naming and initial greeting preparation",
+      "canvasReview": {
+        "verifiedVersion": 4,
+        "authoredHtmlMatchesSavedHtml": true,
+        "noImportWarnings": true,
+        "verification": "Saved v4 source verified with Korean keep-all wrapping; no canvas rendered review or user approval performed for v4",
+        "accent": "#b7440a",
+        "header": "#fff5eb",
+        "surface": "#fbf7f2",
+        "greetingDelayMs": 1000,
+        "implementationAuthorization": "User goal explicitly authorizes subtle color, mascot naming and delayed first greeting changes; prior approvedByUser flag applied to v2 only"
+      }
     }
   }
 }

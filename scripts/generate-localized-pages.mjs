@@ -15,7 +15,7 @@ const SITE_FONT_REQUEST =
   'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Noto+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap';
 
 const languages = {
-  ES: { directory: 'es', html: 'es-419', hreflang: 'es-419', og: 'es_419' },
+  ES: { directory: 'es', html: 'es-419', hreflang: 'es', og: 'es_419' },
   KR: { directory: 'ko', html: 'ko-KR', hreflang: 'ko-KR', og: 'ko_KR' },
   EN: { directory: 'en', html: 'en', hreflang: 'en', og: 'en_US' },
 };
@@ -73,14 +73,16 @@ const pages = {
   },
   'kpeno.html': {
     route: 'kpeno.html',
-    type: 'ProductPage',
+    type: 'WebPage',
+    lastModified: '2026-10-13',
     ES: { title: 'K-PEÑO | Salsa Coreana MOKDA', description: 'Conoce K-PEÑO, la Salsa Coreana de MOKDA con gochujang y jalapeño.' },
     KR: { title: 'K-PEÑO 제품 상세 | MOKDA', description: '고추장과 할라피뇨를 담은 MOKDA K-PEÑO의 제품 상세를 확인하세요.' },
     EN: { title: 'K-PEÑO Product Details | MOKDA', description: 'Discover K-PEÑO, MOKDA’s Korean table sauce with gochujang and jalapeño.' },
   },
   'para-carnes.html': {
     route: 'para-carnes.html',
-    type: 'ProductPage',
+    type: 'WebPage',
+    lastModified: '2026-10-13',
     ES: { title: 'Para Carnes | Salsa Coreana MOKDA', description: 'Conoce Para Carnes, la Salsa Coreana de MOKDA inspirada en el ssamjang.' },
     KR: { title: 'Para Carnes 제품 상세 | MOKDA', description: '쌈장에서 영감을 받은 MOKDA Para Carnes의 제품 상세를 확인하세요.' },
     EN: { title: 'Para Carnes Product Details | MOKDA', description: 'Discover Para Carnes, MOKDA’s Korean sauce inspired by ssamjang.' },
@@ -326,7 +328,7 @@ for (const [fileName, page] of Object.entries(pages)) {
     const localized = localizeHtml(source, language, page);
     const rendered = await prerenderContent(localized, ROOT, routeUrl(language, page));
     await writeFile(outputPath, (await externalizeBlocks(rendered, ROOT)).replace(/^[\t ]+$/gm, ''), 'utf8');
-    sitemapUrls.push(routeUrl(language, page));
+    sitemapUrls.push({ url: routeUrl(language, page), lastModified: page.lastModified || LAST_MODIFIED });
   }
 }
 
@@ -342,7 +344,7 @@ for (const config of Object.values(languages)) {
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.map((url) => `  <url>\n    <loc>${url}</loc>\n    <lastmod>${LAST_MODIFIED}</lastmod>\n  </url>`).join('\n')}
+${sitemapUrls.map(({ url, lastModified }) => `  <url>\n    <loc>${url}</loc>\n    <lastmod>${lastModified}</lastmod>\n  </url>`).join('\n')}
 </urlset>
 `;
 

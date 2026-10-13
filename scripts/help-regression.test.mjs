@@ -9,7 +9,7 @@ const settings = {
   ES: { prefix: 'es', greeting: '¡Hola', price: 'Quiero importar K-PEÑO', country: 'Somos una importadora en Perú, 100 botellas', correction: '10 botellas en lugar de 100', thanks: 'Gracias', role: 'Tú', human: 'Quiero hablar con una persona' },
   EN: { prefix: 'en', greeting: 'Hi', price: 'I would like to import K-PEÑO', country: 'We are an importer in Peru, 100 bottles', correction: '10 bottles instead', thanks: 'Thanks', role: 'You', human: 'Please connect me with a human' },
 };
-function start(lang = 'EN', { number, saved, width = 1440, blockedStorage = false, draft, contactValue, reducedMotion = false, aiClient } = {}) {
+function start(lang = 'EN', { number, saved, width = 1440, blockedStorage = false, draft, contactValue, reducedMotion = false, aiClient, prepare = true } = {}) {
   const errors = [], timers = new Map(); let id = 0, requests = 0;
   const console = new VirtualConsole(); console.on('jsdomError', e => errors.push(e));
   const dom = new JSDOM('<!doctype html><html><body><main><button id="outside">Page control</button></main></body></html>', { url: `https://www.mokda.kr/${settings[lang].prefix}/`, runScripts: 'outside-only', virtualConsole: console });
@@ -28,19 +28,73 @@ function start(lang = 'EN', { number, saved, width = 1440, blockedStorage = fals
     if (file === 'site-contact-config.js') { w.MOKDA_CHAT_AI.enabled = false; if (number !== undefined) w.MOKDA_CONTACT.whatsappNumber = number; }
   }
   const flush = () => { for (const [i, value] of [...timers]) { timers.delete(i); value.action(); } };
+  if (prepare && !d.querySelector('.help-message')) { w.MOKDA_HELP_UI.open(); flush(); d.querySelector('.help-close').click(); flush(); }
   const submit = (query, finish = true) => { const input = d.querySelector('.help-composer textarea'); input.focus(); input.value = query; input.dispatchEvent(new w.Event('input')); d.querySelector('form').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); if (finish) flush(); };
   return { dom, w, d, errors, flush, submit, delays: () => [...timers.values()].map(value => value.delay), requests: () => requests };
 }
 const latest = f => f.d.querySelector('.help-conversation').lastElementChild;
 let checks = 0;
+const unopened = start('EN', { prepare: false });
+unopened.d.querySelector('.help-launcher').click(); unopened.d.querySelector('.help-close').click(); unopened.flush();
+assert.equal(unopened.d.querySelectorAll('.help-message').length, 0, 'Closing before the welcome cancels its timer'); assert.equal(unopened.delays().length, 0);
+unopened.d.querySelector('.help-launcher').click(); unopened.flush(); assert.equal(unopened.d.querySelectorAll('.help-message').length, 1);
+unopened.d.querySelector('.help-close').click(); unopened.flush(); unopened.d.querySelector('.help-launcher').click();
+assert.equal(unopened.d.querySelectorAll('.help-message').length, 1, 'Reopening an existing conversation does not repeat its welcome'); assert.equal(unopened.delays().length, 0);
+unopened.d.querySelector('.help-reset').click(); assert.equal(unopened.d.querySelectorAll('.help-message').length, 0); assert.deepEqual(unopened.delays(), [1000]);
+unopened.d.querySelector('.help-reset').click(); assert.deepEqual(unopened.delays(), [1000], 'Reset replaces a welcome timer instead of stacking greetings'); unopened.flush(); assert.equal(unopened.d.querySelectorAll('.help-message').length, 1); unopened.dom.window.close();
+const eager = start('EN', { prepare: false }); eager.w.MOKDA_HELP_UI.open(); eager.submit('How spicy is K-PEÑO?', false);
+assert.equal(eager.d.querySelectorAll('.help-message').length, 0, 'An early question waits for the welcome');
+const eagerInput = eager.d.querySelector('textarea'); eagerInput.value = 'A separate draft'; eagerInput.dispatchEvent(new eager.w.Event('input'));
+eager.flush(); assert.equal(eager.d.querySelectorAll('.help-message').length, 2); assert.match(eager.d.querySelector('.help-message-bot').textContent, /MOK-LANG/);
+assert.equal(eager.d.querySelectorAll('.help-message')[1].getAttribute('aria-label'), 'You'); assert.equal(eagerInput.value, 'A separate draft', 'A new draft entered during welcome survives the queued question');
+eager.flush(); assert.equal(eager.d.querySelectorAll('.help-message').length, 3); assert.equal(eager.d.querySelector('.help-processing').hidden, true); eager.dom.window.close();
+const cancelledQuestion = start('EN', { prepare: false }); cancelledQuestion.w.MOKDA_HELP_UI.open(); cancelledQuestion.submit('Keep my question', false);
+cancelledQuestion.d.querySelector('.help-close').click(); cancelledQuestion.flush(); assert.equal(cancelledQuestion.d.querySelector('textarea').value, 'Keep my question');
+cancelledQuestion.w.MOKDA_HELP_UI.open(); cancelledQuestion.flush(); assert.equal(cancelledQuestion.d.querySelectorAll('.help-message').length, 1, 'Closing cancels an early submission while keeping its draft'); cancelledQuestion.dom.window.close();
+const greetingUnload = start('EN', { prepare: false }); greetingUnload.w.MOKDA_HELP_UI.open(); greetingUnload.w.dispatchEvent(new greetingUnload.w.Event('pagehide')); greetingUnload.flush();
+assert.equal(greetingUnload.d.querySelectorAll('.help-message').length, 0); assert.equal(greetingUnload.delays().length, 0, 'Leaving the page clears the welcome timer');
+const restoredWelcome = start('EN', { saved: greetingUnload.w.sessionStorage.getItem(KEY), prepare: false });
+assert(restoredWelcome.d.querySelector('dialog').open); assert.deepEqual(restoredWelcome.delays(), [1000]); restoredWelcome.flush(); assert.equal(restoredWelcome.d.querySelectorAll('.help-message').length, 1); restoredWelcome.dom.window.close();
+greetingUnload.w.dispatchEvent(new greetingUnload.w.Event('pageshow')); assert.deepEqual(greetingUnload.delays(), [1000], 'Returning from the page cache resumes an unfinished welcome'); greetingUnload.flush(); assert.equal(greetingUnload.d.querySelectorAll('.help-message').length, 1); greetingUnload.dom.window.close();
+const calmWelcome = start('EN', { prepare: false, reducedMotion: true }); calmWelcome.w.MOKDA_HELP_UI.open(); assert.deepEqual(calmWelcome.delays(), [1000], 'Reduced motion removes movement, not the welcome preparation'); calmWelcome.flush(); calmWelcome.dom.window.close();
+const legacyGreetings = {
+  KR: '안녕하세요! 어떤 소스가 궁금하세요? 제품을 살펴보거나 구매·사업 문의를 이어갈 수 있어요.',
+  ES: '¡Hola! ¿Qué te gustaría saber de nuestras salsas? Podemos ayudarte con los productos, las compras y las consultas comerciales.',
+  EN: 'Hi! What would you like to know about our sauces? We can help with products, buying and business inquiries.',
+};
+for (const [lang, legacy] of Object.entries(legacyGreetings)) {
+  const draft = 'A saved unfinished question';
+  const untouched = start(lang, { prepare: false, saved: JSON.stringify({ version: 2, at: Date.now(), transcript: [{ role: 'bot', text: legacy }], context: { product: 'kpeno', country: 'Peru' }, draft, open: true }) });
+  assert.equal(untouched.d.querySelectorAll('.help-message').length, 0, 'A saved old welcome is replaced through preparation, not restored immediately');
+  assert.deepEqual(untouched.delays(), [1000]); assert.equal(untouched.d.querySelector('textarea').value, draft); untouched.flush();
+  assert.match(latest(untouched).textContent, /먹랑이|MOK-LANG/); assert.notEqual(latest(untouched).textContent, legacy); assert.equal(untouched.d.querySelector('textarea').value, draft);
+  const refreshed = JSON.parse(untouched.w.sessionStorage.getItem(KEY)); assert.equal(refreshed.version, 2); assert.equal(refreshed.context.product, 'kpeno'); assert.equal(refreshed.context.country, 'Peru'); untouched.dom.window.close();
+  const ongoingTranscript = [{ role: 'bot', text: legacy }, { role: 'user', text: 'An actual question' }, { role: 'bot', text: 'An actual answer' }];
+  const ongoing = start(lang, { prepare: false, saved: JSON.stringify({ version: 2, at: Date.now(), transcript: ongoingTranscript, context: { product: 'kpeno' }, draft, open: true }) });
+  assert.equal(ongoing.d.querySelectorAll('.help-message').length, 3); assert.equal(ongoing.d.querySelector('.help-message').textContent, legacy); assert.equal(latest(ongoing).textContent, 'An actual answer');
+  assert.equal(ongoing.d.querySelector('textarea').value, draft); assert.equal(ongoing.delays().length, 0, 'An ongoing saved conversation never receives another welcome'); ongoing.dom.window.close();
+}
+for (const open of [false, true]) {
+  const draft = 'q'.repeat(600);
+  const unfinished = start('EN', { prepare: false, saved: JSON.stringify({ version: 2, at: Date.now(), transcript: [], context: { product: 'para_carnes' }, draft, open }) });
+  assert.equal(unfinished.d.querySelector('textarea').value, draft.slice(0, 500), 'An empty transcript keeps its bounded composer draft');
+  if (!open) { assert.equal(unfinished.delays().length, 0); unfinished.w.MOKDA_HELP_UI.open(); }
+  assert.deepEqual(unfinished.delays(), [1000]); unfinished.flush(); assert.equal(unfinished.d.querySelector('textarea').value, draft.slice(0, 500));
+  assert.equal(JSON.parse(unfinished.w.sessionStorage.getItem(KEY)).context.product, 'para_carnes'); unfinished.dom.window.close();
+}
 for (const [lang, s] of Object.entries(settings)) {
-  const f = start(lang); const { w, d, submit, flush } = f;
+  const f = start(lang, { prepare: false }); const { w, d, submit, flush } = f;
   assert.equal(w.MOKDA_CONTACT.whatsappNumber, '821022127815', 'Official number matches the owner correction');
   const dialog = d.querySelector('dialog'), input = d.querySelector('textarea'), launcher = d.querySelector('.help-launcher');
-  assert.equal(dialog.open, false); assert.match(latest(f).textContent, new RegExp(s.greeting));
+  assert.equal(dialog.open, false); assert.equal(latest(f), null); assert.equal(f.delays().length, 0, 'A closed chat never starts the welcome timer');
   assert(d.querySelector('.help-contact').hidden); assert(d.querySelector('.help-form-link').hidden);
-  assert.equal(d.querySelectorAll('.help-choice').length, 3); assert.equal(input.maxLength, 500);
+  assert.equal(d.querySelectorAll('.help-choice').length, 0); assert.equal(input.maxLength, 500);
   launcher.click(); assert(dialog.open); assert.equal(dialog.getAttribute('aria-modal'), 'false'); assert.equal(d.activeElement, d.querySelector('.help-close'));
+  assert.equal(d.querySelector('.help-processing').hidden, false); assert.equal(latest(f), null); assert.deepEqual(f.delays(), [1000]);
+  assert.equal(d.getElementById('mokda-help-title').textContent, 'MOK-LANG');
+  assert.equal(d.querySelector('.help-heading p').textContent, { KR: '먹다 마스코트', ES: 'Mascota de MOKDA', EN: 'MOKDA mascot' }[lang]);
+  flush(); assert.match(latest(f).textContent, new RegExp(s.greeting)); assert.match(latest(f).textContent, /먹랑이|MOK-LANG/);
+  assert.equal(d.querySelectorAll('.help-choice').length, 3); assert.equal(d.querySelector('.help-processing').hidden, true);
   submit(s.price, false); assert.equal(d.querySelector('.help-processing').hidden, false);
   assert(f.delays().some(delay => delay >= 1400 && delay <= 1900), 'Automated reply has a brief visible preparation delay');
   assert(d.querySelector('.help-contact').hidden, 'No contact prompt during preparation or before business qualification');
@@ -174,15 +228,16 @@ assert.equal(JSON.parse(contactNavigation.w.sessionStorage.getItem(KEY)).open, f
 assert.match(contactNavigation.w.sessionStorage.getItem('mokdaChatInquiryDraft'), /K-PEÑO/); contactNavigation.dom.window.close();
 for (const saved of ['{bad', JSON.stringify({ version: 2, at: Date.now() - 5 * 60 * 60 * 1000, transcript: [] })]) { const f = start('EN', { saved }); assert.equal(f.d.querySelectorAll('.help-message').length, 1); f.dom.window.close(); }
 const blocked = start('EN', { blockedStorage: true }); blocked.submit('price'); assert.deepEqual(blocked.errors, []); blocked.dom.window.close();
-const oldSession = start('EN', { saved: JSON.stringify({ version: 2, at: Date.now(), context: { lastQuestion: 'retail price', handoffEligible: true }, transcript: [{ role: 'bot', text: 'Old guidance' }], open: true }) });
-assert(oldSession.d.querySelector('.help-contact').hidden, 'Older stored handoff flags cannot bypass current qualification'); oldSession.dom.window.close();
+const oldSession = start('EN', { saved: JSON.stringify({ version: 2, at: Date.now(), context: { lastQuestion: 'retail price', handoffEligible: true }, transcript: [{ role: 'bot', text: 'Old guidance' }], draft: 'A real draft', open: true }) });
+assert(oldSession.d.querySelector('.help-contact').hidden, 'Older stored handoff flags cannot bypass current qualification'); assert.equal(latest(oldSession).textContent, 'Old guidance'); assert.equal(oldSession.d.querySelector('textarea').value, 'A real draft'); assert.equal(oldSession.delays().length, 0, 'A saved arbitrary guide is never mistaken for an untouched welcome'); oldSession.dom.window.close();
 const reduced = start('EN', { reducedMotion: true }); reduced.submit('How spicy is K-PEÑO?', false); assert(reduced.delays().some(delay => delay >= 1400 && delay <= 1900)); assert.equal(reduced.d.querySelector('.help-processing').hidden, false); reduced.flush(); reduced.dom.window.close();
 // Async responses must finish both the visible delay and the current request.
 const settle = async () => { await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); };
 let firstResolve, secondResolve; const calls = [];
 const asyncUi = start('EN', { aiClient: { isEnabled: () => true, answer: args => { calls.push(args); return new Promise(resolve => { if (calls.length === 1) firstResolve = resolve; else secondResolve = resolve; }); } } });
+asyncUi.w.MOKDA_HELP_UI.open();
 asyncUi.submit('How spicy is K-PEÑO?', false); asyncUi.flush(); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 2); assert(!asyncUi.d.querySelector('.help-processing').hidden, 'Delay completion waits for AI or its fallback');
-asyncUi.d.querySelector('.help-reset').click(); assert(calls[0].signal.aborted); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 1);
+asyncUi.d.querySelector('.help-reset').click(); assert(calls[0].signal.aborted); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 0); asyncUi.flush(); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 1);
 asyncUi.submit('How spicy is Para Carnes?', false); firstResolve({ text: 'Stale reply must never appear', interpretation: { product: 'kpeno', intent: 'choose' } }); await settle(); asyncUi.flush();
 assert.doesNotMatch(asyncUi.d.querySelector('.help-conversation').textContent, /Stale reply/); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 2);
 secondResolve({ text: 'The current reply explains Para Carnes.', interpretation: { product: 'para_carnes', intent: 'choose' } }); await settle(); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 3); assert.match(latest(asyncUi).textContent, /current reply/); assert(asyncUi.d.querySelector('.help-contact').hidden); assert.equal(asyncUi.d.activeElement, asyncUi.d.querySelector('textarea')); asyncUi.dom.window.close();

@@ -292,9 +292,15 @@
           "publicVerification": "pending-publication"
         },
         "desktopVideo": {
-          "url": "https://www.mokda.kr/assets/videos/hero/mokda-field-desktop-20261013-v2.mp4",
-          "sourcePath": "assets/videos/hero/mokda-field-desktop-20261013-v2.mp4",
+          "url": "https://www.mokda.kr/assets/videos/hero/mokda-people-desktop-20261014-v3.mp4",
+          "sourcePath": "assets/videos/hero/mokda-people-desktop-20261014-v3.mp4",
           "publicVerification": "pending-publication"
+        },
+        "mobileVideo": {
+          "url": "https://www.mokda.kr/assets/videos/hero/mokda-people-mobile-20261014-v3.mp4",
+          "sourcePath": "assets/videos/hero/mokda-people-mobile-20261014-v3.mp4",
+          "publicVerification": "pending-publication",
+          "usage": "Production mobile source; this existing canvas draft retains its single desktop source"
         }
       },
       "components": [
@@ -308,13 +314,13 @@
       "drafts": {
         "9cbeff69-d6a2-497e-a0fb-49854b900e80": {
           "title": "MOKDA home video hero preview",
-          "currentVersion": 3,
-          "visualDirection": "Existing centered ES/KR/EN campaign geometry and authentic MOKDA navigation over real field interview footage and interview still; generated studio cutout and tasting scene removed from final root montage",
+          "currentVersion": 4,
+          "visualDirection": "Existing centered ES/KR/EN campaign geometry and authentic MOKDA navigation over a 9.5-second people-and-products montage: single interview, actual K-pop group photo, then two distinct people with two MOKDA bottles; no repeated interview composition or fair panorama",
           "previewUrl": "https://p.superdesign.dev/draft/9cbeff69-d6a2-497e-a0fb-49854b900e80"
         }
       },
       "canvasReview": {
-        "verifiedVersion": 3,
+        "verifiedVersion": 4,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
         "exactLogoPositions": 1,
@@ -324,7 +330,7 @@
         "pausePositionDesktop": "left:24px;bottom:24px",
         "pausePositionMobile": "left:20px;bottom:20px",
         "renderedReviewPerformed": false,
-        "verification": "Same draft v3 refetched and byte-identical to authored HTML. Only public poster/video URLs and the existing production contrast overlay changed. Root owns publication and live playback verification.",
+        "verification": "Same draft v4 refetched and byte-identical to authored HTML. Only the existing desktop video public URL changed from field v2 to people v3; all other HTML bytes, poster, overlay, layout, navigation and three-language copy preserved. Root owns publication, mobile production playback and rendered verification.",
         "generatedStudioPosterRemoved": true,
         "intendedChangesOnly": true,
         "overlayMatchesProduction": true,
@@ -334,7 +340,7 @@
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "authoringMethod": "free-direct-html-import",
       "approvedByUser": false,
-      "updatedAt": "2026-10-13T10:09:16.830Z",
+      "updatedAt": "2026-10-14T02:13:56.292Z",
       "assetTransferNote": "Private interview image pixel upload was rejected by automatic approval review. No retry or workaround was used; the draft references the user-authorized public website URLs only."
     }
   }

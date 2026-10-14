@@ -95,7 +95,7 @@ for (const language of ['KR', 'ES', 'EN']) for (const width of [390, 1440]) {
   assert.equal(f.media.dataset.videoState, 'poster');
   f.enter(true);
   assert.equal(f.attempts.length, 1);
-  assert.match(f.video.getAttribute('src'), width < 768 ? /mobile-20261013-v2\.mp4$/ : /desktop-20261013-v2\.mp4$/);
+  assert.match(f.video.getAttribute('src'), width < 768 ? /mobile-20261014-v3\.mp4$/ : /desktop-20261014-v3\.mp4$/);
   assert.equal(f.video.muted, true); assert.equal(f.video.playsInline, true);
   assert.equal(f.toggle.textContent, expected[language].pause);
   assert.equal(f.media.dataset.videoState, 'poster', 'The poster remains until playback is confirmed');

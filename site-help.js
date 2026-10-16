@@ -21,7 +21,7 @@
   if (field) { try { const draft = sessionStorage.getItem(DRAFT); sessionStorage.removeItem(DRAFT); if (draft && !field.value) field.value = draft.slice(0, 1200); } catch { /* Form remains available. */ } }
   const icon = paths => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
   const x = icon('<path d="m6 6 12 12M18 6 6 18"/>');
-  const launcherMark = `<span class="help-launcher-mark" aria-hidden="true">${icon('<path d="M12 3v3M2 10v5M22 10v5"/><circle cx="12" cy="2" r="1" fill="currentColor" stroke="none"/><rect x="4" y="6" width="16" height="14" rx="4"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><path d="M9 16h6"/>')}<span class="help-launcher-label" translate="no">AI</span></span>`;
+  const launcherMark = '<span class="help-launcher-mark" aria-hidden="true"><svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M2 10v5M22 10v5"/><circle cx="12" cy="2" r="1" fill="currentColor" stroke="none"/><rect x="4" y="6" width="16" height="14" rx="4"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><path d="M9 16h6"/></svg></span>';
   const root = document.createElement('aside'); root.id = 'mokda-help'; root.lang = { KR: 'ko-KR', ES: 'es-419', EN: 'en' }[lang];
   root.innerHTML = `
     <button type="button" class="help-launcher" aria-haspopup="dialog" aria-controls="mokda-help-dialog" aria-expanded="false">${launcherMark}</button>

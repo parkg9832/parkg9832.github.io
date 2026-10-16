@@ -3,35 +3,24 @@
   const hero = document.getElementById('top');
   const media = hero?.querySelector('[data-hero-photos]');
   const photos = [...(media?.querySelectorAll('[data-hero-photo]') || [])];
-  const toggle = hero?.querySelector('[data-hero-photos-toggle]');
-  if (photos.length < 2 || !toggle || hero.dataset.heroPhotosBound) return;
+  if (photos.length < 2 || hero.dataset.heroPhotosBound) return;
   hero.dataset.heroPhotosBound = 'true';
 
   const reduced = window.MOKDA_MOTION_PREFERENCE || window.matchMedia('(prefers-reduced-motion: reduce)');
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const labels = {
-    KR: { pause: '사진 전환 일시정지', play: '사진 전환 재생' },
-    ES: { pause: 'Pausar fotos', play: 'Reanudar fotos' },
-    EN: { pause: 'Pause photos', play: 'Resume photos' },
-  };
   const dwell = 4500, fade = 800, loads = new Map();
-  let visible = false, pageHidden = false, userPaused = false, failed = false;
+  let visible = false, pageHidden = false, failed = false;
   let active = 0, epoch = 0, timer = null, pending = false;
 
   const staticOnly = () => reduced.matches || connection?.saveData === true;
-  const eligible = () => visible && !document.hidden && !pageHidden && !userPaused && !failed && !staticOnly();
+  const eligible = () => visible && !document.hidden && !pageHidden && !failed && !staticOnly();
 
   function showPhoto(index) {
     photos.forEach((photo, i) => photo.classList.toggle('is-active', i === index));
     active = index;
   }
 
-  function updateControl() {
-    const language = window.MOKDA_I18N?.getLanguage() || 'ES';
-    const text = (labels[language] || labels.ES)[userPaused ? 'play' : 'pause'];
-    toggle.textContent = text;
-    toggle.setAttribute('aria-label', text);
-    toggle.hidden = staticOnly() || failed;
+  function updateState() {
     media.dataset.photosRunning = String(eligible());
   }
 
@@ -43,7 +32,7 @@
     pending = false;
     media.dataset.photosRunning = 'false';
     if (reset) showPhoto(0);
-    updateControl();
+    updateState();
   }
 
   function loadPhoto(index) {
@@ -100,11 +89,10 @@
 
   function reconcile() {
     if (!eligible()) { suspend(staticOnly()); return; }
-    updateControl();
+    updateState();
     if (timer === null && !pending) schedule(dwell);
   }
 
-  toggle.addEventListener('click', () => { userPaused = !userPaused; reconcile(); });
   document.addEventListener('visibilitychange', reconcile);
   window.addEventListener('pagehide', () => { pageHidden = true; suspend(); });
   window.addEventListener('pageshow', () => { pageHidden = false; measureVisibility(); });
@@ -136,5 +124,5 @@
   if (reduced.addEventListener) reduced.addEventListener('change', reconcile);
   else reduced.addListener?.(reconcile);
   connection?.addEventListener?.('change', reconcile);
-  updateControl();
+  updateState();
 })();

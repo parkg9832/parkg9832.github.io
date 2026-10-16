@@ -51,7 +51,7 @@ for (const lang of ['KR', 'ES', 'EN']) for (const width of [390, 1440]) {
   const f = start({ lang, width });
   assert.equal(f.loaded.length, 0); assert.equal(f.d.querySelector('dialog'), null);
   const stub = f.d.querySelector('.help-launcher'), launcherMark = stub.innerHTML;
-  assert.equal(stub.querySelector('.help-launcher-label')?.textContent, 'AI');
+  assert.equal(stub.querySelector('.help-launcher-label'), null);
   stub.click(); stub.click();
   assert.equal(f.loaded.length, 1, 'Double clicking does not start duplicate dependency loads');
   await f.finish();

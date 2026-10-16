@@ -92,7 +92,7 @@
   padding:12px 24px;
   margin:0;
   border:1px solid #ef5f18;
-  border-radius:4px;
+  border-radius:var(--mokda-button-radius,999px);
   background:#ef5f18;
   color:#321506;
   box-shadow:none;

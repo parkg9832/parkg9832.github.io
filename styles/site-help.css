@@ -36,7 +36,8 @@ html.mokda-menu-lock #mokda-help { visibility: hidden; }
 #mokda-help .help-detail-link { display: flex; align-items: center; width: fit-content; min-height: 44px; margin-top: 6px; color: var(--help-accent); font-size: 14px; font-weight: 700; line-height: 1.5; text-decoration: none; }
 #mokda-help .help-options { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 #mokda-help .help-options:empty { display: none; }
-#mokda-help .help-choice { min-height: 44px; max-width: 100%; padding: 10px 14px; border: 1px solid #e2d3c6; border-radius: 24px; background: #fffaf5; color: #47382d; font-size: 14px; font-weight: 600; line-height: 1.5; text-align: left; overflow-wrap: anywhere; text-decoration: none; transform: none; transition: border-color 150ms, background 150ms; }
+#mokda-help .help-choice { min-height: 44px; max-width: 100%; padding: 10px 14px; border: 1px solid #c97c50; border-radius: 999px; background: #f8dfc4; color: #321506; font-size: 14px; font-weight: 600; line-height: 1.5; text-align: left; overflow-wrap: anywhere; text-decoration: none; transform: none; transition: border-color 150ms, background 150ms; }
+#mokda-help .help-choice:focus-visible { border-color: #b7440a; background: #f3ccaa; }
 #mokda-help .help-processing { margin-top: 18px; padding: 14px 16px; width: fit-content; background: #fff; border: 1px solid var(--help-line); border-radius: 16px; }
 #mokda-help .help-dots { display: flex; gap: 5px; }
 #mokda-help .help-dots i { width: 6px; height: 6px; border-radius: 50%; background: #ef5f18; animation: help-dot 900ms ease-in-out infinite; }
@@ -60,11 +61,12 @@ html.mokda-menu-lock #mokda-help { visibility: hidden; }
 #mokda-help .help-form-link { display: flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 2px; color: var(--help-muted); font-size: 13px; line-height: 1.5; text-decoration: underline; text-underline-offset: 3px; }
 @media (hover: hover) and (pointer: fine) {
   #mokda-help .help-launcher:hover { background: #da500e; transform: translateY(-2px); }
-  #mokda-help :is(.help-close,.help-reset,.help-choice):hover { background: #f8e8da; }
-  #mokda-help .help-choice:hover { border-color: #ca7443; }
+  #mokda-help :is(.help-close,.help-reset):hover { background: #f8e8da; }
+  #mokda-help .help-choice:hover { border-color: #b76736; background: #f3ccaa; }
   #mokda-help .help-contact:hover { background: #ecf5ef; }
   #mokda-help .help-detail-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
+#mokda-help .help-choice:active { border-color: #985027; background: #edbc94; }
 #mokda-help.help-mobile .help-dialog { inset: var(--help-view-top, 0px) auto auto var(--help-view-left, 0px); width: var(--help-view-width, 100vw); height: var(--help-view-height, 100dvh); max-width: none; max-height: none; border: 0; border-radius: 0; box-shadow: none; }
 #mokda-help.help-mobile .help-dialog::backdrop { background: var(--help-surface); }
 #mokda-help.help-mobile .help-header { padding-top: max(12px, env(safe-area-inset-top)); padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }

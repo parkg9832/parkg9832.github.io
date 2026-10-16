@@ -14,6 +14,7 @@
   --mokda-leading-korean-display: 1.18;
   --mokda-leading-body: 1.75;
   --mokda-tracking-label: 0.08em;
+  --mokda-button-radius: 999px;
 }
 
 html[lang^="ko"] {
@@ -31,7 +32,7 @@ body:not(.support-page) {
 main :is(h1,h2,h3), #footerText :is(dt,dd) { word-break:keep-all; text-wrap:balance; }
 main :is(p,label) { text-wrap:pretty; }
 main :is(input,select,textarea), main :is(article,section)>div { min-width:0; }
-#b2bForm #submitButton { color:#321506; }
+#b2bForm #submitButton { color:#321506; border-radius:var(--mokda-button-radius); min-height:52px; }
 #b2bForm #submitButton:hover { background:#ff9461; }
 .footer-registration { white-space:nowrap; font-variant-numeric:tabular-nums; }
 @media(max-width:479px) {

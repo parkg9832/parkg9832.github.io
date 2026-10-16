@@ -148,13 +148,13 @@
         "tailwind.config.ts"
       ],
       "fingerprints": {
-        ".superdesign/design-system.md": "e2d25d5e4e885044cdea5a6ba4d2d3710a0c0e4d7620553436ceab0040f51c6b",
-        ".superdesign/init/theme.md": "84fc3919dde75752c455f3611cb872c79ebeb8d4c4bca146dba4d111ef6db2ee",
-        "site-news.js": "8f8f01ad736264b2fcead223142b796f79dc0c8b99ed65be5609605fe69f624e",
-        "site-news-data.js": "f3168d7a3294111a3b7e6d3b2ac8d70cf8d055408c2ae2fbf5925eb2326bfba9",
-        "styles/site-news.css": "ad214010814f4dc10218aa4ba33269c1d38c4b04c7c017079001b53d84bf9927",
-        "styles/brand-rhythm.css": "43d12e46adfb803fb80fb32d8a33bb7e42cdf97d605d7d7381522c925226b348",
-        "styles/site-typography.css": "6f4fc5d9ca2e3759e116f030c331b38c03374d15483f18a6aeb9728e929e347a",
+        ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
+        ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
+        "site-news.js": "05eaeecb651fd5506b408da5d6e3c8221db9a7edf0e709c5a8aa028c48002f60",
+        "site-news-data.js": "74079294b48bf82422ef03b5e2e302c5dd8b8714253cd991be03754d4e993e0d",
+        "styles/site-news.css": "37b015189218876f2bbec1acdc8a01d1e31fde5564e2f8a5682b878bfe033d1f",
+        "styles/brand-rhythm.css": "f5e0e27c4450e975bb79377fc4c77a716b6651d208d7b7996c3324e03488fb20",
+        "styles/site-typography.css": "8ed52ec4f8b197f91b08bace8968ceb8d7d76167d8c2ffb9dd93526290bb8bbb",
         "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
       },
       "components": [],
@@ -162,8 +162,8 @@
         "9001a0e5-fe7f-49b6-af4b-cd48e3736487": {
           "title": "MOKDA homepage news preview",
           "baselineVersion": 1,
-          "currentVersion": 4,
-          "visualDirection": "one lead photograph and three compact supporting rows, centered copy, archive link at the top",
+          "currentVersion": 5,
+          "visualDirection": "Existing lead photograph and three compact supporting rows, with the unchanged archive link moved to a centered cream pill button below all cards.",
           "previewUrl": "https://p.superdesign.dev/draft/9001a0e5-fe7f-49b6-af4b-cd48e3736487"
         },
         "26bec3ed-de0e-42eb-9af8-649af976f3d3": {
@@ -184,7 +184,29 @@
         }
       },
       "reviewStatus": "user-approved-for-implementation",
-      "updatedAt": "2026-10-09T12:31:47.384Z"
+      "updatedAt": "2026-10-16T05:33:32.258Z",
+      "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "canvasReview": {
+        "verifiedVersion": 5,
+        "authoredHtmlMatchesSavedHtml": true,
+        "noImportWarnings": true,
+        "renderedReviewPerformed": false,
+        "archiveLinkPosition": "section-footer-after-cards",
+        "archiveLinkTextAndHrefPreserved": true,
+        "allFourCardHtmlBytesPreserved": true,
+        "button": {
+          "minHeightPx": 48,
+          "padding": "12px 24px",
+          "border": "1px solid #32150680",
+          "borderRadiusPx": 999,
+          "color": "#321506",
+          "background": "#fff8ef",
+          "hoverBackground": "#f8dfc4",
+          "arrow": "↗",
+          "arrowSizePx": 18
+        },
+        "verification": "Same KO draft v5 was refetched and matches authored HTML byte for byte. Only the archive link location and scoped footer/button CSS changed. All card photographs, titles, links and markup remain byte-identical to v4. ES/EN drafts were not changed; root owns final website source fingerprint refresh and rendered browser verification."
+      }
     },
     "shared-mokda-chat": {
       "targetKind": "existing-ui",
@@ -202,8 +224,8 @@
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "site-help.js": "451faafd0ff1b645d7ef7131e622e02260905808a8615e6aa8a49d3c4a72a6d2",
-        "styles/site-help.css": "8a2a9454fbb77627a4680b8ae553c3e079efe4f5facaabf4b80d0b679d320541",
+        "site-help.js": "fcf64e642f383594496fa185f9a74365b5ce487e0ed9faeaa93b020136307ddd",
+        "styles/site-help.css": "ac1d1ff28f5fa60b707db794dec38608187f461fb3f897b32938772b9a3436f0",
         "site-chat-engine.js": "b4fa0d062b1fb962ea208fda79def6e692422ed85607840492408377a20a757a"
       },
       "referenceIds": [
@@ -223,25 +245,39 @@
         "18e009e9-4212-47f9-bcbd-0157aab087b6": {
           "title": "MOKDA Current Chat Widget",
           "baselineVersion": 1,
-          "currentVersion": 4,
-          "visualDirection": "Existing 400px white messenger with subtle apricot header, cream conversation, brown text, restrained orange accents, MOK-LANG mascot greeting after 1s preparation",
+          "currentVersion": 5,
+          "visualDirection": "Existing 400px MOK-LANG messenger retained; only the three quick reply buttons receive current cream fill, warm brown border and hover/focus/active colors.",
           "previewUrl": "https://p.superdesign.dev/draft/18e009e9-4212-47f9-bcbd-0157aab087b6"
         }
       },
-      "updatedAt": "2026-10-13T03:26:42.855Z",
+      "updatedAt": "2026-10-16T05:33:32.280Z",
       "approvedByUser": false,
       "implementationScope": "Existing AI guidance and WhatsApp funnel retained; warm visual accents, MOK-LANG mascot naming and initial greeting preparation",
       "canvasReview": {
-        "verifiedVersion": 4,
+        "verifiedVersion": 5,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
-        "verification": "Saved v4 source verified with Korean keep-all wrapping; no canvas rendered review or user approval performed for v4",
+        "verification": "Same chat draft v5 was refetched and matches authored HTML byte for byte. Only three quick reply class attributes and scoped CSS copied from current styles/site-help.css changed. Existing header, logo, messages, delays, composer, launcher and geometry are unchanged. Root owns final website source fingerprint refresh and rendered browser verification.",
         "accent": "#b7440a",
         "header": "#fff5eb",
         "surface": "#fbf7f2",
         "greetingDelayMs": 1000,
-        "implementationAuthorization": "User goal explicitly authorizes subtle color, mascot naming and delayed first greeting changes; prior approvedByUser flag applied to v2 only"
-      }
+        "implementationAuthorization": "User goal explicitly authorizes subtle color, mascot naming and delayed first greeting changes; prior approvedByUser flag applied to v2 only",
+        "renderedReviewPerformed": false,
+        "quickChoices": 3,
+        "quickChoiceStyle": {
+          "minHeightPx": 44,
+          "border": "#c97c50",
+          "background": "#f8dfc4",
+          "color": "#321506",
+          "borderRadiusPx": 999,
+          "hoverAndFocusBackground": "#f3ccaa",
+          "activeBackground": "#edbc94"
+        },
+        "choiceRulesCopiedFromCurrentSource": true,
+        "launcherAndHeaderMarkupPreserved": true
+      },
+      "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979"
     },
     "home-video-hero": {
       "targetKind": "new-ui",

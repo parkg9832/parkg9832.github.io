@@ -83,7 +83,7 @@ for(const lang of ['es','ko','en']){
  assert.equal(hd.querySelectorAll('#home-news a').length,5,'Each story and the archive have one link');
  assert.equal(hd.querySelectorAll('#home-news [data-news-video]').length,0,'Home images navigate to stories without loading players');
  assert.equal(hd.querySelectorAll('.home-news-summary').length,1,'Only the main story has a summary');
- assert(hd.querySelector('.home-news-heading .home-news-more'),'The archive link belongs to the section header');home.window.close();
+ assert(hd.querySelector('.home-news-footer .home-news-more'),'The archive link follows the news cards');assert.equal(hd.querySelector('.home-news-heading .home-news-more'),null);home.window.close();
  verifyPhotoViewer(lang,language,false);
  verifyPhotoViewer(lang,language,true);
  verifyGalleryNavigation(lang,false);

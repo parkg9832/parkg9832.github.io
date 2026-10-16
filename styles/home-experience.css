@@ -6,6 +6,10 @@
 .home-page .home-section-heading h2,
 .home-page .home-pairings h2 { font-family: 'Archivo Black', 'Noto Sans KR', sans-serif; font-size: clamp(2.2rem, 4.4vw, 4.5rem); font-weight: 800; letter-spacing: -.04em; line-height: 1.12; }
 .home-page :is(button, a):focus-visible { outline: 3px solid #ef5f18; outline-offset: 5px; }
+.home-page .home-section-cta { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:12px 24px; border:1px solid #32150680; border-radius:var(--mokda-button-radius,999px); background:#fff8ef; color:#321506; font:700 14px/1.2 var(--mokda-font-body); letter-spacing:.01em; text-align:center; text-decoration:none; text-transform:none; transition:background 150ms,border-color 150ms; }
+.home-page .home-section-cta .cta-arrow { font-size:18px; line-height:1; }
+.home-page .home-section-cta:hover { background:#f8dfc4; border-color:#321506; }
+.home-page .home-section-cta:active { background:#f3ccaa; }
 .home-page .hero-photo-media { position:absolute; inset:0; overflow:hidden; background:#321506; pointer-events:none; }
 .home-page .hero-photo-layer,
 .home-page .hero-photo-layer img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; }

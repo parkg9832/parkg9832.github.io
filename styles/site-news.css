@@ -288,14 +288,12 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
  .news-listing .news-archive-row h3 { font-size:16px; }
 }
 
-/* A lead story and three supporting stories, with an archive link at the top. */
+/* A lead story and three supporting stories, followed by the archive action. */
 .home-page #home-news { padding:52px var(--brand-gutter,24px); background:#f3e5d5; }
 .home-page #home-news .news-container { max-width:1100px; }
 .home-page #home-news .home-news-heading { position:relative; margin-bottom:28px; text-align:center; }
 .home-page #home-news .home-news-kicker { margin-bottom:10px; }
 .home-page #home-news .home-news-heading h2 { font-size:clamp(28px,3vw,34px); }
-.home-page #home-news .home-news-more { position:absolute; right:0; bottom:0; min-height:44px; padding:0; border:0; border-radius:0; font-size:14px; background:transparent; }
-.home-page #home-news .home-news-more span { color:var(--news-orange); font-size:22px; }
 .home-page #home-news .home-news-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:40px; overflow:visible; margin:0; padding:0; }
 .home-page #home-news .home-news-supporting { min-width:0; border-top:1px solid #32150624; }
 .home-page #home-news .home-news-grid.is-without-lead { grid-template-columns:minmax(0,1fr); }
@@ -316,7 +314,6 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
 .home-page #home-news .news-card-link:hover h3 { text-decoration:underline; text-underline-offset:4px; }
 @media(min-width:768px) and (max-width:1023px) {
  .home-page #home-news .home-news-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; }
- .home-page #home-news .home-news-more { position:static; margin-top:12px; }
  .home-page #home-news .home-news-support .news-card-link { grid-template-columns:96px minmax(0,1fr); gap:16px; min-height:132px; padding:14px 0; }
  .home-page #home-news .home-news-support .news-card-image { width:96px; height:86px; }
  .home-page #home-news .home-news-support h3 { font-size:16px; }
@@ -325,7 +322,6 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
 @media(max-width:767px) {
  .home-page #home-news { padding:40px 20px; }
  .home-page #home-news .home-news-heading { margin-bottom:24px; }
- .home-page #home-news .home-news-more { position:static; margin-top:12px; }
  .home-page #home-news .home-news-grid { grid-template-columns:minmax(0,1fr); gap:26px; }
  .home-page #home-news .home-news-lead h3 { font-size:22px; }
  .home-page #home-news .home-news-support .news-card-link { grid-template-columns:108px minmax(0,1fr); gap:16px; min-height:128px; padding:16px 0; }

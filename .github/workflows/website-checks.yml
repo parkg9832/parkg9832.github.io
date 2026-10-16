@@ -27,5 +27,5 @@ jobs:
       - run: npm run typecheck && npm run build
       - run: npm run test:analytics && npm run test:seo && npm run test:navigation && npm run test:integrity
       - run: npm run test:news && npm run test:news-manager && npm run test:support-preview
-      - run: npm run test:help && npm run test:hero-video && npm run test:performance && npm run test:security
+      - run: npm run test:help && npm run test:hero-photos && npm run test:performance && npm run test:security
       - run: node --test workers/mokda-chat/test/*.test.mjs

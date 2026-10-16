@@ -13,7 +13,7 @@
     "test:analytics": "node scripts/analytics-regression.test.mjs",
     "test:security": "node scripts/security-regression.test.mjs",
     "test:performance": "node scripts/performance-regression.test.mjs",
-    "test:hero-video": "node scripts/home-hero-video.test.mjs",
+    "test:hero-photos": "node scripts/home-hero-photos.test.mjs",
     "audit:performance": "node scripts/performance-audit.mjs",
     "test:seo": "node scripts/seo-regression.test.mjs",
     "test:seo:live": "node scripts/seo-live-audit.mjs",

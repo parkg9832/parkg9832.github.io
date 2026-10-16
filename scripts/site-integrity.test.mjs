@@ -22,8 +22,8 @@ for (const lang of ['es', 'ko', 'en']) {
     const doc = readDocument(path);
     const ids = [...doc.querySelectorAll('[id]')].map(el => el.id);
     assert.equal(new Set(ids).size, ids.length, `${path}: duplicate element IDs`);
-    for (const el of doc.querySelectorAll('img,script[src],link[rel="stylesheet"]')) {
-      if (el.tagName === 'IMG') assert(el.hasAttribute('alt'), `${path}: missing image description`);
+    for (const image of doc.querySelectorAll('img')) assert(image.hasAttribute('alt'), `${path}: missing image description`);
+    for (const el of doc.querySelectorAll('img[src],script[src],link[rel="stylesheet"][href]')) {
       const url = new URL(el.getAttribute('src') || el.getAttribute('href'), doc.baseURI);
       if (url.origin !== origin) continue;
       const file = resolve(root, `.${decodeURIComponent(url.pathname)}`);

@@ -253,24 +253,24 @@
         ".superdesign/init/theme.md:1:55",
         "index.html:133:271",
         "index.html:738:786",
-        "index.html:818:870",
+        "index.html:818:888",
         "index.html:986:1012",
         "site-header.js",
         "styles/site-typography.css",
         "styles/home-layout.css",
         "styles/home-experience.css",
-        "home-hero-video.js",
+        "home-hero-photos.js",
         "tailwind.config.ts"
       ],
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "index.html": "5ff23d0b19b1c4a41a65f31ce57feb4c50f2f22fcd237293c8a6625cd2c5e722",
+        "index.html": "fff407401d16561fd694ea7811d66bb0ed7c9972761b4f3a60441cd2785db18e",
         "site-header.js": "749b8890e045307c34d187eef04263d6e3beda47b6ede357e369bc1e9164f83e",
         "styles/site-typography.css": "5dc687d0561207756b8a366a2c42a5f07f14feec848910ce206cbfba101eb87c",
         "styles/home-layout.css": "c0a328a5fdafb77609acccc6f81d77265e1b0fef9d0a4eb1f178e8afd1ccc1cd",
-        "styles/home-experience.css": "0620596f084361056054e34db55a4a8ffa53d433a2b6c62f96670acde38ebd50",
-        "home-hero-video.js": "336fc017bfbca2e424368107c0c57510378173527090a6b8e60c6459bdf53bdf",
+        "styles/home-experience.css": "f331ceda39977e3bcc84d4c7fff5684623b53d9d8f459c28c75a84573f3b9371",
+        "home-hero-photos.js": "c042c87de14698b79a3a5c7b82c278971345d1c6b0ced3046bede9c9704b911d",
         "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
       },
       "referenceIds": [
@@ -284,23 +284,71 @@
         }
       },
       "contentAssets": {
-        "desktopPoster": {
-          "url": "https://www.mokda.kr/assets/images/mokda-hero-desktop-20261013-v2.webp",
-          "sourcePath": "assets/images/mokda-hero-desktop-20261013-v2.webp",
+        "demoDesktop": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-demo-desktop-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-demo-desktop-20261016.webp",
           "purpose": "content",
           "source": "public-website-url-reference",
-          "publicVerification": "pending-publication"
-        },
-        "desktopVideo": {
-          "url": "https://www.mokda.kr/assets/videos/hero/mokda-people-desktop-20261014-v3.mp4",
-          "sourcePath": "assets/videos/hero/mokda-people-desktop-20261014-v3.mp4",
-          "publicVerification": "pending-publication"
-        },
-        "mobileVideo": {
-          "url": "https://www.mokda.kr/assets/videos/hero/mokda-people-mobile-20261014-v3.mp4",
-          "sourcePath": "assets/videos/hero/mokda-people-mobile-20261014-v3.mp4",
           "publicVerification": "pending-publication",
-          "usage": "Production mobile source; this existing canvas draft retains its single desktop source"
+          "dimensions": [
+            1600,
+            900
+          ]
+        },
+        "demoMobile": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-demo-mobile-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-demo-mobile-20261016.webp",
+          "purpose": "content",
+          "source": "public-website-url-reference",
+          "publicVerification": "pending-publication",
+          "dimensions": [
+            720,
+            1280
+          ]
+        },
+        "visitorDesktop": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-visitor-desktop-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-visitor-desktop-20261016.webp",
+          "purpose": "content",
+          "source": "public-website-url-reference",
+          "publicVerification": "pending-publication",
+          "dimensions": [
+            1600,
+            900
+          ]
+        },
+        "visitorMobile": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-visitor-mobile-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-visitor-mobile-20261016.webp",
+          "purpose": "content",
+          "source": "public-website-url-reference",
+          "publicVerification": "pending-publication",
+          "dimensions": [
+            720,
+            1280
+          ]
+        },
+        "meetingDesktop": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-meeting-desktop-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-meeting-desktop-20261016.webp",
+          "purpose": "content",
+          "source": "public-website-url-reference",
+          "publicVerification": "pending-publication",
+          "dimensions": [
+            1600,
+            900
+          ]
+        },
+        "meetingMobile": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-meeting-mobile-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-meeting-mobile-20261016.webp",
+          "purpose": "content",
+          "source": "public-website-url-reference",
+          "publicVerification": "pending-publication",
+          "dimensions": [
+            720,
+            1280
+          ]
         }
       },
       "components": [
@@ -314,33 +362,36 @@
       "drafts": {
         "9cbeff69-d6a2-497e-a0fb-49854b900e80": {
           "title": "MOKDA home video hero preview",
-          "currentVersion": 4,
-          "visualDirection": "Existing centered ES/KR/EN campaign geometry and authentic MOKDA navigation over a 9.5-second people-and-products montage: single interview, actual K-pop group photo, then two distinct people with two MOKDA bottles; no repeated interview composition or fair panorama",
+          "currentVersion": 6,
+          "visualDirection": "Existing MOKDA header, logo and centered ES/KR/EN campaign copy over three actual booth photographs with 4.5-second dwell and 800ms opacity fade; no video, group event photo, influencer collaboration, zoom or panorama.",
           "previewUrl": "https://p.superdesign.dev/draft/9cbeff69-d6a2-497e-a0fb-49854b900e80"
         }
       },
       "canvasReview": {
-        "verifiedVersion": 4,
+        "verifiedVersion": 6,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
         "exactLogoPositions": 1,
-        "exactPosterUrlPresent": true,
-        "mutedLoopPlaysinlineVideoPresent": true,
+        "photoLayers": 3,
+        "responsivePhotoUrls": 6,
+        "videoElements": 0,
         "threeLanguageCopyPresent": true,
         "pausePositionDesktop": "left:24px;bottom:24px",
         "pausePositionMobile": "left:20px;bottom:20px",
         "renderedReviewPerformed": false,
-        "verification": "Same draft v4 refetched and byte-identical to authored HTML. Only the existing desktop video public URL changed from field v2 to people v3; all other HTML bytes, poster, overlay, layout, navigation and three-language copy preserved. Root owns publication, mobile production playback and rendered verification.",
-        "generatedStudioPosterRemoved": true,
-        "intendedChangesOnly": true,
-        "overlayMatchesProduction": true,
+        "verification": "Existing draft v6 refetched and byte-identical to authored HTML. The only v5-to-v6 change is min-width:1024px first-photo object-position:50% 30%; every other HTML byte is preserved. Production photo controller remains embedded verbatim. Root owns publication and rendered browser verification.",
+        "desktopFirstPhotoPosition": "50% 30%",
+        "dwellMs": 4500,
+        "opacityFadeMs": 800,
+        "noZoomOrHorizontalMotion": true,
+        "reducedMotionAndSaveData": "first-photo-only",
         "publicMediaStatus": "pending-publication",
         "closedChatLauncherPresent": false
       },
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "authoringMethod": "free-direct-html-import",
       "approvedByUser": false,
-      "updatedAt": "2026-10-14T02:13:56.292Z",
+      "updatedAt": "2026-10-16T00:21:54.688Z",
       "assetTransferNote": "Private interview image pixel upload was rejected by automatic approval review. No retry or workaround was used; the draft references the user-authorized public website URLs only."
     }
   }

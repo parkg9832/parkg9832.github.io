@@ -247,8 +247,6 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
 .home-page #home-news .news-card h3 { font-size:clamp(20px,2vw,24px); font-weight:800; line-height:1.4; }
 .home-page #home-news .news-card-link:hover h3 { color:#a93600; }
 .home-page .home-news-footer { display:flex; justify-content:center; margin-top:40px; }
-.home-page .home-news-more { min-height:48px; padding:12px 24px; border:1px solid #32150680; border-radius:999px; font-size:14px; }
-.home-page .home-news-more:hover { background:#f8dfc4; }
 @media(max-width:767px) {
  .home-page .home-news-heading { margin-bottom:28px; }
  .home-page .home-news-grid { gap:20px; }

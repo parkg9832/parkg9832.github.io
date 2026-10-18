@@ -56,7 +56,7 @@
     let section=document.getElementById('home-news');
     if(!section&&featured.length){
       section=document.createElement('section');section.id='home-news';section.className='home-news';section.setAttribute('aria-labelledby','homeNewsTitle');
-      section.innerHTML=`<div class="news-container"><div class="home-news-heading"><div><p class="home-news-kicker">MOKDA NEWS</p><h2 id="homeNewsTitle" class="${typography}">${esc(copy.homeTitle)}</h2></div></div><div class="home-news-grid${leadStory?'':' is-without-lead'}">${leadStory?homeCard(leadStory,true):''}<div class="home-news-supporting">${supportStories.map(story=>homeCard(story)).join('')}</div></div><div class="home-news-footer"><a class="home-news-more home-section-cta" href="${path('news.html')}">${esc(copy.archiveLink)} <span class="cta-arrow" aria-hidden="true">↗</span></a></div></div>`;
+      section.innerHTML=`<div class="news-container"><div class="home-news-heading"><div><p class="home-news-kicker">MOKDA NEWS</p><h2 id="homeNewsTitle" class="${typography}">${esc(copy.homeTitle)}</h2></div></div><div class="home-news-grid${leadStory?'':' is-without-lead'}">${leadStory?homeCard(leadStory,true):''}<div class="home-news-supporting">${supportStories.map(story=>homeCard(story)).join('')}</div></div><div class="home-news-footer"><a class="home-news-more home-section-cta" href="${path('news.html')}">${esc(copy.archiveLink)} <span class="cta-arrow" aria-hidden="true">→</span></a></div></div>`;
     }
     if(section)(document.getElementById('faq')||proof).before(section);
   }

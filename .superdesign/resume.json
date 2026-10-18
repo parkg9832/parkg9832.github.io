@@ -145,25 +145,27 @@
         "styles/site-news.css",
         "styles/brand-rhythm.css:1:42",
         "styles/site-typography.css",
-        "tailwind.config.ts"
+        "tailwind.config.ts",
+        "styles/home-experience.css:1:14"
       ],
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "site-news.js": "05eaeecb651fd5506b408da5d6e3c8221db9a7edf0e709c5a8aa028c48002f60",
+        "site-news.js": "182032334d74ea566aa12151dc4e07ed855dda477ce140fc9d97b60d39d64614",
         "site-news-data.js": "74079294b48bf82422ef03b5e2e302c5dd8b8714253cd991be03754d4e993e0d",
-        "styles/site-news.css": "37b015189218876f2bbec1acdc8a01d1e31fde5564e2f8a5682b878bfe033d1f",
+        "styles/site-news.css": "5daf82613b5e6278b5236936f1d1a396fc0179c1c666a82d558b538e35302642",
         "styles/brand-rhythm.css": "f5e0e27c4450e975bb79377fc4c77a716b6651d208d7b7996c3324e03488fb20",
         "styles/site-typography.css": "8ed52ec4f8b197f91b08bace8968ceb8d7d76167d8c2ffb9dd93526290bb8bbb",
-        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
+        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842",
+        "styles/home-experience.css": "7052f80d3ae4e06dc6fde65d1b4cbc13177c9c05cf504c94e9871b20ed4ca183"
       },
       "components": [],
       "drafts": {
         "9001a0e5-fe7f-49b6-af4b-cd48e3736487": {
           "title": "MOKDA homepage news preview",
           "baselineVersion": 1,
-          "currentVersion": 5,
-          "visualDirection": "Existing lead photograph and three compact supporting rows, with the unchanged archive link moved to a centered cream pill button below all cards.",
+          "currentVersion": 6,
+          "visualDirection": "Existing lead photograph and three compact supporting rows retained, with a centered orange text link, short underline and right arrow below the cards.",
           "previewUrl": "https://p.superdesign.dev/draft/9001a0e5-fe7f-49b6-af4b-cd48e3736487"
         },
         "26bec3ed-de0e-42eb-9af8-649af976f3d3": {
@@ -184,28 +186,29 @@
         }
       },
       "reviewStatus": "user-approved-for-implementation",
-      "updatedAt": "2026-10-16T05:33:32.258Z",
+      "updatedAt": "2026-10-18T23:53:14.880Z",
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "canvasReview": {
-        "verifiedVersion": 5,
+        "verifiedVersion": 6,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
         "renderedReviewPerformed": false,
         "archiveLinkPosition": "section-footer-after-cards",
         "archiveLinkTextAndHrefPreserved": true,
         "allFourCardHtmlBytesPreserved": true,
-        "button": {
+        "textLink": {
           "minHeightPx": 48,
-          "padding": "12px 24px",
-          "border": "1px solid #32150680",
-          "borderRadiusPx": 999,
-          "color": "#321506",
-          "background": "#fff8ef",
-          "hoverBackground": "#f8dfc4",
-          "arrow": "↗",
+          "padding": "14px 0",
+          "border": 0,
+          "borderRadiusPx": 0,
+          "color": "#c2410c",
+          "background": "transparent",
+          "underline": "32px 2px",
+          "hoverColor": "#9a3412",
+          "arrow": "→",
           "arrowSizePx": 18
         },
-        "verification": "Same KO draft v5 was refetched and matches authored HTML byte for byte. Only the archive link location and scoped footer/button CSS changed. All card photographs, titles, links and markup remain byte-identical to v4. ES/EN drafts were not changed; root owns final website source fingerprint refresh and rendered browser verification."
+        "verification": "Refetched v6 HTML is byte-identical to authored HTML. Only scoped archive link styling and arrow changed; four cards remain unchanged. Live website responsive rendering was verified separately in all three languages."
       }
     },
     "shared-mokda-chat": {

@@ -82,12 +82,15 @@
     return `<figure class="detail-artwork" data-detail-section="${number}"><img src="${base}${number}.jpg" alt="${detail.product} · ${index + 1}" width="900" height="${imageHeights[index]}" ${loading} decoding="async" /></figure>`;
   }).join('');
   const renderInquiry = () => `<section class="detail-inquiry"><div><div><p>${copy.inquiryKicker}</p><h2>${copy.inquiryTitle}</h2></div><a href="contact.html?purpose=distribution&product=${inquiryProduct}">${copy.inquiry} →</a></div></section>`;
+  const businessLabel = {KR:'거래·샘플 상담', ES:'Consultar distribución y muestras', EN:'Distribution & sample inquiry'}[language];
+  const businessLink = () => `<a class="detail-business-link" data-chat-intent="business" data-product="${escape(detail.product)}" href="contact.html?purpose=distribution&product=${inquiryProduct}">${escape(businessLabel)} <span aria-hidden="true">→</span></a>`;
   // Prerendered markup carries its language, so loaded images remain in place.
   if (content.dataset.detailLanguage !== language) {
     if (language === 'ES') content.innerHTML = `
     <section class="detail-image-sequence detail-page-${detail.color}" aria-label="${detail.product}">
       <div class="detail-sequence-nav">
         <a class="detail-back" href="products.html#${id === 'kpeno' ? 'original' : 'para-carnes'}">← ${copy.back}</a>
+        ${businessLink()}
         <div class="detail-visually-hidden">
           <p>${copy.kicker} · ${detail.category}</p>
           <h1>${copy.title}</h1>
@@ -104,7 +107,7 @@
       const facts = { ...presentation.values, allergens: product.allergens };
       const photo = id === 'kpeno' ? 'kpeno' : 'para-carnes';
       content.innerHTML = `
-        <div class="detail-localized-nav"><a class="detail-back" href="products.html#${id === 'kpeno' ? 'original' : 'para-carnes'}">← ${escape(copy.back)}</a></div>
+        <div class="detail-localized-nav"><a class="detail-back" href="products.html#${id === 'kpeno' ? 'original' : 'para-carnes'}">← ${escape(copy.back)}</a>${businessLink()}</div>
         <section class="detail-localized-hero detail-page-${detail.color}" aria-labelledby="detailTitle">
           <div class="detail-localized-photo"><img src="/assets/images/${photo}-food-product-centered-20260922.webp" alt="${escape(product.photo)}" width="960" height="1280" fetchpriority="high" decoding="async" /></div>
           <div class="detail-localized-introduction">

@@ -5,6 +5,16 @@
     ES: { launcher: 'Abrir chat con MOKDA', close: 'Cerrar chat', reset: 'Nueva conversación', subtitle: 'Mascota de MOKDA', auto: 'Orientación automática', input: 'Escribe tu pregunta', send: 'Enviar pregunta', whatsapp: 'Hablar por WhatsApp', contact: 'Formulario de contacto', disclosure: 'Orientación automática · Equipo por WhatsApp', processing: 'Preparando la respuesta automática', latest: 'Ver nueva respuesta', user: 'Tú', bot: 'Guía automática de MOK-LANG', quick: ['Elegir una salsa', 'Compra y distribución', 'Colaborar'], ids: ['choose', 'export', 'collaboration'], more: ['Conservación', 'Dónde comprar'], moreIds: ['storage', 'buy'] },
     EN: { launcher: 'Open MOKDA chat', close: 'Close chat', reset: 'New conversation', subtitle: 'MOKDA mascot', auto: 'Automated guidance', input: 'Type your question', send: 'Send question', whatsapp: 'Chat on WhatsApp', contact: 'Contact form', disclosure: 'Automated guidance · Team on WhatsApp', processing: 'Preparing an automated reply', latest: 'View new reply', user: 'You', bot: 'MOK-LANG automated guide', quick: ['Choose a sauce', 'Buying and distribution', 'Partner with us'], ids: ['choose', 'export', 'collaboration'], more: ['Storage', 'Where to buy'], moreIds: ['storage', 'buy'] },
   };
+  const businessCopy = {
+    KR: { country: '사업 국가', type: '사업 유형', choose: '선택해주세요', next: '다음', other: '다른 국가는 메시지로 알려주세요.', roles: [['수입사','수입사입니다'],['유통사','유통사입니다'],['매장','매장 사업을 운영합니다'],['레스토랑·HORECA','레스토랑 사업을 운영합니다'],['기타 사업','기타 사업입니다']], languageNote: '이전 대화는 그대로 보관하고, 지금부터 한국어로 안내합니다.' },
+    ES: { country: 'País de tu negocio', type: 'Tipo de negocio', choose: 'Selecciona', next: 'Continuar', other: 'También puedes escribir otro país en el mensaje.', roles: [['Importadora','Somos una importadora'],['Distribuidora','Somos una distribuidora'],['Tienda','Tengo una tienda'],['Restaurante / HORECA','Tengo un restaurante'],['Otro negocio','Otro negocio']], languageNote: 'Conservamos la conversación anterior. A partir de ahora te atenderemos en español.' },
+    EN: { country: 'Business country', type: 'Business type', choose: 'Select', next: 'Continue', other: 'You can also type another country in your message.', roles: [['Importer','We are an importer'],['Distributor','We are a distributor'],['Shop','I run a shop'],['Restaurant / HORECA','I run a restaurant'],['Other business','Other business']], languageNote: 'Your previous conversation is kept. We will continue in English from here.' },
+  };
+  const countryCodes = { Peru:'PE', Mexico:'MX', Chile:'CL', Colombia:'CO', Argentina:'AR', Korea:'KR', USA:'US', Brazil:'BR', Ecuador:'EC', Bolivia:'BO', Uruguay:'UY', Paraguay:'PY', Panama:'PA', 'Costa Rica':'CR', Guatemala:'GT', Venezuela:'VE', 'Dominican Republic':'DO', 'El Salvador':'SV', Honduras:'HN', Nicaragua:'NI', Cuba:'CU', 'Puerto Rico':'PR', Spain:'ES', Canada:'CA', Germany:'DE', Japan:'JP', UK:'GB' };
+  function pageProduct() {
+    const raw = document.body.dataset.productDetail || ({original:'kpeno','para-carnes':'para-carnes',both:'both'}[new URLSearchParams(location.search).get('product')]);
+    return raw === 'kpeno' ? 'kpeno' : raw === 'para-carnes' ? 'para_carnes' : raw === 'both' ? 'both' : '';
+  }
   const candidate = window.MOKDA_I18N?.getLanguage() || document.documentElement.dataset.routeLanguage;
   const lang = copy[candidate] ? candidate : 'ES';
   const text = copy[lang], prefix = { KR: 'ko', ES: 'es', EN: 'en' }[lang];
@@ -40,20 +50,27 @@
   find('.help-heading p').textContent = text.subtitle; find('.help-auto-label').textContent = text.auto; input.placeholder = text.input;
   input.setAttribute('aria-label', text.input); send.setAttribute('aria-label', text.send); find('.help-disclosure').textContent = ai?.isEnabled() ? aiDisclosure[lang] : guidance[lang];
   find('.help-sr').textContent = text.processing; latest.textContent = `${text.latest} ↓`; formLink.textContent = text.contact;
-  let transcript = [], context = {}, timer = null, pending = null, epoch = 0, following = true, closing = false, modal = false, request = null, ready = true, delayDone = false;
+  let transcript = [], context = pageProduct() ? { product: pageProduct(), productOrigin: 'page' } : {}, timer = null, pending = null, epoch = 0, following = true, closing = false, modal = false, request = null, ready = true, delayDone = false;
   let greetingNeeded = true, greetingTimer = null, queuedQuestion = null;
-  let previousOverflow = '', scrollY = 0, restoredOpen = false;
+  let previousOverflow = '', scrollY = 0, restoredOpen = false, changedLanguage = false;
   const compact = () => window.innerWidth <= 600 || (window.innerWidth <= 900 && window.innerHeight <= 500);
   const reduced = () => !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
   function internalPath(path) { return /^[a-z0-9-]+\.html(?:[?#][a-zA-Z0-9_=&%#-]*)?$/.test(path || '') ? `/${prefix}/${path}` : `/${prefix}/contact.html`; }
-  function persist() { try { sessionStorage.setItem(KEY, JSON.stringify({ version: 2, at: Date.now(), transcript, context, draft: input.value.slice(0, 500), open: dialog.open && !closing })); } catch { /* Private browsing still supports this page's chat. */ } }
+  function persist() { try { sessionStorage.setItem(KEY, JSON.stringify({ version: 2, language: lang, at: Date.now(), transcript, context, draft: input.value.slice(0, 500), open: dialog.open && !closing })); } catch { /* Private browsing still supports this page's chat. */ } }
+  function trackChat(name, result) {
+    const value = result?.context || context;
+    window.MOKDA_ANALYTICS?.track(name, { section: 'chat', element: ['choose','pairings','ingredients','storage','pricing','export','horeca','buy','brand','history','news','collaboration','contact','human','issue'].includes(result?.decision?.intent || value.topic) ? (result?.decision?.intent || value.topic) : 'initial', product: engine?.productName(value.product), audience: value.audience, funnel_stage: result?.decision?.stage || value.funnelStage || 'greeting', market: value.country });
+  }
   function handoffSummary() { return engine?.summary(context, context.language || lang) || `${context.lastQuestion || 'MOKDA'}`; }
   function updateHandoff() {
+    root.dataset.product = engine?.productName(context.product) || '';
+    root.dataset.audience = context.audience || ''; root.dataset.market = context.country || ''; root.dataset.funnelStage = context.funnelStage || '';
     const eligible = context.handoffEligible === true && !pending && !greetingNeeded;
     handoff.hidden = !eligible; formLink.hidden = !eligible; root.classList.toggle('help-handoff', eligible);
     const number = String(window.MOKDA_CONTACT?.whatsappNumber || '').trim().replace(/[+\s().-]/g, ''), valid = /^[1-9]\d{7,14}$/.test(number);
     const path = `contact.html${context.purpose === 'collaboration' ? '?purpose=collaboration' : ['export', 'horeca', 'pricing'].includes(context.purpose) ? '?purpose=distribution' : ''}`;
-    formLink.href = internalPath(path); find('.help-contact-text').textContent = valid ? text.whatsapp : text.contact;
+    const productQuery = context.product === 'kpeno' ? 'original' : context.product === 'para_carnes' ? 'para-carnes' : context.product === 'both' ? 'both' : '';
+    formLink.href = internalPath(path + (productQuery ? (path.includes('?') ? '&' : '?') + 'product=' + productQuery : '')); find('.help-contact-text').textContent = valid ? text.whatsapp : text.contact;
     find('.help-whatsapp-icon').hidden = !valid; handoff.href = valid ? `https://wa.me/${number}?text=${encodeURIComponent(handoffSummary())}` : internalPath(path);
     if (valid) { handoff.target = '_blank'; handoff.rel = 'noopener noreferrer'; } else { handoff.removeAttribute('target'); handoff.removeAttribute('rel'); }
   }
@@ -71,17 +88,37 @@
   }
   function add(role, value, sources = []) { const item = { role, text: String(value).slice(0, 2000), sources }; transcript.push(item); transcript = transcript.slice(-MAX_MESSAGES); renderMessage(item); persist(); }
   function scrollBottom() { content.scrollTop = content.scrollHeight; following = true; latest.hidden = true; }
+  function showBusinessFields(result) {
+    const labels = businessCopy[lang], form = element('form', 'help-business-form');
+    const regionNames = typeof Intl.DisplayNames === 'function' ? new Intl.DisplayNames([{KR:'ko',ES:'es',EN:'en'}[lang]], {type:'region'}) : null;
+    const addSelect = (label, name, entries, selected) => {
+      const wrapper = element('label', 'help-business-field'); wrapper.append(element('span', '', label));
+      const select = element('select'); select.name = name; select.required = true;
+      const blank = element('option', '', labels.choose); blank.value = ''; blank.disabled = true; select.append(blank);
+      entries.forEach(([value, title]) => { const option = element('option', '', title); option.value = value; select.append(option); });
+      select.value = selected || ''; wrapper.append(select); form.append(wrapper); return select;
+    };
+    const country = addSelect(labels.country, 'businessCountry', Object.entries(countryCodes).map(([name, code]) => [name, regionNames?.of(code) || name]), context.country);
+    const roles = labels.roles, roleKeys = ['importer','distributor','retail','restaurant','other'];
+    const type = addSelect(labels.type, 'businessType', roles.map(([label], i) => [roleKeys[i], label]), context.businessType);
+    const next = element('button', 'help-choice', labels.next); next.type = 'submit'; next.disabled = !country.value || !type.value;
+    const ready = () => { next.disabled = !country.value || !type.value; }; country.addEventListener('change', ready); type.addEventListener('change', ready);
+    form.append(next, element('p', 'help-business-hint', labels.other));
+    form.addEventListener('submit', event => { event.preventDefault(); if (!form.reportValidity() || next.disabled) return; const index = roleKeys.indexOf(type.value); if (index < 0 || !countryCodes[country.value]) return; submit(roles[index][1] + '. ' + country.value, false, false, 'business_details'); });
+    options.append(form);
+  }
   function showOptions(result) {
     options.replaceChildren(); if (result?.handoff) return;
+    if (result?.decision?.stage === 'business_context' || result?.context?.funnelStage === 'business_context') { showBusinessFields(result); return; }
     if (!result && engine?.initialReplies) result = { quickReplies: engine.initialReplies(lang) };
     if (Array.isArray(result?.quickReplies)) {
       result.quickReplies.slice(0, 3).forEach(item => { if (typeof item?.label !== 'string' || typeof item?.question !== 'string') return;
-        const button = element('button', 'help-choice', item.label.slice(0, 60)); button.type = 'button'; button.addEventListener('click', () => submit(item.question, false)); options.appendChild(button);
+        const button = element('button', 'help-choice', item.label.slice(0, 60)); button.type = 'button'; button.addEventListener('click', () => submit(item.question, false, false, 'quick_reply')); options.appendChild(button);
       }); return;
     }
     const ids = result ? text.moreIds : text.ids, names = result ? text.more : text.quick;
     ids.forEach((id, index) => { const q = questions.find(item => item.id === id); if (!q) return;
-      const button = element('button', 'help-choice', names[index]); button.type = 'button'; button.addEventListener('click', () => submit(q.question, false)); options.appendChild(button);
+      const button = element('button', 'help-choice', names[index]); button.type = 'button'; button.addEventListener('click', () => submit(q.question, false, false, 'quick_reply')); options.appendChild(button);
     });
   }
   function cancelPending() { epoch++; if (timer !== null) window.clearTimeout(timer); request?.abort(); request = null; timer = null; pending = null; processing.hidden = true; ready = true; delayDone = false; send.disabled = !input.value.trim(); }
@@ -94,25 +131,27 @@
       greetingNeeded = false; processing.hidden = true;
       add('bot', engine?.greeting(lang) || questions[0].answer); showOptions(); updateHandoff(); scrollBottom();
       const queued = queuedQuestion; queuedQuestion = null;
-      if (queued) submit(queued.question, queued.useAI, input.value.trim().slice(0, 500) !== queued.question);
+      if (queued) submit(queued.question, queued.useAI, input.value.trim().slice(0, 500) !== queued.question, queued.source);
       else send.disabled = !input.value.trim();
     }, 1000);
   }
   function complete() {
     if (!pending) return;
     const result = pending; pending = null; timer = null; request = null; processing.hidden = true; context = result.context || context;
-    add('bot', result.text, result.sources); showOptions(result); updateHandoff(); send.disabled = !input.value.trim();
+    add('bot', result.text, result.sources);
+    if (result.handoff && result.decision?.reason === 'qualified_business') window.MOKDA_ANALYTICS?.trackOncePerSession('chat_qualified:' + [context.product,context.country,context.businessType].join(':'), 'chat_qualified', {section:'chat', element:'business', product:engine?.productName(context.product), audience:'B2B', funnel_stage:'qualified', market:context.country});
+    showOptions(result); updateHandoff(); send.disabled = !input.value.trim();
     if (following) scrollBottom(); else latest.hidden = false; persist();
   }
-  function submit(value, useAI = true, preserveDraft = false) {
+  function submit(value, useAI = true, preserveDraft = false, source = 'typed') {
     const question = value.trim().slice(0, 500); if (!question || pending) return;
     // Keep the welcome first even when a visitor sends a question during preparation.
-    if (greetingNeeded) { if (queuedQuestion) return; queuedQuestion = { question, useAI }; send.disabled = true; if (!dialog.open) open(); else startGreeting(); return; }
+    if (greetingNeeded) { if (queuedQuestion) return; queuedQuestion = { question, useAI, source }; send.disabled = true; if (!dialog.open) open(); else startGreeting(); return; }
     following = true; add('user', question); options.replaceChildren();
     const fallback = questions.find(item => item.id === window.MOKDA_CHAT_INTENTS?.match(question, lang));
     const previous = { ...context };
     pending = engine?.reply(question, { language: lang, context: previous }) || { text: fallback?.answer || questions.find(item => item.id === 'choose').answer, context: { lastQuestion: question, language: lang, handoffEligible: false }, sources: fallback?.link ? [fallback.link] : [], handoff: false };
-    context = pending.context || context; updateHandoff();
+    context = pending.context || context; if (source !== 'typed') trackChat('chat_intent_select', pending); updateHandoff();
     if (!preserveDraft) input.value = ''; send.disabled = true; processing.hidden = false; scrollBottom(); const turn = epoch;
     ready = true; delayDone = false;
     // Brief automated preparation, never a claim that a human is typing.
@@ -132,7 +171,7 @@
     }
     persist();
   }
-  function restart() { cancelPending(); cancelGreeting(); greetingNeeded = true; context = {}; transcript = []; input.value = ''; send.disabled = true; conversation.replaceChildren(); options.replaceChildren(); updateHandoff(); scrollBottom(); persist(); if (dialog.open) startGreeting(); }
+  function restart() { cancelPending(); cancelGreeting(); greetingNeeded = true; context = pageProduct() ? {product:pageProduct(), productOrigin:'page'} : {}; transcript = []; input.value = ''; send.disabled = true; conversation.replaceChildren(); options.replaceChildren(); updateHandoff(); scrollBottom(); persist(); if (dialog.open) startGreeting(); }
   function viewport() {
     root.classList.toggle('help-mobile', compact()); if (compact() && dialog.open) {
       const v = window.visualViewport;
@@ -142,8 +181,17 @@
   }
   function lockPage() { previousOverflow = document.body.style.overflow; scrollY = window.scrollY; document.body.style.overflow = 'hidden'; }
   function unlockPage() { if (modal) { document.body.style.overflow = previousOverflow; window.scrollTo(0, scrollY); } modal = false; }
-  function open() {
+  function open(requestOptions) {
+    if (requestOptions?.intent === 'business') {
+      cancelPending();
+      const product = ['kpeno','para_carnes','both'].includes(requestOptions.product) ? requestOptions.product : pageProduct();
+      if (product) { context.product = product; context.productOrigin = 'page'; }
+      context.audience = 'B2B'; context.handoffEligible = false;
+      if (!dialog.open) open();
+      submit(engine?.initialReplies(lang)?.[2]?.question || questions.find(item => item.id === 'export').question, false, false, 'business_entry'); return;
+    }
     if (dialog.open) return; if (typeof dialog.show !== 'function') { window.location.assign(internalPath('contact.html')); return; }
+    if (!requestOptions?.restored) trackChat('chat_open');
     closing = false; viewport(); modal = compact() && typeof dialog.showModal === 'function';
     if (modal) { lockPage(); dialog.showModal(); } else dialog.show();
     dialog.setAttribute('aria-modal', String(modal)); root.classList.add('help-open'); launcher.setAttribute('aria-expanded', 'true'); launcher.setAttribute('aria-label', text.close);
@@ -153,7 +201,7 @@
     if (!dialog.open || closing) return; closing = true; cancelGreeting(); root.classList.add('help-closing'); persist();
     const finish = () => { if (dialog.open) dialog.close(); }; if (reduced()) finish(); else window.setTimeout(finish, 160);
   }
-  find('form').addEventListener('submit', event => { event.preventDefault(); submit(input.value); });
+  find('.help-composer').addEventListener('submit', event => { event.preventDefault(); submit(input.value); });
   input.addEventListener('input', () => { send.disabled = !!pending || !!queuedQuestion || !input.value.trim(); persist(); });
   input.addEventListener('keydown', event => {
     if (event.key === 'Enter' && (event.isComposing || event.keyCode === 229)) { event.preventDefault(); return; }
@@ -161,7 +209,7 @@
   });
   content.addEventListener('scroll', () => { following = content.scrollHeight - content.scrollTop - content.clientHeight < 50; if (following) latest.hidden = true; });
   latest.addEventListener('click', scrollBottom);
-  const saveDraft = () => { try { sessionStorage.setItem(DRAFT, handoffSummary()); } catch { /* Link remains available. */ } };
+  const saveDraft = () => { try { sessionStorage.setItem(DRAFT, handoffSummary()); sessionStorage.setItem('mokdaChatInquiryContext', JSON.stringify({version:1,at:Date.now(),product:context.product,country:context.country,businessType:context.businessType,purpose:context.purpose})); } catch { /* Link remains available. */ } };
   function foldForNavigation(event) { if (event?.ctrlKey || event?.metaKey || event?.shiftKey) return; closing = true; persist(); }
   handoff.addEventListener('click', event => { if (!handoff.target) { saveDraft(); foldForNavigation(event); } });
   formLink.addEventListener('click', event => { saveDraft(); foldForNavigation(event); });
@@ -180,13 +228,17 @@
       transcript = saved.transcript.slice(-MAX_MESSAGES).filter(item => ['user', 'bot'].includes(item?.role) && typeof item.text === 'string').map(item => ({ role: item.role, text: item.text.slice(0, 2000), sources: Array.isArray(item.sources) ? item.sources.filter(link => typeof link?.label === 'string' && (typeof link?.path === 'string' || link?.url === 'https://www.instagram.com/mokda_official/')).slice(0, 2) : [] }));
       // Refresh only an untouched old welcome; keep actual conversations and drafts.
       if (saved.transcript.length === 1 && transcript.length === 1 && transcript[0].role === 'bot' && legacyGreetings.has(transcript[0].text)) transcript = [];
+      changedLanguage = (saved.language || saved.context?.language) && (saved.language || saved.context?.language) !== lang;
+      if (changedLanguage && transcript.length === 1 && transcript[0].role === 'bot' && ['KR','ES','EN'].some(value => engine?.greeting(value) === transcript[0].text)) transcript[0].text = engine.greeting(lang);
       context = engine?.reply('', { language: lang, context: saved.context }).context || {}; context.language = lang;
+      if (pageProduct() && (!context.product || context.productOrigin === 'page')) { context.product = pageProduct(); context.productOrigin = 'page'; }
       context.lastQuestion = typeof saved.context?.lastQuestion === 'string' ? saved.context.lastQuestion.slice(0, 500) : '';
       input.value = typeof saved.draft === 'string' ? saved.draft.slice(0, 500) : ''; restoredOpen = saved.open === true;
     }
   } catch { /* Corrupt or unavailable storage starts a clean conversation. */ }
-  if (transcript.length) { greetingNeeded = false; transcript.forEach(item => renderMessage(item, false)); showOptions(transcript.length > 1 ? engine?.reply('', { language: lang, context }) : undefined); updateHandoff(); }
+  if (transcript.length) { greetingNeeded = false; transcript.forEach(item => renderMessage(item, false)); if (changedLanguage && transcript.length > 1) conversation.append(element('p','help-language-note',businessCopy[lang].languageNote)); showOptions(transcript.length > 1 ? engine?.reply('', { language: lang, context }) : undefined); updateHandoff(); }
   else { options.replaceChildren(); updateHandoff(); persist(); }
-  send.disabled = !input.value.trim(); viewport(); if (restoredOpen) open();
+  send.disabled = !input.value.trim(); viewport(); if (restoredOpen) open({restored:true});
   window.MOKDA_HELP_UI = { open };
+  document.addEventListener('click', event => { const link = event.target.closest?.('a[data-chat-intent="business"]'); if (!link || event.defaultPrevented || event.button || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return; event.preventDefault(); const product = {'K-PEÑO':'kpeno','Para Carnes':'para_carnes'}[link.dataset.product]; open({intent:'business',product}); });
 })();

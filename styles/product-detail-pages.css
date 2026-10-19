@@ -277,3 +277,11 @@ html[lang^='ko'] .product-detail-page :is(.detail-localized-subtitle, .detail-lo
     line-height: 1.75;
   }
 }
+
+/* Keep the next step visible before the long product presentation. */
+.product-detail-page :is(.detail-sequence-nav,.detail-localized-nav) { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px 24px; }
+.product-detail-page .detail-business-link { display:inline-flex; align-items:center; gap:12px; position:relative; min-height:48px; padding:12px 0; color:#f8dfc4; font-size:14px; font-weight:700; line-height:1.5; text-decoration:none; }
+.product-detail-page .detail-business-link::after { content:''; position:absolute; bottom:6px; left:0; width:32px; height:2px; background:currentColor; }
+.product-detail-page .detail-business-link:hover { color:#ffb78d; }
+.product-detail-page .detail-localized-nav .detail-business-link { color:#b7440a; }
+.product-detail-page .detail-business-link:focus-visible { outline:2px solid currentColor; outline-offset:4px; }

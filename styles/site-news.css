@@ -333,3 +333,9 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
  .home-page #home-news .home-news-support .news-card-image { width:88px; height:80px; }
  .home-page #home-news .home-news-support h3 { font-size:16px; }
 }
+
+.news-onward { display:flex; flex-wrap:wrap; justify-content:center; gap:16px 40px; padding-top:28px; margin-top:36px; border-top:1px solid rgba(50,21,6,.16); }
+.news-onward a { position:relative; display:inline-flex; align-items:center; gap:12px; min-height:48px; padding:12px 0; color:#b7440a; font-size:14px; font-weight:700; line-height:1.5; text-decoration:none; }
+.news-onward a::after { content:''; position:absolute; left:0; bottom:6px; width:32px; height:2px; background:currentColor; }
+.news-onward a:hover { color:#9a3412; }
+.news-onward a:focus-visible { outline:2px solid currentColor; outline-offset:4px; }

@@ -25,7 +25,8 @@
     "test:integrity": "node scripts/site-integrity.test.mjs",
     "test:support-preview": "node scripts/support-preview-regression.test.mjs",
     "git:sync": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh",
-    "push": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh"
+    "push": "C:\\Progra~1\\Git\\bin\\bash.exe sync.sh",
+    "test:funnel": "node scripts/funnel-regression.test.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",

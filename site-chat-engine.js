@@ -25,7 +25,7 @@
       issue: '제품 상태나 주문 문제는 개별 확인이 필요해요. 아래 WhatsApp으로 제품명과 구매처, 문제가 생긴 내용을 보내주세요. 사진이 있다면 함께 전달해주시면 확인에 도움이 됩니다.',
       collaboration: '어떤 협업을 생각하고 계신가요? 활동하시는 국가와 채널, 콘텐츠·행사·브랜드 협업 중 생각하신 내용을 함께 알려주세요.',
       collaborationReady: '협업 내용을 확인했습니다. 담당자가 구체적인 진행 가능 여부를 검토할 수 있도록 아래 WhatsApp으로 제안을 전달해주세요.',
-      guide: '제품 상세 보기', compare: '두 제품 비교하기', shop: '공식 Instagram 구매 안내', countryOptions: ['한국', '페루', '멕시코'],
+      updates: '판매·출시 소식: 공식 Instagram', guide: '제품 상세 보기', compare: '두 제품 비교하기', shop: '공식 Instagram 구매 안내', countryOptions: ['한국', '페루', '멕시코'],
       initial: [['제품이 궁금해요', '제품의 맛과 사용법이 궁금해요'], ['개인 구매', '개인적으로 구매하고 싶어요'], ['사업 거래', '수입·유통 사업 거래를 문의하고 싶어요']],
       audienceOptions: [['개인 구매', '개인적으로 구매하려고 해요'], ['수입·유통·매장', '사업 거래입니다']],
       roles: [['수입사', '수입사입니다'], ['유통사', '유통사입니다'], ['매장·레스토랑', '매장이나 레스토랑 사업입니다']],
@@ -57,7 +57,7 @@
       issue: 'El equipo debe revisar los problemas del producto o del pedido. Envía por WhatsApp el nombre de la salsa, dónde la compraste y qué ocurrió. Si tienes fotografías, adjúntalas para facilitar la revisión.',
       collaboration: '¿Qué colaboración tienes en mente? Cuéntanos tu país, el canal donde trabajas y tu idea de contenido, evento o colaboración de marca.',
       collaborationReady: 'Ya tengo los detalles de tu propuesta. Puedes compartirlos por WhatsApp para que el equipo revise cómo continuar.',
-      guide: 'Ver el producto', compare: 'Comparar las salsas', shop: 'Compra en Corea: Instagram oficial', countryOptions: ['Corea', 'Perú', 'México'],
+      updates: 'Novedades: Instagram oficial', guide: 'Ver el producto', compare: 'Comparar las salsas', shop: 'Compra en Corea: Instagram oficial', countryOptions: ['Corea', 'Perú', 'México'],
       initial: [['Conocer las salsas', 'Quiero conocer el sabor y los usos de las salsas'], ['Compra personal', 'Quiero comprar para consumo personal'], ['Consulta comercial', 'Quiero importar o distribuir las salsas']],
       audienceOptions: [['Consumo personal', 'Es para consumo personal'], ['Para mi negocio', 'Es una consulta comercial para mi negocio']],
       roles: [['Importadora', 'Somos una importadora'], ['Distribuidora', 'Somos una distribuidora'], ['Tienda o restaurante', 'Tengo una tienda o restaurante']],
@@ -89,7 +89,7 @@
       issue: 'Our team needs to review product or order problems individually. Send the sauce name, where you bought it and what happened on WhatsApp. Attach photos if available to help us check.',
       collaboration: 'What collaboration do you have in mind? Tell us your country, the channel you work with and your idea for content, an event or a brand collaboration.',
       collaborationReady: 'I have the details of your proposal. You can share them on WhatsApp so our team can review how to proceed.',
-      guide: 'View product details', compare: 'Compare the sauces', shop: 'Korea purchases: official Instagram', countryOptions: ['Korea', 'Peru', 'Mexico'],
+      updates: 'Sales updates: official Instagram', guide: 'View product details', compare: 'Compare the sauces', shop: 'Korea purchases: official Instagram', countryOptions: ['Korea', 'Peru', 'Mexico'],
       initial: [['Explore the sauces', 'I want to know the flavors and uses of the sauces'], ['Personal purchase', 'I want to buy for personal use'], ['Business inquiry', 'I want to import or distribute the sauces']],
       audienceOptions: [['Personal use', 'This is for personal use'], ['For my business', 'This is a business inquiry']],
       roles: [['Importer', 'We are an importer'], ['Distributor', 'We are a distributor'], ['Shop or restaurant', 'I run a shop or restaurant']],
@@ -105,9 +105,9 @@
     ['Korea', /한국|대한민국|\bkorea\b|\bcorea\b/], ['USA', /미국|\b(?:usa|united states|estados unidos)\b/], ['Brazil', /브라질|\b(?:brazil|brasil)\b/], ['Ecuador', /에콰도르|\becuador\b/], ['Bolivia', /볼리비아|\bbolivia\b/],
     ['Uruguay', /우루과이|\buruguay\b/], ['Paraguay', /파라과이|\bparaguay\b/], ['Panama', /파나마|\bpanama\b/], ['Costa Rica', /코스타리카|\bcosta rica\b/], ['Guatemala', /과테말라|\bguatemala\b/], ['Venezuela', /베네수엘라|\bvenezuela\b/],
     ['Dominican Republic', /도미니카|\b(?:dominican republic|republica dominicana)\b/], ['El Salvador', /엘살바도르|\bel salvador\b/], ['Honduras', /온두라스|\bhonduras\b/], ['Nicaragua', /니카라과|\bnicaragua\b/], ['Cuba', /쿠바|\bcuba\b/],
-    ['Spain', /스페인|\b(?:spain|espana)\b/], ['Canada', /캐나다|\bcanada\b/], ['Germany', /독일|\b(?:germany|alemania)\b/], ['Japan', /일본|\b(?:japan|japon)\b/], ['UK', /영국|\b(?:uk|united kingdom|reino unido)\b/],
+    ['Puerto Rico', /푸에르토리코|\bpuerto rico\b/], ['Spain', /스페인|\b(?:spain|espana)\b/], ['Canada', /캐나다|\bcanada\b/], ['Germany', /독일|\b(?:germany|alemania)\b/], ['Japan', /일본|\b(?:japan|japon)\b/], ['UK', /영국|\b(?:uk|united kingdom|reino unido)\b/],
   ];
-  const latam = new Set(countries.slice(0, 5).concat(countries.slice(7, 21)).map(([value]) => value));
+  const latam = new Set(['Peru','Mexico','Chile','Colombia','Argentina','Brazil','Ecuador','Bolivia','Uruguay','Paraguay','Panama','Costa Rica','Guatemala','Venezuela','Dominican Republic','El Salvador','Honduras','Nicaragua','Cuba','Puerto Rico']);
   const food = /타코|치킨|나초|피자|고기|채소|찍어|\b(?:tacos?|pollo|chicken|nachos|pizza|empanadas|carne|meat|vegetables?|verduras?|parrilla)\b/;
   const ingredients = /알레르|성분|원재료|글루텐|우유|대두|참깨|비건|할랄|인증|임산부|임신|\b(?:milk|leche|soy|soya|soja|wheat|trigo|sesame|sesamo|allerg\w*|alerg\w*|ingredients?|ingredientes?|gluten|vegan\w*|halal|certific\w*|pregnan\w*|embaraz\w*|safe|segura)\b/;
   const storage = /보관|냉장|개봉|소비기한|유통기한|안\s*열|몇\s*(?:달|일)|\b(?:stor\w*|refriger\w*|fridge|open\w*|abr\w*|guard\w*|conserv\w*|freeze|freezer|fecha|dias|shelf|expir\w*)\b/;
@@ -125,7 +125,7 @@
     ['namedCertifications', /\b(?:haccp|iso(?:\s*\d+)?|halal|kosher|fssc|brc|gmp)\b|할랄|코셔|해썹/],
     ['moq', /\b(?:moq|minimum order|minimum quantity|pedido minimo|cantidad minima|mix(?:ed)? order|mixed carton)\b|최소\s*(?:주문|수량)|혼합\s*(?:주문|가능)|섞어.{0,15}(?:주문|가능)/],
     ['samples', /\b(?:samples?|muestras?)\b|샘플/],
-    ['packing', /\b(?:(?:bottles?|units?)\s*(?:per|in)\s*(?:a |each )?(?:case|carton|box)|(?:case|carton|box)\s*(?:size|count|pack)|unidades\s*por\s*caja|botellas\s*(?:por|en)\s*(?:una\s*)?caja)\b|(?:박스|상자).{0,15}(?:몇|수량|구성|단위)|몇\s*개.{0,12}(?:박스|상자)/],
+    ['packing', /\b(?:(?:bottles?|units?)\s*(?:per|in)\s*(?:a |each )?(?:case|carton|box)|(?:case|carton|box)\s*(?:size|count|pack)|unidades\s*por\s*caja|(?:cuantas?\s+)?botellas\s*(?:hay\s*)?(?:por|en)\s*(?:una\s*)?caja)\b|(?:박스|상자).{0,15}(?:몇|수량|구성|단위)|몇\s*개.{0,12}(?:박스|상자)/],
     ['bulk', /\b(?:bulk|foodservice|large formats?|large packs?|granel|formatos? grandes?|gran formato)\b|대용량|벌크/],
     ['documents', /\b(?:catalog\w*|brochure\w*|technical (?:sheet|data)|product (?:documents?|presentation)|nutrition\w* (?:table|information|facts)|test reports?|ficha tecnica|fichas tecnicas|documentacion|analisis|informacion nutricional)\b|카탈로그|소개서|시험\s*성적서|시험\s*자료|성분표|영양\s*정보|제품\s*자료/],
     ['certifications', /\b(?:certificat\w*|certificac\w*|certificad\w*)\b|인증/],
@@ -246,7 +246,7 @@
   function qualify(context, t) {
     const missing = ['country', 'businessType', 'product'].filter(field => !context[field]);
     if (!missing.length) return { text: t.qualified, handoff: true, stage: 'qualified', pending: '', quickReplies: [], missingFields: [] };
-    if (missing.includes('country') && missing.includes('businessType')) return { text: `${t.commercial}\n\n${t.businessContext}`, handoff: false, stage: 'business_context', pending: 'businessContext', quickReplies: [], missingFields: missing };
+    if (missing.includes('country') && missing.includes('businessType')) return { text: t.businessContext, handoff: false, stage: 'business_context', pending: 'businessContext', quickReplies: [], missingFields: missing };
     if (missing.includes('country')) return { text: t.businessCountry, handoff: false, stage: 'country', pending: 'country', quickReplies: quick(t.countryOptions.map(value => [value, value])), missingFields: missing };
     if (missing.includes('businessType')) return { text: t.businessType, handoff: false, stage: 'business_type', pending: 'businessType', quickReplies: quick(t.roles), missingFields: missing };
     return { text: t.product, handoff: false, stage: 'product', pending: 'product', quickReplies: quick(t.products), missingFields: missing };
@@ -273,7 +273,7 @@
     else if (stage === 'resolved' && ['product', 'B2C'].includes(category)) quickReplies = quick(context.audience === 'B2B' ? [t.quote] : t.productFollow);
     else if (['greeting', 'clarify'].includes(stage)) quickReplies = quick(t.initial);
     if (['product', 'B2C', 'B2B'].includes(category)) sources = [productSource(context, t)];
-    if (category === 'B2C' && context.country === 'Korea' && stage === 'resolved') sources.unshift({ label: t.shop, url: 'https://www.instagram.com/mokda_official/' });
+    if (category === 'B2C' && context.country && stage === 'resolved') sources.unshift({ label: context.country === 'Korea' ? t.shop : t.updates, url: 'https://www.instagram.com/mokda_official/' });
     return { stage, handoff, quickReplies, missingFields, category, sources, pending: context.pendingField || '' };
   }
   function correctInquiry(question, context, previous, detailOnly) {
@@ -305,6 +305,7 @@
     const declinedHandoff = /(?:와츠앱|왓츠앱|whatsapp).{0,15}(?:말고|싫|안\s*할)|\b(?:no quiero|do not want|don't want|not)\b.{0,20}\bwhatsapp\b/.test(n);
     const switched = context.language !== (previous.language || language);
     const foodQuestion = food.test(n.replace(/para\s*carnes/g, ''));
+    const asksHeat = /맵|매[워운콤]|\b(?:spic\w*|picant\w*|heat|pica|picor)\b/.test(n) || ['heat', 'spice'].includes(interpretation?.intent);
     if (ingredients.test(n)) add('ingredients'); if (storage.test(n)) add('storage'); if (price.test(n)) add('pricing');
     if (foodQuestion && !ingredients.test(n)) add('pairings');
     const matched = window.MOKDA_CHAT_INTENTS?.match(question, lang);
@@ -376,7 +377,7 @@
       } else {
         category = 'B2C'; reason = 'consumer_availability';
         if (!context.country) { text = t.country; quickReplies = quick(t.countryOptions.map(value => [value, value])); stage = 'country'; pending = 'country'; missingFields = ['country']; }
-        else { text = context.country === 'Korea' ? t.domestic : latam.has(context.country) ? t.latam : t.otherCountry; quickReplies = quick(t.productFollow); if (context.country === 'Korea') sources.unshift({ label: t.shop, url: 'https://www.instagram.com/mokda_official/' }); }
+        else { text = context.country === 'Korea' ? t.domestic : latam.has(context.country) ? t.latam : t.otherCountry; quickReplies = quick(t.productFollow); sources.unshift({ label: context.country === 'Korea' ? t.shop : t.updates, url: 'https://www.instagram.com/mokda_official/' }); }
       }
       const extra = ids.filter(id => ['storage', 'ingredients'].includes(id)).map(id => questions.find(item => item.id === id)?.answer).filter(Boolean);
       if (extra.length) text = `${extra.join('\n\n')}\n\n${text}`;
@@ -394,8 +395,13 @@
             ES: { kpeno: 'K-PEÑO combina gochujang y jalapeño para un toque picante. Va bien con tacos, pollo, nachos y pizza.', para_carnes: 'Para Carnes es una salsa a base de ssamjang, con un sabor umami profundo. Úsala para dipear carnes asadas, al vapor o hervidas, y verduras.' },
             EN: { kpeno: 'K-PEÑO combines gochujang and jalapeño for a spicy kick. Try it with tacos, chicken, nachos or pizza.', para_carnes: 'Para Carnes is a ssamjang-based sauce with a deep umami flavor. Use it as a dip for grilled, steamed or boiled meat and vegetables.' },
           };
-          chunks.push(specific[lang][context.product] || questions.find(item => item.id === id)?.answer || t.unknown);
-          if (context.heat_preference === 'less_spicy') chunks.push(t.lessSpicy);
+          const heat = {
+            KR: { kpeno: 'K-PEÑO는 중간 정도의 매운맛에 고추장의 감칠맛과 할라피뇨의 산뜻함이 어우러집니다.', para_carnes: 'Para Carnes는 순한 매운맛에 쌈장의 깊은 감칠맛과 고소함이 어우러집니다.', note: '매운맛은 개인차가 있으며, 두 제품을 비교하는 수치 기준은 없습니다.' },
+            ES: { kpeno: 'K-PEÑO tiene un picante medio, con el umami del gochujang y el toque fresco del jalapeño.', para_carnes: 'Para Carnes tiene un picante suave, con el umami profundo y las notas tostadas del ssamjang.', note: 'La percepción del picante varía de una persona a otra. No contamos con una escala numérica para comparar las dos salsas.' },
+            EN: { kpeno: 'K-PEÑO has medium heat, with gochujang umami and a fresh jalapeño note.', para_carnes: 'Para Carnes has mild heat, with deep ssamjang umami and toasted notes.', note: 'Heat perception varies by person. We do not use a numerical scale to compare the two sauces.' },
+          }[lang];
+          if (asksHeat) chunks.push([...(context.product && context.product !== 'both' ? [heat[context.product]] : [heat.kpeno, heat.para_carnes]), heat.note].filter(Boolean).join('\n\n'));
+          else { chunks.push(specific[lang][context.product] || questions.find(item => item.id === id)?.answer || t.unknown); if (context.heat_preference === 'less_spicy') chunks.push(t.lessSpicy); }
         } else {
           const answer = questions.find(item => item.id === id); if (answer) chunks.push(answer.answer);
           if (id === 'ingredients' && /안전|먹어도|인증|비건|할랄|임신|임산부|safe|segura|vegan|halal|certif|pregnan|embaraz/.test(n)) chunks.push(t.safety);
@@ -410,7 +416,7 @@
     if (!company.length && !social && !switched) delete context.companyTopic;
     if (!social && !switched) context.topic = intent;
     context.funnelStage = stage; context.pendingField = pending; context.handoffEligible = handoff;
-    const aiTextAllowed = !handoff && ['product', 'general'].includes(category) && !ids.includes('ingredients') && !social && reason === 'self_service';
+    const aiTextAllowed = !handoff && ['product', 'general'].includes(category) && !ids.includes('ingredients') && !asksHeat && !social && reason === 'self_service';
     const decision = Object.freeze({ audience: context.audience || null, stage, handoff, reason, missingFields, category, intent });
     return { text, context, sources: sources.filter((source, i, all) => all.findIndex(item => (item.path || item.url) === (source.path || source.url)) === i).slice(0, 2), quickReplies, handoff, handoffSummary: summary(context, lang), language: lang, topic: context.topic || null, intent, category, decision, aiTextAllowed };
   }

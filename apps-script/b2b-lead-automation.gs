@@ -68,6 +68,9 @@ const FUNNEL_HEADERS = [
   'Event Sequence',
   'Scroll Percent',
   'Event Schema Version',
+  'Chat Audience',
+  'Chat Stage',
+  'Market',
 ];
 const DEMAND_SHEET_NAME = 'Demand Support';
 const DEMAND_HEADERS = [
@@ -125,6 +128,9 @@ const FUNNEL_EVENT_NAMES = [
   'hero_product_click',
   'section_view',
   'whatsapp_click',
+  'chat_open',
+  'chat_intent_select',
+  'chat_qualified',
   'b2b_cta_click',
   'b2b_form_start',
 ];
@@ -489,6 +495,9 @@ function appendFunnelEvents(payload) {
       cleanAnalyticsNumber(item.eventSequence, 0, 1000000),
       cleanAnalyticsNumber(item.scroll_percent, 0, 100),
       cleanAnalyticsValue(item.eventSchemaVersion, 20),
+      ['B2B','B2C'].indexOf(item.audience) !== -1 ? item.audience : '',
+      ['greeting','audience','business_context','country','business_type','product','qualified','handoff','proposal','resolved','clarify'].indexOf(item.funnel_stage) !== -1 ? item.funnel_stage : '',
+      ['Peru','Mexico','Chile','Colombia','Argentina','Korea','USA','Brazil','Ecuador','Bolivia','Uruguay','Paraguay','Panama','Costa Rica','Guatemala','Venezuela','Dominican Republic','El Salvador','Honduras','Nicaragua','Cuba','Puerto Rico','Spain','Canada','Germany','Japan','UK'].indexOf(item.market) !== -1 ? item.market : '',
     ]);
   });
 
@@ -510,6 +519,8 @@ function appendFunnelEvents(payload) {
 }
 
 function ensureFunnelHeaders(sheet) {
+  const columns = sheet.getMaxColumns();
+  if (columns < FUNNEL_HEADERS.length) sheet.insertColumnsAfter(columns, FUNNEL_HEADERS.length - columns);
   if (sheet.getLastRow() === 0) {
     sheet.getRange(1, 1, 1, FUNNEL_HEADERS.length).setValues([FUNNEL_HEADERS]);
     sheet.setFrozenRows(1);

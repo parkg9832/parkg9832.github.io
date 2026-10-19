@@ -229,14 +229,18 @@
         ".superdesign/init/theme.md:1:55",
         "site-help.js",
         "styles/site-help.css",
-        "site-chat-engine.js"
+        "site-chat-engine.js",
+        "site-help-loader.js",
+        "docs/WEBSITE_FUNNEL.md"
       ],
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "site-help.js": "fcf64e642f383594496fa185f9a74365b5ce487e0ed9faeaa93b020136307ddd",
-        "styles/site-help.css": "e4e465a34203cb1d07bdf2d519b2711501874ae71cd1b2b316d6a6908bfa0cb9",
-        "site-chat-engine.js": "b4fa0d062b1fb962ea208fda79def6e692422ed85607840492408377a20a757a"
+        "site-help.js": "e8c6d40aac94f3d395816dd2e7c1170f673ad186a8c9eaaf7aceac3aef7084b5",
+        "styles/site-help.css": "9215bdd79fca70910c56e682c9fb12847bebe927c7d704737add831d8b2217d9",
+        "site-chat-engine.js": "d65ef73f0af37dbbf7cc86bf11d3f8030ef9808e3f574f96f7ead66e85670a6d",
+        "site-help-loader.js": "3fc34e237045cc091785b64878013a21fc27cc229077fbcfd79cd1b25492e9bc",
+        "docs/WEBSITE_FUNNEL.md": "418cd60bd8e0d60bc5743d89db94b73efa735fe3fb609591fb1f5ce03c9130d9"
       },
       "referenceIds": [
         "f83028b3-4144-4d0e-91f1-bb216d34fb09",
@@ -268,9 +272,9 @@
           "title": "차콜 · 오렌지",
           "letter": "A",
           "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
-          "currentVersion": 5,
+          "currentVersion": 6,
           "previewUrl": "https://p.superdesign.dev/draft/babbb517-b70e-4859-b54e-6228f9f5be12",
-          "visualDirection": "User-approved A charcoal header, light gray conversation, white choices, pale orange user bubbles, orange launcher and send button. Existing conversation logic and responsive layout preserved. Header padding and mascot/name spacing increased without changing colors or type size.",
+          "visualDirection": "Approved charcoal/orange messenger retained with a compact country and business type selection step; product-page inquiry keeps product context.",
           "canvasReview": {
             "authoredHtmlMatchesSaved": true,
             "renderedReviewPerformed": true,
@@ -300,7 +304,7 @@
           }
         }
       },
-      "updatedAt": "2026-10-19T06:55:41.347Z",
+      "updatedAt": "2026-10-19T10:38:46.182Z",
       "approvedByUser": false,
       "implementationScope": "Existing AI guidance and WhatsApp funnel retained; warm visual accents, MOK-LANG mascot naming and initial greeting preparation",
       "canvasReview": {
@@ -328,7 +332,7 @@
         "launcherAndHeaderMarkupPreserved": true
       },
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
-      "reviewStatus": "user-approved-A-implemented"
+      "reviewStatus": "funnel-implemented-local-verified-production-deployment-in-progress"
     },
     "home-video-hero": {
       "targetKind": "new-ui",
@@ -443,12 +447,12 @@
       "activeDraftId": "babbb517-b70e-4859-b54e-6228f9f5be12",
       "baselineDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
       "contextFiles": [
-        "output/chat-header-spacing-20261019/A-review.html",
+        "output/funnel-implementation-20261019/business-chat-design.html",
         "output/chat-colors-calm-20261019/palettes.json"
       ],
       "designSystemPath": "output/chat-colors-calm-20261019/palettes.json",
       "fingerprints": {
-        "output/chat-header-spacing-20261019/A-review.html": "a99309e3a010558c77917f4f4e5db4f605dec1d02009a8872ea11c69c46f6fd8",
+        "output/funnel-implementation-20261019/business-chat-design.html": "84d2f289729da6ea30f2b339853aea9be2d59aa6b573c2a3d01235e9442a9683",
         "output/chat-colors-calm-20261019/palettes.json": "9efb6d781057d6fcb7a8b5b215ecf54aaa96f49725d0d7e9c85fc1df08a3b860"
       },
       "referenceIds": [
@@ -474,9 +478,9 @@
           "title": "차콜 · 오렌지",
           "letter": "A",
           "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
-          "currentVersion": 5,
+          "currentVersion": 6,
           "previewUrl": "https://p.superdesign.dev/draft/babbb517-b70e-4859-b54e-6228f9f5be12",
-          "visualDirection": "Neutral light gray conversation background, white incoming bubbles and choices, restrained orange accents; only charcoal/deep-green header differs. Header padding and mascot/name spacing increased without changing colors or type size.",
+          "visualDirection": "Approved charcoal/orange messenger retained with a compact country and business type selection step; product-page inquiry keeps product context.",
           "canvasReview": {
             "authoredHtmlMatchesSaved": true,
             "renderedReviewPerformed": true,
@@ -619,8 +623,8 @@
           }
         }
       },
-      "updatedAt": "2026-10-19T06:55:41.343Z",
-      "selectionStatus": "user-approved-A-implemented; header-spacing-refined",
+      "updatedAt": "2026-10-19T10:38:46.188Z",
+      "selectionStatus": "approved-A-with-business-step",
       "reviewUrl": "http://127.0.0.1:4184/",
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "assetTransferNote": "Only sanitized static mockup, color notes and the existing public mascot asset were sent for this review. Original application source was not transferred.",
@@ -633,7 +637,8 @@
       "currentReviewDraftIds": [
         "babbb517-b70e-4859-b54e-6228f9f5be12",
         "243d38ed-983d-4b73-9f90-222465e49bf6"
-      ]
+      ],
+      "reviewStatus": "funnel-implemented-local-verified-production-deployment-in-progress"
     }
   }
 }

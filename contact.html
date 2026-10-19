@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; form-action 'none'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com 'sha256-hCJXA2uJ8MYoTzblvms3+Zf7q0fyIuaLsES50hPcB6o=' 'sha256-X8tlPKb3iB99YvneDLcwZMgHB6NTISVWVJjFeJ52J00=' 'sha256-/lx/cc79EAIU9BzV2mPEd+UEGxMTjfHxdBXNTUxZ5K4='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; form-action 'none'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com 'sha256-hCJXA2uJ8MYoTzblvms3+Zf7q0fyIuaLsES50hPcB6o=' 'sha256-X8tlPKb3iB99YvneDLcwZMgHB6NTISVWVJjFeJ52J00=' 'sha256-IAIoneYzYtwjQJBaKRGUUmxIqDdafuzvbf3ji64zxx4='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -229,6 +229,10 @@
               </label>
               <p id="contactMethodHint" class="-mt-1 text-xs font-semibold text-[#321506]/60 sm:col-span-2"></p>
               <label class="block sm:col-span-2">
+                <span id="productLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
+                <select id="productSelect" name="product" class="w-full rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></select>
+              </label>
+              <label class="block sm:col-span-2">
                 <span id="messageLabel" class="mb-2 block text-sm font-bold text-neutral-950"></span>
                 <textarea id="messageInput" maxlength="4000" name="message" rows="5" required class="w-full resize-none rounded-lg border border-[#321506]/18 bg-white/80 p-3 text-sm text-gray-900 transition-colors duration-200 focus:border-mokdaOrange focus:bg-white focus:outline-none"></textarea>
               </label>
@@ -293,6 +297,8 @@
         ['Other', { ES: 'Otro país', EN: 'Other country', KR: '기타 국가' }],
       ];
 
+      const extraCountries = { USA:'US',Brazil:'BR',Ecuador:'EC',Bolivia:'BO',Uruguay:'UY',Paraguay:'PY',Panama:'PA','Costa Rica':'CR',Guatemala:'GT',Venezuela:'VE','Dominican Republic':'DO','El Salvador':'SV',Honduras:'HN',Nicaragua:'NI',Cuba:'CU',Spain:'ES',Canada:'CA',Germany:'DE',Japan:'JP',UK:'GB' };
+      for (const [value, code] of Object.entries(extraCountries)) { countries.splice(countries.length-1,0,[value,Object.fromEntries([['ES','es'],['KR','ko'],['EN','en']].map(([key, locale]) => [key, typeof Intl.DisplayNames === 'function' ? new Intl.DisplayNames([locale], {type:'region'}).of(code) : value]))]); }
       const content = {
         ES: {
           title: 'Alianza B2B | MOKDA',
@@ -435,6 +441,9 @@
           <option value="" selected>${fields.purpose[1]}</option>
           ${fields.purpose[2].map((label) => `<option value="${label}">${label}</option>`).join('')}
         `;
+        const productCopy = { KR:['관심 제품 (선택)','아직 결정하지 않았어요','두 제품 모두'], ES:['Salsa de interés (opcional)','Aún no lo he decidido','Ambas salsas'], EN:['Interested product (optional)','Not decided yet','Both sauces'] }[language];
+        setText('productLabel', productCopy[0]);
+        document.getElementById('productSelect').replaceChildren(...[['',productCopy[1]],['original','K-PEÑO'],['para-carnes','Para Carnes'],['both',productCopy[2]]].map(([value,label]) => { const option=document.createElement('option'); option.value=value; option.textContent=label; return option; }));
         applyInquiryPreset();
         ['nameInput', 'companyInput', 'emailInput', 'whatsappInput', 'countrySelect', 'messageInput'].forEach((id) => {
           const field = document.getElementById(id);
@@ -461,6 +470,8 @@
       function applyInquiryPreset() {
         const params = new URLSearchParams(window.location.search);
         const purpose = document.getElementById('purposeSelect');
+        const product = params.get('product');
+        if (['original','para-carnes','both'].includes(product)) document.getElementById('productSelect').value = product;
         if (params.get('purpose') === 'distribution' && purpose?.options[1]) purpose.selectedIndex = 1;
         if (params.get('purpose') === 'collaboration' && purpose?.options[7]) purpose.selectedIndex = 7;
       }
@@ -521,7 +532,7 @@
           whatsapp,
           company: String(formData.get('company') || '').trim(),
           role: '',
-          product: ['original', 'para-carnes'].includes(new URLSearchParams(location.search).get('product')) ? new URLSearchParams(location.search).get('product') : '',
+          product: ['original', 'para-carnes', 'both'].includes(formData.get('product')) ? formData.get('product') : '',
           country: String(formData.get('country') || '').trim(),
           purpose: String(formData.get('purpose') || '').trim() || 'Business partnership',
           message: String(formData.get('message') || '').trim(),
@@ -609,6 +620,6 @@
       <script src="./brand-motion.js?v=20261010-site" defer></script>
       <script defer src="./site-contact-config.js"></script>
     <script defer src="./site-turnstile.js"></script>
-    <script defer src="./site-help-loader.js" data-chat-assets="[&quot;/site-company-knowledge.js?v=107e3b9bcd5f&quot;,&quot;/site-help-data.js?v=04678749eb84&quot;,&quot;/site-chat-intents.js?v=c0590831cc4e&quot;,&quot;/site-chat-engine.js?v=b4fa0d062b1f&quot;,&quot;/site-chat-ai.js?v=08e2d181000a&quot;,&quot;/site-help.js?v=fcf64e642f38&quot;]"></script>
+    <script defer src="./site-help-loader.js" data-chat-assets="[&quot;/site-company-knowledge.js?v=107e3b9bcd5f&quot;,&quot;/site-help-data.js?v=04678749eb84&quot;,&quot;/site-chat-intents.js?v=c0590831cc4e&quot;,&quot;/site-chat-engine.js?v=d65ef73f0af3&quot;,&quot;/site-chat-ai.js?v=08e2d181000a&quot;,&quot;/site-help.js?v=e8c6d40aac94&quot;]"></script>
 </body>
 </html>

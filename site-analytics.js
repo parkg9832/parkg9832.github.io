@@ -240,7 +240,8 @@
   function normalizeProduct(value) {
     const raw = clean(value, 80);
     const normalized = raw.toLowerCase().replace(/ñ/g, 'n');
-    if (/k[-\s]?peno/.test(normalized)) return 'K-Peño';
+    if (normalized === 'both' || /k[-\s]?peno/.test(normalized) && /para.*carne/.test(normalized)) return 'K-Peño + Para Carnes';
+    if (normalized === 'original' || /k[-\s]?peno/.test(normalized)) return 'K-Peño';
     if (/para\s+carne|carne|ssam/.test(normalized)) return 'Para Carnes';
     return '제품 미지정';
   }
@@ -256,12 +257,15 @@
     const sectionName = clean(details.section_name || details.section, 80);
     const scrollPercent = Number.parseInt(details.scroll_percent ?? details.scrollDepth, 10);
     const inquiryProduct = /\/contact(?:\.html|\/)?$/i.test(window.location.pathname)
-      ? ({ original: 'K-Peño', 'para-carnes': 'Para Carnes' }[queryParameters.get('product')] || '')
+      ? ({ original: 'K-Peño', 'para-carnes': 'Para Carnes', both:'K-Peño + Para Carnes' }[document.getElementById('productSelect')?.value ?? queryParameters.get('product')] || '')
       : '';
     const productName = normalizeProduct(details.product_name || details.product || inquiryProduct);
     const visitorDaypart = getVisitorDaypart();
     return {
       name: clean(name, 50),
+      audience: ['B2B','B2C'].includes(details.audience) ? details.audience : '',
+      funnel_stage: ['greeting','audience','business_context','country','business_type','product','qualified','handoff','proposal','resolved','clarify'].includes(details.funnel_stage) ? details.funnel_stage : '',
+      market: ['Peru','Mexico','Chile','Colombia','Argentina','Korea','USA','Brazil','Ecuador','Bolivia','Uruguay','Paraguay','Panama','Costa Rica','Guatemala','Venezuela','Dominican Republic','El Salvador','Honduras','Nicaragua','Cuba','Puerto Rico','Spain','Canada','Germany','Japan','UK'].includes(details.market) ? details.market : '',
       eventId: randomId(),
       occurredAt: new Date().toISOString(),
       eventSequence: nextEventSequence(),
@@ -315,6 +319,11 @@
     if (event.name === 'page_view' || event.name === 'engagement_update') return;
     window.gtag('event', event.name, {
       section_name: event.section_name || undefined,
+      page_language: event.language || undefined,
+      device_class: event.device || undefined,
+      chat_audience: event.audience || undefined,
+      funnel_stage: event.funnel_stage || undefined,
+      market: event.market || undefined,
       scroll_percent: event.scroll_percent === '' ? undefined : event.scroll_percent,
       visitor_daypart: event.visitor_daypart,
       product_name: event.product_name,
@@ -420,7 +429,7 @@
     const productContainer = element.closest(
       '[data-product], .product-feature, article, [id*="original"], [id*="carne"], [id*="soy"]'
     );
-    if (!productContainer) return '';
+    if (!productContainer) { const href = element.getAttribute('href') || ''; return /kpeno\.html/.test(href) ? 'K-PEÑO' : /para-carnes\.html/.test(href) ? 'Para Carnes' : ''; }
 
     const explicit = productContainer.getAttribute('data-product');
     if (explicit) return explicit;
@@ -451,6 +460,11 @@
         return;
       }
 
+      if (/^https:\/\/wa\.me\//i.test(absoluteHref)) {
+        const chat = element.closest('#mokda-help');
+        track('whatsapp_click', {element:chat ? 'chat_handoff' : 'whatsapp_link',section:chat ? 'chat' : '',product:inferProduct(element),audience:chat?.dataset.audience,market:chat?.dataset.market,funnel_stage:chat?.dataset.funnelStage}, {immediate:true}); return;
+      }
+
       if (/instagram\.com|tiktok\.com|threads\.(?:com|net)/i.test(absoluteHref)) {
         track('social_click', { element: label }, { immediate: true });
         return;
@@ -466,7 +480,7 @@
         return;
       }
 
-      if (/products?\.html|#products|coming-soon\.html/i.test(href)) {
+      if (/(?:products?|kpeno|para-carnes)\.html|#products|coming-soon\.html/i.test(href)) {
         track(
           'product_cta_click',
           { element: label, product: inferProduct(element) },
@@ -611,6 +625,8 @@
   window.MOKDA_ANALYTICS_STATUS = { loaded: true, enabled: true, reason: 'active' };
 
   track('page_view');
+  const detailProduct = /\/(kpeno|para-carnes)\.html$/.exec(window.location.pathname)?.[1];
+  if (detailProduct) trackOnce('product_detail_view', 'product_detail_view', {element:'product_detail', product:detailProduct === 'kpeno' ? 'K-PEÑO' : 'Para Carnes'});
   if (/\/contact(?:\.html|\/)?$/i.test(window.location.pathname)) {
     track('contact_page_view', { element: 'contact_page' });
   }

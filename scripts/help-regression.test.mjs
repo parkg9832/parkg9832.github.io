@@ -29,7 +29,7 @@ function start(lang = 'EN', { number, saved, width = 1440, blockedStorage = fals
   }
   const flush = () => { for (const [i, value] of [...timers]) { timers.delete(i); value.action(); } };
   if (prepare && !d.querySelector('.help-message')) { w.MOKDA_HELP_UI.open(); flush(); d.querySelector('.help-close').click(); flush(); }
-  const submit = (query, finish = true) => { const input = d.querySelector('.help-composer textarea'); input.focus(); input.value = query; input.dispatchEvent(new w.Event('input')); d.querySelector('form').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); if (finish) flush(); };
+  const submit = (query, finish = true) => { const input = d.querySelector('.help-composer textarea'); input.focus(); input.value = query; input.dispatchEvent(new w.Event('input')); d.querySelector('.help-composer').dispatchEvent(new w.Event('submit', { bubbles: true, cancelable: true })); if (finish) flush(); };
   return { dom, w, d, errors, flush, submit, delays: () => [...timers.values()].map(value => value.delay), requests: () => requests };
 }
 const latest = f => f.d.querySelector('.help-conversation').lastElementChild;
@@ -236,9 +236,9 @@ const settle = async () => { await Promise.resolve(); await Promise.resolve(); a
 let firstResolve, secondResolve; const calls = [];
 const asyncUi = start('EN', { aiClient: { isEnabled: () => true, answer: args => { calls.push(args); return new Promise(resolve => { if (calls.length === 1) firstResolve = resolve; else secondResolve = resolve; }); } } });
 asyncUi.w.MOKDA_HELP_UI.open();
-asyncUi.submit('How spicy is K-PEÑO?', false); asyncUi.flush(); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 2); assert(!asyncUi.d.querySelector('.help-processing').hidden, 'Delay completion waits for AI or its fallback');
+asyncUi.submit('What does K-PEÑO taste like?', false); asyncUi.flush(); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 2); assert(!asyncUi.d.querySelector('.help-processing').hidden, 'Delay completion waits for AI or its fallback');
 asyncUi.d.querySelector('.help-reset').click(); assert(calls[0].signal.aborted); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 0); asyncUi.flush(); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 1);
-asyncUi.submit('How spicy is Para Carnes?', false); firstResolve({ text: 'Stale reply must never appear', interpretation: { product: 'kpeno', intent: 'choose' } }); await settle(); asyncUi.flush();
+asyncUi.submit('What does Para Carnes taste like?', false); firstResolve({ text: 'Stale reply must never appear', interpretation: { product: 'kpeno', intent: 'choose' } }); await settle(); asyncUi.flush();
 assert.doesNotMatch(asyncUi.d.querySelector('.help-conversation').textContent, /Stale reply/); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 2);
 secondResolve({ text: 'The current reply explains Para Carnes.', interpretation: { product: 'para_carnes', intent: 'choose' } }); await settle(); assert.equal(asyncUi.d.querySelectorAll('.help-message').length, 3); assert.match(latest(asyncUi).textContent, /current reply/); assert(asyncUi.d.querySelector('.help-contact').hidden); assert.equal(asyncUi.d.activeElement, asyncUi.d.querySelector('textarea')); asyncUi.dom.window.close();
 let earlyResolve; const early = start('EN', { aiClient: { isEnabled: () => true, answer: () => new Promise(resolve => { earlyResolve = resolve; }) } });

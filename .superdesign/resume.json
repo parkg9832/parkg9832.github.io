@@ -235,7 +235,7 @@
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
         "site-help.js": "fcf64e642f383594496fa185f9a74365b5ce487e0ed9faeaa93b020136307ddd",
-        "styles/site-help.css": "b09591050bc878a33ff1d7f3ffba3756e3321e2e08f568459d318c042ebe8d50",
+        "styles/site-help.css": "e4e465a34203cb1d07bdf2d519b2711501874ae71cd1b2b316d6a6908bfa0cb9",
         "site-chat-engine.js": "b4fa0d062b1fb962ea208fda79def6e692422ed85607840492408377a20a757a"
       },
       "referenceIds": [
@@ -268,9 +268,9 @@
           "title": "차콜 · 오렌지",
           "letter": "A",
           "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
-          "currentVersion": 4,
+          "currentVersion": 5,
           "previewUrl": "https://p.superdesign.dev/draft/babbb517-b70e-4859-b54e-6228f9f5be12",
-          "visualDirection": "User-approved A charcoal header, light gray conversation, white choices, pale orange user bubbles, orange launcher and send button. Existing conversation logic and responsive layout preserved.",
+          "visualDirection": "User-approved A charcoal header, light gray conversation, white choices, pale orange user bubbles, orange launcher and send button. Existing conversation logic and responsive layout preserved. Header padding and mascot/name spacing increased without changing colors or type size.",
           "canvasReview": {
             "authoredHtmlMatchesSaved": true,
             "renderedReviewPerformed": true,
@@ -291,10 +291,16 @@
             "accent": "#EF5F18",
             "name": "차콜 · 오렌지",
             "header": "#292D2A"
+          },
+          "headerSpacing": {
+            "desktopPadding": 20,
+            "mobilePadding": 16,
+            "mascotToName": 18,
+            "titleToSubtitle": 6
           }
         }
       },
-      "updatedAt": "2026-10-19T06:48:55.685Z",
+      "updatedAt": "2026-10-19T06:55:41.347Z",
       "approvedByUser": false,
       "implementationScope": "Existing AI guidance and WhatsApp funnel retained; warm visual accents, MOK-LANG mascot naming and initial greeting preparation",
       "canvasReview": {
@@ -437,14 +443,12 @@
       "activeDraftId": "babbb517-b70e-4859-b54e-6228f9f5be12",
       "baselineDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
       "contextFiles": [
-        "output/chat-colors-calm-20261019/A-review.html",
-        "output/chat-colors-calm-20261019/B-review.html",
+        "output/chat-header-spacing-20261019/A-review.html",
         "output/chat-colors-calm-20261019/palettes.json"
       ],
       "designSystemPath": "output/chat-colors-calm-20261019/palettes.json",
       "fingerprints": {
-        "output/chat-colors-calm-20261019/A-review.html": "98cfe7da7ec0c44b9e6fd788ae4f3c169ad8ed812757a06a12a77242d8ded888",
-        "output/chat-colors-calm-20261019/B-review.html": "5c5848988d04f8e0140c7a1afe95d11603cc6232419eaa4aad4da9ff32975014",
+        "output/chat-header-spacing-20261019/A-review.html": "a99309e3a010558c77917f4f4e5db4f605dec1d02009a8872ea11c69c46f6fd8",
         "output/chat-colors-calm-20261019/palettes.json": "9efb6d781057d6fcb7a8b5b215ecf54aaa96f49725d0d7e9c85fc1df08a3b860"
       },
       "referenceIds": [
@@ -470,9 +474,9 @@
           "title": "차콜 · 오렌지",
           "letter": "A",
           "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
-          "currentVersion": 4,
+          "currentVersion": 5,
           "previewUrl": "https://p.superdesign.dev/draft/babbb517-b70e-4859-b54e-6228f9f5be12",
-          "visualDirection": "Neutral light gray conversation background, white incoming bubbles and choices, restrained orange accents; only charcoal/deep-green header differs.",
+          "visualDirection": "Neutral light gray conversation background, white incoming bubbles and choices, restrained orange accents; only charcoal/deep-green header differs. Header padding and mascot/name spacing increased without changing colors or type size.",
           "canvasReview": {
             "authoredHtmlMatchesSaved": true,
             "renderedReviewPerformed": true,
@@ -493,6 +497,12 @@
             "accent": "#EF5F18",
             "name": "차콜 · 오렌지",
             "header": "#292D2A"
+          },
+          "headerSpacing": {
+            "desktopPadding": 20,
+            "mobilePadding": 16,
+            "mascotToName": 18,
+            "titleToSubtitle": 6
           }
         },
         "243d38ed-983d-4b73-9f90-222465e49bf6": {
@@ -609,8 +619,8 @@
           }
         }
       },
-      "updatedAt": "2026-10-19T06:48:55.685Z",
-      "selectionStatus": "user-approved-A; implemented; pending-production-verification",
+      "updatedAt": "2026-10-19T06:55:41.343Z",
+      "selectionStatus": "user-approved-A-implemented; header-spacing-refined",
       "reviewUrl": "http://127.0.0.1:4184/",
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "assetTransferNote": "Only sanitized static mockup, color notes and the existing public mascot asset were sent for this review. Original application source was not transferred.",

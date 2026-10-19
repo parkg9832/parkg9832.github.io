@@ -15,7 +15,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'pairings',
             question: '어떤 음식에 곁들이면 좋나요?',
-            answer: 'K-PEÑO는 치킨, 나초, 엠빠나다, 피자와 타코에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 채소에 곁들여보세요. 익힌 음식을 소스에 찍어 즐기면 됩니다.',
+            answer: 'K-PEÑO는 치킨, 나초, 엠파나다, 피자와 타코에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 채소에 곁들여보세요. 익힌 음식을 소스에 찍어 즐기면 됩니다.',
             link: { label: '제품 활용법 보기', path: 'products.html' },
           },
           {
@@ -217,7 +217,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'contact',
             question: '¿Qué hago si no encuentro mi respuesta?',
-            answer: 'Escribe aquí lo que te gustaría saber. Primero te orientamos sobre los productos y las compras. Si hacen falta una revisión de condiciones comerciales o una solución a un problema del producto, puedes continuar con el equipo.',
+            answer: 'Escribe aquí lo que te gustaría saber. Primero te orientamos sobre los productos y las compras. Si necesitas revisar condiciones comerciales o resolver un problema con el producto, puedes continuar con nuestro equipo.',
             link: { label: 'Ir a contacto', path: 'contact.html' },
           },
         ],
@@ -269,7 +269,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'pricing',
             question: 'How do I check prices, minimum orders and samples?',
-            answer: 'Business pricing, minimum orders (MOQ), samples and export terms are confirmed for each country and transaction. First share your country, business type and sauces of interest. You can also include an estimated quantity if you have one.',
+            answer: 'Business pricing, minimum order quantities (MOQ), samples and export terms are confirmed for each country and transaction. First share your country, business type and sauces of interest. You can also include an estimated quantity if you have one.',
             link: { label: 'Ask about commercial terms', path: 'contact.html?purpose=distribution' },
           },
           {

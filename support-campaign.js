@@ -44,7 +44,7 @@
       feedTitle: 'Salsa Coreana를 기다리는 사람들',
       feedLoading: '불러오는 중…',
       feedTotal: (count) => `총 ${count}명이 응원했습니다`,
-      feedMore: (count) => `응원 ${count}개 더보기`,
+      feedMore: (count) => `응원 ${count}개 더 보기`,
       feedMoreLoading: '불러오는 중…',
       feedMessage: (country) => `${country}에서 Salsa Coreana를 만나고 싶어요!`,
       exampleMessages: [

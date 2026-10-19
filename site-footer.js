@@ -18,7 +18,7 @@
         ['Inicio', ''],
         ['Nuestra historia', 'about.html'],
         ['Salsa Coreana', 'products.html'],
-        ['Novedades MOKDA', 'news.html'],
+        ['Novedades de MOKDA', 'news.html'],
         ['Preguntas frecuentes', 'qna.html'],
         ['Contacto', 'contact.html'],
       ],

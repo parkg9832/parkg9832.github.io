@@ -5,13 +5,13 @@
   const details = {
     kpeno: {
       slug: 'kpeno', product: 'K-PEÑO', category: 'GOCHUJANG + JALAPEÑO', color: 'kpeno',
-      ES: { kicker:'DETALLE DEL PRODUCTO', title:'K-PEÑO', subtitle:'Una salsa coreana de mesa con gochujang y jalapeño. Ábrela, sírvela y acompaña la comida que ya te gusta.', back:'Ver línea Salsa Coreana', inquiryKicker:'MOKDA B2B', inquiryTitle:'Conversemos sobre K-PEÑO.', inquiry:'Enviar consulta' },
+      ES: { kicker:'DETALLE DEL PRODUCTO', title:'K-PEÑO', subtitle:'Una salsa coreana de mesa con gochujang y jalapeño. Ábrela, sírvela y acompaña la comida que ya te gusta.', back:'Ver la línea Salsa Coreana', inquiryKicker:'MOKDA B2B', inquiryTitle:'Conversemos sobre K-PEÑO.', inquiry:'Enviar consulta' },
       KR: { kicker:'제품 상세', title:'K-PEÑO', subtitle:'고추장과 할라피뇨를 담은 한국식 테이블 소스입니다. 열고, 담고, 익숙한 음식에 찍어 즐겨보세요.', back:'Salsa Coreana 라인업 보기', inquiryKicker:'MOKDA B2B', inquiryTitle:'K-PEÑO에 관해 문의하세요.', inquiry:'문의 보내기' },
       EN: { kicker:'PRODUCT DETAIL', title:'K-PEÑO', subtitle:'A Korean table sauce with gochujang and jalapeño. Open, serve, and pair it with the food you already love.', back:'View Salsa Coreana lineup', inquiryKicker:'MOKDA B2B', inquiryTitle:'Let’s talk about K-PEÑO.', inquiry:'Send an inquiry' }
     },
     'para-carnes': {
       slug: 'para-carnes', product: 'Para Carnes', category: 'SSAMJANG', color: 'para-carnes',
-      ES: { kicker:'DETALLE DEL PRODUCTO', title:'PARA CARNES', subtitle:'Una salsa coreana inspirada en el ssamjang, pensada para acompañar carnes y verduras con un umami profundo.', back:'Ver línea Salsa Coreana', inquiryKicker:'MOKDA B2B', inquiryTitle:'Conversemos sobre Para Carnes.', inquiry:'Enviar consulta' },
+      ES: { kicker:'DETALLE DEL PRODUCTO', title:'PARA CARNES', subtitle:'Una salsa coreana inspirada en el ssamjang, pensada para acompañar carnes y verduras con un umami profundo.', back:'Ver la línea Salsa Coreana', inquiryKicker:'MOKDA B2B', inquiryTitle:'Conversemos sobre Para Carnes.', inquiry:'Enviar consulta' },
       KR: { kicker:'제품 상세', title:'PARA CARNES', subtitle:'쌈장에서 영감을 받은 한국 소스입니다. 고기와 채소에 깊은 감칠맛을 더해보세요.', back:'Salsa Coreana 라인업 보기', inquiryKicker:'MOKDA B2B', inquiryTitle:'Para Carnes에 관해 문의하세요.', inquiry:'문의 보내기' },
       EN: { kicker:'PRODUCT DETAIL', title:'PARA CARNES', subtitle:'A Korean sauce inspired by ssamjang, made to bring deep umami to meat and vegetables.', back:'View Salsa Coreana lineup', inquiryKicker:'MOKDA B2B', inquiryTitle:'Let’s talk about Para Carnes.', inquiry:'Send an inquiry' }
     }
@@ -47,7 +47,7 @@
     KR: {
       brochure: '원본 스페인어 제품 소개',
       informationTitle: '제품 정보',
-      labels: { content: '내용량', storage: '보관 방법', shelfLife: '보관 기간', origin: '원산지', allergens: '원재료 및 알레르기 유발 원료', warning: '주의 표시' },
+      labels: { content: '내용량', storage: '보관 방법', shelfLife: '소비기한', origin: '원산지', allergens: '원재료 및 알레르기 유발 원료', warning: '주의 표시' },
       values: { content: '330 g', storage: '개봉 전 상온 보관, 개봉 후 냉장 보관.', shelfLife: '제조일부터 12개월.', origin: '대한민국', warning: '나트륨 함량 높음' },
       informationNote: '제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.',
       storyTitle: '하나의 질문에서 시작됐습니다',

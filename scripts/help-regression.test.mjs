@@ -92,7 +92,7 @@ for (const [lang, s] of Object.entries(settings)) {
   launcher.click(); assert(dialog.open); assert.equal(dialog.getAttribute('aria-modal'), 'false'); assert.equal(d.activeElement, d.querySelector('.help-close'));
   assert.equal(d.querySelector('.help-processing').hidden, false); assert.equal(latest(f), null); assert.deepEqual(f.delays(), [1000]);
   assert.equal(d.getElementById('mokda-help-title').textContent, 'MOK-LANG');
-  assert.equal(d.querySelector('.help-heading p').textContent, { KR: '먹다 마스코트', ES: 'Mascota de MOKDA', EN: 'MOKDA mascot' }[lang]);
+  assert.equal(d.querySelector('.help-heading p').textContent, { KR: '먹다 상담 도우미', ES: 'Asistente de MOKDA', EN: 'MOKDA assistant' }[lang]);
   flush(); assert.match(latest(f).textContent, new RegExp(s.greeting)); assert.match(latest(f).textContent, /먹랑이|MOK-LANG/);
   assert.equal(d.querySelectorAll('.help-choice').length, 3); assert.equal(d.querySelector('.help-processing').hidden, true);
   submit(s.price, false); assert.equal(d.querySelector('.help-processing').hidden, false);

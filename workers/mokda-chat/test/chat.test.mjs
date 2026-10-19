@@ -71,7 +71,8 @@ test('all language prompts include business policy and server-only public facts'
     assert.match(prompt[0].content, /individual international shipping there are not available/);
     assert.match(prompt[0].content, /not create links/);
     assert.match(prompt[0].content, /stock.*shipping/i);
-    assert.match(prompt[0].content, /non-spicy or milder/);
+    assert.match(prompt[0].content, /K-PEÑO has medium heat; Para Carnes has mild heat/);
+    assert.match(prompt[0].content, /Do not invent a Scoville rating or promise that either sauce is non-spicy/);
     assert.match(prompt[0].content, /individual STRINGS, never arrays/);
     assert.match(prompt[0].content, /"intent":"pricing","audience":"b2b","product":"both","country":"Mexico","businessType":"importer"/);
     assert.match(prompt[0].content, /MUST NOT ask for country\/products\/quantity/);

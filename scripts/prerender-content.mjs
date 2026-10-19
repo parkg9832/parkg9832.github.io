@@ -25,13 +25,23 @@ export async function prerenderContent(html, root, url) {
       }
     }
     window.MOKDA_I18N.localizeInternalLinks(window.MOKDA_I18N.getLanguage());
+    const language = window.MOKDA_I18N.getLanguage();
+    if (!['KR', 'ES', 'EN'].includes(language)) throw new Error('Invalid prerender language: ' + url);
+    // Localize the small fallback menu without serializing runtime header state.
+    const menuCopy = {
+      KR: { 'about.html': '브랜드 소개', 'products.html': 'Salsa Coreana', 'qna.html': 'Q&A', 'contact.html': '문의' },
+      ES: { 'about.html': 'Sobre MOKDA', 'products.html': 'Salsa Coreana', 'qna.html': 'Q&A', 'contact.html': 'Contacto' },
+      EN: { 'about.html': 'About MOKDA', 'products.html': 'Salsa Coreana', 'qna.html': 'Q&A', 'contact.html': 'Contact' },
+    }[language];
+    for (const link of window.document.querySelectorAll('#mobile-menu a')) {
+      const label = menuCopy[new URL(link.href).pathname.split('/').pop()];
+      if (label) link.textContent = label;
+    }
     // Keep animation binding in the browser; never serialize bound observer state.
     window.document.querySelectorAll('[data-reveal-bound]').forEach(e => e.removeAttribute('data-reveal-bound'));
     const body = window.document.body.innerHTML;
     if (!window.document.querySelector('h1')?.textContent.trim()) throw new Error('Prerendered H1 is empty: ' + url);
     // Preserve the original head, metadata, script bytes and CSP hash inputs.
-    const language = window.MOKDA_I18N.getLanguage();
-    if (!['KR', 'ES', 'EN'].includes(language)) throw new Error('Invalid prerender language: ' + url);
     // Runtime scripts bind controls to this content instead of rebuilding it.
     return html.replace(/(<body\b[^>]*>)[\s\S]*?(<\/body>)/i, (_match, open, close) => open.replace(/>$/, ` data-content-language="${language}">`) + body + close);
   } finally {

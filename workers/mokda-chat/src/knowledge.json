@@ -1,24 +1,24 @@
 {
   "generatedAt": "2026-10-12",
   "sourceHashes": {
-    "site-help-data.js": "04678749eb84b63a6064c0c902b4e05749728dfb57287a106cb168811b076405",
+    "site-help-data.js": "6dd8cb144d68344353a3fd6376952fa5b4cc77bcfa6a3bd31446ca2554c700f8",
     "site-news-data.js": "05526f49c72146f1bf1ab16ca715e8534301efe4c9be93b693438c58c810b9cf",
-    "site-company-knowledge.js": "107e3b9bcd5fb00fd11779da7f78fa9fb90fdc82909b7100dcaba4d8ff0f9eff",
-    "ko/about.html": "0197343a53d4946a5e33a9bf00cbce1fb46dcf8bf8fc8cdaf22885737c108b58",
-    "ko/products.html": "97cb77125c99dfefa40de6bb62308cbf30ea9c726a07d2ecae949f11d31b8549",
-    "ko/kpeno.html": "811d204931304b6ad3eb1097af784ae224f2b4074086da8a873226d447266adf",
-    "ko/para-carnes.html": "1b31d101ad99557a5cf50e198d94693814fbadc27895d79acbb3366089c35bde",
-    "ko/qna.html": "fe99a310edfe0d42c8bd73110dcb36eb7055586c091f0bdc621770767dbb86d3",
-    "es/about.html": "bf348b7edda404337a408ad642221ca8e65b7bb75e0366ef6d3baf5f7a97fae4",
-    "es/products.html": "908a73be19e003480e6b336cc77b30b773f2e0b45bb464afa2e3ff8093498592",
-    "es/kpeno.html": "1956e2717240e9d0d883a9b2e9922dc99b309de04f04208ec086b7fcd117f521",
-    "es/para-carnes.html": "b51d8e88bafbda92558b455e8fa5fcba9a64d94e8df3c5460054d59832205d80",
-    "es/qna.html": "fb86559b15d6ea20982f898eadc5cb887d474e11a8a311116c3174a69dd775b1",
-    "en/about.html": "02534e26b37208d8e5df5a0874d4c24fb13dd6d57581618a3341227e5d0fe720",
-    "en/products.html": "3926ec90714b64bf486a4ec16ca480f3cc83888527984dc384a0f4f9f527a151",
-    "en/kpeno.html": "199157c30452f58c917c77c793ef265a443cd004e3ea32399c1e6cb566158f91",
-    "en/para-carnes.html": "5f849690477fd4dbfb02b28c9b8a13e7a74e8692692b30be82b07d753a8ab210",
-    "en/qna.html": "fc7c7f51e707ae3496b8c23e49b35d95a6c8c97fab1c489a1128cd9469c23027"
+    "site-company-knowledge.js": "c89acb7cb117874394218157665375b6a587a715e15d7805e02f7c3b9a2db539",
+    "ko/about.html": "5d5e067ef9be9f163a98f8410e650493cc8f24c827231d7d1bc2a13e51631579",
+    "ko/products.html": "6ccf818faed08c2d8e6ee6a6d6b3b7ae35531ee2c537315abe986aebc45a296e",
+    "ko/kpeno.html": "3cdb45e4f1907420a2df9a7f9ab5be1005ce6d0412e7029f785778213be2c192",
+    "ko/para-carnes.html": "5f19d3498cae8566333db515024972386b746abb119abb82b7490e810c997ef7",
+    "ko/qna.html": "41e2454627e95b4365eaf5ee5f838a415af0fd588122d00dbf794917ddf477c9",
+    "es/about.html": "9591aa943783f3571876c4125daa9c970064f2ce6bb84278eb04cb00b1f419f9",
+    "es/products.html": "106f2b91ddf10a0d8179f690ba9da2bdb1997623f995a9650cd28a59998ca7f1",
+    "es/kpeno.html": "f8f2e9a1817d09f9abda36eb70b5b9213e392af0d732e9f51d494eea2d7f5929",
+    "es/para-carnes.html": "a7c09a79bbfe79695e465cd0c625825d36eca901ce87bff6b764d73ed4cb163b",
+    "es/qna.html": "dd4344e0c648d2736411015ac2192b31d434fc0e2cd24254e4e592ddce152258",
+    "en/about.html": "10429796a7e4a757ef935283697fd0cde5be62a92f7e56d84ff1a273217f0341",
+    "en/products.html": "608940b6df61cb20df22153383378dd5e48970be3fd26100ece14b8521bd7d9a",
+    "en/kpeno.html": "3b77144c2bb25961b925947f37419858fb513dd731a27622bdc34f5e2b513349",
+    "en/para-carnes.html": "cf1fb267b14d48c57369571c0fc15ca74bf0f7f971df2f8f737e2164f63afbe8",
+    "en/qna.html": "1d3fb32821fb6546a61a0d9f618d9055b6e719cf0a2d5bba6d0068c3069771b9"
   },
   "languages": {
     "KR": {
@@ -35,7 +35,7 @@
           "id": "pairings",
           "topic": "products",
           "question": "어떤 음식에 곁들이면 좋나요?",
-          "text": "K-PEÑO는 치킨, 나초, 엠빠나다, 피자와 타코에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 채소에 곁들여보세요. 익힌 음식을 소스에 찍어 즐기면 됩니다.",
+          "text": "K-PEÑO는 치킨, 나초, 엠파나다, 피자와 타코에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 채소에 곁들여보세요. 익힌 음식을 소스에 찍어 즐기면 됩니다.",
           "label": "제품 활용법 보기",
           "path": "/ko/products.html"
         },
@@ -67,7 +67,7 @@
           "id": "pricing",
           "topic": "trade",
           "question": "가격, 최소 주문 수량과 샘플은 어떻게 확인하나요?",
-          "text": "가격은 국가와 주문 수량을 확인한 뒤 개별 견적으로 안내합니다.\n\n기본 최소 주문수량은 1,000개입니다. 제품별 수량과 K-PEÑO·Para Carnes의 혼합 구성은 거래별로 협의합니다.\n\n샘플은 협의 후 50개 미만으로 제공할 수 있습니다. 샘플 제품은 1회 무료로 제공하며, 국제 배송비는 바이어가 부담합니다. 제공 여부와 수량은 담당자와 확인해 주세요.",
+          "text": "가격은 국가와 주문 수량을 확인한 뒤 개별 견적으로 안내합니다.\n\n기본 최소 주문 수량은 1,000개입니다. 제품별 수량과 K-PEÑO·Para Carnes의 혼합 구성은 거래별로 협의합니다.\n\n샘플은 협의 후 50개 미만으로 제공할 수 있습니다. 샘플 제품은 1회 무료로 제공하며, 국제 배송비는 바이어가 부담합니다. 제공 여부와 수량은 담당자와 확인해 주세요.",
           "label": "거래 조건 문의하기",
           "path": "/ko/contact.html?purpose=distribution"
         },
@@ -140,31 +140,31 @@
         {
           "id": "about",
           "title": "한 식탁에서 시작된 이야기",
-          "text": "Brand Story\n한 식탁에서 시작된 이야기\nMOKDA는 2024년 봄, 가방 하나를 들고 라틴아메리카로 향한 한 청년의 여정에서 시작되었습니다.\n라틴아메리카의 친구들과 한 식탁에서 음식을 나누며 음식은 단순한 맛을 넘어, 한 문화와 그 문화를 살아가는 사람들을 이해하는 가장 직접적인 방법이라는 것을 알게 되었습니다.\nMOKDA는 한국의 재료와 젊은 시선, 오늘의 감각을 담아 라틴아메리카의 식탁에 한국을 더 가깝게 전합니다.\nOur Ingredients\n자연의 재료에 한국의 발효를 더하다\n먹다(MOKDA)의 소스는 한국의 전통 발효식품인 고추장과 된장에서 시작됩니다. 고추와 콩이 발효를 거치며 만들어낸 깊은 감칠맛을, 일상의 음식에 어울리는 소스로 담습니다.\n원재료의 맛과 특성을 살피고, 배합과 시제품 테스트를 반복하며 매운맛·단맛·감칠맛의 균형을 다듬습니다. 재료를 고르는 순간부터 한 병의 소스가 되기까지 꼼꼼하게 준비해, 소비자의 식탁에 한국의 맛을 자연스럽게 전합니다.\nMOKDA\n이름과 상징\nMOKDA는 한국어 ‘먹다’에서 시작된 이름입니다.\n해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.\nMOKDA History\n먹다의 발자취\n2024\n제품 최초 개발 및 시연\n제품 최초 개발 및 시연\n2025\n제품 대량 생산을 위한 R&D\n제품 대량 생산을 위한 R&D\n2026\n04–09정부기관 창업 지원사업 10건 선정총 지원 규모 약 1억원\n정부기관 창업 지원사업 10건 선정\n총 지원 규모 약 1억원\n09Expoalimentaria Perú 2026 참가\nExpoalimentaria Perú 2026 참가\n10대한민국 전주국제발효식품엑스포 참가 예정\n대한민국 전주국제발효식품엑스포 참가 예정\nSALSA COREANA\nMOKDA의 Salsa Coreana\n한국의 맛을 일상의 식탁에 더 가깝게 전하는 MOKDA의 소스를 만나보세요.\nMOKDA SNS\n회사 정보\n상호: MOKDA\n대표: Gyeom Park\n사업자등록번호: 161-07-03392\n주소: 전북특별자치도 김제시 남북10길 44, 2층\n지식재산권\nMOKDA의 브랜드명, 제품명, 패키지 디자인 및 관련 자료는 상표권 및 지식재산권 보호 절차를 진행 중입니다.\n© 2026 MOKDA. 모든 권리 보유.",
+          "text": "Brand Story\n한 식탁에서 시작된 이야기\nMOKDA는 2024년 봄, 가방 하나를 들고 라틴아메리카로 향한 한 청년의 여정에서 시작되었습니다.\n라틴아메리카의 친구들과 한 식탁에서 음식을 나누며 음식은 단순한 맛을 넘어, 한 문화와 그 문화를 살아가는 사람들을 이해하는 가장 직접적인 방법이라는 것을 알게 되었습니다.\nMOKDA는 한국의 재료와 젊은 시선, 오늘의 감각을 담아 라틴아메리카의 식탁에 한국을 더 가깝게 전합니다.\nOur Ingredients\n자연의 재료에 한국의 발효를 더하다\n먹다(MOKDA)의 소스는 한국의 전통 발효식품인 고추장과 된장에서 시작됩니다. 고추와 콩이 발효를 거치며 만들어낸 깊은 감칠맛을, 일상의 음식에 어울리는 소스로 담습니다.\n원재료의 맛과 특성을 살피고, 배합과 시제품 테스트를 반복하며 매운맛·단맛·감칠맛의 균형을 다듬습니다. 재료를 고르는 순간부터 한 병의 소스가 되기까지 꼼꼼하게 준비해, 소비자의 식탁에 한국의 맛을 자연스럽게 전합니다.\nMOKDA\n이름과 상징\nMOKDA는 한국어 ‘먹다’에서 시작된 이름입니다.\n해가 떠오르는 듯한 그래픽은 새로운 시작과 확장을, ‘MOKDA’와 한글 ‘먹다’는 브랜드의 한국적 기원을 나타냅니다.\nMOKDA History\n먹다의 발자취\n2024\n제품 최초 개발 및 시연\n제품 최초 개발 및 시연\n2025\n제품 대량 생산을 위한 R&D\n제품 대량 생산을 위한 R&D\n2026\n04–09정부기관 창업 지원사업 10건 선정총 지원 규모 약 1억 원\n정부기관 창업 지원사업 10건 선정\n총 지원 규모 약 1억 원\n09Expoalimentaria Perú 2026 참가\nExpoalimentaria Perú 2026 참가\n10대한민국 전주국제발효식품엑스포 참가 예정\n대한민국 전주국제발효식품엑스포 참가 예정\nSALSA COREANA\nMOKDA의 Salsa Coreana\n한국의 맛을 일상의 식탁에 더 가깝게 전하는 MOKDA의 소스를 만나보세요.\nMOKDA SNS\n회사 정보\n상호: MOKDA\n대표: Gyeom Park\n사업자등록번호: 161-07-03392\n주소: 전북특별자치도 김제시 남북10길 44, 2층\n지식재산권\nMOKDA의 브랜드명, 제품명, 패키지 디자인 및 관련 자료는 상표권 및 지식재산권 보호 절차를 진행 중입니다.\n© 2026 MOKDA. 모든 권리 보유.",
           "path": "/ko/about.html"
         },
         {
           "id": "products",
           "title": "SALSA COREANA",
-          "text": "MOKDA의 첫 번째 소스 라인\nSALSA COREANA\nMOKDA의 첫 번째 표현으로, 라틴아메리카의 일상 음식에 쉽고 자연스럽게 어울리도록 만든 한국 소스입니다.\n계속 찍어 먹게 되는 맛.\nGochujang\nK-PEÑO\n고추장의 매콤함과 할라피뇨의 상큼함이 만난 소스.\n타코, 치킨, 튀김과 스낵에 어울립니다.\nSsamjang\nPara Carnes\n구운 고기, 삶은 고기, 찐 고기 등 모든 고기와 채소에 어울리는 깊은 감칠맛의 한국 소스.\n한국의 대표 고기용 디핑소스입니다.",
+          "text": "MOKDA의 첫 번째 소스 라인\nSALSA COREANA\nMOKDA의 첫 번째 소스 라인으로, 라틴아메리카의 일상 음식에 쉽고 자연스럽게 어울리도록 만든 한국 소스입니다.\n계속 찍어 먹게 되는 맛.\nGochujang\nK-PEÑO\n고추장의 매콤함과 할라피뇨의 상큼함이 만난 소스.\n타코, 치킨, 튀김과 스낵에 어울립니다.\nSsamjang\nPara Carnes\n구운 고기, 삶은 고기, 찐 고기 등 모든 고기와 채소에 어울리는 깊은 감칠맛의 한국 소스.\n고기와 채소에 찍어 먹기 좋은 쌈장 기반 소스입니다.",
           "path": "/ko/products.html"
         },
         {
           "id": "kpeno",
           "title": "K-PEÑO",
-          "text": "제품 상세 · GOCHUJANG + JALAPEÑO\nK-PEÑO\n고추장과 할라피뇨를 담은 한국식 테이블 소스입니다. 열고, 담고, 익숙한 음식에 찍어 즐겨보세요.\n맛의 특징\n중간 정도의 매운맛에 감칠맛, 할라피뇨의 산미와 부드러운 질감이 어우러집니다.\n고추장과 할라피뇨\n고추장의 감칠맛과 매운맛에 할라피뇨의 산미를 더했습니다. 알룰로스로 단맛의 균형을 맞추고, 식물성 지방으로 만든 크림으로 부드러운 질감을 더했습니다.\n열고, 담고, 곁들이세요\n치킨, 감자튀김, 나초, 테케뇨 등 스낵에 잘 어울립니다. 타코나 평소 즐기는 음식에도 곁들여보세요.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n보관 기간: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 우유, 대두, 밀, 토마토 함유.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\nMOKDA B2B\nK-PEÑO에 관해 문의하세요.",
+          "text": "제품 상세 · GOCHUJANG + JALAPEÑO\nK-PEÑO\n고추장과 할라피뇨를 담은 한국식 테이블 소스입니다. 열고, 담고, 익숙한 음식에 찍어 즐겨보세요.\n맛의 특징\n중간 정도의 매운맛에 감칠맛, 할라피뇨의 산미와 부드러운 질감이 어우러집니다.\n고추장과 할라피뇨\n고추장의 감칠맛과 매운맛에 할라피뇨의 산미를 더했습니다. 알룰로스로 단맛의 균형을 맞추고, 식물성 지방으로 만든 크림으로 부드러운 질감을 더했습니다.\n열고, 담고, 곁들이세요\n치킨, 감자튀김, 나초, 테케뇨 등 스낵에 잘 어울립니다. 타코나 평소 즐기는 음식에도 곁들여보세요.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n소비기한: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 우유, 대두, 밀, 토마토 함유.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\nMOKDA B2B\nK-PEÑO에 관해 문의하세요.",
           "path": "/ko/kpeno.html"
         },
         {
           "id": "para-carnes",
           "title": "PARA CARNES",
-          "text": "제품 상세 · SSAMJANG\nPARA CARNES\n쌈장에서 영감을 받은 한국 소스입니다. 고기와 채소에 깊은 감칠맛을 더해보세요.\n맛의 특징\n순한 매운맛에 된장의 깊은 감칠맛과 고소한 풍미가 어우러집니다.\n된장, 고추장, 참깨와 표고버섯\n된장과 고추장을 바탕으로 깊은 발효 풍미를 담았습니다. 볶은 참깨, 참기름과 표고버섯 추출물이 감칠맛과 고소한 풍미를 더합니다.\n익힌 고기에 찍어 즐기세요\n구운 고기, 찐 고기, 삶은 고기, 치킨과 안티쿠초에 곁들여보세요. 채소와도 잘 어울립니다. 고기를 익힌 뒤 소스에 찍어 즐기면 됩니다.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n보관 기간: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 제품 소개 자료에는 대두와 밀로 표시돼 있습니다. 레시피에는 참깨와 참기름도 포함돼 있습니다.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\nMOKDA B2B\nPara Carnes에 관해 문의하세요.",
+          "text": "제품 상세 · SSAMJANG\nPARA CARNES\n쌈장에서 영감을 받은 한국 소스입니다. 고기와 채소에 깊은 감칠맛을 더해보세요.\n맛의 특징\n순한 매운맛에 된장의 깊은 감칠맛과 고소한 풍미가 어우러집니다.\n된장, 고추장, 참깨와 표고버섯\n된장과 고추장을 바탕으로 깊은 발효 풍미를 담았습니다. 볶은 참깨, 참기름과 표고버섯 추출물이 감칠맛과 고소한 풍미를 더합니다.\n익힌 고기에 찍어 즐기세요\n구운 고기, 찐 고기, 삶은 고기, 치킨과 안티쿠초에 곁들여보세요. 채소와도 잘 어울립니다. 고기를 익힌 뒤 소스에 찍어 즐기면 됩니다.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n소비기한: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 제품 소개 자료에는 대두와 밀로 표시돼 있습니다. 레시피에는 참깨와 참기름도 포함돼 있습니다.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\nMOKDA B2B\nPara Carnes에 관해 문의하세요.",
           "path": "/ko/para-carnes.html"
         },
         {
           "id": "qna",
           "title": "MOKDA에 대해 궁금한 점",
-          "text": "MOKDA Q&A\nMOKDA에 대해 궁금한 점\nSalsa Coreana, 제품, 유통, 수출, 협업과 관련된 자주 묻는 질문을 확인하세요.\nMOKDA와 Salsa Coreana는 무엇인가요?\nMOKDA는 한국의 맛을 라틴아메리카의 일상 식탁과 연결하는 K-Food 브랜드입니다. Salsa Coreana는 익숙한 음식에 한국 소스를 쉽게 더할 수 있도록 만든 MOKDA의 첫 번째 제품 라인입니다.\nSalsa Coreana에는 어떤 제품이 있나요?\nK-PEÑO는 고추장에 할라피뇨의 산뜻함을 더한 소스입니다. Para Carnes는 고기와 채소에 깊은 감칠맛을 더하는 쌈장 기반의 한국 소스입니다.\n어떤 음식에 활용할 수 있나요?\nK-PEÑO는 치킨, 나초, 엠빠나다, 피자, 고기, 타코 등에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 채소에 곁들이기 좋습니다.\n판매 여부, 원재료와 알레르겐 정보는 어디서 확인하나요?\n판매 여부는 시장별로 달라질 수 있습니다. 제품 상세 페이지에서 제품 정보를 확인하고, 원재료·알레르겐·보관 정보는 제품 패키지의 표기를 확인해주세요. 시장별 판매 여부나 추가 정보는 문의 페이지로 확인하실 수 있습니다.\n유통, 리테일과 HORECA 협업이 가능한가요?\n가능합니다. 라틴아메리카 유통, 리테일, 레스토랑, HORECA 및 브랜드 협업 제안을 받고 있습니다. 같은 문의 페이지에서 일반 소비자 질문도 접수합니다.\nMOKDA SNS\n회사 정보\n상호: MOKDA\n대표: Gyeom Park\n사업자등록번호: 161-07-03392\n주소: 전북특별자치도 김제시 남북10길 44, 2층\n지식재산권\nMOKDA의 브랜드명, 제품명, 패키지 디자인 및 관련 자료는 상표권 및 지식재산권 보호 절차를 진행 중입니다.\n© 2026 MOKDA. 모든 권리 보유.",
+          "text": "MOKDA Q&A\nMOKDA에 대해 궁금한 점\nSalsa Coreana, 제품, 유통, 수출, 협업과 관련된 자주 묻는 질문을 확인하세요.\nMOKDA와 Salsa Coreana는 무엇인가요?\nMOKDA는 한국의 맛을 라틴아메리카의 일상 식탁과 연결하는 K-Food 브랜드입니다. Salsa Coreana는 익숙한 음식에 한국 소스를 쉽게 더할 수 있도록 만든 MOKDA의 첫 번째 제품 라인입니다.\nSalsa Coreana에는 어떤 제품이 있나요?\nK-PEÑO는 고추장에 할라피뇨의 산뜻함을 더한 소스입니다. Para Carnes는 고기와 채소에 깊은 감칠맛을 더하는 쌈장 기반의 한국 소스입니다.\n어떤 음식에 활용할 수 있나요?\nK-PEÑO는 치킨, 나초, 엠파나다, 피자, 고기, 타코 등에 잘 어울립니다. Para Carnes는 구운 고기, 찐 고기, 삶은 고기와 채소에 곁들이기 좋습니다.\n판매 여부, 원재료와 알레르겐 정보는 어디서 확인하나요?\n판매 여부는 시장별로 달라질 수 있습니다. 제품 상세 페이지에서 제품 정보를 확인하고, 원재료·알레르겐·보관 정보는 제품 패키지의 표기를 확인해주세요. 시장별 판매 여부나 추가 정보는 문의 페이지에서 문의하실 수 있습니다.\n유통, 리테일과 HORECA 협업이 가능한가요?\n가능합니다. 라틴아메리카 유통, 리테일, 레스토랑, HORECA 및 브랜드 협업 제안을 받고 있습니다. 같은 문의 페이지에서 일반 소비자 질문도 접수합니다.\nMOKDA SNS\n회사 정보\n상호: MOKDA\n대표: Gyeom Park\n사업자등록번호: 161-07-03392\n주소: 전북특별자치도 김제시 남북10길 44, 2층\n지식재산권\nMOKDA의 브랜드명, 제품명, 패키지 디자인 및 관련 자료는 상표권 및 지식재산권 보호 절차를 진행 중입니다.\n© 2026 MOKDA. 모든 권리 보유.",
           "path": "/ko/qna.html"
         },
         {
@@ -327,7 +327,7 @@
           "id": "contact",
           "topic": "collaboration",
           "question": "¿Qué hago si no encuentro mi respuesta?",
-          "text": "Escribe aquí lo que te gustaría saber. Primero te orientamos sobre los productos y las compras. Si hacen falta una revisión de condiciones comerciales o una solución a un problema del producto, puedes continuar con el equipo.",
+          "text": "Escribe aquí lo que te gustaría saber. Primero te orientamos sobre los productos y las compras. Si necesitas revisar condiciones comerciales o resolver un problema con el producto, puedes continuar con nuestro equipo.",
           "label": "Ir a contacto",
           "path": "/es/contact.html"
         }
@@ -336,7 +336,7 @@
         {
           "id": "about",
           "title": "Una historia que comenzó alrededor de la mesa",
-          "text": "Historia de Marca\nUna historia que comenzó alrededor de la mesa\nMOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a Latinoamérica con una sola maleta.\nAl compartir la mesa con amigos latinoamericanos, entendió que la comida va más allá del sabor. Es una de las formas más directas de conocer una cultura y a las personas que la viven.\nCon ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA acerca Corea a las mesas cotidianas de Latinoamérica.\nNuestros ingredientes\nIngredientes de la naturaleza, fermentación coreana\nLas salsas de MOKDA comienzan con gochujang y doenjang, pastas fermentadas tradicionales de Corea. El sabor profundo que desarrollan el chile y la soya durante la fermentación se convierte en salsas para la comida de todos los días.\nEstudiamos el sabor y las características de los ingredientes y ajustamos el equilibrio entre picante, dulzor y umami mediante pruebas de formulación y prototipos. Desde la selección de los ingredientes hasta cada botella, cuidamos el desarrollo para acercar los sabores de Corea a tu mesa.\nMOKDA\nEl nombre y el símbolo\nMOKDA viene de la palabra coreana 먹다, que significa “comer”.\nEl gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión. “MOKDA” y el coreano “먹다” muestran el origen coreano de la marca.\nHistoria de MOKDA\nLos pasos de MOKDA\n2024\nPrimer desarrollo y demostración del producto\nPrimer desarrollo y demostración del producto\n2025\nI+D para la producción a gran escala\nI+D para la producción a gran escala\n2026\n04–09Selección en 10 programas públicos de apoyo al emprendimientoApoyo total aproximado: 100 millones de wones\nSelección en 10 programas públicos de apoyo al emprendimiento\nApoyo total aproximado: 100 millones de wones\n09Participación en Expoalimentaria Perú 2026\nParticipación en Expoalimentaria Perú 2026\n10Participación prevista en la Expo Internacional de Alimentos Fermentados de Jeonju, Corea\nParticipación prevista en la Expo Internacional de Alimentos Fermentados de Jeonju, Corea\nSALSA COREANA\nDescubre Salsa Coreana\nConoce cómo MOKDA acerca los sabores de Corea a las mesas de todos los días.\nREDES SOCIALES\nInformación de la empresa\nEmpresa: MOKDA\nRepresentante: Gyeom Park\nRegistro comercial: 161-07-03392\nDirección: 44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, República de Corea\nPropiedad intelectual\nEl nombre de la marca, los nombres de los productos, los diseños de empaque y los materiales relacionados de MOKDA están en proceso de protección mediante marcas y otros derechos de propiedad intelectual.\n© 2026 MOKDA. Todos los derechos reservados.",
+          "text": "Historia de marca\nUna historia que comenzó alrededor de la mesa\nMOKDA nació en la primavera de 2024, a partir del viaje de un joven coreano que llegó a Latinoamérica con una sola maleta.\nAl compartir la mesa con amigos latinoamericanos, entendió que la comida va más allá del sabor. Es una de las formas más directas de conocer una cultura y a las personas que la viven.\nCon ingredientes coreanos, una mirada joven y la sensibilidad de la Corea actual, MOKDA acerca Corea a las mesas cotidianas de Latinoamérica.\nNuestros ingredientes\nIngredientes de la naturaleza, fermentación coreana\nLas salsas de MOKDA comienzan con gochujang y doenjang, pastas fermentadas tradicionales de Corea. El sabor profundo que desarrollan el chile y la soya durante la fermentación se convierte en salsas para la comida de todos los días.\nEstudiamos el sabor y las características de los ingredientes y ajustamos el equilibrio entre picante, dulzor y umami mediante pruebas de formulación y prototipos. Desde la selección de los ingredientes hasta cada botella, cuidamos el desarrollo para acercar los sabores de Corea a tu mesa.\nMOKDA\nEl nombre y el símbolo\nMOKDA viene de la palabra coreana 먹다, que significa “comer”.\nEl gráfico, que evoca el amanecer, representa un nuevo comienzo y la expansión. “MOKDA” y el coreano “먹다” muestran el origen coreano de la marca.\nHistoria de MOKDA\nLos pasos de MOKDA\n2024\nPrimer desarrollo y demostración del producto\nPrimer desarrollo y demostración del producto\n2025\nI+D para la producción a gran escala\nI+D para la producción a gran escala\n2026\n04–09Selección en 10 programas públicos de apoyo al emprendimientoApoyo total aproximado: 100 millones de wones\nSelección en 10 programas públicos de apoyo al emprendimiento\nApoyo total aproximado: 100 millones de wones\n09Participación en Expoalimentaria Perú 2026\nParticipación en Expoalimentaria Perú 2026\n10Participación prevista en la Expo Internacional de Alimentos Fermentados de Jeonju, Corea\nParticipación prevista en la Expo Internacional de Alimentos Fermentados de Jeonju, Corea\nSALSA COREANA\nDescubre Salsa Coreana\nConoce cómo MOKDA acerca los sabores de Corea a las mesas de todos los días.\nREDES SOCIALES\nInformación de la empresa\nEmpresa: MOKDA\nRepresentante: Gyeom Park\nRegistro comercial: 161-07-03392\nDirección: 44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, República de Corea\nPropiedad intelectual\nEl nombre de la marca, los nombres de los productos, los diseños de empaque y los materiales relacionados de MOKDA están en proceso de protección mediante marcas y otros derechos de propiedad intelectual.\n© 2026 MOKDA. Todos los derechos reservados.",
           "path": "/es/about.html"
         },
         {
@@ -538,7 +538,7 @@
         {
           "id": "products",
           "title": "SALSA COREANA",
-          "text": "MOKDA'S FIRST SAUCE LINE\nSALSA COREANA\nMOKDA's first expression: Korean sauces created to fit easily and naturally into everyday meals across Latin America.\nYOU CAN’T STOP DIPPING.\nGochujang\nK-PEÑO\nA sauce where the spicy kick of gochujang meets the freshness of jalapeño.\nMade for tacos, chicken, fried food, and snacks.\nSsamjang\nPara Carnes\nA Korean sauce with deep umami for vegetables and all kinds of meat, whether grilled, boiled or steamed.\nA signature Korean dipping sauce for meat.",
+          "text": "MOKDA'S FIRST SAUCE LINE\nSALSA COREANA\nMOKDA's first product line: Korean sauces for everyday meals across Latin America.\nYOU CAN’T STOP DIPPING.\nGochujang\nK-PEÑO\nA sauce where the spicy kick of gochujang meets the freshness of jalapeño.\nMade for tacos, chicken, fried food, and snacks.\nSsamjang\nPara Carnes\nA Korean sauce with deep umami for vegetables and all kinds of meat, whether grilled, boiled or steamed.\nA signature Korean dipping sauce for meat.",
           "path": "/en/products.html"
         },
         {
@@ -556,7 +556,7 @@
         {
           "id": "qna",
           "title": "Questions about MOKDA",
-          "text": "MOKDA Q&A\nQuestions about MOKDA\nFind answers about Salsa Coreana, products, distribution, export, and collaboration.\nWhat are MOKDA and Salsa Coreana?\nMOKDA is the K-Food brand connecting Korean flavors with everyday tables across Latin America. Salsa Coreana is MOKDA’s first product line, created to make Korean flavors easy to enjoy with everyday food.\nWhich products are in the Salsa Coreana line?\nK-PEÑO blends a gochujang base with a fresh jalapeño lift. Para Carnes is ssamjang-based and brings deep umami to meat and vegetables.\nWhat foods can the sauces be used with?\nK-PEÑO pairs with chicken, nachos, empanadas, pizza, meat, and tacos. Para Carnes complements grilled, steamed, or boiled meat, as well as vegetables.\nWhere can I check availability, ingredients, and allergens?\nAvailability may vary by market. Visit each product page for details and check the packaging for ingredient, allergen, and storage information. Use the contact page to confirm availability or ask market-specific questions.\nDoes MOKDA work with distributors, retail, and HORECA?\nYes. MOKDA welcomes distribution, retail, restaurant, HORECA, and brand collaboration proposals for Latin America. The same contact page is also open for general consumer questions.\nSOCIAL\nBusiness Information\nCompany: MOKDA\nCEO: Gyeom Park\nBusiness Registration No.: 161-07-03392\nAddress: 44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, Republic of Korea\nIntellectual Property\nMOKDA’s brand name, product names, packaging designs, and related materials are undergoing trademark and intellectual property protection procedures.\n© 2026 MOKDA. All rights reserved.",
+          "text": "MOKDA Q&A\nQuestions about MOKDA\nFind answers about Salsa Coreana, products, distribution, export, and collaboration.\nWhat are MOKDA and Salsa Coreana?\nMOKDA is the K-Food brand connecting Korean flavors with everyday tables across Latin America. Salsa Coreana is MOKDA’s first product line, created to make Korean flavors easy to enjoy with everyday food.\nWhich products are in the Salsa Coreana line?\nK-PEÑO blends a gochujang base with a fresh jalapeño lift. Para Carnes is ssamjang-based and brings deep umami to meat and vegetables.\nWhat foods can the sauces be used with?\nK-PEÑO pairs with chicken, nachos, empanadas, pizza, meat, and tacos. Para Carnes complements grilled, steamed, or boiled meat, as well as vegetables.\nWhere can I check availability, ingredients, and allergens?\nAvailability may vary by market. Visit each product page for details and check the packaging for ingredient, allergen, and storage information. Use the contact page to confirm availability or ask market-specific questions.\nDoes MOKDA work with distributors, retailers and HORECA businesses?\nYes. MOKDA welcomes distribution, retail, restaurant, HORECA, and brand collaboration proposals for Latin America. The same contact page is also open for general consumer questions.\nSOCIAL\nBusiness Information\nCompany: MOKDA\nCEO: Gyeom Park\nBusiness Registration No.: 161-07-03392\nAddress: 44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, Republic of Korea\nIntellectual Property\nMOKDA’s brand name, product names, packaging designs, and related materials are undergoing trademark and intellectual property protection procedures.\n© 2026 MOKDA. All rights reserved.",
           "path": "/en/qna.html"
         },
         {
@@ -677,7 +677,7 @@
     },
     "answers": {
       "KR": {
-        "moq": "기본 최소 주문수량은 1,000개입니다. 제품별 수량과 K-PEÑO·Para Carnes의 혼합 구성은 거래별로 협의합니다.",
+        "moq": "기본 최소 주문 수량은 1,000개입니다. 제품별 수량과 K-PEÑO·Para Carnes의 혼합 구성은 거래별로 협의합니다.",
         "pricing": "가격은 국가와 주문 수량을 확인한 뒤 개별 견적으로 안내합니다.",
         "leadTime": "출고 일정은 주문별로 협의합니다. 필요한 수량과 희망 일정을 알려주시면 담당자가 가능한 일정을 확인해 드립니다.",
         "samples": "샘플은 협의 후 50개 미만으로 제공할 수 있습니다. 샘플 제품은 1회 무료로 제공하며, 국제 배송비는 바이어가 부담합니다. 제공 여부와 수량은 담당자와 확인해 주세요.",
@@ -699,7 +699,7 @@
         "samples": "Podemos coordinar muestras en cantidades menores a 50 unidades. Las muestras se ofrecen sin costo una sola vez; el comprador cubre el envío internacional. La disponibilidad y la cantidad se confirman con nuestro equipo.",
         "packing": "La presentación de 330 g se empaca en cajas de 12 unidades.",
         "bulk": "También podemos ofrecer presentaciones de mayor tamaño para clientes B2B. La capacidad se acuerda según el uso previsto.",
-        "documents": "La presentación de productos y el catálogo están disponibles en español. La información de ingredientes y nutrición, los informes de análisis y la demás documentación para compradores están preparados en inglés. Indícanos qué documentos necesitas.",
+        "documents": "La presentación de productos y el catálogo están disponibles en español. La información de ingredientes y nutrición, los informes de análisis y el resto de la documentación para compradores están disponibles en inglés. Indícanos qué documentos necesitas.",
         "support": "Nuestro equipo atiende en español y coreano. Puedes dejar tu consulta en cualquier momento. La respuesta puede tardar por la diferencia horaria con Corea del Sur; gracias por tu comprensión.",
         "certifications": "Contamos con certificaciones relacionadas con alimentos. Indícanos qué certificación necesitas y nuestro equipo confirmará su alcance y la documentación correspondiente.",
         "namedCertifications": "Nuestro equipo debe confirmar si contamos con la certificación específica que necesitas y cuál es su alcance. Indícanos la certificación y las salsas de interés.",

@@ -236,9 +236,9 @@
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "site-help.js": "e8c6d40aac94f3d395816dd2e7c1170f673ad186a8c9eaaf7aceac3aef7084b5",
+        "site-help.js": "e0db727cce49705297a88a82abaa1cb493fbb8a826df9257c9d637b84715b18b",
         "styles/site-help.css": "9215bdd79fca70910c56e682c9fb12847bebe927c7d704737add831d8b2217d9",
-        "site-chat-engine.js": "d65ef73f0af37dbbf7cc86bf11d3f8030ef9808e3f574f96f7ead66e85670a6d",
+        "site-chat-engine.js": "2ff0cafc0bc519d68866b9d4e344915074dc5b277c560101d0befd883835365a",
         "site-help-loader.js": "3fc34e237045cc091785b64878013a21fc27cc229077fbcfd79cd1b25492e9bc",
         "docs/WEBSITE_FUNNEL.md": "418cd60bd8e0d60bc5743d89db94b73efa735fe3fb609591fb1f5ce03c9130d9"
       },
@@ -304,7 +304,7 @@
           }
         }
       },
-      "updatedAt": "2026-10-19T10:38:46.182Z",
+      "updatedAt": "2026-10-19T13:48:03.520Z",
       "approvedByUser": false,
       "implementationScope": "Existing AI guidance and WhatsApp funnel retained; warm visual accents, MOK-LANG mascot naming and initial greeting preparation",
       "canvasReview": {
@@ -332,7 +332,13 @@
         "launcherAndHeaderMarkupPreserved": true
       },
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
-      "reviewStatus": "funnel-implemented-local-verified-production-deployment-in-progress"
+      "reviewStatus": "funnel-implemented-local-verified-production-deployment-in-progress",
+      "implementationCopy": {
+        "KR": "먹다 상담 도우미",
+        "ES": "Asistente de MOKDA",
+        "EN": "MOKDA assistant"
+      },
+      "copyReview": "docs/WEBSITE_COPY_REVIEW_2026-10-19.md"
     },
     "home-video-hero": {
       "targetKind": "new-ui",
@@ -623,7 +629,7 @@
           }
         }
       },
-      "updatedAt": "2026-10-19T10:38:46.188Z",
+      "updatedAt": "2026-10-19T13:48:03.526Z",
       "selectionStatus": "approved-A-with-business-step",
       "reviewUrl": "http://127.0.0.1:4184/",
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
@@ -638,7 +644,13 @@
         "babbb517-b70e-4859-b54e-6228f9f5be12",
         "243d38ed-983d-4b73-9f90-222465e49bf6"
       ],
-      "reviewStatus": "funnel-implemented-local-verified-production-deployment-in-progress"
+      "reviewStatus": "funnel-implemented-local-verified-production-deployment-in-progress",
+      "implementationCopy": {
+        "KR": "먹다 상담 도우미",
+        "ES": "Asistente de MOKDA",
+        "EN": "MOKDA assistant"
+      },
+      "copyReview": "docs/WEBSITE_COPY_REVIEW_2026-10-19.md"
     }
   }
 }

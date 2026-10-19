@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; form-action 'none'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com 'sha256-hCJXA2uJ8MYoTzblvms3+Zf7q0fyIuaLsES50hPcB6o=' 'sha256-X8tlPKb3iB99YvneDLcwZMgHB6NTISVWVJjFeJ52J00=' 'sha256-IAIoneYzYtwjQJBaKRGUUmxIqDdafuzvbf3ji64zxx4='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; form-action 'none'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com 'sha256-hCJXA2uJ8MYoTzblvms3+Zf7q0fyIuaLsES50hPcB6o=' 'sha256-X8tlPKb3iB99YvneDLcwZMgHB6NTISVWVJjFeJ52J00=' 'sha256-/BIKplSMQaBDidc/t7ae2D+9QmTJ45xvh7uB9TJk0HU='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://mokda-chat.mokda-chat-worker.workers.dev https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -319,7 +319,7 @@
             submit: 'Enviar consulta',
             required: 'Completa este campo.',
             emailError: 'Ingresa un correo válido.',
-            contactMethod: 'Introduce al menos un correo electrónico o WhatsApp.',
+            contactMethod: 'Ingresa tu correo electrónico o número de WhatsApp.',
           },
           messages: {
             sending: 'Enviando consulta...',
@@ -346,8 +346,8 @@
             message: ['Message', 'Tell us your question or proposal'],
             submit: 'Send inquiry',
             required: 'Please complete this field.',
-            emailError: 'Please enter a valid email.',
-            contactMethod: 'Enter at least an email address or WhatsApp number.',
+            emailError: 'Please enter a valid email address.',
+            contactMethod: 'Enter an email address or WhatsApp number so we can reply.',
           },
           messages: {
             sending: 'Sending inquiry...',
@@ -441,7 +441,7 @@
           <option value="" selected>${fields.purpose[1]}</option>
           ${fields.purpose[2].map((label) => `<option value="${label}">${label}</option>`).join('')}
         `;
-        const productCopy = { KR:['관심 제품 (선택)','아직 결정하지 않았어요','두 제품 모두'], ES:['Salsa de interés (opcional)','Aún no lo he decidido','Ambas salsas'], EN:['Interested product (optional)','Not decided yet','Both sauces'] }[language];
+        const productCopy = { KR:['관심 제품 (선택)','아직 결정하지 않았어요','두 제품 모두'], ES:['Salsa de interés (opcional)','Aún no lo he decidido','Ambas salsas'], EN:['Product of interest (optional)','Not decided yet','Both sauces'] }[language];
         setText('productLabel', productCopy[0]);
         document.getElementById('productSelect').replaceChildren(...[['',productCopy[1]],['original','K-PEÑO'],['para-carnes','Para Carnes'],['both',productCopy[2]]].map(([value,label]) => { const option=document.createElement('option'); option.value=value; option.textContent=label; return option; }));
         applyInquiryPreset();
@@ -620,6 +620,6 @@
       <script src="./brand-motion.js?v=20261010-site" defer></script>
       <script defer src="./site-contact-config.js"></script>
     <script defer src="./site-turnstile.js"></script>
-    <script defer src="./site-help-loader.js" data-chat-assets="[&quot;/site-company-knowledge.js?v=107e3b9bcd5f&quot;,&quot;/site-help-data.js?v=04678749eb84&quot;,&quot;/site-chat-intents.js?v=c0590831cc4e&quot;,&quot;/site-chat-engine.js?v=d65ef73f0af3&quot;,&quot;/site-chat-ai.js?v=08e2d181000a&quot;,&quot;/site-help.js?v=e8c6d40aac94&quot;]"></script>
+    <script defer src="./site-help-loader.js" data-chat-assets="[&quot;/site-company-knowledge.js?v=c89acb7cb117&quot;,&quot;/site-help-data.js?v=6dd8cb144d68&quot;,&quot;/site-chat-intents.js?v=c0590831cc4e&quot;,&quot;/site-chat-engine.js?v=2ff0cafc0bc5&quot;,&quot;/site-chat-ai.js?v=08e2d181000a&quot;,&quot;/site-help.js?v=e0db727cce49&quot;]"></script>
 </body>
 </html>

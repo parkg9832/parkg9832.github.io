@@ -66,7 +66,7 @@ window.MOKDA_COMPANY_KNOWLEDGE = {
   },
   "answers": {
     "KR": {
-      "moq": "기본 최소 주문수량은 1,000개입니다. 제품별 수량과 K-PEÑO·Para Carnes의 혼합 구성은 거래별로 협의합니다.",
+      "moq": "기본 최소 주문 수량은 1,000개입니다. 제품별 수량과 K-PEÑO·Para Carnes의 혼합 구성은 거래별로 협의합니다.",
       "pricing": "가격은 국가와 주문 수량을 확인한 뒤 개별 견적으로 안내합니다.",
       "leadTime": "출고 일정은 주문별로 협의합니다. 필요한 수량과 희망 일정을 알려주시면 담당자가 가능한 일정을 확인해 드립니다.",
       "samples": "샘플은 협의 후 50개 미만으로 제공할 수 있습니다. 샘플 제품은 1회 무료로 제공하며, 국제 배송비는 바이어가 부담합니다. 제공 여부와 수량은 담당자와 확인해 주세요.",
@@ -88,7 +88,7 @@ window.MOKDA_COMPANY_KNOWLEDGE = {
       "samples": "Podemos coordinar muestras en cantidades menores a 50 unidades. Las muestras se ofrecen sin costo una sola vez; el comprador cubre el envío internacional. La disponibilidad y la cantidad se confirman con nuestro equipo.",
       "packing": "La presentación de 330 g se empaca en cajas de 12 unidades.",
       "bulk": "También podemos ofrecer presentaciones de mayor tamaño para clientes B2B. La capacidad se acuerda según el uso previsto.",
-      "documents": "La presentación de productos y el catálogo están disponibles en español. La información de ingredientes y nutrición, los informes de análisis y la demás documentación para compradores están preparados en inglés. Indícanos qué documentos necesitas.",
+      "documents": "La presentación de productos y el catálogo están disponibles en español. La información de ingredientes y nutrición, los informes de análisis y el resto de la documentación para compradores están disponibles en inglés. Indícanos qué documentos necesitas.",
       "support": "Nuestro equipo atiende en español y coreano. Puedes dejar tu consulta en cualquier momento. La respuesta puede tardar por la diferencia horaria con Corea del Sur; gracias por tu comprensión.",
       "certifications": "Contamos con certificaciones relacionadas con alimentos. Indícanos qué certificación necesitas y nuestro equipo confirmará su alcance y la documentación correspondiente.",
       "namedCertifications": "Nuestro equipo debe confirmar si contamos con la certificación específica que necesitas y cuál es su alcance. Indícanos la certificación y las salsas de interés.",

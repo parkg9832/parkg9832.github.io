@@ -17,7 +17,7 @@
 .home-page .hero-photo-layer { opacity:0; transition:none; }
 .home-page .hero-photo-layer.is-active { opacity:1; }
 .home-page [data-photos-running='true'] .hero-photo-layer { transition:opacity 800ms ease-in-out; }
-.home-page .hero-photo-media::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,#32150680 0%,#32150673 45%,#32150699 100%); }
+.home-page .hero-photo-media::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,#32150610 0%,#32150615 30%,#321506bb 65%,#321506eb 100%); }
 .home-page [data-hero-kicker],
 .home-page [data-hero-title],
 .home-page .hero-copy [data-hero-subtitle] { color:#fff8ef; text-shadow:0 2px 18px #32150680; }
@@ -25,16 +25,17 @@
 .home-page [data-hero-link]:hover { background:#f8dfc4; }
 .home-page .hero-sauce-plate { display:none!important; }
 .home-page .hero-motion { opacity:1; transform:none; animation:none!important; will-change:auto; }
-.home-page .hero-content { justify-content:center; padding:6.5rem 20px 4rem; }
+.home-page .hero-content { justify-content:flex-end; padding:6.5rem 20px 3rem; }
 .home-page [data-hero-kicker],
 .home-page [data-hero-title] { width:100%; max-width:1040px; }
 .home-page .hero-copy { width:100%; margin-inline:auto; }
 
-/* Preserve the established centered campaign copy over the field photographs. */
+/* Portrait photographs retain faces and products; campaign copy stays centered in its reading area. */
 @media (min-width: 1024px) {
-  .home-page .hero-photo-layer:first-child img { object-position:50% 30%; }
+  .home-page .hero-photo-layer img { left:auto; right:0; top:80px; width:auto; max-width:56%; height:calc(100% - 80px); object-fit:contain; object-position:right center; mask-image:linear-gradient(90deg,transparent 0%,#000 28%); }
+  .home-page .hero-photo-media::after { background:linear-gradient(90deg,#32150640 0%,#32150610 60%,transparent 100%); }
   .home-page .hero-section { height: min(760px, 100svh); min-height: 620px; }
-  .home-page .hero-content { justify-content:center; align-items:center; padding:6rem 4.5vw 4rem; }
+  .home-page .hero-content { justify-content:center; align-items:center; width:54%; margin-left:0; padding:6rem 3vw 4rem; }
   .home-page [data-hero-kicker],
   .home-page [data-hero-title] { margin-inline:auto; text-align:center; width:100%; }
   .home-page [data-hero-kicker] { margin-bottom: 1.5rem; }

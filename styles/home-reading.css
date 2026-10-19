@@ -1,6 +1,9 @@
 /* Information stays in the reading flow; controls are reserved for destinations. */
 .home-page #productsGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
-.home-page .home-product-panel .home-product-copy { min-height:0; }
+.home-page .home-product-panel { display:flex; }
+.home-page .home-product-panel > a { flex:1; }
+.home-page .home-product-panel .home-product-copy { display:flex; flex-direction:column; min-height:0; }
+.home-page .home-product-copy .home-product-uses { margin-top:auto; padding-top:16px; }
 .home-page .home-product-image { aspect-ratio:1.35; }
 .home-page .home-product-panel > a { height:auto; }
 .home-page .home-pairings-reading { display:block; padding:clamp(3rem,5vw,5rem) max(1rem,calc((100vw - 1216px)/2)); }

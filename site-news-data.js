@@ -94,6 +94,11 @@ window.MOKDA_NEWS = {
       ],
       "homeFeatured": true,
       "homeOrder": 4,
+      "cardTitles": {
+        "ES": "KOTRA entrevista a MOKDA en Perú",
+        "KR": "KOTRA 참관기에 실린 MOKDA 인터뷰",
+        "EN": "KOTRA interviews MOKDA in Peru"
+      },
       "KR": {
         "title": "페루 국제 식음료 박람회 '엑스포알리멘타리아 2026(Expoalimentaria 2026)' 참관기",
         "summary": "KOTRA 해외시장뉴스 · 리마무역관 지정주 · 2026년 10월 6일",
@@ -290,9 +295,9 @@ window.MOKDA_NEWS = {
         "EN": "MOKDA greeting the audience from the KPOP STYLE stage"
       },
       "cardTitles": {
-        "ES": "KPOP STYLE",
-        "KR": "KPOP STYLE",
-        "EN": "KPOP STYLE"
+        "ES": "Salsa Coreana llega a KPOP STYLE",
+        "KR": "페루 KPOP STYLE 무대에 오른 MOKDA",
+        "EN": "Salsa Coreana at KPOP STYLE"
       },
       "eventDate": "2026-09-27"
     },
@@ -407,9 +412,9 @@ window.MOKDA_NEWS = {
       "videoAsCover": true,
       "videoPoster": "congreso-video",
       "cardTitles": {
-        "ES": "MOKDA en Congreso TV",
-        "KR": "페루 국회방송에 소개된 MOKDA",
-        "EN": "MOKDA on Peru’s Congreso TV"
+        "ES": "El stand de MOKDA en Congreso TV",
+        "KR": "페루 국회방송이 전한 MOKDA 부스 현장",
+        "EN": "MOKDA’s booth on Congreso TV"
       }
     },
     {

@@ -151,21 +151,21 @@
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
+        "site-news-data.js": "05526f49c72146f1bf1ab16ca715e8534301efe4c9be93b693438c58c810b9cf",
         "site-news.js": "182032334d74ea566aa12151dc4e07ed855dda477ce140fc9d97b60d39d64614",
-        "site-news-data.js": "74079294b48bf82422ef03b5e2e302c5dd8b8714253cd991be03754d4e993e0d",
-        "styles/site-news.css": "5daf82613b5e6278b5236936f1d1a396fc0179c1c666a82d558b538e35302642",
         "styles/brand-rhythm.css": "f5e0e27c4450e975bb79377fc4c77a716b6651d208d7b7996c3324e03488fb20",
+        "styles/home-experience.css": "7052f80d3ae4e06dc6fde65d1b4cbc13177c9c05cf504c94e9871b20ed4ca183",
+        "styles/site-news.css": "effc64845701b32172a239f57075239bb548ff7909151959b388da6ef04dd085",
         "styles/site-typography.css": "8ed52ec4f8b197f91b08bace8968ceb8d7d76167d8c2ffb9dd93526290bb8bbb",
-        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842",
-        "styles/home-experience.css": "7052f80d3ae4e06dc6fde65d1b4cbc13177c9c05cf504c94e9871b20ed4ca183"
+        "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
       },
       "components": [],
       "drafts": {
         "9001a0e5-fe7f-49b6-af4b-cd48e3736487": {
           "title": "MOKDA homepage news preview",
           "baselineVersion": 1,
-          "currentVersion": 6,
-          "visualDirection": "Existing lead photograph and three compact supporting rows retained, with a centered orange text link, short underline and right arrow below the cards.",
+          "currentVersion": 7,
+          "visualDirection": "Existing lead photograph and three compact supporting rows retained, with informative home-only Korean headlines, a 24ch balanced heading measure and the centered orange archive text link below the cards.",
           "previewUrl": "https://p.superdesign.dev/draft/9001a0e5-fe7f-49b6-af4b-cd48e3736487"
         },
         "26bec3ed-de0e-42eb-9af8-649af976f3d3": {
@@ -186,16 +186,16 @@
         }
       },
       "reviewStatus": "user-approved-for-implementation",
-      "updatedAt": "2026-10-18T23:53:14.880Z",
+      "updatedAt": "2026-10-19T00:09:02.934Z",
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "canvasReview": {
-        "verifiedVersion": 6,
+        "verifiedVersion": 7,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
         "renderedReviewPerformed": false,
         "archiveLinkPosition": "section-footer-after-cards",
         "archiveLinkTextAndHrefPreserved": true,
-        "allFourCardHtmlBytesPreserved": true,
+        "allFourCardHtmlBytesPreserved": false,
         "textLink": {
           "minHeightPx": 48,
           "padding": "14px 0",
@@ -208,7 +208,14 @@
           "arrow": "→",
           "arrowSizePx": 18
         },
-        "verification": "Refetched v6 HTML is byte-identical to authored HTML. Only scoped archive link styling and arrow changed; four cards remain unchanged. Live website responsive rendering was verified separately in all three languages."
+        "verification": "Refetched v7 HTML is byte-identical to authored HTML. Exactly three Korean supporting headlines and the shared supporting-heading max-width/margin/text-wrap declaration changed; all links, aria-labels, images, read-more spans and remaining styles are preserved. Source fingerprints were refreshed after localized generation. Actual website responsive rendering is verified separately.",
+        "onlySupportingHeadlinesAndHeadingMeasureChanged": true,
+        "linksAriaLabelsImagesAndReadMorePreserved": true,
+        "supportingHeading": {
+          "maxWidth": "24ch",
+          "margin": "6px auto 0",
+          "textWrap": "balance"
+        }
       }
     },
     "shared-mokda-chat": {

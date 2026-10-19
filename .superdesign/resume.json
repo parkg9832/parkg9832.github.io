@@ -222,7 +222,7 @@
       "targetKind": "existing-ui",
       "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "baselineDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
-      "activeDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+      "activeDraftId": "babbb517-b70e-4859-b54e-6228f9f5be12",
       "designSystemPath": ".superdesign/design-system.md",
       "contextFiles": [
         ".superdesign/design-system.md",
@@ -235,7 +235,7 @@
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
         "site-help.js": "fcf64e642f383594496fa185f9a74365b5ce487e0ed9faeaa93b020136307ddd",
-        "styles/site-help.css": "ac1d1ff28f5fa60b707db794dec38608187f461fb3f897b32938772b9a3436f0",
+        "styles/site-help.css": "b09591050bc878a33ff1d7f3ffba3756e3321e2e08f568459d318c042ebe8d50",
         "site-chat-engine.js": "b4fa0d062b1fb962ea208fda79def6e692422ed85607840492408377a20a757a"
       },
       "referenceIds": [
@@ -248,6 +248,11 @@
           "assetKey": "assets-images-mokda-logo-main.webp",
           "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/brand-assets/assets-images-mokda-logo-main.webp/mokda-logo-main.webp",
           "sourcePath": "assets/images/mokda-logo-main.webp"
+        },
+        "mascot": {
+          "assetKey": "assets-images-meokrangi-chat-avatar-20261013.webp",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/brand-assets/assets-images-meokrangi-chat-avatar-20261013.webp/meokrangi-chat-avatar-20261013.webp",
+          "sourcePath": "assets/images/meokrangi-chat-avatar-20261013.webp"
         }
       },
       "components": [],
@@ -258,9 +263,38 @@
           "currentVersion": 5,
           "visualDirection": "Existing 400px MOK-LANG messenger retained; only the three quick reply buttons receive current cream fill, warm brown border and hover/focus/active colors.",
           "previewUrl": "https://p.superdesign.dev/draft/18e009e9-4212-47f9-bcbd-0157aab087b6"
+        },
+        "babbb517-b70e-4859-b54e-6228f9f5be12": {
+          "title": "차콜 · 오렌지",
+          "letter": "A",
+          "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+          "currentVersion": 4,
+          "previewUrl": "https://p.superdesign.dev/draft/babbb517-b70e-4859-b54e-6228f9f5be12",
+          "visualDirection": "User-approved A charcoal header, light gray conversation, white choices, pale orange user bubbles, orange launcher and send button. Existing conversation logic and responsive layout preserved.",
+          "canvasReview": {
+            "authoredHtmlMatchesSaved": true,
+            "renderedReviewPerformed": true,
+            "panelSize": [
+              400,
+              650
+            ],
+            "conversationDoesNotOverlapFooter": true,
+            "exactMascotAndRobot": true
+          },
+          "previousVersion": 3,
+          "previousVisualDirection": "오렌지 · 크림; identical 400x650 geometry, exact mascot and robot, no white launcher ring or pure-white footer",
+          "palette": {
+            "background": "#EFF1EF",
+            "incoming": "#FFFFFF",
+            "outgoing": "#F8DCC8",
+            "choices": "#FFFFFF",
+            "accent": "#EF5F18",
+            "name": "차콜 · 오렌지",
+            "header": "#292D2A"
+          }
         }
       },
-      "updatedAt": "2026-10-16T05:33:32.280Z",
+      "updatedAt": "2026-10-19T06:48:55.685Z",
       "approvedByUser": false,
       "implementationScope": "Existing AI guidance and WhatsApp funnel retained; warm visual accents, MOK-LANG mascot naming and initial greeting preparation",
       "canvasReview": {
@@ -287,7 +321,8 @@
         "choiceRulesCopiedFromCurrentSource": true,
         "launcherAndHeaderMarkupPreserved": true
       },
-      "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979"
+      "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "reviewStatus": "user-approved-A-implemented"
     },
     "home-video-hero": {
       "targetKind": "new-ui",
@@ -393,6 +428,202 @@
       "approvedByUser": false,
       "updatedAt": "2026-10-19T04:56:32.718Z",
       "assetTransferNote": "Private interview image pixel upload was rejected by automatic approval review. No retry or workaround was used; the draft references the user-authorized public website URLs only."
+    },
+    "chat-color-review": {
+      "targetKind": "existing-ui",
+      "projectId": "f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "sourceTarget": "shared-mokda-chat",
+      "sourceDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+      "activeDraftId": "babbb517-b70e-4859-b54e-6228f9f5be12",
+      "baselineDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+      "contextFiles": [
+        "output/chat-colors-calm-20261019/A-review.html",
+        "output/chat-colors-calm-20261019/B-review.html",
+        "output/chat-colors-calm-20261019/palettes.json"
+      ],
+      "designSystemPath": "output/chat-colors-calm-20261019/palettes.json",
+      "fingerprints": {
+        "output/chat-colors-calm-20261019/A-review.html": "98cfe7da7ec0c44b9e6fd788ae4f3c169ad8ed812757a06a12a77242d8ded888",
+        "output/chat-colors-calm-20261019/B-review.html": "5c5848988d04f8e0140c7a1afe95d11603cc6232419eaa4aad4da9ff32975014",
+        "output/chat-colors-calm-20261019/palettes.json": "9efb6d781057d6fcb7a8b5b215ecf54aaa96f49725d0d7e9c85fc1df08a3b860"
+      },
+      "referenceIds": [
+        "assets-images-meokrangi-chat-avatar-20261013.webp"
+      ],
+      "brandAssets": {
+        "mascot": {
+          "assetKey": "assets-images-meokrangi-chat-avatar-20261013.webp",
+          "url": "https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979/brand-assets/assets-images-meokrangi-chat-avatar-20261013.webp/meokrangi-chat-avatar-20261013.webp",
+          "sourcePath": "assets/images/meokrangi-chat-avatar-20261013.webp"
+        }
+      },
+      "drafts": {
+        "18e009e9-4212-47f9-bcbd-0157aab087b6": {
+          "title": "MOKDA Current Chat Widget",
+          "baselineVersion": 1,
+          "currentVersion": 5,
+          "visualDirection": "Existing 400px MOK-LANG messenger retained; only the three quick reply buttons receive current cream fill, warm brown border and hover/focus/active colors.",
+          "previewUrl": "https://p.superdesign.dev/draft/18e009e9-4212-47f9-bcbd-0157aab087b6",
+          "role": "unchanged-current-reference"
+        },
+        "babbb517-b70e-4859-b54e-6228f9f5be12": {
+          "title": "차콜 · 오렌지",
+          "letter": "A",
+          "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+          "currentVersion": 4,
+          "previewUrl": "https://p.superdesign.dev/draft/babbb517-b70e-4859-b54e-6228f9f5be12",
+          "visualDirection": "Neutral light gray conversation background, white incoming bubbles and choices, restrained orange accents; only charcoal/deep-green header differs.",
+          "canvasReview": {
+            "authoredHtmlMatchesSaved": true,
+            "renderedReviewPerformed": true,
+            "panelSize": [
+              400,
+              650
+            ],
+            "conversationDoesNotOverlapFooter": true,
+            "exactMascotAndRobot": true
+          },
+          "previousVersion": 3,
+          "previousVisualDirection": "오렌지 · 크림; identical 400x650 geometry, exact mascot and robot, no white launcher ring or pure-white footer",
+          "palette": {
+            "background": "#EFF1EF",
+            "incoming": "#FFFFFF",
+            "outgoing": "#F8DCC8",
+            "choices": "#FFFFFF",
+            "accent": "#EF5F18",
+            "name": "차콜 · 오렌지",
+            "header": "#292D2A"
+          }
+        },
+        "243d38ed-983d-4b73-9f90-222465e49bf6": {
+          "title": "딥그린 · 오렌지",
+          "letter": "B",
+          "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+          "currentVersion": 4,
+          "previewUrl": "https://p.superdesign.dev/draft/243d38ed-983d-4b73-9f90-222465e49bf6",
+          "visualDirection": "Neutral light gray conversation background, white incoming bubbles and choices, restrained orange accents; only charcoal/deep-green header differs.",
+          "canvasReview": {
+            "authoredHtmlMatchesSaved": true,
+            "renderedReviewPerformed": true,
+            "panelSize": [
+              400,
+              650
+            ],
+            "conversationDoesNotOverlapFooter": true,
+            "exactMascotAndRobot": true
+          },
+          "previousVersion": 3,
+          "previousVisualDirection": "딥그린 · 버터; identical 400x650 geometry, exact mascot and robot, no white launcher ring or pure-white footer",
+          "palette": {
+            "background": "#EFF1EF",
+            "incoming": "#FFFFFF",
+            "outgoing": "#F8DCC8",
+            "choices": "#FFFFFF",
+            "accent": "#EF5F18",
+            "name": "딥그린 · 오렌지",
+            "header": "#174D3A"
+          }
+        },
+        "d2d77a09-f046-4c3d-8c93-a512c222693d": {
+          "title": "텔레그램식 배색",
+          "letter": "C",
+          "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+          "currentVersion": 3,
+          "previewUrl": "https://p.superdesign.dev/draft/d2d77a09-f046-4c3d-8c93-a512c222693d",
+          "visualDirection": "Messenger-inspired mixed role colors: distinct header, conversation background, incoming/outgoing bubbles and quick-reply buttons. Static sample conversation added for visual review only.",
+          "canvasReview": {
+            "authoredHtmlMatchesSaved": true,
+            "noImportWarnings": true,
+            "renderedReviewPerformed": true,
+            "reviewSurface": "native browser rendering of saved HTML",
+            "panelSize": [
+              400,
+              650
+            ],
+            "conversationDoesNotOverlapFooter": true,
+            "exactMascotAndRobot": true
+          },
+          "previousVersion": 2,
+          "previousVisualDirection": "브라운 · 샌드; identical 400x650 geometry, exact mascot and robot, no white launcher ring or pure-white footer",
+          "palette": {
+            "name": "텔레그램식 배색",
+            "header": "#246E9B",
+            "headink": "#FFFFFF",
+            "body": "#DFEBF4",
+            "bubble": "#FFFFFF",
+            "user": "#E5D8FA",
+            "choice": "#FFD4B8",
+            "choiceink": "#4A291A",
+            "ink": "#263B4C",
+            "muted": "#546F84",
+            "line": "#AEC4D5",
+            "footer": "#F1F6F9",
+            "input": "#FFFFFF",
+            "send": "#246E9B",
+            "sendink": "#FFFFFF",
+            "launcher": "#EF5F18",
+            "robot": "#321506",
+            "badge": "#C9DDEB"
+          }
+        },
+        "7baa907d-81cf-4e73-aa4c-527fdf639f05": {
+          "title": "MOKDA 믹스",
+          "letter": "D",
+          "parentDraftId": "18e009e9-4212-47f9-bcbd-0157aab087b6",
+          "currentVersion": 3,
+          "previewUrl": "https://p.superdesign.dev/draft/7baa907d-81cf-4e73-aa4c-527fdf639f05",
+          "visualDirection": "Messenger-inspired mixed role colors: distinct header, conversation background, incoming/outgoing bubbles and quick-reply buttons. Static sample conversation added for visual review only.",
+          "canvasReview": {
+            "authoredHtmlMatchesSaved": true,
+            "noImportWarnings": true,
+            "renderedReviewPerformed": true,
+            "reviewSurface": "native browser rendering of saved HTML",
+            "panelSize": [
+              400,
+              650
+            ],
+            "conversationDoesNotOverlapFooter": true,
+            "exactMascotAndRobot": true
+          },
+          "previousVersion": 2,
+          "previousVisualDirection": "차콜 · 오렌지; identical 400x650 geometry, exact mascot and robot, no white launcher ring or pure-white footer",
+          "palette": {
+            "name": "MOKDA 믹스",
+            "header": "#174D3A",
+            "headink": "#FFF4DF",
+            "body": "#DDE8EA",
+            "bubble": "#FFF9F0",
+            "user": "#FFBE89",
+            "choice": "#FFF1BD",
+            "choiceink": "#4A291A",
+            "ink": "#263F39",
+            "muted": "#526B65",
+            "line": "#B9C8BD",
+            "footer": "#F4F6F1",
+            "input": "#FFFFFF",
+            "send": "#EF5F18",
+            "sendink": "#321506",
+            "launcher": "#EF5F18",
+            "robot": "#321506",
+            "badge": "#C9D9D9"
+          }
+        }
+      },
+      "updatedAt": "2026-10-19T06:48:55.685Z",
+      "selectionStatus": "user-approved-A; implemented; pending-production-verification",
+      "reviewUrl": "http://127.0.0.1:4184/",
+      "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
+      "assetTransferNote": "Only sanitized static mockup, color notes and the existing public mascot asset were sent for this review. Original application source was not transferred.",
+      "referenceSources": {
+        "kakao": "https://www.kakaocorp.com/page/service/service/KakaoTalk",
+        "whatsapp": "https://www.whatsapp.com/messaging?lang=en",
+        "telegram": "https://telegram.org/blog/chat-themes-interactive-emoji-read-receipts",
+        "scope": "Messenger-inspired contrast between interface roles, not reproductions of current app versions. No app logos or customer data used."
+      },
+      "currentReviewDraftIds": [
+        "babbb517-b70e-4859-b54e-6228f9f5be12",
+        "243d38ed-983d-4b73-9f90-222465e49bf6"
+      ]
     }
   }
 }

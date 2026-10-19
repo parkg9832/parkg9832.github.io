@@ -311,11 +311,11 @@
       "fingerprints": {
         ".superdesign/design-system.md": "787d2d5849dd694888933f667235bca6e3f65b1b3ebc7f2c403bf2fc9b1bad6e",
         ".superdesign/init/theme.md": "952a5df24eb8cff184f19f30f86f37da29eff230ee456cf030b2fa4b48145428",
-        "index.html": "4f83ac4594cebf6c78842d30f8d62dafc30986d0eeeac0bd8e2cb166c2796613",
+        "index.html": "c83983c0f1caf0959cf11d513dc8fe1f2c8c95bd024cb10002c3d184ad23c905",
         "site-header.js": "749b8890e045307c34d187eef04263d6e3beda47b6ede357e369bc1e9164f83e",
         "styles/site-typography.css": "8ed52ec4f8b197f91b08bace8968ceb8d7d76167d8c2ffb9dd93526290bb8bbb",
         "styles/home-layout.css": "c0a328a5fdafb77609acccc6f81d77265e1b0fef9d0a4eb1f178e8afd1ccc1cd",
-        "styles/home-experience.css": "6737a620dfe6e1495da1adea1444ab0039b016b6b840645fc8cd08396685b9b7",
+        "styles/home-experience.css": "defa58d521dedc301c7c5443731b34ccbfb17af1eb084f53df756456550ea3d2",
         "home-hero-photos.js": "8d76368ced4c501274bf02fde0b4f3fb0c5dfb736583dad7d7add27fedc846e9",
         "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
       },
@@ -330,67 +330,23 @@
         }
       },
       "contentAssets": {
-        "01desktop": {
-          "url": "https://www.mokda.kr/assets/images/hero/studio-01-desktop-20261019.webp",
-          "sourcePath": "assets/images/hero/studio-01-desktop-20261019.webp",
+        "demodesktop": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-demo-desktop-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-demo-desktop-20261016.webp",
           "purpose": "content",
-          "source": "user-selected-drive-photograph",
-          "publicVerification": "pending-publication",
+          "source": "public-website-url-reference",
+          "publicVerification": "previously-published",
           "dimensions": [
-            1000,
-            1500
+            1600,
+            900
           ]
         },
-        "01mobile": {
-          "url": "https://www.mokda.kr/assets/images/hero/studio-01-mobile-20261019.webp",
-          "sourcePath": "assets/images/hero/studio-01-mobile-20261019.webp",
+        "demomobile": {
+          "url": "https://www.mokda.kr/assets/images/hero/booth-demo-mobile-20261016.webp",
+          "sourcePath": "assets/images/hero/booth-demo-mobile-20261016.webp",
           "purpose": "content",
-          "source": "user-selected-drive-photograph",
-          "publicVerification": "pending-publication",
-          "dimensions": [
-            720,
-            1280
-          ]
-        },
-        "05desktop": {
-          "url": "https://www.mokda.kr/assets/images/hero/studio-05-desktop-20261019.webp",
-          "sourcePath": "assets/images/hero/studio-05-desktop-20261019.webp",
-          "purpose": "content",
-          "source": "user-selected-drive-photograph",
-          "publicVerification": "pending-publication",
-          "dimensions": [
-            1000,
-            1500
-          ]
-        },
-        "05mobile": {
-          "url": "https://www.mokda.kr/assets/images/hero/studio-05-mobile-20261019.webp",
-          "sourcePath": "assets/images/hero/studio-05-mobile-20261019.webp",
-          "purpose": "content",
-          "source": "user-selected-drive-photograph",
-          "publicVerification": "pending-publication",
-          "dimensions": [
-            720,
-            1280
-          ]
-        },
-        "09desktop": {
-          "url": "https://www.mokda.kr/assets/images/hero/studio-09-desktop-20261019.webp",
-          "sourcePath": "assets/images/hero/studio-09-desktop-20261019.webp",
-          "purpose": "content",
-          "source": "user-selected-drive-photograph",
-          "publicVerification": "pending-publication",
-          "dimensions": [
-            1000,
-            1500
-          ]
-        },
-        "09mobile": {
-          "url": "https://www.mokda.kr/assets/images/hero/studio-09-mobile-20261019.webp",
-          "sourcePath": "assets/images/hero/studio-09-mobile-20261019.webp",
-          "purpose": "content",
-          "source": "user-selected-drive-photograph",
-          "publicVerification": "pending-publication",
+          "source": "public-website-url-reference",
+          "publicVerification": "previously-published",
           "dimensions": [
             720,
             1280
@@ -408,38 +364,34 @@
       "drafts": {
         "9cbeff69-d6a2-497e-a0fb-49854b900e80": {
           "title": "MOKDA home video hero preview",
-          "currentVersion": 9,
-          "visualDirection": "User-selected studio photos 01, 05 and 09. Excluded 17 and 19. Full portrait photo on the right of desktop and centered campaign copy in the left reading area; lower centered copy over the mobile photograph. Existing three-language copy, header, 4500ms dwell, 800ms opacity fade and no playback controls retained.",
+          "currentVersion": 10,
+          "visualDirection": "Restored the original full-width official Expoalimentaria booth photograph and centered campaign copy. Only the demo photo remains; male visitor photo and all studio photos are excluded. One static photograph, no slideshow or playback controls.",
           "previewUrl": "https://p.superdesign.dev/draft/9cbeff69-d6a2-497e-a0fb-49854b900e80"
         }
       },
       "canvasReview": {
-        "verifiedVersion": 9,
+        "verifiedVersion": 10,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
-        "photoLayers": 3,
-        "responsivePhotoUrls": 6,
+        "photoLayers": 1,
+        "responsivePhotoUrls": 2,
         "photoPlaybackButtonPresent": false,
         "renderedReviewPerformed": false,
-        "verification": "Saved HTML refetched and byte-identical. Actual website native browser rendering verified independently for ES/KO/EN at 390, 768, 1024 and 1440px, with all three photographs loading and no horizontal overflow. Version 9 also places all image boxes below the 80px fixed header, verified in the actual mobile browser.",
-        "dwellMs": 4500,
-        "opacityFadeMs": 800,
-        "noZoomOrHorizontalMotion": true,
-        "reducedMotionAndSaveData": "first-photo-only",
-        "selectedCandidates": [
-          "01",
-          "05",
-          "09"
-        ],
-        "excludedCandidates": [
-          "17",
-          "19"
+        "verification": "Saved v10 refetched and byte-identical; original centered hero layout and official Instagram booth photo restored. Production contains one static photograph and the existing controller exits without timers, observers or deferred image loads.",
+        "selectedPhoto": "official-expoalimentaria-booth-demo",
+        "excludedPhotos": [
+          "booth-visitor",
+          "studio-01",
+          "studio-05",
+          "studio-09",
+          "studio-17",
+          "studio-19"
         ]
       },
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "authoringMethod": "free-direct-html-import",
       "approvedByUser": false,
-      "updatedAt": "2026-10-19T00:57:24.138Z",
+      "updatedAt": "2026-10-19T04:56:32.718Z",
       "assetTransferNote": "Private interview image pixel upload was rejected by automatic approval review. No retry or workaround was used; the draft references the user-authorized public website URLs only."
     }
   }

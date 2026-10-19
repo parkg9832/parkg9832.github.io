@@ -13,16 +13,28 @@ const expected = {
   EN: { title: 'Korea, closer to you', cta: 'Explore our sauces' },
 };
 
-function start({ language = 'EN', width = 1440, reduced = false, saveData = false, hidden = false, observer = true, legacyQuery = false, decode = true, run = true } = {}) {
+function start({ language = 'EN', width = 1440, reduced = false, saveData = false, hidden = false, observer = true, legacyQuery = false, decode = true, run = true, productionOnly = false } = {}) {
   const errors = [], vc = new VirtualConsole();
   vc.on('jsdomError', error => errors.push(error.message));
   const dom = new JSDOM(read(`${routes[language]}/index.html`), {
     url: `https://www.mokda.kr/${routes[language]}/`, runScripts: 'outside-only', virtualConsole: vc,
   });
   const w = dom.window, d = w.document, hero = d.getElementById('top');
-  const media = hero.querySelector('[data-hero-photos]'), photos = [...hero.querySelectorAll('[data-hero-photo]')];
+  const media = hero.querySelector('[data-hero-photos]');
+  const published = [...hero.querySelectorAll('[data-hero-photo]')];
+  assert.equal(published.length, 1, 'Production uses only the official Expoalimentaria booth photo');
+  // Preserve generic controller lifecycle coverage with optional in-memory layers only.
+  // These fixtures are never written to the website or fetched in production.
+  if (!productionOnly) for (let i = 1; i < 3; i++) {
+    const photo = published[0].cloneNode(true), image = photo.querySelector('img'), source = photo.querySelector('source');
+    photo.classList.remove('is-active');
+    image.dataset.src = image.getAttribute('src'); image.dataset.srcset = image.getAttribute('srcset');
+    image.removeAttribute('src'); image.removeAttribute('srcset'); image.removeAttribute('fetchpriority');
+    source.dataset.srcset = source.getAttribute('srcset'); source.removeAttribute('srcset'); media.append(photo);
+  }
+  const photos = [...media.querySelectorAll('[data-hero-photo]')];
   const toggle = hero.querySelector('[data-hero-photos-toggle]');
-  assert(media && photos.length === 3, 'Generated homepages retain the three selected progressively enhanced photos');
+  assert(media && photos.length === (productionOnly ? 1 : 3));
   assert.equal(toggle, null, 'The photo playback button is removed');
   assert.equal(media.getAttribute('aria-hidden'), 'true');
   assert.equal(hero.querySelectorAll('[data-hero-slide]').length, 1, 'Photo layers never become campaign-carousel slides');
@@ -37,8 +49,8 @@ function start({ language = 'EN', width = 1440, reduced = false, saveData = fals
     assert.equal(source.getAttribute('media'), '(max-width: 767px)');
     const desktop = image.getAttribute('src') || image.dataset.src;
     const mobile = source.getAttribute('srcset') || source.dataset.srcset;
-    assert.match(desktop, /\/hero\/studio-(01|05|09)-desktop-20261019\.webp$/);
-    assert.match(mobile, /\/hero\/studio-(01|05|09)-mobile-20261019\.webp$/);
+    assert.match(desktop, /\/hero\/booth-demo-desktop-20261016\.webp$/);
+    assert.match(mobile, /\/hero\/booth-demo-mobile-20261016\.webp$/);
     for (const asset of [desktop, mobile]) assert(statSync(new URL(asset.slice(1), root)).size > 0, 'Every declared photo is an existing asset');
   }
   const title = hero.querySelector('[data-hero-title]'), cta = hero.querySelector('[data-hero-link]');
@@ -104,6 +116,15 @@ function start({ language = 'EN', width = 1440, reduced = false, saveData = fals
 
 let checks = 0;
 for (const language of ['KR', 'ES', 'EN']) for (const width of [390, 768, 1440]) {
+  const f = start({ language, width, productionOnly: true });
+  assert.equal(f.active(), 0); assert.equal(f.timers.size, 0);
+  assert.equal(f.observers.length, 0); assert.equal(f.decodes.length, 0);
+  assert.equal(f.hero.dataset.heroPhotosBound, undefined, 'A single photo never binds slideshow work');
+  f.w.dispatchEvent(new f.w.Event('pageshow')); f.setHidden(true); f.setHidden(false);
+  await f.advance(60000); assert.equal(f.timers.size, 0); assert.equal(f.decodes.length, 0);
+  f.verifyCopy(); f.close(); checks++;
+}
+for (const language of ['KR', 'ES', 'EN']) for (const width of [390, 768, 1440]) {
   const f = start({ language, width });
   assert.equal(f.active(), 0); assert.equal(f.timers.size, 0);
   f.enter(true); assert.equal(f.timers.size, 1); assert.equal(f.decodes.length, 0);
@@ -111,7 +132,7 @@ for (const language of ['KR', 'ES', 'EN']) for (const width of [390, 768, 1440])
   assert.equal(f.photos[1].querySelector('img').hasAttribute('src'), false, 'The next photo is not eagerly fetched');
   await f.advance(1); assert.equal(f.decodes.length, 1); assert.equal(f.decodes[0].index, 1);
   assert.equal(f.active(), 0, 'The first photo remains visible until the next photo is decoded');
-  assert.match(f.photos[1].querySelector('source').getAttribute('srcset'), /studio-05-mobile-/);
+  assert.match(f.photos[1].querySelector('source').getAttribute('srcset'), /booth-demo-mobile-/);
   await f.finish(); assert.equal(f.active(), 1);
   await f.advance(5299); assert.equal(f.decodes.length, 1, 'Each next photo receives 800ms to fade in, then 4500ms to remain still');
   await f.advance(1); assert.equal(f.decodes[1].index, 2); await f.finish(); assert.equal(f.active(), 2);
@@ -186,4 +207,4 @@ assert.match(css, /\.hero-photo-layer\.is-active \{ opacity:1; \}/, 'The first p
 assert(!/hero-photo[^{}]*\{[^}]*\b(?:transform|animation)\s*:/.test(css), 'Hero photos only crossfade, with no zoom, slide or parallax');
 assert(!read('scripts/prerender-content.mjs').split('const renderScripts = new Set(')[1].split(');')[0].includes('home-hero-photos.js'));
 
-console.log(`Hero photo regression passed: ${checks} cases covering three languages, responsive progressive images, deferred loading, three-photo loops without playback buttons, fallback preferences and lifecycle/decode races.`);
+console.log(`Hero photo regression passed: ${checks} cases covering three languages, one static official photograph with no slideshow work, optional controller fixtures, fallback preferences and lifecycle/decode races.`);

@@ -14,6 +14,7 @@
 .home-page .hero-photo-media { position:absolute; inset:0; overflow:hidden; background:#321506; pointer-events:none; }
 .home-page .hero-photo-layer,
 .home-page .hero-photo-layer img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; }
+.home-page .hero-photo-layer img { top:80px; height:calc(100% - 80px); }
 .home-page .hero-photo-layer { opacity:0; transition:none; }
 .home-page .hero-photo-layer.is-active { opacity:1; }
 .home-page [data-photos-running='true'] .hero-photo-layer { transition:opacity 800ms ease-in-out; }

@@ -315,7 +315,7 @@
         "site-header.js": "749b8890e045307c34d187eef04263d6e3beda47b6ede357e369bc1e9164f83e",
         "styles/site-typography.css": "8ed52ec4f8b197f91b08bace8968ceb8d7d76167d8c2ffb9dd93526290bb8bbb",
         "styles/home-layout.css": "c0a328a5fdafb77609acccc6f81d77265e1b0fef9d0a4eb1f178e8afd1ccc1cd",
-        "styles/home-experience.css": "ed88b34193624d4c03ca8c2eba6824fa8898700d44d2f4f51245d714a1af8d8b",
+        "styles/home-experience.css": "6737a620dfe6e1495da1adea1444ab0039b016b6b840645fc8cd08396685b9b7",
         "home-hero-photos.js": "8d76368ced4c501274bf02fde0b4f3fb0c5dfb736583dad7d7add27fedc846e9",
         "tailwind.config.ts": "44953f8bdf6c607fd866d7f4a6a4d79c1cbb1eb099098be441fb5d9cb356f842"
       },
@@ -408,20 +408,20 @@
       "drafts": {
         "9cbeff69-d6a2-497e-a0fb-49854b900e80": {
           "title": "MOKDA home video hero preview",
-          "currentVersion": 8,
+          "currentVersion": 9,
           "visualDirection": "User-selected studio photos 01, 05 and 09. Excluded 17 and 19. Full portrait photo on the right of desktop and centered campaign copy in the left reading area; lower centered copy over the mobile photograph. Existing three-language copy, header, 4500ms dwell, 800ms opacity fade and no playback controls retained.",
           "previewUrl": "https://p.superdesign.dev/draft/9cbeff69-d6a2-497e-a0fb-49854b900e80"
         }
       },
       "canvasReview": {
-        "verifiedVersion": 8,
+        "verifiedVersion": 9,
         "authoredHtmlMatchesSavedHtml": true,
         "noImportWarnings": true,
         "photoLayers": 3,
         "responsivePhotoUrls": 6,
         "photoPlaybackButtonPresent": false,
         "renderedReviewPerformed": false,
-        "verification": "Saved HTML refetched and byte-identical. Actual website native browser rendering verified independently for ES/KO/EN at 390, 768, 1024 and 1440px, with all three photographs loading and no horizontal overflow.",
+        "verification": "Saved HTML refetched and byte-identical. Actual website native browser rendering verified independently for ES/KO/EN at 390, 768, 1024 and 1440px, with all three photographs loading and no horizontal overflow. Version 9 also places all image boxes below the 80px fixed header, verified in the actual mobile browser.",
         "dwellMs": 4500,
         "opacityFadeMs": 800,
         "noZoomOrHorizontalMotion": true,
@@ -439,7 +439,7 @@
       "canvasUrl": "https://superdesign.dev/teams/205b7882-7d98-431c-bc3e-b90671bf58aa/projects/f0de2ff9-4b28-4ad4-a834-a04a4a8a1979",
       "authoringMethod": "free-direct-html-import",
       "approvedByUser": false,
-      "updatedAt": "2026-10-19T00:54:20.213Z",
+      "updatedAt": "2026-10-19T00:57:24.138Z",
       "assetTransferNote": "Private interview image pixel upload was rejected by automatic approval review. No retry or workaround was used; the draft references the user-authorized public website URLs only."
     }
   }

@@ -36,6 +36,9 @@ for(const lang of ['es','ko','en']){
   assert.equal(item.dataset.category,story.category);
   assert.equal(item.querySelector('.news-kicker').textContent.trim(),labels[story.category]);
   const detail=start(lang,'news-'+story.id),dd=detail.window.document;
+  assert.equal(item.querySelector('h3').textContent,story[language].title,'Archive uses the canonical article headline');
+  assert.equal(dd.querySelector('h1').textContent,story[language].title,'Article heading matches the archive headline');
+  assert.equal(item.querySelector('a').getAttribute('aria-label'),story[language].title,'Accessible title matches the visible headline');
   assert.equal(dd.querySelectorAll('.news-related,.news-next').length,0,'Article details have no next-story section');
   assert.equal(dd.querySelectorAll('.news-article-heading .news-meta,.news-article-heading time').length,0,'Article headings omit event and publication date rows');
   const metadataArticle=JSON.parse(dd.querySelector('script[type="application/ld+json"]').textContent)['@graph'].find(node=>node['@type']==='Article');
@@ -83,6 +86,11 @@ for(const lang of ['es','ko','en']){
  assert.equal(hd.querySelectorAll('#home-news a').length,5,'Each story and the archive have one link');
  assert.equal(hd.querySelectorAll('#home-news [data-news-video]').length,0,'Home images navigate to stories without loading players');
  assert.equal(hd.querySelectorAll('.home-news-summary').length,1,'Only the main story has a summary');
+ for(const card of hd.querySelectorAll('#home-news [data-news-card]')){
+  const story=w.MOKDA_NEWS.stories.find(story=>story.id===card.dataset.newsCard);
+  assert.equal(card.querySelector('h3').textContent,story[language].title,'Home preview shares the archive and article headline');
+  assert.equal(card.querySelector('a').getAttribute('aria-label'),story[language].title,'Home accessible title matches its visible headline');
+ }
  assert(hd.querySelector('.home-news-footer .home-news-more'),'The archive link follows the news cards');assert.equal(hd.querySelector('.home-news-heading .home-news-more'),null);home.window.close();
  verifyPhotoViewer(lang,language,false);
  verifyPhotoViewer(lang,language,true);

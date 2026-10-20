@@ -32,7 +32,7 @@
   }
   function card(story,home=false){
     const text=storyCopy(story);
-    const title=home===true?(story.cardTitles?.[language]||text.title):text.title;
+    const title=text.title;
     const visual=home&&story.videoAsCover&&story.videoPoster?picture(story.videoPoster,text.imageAlt,'loading="lazy"'):cover(story,'loading="lazy"');
     return `<article class="news-card" data-news-card="${story.id}" data-category="${category(story)}"><a class="news-card-link" href="${storyPath(story)}" aria-label="${esc(text.title)}"><div class="news-card-image">${visual}</div><div class="news-card-copy"><div class="news-card-meta"><p class="news-kicker">${esc(copy[category(story)])}</p>${home?'':storyDate(story)}</div><h3>${esc(title)}</h3></div></a></article>`;
   }
@@ -50,7 +50,7 @@
     const featured=model.featured(data);
     const leadStory=featured.find(story=>story.homeOrder===1),supportStories=featured.filter(story=>story!==leadStory);
     const homeCard=(story,lead=false)=>{
-      const text=storyCopy(story),title=story.cardTitles?.[language]||text.title;
+      const text=storyCopy(story),title=text.title;
       const visual=story.videoAsCover&&story.videoPoster?(lead?picture:thumbnail)(story.videoPoster,text.imageAlt,'loading="lazy"'):cover(story,'loading="lazy"',!lead);
       return `<article class="news-card ${lead?'home-news-lead':'home-news-support'}" data-news-card="${story.id}" data-category="${category(story)}"><a class="news-card-link" href="${storyPath(story)}" aria-label="${esc(text.title)}"><div class="news-card-image">${visual}</div><div class="news-card-copy"><p class="news-kicker">${esc(copy[category(story)])}</p><h3>${esc(title)}</h3>${lead?`<p class="home-news-summary">${esc(text.summary)}</p>`:''}</div></a></article>`;
     };

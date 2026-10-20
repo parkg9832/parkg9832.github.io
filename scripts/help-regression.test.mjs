@@ -103,6 +103,7 @@ for (const [lang, s] of Object.entries(settings)) {
   flush(); assert.equal(d.activeElement, input); assert.equal(d.querySelector('.help-processing').hidden, true);
   assert.equal(d.querySelector('.help-message-user').getAttribute('aria-label'), s.role);
   submit(s.country); assert(!d.querySelector('.help-contact').hidden, 'Country, business type and product qualify a business inquiry');
+  assert(d.querySelectorAll('.help-choice').length > 0, 'Qualified visitors may keep asking relevant questions before opening WhatsApp');
   submit(s.correction); const href = d.querySelector('.help-contact').href;
   const link = new URL(href); const message = link.searchParams.get('text');
   assert.equal(link.origin, 'https://wa.me'); assert.equal(link.pathname, `/${w.MOKDA_CONTACT.whatsappNumber}`);

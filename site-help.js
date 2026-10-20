@@ -111,7 +111,7 @@
     options.append(form);
   }
   function showOptions(result) {
-    options.replaceChildren(); if (result?.handoff) return;
+    options.replaceChildren();
     if (result?.decision?.stage === 'business_context' || result?.context?.funnelStage === 'business_context') { showBusinessFields(result); return; }
     if (!result && engine?.initialReplies) result = { quickReplies: engine.initialReplies(lang) };
     if (Array.isArray(result?.quickReplies)) {

@@ -31,7 +31,9 @@
     const controller = new AbortController(), timer = window.setTimeout(() => controller.abort(), 12000);
     const abort = () => controller.abort(); signal?.addEventListener('abort', abort, { once: true });
     if (signal?.aborted) abort();
-    const entities = Object.fromEntries(['audience', 'product', 'country', 'businessType', 'quantity'].filter(key => typeof context?.[key] === 'string').map(key => [key, context[key].slice(0, 80)]));
+    const entities = Object.fromEntries(['audience', 'product', 'country', 'businessType', 'quantity', 'food', 'companyTopic'].filter(key => typeof context?.[key] === 'string').map(key => [key, context[key].slice(0, 80)]));
+    if (['less_spicy', 'spicy'].includes(context?.heat_preference)) entities.heatPreference = context.heat_preference;
+    if (entities.food === 'grilled_meat') entities.food = 'meat';
     if (entities.audience) entities.audience = entities.audience.toLowerCase();
     if (entities.country === 'Korea') entities.country = 'South Korea';
     if (entities.country === 'USA') entities.country = 'United States';

@@ -19,7 +19,7 @@
     "test:seo:live": "node scripts/seo-live-audit.mjs",
     "test:navigation": "node scripts/navigation-regression.test.mjs",
     "test:news": "node scripts/news-regression.test.mjs",
-    "test:help": "node scripts/chat-intents.test.mjs && node scripts/help-regression.test.mjs && node scripts/chat-ai-client.test.mjs && node scripts/company-guidance.test.mjs && node scripts/chat-loader.test.mjs && node scripts/turnstile-client.test.mjs",
+    "test:help": "node scripts/chat-intents.test.mjs && node scripts/help-regression.test.mjs && node scripts/chat-continuity.test.mjs && node scripts/chat-ai-client.test.mjs && node scripts/company-guidance.test.mjs && node scripts/chat-loader.test.mjs && node scripts/turnstile-client.test.mjs",
     "manage:news": "node scripts/news-manager.mjs",
     "test:news-manager": "node scripts/news-manager-regression.test.mjs",
     "test:integrity": "node scripts/site-integrity.test.mjs",

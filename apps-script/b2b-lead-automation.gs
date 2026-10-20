@@ -931,7 +931,7 @@ function jsonResponse(payload) {
 
 function refreshDashboardIfNeeded_() {
   const cache = CacheService.getScriptCache();
-  const cacheKey = 'mokda_website_dashboard_refresh_v12';
+  const cacheKey = 'mokda_website_dashboard_refresh_v13';
   if (cache.get(cacheKey)) return;
 
   cache.put(cacheKey, '1', 120);
@@ -943,6 +943,11 @@ function refreshDashboardIfNeeded_() {
 }
 
 function updateDashboardSheetWithSupportFunnel() {
+  // Keep older installed triggers compatible without restoring the retired UI.
+  return updateCompleteWebsiteDashboard_();
+}
+
+function updateDashboardSheetWithSupportFunnelLegacy_() {
   const sheetId = getRequiredProperty(SCRIPT_PROPERTY_KEYS.sheetId);
   const spreadsheet = SpreadsheetApp.openById(sheetId);
   const dashboard = spreadsheet.getSheetByName('대시보드') || spreadsheet.getSheetByName('Dashboard');
@@ -2362,41 +2367,13 @@ function updateCompleteWebsiteDashboard_() {
   const knownDaypartSessions = totalSessions - daypartCounts.unknown.sessions;
   const sampleState = totalSessions < 30 ? '판단 보류' : totalSessions < 100 ? '방향 참고' : '추세 확인 가능';
   merge(50, 1, DASHBOARD_TOTAL_COLUMNS, `측정 상태 · 상담 10-19 19:39부터 · 폼 ${Utilities.formatDate(B2B_FUNNEL_START, TIME_ZONE, 'MM-dd HH:mm')}부터 · 시간대 확인 ${knownDaypartSessions}/${totalSessions}세션 · 표본 ${sampleState}`, { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
-  merge(52, 1, DASHBOARD_TOTAL_COLUMNS, 'WhatsApp 이동은 메시지 전송·계약 완료가 아닙니다. 국가별 B2B 관심과 상세 진단은 ‘세부 분석’, 종료된 출시 응원은 아래 과거 기록에서 확인하세요.', { background: '#fff6ed', color: '#5e4c43', size: 8, align: 'left' });
+  merge(52, 1, DASHBOARD_TOTAL_COLUMNS, 'WhatsApp 이동은 메시지 전송·계약 완료가 아닙니다. 제품 상세 조회는 K-PEÑO·Para Carnes 상세페이지를 본 고유 세션 수입니다. 국가별 B2B 관심은 ‘세부 분석’에서 확인하세요.', { background: '#fff6ed', color: '#5e4c43', size: 8, align: 'left' });
 
-  wideSection(55, '과거 출시 응원 기록 · 현재 캠페인 아님', '#37474f');
-  writeWideCards(56, [
-    { label: '기간 내 응원', value: periodSupportTotal, note: '선택 기간 내 기존 기록', format: '#,##0' },
-    { label: '전체 누적 응원', value: allSupportTotal, note: '원본 보존 · 현재 모집 종료', format: '#,##0' },
-    { label: '기간 내 최다 국가', value: periodSupportTotal ? countryLabels[topCountry] + ' ' + periodCountryCounts[topCountry] + '건' : '-', note: '확정 저장 국가 기준', size: 11 },
-    { label: '최종 갱신', value: Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm'), note: '자동 갱신', size: 11, format: '@' },
-  ]);
-  section(60, '과거 출시 응원 퍼널', '#37474f');
-  writeStageFunnel({
-    labelRow: 61, labels: ['응원 페이지', '폼 시작', '국가 선택', '저장 성공'], counts: supportCounts, cardWidth: 3,
-    detail: (index, previous) => index ? supportCounts[index] + ' / ' + previous + ' 세션' : supportCounts[0] + ' 고유 세션',
-    detailStyle: () => ({ background: '#ffffff', color: '#5e6b63', size: 8 }),
-    note: (index) => index ? '직전 단계 전환율' : '과거 수집 기준',
-  });
-  writeExplanationRows(60, '#37474f', [
-    '공개 홈페이지에서 종료된 캠페인 기록',
-    '기존 저장 응원과 퍼널 세션은 다른 기준',
-    '새 상담 퍼널과 비교·합산하지 않음',
-    '테스트·내부 방문 제외 기준 유지',
-  ]);
-  countryCodes.forEach((code, index) => {
-    const column = index * 4 + 1;
-    merge(67, column, 4, countryLabels[code], { background: '#eceff1', color: '#15372b', bold: true, size: 9 });
-    merge(68, column, 4, periodCountryCounts[code], { background: '#ffffff', color: '#ef5f18', bold: true, size: 15, format: '#,##0' });
-    merge(69, column, 4, allCountryCounts[code], { background: '#fffaf5', color: '#15372b', size: 10, format: '#,##0' });
-    merge(70, column, 4, '기간 내 / 전체 누적', { background: '#ffffff', color: '#7a7a7a', size: 8 });
-  });
-  merge(72, 1, 16, '과거 응원 기타 국가: 기간 내 ' + periodCountryCounts.OTHER + '명 / 전체 ' + allCountryCounts.OTHER + '명. 위 국가별 표는 주요 4개 국가이며, 전체 응원에는 기타 국가도 포함합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
-  dashboard.setRowHeight(72, 34);
+  merge(54, 1, DASHBOARD_TOTAL_COLUMNS, '최종 갱신: ' + Utilities.formatDate(new Date(), TIME_ZONE, 'yyyy-MM-dd HH:mm'), { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left', format: '@' });
   dashboard.getRange('C3').setValue('직접 시작일');
   dashboard.getRange('E3').setValue('직접 종료일');
-  dashboard.setRowHeights(5, 66, 24);
-  [5, 13, 18, 25, 32, 39, 45, 55, 60].forEach((row) => dashboard.setRowHeight(row, 28));
+  dashboard.setRowHeights(5, 50, 24);
+  [5, 13, 18, 25, 32, 39, 45].forEach((row) => dashboard.setRowHeight(row, 28));
   renderWebsiteDetailedDiagnostics_(spreadsheet, {
     start,
     end,
@@ -2477,21 +2454,21 @@ function renderWebsiteDetailedDiagnostics_(spreadsheet, model) {
   });
   merge(94, 1, 12, '소식 기사와 목록은 ‘소식·보도’로 합산합니다. 스크롤은 해당 페이지 방문 세션을 분모로 사용합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
   section(96, '홈페이지 섹션 도달', '#ef5f18');
-  model.sectionNames.forEach((name, index) => {
-    const column = index * 2 + 1, count = Object.keys(model.sectionSessions[name]).length;
-    merge(97, column, 2, ({ proof: '브랜드 소개', products: '제품', field_story: '현장 이야기 (과거)', support: '응원 (과거)', contact: '문의' }[name]), { background: colors[index], color: '#ffffff', bold: true, size: 9 });
-    merge(98, column, 2, count, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
-    merge(99, column, 2, safeRate(count, model.homeSessions), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
+  ['proof', 'products', 'contact'].forEach((name, index) => {
+    const column = index * 3 + 1, count = Object.keys(model.sectionSessions[name]).length;
+    merge(97, column, 3, ({ proof: '브랜드 소개', products: '제품', contact: '문의' }[name]), { background: colors[index], color: '#ffffff', bold: true, size: 9 });
+    merge(98, column, 3, count, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
+    merge(99, column, 3, safeRate(count, model.homeSessions), { background: '#fffaf5', color: colors[index], bold: true, size: 11, format: '0.0%' });
   });
-  merge(97, 11, 2, '홈 방문', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
-  merge(98, 11, 2, model.homeSessions, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
-  merge(99, 11, 2, '기준 세션', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
-  merge(100, 1, 12, '현재 수집 섹션은 제품·브랜드 소개·문의입니다. 과거 섹션 기록은 보존하며, 50% 가시 영역을 약 1초 유지한 도달만 집계합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
+  merge(97, 10, 3, '홈 방문', { background: '#37474f', color: '#ffffff', bold: true, size: 9 });
+  merge(98, 10, 3, model.homeSessions, { background: '#ffffff', color: '#15372b', bold: true, size: 17, format: '#,##0' });
+  merge(99, 10, 3, '기준 세션', { background: '#fffaf5', color: '#7a7a7a', size: 8 });
+  merge(100, 1, 12, '현재 수집 섹션은 제품·브랜드 소개·문의입니다. 50% 가시 영역을 약 1초 유지한 도달만 집계합니다.', { background: '#f5f7f6', color: '#5e6b63', size: 8, align: 'left' });
   section(102, '방문 시간대 · 신규 스키마', '#ef5f18');
-  ['시간대', '방문 세션', '과거 응원 저장', '폼 문의 저장'].forEach((label, index) => merge(103, index * 3 + 1, 3, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 }));
+  ['시간대', '방문 세션', '폼 문의 저장'].forEach((label, index) => merge(103, index * 4 + 1, 4, label, { background: '#eceff1', color: '#15372b', bold: true, size: 9 }));
   const dayLabels = { morning: '오전 · 05–11시', afternoon: '오후 · 12–16시', evening: '저녁 · 17–21시', night: '밤 · 22–04시', unknown: '미확인' };
   model.daypartKeys.forEach((key, index) => {
-    [dayLabels[key], model.daypartCounts[key].sessions, model.daypartCounts[key].support, model.daypartCounts[key].b2b].forEach((value, valueIndex) => merge(104 + index, valueIndex * 3 + 1, 3, value, { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#333333', bold: valueIndex === 0 || valueIndex > 1, size: 9, format: valueIndex ? '#,##0' : 'General' }));
+    [dayLabels[key], model.daypartCounts[key].sessions, model.daypartCounts[key].b2b].forEach((value, valueIndex) => merge(104 + index, valueIndex * 4 + 1, 4, value, { background: index % 2 ? '#fffaf5' : '#ffffff', color: '#333333', bold: valueIndex === 0 || valueIndex > 1, size: 9, format: valueIndex ? '#,##0' : 'General' }));
   });
   section(111, '데이터 품질·집계 기준', '#15372b');
   const v2State = model.end < new Date('2026-08-10T09:00:00.000Z') ? '수집 시작 전' : model.v2EventCount ? '신규 스키마 수집 중' : '현재 기간 수집 없음';

@@ -66,9 +66,14 @@ export function sanitizeEntities(value) {
 
 export function selectKnowledge(language, messages, context) {
   const sources = knowledge.languages[language];
-  const query = `${messages.filter(message => message.role === 'user').map(message => message.content).join(' ')} ${context.product}`.toLowerCase();
-  const productId = context.product === 'para_carnes' || /para\s*carnes|쌈장|고기용/.test(query) ? 'para-carnes' : context.product === 'kpeno' || /k[\s-]?pe[ñn]o|고추장|할라피/.test(query) ? 'kpeno' : 'products';
-  const ids = [productId];
+  const users = messages.filter(message => message.role === 'user');
+  const query = (users.at(-1)?.content || '').toLowerCase();
+  const mentionsK = /k[\s-]?pe[ñn]o|고추장|할라피/.test(query), mentionsPara = /para\s*carnes|쌈장|고기용/.test(query);
+  const both = context.product === 'both' || mentionsK && mentionsPara || /둘|두\s*(?:소스|제품)|\b(?:both|ambas|ambos|compare|comparar)\b/.test(query);
+  const other = /다른\s*(?:거|소스|제품)|\b(?:the other|la otra|el otro)\b/.test(query);
+  let product = mentionsK ? 'kpeno' : mentionsPara ? 'para_carnes' : context.product;
+  if (other && !mentionsK && !mentionsPara) product = context.product === 'kpeno' ? 'para_carnes' : context.product === 'para_carnes' ? 'kpeno' : '';
+  const ids = both ? ['kpeno', 'para-carnes'] : [product === 'para_carnes' ? 'para-carnes' : product === 'kpeno' ? 'kpeno' : 'products'];
   if (/brand|history|marca|historia|브랜드|연혁|시작/.test(query)) ids.push('about');
   if (/news|expo|kotra|novedad|noticia|기사|뉴스|소식|박람회/.test(query)) ids.push(...sources.docs.filter(doc => doc.id.startsWith('news-')).map(doc => doc.id));
   const docs = ids.map(id => sources.docs.find(doc => doc.id === id)).filter(Boolean).slice(0, 2).map(doc => ({ title: doc.title, text: boundedLines(doc.text, 1400) }));
@@ -79,6 +84,9 @@ export function selectKnowledge(language, messages, context) {
   if (/news|expo|kotra|novedad|noticia|기사|뉴스|소식|박람회/.test(query)) faqIds.add('news');
   if (/creador|creator|video|크리에이터|영상/.test(query)) faqIds.add('creators');
   const companyTopics = Object.entries(COMPANY_QUERY).filter(([, pattern]) => pattern.test(query)).map(([topic]) => topic);
+  // Old questions remain conversation context, not accumulated retrieval keywords.
+  const dependent = query.length < 120 && /^(?:[¿?¡!\s]*(?:y\b|and\b|what about\b|how about\b)|그럼|그건|그거|그러면)/.test(query);
+  if (!companyTopics.length && dependent && COMPANY_TOPICS.includes(context.companyTopic) && context.companyTopic) companyTopics.push(context.companyTopic);
   // The broad certificate regex also matches named certificates; keep only the
   // specific cautious reply when the visitor asks for a name or its scope.
   const relevantTopics = companyTopics.filter(topic => topic !== 'certifications' || !companyTopics.includes('namedCertifications')).slice(0, 3);

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createWorker, allowedOrigin, readBody } from '../src/index.js';
-import { MODEL, validateRequest, sanitizeEntities, buildPrompt, parseAnswer, generateReply } from '../src/chat.js';
+import { MODEL, validateRequest, sanitizeEntities, buildPrompt, parseAnswer, generateReply, selectKnowledge } from '../src/chat.js';
 import { RESPONSE_FORMAT, ENTITY_VALUES } from '../src/response-contract.js';
 import { ChatLimiter } from '../src/limiter.js';
 import knowledge from '../src/knowledge.json' with { type: 'json' };
@@ -11,6 +11,15 @@ import { createHash } from 'node:crypto';
 import { extractPublicDocument, validateCompanyKnowledge } from '../scripts/generate-knowledge.mjs';
 
 const input = (language = 'KR') => ({ language, messages: [{ role: 'user', content: '타코에 어떤 소스가 어울려요?' }] });
+test('knowledge follows the latest question and resolves a dependent topic without mixing old commercial answers', () => {
+  const history=[{role:'user',content:'What is the MOQ?'},{role:'assistant',content:'The standard is 1000 units.'},{role:'user',content:'Can I request samples?'},{role:'assistant',content:'Samples can be arranged.'}];
+  const packing=selectKnowledge('EN',[...history,{role:'user',content:'How many bottles per carton?'}],{product:'kpeno',companyTopic:'samples'});
+  assert(packing.ownerConfirmed.answers.packing);assert.equal(packing.ownerConfirmed.answers.moq,undefined);assert.equal(packing.ownerConfirmed.answers.samples,undefined);
+  const freight=selectKnowledge('ES',[{role:'user',content:'¿Y el envío?'}],{companyTopic:'samples'});assert(freight.ownerConfirmed.answers.samples);
+  const flavor=selectKnowledge('EN',[...history,{role:'user',content:'Is it sweet?'}],{product:'kpeno',companyTopic:'samples'});assert.equal(flavor.ownerConfirmed.answers.samples,undefined);
+  const both=selectKnowledge('EN',[{role:'user',content:'Compare both sauces'}],{product:'both'});assert.equal(both.docs.length,2);assert(both.docs.some(doc=>/K-PEÑO/.test(doc.title)));assert(both.docs.some(doc=>/Para Carnes/i.test(doc.title)));
+  const other=selectKnowledge('EN',[{role:'user',content:'And the other one?'}],{product:'kpeno'});assert(other.docs.some(doc=>/Para Carnes/i.test(doc.title)));
+});
 const answer = (text = 'K-PEÑO는 타코와 잘 어울립니다.') => ({ response: JSON.stringify({ text, interpretation: { intent: 'pairings', audience: 'b2c', product: 'kpeno', country: '', businessType: '', quantity: '', food: 'tacos', heatPreference: '' } }) });
 let tokenSequence = 0;
 const request = (body = input(), origin = 'https://www.mokda.kr') => new Request('https://chat.example/chat', { method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json', 'CF-Connecting-IP': '192.0.2.1' }, body: JSON.stringify({ turnstileToken: `valid-fixture-token-${++tokenSequence}`, ...body }) });

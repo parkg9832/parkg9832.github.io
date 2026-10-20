@@ -167,6 +167,11 @@ html[lang^='ko'] .product-detail-page { font-family:'Noto Sans KR','Noto Sans',s
   border-top: 1px solid #32150630;
 }
 
+.product-detail-page .detail-original-brochure + .detail-localized-information {
+  margin-top: 0;
+  border-top: 0;
+}
+
 .product-detail-page .detail-localized-information dl {
   display: grid;
   grid-template-columns: minmax(0, 1fr);

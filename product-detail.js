@@ -122,13 +122,13 @@
             <article><h2>${escape(product.recipeTitle)}</h2><p>${escape(product.recipeBody)}</p></article>
             <article><h2>${escape(product.pairingsTitle)}</h2><p>${escape(product.pairingsBody)}</p></article>
           </div>
+          <section class="detail-localized-story"><h2>${escape(presentation.storyTitle)}</h2><p>${escape(presentation.storyBody)}</p></section>
+          <details class="detail-original-brochure" open><summary>${escape(presentation.brochure)}</summary><div class="detail-artworks" lang="es">${renderArtworks(false)}</div></details>
           <section class="detail-localized-information" aria-labelledby="detailInformationTitle">
             <h2 id="detailInformationTitle">${escape(presentation.informationTitle)}</h2>
             <dl>${['content', 'storage', 'shelfLife', 'origin', 'allergens', 'warning'].map(key => `<div><dt>${escape(presentation.labels[key])}</dt><dd>${escape(facts[key])}</dd></div>`).join('')}</dl>
             <p class="detail-information-note">${escape(presentation.informationNote)}</p>
           </section>
-          <section class="detail-localized-story"><h2>${escape(presentation.storyTitle)}</h2><p>${escape(presentation.storyBody)}</p></section>
-          <details class="detail-original-brochure"><summary>${escape(presentation.brochure)}</summary><div class="detail-artworks" lang="es">${renderArtworks(false)}</div></details>
         </section>
         ${renderInquiry()}`;
     }

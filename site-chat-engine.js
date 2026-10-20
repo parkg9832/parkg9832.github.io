@@ -513,7 +513,7 @@
     if (!social && reason !== 'clarify_unknown' && reason !== 'out_of_scope') context.discussedTopics = [...(context.discussedTopics || '').split('|').filter(topic => topic && topic !== currentTopic), currentTopic].slice(-5).join('|');
     if ((stage === 'resolved' && ['product', 'company', 'B2C'].includes(category)) || (stage === 'qualified' && category === 'B2B')) quickReplies = nextQuestions(context, lang, category, handoff, currentTopic);
     context.funnelStage = stage; context.pendingField = pending; context.handoffEligible = handoff;
-    const aiTextAllowed = !handoff && ['product', 'general'].includes(category) && !ids.includes('ingredients') && !asksHeat && !social && reason === 'self_service';
+    const aiTextAllowed = !handoff && ['product', 'general'].includes(category) && !ids.includes('ingredients') && !asksHeat && !asksTaste && !social && reason === 'self_service';
     const decision = Object.freeze({ audience: context.audience || null, stage, handoff, reason, missingFields, category, intent });
     return { text, context, sources: sources.filter((source, i, all) => all.findIndex(item => (item.path || item.url) === (source.path || source.url)) === i).slice(0, 2), quickReplies, handoff, handoffSummary: summary(context, lang), language: lang, topic: context.topic || null, intent, category, decision, aiTextAllowed };
   }

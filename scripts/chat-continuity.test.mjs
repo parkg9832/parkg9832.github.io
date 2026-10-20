@@ -27,7 +27,7 @@ for(const[language,q]of Object.entries(scenarios)){
  assert.match(r.text,/직접 판매|no vendemos directamente|not yet selling directly/i,'A consumer never inherits a business quote path');
  context={};r=ask(q.samplePolicy);r=ask(q.freight);assert.equal(r.decision.reason,'company_guidance');assert.match(r.text,/바이어|comprador|buyer/);assert.equal(r.handoff,false);assert.equal(context.audience,undefined);
  assert.deepEqual(engine.reply('',{language,context}).quickReplies,r.quickReplies,'Restoring a company answer preserves contextual questions');checks++;
- context={};r=ask('K-PEÑO');r=ask(q.sweet);assert.match(r.text,/알룰로스|alulosa|allulose/);assert.equal(context.product,'kpeno');assert.equal(r.handoff,false);
+ context={};r=ask('K-PEÑO');r=ask(q.sweet);assert.match(r.text,/알룰로스|alulosa|allulose/);assert.equal(context.product,'kpeno');assert.equal(r.handoff,false);assert.equal(r.aiTextAllowed,false,'Verified flavor facts cannot be contradicted by generated text');checks++;
  r=ask(q.other);assert.equal(context.product,'para_carnes');assert.match(r.text,/참깨|sésamo|sesame/,'The other sauce receives its own flavor description');
  r=ask(q.storage);assert(!r.quickReplies.some(x=>/보관|After opening|Después de abrir/.test(x.label)),'The just-answered storage question is not immediately offered again');
  r=ask(q.safety);assert.equal(r.aiTextAllowed,false);assert.equal(r.handoff,false);assert.match(r.text,/우유|milk|leche/i);

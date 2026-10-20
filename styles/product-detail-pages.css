@@ -109,20 +109,23 @@ html[lang^='ko'] .product-detail-page { font-family:'Noto Sans KR','Noto Sans',s
   line-height: 1.75;
 }
 
-.product-detail-page .detail-localized-taste {
+.product-detail-page .detail-introduction-features {
+  display: grid;
+  gap: 24px;
+  width: 100%;
   max-width: 32rem;
-  margin-top: 32px;
+  margin-top: 28px;
   padding-top: 24px;
   border-top: 1px solid currentColor;
 }
 
-.product-detail-page .detail-localized-taste h2 {
+.product-detail-page .detail-introduction-features h2 {
   font-size: .875rem;
   font-weight: 700;
   line-height: 1.5;
 }
 
-.product-detail-page .detail-localized-taste p {
+.product-detail-page .detail-introduction-features p {
   margin-top: 10px;
   font-size: 1rem;
   line-height: 1.75;
@@ -146,13 +149,6 @@ html[lang^='ko'] .product-detail-page { font-family:'Noto Sans KR','Noto Sans',s
   word-break: normal;
 }
 
-.product-detail-page .detail-localized-features {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 36px;
-}
-
-.product-detail-page .detail-localized-features p,
 .product-detail-page .detail-localized-story p {
   max-width: 38rem;
   margin: 20px auto 0;
@@ -206,7 +202,7 @@ html[lang^='ko'] .product-detail-page { font-family:'Noto Sans KR','Noto Sans',s
 }
 
 .product-detail-page .detail-localized-story {
-  margin-top: clamp(44px, 6vw, 72px);
+  margin-top: 0;
 }
 
 .product-detail-page .detail-original-brochure {
@@ -239,7 +235,7 @@ html[lang^='ko'] .product-detail-page :is(.detail-localized-reading h2, .detail-
   word-break: keep-all;
 }
 
-html[lang^='ko'] .product-detail-page :is(.detail-localized-subtitle, .detail-localized-taste p, .detail-localized-reading p, .detail-localized-information dd) {
+html[lang^='ko'] .product-detail-page :is(.detail-localized-subtitle, .detail-introduction-features, .detail-localized-reading p, .detail-localized-information dd) {
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -258,14 +254,10 @@ html[lang^='ko'] .product-detail-page :is(.detail-localized-subtitle, .detail-lo
     object-position: center 34%;
   }
 
-  .product-detail-page .detail-localized-features,
   .product-detail-page .detail-localized-information dl {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .product-detail-page .detail-localized-features {
-    gap: 48px;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {

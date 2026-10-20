@@ -113,15 +113,14 @@
           <div class="detail-localized-introduction">
             <p class="detail-localized-kicker">${escape(copy.kicker)} · ${escape(detail.category)}</p>
             <h1 id="detailTitle">${escape(copy.title)}</h1>
-            <p class="detail-localized-subtitle">${escape(copy.subtitle)}</p>
-            <div class="detail-localized-taste"><h2>${escape(product.tasteTitle)}</h2><p>${escape(product.tasteBody)}</p></div>
+            <p class="detail-localized-subtitle">${escape(product.tasteBody)}</p>
+            <div class="detail-introduction-features">
+              <article><h2>${escape(product.recipeTitle)}</h2><p>${escape(product.recipeBody)}</p></article>
+              <article><h2>${escape(product.pairingsTitle)}</h2><p>${escape(product.pairingsBody)}</p></article>
+            </div>
           </div>
         </section>
         <section class="detail-localized-reading" aria-label="${escape(detail.product)}">
-          <div class="detail-localized-features">
-            <article><h2>${escape(product.recipeTitle)}</h2><p>${escape(product.recipeBody)}</p></article>
-            <article><h2>${escape(product.pairingsTitle)}</h2><p>${escape(product.pairingsBody)}</p></article>
-          </div>
           <section class="detail-localized-story"><h2>${escape(presentation.storyTitle)}</h2><p>${escape(presentation.storyBody)}</p></section>
           <details class="detail-original-brochure" open><summary>${escape(presentation.brochure)}</summary><div class="detail-artworks" lang="es">${renderArtworks(false)}</div></details>
           <section class="detail-localized-information" aria-labelledby="detailInformationTitle">

@@ -6,18 +6,18 @@
     "site-company-knowledge.js": "c89acb7cb117874394218157665375b6a587a715e15d7805e02f7c3b9a2db539",
     "ko/about.html": "8740814d60451162d94cecd9cbdf3dee2a6c78facb8305a9ea7178744a029cc3",
     "ko/products.html": "31f6faf9798aad4bffc1819cfc5f7ed40205f3d0e4f2df13371df18ca1b9290c",
-    "ko/kpeno.html": "c61e20eced45d84ffb3d4af721e59c68727c10312108d6773d37856e435d6774",
-    "ko/para-carnes.html": "9c5923892392057b145dc2485789f42848e4b5efad2f9ca6142988d0d4b77d21",
+    "ko/kpeno.html": "540d05ad6bdf42b2d4261f86526c927e54ca69096317e77c05b16380f7ddc3de",
+    "ko/para-carnes.html": "cd550d5cd3e3a9a3c97f2faf4eb7ce449200fa7540bdab856d64185fcf06cb81",
     "ko/qna.html": "0fe3cafd11d9661c2135346341c8ff94b5f8591ffdc7a42a5b341030ebe3bad1",
     "es/about.html": "6f06b797a9fcc0bbcb8f0897820406395beb851a07d8d43d2db4f6b14ee09f29",
     "es/products.html": "134a1f3d78f86b84ddb9dae58e7b581cc54b65094d7bbddb8c4b62810fa601bb",
-    "es/kpeno.html": "5c53072dce14f39dff28cabb0e0550e623b3823180fa26ec1b5ae589616e30ca",
-    "es/para-carnes.html": "6b578f76e327c565d9cacb7ce116eb27d5635cdfc8911bb63300de65d8413833",
+    "es/kpeno.html": "dc62f2e05d66e750d2288698df46672a925db2eb9e3b5f3bc6760269c2fa3aa9",
+    "es/para-carnes.html": "b8a3400ece669c71c16e8f999817d052f30aaf4e18d13df074f1e016a793205a",
     "es/qna.html": "b65a7b2c429f866b5f8b15a3c01c20a78ce30ffd486b10e7afbbcead4f6db355",
     "en/about.html": "b4b78fdfd682d5bcf30bb94e57d68da0da9f60d20580171d17c47f6f0214fb67",
     "en/products.html": "908b31e95ade684c8dacedcde42f018a3e9e440fcb964dc490ec93fba936a108",
-    "en/kpeno.html": "3dfce75437148e14b2e3f67a356b2aa3da2ef053e537487cbde0c18b27528e62",
-    "en/para-carnes.html": "78c29c69750e94a9bbdb8af248271c54ca03c6c0cc0e2b883f44d9c1f5b037e6",
+    "en/kpeno.html": "254feaf0f7a53bab4e35d0dfd22fd8038df7e63d4d605a67d4eae630e66db297",
+    "en/para-carnes.html": "76f5c7f5e5cec2fe7ca5e1a85ddda24a4e0b9a4efab4a0a9781ef871ab275dbc",
     "en/qna.html": "cfa5ddd34c4fa6bf9c63e6fe4cff5531aed8a4518d27ee7aca22e317b67db0a5"
   },
   "languages": {
@@ -152,13 +152,13 @@
         {
           "id": "kpeno",
           "title": "K-PEÑO",
-          "text": "제품 상세 · GOCHUJANG + JALAPEÑO\nK-PEÑO\n고추장과 할라피뇨를 담은 한국식 테이블 소스입니다. 열고, 담고, 익숙한 음식에 찍어 즐겨보세요.\n맛의 특징\n중간 정도의 매운맛에 감칠맛, 할라피뇨의 산미와 부드러운 질감이 어우러집니다.\n고추장과 할라피뇨\n고추장의 감칠맛과 매운맛에 할라피뇨의 산미를 더했습니다. 알룰로스로 단맛의 균형을 맞추고, 식물성 지방으로 만든 크림으로 부드러운 질감을 더했습니다.\n열고, 담고, 곁들이세요\n치킨, 감자튀김, 나초, 테케뇨 등 스낵에 잘 어울립니다. 타코나 평소 즐기는 음식에도 곁들여보세요.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n소비기한: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 우유, 대두, 밀, 토마토 함유.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\nMOKDA B2B\nK-PEÑO에 관해 문의하세요.",
+          "text": "제품 상세 · GOCHUJANG + JALAPEÑO\nK-PEÑO\n중간 정도의 매운맛에 감칠맛, 할라피뇨의 산미와 부드러운 질감이 어우러집니다.\n고추장과 할라피뇨\n고추장의 감칠맛과 매운맛에 할라피뇨의 산미를 더했습니다. 알룰로스로 단맛의 균형을 맞추고, 식물성 지방으로 만든 크림으로 부드러운 질감을 더했습니다.\n열고, 담고, 곁들이세요\n치킨, 감자튀김, 나초, 테케뇨 등 스낵에 잘 어울립니다. 타코나 평소 즐기는 음식에도 곁들여보세요.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n소비기한: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 우유, 대두, 밀, 토마토 함유.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\nMOKDA B2B\nK-PEÑO에 관해 문의하세요.",
           "path": "/ko/kpeno.html"
         },
         {
           "id": "para-carnes",
           "title": "PARA CARNES",
-          "text": "제품 상세 · SSAMJANG\nPARA CARNES\n쌈장에서 영감을 받은 한국 소스입니다. 고기와 채소에 깊은 감칠맛을 더해보세요.\n맛의 특징\n순한 매운맛에 된장의 깊은 감칠맛과 고소한 풍미가 어우러집니다.\n된장, 고추장, 참깨와 표고버섯\n된장과 고추장을 바탕으로 깊은 발효 풍미를 담았습니다. 볶은 참깨, 참기름과 표고버섯 추출물이 감칠맛과 고소한 풍미를 더합니다.\n익힌 고기에 찍어 즐기세요\n구운 고기, 찐 고기, 삶은 고기, 치킨과 안티쿠초에 곁들여보세요. 채소와도 잘 어울립니다. 고기를 익힌 뒤 소스에 찍어 즐기면 됩니다.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n소비기한: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 제품 소개 자료에는 대두와 밀로 표시돼 있습니다. 레시피에는 참깨와 참기름도 포함돼 있습니다.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\nMOKDA B2B\nPara Carnes에 관해 문의하세요.",
+          "text": "제품 상세 · SSAMJANG\nPARA CARNES\n순한 매운맛에 된장의 깊은 감칠맛과 고소한 풍미가 어우러집니다.\n된장, 고추장, 참깨와 표고버섯\n된장과 고추장을 바탕으로 깊은 발효 풍미를 담았습니다. 볶은 참깨, 참기름과 표고버섯 추출물이 감칠맛과 고소한 풍미를 더합니다.\n익힌 고기에 찍어 즐기세요\n구운 고기, 찐 고기, 삶은 고기, 치킨과 안티쿠초에 곁들여보세요. 채소와도 잘 어울립니다. 고기를 익힌 뒤 소스에 찍어 즐기면 됩니다.\n하나의 질문에서 시작됐습니다\nSalsa Coreana는 대표가 직접 경험한 라틴아메리카의 일상 식탁에서 시작됐습니다. 치킨, 고기, 스낵에 자연스럽게 소스를 곁들이는 모습을 보며, 익숙한 식사에 한국의 맛을 더할 수 있을지 생각했습니다.\n제품 정보\n내용량: 330 g\n보관 방법: 개봉 전 상온 보관, 개봉 후 냉장 보관.\n소비기한: 제조일부터 12개월.\n원산지: 대한민국\n원재료 및 알레르기 유발 원료: 제품 소개 자료에는 대두와 밀로 표시돼 있습니다. 레시피에는 참깨와 참기름도 포함돼 있습니다.\n주의 표시: 나트륨 함량 높음\n제품 소개 자료에 기재된 정보입니다. 현재 전체 원재료, 알레르기 유발 원료 및 보관 안내는 제품 포장에서 확인해주세요.\nMOKDA B2B\nPara Carnes에 관해 문의하세요.",
           "path": "/ko/para-carnes.html"
         },
         {
@@ -544,13 +544,13 @@
         {
           "id": "kpeno",
           "title": "K-PEÑO",
-          "text": "PRODUCT DETAIL · GOCHUJANG + JALAPEÑO\nK-PEÑO\nA Korean table sauce with gochujang and jalapeño. Open, serve, and pair it with the food you already love.\nFlavor profile\nMedium heat with umami, jalapeño tang and a creamy texture.\nGochujang and jalapeño\nGochujang brings umami and heat, while jalapeño adds a tangy note. Allulose provides balanced sweetness, and cream made with vegetable fat adds a smooth, creamy texture.\nOpen, serve and pair\nPair it with chicken, fries, nachos, tequeños and other snacks. Try it with tacos and your everyday meals, too.\nProduct information\nNet content: 330 g\nStorage: Store at room temperature; refrigerate after opening.\nShelf life: 12 months from manufacture.\nOrigin: South Korea\nIngredients and allergens: Contains milk, soy, wheat and tomato.\nWarning: HIGH IN SODIUM\nInformation from the product presentation. Check the packaging to confirm the complete current ingredient list, allergens and instructions.\nIt began with a question\nSalsa Coreana grew from the everyday Latin American meals its founder experienced firsthand. Seeing sauces served with chicken, meat, snacks and everyday food sparked a question: what if Korean flavors could join these familiar meals?\nMOKDA B2B\nLet’s talk about K-PEÑO.",
+          "text": "PRODUCT DETAIL · GOCHUJANG + JALAPEÑO\nK-PEÑO\nMedium heat with umami, jalapeño tang and a creamy texture.\nGochujang and jalapeño\nGochujang brings umami and heat, while jalapeño adds a tangy note. Allulose provides balanced sweetness, and cream made with vegetable fat adds a smooth, creamy texture.\nOpen, serve and pair\nPair it with chicken, fries, nachos, tequeños and other snacks. Try it with tacos and your everyday meals, too.\nIt began with a question\nSalsa Coreana grew from the everyday Latin American meals its founder experienced firsthand. Seeing sauces served with chicken, meat, snacks and everyday food sparked a question: what if Korean flavors could join these familiar meals?\nProduct information\nNet content: 330 g\nStorage: Store at room temperature; refrigerate after opening.\nShelf life: 12 months from manufacture.\nOrigin: South Korea\nIngredients and allergens: Contains milk, soy, wheat and tomato.\nWarning: HIGH IN SODIUM\nInformation from the product presentation. Check the packaging to confirm the complete current ingredient list, allergens and instructions.\nMOKDA B2B\nLet’s talk about K-PEÑO.",
           "path": "/en/kpeno.html"
         },
         {
           "id": "para-carnes",
           "title": "PARA CARNES",
-          "text": "PRODUCT DETAIL · SSAMJANG\nPARA CARNES\nA Korean sauce inspired by ssamjang, made to bring deep umami to meat and vegetables.\nFlavor profile\nMild heat with deep umami, doenjang flavor and toasted notes.\nDoenjang, gochujang, sesame and shiitake\nDoenjang and gochujang create a savory fermented base. Toasted sesame, sesame oil and shiitake extract add umami and toasted notes.\nFor dipping cooked meat\nPair it with grilled, steamed or boiled meat, chicken and anticuchos. It also goes with vegetables. Cook the meat, dip and enjoy.\nProduct information\nNet content: 330 g\nStorage: Store at room temperature; refrigerate after opening.\nShelf life: 12 months from manufacture.\nOrigin: South Korea\nIngredients and allergens: The product presentation lists soy and wheat. The recipe also includes sesame and sesame oil.\nWarning: HIGH IN SODIUM\nInformation from the product presentation. Check the packaging to confirm the complete current ingredient list, allergens and instructions.\nIt began with a question\nSalsa Coreana grew from the everyday Latin American meals its founder experienced firsthand. Seeing sauces served with chicken, meat, snacks and everyday food sparked a question: what if Korean flavors could join these familiar meals?\nMOKDA B2B\nLet’s talk about Para Carnes.",
+          "text": "PRODUCT DETAIL · SSAMJANG\nPARA CARNES\nMild heat with deep umami, doenjang flavor and toasted notes.\nDoenjang, gochujang, sesame and shiitake\nDoenjang and gochujang create a savory fermented base. Toasted sesame, sesame oil and shiitake extract add umami and toasted notes.\nFor dipping cooked meat\nPair it with grilled, steamed or boiled meat, chicken and anticuchos. It also goes with vegetables. Cook the meat, dip and enjoy.\nIt began with a question\nSalsa Coreana grew from the everyday Latin American meals its founder experienced firsthand. Seeing sauces served with chicken, meat, snacks and everyday food sparked a question: what if Korean flavors could join these familiar meals?\nProduct information\nNet content: 330 g\nStorage: Store at room temperature; refrigerate after opening.\nShelf life: 12 months from manufacture.\nOrigin: South Korea\nIngredients and allergens: The product presentation lists soy and wheat. The recipe also includes sesame and sesame oil.\nWarning: HIGH IN SODIUM\nInformation from the product presentation. Check the packaging to confirm the complete current ingredient list, allergens and instructions.\nMOKDA B2B\nLet’s talk about Para Carnes.",
           "path": "/en/para-carnes.html"
         },
         {

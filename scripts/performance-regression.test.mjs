@@ -8,7 +8,7 @@ import { loadNews } from './news-store.mjs';
 const root = new URL('../', import.meta.url), read = name => readFileSync(new URL(name, root), 'utf8');
 const news = (await loadNews(fileURLToPath(root))).data;
 const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...news.stories.map(story => 'news-' + story.id)];
-const contentScripts = new Set(['site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-reviews-data.js', 'site-product-media.js', 'home-experience.js', 'product-detail.js', 'site-news-data.js', 'site-news-model.js', 'site-news.js']);
+const contentScripts = new Set(['site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-country-data.js', 'site-reviews-data.js', 'site-product-media.js', 'home-experience.js', 'product-detail.js', 'site-news-data.js', 'site-news-model.js', 'site-news.js']);
 let documents = 0, retained = 0;
 for (const [locale, language] of [['ko', 'KR'], ['es', 'ES'], ['en', 'EN']]) for (const page of pages) {
   const errors = [], console = new VirtualConsole(); console.on('jsdomError', error => errors.push(error));
@@ -37,6 +37,7 @@ for (const [locale, language] of [['ko', 'KR'], ['es', 'ES'], ['en', 'EN']]) for
   assert.equal(d.querySelectorAll('video[src]').length, 0, 'Content rendering never starts video downloads');
   assert.equal(d.querySelectorAll('script[src*="site-chat-engine.js"],script[src*="site-help-data.js"],script[src*="site-company-knowledge.js"],script[src*="site-chat-ai.js"]:not([data-chat-assets])').length, 0, 'Closed chat does not load the full conversation engine');
   assert.equal(d.querySelectorAll('script[src*="site-help-loader.js"]').length, 1);
+  assert.equal(d.querySelectorAll('script[src*="site-help-flow.js"]').length, 0, 'Closed guide does not load the selection controller');
   if (page === 'index') {
     for (const image of d.querySelectorAll('.home-product-image img')) { assert.equal(image.getAttribute('loading'), 'lazy'); assert.notEqual(image.getAttribute('fetchpriority'), 'high'); }
     const portrait = d.querySelector('img[src*="testimonial-no-juhyeong-"]');

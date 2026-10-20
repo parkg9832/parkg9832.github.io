@@ -49,7 +49,7 @@ export function createWorker({ siteverifyFetch = fetch, siteverifyTimeoutMs = 50
     async fetch(request, env) {
       const url = new URL(request.url);
       const origin = allowedOrigin(request.headers.get('origin'), env);
-      if (url.pathname === '/health' && request.method === 'GET') return reply({ ok: true, service: 'mokda-chat', ai: Boolean(env.AI && env.CHAT_LIMITER && turnstileConfigured(env)) }, 200, origin);
+      if (url.pathname === '/health' && request.method === 'GET') return reply({ ok: true, service: 'mokda-chat', ai: Boolean(env.CHAT_AI_ENABLED !== 'false' && env.AI && env.CHAT_LIMITER && turnstileConfigured(env)) }, 200, origin);
       if (url.pathname !== '/chat') return reply({ error: 'not_found' }, 404, origin);
       if (!origin) return reply({ error: 'origin_not_allowed' }, 403, '');
       if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: { ...HEADERS, 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type', 'Access-Control-Max-Age': '600' } });
@@ -62,7 +62,7 @@ export function createWorker({ siteverifyFetch = fetch, siteverifyTimeoutMs = 50
         token = payload.turnstileToken;
       } catch (error) { return reply({ error: error.message === 'body_too_large' ? 'body_too_large' : 'invalid_request' }, error.message === 'body_too_large' ? 413 : 400, origin); }
       // Missing quota protection is a hard failure, never an unlimited AI fallback.
-      if (!env.AI || !env.CHAT_LIMITER) return reply({ error: 'ai_unavailable' }, 503, origin);
+      if (env.CHAT_AI_ENABLED === 'false' || !env.AI || !env.CHAT_LIMITER) return reply({ error: 'ai_unavailable' }, 503, origin);
       const verification = await verifyTurnstile({ token, secret: env.TURNSTILE_SECRET, origin, remoteip: request.headers.get('cf-connecting-ip') }, siteverifyFetch, siteverifyTimeoutMs);
       if (!verification.valid) return reply({ error: verification.unavailable ? 'bot_verification_unavailable' : 'bot_verification_failed' }, verification.unavailable ? 503 : 403, origin);
       try {

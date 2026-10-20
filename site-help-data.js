@@ -105,7 +105,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'contact',
             question: '찾는 답변이 없으면 어떻게 문의하나요?',
-            answer: '궁금한 내용을 이 상담창에 적어주세요. 제품과 구매에 관한 내용을 먼저 안내하고, 개별 확인이 필요한 거래 조건이나 제품 문제는 담당자 상담으로 연결합니다.',
+            answer: '먼저 상담창에서 필요한 안내 항목을 선택해주세요. 답변을 확인한 뒤 추가 문의 단계에서 내용을 작성하면 WhatsApp으로 연결할 수 있습니다.',
             link: { label: '문의 페이지 열기', path: 'contact.html' },
           },
         ],
@@ -217,7 +217,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'contact',
             question: '¿Qué hago si no encuentro mi respuesta?',
-            answer: 'Escribe aquí lo que te gustaría saber. Primero te orientamos sobre los productos y las compras. Si necesitas revisar condiciones comerciales o resolver un problema con el producto, puedes continuar con nuestro equipo.',
+            answer: 'Elige primero el tema en nuestra guía. Si necesitas más información después de revisar la respuesta, escribe tu consulta en el último paso para continuar por WhatsApp.',
             link: { label: 'Ir a contacto', path: 'contact.html' },
           },
         ],
@@ -329,7 +329,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'contact',
             question: 'What if I cannot find my answer?',
-            answer: 'Tell us what you would like to know in this chat. We first help with product and buying questions. Commercial terms that need individual review or product problems can then be handled by our team.',
+            answer: 'First choose a topic in our guide. If you still need help after reading the answer, write your inquiry in the final step to continue on WhatsApp.',
             link: { label: 'Open the contact page', path: 'contact.html' },
           },
         ],

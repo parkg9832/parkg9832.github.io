@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { JSDOM, VirtualConsole } from 'jsdom';
 const root = new URL('../', import.meta.url), read = file => readFileSync(new URL(file, root), 'utf8');
-const names = ['site-company-knowledge.js', 'site-help-data.js', 'site-chat-intents.js', 'site-chat-engine.js', 'site-chat-ai.js', 'site-help.js'];
+const names = ['site-company-knowledge.js', 'site-help-data.js', 'site-country-data.js', 'site-help-flow.js', 'site-help.js'];
 const assets = names.map(name => `/${name}?v=${createHash('sha256').update(readFileSync(new URL(name, root))).digest('hex').slice(0, 12)}`);
 const settle = async () => { for (let i = 0; i < 8; i++) await Promise.resolve(); };
 function start({ lang = 'EN', width = 1440, saved, draft, manifest = assets, blocked = false } = {}) {
@@ -32,7 +32,7 @@ function start({ lang = 'EN', width = 1440, saved, draft, manifest = assets, blo
   Object.defineProperty(d, 'currentScript', { get: () => current });
   const append = d.head.append.bind(d.head);
   d.head.append = node => { append(node); if (node.tagName === 'SCRIPT') { pending.push(node); loaded.push(new URL(node.src).pathname); } };
-  w.eval(read('site-contact-config.js')); w.MOKDA_CHAT_AI.enabled = false;
+  w.eval(read('site-contact-config.js'));
   w.eval(read('site-help-loader.js'));
   const finish = async (failAt = -1) => {
     await settle();

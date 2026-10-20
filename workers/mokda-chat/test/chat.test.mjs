@@ -329,3 +329,15 @@ test('health reports protected availability only and cannot generate a reply', a
   assert.deepEqual(await (await worker.fetch(new Request('https://chat.example/health'), unprotected)).json(), { ok: true, service: 'mokda-chat', ai: false });
   assert.equal((await worker.fetch(new Request('https://chat.example/other'), {})).status, 404);
 });
+
+test('guided-support release disables inference before verification or quota consumption', async () => {
+  let calls = 0;
+  const env = environment({ run: async () => { calls++; return answer(); } });
+  env.CHAT_AI_ENABLED = 'false';
+  const health = await worker.fetch(new Request('https://chat.example/health'), env);
+  assert.equal((await health.json()).ai, false);
+  const response = await worker.fetch(request(), env);
+  assert.equal(response.status, 503);
+  assert.deepEqual(await response.json(), { error: 'ai_unavailable' });
+  assert.equal(calls, 0);
+});

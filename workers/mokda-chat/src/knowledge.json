@@ -1,24 +1,24 @@
 {
   "generatedAt": "2026-10-12",
   "sourceHashes": {
-    "site-help-data.js": "6dd8cb144d68344353a3fd6376952fa5b4cc77bcfa6a3bd31446ca2554c700f8",
+    "site-help-data.js": "eadcaac95a726b9a01a9bbbaf01826020380472de4ae40d05aee9ff8c8400d6b",
     "site-news-data.js": "05526f49c72146f1bf1ab16ca715e8534301efe4c9be93b693438c58c810b9cf",
     "site-company-knowledge.js": "c89acb7cb117874394218157665375b6a587a715e15d7805e02f7c3b9a2db539",
-    "ko/about.html": "42b978d5a259a49fa75ee487098bc2c3f8bb0d65048f95ec11d92c93c9cba7c7",
-    "ko/products.html": "c4fbb886fdafe9deaa96451abc2b1d655b3869a92d4ef45e0ebc1a3a5015ed0e",
-    "ko/kpeno.html": "e211a680a2bfd95ab9128cf03fdd2ab4e1790f22383ae43f6164c5b8cb5c24af",
-    "ko/para-carnes.html": "1b0b6e1697138e8a540d6204144354bdfab016d186b3390db117b859521ab190",
-    "ko/qna.html": "ed994dd5880ea55775b731716c6e1fd3cbf9f35d53e9cc76e2c57c6ce26d1045",
-    "es/about.html": "ab5d33faae8806aaeae42cd5ddb3176d8c4506ebeae84b07d8a13a0808c7467c",
-    "es/products.html": "9fd7aae8d310d0c49799713294c58251351d37439eca7bd4ffe7d14a300186f9",
-    "es/kpeno.html": "41fccb7c8c0aacc48d24bb392abcb2fc3a25765c2393333d3bc937f05cae8f11",
-    "es/para-carnes.html": "fa1097a1c97057fc68eb4ad84662f664d568c9ddfa492e6fc25d0bd0e0d5a152",
-    "es/qna.html": "ff07635934cbe2182fa7f910580af9b1d890bae987c3f60ad78f1567e02850af",
-    "en/about.html": "bec68221fd463604c24a675d0f8d3dc3ec53d02bdd81d2de824455b354fc5ea4",
-    "en/products.html": "f59ed2d3214eb787dc0fa76688ad0a21b629d3243c10ae766a0284548dd4d972",
-    "en/kpeno.html": "4a98872324052c3ec22226dbfc594abace71f8f5e9cd324d50beaf9bd7b9f36d",
-    "en/para-carnes.html": "e66e627d4babc930f870654e47966101f81aebcdb93b5a5bcb77efb9ab197ed9",
-    "en/qna.html": "7452840cd2145fd83f06c8df887bed67017b7a6e2e75cbbc617750b123c44233"
+    "ko/about.html": "8740814d60451162d94cecd9cbdf3dee2a6c78facb8305a9ea7178744a029cc3",
+    "ko/products.html": "31f6faf9798aad4bffc1819cfc5f7ed40205f3d0e4f2df13371df18ca1b9290c",
+    "ko/kpeno.html": "c61e20eced45d84ffb3d4af721e59c68727c10312108d6773d37856e435d6774",
+    "ko/para-carnes.html": "9c5923892392057b145dc2485789f42848e4b5efad2f9ca6142988d0d4b77d21",
+    "ko/qna.html": "0fe3cafd11d9661c2135346341c8ff94b5f8591ffdc7a42a5b341030ebe3bad1",
+    "es/about.html": "6f06b797a9fcc0bbcb8f0897820406395beb851a07d8d43d2db4f6b14ee09f29",
+    "es/products.html": "134a1f3d78f86b84ddb9dae58e7b581cc54b65094d7bbddb8c4b62810fa601bb",
+    "es/kpeno.html": "5c53072dce14f39dff28cabb0e0550e623b3823180fa26ec1b5ae589616e30ca",
+    "es/para-carnes.html": "6b578f76e327c565d9cacb7ce116eb27d5635cdfc8911bb63300de65d8413833",
+    "es/qna.html": "b65a7b2c429f866b5f8b15a3c01c20a78ce30ffd486b10e7afbbcead4f6db355",
+    "en/about.html": "b4b78fdfd682d5bcf30bb94e57d68da0da9f60d20580171d17c47f6f0214fb67",
+    "en/products.html": "908b31e95ade684c8dacedcde42f018a3e9e440fcb964dc490ec93fba936a108",
+    "en/kpeno.html": "3dfce75437148e14b2e3f67a356b2aa3da2ef053e537487cbde0c18b27528e62",
+    "en/para-carnes.html": "78c29c69750e94a9bbdb8af248271c54ca03c6c0cc0e2b883f44d9c1f5b037e6",
+    "en/qna.html": "cfa5ddd34c4fa6bf9c63e6fe4cff5531aed8a4518d27ee7aca22e317b67db0a5"
   },
   "languages": {
     "KR": {
@@ -131,7 +131,7 @@
           "id": "contact",
           "topic": "collaboration",
           "question": "찾는 답변이 없으면 어떻게 문의하나요?",
-          "text": "궁금한 내용을 이 상담창에 적어주세요. 제품과 구매에 관한 내용을 먼저 안내하고, 개별 확인이 필요한 거래 조건이나 제품 문제는 담당자 상담으로 연결합니다.",
+          "text": "먼저 상담창에서 필요한 안내 항목을 선택해주세요. 답변을 확인한 뒤 추가 문의 단계에서 내용을 작성하면 WhatsApp으로 연결할 수 있습니다.",
           "label": "문의 페이지 열기",
           "path": "/ko/contact.html"
         }
@@ -327,7 +327,7 @@
           "id": "contact",
           "topic": "collaboration",
           "question": "¿Qué hago si no encuentro mi respuesta?",
-          "text": "Escribe aquí lo que te gustaría saber. Primero te orientamos sobre los productos y las compras. Si necesitas revisar condiciones comerciales o resolver un problema con el producto, puedes continuar con nuestro equipo.",
+          "text": "Elige primero el tema en nuestra guía. Si necesitas más información después de revisar la respuesta, escribe tu consulta en el último paso para continuar por WhatsApp.",
           "label": "Ir a contacto",
           "path": "/es/contact.html"
         }
@@ -523,7 +523,7 @@
           "id": "contact",
           "topic": "collaboration",
           "question": "What if I cannot find my answer?",
-          "text": "Tell us what you would like to know in this chat. We first help with product and buying questions. Commercial terms that need individual review or product problems can then be handled by our team.",
+          "text": "First choose a topic in our guide. If you still need help after reading the answer, write your inquiry in the final step to continue on WhatsApp.",
           "label": "Open the contact page",
           "path": "/en/contact.html"
         }

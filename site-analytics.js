@@ -265,7 +265,7 @@
       name: clean(name, 50),
       audience: ['B2B','B2C'].includes(details.audience) ? details.audience : '',
       funnel_stage: ['greeting','audience','business_context','country','business_type','product','qualified','handoff','proposal','resolved','clarify'].includes(details.funnel_stage) ? details.funnel_stage : '',
-      market: ['Peru','Mexico','Chile','Colombia','Argentina','Korea','USA','Brazil','Ecuador','Bolivia','Uruguay','Paraguay','Panama','Costa Rica','Guatemala','Venezuela','Dominican Republic','El Salvador','Honduras','Nicaragua','Cuba','Puerto Rico','Spain','Canada','Germany','Japan','UK'].includes(details.market) ? details.market : '',
+      market: details.market === 'Other' || window.MOKDA_COUNTRIES?.isKnownName(details.market) || ['Peru','Mexico','Chile','Colombia','Argentina','Korea','USA','Brazil','Ecuador','Bolivia','Uruguay','Paraguay','Panama','Costa Rica','Guatemala','Venezuela','Dominican Republic','El Salvador','Honduras','Nicaragua','Cuba','Puerto Rico','Spain','Canada','Germany','Japan','UK'].includes(details.market) ? details.market : '',
       eventId: randomId(),
       occurredAt: new Date().toISOString(),
       eventSequence: nextEventSequence(),

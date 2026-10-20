@@ -11,6 +11,7 @@
   },
   "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ChatLimiter"] }],
   "vars": {
+    "CHAT_AI_ENABLED": "false",
     "ALLOW_LOCALHOST": "false",
     "DAILY_AI_LIMIT": "80"
   },

@@ -87,7 +87,7 @@ assert.match(secured, /script-src [^;]*https:\/\/challenges\.cloudflare\.com(?:\
 assert.match(secured, /connect-src [^;]*https:\/\/challenges\.cloudflare\.com(?:\s|;)/);
 assert.doesNotMatch(secured, /(?:script|connect|frame)-src [^;]*https:\/\/(?:\*\.)?cloudflare\.com(?:\s|;)/, 'Turnstile permits its challenge origin only');
 assert.ok(!secured.match(/script-src [^;]*unsafe-/));
-assert.match(secured, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
+assert.doesNotMatch(secured, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
 assert.doesNotMatch(secured, /connect-src [^;]*https:\/\/\*\.workers\.dev/);
 assert.equal(secureHtml(secured), secured);
 const retiredPage = await readFile(new URL('coming-soon.html', root), 'utf8');
@@ -98,7 +98,7 @@ for (const locale of ['', 'ko', 'es', 'en']) for (const page of publicPages) {
   const built = await readFile(new URL(`${locale ? locale + '/' : ''}${page}.html`, root), 'utf8');
   assert.match(built, /Content-Security-Policy/);
   assert.match(built, /frame-src https:\/\/challenges\.cloudflare\.com(?:\s|;)/);
-  assert.match(built, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
+  assert.doesNotMatch(built, /connect-src [^;]*https:\/\/mokda-chat\.mokda-chat-worker\.workers\.dev(?:\s|;)/);
   assert.ok(built.indexOf('Content-Security-Policy') < built.indexOf('<script'), 'CSP precedes all script elements');
   if (locale) assert.ok(!/<script>([\s\S]*?)<\/script>/.test(built), 'Localized executable inline scripts must be externalized');
   const document = new JSDOM(built);

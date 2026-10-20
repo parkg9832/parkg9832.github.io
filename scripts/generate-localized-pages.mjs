@@ -155,9 +155,9 @@ async function addHelpAssets(html) {
     html = html.replace(/<\/head>/i, '    <link rel="stylesheet" href="./styles/site-help.css" />\n</head>');
   }
   // Rebuild this small block in dependency order without growing whitespace on repeated runs.
-  html = html.replace(/^[ \t]*<script\b[^>]*\bsrc=["'](?:\.\/)?(?:site-company-knowledge|site-help-data|site-chat-intents|site-chat-engine|site-chat-ai|site-help|site-help-loader|site-turnstile)\.js["'][^>]*><\/script>[ \t]*\r?\n?/gm, '');
+  html = html.replace(/^[ \t]*<script\b[^>]*\bsrc=["'](?:\.\/)?(?:site-company-knowledge|site-help-data|site-chat-intents|site-chat-engine|site-chat-ai|site-help-flow|site-help|site-help-loader|site-turnstile)\.js["'][^>]*><\/script>[ \t]*\r?\n?/gm, '');
   const scripts = html.includes('site-contact-config.js') ? [] : ['site-contact-config.js'];
-  const assets = await Promise.all(['site-company-knowledge.js', 'site-help-data.js', 'site-chat-intents.js', 'site-chat-engine.js', 'site-chat-ai.js', 'site-help.js'].map(async name => {
+  const assets = await Promise.all(['site-company-knowledge.js', 'site-help-data.js', 'site-country-data.js', 'site-help-flow.js', 'site-help.js'].map(async name => {
     const version = createHash('sha256').update(await readFile(join(ROOT, name))).digest('hex').slice(0, 12);
     return `/${name}?v=${version}`;
   }));

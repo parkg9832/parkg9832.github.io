@@ -124,11 +124,11 @@ assert.match(appsScriptSource, /cell\.setNumberFormat\(opts\.format \|\| 'Genera
 assert.match(appsScriptSource, /const DASHBOARD_TOTAL_COLUMNS = 16/);
 assert.match(appsScriptSource, /const writeExplanationRows =/);
 assert.match(appsScriptSource, /writeExplanationRows\(32, '#15372b'/);
-assert.match(appsScriptSource, /writeExplanationRows\(24, '#ef5f18'/);
+assert.match(appsScriptSource, /writeExplanationRows\(60, '#37474f'/);
 
 // TEST 14: repeated funnel cards share rendering helpers after refactoring.
 assert.match(appsScriptSource, /const writeStageFunnel =/);
-assert.equal((appsScriptSource.match(/writeStageFunnel\(\{/g) || []).length, 2);
+assert.equal((appsScriptSource.match(/writeStageFunnel\(\{/g) || []).length, 3);
 assert.match(appsScriptSource, /function renderWebsiteDetailedDiagnostics_/);
 assert.match(appsScriptSource, /normalizedReferrer === 'mokda\.kr'/);
 assert.match(appsScriptSource, /format: '@'/);

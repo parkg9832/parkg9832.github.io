@@ -18,11 +18,12 @@
 - `visitor_daypart`: `morning`, `afternoon`, `evening`, `night`
 - `scroll_percent`: `25`, `50`, `75`, `90`
 - `section_name`: `proof`, `products`, `field_story`, `support`, `contact`
-- `product_name`: `K-Peño`, `Para Carnes`, `제품 미지정`
+- `product_name`: `K-Peño`, `Para Carnes`, `K-Peño + Para Carnes`, `제품 미지정`
 
 핵심 이벤트:
 
-- B2B: `b2b_cta_click` → `contact_page_view` → `b2b_form_start` → `generate_lead`
+- 상담: `chat_open` → `chat_qualified` → `whatsapp_click`. `chat_intent_select`는 안내 선택 현황으로 별도 집계한다.
+- 문의 폼: `contact_page_view` → `b2b_form_start` → `generate_lead`. 직접 진입도 포함한다.
 - 출시 응원: `support_page_view` → `support_form_start` → `support_country_select` → `support_submit`
 - 콘텐츠 소비: `scroll_depth`, `section_view`
 
@@ -33,7 +34,7 @@
 - `contact_view` → `contact_page_view`
 - `form_start` → `b2b_form_start`로 표시 단계에서만 정규화한다.
 - 과거 `Original`, `Soy Sauce` 등은 원본을 수정하지 않고 `Legacy Product`로 분리한다.
-- 신규 이벤트에서는 `K-Peño`, `Para Carnes`, `제품 미지정`만 저장한다.
+- 신규 이벤트에서는 `K-Peño`, `Para Carnes`, `K-Peño + Para Carnes`, `제품 미지정`을 저장한다. 두 제품 관심은 제품별 고유 세션에 각각 반영하며 합계는 고유 방문자 수가 아니다.
 - 엄격한 B2B·출시 응원 퍼널은 이벤트 스키마 v2 배포 시점 이후 데이터만 사용한다.
 
 ## 트래픽 제외
@@ -61,4 +62,10 @@ MOKDA의 커스텀 이벤트는 `scroll_depth`이므로 GA4 기본 `scroll`과 �
 
 `index.html`의 `homepageProofConfig.verifiedLatamViews`는 검증된 누적 콘텐츠 조회 수만 표시한다. 기관 로고는 `assets/images/institutions/`, WhatsApp 번호는 `site-contact-config.js`에서 관리한다.
 
-홈페이지 응원 메시지는 `Demand Support`의 `Approved`와 `Homepage Featured`가 모두 `TRUE`이고 메시지가 있는 행만 표시한다. 전체 응원 수는 메시지 공개 여부와 별도로 유효 응원 전체를 집계한다.
+현재 출시 응원 페이지는 홈으로 이동하며, `Demand Support`의 과거 원본은 보존한다. 응원 기능의 기존 공개 로직은 `Demand Support`의 `Approved`와 `Homepage Featured`가 모두 `TRUE`이고 메시지가 있는 행만 표시한다. 전체 응원 수는 메시지 공개 여부와 별도로 유효 응원 전체를 집계한다.
+
+## 대시보드 갱신 · 2026-10-20
+
+`대시보드` 상단에 상담 시작·B2B 정보 확인·WhatsApp 이동·실제 저장된 문의를 구분한다. 상담과 제품 상세 경유, 문의 폼은 별도 퍼널로 집계한다. 종료된 출시 응원 수요는 하단 과거 기록으로 옮겨 보존한다. `세부 분석`에는 제품별 상세와 소식·보도 페이지, 안내 선택, 선택 국가별 B2B 관심을 포함한다.
+
+상담 측정 시작은 2026-10-19 19:39:29 KST이다. 수집 전의 단계는 소급 추정하지 않는다. WhatsApp 클릭은 메시지 전송·구매·계약이 아니며, B2B 정보 확인도 유효 바이어 검증이 아니다. 원본 이벤트·응원·리드와 기간 선택 셀의 수식·유효성 검사는 보존한다.

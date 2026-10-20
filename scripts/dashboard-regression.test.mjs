@@ -1,0 +1,75 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=fs.readFileSync(new URL('../apps-script/b2b-lead-automation.gs',import.meta.url),'utf8');
+const ctx=vm.createContext({console,Date,Intl});vm.runInContext(source,ctx);
+const cut=new Date('2026-10-19T10:39:29Z');
+const event=(name,sequence=0,extra={})=>({name,time:new Date(1792454400000+sequence*1000),sequence,schemaVersion:'2',audience:'',chatStage:'',market:'',...extra});
+const qualified=(sequence=4,extra={})=>event('chat_qualified',sequence,{audience:'B2B',chatStage:'qualified',market:'Peru',...extra});
+const normal=[event('page_view',1),event('product_detail_view',2),event('chat_open',3),qualified(),event('whatsapp_click',5)];
+const metrics=events=>ctx.buildChatDashboardMetrics_({s:{events}},cut);
+const arr=value=>Array.from(value);
+assert.deepEqual(arr(metrics(normal).counts),[1,1,1,1]);
+assert.deepEqual(arr(metrics(normal).productCounts),[1,1,1,1]);
+assert.deepEqual(arr(metrics([...normal].reverse()).counts),[1,1,1,1],'Arrival order cannot reverse actual event order');
+const duplicate=metrics([...normal,qualified(6),event('whatsapp_click',7),event('chat_open',8)]);
+assert.equal(duplicate.qualified,1);assert.equal(duplicate.whatsapp,1);assert.equal(duplicate.markets.Peru.qualified,1);
+const earlyClick=metrics([event('page_view',1),event('chat_open',2),event('whatsapp_click',3),qualified(4)]);
+assert.deepEqual(arr(earlyClick.counts),[1,1,1,0]);assert.equal(earlyClick.whatsapp,1);assert.equal(earlyClick.markets.Peru.whatsapp,0);
+const consumer=metrics([event('page_view',1),event('chat_open',2),event('chat_intent_select',3,{audience:'B2C'}),qualified(4,{audience:'B2C'})]);
+assert.deepEqual(arr(consumer.counts),[1,1,0,0]);assert.equal(consumer.consumer,1);assert.equal(consumer.qualified,0);
+assert.equal(metrics([qualified(1,{chatStage:'clarify'})]).qualified,0);
+const restored=metrics([qualified(4),event('whatsapp_click',5)]);
+assert.equal(restored.qualified,1);assert.deepEqual(arr(restored.counts),[0,0,0,0],'Auto-restored sessions are not fabricated as new opens');
+const resumed=metrics([event('page_view',1),event('product_detail_view',2),event('chat_intent_select',3,{audience:'B2B'}),qualified(),event('whatsapp_click',5)]);
+assert.deepEqual(arr(resumed.productCounts),[1,1,1,1]);assert.deepEqual(arr(resumed.counts),[1,0,0,0]);
+const historical=metrics(normal.map(e=>({...e,time:new Date('2026-10-18T00:00:00Z')})));
+assert.equal(historical.opens,0);assert.deepEqual(arr(historical.counts),[0,0,0,0]);
+assert.equal(ctx.normalizeDashboardProduct_('K-Peño + Para Carnes','2'),'K-Peño + Para Carnes');
+assert.equal(ctx.normalizeDashboardProduct_('Original','legacy'),'Legacy Product');
+// Exercise the complete renderer with isolated in-memory Sheets, including preservation boundaries.
+const headers=arr(vm.runInContext('FUNNEL_HEADERS',ctx));
+const leadHeaders=arr(vm.runInContext('SHEET_HEADERS',ctx));
+function rowFor(e,session='business',path='/es/kpeno.html',medium='') {
+ const row=Array(headers.length).fill('');
+ const values={'Received At':e.time,'Occurred At':e.time,'Event Name':e.name,'Anonymous Visitor ID':'visitor-'+session,'Session ID':session,'Page Path':path,'Page Language':'ES','Device':'mobile','UTM Medium':medium,'Product':e.product||'','Event Sequence':e.sequence,'Event Schema Version':e.schemaVersion,'Chat Audience':e.audience,'Chat Stage':e.chatStage,'Market':e.market};
+ for(const[k,v]of Object.entries(values))row[headers.indexOf(k)]=v;return row;
+}
+const rows=normal.map(e=>rowFor({...e,product:'K-Peño + Para Carnes'}));
+rows.push(...[event('page_view',1),event('contact_page_view',2),event('b2b_form_start',3),event('generate_lead',4)].map(e=>rowFor(e,'form','/en/contact.html')));
+rows.push(rowFor(event('page_view',1),'news','/ko/news-kotra-interview.html'));
+rows.push(rowFor(event('page_view',1),'other','/en/unknown.html'));
+rows.push(rowFor(event('page_view',1),'verification','/ko/','verification'));
+const internal=rowFor(event('page_view',1),'internal','/ko/');internal[2]='fdcbfe0d-6b37-4956-a83f-17747c9395a3';rows.push(internal);
+const lead=Array(leadHeaders.length).fill('');
+for(const[k,v]of Object.entries({'Received At':event('x',1).time,'Lead Status':'Converted','Inquiry Source':'Website B2B','Inquiry Type':'distribution'}))lead[leadHeaders.indexOf(k)]=v;
+const support=(id,market,medium='')=>[event('x',1).time,'ES',market,'',false,id,'', '',medium];
+const controls=new Map([['3,2','전체'],['3,4',new Date('2026-10-01')],['3,6',new Date('2026-10-20')],['3,11',new Date('2026-10-01')],['3,12',new Date('2026-10-20')]]);
+const sheets={};
+const columnNumber=letters=>[...letters].reduce((n,c)=>n*26+c.charCodeAt(0)-64,0);
+function coordinates(args){if(typeof args[0]==='number')return {r:args[0],c:args[1],h:args[2]||1,w:args[3]||1};const m=/^([A-Z]+)(\d+)(?::([A-Z]+)(\d+))?$/.exec(args[0]);assert(m,args[0]);const r=+m[2],c=columnNumber(m[1]);return {r,c,h:m[4]?+m[4]-r+1:1,w:m[3]?columnNumber(m[3])-c+1:1};}
+function sheet(name,data=[],writable=false){
+ const values=name==='대시보드'?new Map(controls):new Map();const merges=[];
+ const api={name,data,values,merges,getName:()=>name,getLastRow:()=>data.length,getLastColumn:()=>data[0]?.length||16,getMaxRows:()=>200,getMaxColumns:()=>name==='세부 분석'?12:16,getDataRange:()=>({getValues:()=>structuredClone(data)}),setColumnWidths(){return this;},setRowHeights(){return this;},setRowHeight(){return this;},insertColumnsAfter(){throw Error('Unexpected dimension change');},getRange(...args){const bounds=coordinates(args);const mut=()=>assert(writable,'Raw sheet mutation: '+name);let chain={getValue:()=>values.get(bounds.r+','+bounds.c)??'',getValues:()=>data.slice(bounds.r-1,bounds.r+bounds.h-1).map(row=>row.slice(bounds.c-1,bounds.c+bounds.w-1)),merge(){mut();assert(!merges.some(b=>bounds.r<b.r+b.h&&b.r<bounds.r+bounds.h&&bounds.c<b.c+b.w&&b.c<bounds.c+bounds.w),'Overlapping merged output '+name+' '+JSON.stringify(bounds));merges.push(bounds);return this;},setValue(value){mut();values.set(bounds.r+','+bounds.c,value);return this;},clearContent(){mut();assert(bounds.r>=5,'Period controls must remain');return this;},breakApart(){mut();return this;}};for(const method of ['clearFormat','setNumberFormat','setHorizontalAlignment','setVerticalAlignment','setWrap','setBackground','setFontColor','setFontWeight','setFontSize'])chain[method]=function(){mut();return this;};return chain;}};
+ return api;
+}
+sheets['대시보드']=sheet('대시보드',[],true);sheets['세부 분석']=sheet('세부 분석',[],true);
+sheets['Funnel Events']=sheet('Funnel Events',[headers,...rows]);sheets['Sheet1']=sheet('Sheet1',[leadHeaders,lead]);sheets['Demand Support']=sheet('Demand Support',[[],support('one','PE'),support('two','MX'),support('three','CL','verification')]);
+const rawBefore=JSON.stringify([sheets['Funnel Events'].data,sheets['Sheet1'].data,sheets['Demand Support'].data]);
+ctx.PropertiesService={getScriptProperties:()=>({getProperty:()=> 'isolated-sheet'})};
+ctx.SpreadsheetApp={openById:id=>{assert.equal(id,'isolated-sheet');return {getSheetByName:name=>sheets[name]};}};
+ctx.Utilities={formatDate:(date,zone,format)=>new Date(date).toISOString().slice(0,format==='yyyy-MM-dd'?10:16).replace('T',' ')};
+const result=ctx.updateCompleteWebsiteDashboard();
+assert.equal(result.updated,true);assert.equal(result.totalSessions,4);assert.equal(result.totalUsers,4);assert.equal(result.totalPageViews,4);
+assert.deepEqual(arr(result.chatMetrics.counts),[4,1,1,1]);assert.deepEqual(arr(result.chatMetrics.productCounts),[1,1,1,1]);
+assert.deepEqual(arr(result.directB2bCounts),[4,1,1,1]);assert.equal(result.allSupportTotal,2);assert.equal(result.periodSupportTotal,2);
+assert.equal(result.chatMetrics.markets.Peru.whatsapp,1);
+const cell=(name,r,c)=>sheets[name].values.get(r+','+c);
+assert.equal(cell('대시보드',15,13),1,'Stored B2B leads are actual saved rows, not clicks');
+assert.equal(cell('대시보드',41,10),1,'Contract pipeline comes from lead status');
+assert.equal(cell('대시보드',47,9),1);assert.equal(cell('대시보드',47,13),1,'Both-sauce interest reaches both products');
+assert.equal(cell('대시보드',57,5),2,'Historical support remains available');
+assert([...sheets['세부 분석'].values.values()].includes('K-PEÑO 상세'));assert([...sheets['세부 분석'].values.values()].includes('소식·보도'));
+for(const[key,value]of controls)assert.deepEqual(sheets['대시보드'].values.get(key),value,'Period control preserved');
+assert.equal(JSON.stringify([sheets['Funnel Events'].data,sheets['Sheet1'].data,sheets['Demand Support'].data]),rawBefore,'Raw records unchanged');
+console.log('Dashboard regression passed: ordered and resumed chat paths, duplicate sessions, typed/B2C separation, launch boundary, validation, exclusions, mixed products, current pages, lead-status pipeline, period controls and non-overlapping native output. No remote writes.');

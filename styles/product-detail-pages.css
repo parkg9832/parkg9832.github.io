@@ -114,19 +114,18 @@ html[lang^='ko'] .product-detail-page { font-family:'Noto Sans KR','Noto Sans',s
   gap: 24px;
   width: 100%;
   max-width: 32rem;
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 1px solid currentColor;
+  margin-top: clamp(32px, 4vw, 44px);
+  text-align: left;
 }
 
 .product-detail-page .detail-introduction-features h2 {
-  font-size: .875rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1.5;
 }
 
 .product-detail-page .detail-introduction-features p {
-  margin-top: 10px;
+  margin-top: 8px;
   font-size: 1rem;
   line-height: 1.75;
 }

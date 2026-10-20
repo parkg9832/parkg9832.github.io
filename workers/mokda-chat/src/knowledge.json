@@ -2,22 +2,22 @@
   "generatedAt": "2026-10-12",
   "sourceHashes": {
     "site-help-data.js": "eadcaac95a726b9a01a9bbbaf01826020380472de4ae40d05aee9ff8c8400d6b",
-    "site-news-data.js": "05526f49c72146f1bf1ab16ca715e8534301efe4c9be93b693438c58c810b9cf",
+    "site-news-data.js": "3180875ab95f42183aa27e6b988b5779d830e3c20fd665c239884c61d4c7a5cd",
     "site-company-knowledge.js": "c89acb7cb117874394218157665375b6a587a715e15d7805e02f7c3b9a2db539",
     "ko/about.html": "8740814d60451162d94cecd9cbdf3dee2a6c78facb8305a9ea7178744a029cc3",
     "ko/products.html": "31f6faf9798aad4bffc1819cfc5f7ed40205f3d0e4f2df13371df18ca1b9290c",
-    "ko/kpeno.html": "540d05ad6bdf42b2d4261f86526c927e54ca69096317e77c05b16380f7ddc3de",
-    "ko/para-carnes.html": "cd550d5cd3e3a9a3c97f2faf4eb7ce449200fa7540bdab856d64185fcf06cb81",
+    "ko/kpeno.html": "800dbd646a8bab61241ecedd974c1c171d6f16bef7d551c983bca76d4b2b9ed8",
+    "ko/para-carnes.html": "96d14bc7d281d202a8eaa56401e88912f88cb1e53637cee2e5f80b9959c82d48",
     "ko/qna.html": "0fe3cafd11d9661c2135346341c8ff94b5f8591ffdc7a42a5b341030ebe3bad1",
     "es/about.html": "6f06b797a9fcc0bbcb8f0897820406395beb851a07d8d43d2db4f6b14ee09f29",
     "es/products.html": "134a1f3d78f86b84ddb9dae58e7b581cc54b65094d7bbddb8c4b62810fa601bb",
-    "es/kpeno.html": "dc62f2e05d66e750d2288698df46672a925db2eb9e3b5f3bc6760269c2fa3aa9",
-    "es/para-carnes.html": "b8a3400ece669c71c16e8f999817d052f30aaf4e18d13df074f1e016a793205a",
+    "es/kpeno.html": "18379c2131f43d8a249c30522983ffbb6595ca28a60ac5ebe1c75cdee57b1a35",
+    "es/para-carnes.html": "c8ba42254252f44046491166552ad7214546a1340f73ababceea62248484bc73",
     "es/qna.html": "b65a7b2c429f866b5f8b15a3c01c20a78ce30ffd486b10e7afbbcead4f6db355",
     "en/about.html": "b4b78fdfd682d5bcf30bb94e57d68da0da9f60d20580171d17c47f6f0214fb67",
     "en/products.html": "908b31e95ade684c8dacedcde42f018a3e9e440fcb964dc490ec93fba936a108",
-    "en/kpeno.html": "254feaf0f7a53bab4e35d0dfd22fd8038df7e63d4d605a67d4eae630e66db297",
-    "en/para-carnes.html": "76f5c7f5e5cec2fe7ca5e1a85ddda24a4e0b9a4efab4a0a9781ef871ab275dbc",
+    "en/kpeno.html": "0d224dc93a839beae7a7890f504bf2d0a677eccbed2bf60c353403a57fcf77dc",
+    "en/para-carnes.html": "061841e446ccbe782005ae0873a9065f77c36df607a9932c05b9e4c9a984c743",
     "en/qna.html": "cfa5ddd34c4fa6bf9c63e6fe4cff5531aed8a4518d27ee7aca22e317b67db0a5"
   },
   "languages": {
@@ -175,20 +175,20 @@
         },
         {
           "id": "news-expoalimentaria-2026",
-          "title": "MOKDA, 페루 Expoalimentaria 2026에서 Salsa Coreana 소개",
-          "text": "MOKDA, 페루 Expoalimentaria 2026에서 Salsa Coreana 소개 리마에서 바이어들과 만나고, 페루 음식에 소스를 곁들이는 방법에 대한 의견을 들었습니다. Event date: 2026-09-23 – 2026-09-25 Published: 2026-10-07 Expoalimentaria 2026 참가 MOKDA는 2026년 9월 23일부터 25일까지 페루 리마에서 열린 Expoalimentaria 2026에 참가했습니다. 부스에서 Salsa Coreana를 소개하고 바이어들과 만났으며, 페루 국회의장과 농업관개부 장관도 부스를 찾았습니다. Expoalimentaria 2026 참가 박겸 대표는 KOTRA 인터뷰에서 방문객들이 폴로 아 라 브라사, 햄버거, 엠파나다에 소스를 곁들이는 방법을 제안했다고 전했습니다.",
+          "title": "Expoalimentaria 2026에서 선보인 Salsa Coreana",
+          "text": "Expoalimentaria 2026에서 선보인 Salsa Coreana 리마에서 바이어들과 만나고, 페루 음식에 소스를 곁들이는 방법에 대한 의견을 들었습니다. Event date: 2026-09-23 – 2026-09-25 Published: 2026-10-07 Expoalimentaria 2026 참가 MOKDA는 2026년 9월 23일부터 25일까지 페루 리마에서 열린 Expoalimentaria 2026에 참가했습니다. 부스에서 Salsa Coreana를 소개하고 바이어들과 만났으며, 페루 국회의장과 농업관개부 장관도 부스를 찾았습니다. Expoalimentaria 2026 참가 박겸 대표는 KOTRA 인터뷰에서 방문객들이 폴로 아 라 브라사, 햄버거, 엠파나다에 소스를 곁들이는 방법을 제안했다고 전했습니다.",
           "path": "/ko/news-expoalimentaria-2026.html"
         },
         {
           "id": "news-kpop-style",
-          "title": "MOKDA, 페루 KPOP STYLE에서 무대인사·소스 증정",
-          "text": "MOKDA, 페루 KPOP STYLE에서 무대인사·소스 증정 K-pop 팬들과 인사를 나누고 Salsa Coreana 추첨 이벤트를 진행했습니다. Event date: 2026-09-27 Published: 2026-10-07 KPOP STYLE 참가 2026년 9월 27일, MOKDA는 페루 KPOP STYLE 무대에서 관객들에게 인사를 전했습니다. 현장에서는 Salsa Coreana를 증정하는 추첨을 진행했고, 참가자들과 소스를 들고 단체사진도 찍었습니다.",
+          "title": "페루 KPOP STYLE 무대인사·소스 증정",
+          "text": "페루 KPOP STYLE 무대인사·소스 증정 K-pop 팬들과 인사를 나누고 Salsa Coreana 추첨 이벤트를 진행했습니다. Event date: 2026-09-27 Published: 2026-10-07 KPOP STYLE 참가 2026년 9월 27일, MOKDA는 페루 KPOP STYLE 무대에서 관객들에게 인사를 전했습니다. 현장에서는 Salsa Coreana를 증정하는 추첨을 진행했고, 참가자들과 소스를 들고 단체사진도 찍었습니다.",
           "path": "/ko/news-kpop-style.html"
         },
         {
           "id": "news-kotra-lima",
-          "title": "MOKDA, KOTRA LIMA 무역관 미팅 진행",
-          "text": "MOKDA, KOTRA LIMA 무역관 미팅 진행 리마 무역관 관장과 실무진을 만나 수출 준비와 페루 시장 진출을 논의했습니다. Event date: 2026-09-28 Published: 2026-10-07 KOTRA 리마 무역관 방문 2026년 9월 28일 MOKDA가 KOTRA LIMA 무역관을 방문했습니다. 박겸 대표는 관장과 수출 전반에 관한 이야기를 나눈 뒤, 실무진과 현지 시장 진출에 필요한 준비 사항을 논의했습니다.",
+          "title": "KOTRA 리마 무역관과 수출 준비 논의",
+          "text": "KOTRA 리마 무역관과 수출 준비 논의 리마 무역관 관장과 실무진을 만나 수출 준비와 페루 시장 진출을 논의했습니다. Event date: 2026-09-28 Published: 2026-10-07 KOTRA 리마 무역관 방문 2026년 9월 28일 MOKDA가 KOTRA LIMA 무역관을 방문했습니다. 박겸 대표는 관장과 수출 전반에 관한 이야기를 나눈 뒤, 실무진과 현지 시장 진출에 필요한 준비 사항을 논의했습니다.",
           "path": "/ko/news-kotra-lima.html"
         },
         {
@@ -205,14 +205,14 @@
         },
         {
           "id": "news-gimje-hint",
-          "title": "MOKDA, 김제 청년예비창업 도전지원사업 ‘힌트’ 선정",
-          "text": "MOKDA, 김제 청년예비창업 도전지원사업 ‘힌트’ 선정 김제와 전북 농산물을 활용한 중남미 수출용 소스 개발 계획으로 선정됐습니다. Event date: 2026-03-13 Published: 2026-10-08 힌트 선정 MOKDA가 2026 김제 청년 예비창업 도전 지원사업 ‘힌트(H.I.N.T.)’에 선정됐습니다. 박겸 대표는 김제와 전북 농산물을 활용한 중남미 수출용 퓨전 칠리소스 개발 계획을 제안했으며, 최종 선정 결과는 3월 13일 발표됐습니다. 힌트 선정 힌트는 지역 자원을 활용해 사업을 시작하려는 청년에게 창업 교육과 전문가 컨설팅, 네트워킹을 지원하는 사업입니다. 전라일보는 선정 소식을 보도하면서 MOKDA의 개발 계획도 소개했습니다.",
+          "title": "김제 청년예비창업 도전지원사업 ‘힌트’ 선정",
+          "text": "김제 청년예비창업 도전지원사업 ‘힌트’ 선정 김제와 전북 농산물을 활용한 중남미 수출용 소스 개발 계획으로 선정됐습니다. Event date: 2026-03-13 Published: 2026-10-08 힌트 선정 MOKDA가 2026 김제 청년 예비창업 도전 지원사업 ‘힌트(H.I.N.T.)’에 선정됐습니다. 박겸 대표는 김제와 전북 농산물을 활용한 중남미 수출용 퓨전 칠리소스 개발 계획을 제안했으며, 최종 선정 결과는 3월 13일 발표됐습니다. 힌트 선정 힌트는 지역 자원을 활용해 사업을 시작하려는 청년에게 창업 교육과 전문가 컨설팅, 네트워킹을 지원하는 사업입니다. 전라일보는 선정 소식을 보도하면서 MOKDA의 개발 계획도 소개했습니다.",
           "path": "/ko/news-gimje-hint.html"
         },
         {
           "id": "news-gimje-youth-day",
-          "title": "박겸 MOKDA 대표, 김제 청년의 날 표창장 받아",
-          "text": "박겸 MOKDA 대표, 김제 청년의 날 표창장 받아 9월 17일 김제청년공간 E:DA에서 열린 기념행사에서 표창장을 받았습니다. Event date: 2026-09-17 Published: 2026-10-08 청년의 날 표창 MOKDA 박겸 대표가 2026년 9월 17일 김제청년공간 E:DA에서 열린 청년의 날 기념행사에서 표창장을 받았습니다. 청년의 권익과 지역사회 발전에 기여한 공로로 받은 표창입니다. 행사에서는 청년 유공 표창과 함께 청년들의 대화와 교류 프로그램도 진행됐으며, 전북중앙이 행사 소식을 보도했습니다.",
+          "title": "박겸 대표, 김제 청년의 날 표창",
+          "text": "박겸 대표, 김제 청년의 날 표창 9월 17일 김제청년공간 E:DA에서 열린 기념행사에서 표창장을 받았습니다. Event date: 2026-09-17 Published: 2026-10-08 청년의 날 표창 MOKDA 박겸 대표가 2026년 9월 17일 김제청년공간 E:DA에서 열린 청년의 날 기념행사에서 표창장을 받았습니다. 청년의 권익과 지역사회 발전에 기여한 공로로 받은 표창입니다. 행사에서는 청년 유공 표창과 함께 청년들의 대화와 교류 프로그램도 진행됐으며, 전북중앙이 행사 소식을 보도했습니다.",
           "path": "/ko/news-gimje-youth-day.html"
         }
       ]
@@ -371,20 +371,20 @@
         },
         {
           "id": "news-expoalimentaria-2026",
-          "title": "MOKDA presenta Salsa Coreana en Expoalimentaria 2026",
-          "text": "MOKDA presenta Salsa Coreana en Expoalimentaria 2026 Del 23 al 25 de septiembre, MOKDA presentó sus salsas a visitantes y compradores en Lima. Event date: 2026-09-23 – 2026-09-25 Published: 2026-10-07 Expoalimentaria 2026 MOKDA participó en Expoalimentaria 2026, celebrada del 23 al 25 de septiembre en Lima. En su stand presentó Salsa Coreana y se reunió con compradores. También recibió la visita del presidente del Congreso del Perú y del ministro de Desarrollo Agrario y Riego. Expoalimentaria 2026 Algunos visitantes sugirieron acompañar pollo a la brasa, hamburguesas y empanadas con las salsas. Gyeom Park contó estas propuestas en su entrevista con KOTRA.",
+          "title": "Salsa Coreana en Expoalimentaria 2026",
+          "text": "Salsa Coreana en Expoalimentaria 2026 Del 23 al 25 de septiembre, MOKDA presentó sus salsas a visitantes y compradores en Lima. Event date: 2026-09-23 – 2026-09-25 Published: 2026-10-07 Expoalimentaria 2026 MOKDA participó en Expoalimentaria 2026, celebrada del 23 al 25 de septiembre en Lima. En su stand presentó Salsa Coreana y se reunió con compradores. También recibió la visita del presidente del Congreso del Perú y del ministro de Desarrollo Agrario y Riego. Expoalimentaria 2026 Algunos visitantes sugirieron acompañar pollo a la brasa, hamburguesas y empanadas con las salsas. Gyeom Park contó estas propuestas en su entrevista con KOTRA.",
           "path": "/es/news-expoalimentaria-2026.html"
         },
         {
           "id": "news-kpop-style",
-          "title": "MOKDA sortea Salsa Coreana en KPOP STYLE",
-          "text": "MOKDA sortea Salsa Coreana en KPOP STYLE La marca saludó al público desde el escenario y sorteó sus salsas entre los asistentes en Perú. Event date: 2026-09-27 Published: 2026-10-07 KPOP STYLE MOKDA participó en KPOP STYLE, en Perú, el 27 de septiembre de 2026. La marca saludó al público desde el escenario, realizó un sorteo de Salsa Coreana y se tomó una foto grupal con los asistentes y las salsas.",
+          "title": "Salsa Coreana en KPOP STYLE",
+          "text": "Salsa Coreana en KPOP STYLE La marca saludó al público desde el escenario y sorteó sus salsas entre los asistentes en Perú. Event date: 2026-09-27 Published: 2026-10-07 KPOP STYLE MOKDA participó en KPOP STYLE, en Perú, el 27 de septiembre de 2026. La marca saludó al público desde el escenario, realizó un sorteo de Salsa Coreana y se tomó una foto grupal con los asistentes y las salsas.",
           "path": "/es/news-kpop-style.html"
         },
         {
           "id": "news-kotra-lima",
-          "title": "MOKDA se reúne con la oficina de KOTRA en Lima",
-          "text": "MOKDA se reúne con la oficina de KOTRA en Lima La reunión abordó la preparación de las exportaciones y la entrada al mercado peruano. Event date: 2026-09-28 Published: 2026-10-07 Reunión con KOTRA en Lima MOKDA visitó la oficina de KOTRA en Lima el 28 de septiembre de 2026. Gyeom Park conversó con la dirección sobre las exportaciones de MOKDA y con el personal de la oficina sobre los preparativos para exportar y entrar al mercado peruano.",
+          "title": "Reunión sobre exportaciones con KOTRA en Lima",
+          "text": "Reunión sobre exportaciones con KOTRA en Lima La reunión abordó la preparación de las exportaciones y la entrada al mercado peruano. Event date: 2026-09-28 Published: 2026-10-07 Reunión con KOTRA en Lima MOKDA visitó la oficina de KOTRA en Lima el 28 de septiembre de 2026. Gyeom Park conversó con la dirección sobre las exportaciones de MOKDA y con el personal de la oficina sobre los preparativos para exportar y entrar al mercado peruano.",
           "path": "/es/news-kotra-lima.html"
         },
         {
@@ -401,14 +401,14 @@
         },
         {
           "id": "news-gimje-hint",
-          "title": "MOKDA, seleccionada para el programa de emprendimiento HINT de Gimje",
-          "text": "MOKDA, seleccionada para el programa de emprendimiento HINT de Gimje El proyecto propone desarrollar salsas para Latinoamérica con productos agrícolas de Gimje y Jeonbuk. Event date: 2026-03-13 Published: 2026-10-08 Programa HINT MOKDA fue seleccionada para HINT, el programa de Gimje para jóvenes que quieren emprender. Los resultados se anunciaron el 13 de marzo de 2026. Gyeom Park presentó un proyecto para desarrollar una salsa de chile con productos agrícolas de Gimje y Jeonbuk para el mercado latinoamericano. Programa HINT HINT ofrece formación, asesoría especializada y encuentros entre emprendedores para poner en marcha proyectos que utilizan recursos locales. Jeolla Ilbo incluyó la propuesta de MOKDA en su nota sobre los proyectos seleccionados.",
+          "title": "Selección para el programa de emprendimiento HINT de Gimje",
+          "text": "Selección para el programa de emprendimiento HINT de Gimje El proyecto propone desarrollar salsas para Latinoamérica con productos agrícolas de Gimje y Jeonbuk. Event date: 2026-03-13 Published: 2026-10-08 Programa HINT MOKDA fue seleccionada para HINT, el programa de Gimje para jóvenes que quieren emprender. Los resultados se anunciaron el 13 de marzo de 2026. Gyeom Park presentó un proyecto para desarrollar una salsa de chile con productos agrícolas de Gimje y Jeonbuk para el mercado latinoamericano. Programa HINT HINT ofrece formación, asesoría especializada y encuentros entre emprendedores para poner en marcha proyectos que utilizan recursos locales. Jeolla Ilbo incluyó la propuesta de MOKDA en su nota sobre los proyectos seleccionados.",
           "path": "/es/news-gimje-hint.html"
         },
         {
           "id": "news-gimje-youth-day",
-          "title": "Gyeom Park, fundador de MOKDA, recibe un reconocimiento en Gimje",
-          "text": "Gyeom Park, fundador de MOKDA, recibe un reconocimiento en Gimje La distinción se entregó en el Día de la Juventud por su contribución a los jóvenes y a la comunidad. Event date: 2026-09-17 Published: 2026-10-08 Día de la Juventud Gyeom Park, fundador de MOKDA, recibió un certificado de reconocimiento en la celebración del Día de la Juventud de Gimje, el 17 de septiembre de 2026 en E:DA Gimje. La distinción reconoce su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local. La ceremonia también incluyó actividades de diálogo e intercambio entre jóvenes. Jeonbuk Joongang publicó una nota sobre el evento.",
+          "title": "Gyeom Park recibe un reconocimiento en el Día de la Juventud de Gimje",
+          "text": "Gyeom Park recibe un reconocimiento en el Día de la Juventud de Gimje La distinción se entregó en el Día de la Juventud por su contribución a los jóvenes y a la comunidad. Event date: 2026-09-17 Published: 2026-10-08 Día de la Juventud Gyeom Park, fundador de MOKDA, recibió un certificado de reconocimiento en la celebración del Día de la Juventud de Gimje, el 17 de septiembre de 2026 en E:DA Gimje. La distinción reconoce su contribución a los derechos e intereses de los jóvenes y al desarrollo de la comunidad local. La ceremonia también incluyó actividades de diálogo e intercambio entre jóvenes. Jeonbuk Joongang publicó una nota sobre el evento.",
           "path": "/es/news-gimje-youth-day.html"
         }
       ]
@@ -567,20 +567,20 @@
         },
         {
           "id": "news-expoalimentaria-2026",
-          "title": "MOKDA presents Salsa Coreana at Expoalimentaria 2026",
-          "text": "MOKDA presents Salsa Coreana at Expoalimentaria 2026 MOKDA met buyers in Lima and introduced its Korean sauces to visitors. Event date: 2026-09-23 – 2026-09-25 Published: 2026-10-07 Expoalimentaria 2026 MOKDA presented Salsa Coreana and met buyers at Expoalimentaria 2026 in Lima from September 23 to 25. The president of Peru’s Congress and the minister of Agrarian Development and Irrigation also visited the booth. Expoalimentaria 2026 In his KOTRA interview, founder Gyeom Park said visitors had suggested serving the sauces with pollo a la brasa, burgers and empanadas.",
+          "title": "Salsa Coreana at Expoalimentaria 2026",
+          "text": "Salsa Coreana at Expoalimentaria 2026 MOKDA met buyers in Lima and introduced its Korean sauces to visitors. Event date: 2026-09-23 – 2026-09-25 Published: 2026-10-07 Expoalimentaria 2026 MOKDA presented Salsa Coreana and met buyers at Expoalimentaria 2026 in Lima from September 23 to 25. The president of Peru’s Congress and the minister of Agrarian Development and Irrigation also visited the booth. Expoalimentaria 2026 In his KOTRA interview, founder Gyeom Park said visitors had suggested serving the sauces with pollo a la brasa, burgers and empanadas.",
           "path": "/en/news-expoalimentaria-2026.html"
         },
         {
           "id": "news-kpop-style",
-          "title": "MOKDA gives away Salsa Coreana at KPOP STYLE in Peru",
-          "text": "MOKDA gives away Salsa Coreana at KPOP STYLE in Peru A greeting from the stage and a Salsa Coreana prize draw for K-pop fans. Event date: 2026-09-27 Published: 2026-10-07 KPOP STYLE MOKDA took part in KPOP STYLE in Peru on September 27, 2026. MOKDA greeted fans from the stage, held a Salsa Coreana prize draw and posed for a group photo with attendees holding the sauces.",
+          "title": "Salsa Coreana at KPOP STYLE in Peru",
+          "text": "Salsa Coreana at KPOP STYLE in Peru A greeting from the stage and a Salsa Coreana prize draw for K-pop fans. Event date: 2026-09-27 Published: 2026-10-07 KPOP STYLE MOKDA took part in KPOP STYLE in Peru on September 27, 2026. MOKDA greeted fans from the stage, held a Salsa Coreana prize draw and posed for a group photo with attendees holding the sauces.",
           "path": "/en/news-kpop-style.html"
         },
         {
           "id": "news-kotra-lima",
-          "title": "MOKDA meets with KOTRA’s Lima office",
-          "text": "MOKDA meets with KOTRA’s Lima office The meeting covered export plans and preparations for entering the Peruvian market. Event date: 2026-09-28 Published: 2026-10-07 Meeting with KOTRA in Lima MOKDA visited KOTRA’s Lima office on September 28, 2026. Founder Gyeom Park discussed exports with the head of the office, then spoke with staff about the practical steps needed to prepare exports and enter the Peruvian market.",
+          "title": "Export planning meeting with KOTRA in Lima",
+          "text": "Export planning meeting with KOTRA in Lima The meeting covered export plans and preparations for entering the Peruvian market. Event date: 2026-09-28 Published: 2026-10-07 Meeting with KOTRA in Lima MOKDA visited KOTRA’s Lima office on September 28, 2026. Founder Gyeom Park discussed exports with the head of the office, then spoke with staff about the practical steps needed to prepare exports and enter the Peruvian market.",
           "path": "/en/news-kotra-lima.html"
         },
         {
@@ -597,14 +597,14 @@
         },
         {
           "id": "news-gimje-hint",
-          "title": "MOKDA selected for Gimje’s HINT startup program",
-          "text": "MOKDA selected for Gimje’s HINT startup program A plan to develop sauces for Latin America using ingredients from Gimje and Jeonbuk. Event date: 2026-03-13 Published: 2026-10-08 HINT selection MOKDA was selected for Gimje’s 2026 HINT program for young aspiring entrepreneurs. The results were announced on March 13. Founder Gyeom Park submitted a plan to develop fusion chili sauces for Latin America using agricultural products from Gimje and Jeonbuk. HINT selection HINT supports young people starting businesses with local resources through training, expert advice and networking. Jeolla Ilbo featured MOKDA’s proposal in its report on the selected projects.",
+          "title": "Selected for Gimje’s HINT startup program",
+          "text": "Selected for Gimje’s HINT startup program A plan to develop sauces for Latin America using ingredients from Gimje and Jeonbuk. Event date: 2026-03-13 Published: 2026-10-08 HINT selection MOKDA was selected for Gimje’s 2026 HINT program for young aspiring entrepreneurs. The results were announced on March 13. Founder Gyeom Park submitted a plan to develop fusion chili sauces for Latin America using agricultural products from Gimje and Jeonbuk. HINT selection HINT supports young people starting businesses with local resources through training, expert advice and networking. Jeolla Ilbo featured MOKDA’s proposal in its report on the selected projects.",
           "path": "/en/news-gimje-hint.html"
         },
         {
           "id": "news-gimje-youth-day",
-          "title": "MOKDA founder Gyeom Park receives a commendation on Gimje’s Youth Day",
-          "text": "MOKDA founder Gyeom Park receives a commendation on Gimje’s Youth Day The commendation was presented at E:DA Gimje on September 17, 2026. Event date: 2026-09-17 Published: 2026-10-08 Youth Day commendation MOKDA founder Gyeom Park received a certificate of commendation at Gimje’s Youth Day celebration on September 17, 2026, at E:DA Gimje. It recognized his contributions to young people’s rights and interests and to local community development. The event also included discussion and exchange activities for young people. Jeonbuk Joongang reported on the celebration.",
+          "title": "Gyeom Park receives a commendation on Gimje’s Youth Day",
+          "text": "Gyeom Park receives a commendation on Gimje’s Youth Day The commendation was presented at E:DA Gimje on September 17, 2026. Event date: 2026-09-17 Published: 2026-10-08 Youth Day commendation MOKDA founder Gyeom Park received a certificate of commendation at Gimje’s Youth Day celebration on September 17, 2026, at E:DA Gimje. It recognized his contributions to young people’s rights and interests and to local community development. The event also included discussion and exchange activities for young people. Jeonbuk Joongang reported on the celebration.",
           "path": "/en/news-gimje-youth-day.html"
         }
       ]

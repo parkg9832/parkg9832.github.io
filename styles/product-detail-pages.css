@@ -119,7 +119,7 @@ html[lang^='ko'] .product-detail-page { font-family:'Noto Sans KR','Noto Sans',s
 }
 
 .product-detail-page .detail-introduction-features h2 {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.5;
 }
@@ -271,6 +271,17 @@ html[lang^='ko'] .product-detail-page :is(.detail-localized-subtitle, .detail-in
   .product-detail-page .detail-localized-subtitle {
     font-size: 1rem;
     line-height: 1.75;
+  }
+}
+
+@media (min-width: 1024px) {
+  .product-detail-page .detail-introduction-features h2 {
+    font-size: 1.5rem;
+  }
+
+  .product-detail-page .detail-introduction-features p,
+  .product-detail-page .detail-localized-subtitle {
+    font-size: 1.125rem;
   }
 }
 

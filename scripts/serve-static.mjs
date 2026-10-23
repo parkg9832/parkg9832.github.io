@@ -23,7 +23,7 @@ const mimeTypes = {
   '.vtt': 'text/vtt; charset=utf-8',
 };
 
-createServer(async (request, response) => {
+const server = createServer(async (request, response) => {
   try {
     if (!['GET', 'HEAD'].includes(request.method)) {
       response.writeHead(405, { Allow: 'GET, HEAD' });
@@ -64,6 +64,7 @@ createServer(async (request, response) => {
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Not found');
   }
-}).listen(port, '127.0.0.1', () => {
-  console.log(`MOKDA preview: http://127.0.0.1:${port}`);
+});
+server.listen(port, '127.0.0.1', () => {
+  console.log(`MOKDA preview: http://127.0.0.1:${server.address().port}`);
 });

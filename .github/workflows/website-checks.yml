@@ -20,7 +20,20 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Ensure video test runtime
-        run: test -x /usr/bin/ffmpeg || (sudo apt-get update && sudo apt-get install --no-install-recommends -y ffmpeg)
+        timeout-minutes: 5
+        run: |
+          if ! test -x /usr/bin/ffmpeg; then
+            # Use Ubuntu's signed package archive with bounded network retries.
+            for source in /etc/apt/sources.list /etc/apt/sources.list.d/ubuntu.sources /etc/apt/apt-mirrors.txt; do
+              if test -f "$source"; then
+                sudo sed -i -E 's|https?://azure\.archive\.ubuntu\.com/ubuntu|https://archive.ubuntu.com/ubuntu|g' "$source"
+              fi
+            done
+            apt_options=(-o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20)
+            sudo apt-get "${apt_options[@]}" update
+            sudo apt-get "${apt_options[@]}" install --no-install-recommends -y ffmpeg
+          fi
+          /usr/bin/ffmpeg -version
       - run: npm audit --omit=dev --audit-level=moderate
       - run: npm run generate:i18n
       - run: node workers/mokda-chat/scripts/generate-knowledge.mjs

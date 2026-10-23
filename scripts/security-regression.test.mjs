@@ -4,6 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { once } from 'node:events';
+import { createInterface } from 'node:readline';
 import vm from 'node:vm';
 import { JSDOM } from 'jsdom';
 import { fileURLToPath } from 'node:url';
@@ -111,24 +112,29 @@ for (const locale of ['', 'ko', 'es', 'en']) for (const page of publicPages) {
   }
 }
 
-const server = spawn(process.execPath, [fileURLToPath(new URL('serve-static.mjs', import.meta.url)), '4191'], { stdio: ['ignore', 'pipe', 'pipe'] });
+const server = spawn(process.execPath, [fileURLToPath(new URL('serve-static.mjs', import.meta.url)), '0'], { stdio: ['ignore', 'pipe', 'pipe'] });
+const serverOutput = createInterface({ input: server.stdout });
+let serverError = '';
+server.stderr.on('data', chunk => { serverError += chunk; });
 try {
-  await Promise.race([once(server.stdout, 'data'), once(server, 'exit').then(() => { throw new Error('Preview failed to start'); })]);
+  const [startup] = await Promise.race([once(serverOutput, 'line'), once(server, 'exit').then(() => { throw new Error('Preview failed to start: ' + serverError); })]);
+  const origin = /MOKDA preview: (http:\/\/127\.0\.0\.1:\d+)/.exec(startup)?.[1];
+  assert(origin, 'Preview must report its assigned listening address');
   for (const path of ['/.git/config', '/.env', '/apps-script/b2b-lead-automation.gs', '/workers/mokda-chat/src/chat.js', '/workers/mokda-chat/wrangler.jsonc', '/workers/mokda-chat/.dev.vars', '/output/chat-knowledge/intake.json', '/scripts/news-manager.mjs', '/docs/FOUR_PAGE_REFINEMENT.md', '/package-lock.json', '/%ZZ', '/..%5C.env']) {
-    assert.equal((await fetch('http://127.0.0.1:4191' + path)).status, 404, path);
+    assert.equal((await fetch(origin + path)).status, 404, path);
   }
-  const response = await fetch('http://127.0.0.1:4191/ko/');
+  const response = await fetch(origin + '/ko/');
   assert.equal(response.status, 200);
   assert.equal(response.headers.get('x-content-type-options'), 'nosniff');
-  assert.equal((await fetch('http://127.0.0.1:4191/ko/', { method: 'POST' })).status, 405);
-  const media = 'http://127.0.0.1:4191/assets/videos/news/creator-shuri.mp4';
+  assert.equal((await fetch(origin + '/ko/', { method: 'POST' })).status, 405);
+  const media = origin + '/assets/videos/news/creator-shuri.mp4';
   const partial = await fetch(media, {headers:{Range:'bytes=0-127'}});
   assert.equal(partial.status,206,'Video range requests support seeking');
   assert.equal(partial.headers.get('content-type'),'video/mp4');
   assert.match(partial.headers.get('content-range'),/^bytes 0-127\/\d+$/);
   assert.equal((await partial.arrayBuffer()).byteLength,128);
   assert.equal((await fetch(media,{headers:{Range:'bytes=999999999-'}})).status,416);
-} finally { server.kill(); }
+} finally { serverOutput.close(); server.kill(); }
 console.log(`Security regressions passed: public endpoints, schema/size bounds, formula safety, receipts, quotas, CSP across ${publicPages.length * 4} source/localized pages, publishing exclusions and private paths.`);
 await import('./inquiry-quota.test.mjs');
 await import('./inquiry-turnstile.test.mjs');

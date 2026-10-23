@@ -3,6 +3,7 @@ import {mkdtemp,readFile,writeFile,mkdir,copyFile,readdir,cp,stat} from 'node:fs
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {once} from 'node:events';
+import {request} from 'node:http';
 import {JSDOM} from 'jsdom';
 import {createNewsManager} from './news-manager.mjs';
 import {loadNews,validateStory} from './news-store.mjs';
@@ -24,10 +25,16 @@ await mkdir(join(fixture,'assets/videos/news'),{recursive:true});
 for(const name of await readdir(join(root,'assets/videos/news')))await writeFile(join(fixture,'assets/videos/news',name),Buffer.from('fixture-only'));
 process.env.MOKDA_FFMPEG ||= process.platform === 'win32' ? join(root,'output/tools/ffmpeg/ffmpeg-9.0.2-essentials_build/bin/ffmpeg.exe') : '/usr/bin/ffmpeg';
 const productionBefore=await readFile(join(root,'site-news-data.js'),'utf8');
-const port=4189,origin=`http://127.0.0.1:${port}`,server=createNewsManager({root:fixture,port});
-server.listen(port,'127.0.0.1');await once(server,'listening');
+const server=createNewsManager({root:fixture,port:0});
+server.listen(0,'127.0.0.1');await once(server,'listening');
+const origin=`http://127.0.0.1:${server.address().port}`;
 try{
  const html=await (await fetch(origin)).text();const token=/name="mokda-session" content="([a-f0-9]+)"/.exec(html)[1];
+ const foreignHostStatus=await new Promise((resolve,reject)=>{
+  const req=request(origin+'/api/news',{headers:{Host:'example.invalid'}},response=>{response.on('end',()=>resolve(response.statusCode));response.resume();});
+  req.on('error',reject);req.end();
+ });
+ assert.equal(foreignHostStatus,403,'Reject a foreign Host even when the server uses an assigned port');
  const response=await fetch(origin+'/api/news');assert.equal(response.headers.get('x-frame-options'),'DENY');
  const initial=await response.json();
  const from=initial.data.stories.find(story=>story.homeFeatured&&story.homeOrder===1);

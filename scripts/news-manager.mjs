@@ -9,15 +9,16 @@ import sharp from 'sharp';
 import {loadNews,saveStory,listMedia} from './news-store.mjs';
 
 export function createNewsManager({root,port=4178,build=true}={}){
-  const token=randomBytes(32).toString('hex'),origin=`http://127.0.0.1:${port}`;
+  const token=randomBytes(32).toString('hex');
   let busy=false;
   const headers={'X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Referrer-Policy':'no-referrer','Cache-Control':'no-store','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'"};
   const json=(res,status,value)=>{res.writeHead(status,{...headers,'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify(value));};
   async function body(req,limit){const chunks=[];let size=0;for await(const chunk of req){size+=chunk.length;if(size>limit){req.resume();throw Object.assign(new Error('파일 또는 내용이 허용 크기를 넘었습니다.'),{status:413});}chunks.push(chunk);}return Buffer.concat(chunks);}
   function run(command,args){return new Promise((resolve,reject)=>{const child=spawn(command,args,{cwd:root,windowsHide:true});let error='';child.stderr.on('data',chunk=>{error=(error+chunk.toString()).slice(-3000);});child.stdout.resume();child.on('error',reject);child.on('exit',code=>code===0?resolve():reject(new Error(error||'미리보기를 생성하지 못했습니다.')));});}
-  return createServer(async(req,res)=>{
+  const server=createServer(async(req,res)=>{
     try{
-      if(req.headers.host!==`127.0.0.1:${port}`){json(res,403,{error:'허용된 로컬 주소로 접속해주세요.'});return;}
+      const address=server.address(),origin=`http://127.0.0.1:${address.port}`;
+      if(req.headers.host!==`127.0.0.1:${address.port}`){json(res,403,{error:'허용된 로컬 주소로 접속해주세요.'});return;}
       const url=new URL(req.url,origin);
       if(req.method==='POST'){
         if(req.headers.origin!==origin||req.headers['x-mokda-session']!==token){json(res,403,{error:'로컬 편집 세션을 새로 열어주세요.'});return;}
@@ -68,9 +69,11 @@ export function createNewsManager({root,port=4178,build=true}={}){
       json(res,404,{error:'파일을 찾을 수 없습니다.'});
     }catch(error){json(res,error.status||400,{error:error.status?error.message:'요청 내용을 확인해주세요. '+error.message.slice(0,250)});}
   });
+  return server;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){
   const root=join(dirname(fileURLToPath(import.meta.url)),'..');
   const port=Number(process.argv[2]||4178);
-  createNewsManager({root,port}).listen(port,'127.0.0.1',()=>console.log(`MOKDA 소식 관리: http://127.0.0.1:${port} (로컬 저장·미리보기 전용)`));
+  const server=createNewsManager({root,port});
+  server.listen(port,'127.0.0.1',()=>console.log(`MOKDA 소식 관리: http://127.0.0.1:${server.address().port} (로컬 저장·미리보기 전용)`));
 }

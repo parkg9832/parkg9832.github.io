@@ -11,7 +11,7 @@
       addressLabel: 'Dirección',
       address: '44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, República de Corea',
       ipTitle: 'Propiedad intelectual',
-      ip: 'El nombre de la marca, los nombres de los productos, los diseños de empaque y los materiales relacionados de MOKDA están en proceso de protección mediante marcas y otros derechos de propiedad intelectual.',
+      ip: 'Estamos tramitando la protección de la marca MOKDA, los nombres de nuestros productos, los diseños de empaque y los materiales relacionados mediante marcas y otros derechos de propiedad intelectual.',
       navigationLabel: 'Explorar MOKDA',
       socialLabel: 'Redes sociales',
       navigation: [
@@ -35,7 +35,7 @@
       addressLabel: 'Address',
       address: '44 Nambuk 10-gil, 2F, Gimje-si, Jeonbuk State, Republic of Korea',
       ipTitle: 'Intellectual Property',
-      ip: 'MOKDA’s brand name, product names, packaging designs, and related materials are undergoing trademark and intellectual property protection procedures.',
+      ip: 'MOKDA is pursuing trademark and other intellectual property protection for its brand name, product names, packaging designs and related materials.',
       navigationLabel: 'Explore MOKDA',
       socialLabel: 'Follow MOKDA',
       navigation: [
@@ -59,7 +59,7 @@
       addressLabel: '주소',
       address: '전북특별자치도 김제시 남북10길 44, 2층',
       ipTitle: '지식재산권',
-      ip: 'MOKDA의 브랜드명, 제품명, 패키지 디자인 및 관련 자료는 상표권 및 지식재산권 보호 절차를 진행 중입니다.',
+      ip: 'MOKDA는 브랜드명, 제품명, 패키지 디자인과 관련 자료를 보호하기 위한 상표권 및 지식재산권 절차를 진행하고 있습니다.',
       navigationLabel: 'MOKDA 둘러보기',
       socialLabel: 'MOKDA SNS',
       navigation: [

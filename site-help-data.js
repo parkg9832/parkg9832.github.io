@@ -9,7 +9,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'choose',
             question: '어떤 소스를 고르면 좋을까요?',
-            answer: '매콤한 소스를 찾으신다면 고추장과 할라피뇨를 담은 K-PEÑO를 살펴보세요. 고기나 채소에 곁들일 깊은 감칠맛의 소스를 원하시면 쌈장 기반의 Para Carnes가 잘 어울립니다.',
+            answer: '매콤한 소스를 좋아하시면 고추장과 할라피뇨로 만든 K-PEÑO를 추천합니다. 고기나 채소에 곁들일 진한 감칠맛을 원하시면 쌈장으로 만든 Para Carnes를 골라보세요.',
             link: { label: '두 제품 비교하기', path: 'products.html' },
           },
           {
@@ -57,7 +57,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'horeca',
             question: '매장이나 레스토랑에서 사용하고 싶어요.',
-            answer: '리테일, 레스토랑과 HORECA 관련 문의를 받습니다. 사용할 국가와 업종, 관심 제품과 예상 수량을 알려주세요.',
+            answer: '소매점, 레스토랑, HORECA 업종의 문의를 받습니다. 사용할 국가와 업종, 관심 제품과 예상 수량을 알려주세요.',
             link: { label: '사업 문의하기', path: 'contact.html?purpose=distribution' },
           },
         ],
@@ -69,13 +69,13 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'brand',
             question: 'MOKDA와 Salsa Coreana는 무엇인가요?',
-            answer: 'MOKDA는 한국의 맛을 라틴아메리카의 일상 식탁과 연결하는 K-Food 브랜드입니다. Salsa Coreana는 익숙한 음식에 한국 소스를 곁들일 수 있도록 만든 MOKDA의 첫 번째 제품 라인입니다.',
+            answer: 'MOKDA는 중남미의 일상 음식에 어울리는 한국 소스를 만드는 K-Food 브랜드입니다. Salsa Coreana는 익숙한 음식에 한국 소스를 곁들여 먹을 수 있도록 만든 첫 번째 제품 라인입니다.',
             link: { label: '브랜드 소개 보기', path: 'about.html' },
           },
           {
             id: 'history',
             question: 'MOKDA의 시작과 연혁이 궁금해요.',
-            answer: 'MOKDA는 라틴아메리카에서 함께 식사하고 소스를 즐기는 모습을 경험하며 시작됐습니다. 브랜드 소개 페이지에서 시작 이야기와 연도별 활동을 볼 수 있습니다.',
+            answer: 'MOKDA의 시작은 중남미에서 사람들과 식사하며 음식에 소스를 곁들여 먹던 경험이었습니다. 브랜드 소개 페이지에서 시작 이야기와 연도별 활동을 볼 수 있습니다.',
             link: { label: 'MOKDA 연혁 보기', path: 'about.html#history' },
           },
           {
@@ -93,7 +93,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'creators',
             question: '크리에이터 협업 영상은 어디서 볼 수 있나요?',
-            answer: '크리에이터들이 제품을 소개하고 음식에 소스를 곁들이는 모습을 영상으로 볼 수 있습니다. 크리에이터 협업 페이지에서 영상을 선택해 재생해보세요.',
+            answer: '크리에이터 협업 페이지에서 제품 소개와 소스를 곁들인 음식 영상을 볼 수 있습니다. 보고 싶은 영상을 선택해보세요.',
             link: { label: '협업 영상 보기', path: 'news-creators.html' },
           },
           {
@@ -121,25 +121,25 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'choose',
             question: '¿Qué salsa me recomiendan?',
-            answer: 'Si buscas un toque picante, prueba K-PEÑO, con gochujang y jalapeño. Para acompañar carnes y verduras con un sabor umami profundo, conoce Para Carnes, nuestra salsa a base de ssamjang.',
+            answer: 'Si te gusta el picante, prueba K-PEÑO, con gochujang y jalapeño. Si prefieres una salsa con umami intenso para carnes y verduras, te recomendamos Para Carnes, a base de ssamjang.',
             link: { label: 'Comparar las salsas', path: 'products.html' },
           },
           {
             id: 'pairings',
             question: '¿Con qué comidas puedo usarlas?',
-            answer: 'K-PEÑO va bien con pollo, nachos, empanadas, pizza y tacos. Para Carnes acompaña carnes asadas, al vapor o hervidas, además de verduras. Sirve la salsa y úsala para dipear la comida ya cocida.',
+            answer: 'K-PEÑO va bien con pollo, nachos, empanadas, pizza y tacos. Para Carnes va con carnes asadas, al vapor o hervidas, además de verduras. Sirve un poco de salsa para acompañar la comida ya cocida.',
             link: { label: 'Ver cómo usarlas', path: 'products.html' },
           },
           {
             id: 'ingredients',
             question: '¿Dónde consulto ingredientes y alérgenos?',
-            answer: 'K-PEÑO contiene leche, soya, trigo y tomate. Para Carnes contiene soya y trigo, y también usamos sésamo y aceite de sésamo en su receta. Revisa el envase que compraste para consultar la lista completa de ingredientes y alérgenos.',
+            answer: 'K-PEÑO contiene leche, soya, trigo y tomate. Para Carnes contiene soya y trigo, además de sésamo y aceite de sésamo. Consulta la lista completa de ingredientes y alérgenos en el envase de tu producto.',
             link: { label: 'Ver información del producto', path: 'products.html' },
           },
           {
             id: 'storage',
             question: '¿Cómo debo conservar las salsas?',
-            answer: 'Conserva las salsas a temperatura ambiente antes de abrir y refrigéralas después de abrir. Consulta la fecha de vencimiento y las instrucciones de conservación en el envase que compraste.',
+            answer: 'Antes de abrirlas, guarda las salsas a temperatura ambiente. Una vez abiertas, mantenlas refrigeradas. Consulta la fecha de vencimiento y las instrucciones de conservación en el envase de tu producto.',
             link: { label: 'Ver las salsas', path: 'products.html' },
           },
         ],
@@ -157,7 +157,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'pricing',
             question: '¿Cómo consulto precios, pedido mínimo y muestras?',
-            answer: 'Los precios comerciales, el pedido mínimo (MOQ), las muestras y las condiciones de exportación se confirman según el país y la operación. Indica primero tu país, el tipo de negocio y las salsas de interés. Si tienes una cantidad estimada, también puedes compartirla.',
+            answer: 'Confirmamos los precios, el pedido mínimo (MOQ), las muestras y las condiciones de exportación para cada país y pedido. Dinos tu país, el tipo de negocio y qué salsas te interesan. Si ya tienes una cantidad estimada, inclúyela también.',
             link: { label: 'Consultar condiciones comerciales', path: 'contact.html?purpose=distribution' },
           },
           {
@@ -181,19 +181,19 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'brand',
             question: '¿Qué son MOKDA y Salsa Coreana?',
-            answer: 'MOKDA es una marca K-Food que conecta los sabores de Corea con las mesas cotidianas de Latinoamérica. Salsa Coreana es nuestra primera línea de productos, creada para acompañar la comida que ya disfrutas.',
+            answer: 'MOKDA es una marca K-Food que elabora salsas coreanas para la comida cotidiana de Latinoamérica. Salsa Coreana es nuestra primera línea de productos, creada para acompañar la comida que ya disfrutas.',
             link: { label: 'Conocer MOKDA', path: 'about.html' },
           },
           {
             id: 'history',
             question: '¿Cómo comenzó MOKDA?',
-            answer: 'MOKDA nació de la experiencia de compartir comidas y disfrutar salsas en Latinoamérica. En la página de la marca puedes leer nuestra historia y conocer nuestras actividades a lo largo de los años.',
+            answer: 'La idea de MOKDA nació al compartir comidas y disfrutar de las salsas en Latinoamérica. En la página de la marca contamos cómo empezamos y lo que hemos hecho desde entonces.',
             link: { label: 'Ver nuestra historia', path: 'about.html#history' },
           },
           {
             id: 'news',
             question: '¿Dónde veo sus eventos y noticias?',
-            answer: 'En Novedades de MOKDA encontrarás nuestra participación en ferias, la reunión con KOTRA Lima, el evento KPOP STYLE y las notas de prensa. Cada publicación reúne los detalles y las fotografías del encuentro.',
+            answer: 'En Novedades de MOKDA puedes ver nuestra participación en ferias, la reunión con KOTRA Lima, el evento KPOP STYLE y la cobertura de prensa. Cada publicación incluye los detalles y las fotos.',
             link: { label: 'Ver novedades', path: 'news.html' },
           },
         ],
@@ -233,7 +233,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'choose',
             question: 'Which sauce should I choose?',
-            answer: 'For a spicy option, try K-PEÑO, made with gochujang and jalapeño. If you want deep umami to go with meat and vegetables, take a look at our ssamjang-based Para Carnes.',
+            answer: 'If you like spicy sauces, try K-PEÑO, made with gochujang and jalapeño. For a rich, savory dip for meat and vegetables, try our ssamjang-based Para Carnes.',
             link: { label: 'Compare the sauces', path: 'products.html' },
           },
           {
@@ -269,7 +269,7 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'pricing',
             question: 'How do I check prices, minimum orders and samples?',
-            answer: 'Business pricing, minimum order quantities (MOQ), samples and export terms are confirmed for each country and transaction. First share your country, business type and sauces of interest. You can also include an estimated quantity if you have one.',
+            answer: 'We confirm pricing, minimum order quantities (MOQ), samples and export terms for each country and order. Tell us your country, business type and which sauces you are interested in. Include an estimated quantity if you have one.',
             link: { label: 'Ask about commercial terms', path: 'contact.html?purpose=distribution' },
           },
           {
@@ -293,19 +293,19 @@ window.MOKDA_HELP_DATA = {
           {
             id: 'brand',
             question: 'What are MOKDA and Salsa Coreana?',
-            answer: 'MOKDA is a K-Food brand connecting Korean flavors with everyday tables across Latin America. Salsa Coreana is our first product line, made to go with the food you already enjoy.',
+            answer: 'MOKDA is a K-Food brand making Korean sauces for everyday meals in Latin America. Salsa Coreana is our first product line, made to go with the food you already enjoy.',
             link: { label: 'Meet MOKDA', path: 'about.html' },
           },
           {
             id: 'history',
             question: 'How did MOKDA begin?',
-            answer: 'MOKDA grew out of the experience of sharing meals and enjoying sauces in Latin America. Visit our brand page to read the story and explore our activities over the years.',
+            answer: 'The idea for MOKDA came from sharing meals and enjoying sauces in Latin America. Visit our brand page to read how we started and what we have done since.',
             link: { label: 'See our history', path: 'about.html#history' },
           },
           {
             id: 'news',
             question: 'Where can I find your events and news?',
-            answer: 'MOKDA News covers our trade fair participation, the meeting with KOTRA Lima, the KPOP STYLE event and press coverage. Each story brings together the details and photographs.',
+            answer: 'MOKDA News includes our appearances at trade fairs, the meeting with KOTRA Lima, the KPOP STYLE event and press coverage. Each story includes details and photos.',
             link: { label: 'Read MOKDA News', path: 'news.html' },
           },
         ],

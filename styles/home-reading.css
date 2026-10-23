@@ -1,4 +1,9 @@
 /* Information stays in the reading flow; controls are reserved for destinations. */
+html[lang^='ko'] .home-page .home-lineup-lead {
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
 .home-page #productsGrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
 .home-page .home-product-panel { display:flex; }
 .home-page .home-product-panel > a { flex:1; }

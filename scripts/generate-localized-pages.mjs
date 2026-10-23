@@ -27,15 +27,15 @@ const pages = {
     brandImage: true,
     ES: {
       title: 'MOKDA | Salsa Coreana para Latinoamérica',
-      description: 'MOKDA conecta Corea con Latinoamérica a través de Salsa Coreana, su primera línea de salsas para comidas cotidianas.',
+      description: 'Salsa Coreana de MOKDA: salsas de gochujang y ssamjang para disfrutar con tus comidas favoritas en Latinoamérica.',
     },
     KR: {
       title: 'MOKDA | 라틴아메리카를 위한 한국 소스 브랜드',
-      description: 'MOKDA는 한국의 맛과 문화를 라틴아메리카의 일상 음식에 연결하는 K-Food 브랜드입니다.',
+      description: 'MOKDA는 중남미 음식에 어울리는 한국 소스를 만듭니다. 고추장과 할라피뇨의 K-PEÑO, 쌈장 기반 Para Carnes를 만나보세요.',
     },
     EN: {
       title: 'MOKDA | Salsa Coreana for Latin America',
-      description: 'MOKDA connects Korean flavors with everyday food across Latin America through Salsa Coreana, its first product line.',
+      description: 'K-PEÑO and Para Carnes from MOKDA: Korean gochujang and ssamjang sauces for your favorite Latin American dishes.',
     },
   },
   'about.html': {
@@ -44,15 +44,15 @@ const pages = {
     brandImage: true,
     ES: {
       title: 'Sobre MOKDA | K-Food entre Corea y Latinoamérica',
-      description: 'Conoce la historia, identidad y trayectoria de MOKDA, la marca K-Food que conecta Corea con Latinoamérica.',
+      description: 'Conoce cómo nació MOKDA, cómo desarrolla sus salsas y qué significa su nombre coreano.',
     },
     KR: {
       title: 'MOKDA 브랜드 소개 | 한국과 라틴아메리카를 잇는 K-Food',
-      description: '한국의 맛과 문화를 라틴아메리카의 일상 식탁에 연결하는 K-Food 브랜드 MOKDA의 이야기와 여정을 소개합니다.',
+      description: 'MOKDA의 시작과 소스 개발 과정, 브랜드 이름에 담긴 뜻과 활동 소식을 소개합니다.',
     },
     EN: {
       title: 'About MOKDA | K-Food between Korea and Latin America',
-      description: 'Discover the story, identity, and journey of MOKDA, the K-Food brand connecting Korea and Latin America.',
+      description: 'How MOKDA began, how its sauces are developed, and the story behind its Korean name.',
     },
   },
   'products.html': {
@@ -68,7 +68,7 @@ const pages = {
     },
     EN: {
       title: 'Salsa Coreana | MOKDA Sauces',
-      description: 'Explore K-PEÑO and Para Carnes, MOKDA’s first Korean sauce lineup for Latin America.',
+      description: 'Meet K-PEÑO and Para Carnes, MOKDA’s first Korean sauces for Latin America, and find ideas for your next meal.',
     },
   },
   'kpeno.html': {
@@ -77,7 +77,7 @@ const pages = {
     lastModified: '2026-10-13',
     ES: { title: 'K-PEÑO | Salsa Coreana MOKDA', description: 'Conoce K-PEÑO, la Salsa Coreana de MOKDA con gochujang y jalapeño.' },
     KR: { title: 'K-PEÑO 제품 상세 | MOKDA', description: '고추장과 할라피뇨를 담은 MOKDA K-PEÑO의 제품 상세를 확인하세요.' },
-    EN: { title: 'K-PEÑO Product Details | MOKDA', description: 'Discover K-PEÑO, MOKDA’s Korean table sauce with gochujang and jalapeño.' },
+    EN: { title: 'K-PEÑO Product Details | MOKDA', description: 'Get to know K-PEÑO, MOKDA’s Korean fusion sauce with gochujang and jalapeño.' },
   },
   'para-carnes.html': {
     route: 'para-carnes.html',
@@ -85,7 +85,7 @@ const pages = {
     lastModified: '2026-10-13',
     ES: { title: 'Para Carnes | Salsa Coreana MOKDA', description: 'Conoce Para Carnes, la Salsa Coreana de MOKDA inspirada en el ssamjang.' },
     KR: { title: 'Para Carnes 제품 상세 | MOKDA', description: '쌈장에서 영감을 받은 MOKDA Para Carnes의 제품 상세를 확인하세요.' },
-    EN: { title: 'Para Carnes Product Details | MOKDA', description: 'Discover Para Carnes, MOKDA’s Korean sauce inspired by ssamjang.' },
+    EN: { title: 'Para Carnes Product Details | MOKDA', description: 'Get to know Para Carnes, MOKDA’s ssamjang-based Korean dipping sauce for meat and vegetables.' },
   },
   'qna.html': {
     route: 'qna.html',

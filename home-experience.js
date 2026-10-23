@@ -16,7 +16,7 @@
   });
   const copy = {
     KR: {
-      tabs: ['치킨 · 나초 · 엠파나다 · 피자 · 고기 · 타코', '구운 고기 · 찐 고기 · 삶은 고기 · 채소'],
+      tabs: ['나초 · 타코 · 엠파나다 · 치킨 · 피자 · 고기', '구운 고기 · 찐 고기 · 삶은 고기 · 채소'],
       trials: '먹어본 사람들의 이야기', trialKicker: 'AT YOUR TABLE',
       preview: '디자인 미리보기 · 실제 후기가 아닙니다', sample: '예시 카드',
       sampleQuote: '이 자리에 실제 체험단의 후기와 음식 사진이 들어갑니다.',
@@ -24,7 +24,7 @@
       rating: '5점 만점에',
     },
     ES: {
-      tabs: ['Pollo · Nachos · Empanadas · Pizza · Carne · Tacos', 'Carne asada · Carne al vapor · Carne cocida · Vegetales'],
+      tabs: ['Nachos · Tacos · Empanadas · Pollo · Pizza · Carne', 'Carne asada · Carne al vapor · Carne cocida · Vegetales'],
       trials: 'Historias desde la mesa', trialKicker: 'EN TU MESA',
       preview: 'Vista previa de diseño · No son reseñas reales', sample: 'Tarjeta de ejemplo',
       sampleQuote: 'Aquí aparecerán una reseña real y la foto compartida por quien probó la salsa.',
@@ -32,7 +32,7 @@
       rating: 'de 5 estrellas:',
     },
     EN: {
-      tabs: ['Chicken · Nachos · Empanadas · Pizza · Meat · Tacos', 'Grilled meat · Steamed meat · Boiled meat · Vegetables'],
+      tabs: ['Nachos · Tacos · Empanadas · Chicken · Pizza · Meat', 'Grilled meat · Steamed meat · Boiled meat · Vegetables'],
       trials: 'Stories from the table', trialKicker: 'AT YOUR TABLE',
       preview: 'Design preview · These are not real reviews', sample: 'Sample card',
       sampleQuote: 'A real tasting review and a photo shared by the reviewer will appear here.',

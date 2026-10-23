@@ -92,7 +92,7 @@ window.MOKDA_COMPANY_KNOWLEDGE = {
       "support": "Nuestro equipo atiende en español y coreano. Puedes escribirnos en cualquier momento. Es posible que tardemos en responder por la diferencia horaria con Corea del Sur. Gracias por tu comprensión.",
       "certifications": "Contamos con certificaciones relacionadas con alimentos. Indícanos qué certificación necesitas y nuestro equipo confirmará su alcance y la documentación correspondiente.",
       "namedCertifications": "Dinos qué certificación necesitas y qué salsas te interesan. Nuestro equipo confirmará si contamos con ella y a qué productos o procesos se aplica.",
-      "oem": "Las consultas sobre producción OEM o marca propia se revisan por separado. Nuestro equipo confirmará si podemos producirla y hablará contigo sobre cantidades, receta y empaque.",
+      "oem": "Las consultas sobre producción OEM o marca propia se revisan por separado. Nuestro equipo confirmará si podemos fabricar el producto y hablará contigo sobre cantidades, receta y empaque.",
       "exclusive": "Recibimos propuestas de distribución exclusiva por país o región. Revisamos cada propuesta con nuestro equipo antes de acordar un contrato y sus condiciones.",
       "brand": "MOKDA crea salsas coreanas pensadas para la comida cotidiana de Latinoamérica. Las desarrollamos con chefs latinoamericanos y realizamos varias rondas de evaluación sensorial con consumidores de la región.",
       "specifications": "K-PEÑO y Para Carnes son salsas de 330 g elaboradas en Corea del Sur. Tienen una vida útil de 12 meses desde la fabricación. Revisa la fecha de vencimiento y las indicaciones del envase que compraste."
@@ -101,7 +101,7 @@ window.MOKDA_COMPANY_KNOWLEDGE = {
       "moq": "Our standard minimum order is 1,000 units. Quantities per product and mixed orders of K-PEÑO and Para Carnes are agreed for each transaction.",
       "pricing": "We provide an individual quote after confirming the destination country and order quantity.",
       "leadTime": "We agree on a dispatch date for each order. Tell us how much you need and when you need it, and we will confirm when we can ship.",
-      "samples": "We can arrange samples of fewer than 50 units by agreement. The samples are free once; the buyer covers international shipping. Please confirm availability and quantity with our team.",
+      "samples": "We can arrange samples of fewer than 50 units by agreement. We provide samples free of charge on one occasion; the buyer covers international shipping. Please confirm availability and quantity with our team.",
       "packing": "The 330 g bottles are packed in cartons of 12 units.",
       "bulk": "Larger sizes are also available for B2B customers. We agree on the size based on how you plan to use the product.",
       "documents": "The product presentation and catalog are available in Spanish. Ingredient and nutrition information, test reports, and other buyer documentation are prepared in English. Let us know which documents you need.",

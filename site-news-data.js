@@ -267,7 +267,7 @@ window.MOKDA_NEWS = {
       "EN": {
         "title": "MOKDA teams up with KPOP STYLE, Peru’s largest K-culture event organizer",
         "summary": "MOKDA greeted K-pop fans from the stage and held a Salsa Coreana prize draw.",
-        "imageAlt": "A group photograph holding Salsa Coreana at KPOP STYLE",
+        "imageAlt": "A group holding Salsa Coreana at KPOP STYLE",
         "sections": [
           [
             "KPOP STYLE",

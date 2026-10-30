@@ -15,6 +15,11 @@ window.MOKDA_NEWS = {
       "ES": "Gimje, Corea del Sur",
       "KR": "김제, 대한민국",
       "EN": "Gimje, South Korea"
+    },
+    "Jeonju, Corea del Sur": {
+      "KR": "전주, 대한민국",
+      "ES": "Jeonju, Corea del Sur",
+      "EN": "Jeonju, South Korea"
     }
   },
   "imageDescriptions": {
@@ -70,6 +75,128 @@ window.MOKDA_NEWS = {
     }
   },
   "stories": [
+    {
+      "id": "aving-iffe-interview",
+      "category": "press",
+      "location": "Jeonju, Corea del Sur",
+      "publishedDate": "2026-10-28",
+      "lastModified": "2026-10-30",
+      "image": "aving-iffe-interview",
+      "gallery": [],
+      "related": [
+        "aving-iffe-2026"
+      ],
+      "homeFeatured": true,
+      "homeOrder": 1,
+      "KR": {
+        "title": "[IFFE 2026] 고추장에 할라페뇨를 더했다 – ‘먹다’ 살사 코레아나",
+        "summary": "AVING NEWS 에이빙 뉴스 · 전주국제발효식품엑스포 현장 인터뷰 · 2026년 10월 28일",
+        "imageAlt": "전주국제발효식품엑스포 먹다 부스에서 진행한 AVING NEWS 인터뷰",
+        "imageCaption": "영상 화면: AVING NEWS 에이빙 뉴스.",
+        "sections": [
+          [
+            "AVING NEWS 현장 인터뷰",
+            "AVING NEWS가 전주국제발효식품엑스포 먹다 부스를 찾아 현장 인터뷰를 진행했다. 박겸 대표는 고추장과 할라피뇨를 조합한 K-PEÑO와 Salsa Coreana를 소개했다."
+          ]
+        ]
+      },
+      "ES": {
+        "title": "[IFFE 2026] Gochujang con jalapeño: Salsa Coreana de MOKDA, en AVING NEWS",
+        "summary": "AVING NEWS · Entrevista en IFFE 2026 · 28 de octubre de 2026",
+        "imageAlt": "Entrevista de AVING NEWS en el stand de MOKDA durante IFFE 2026",
+        "imageCaption": "Fotograma: AVING NEWS.",
+        "sections": [
+          [
+            "Entrevista en IFFE 2026",
+            "AVING NEWS entrevistó a Gyeom Park en el stand de MOKDA durante IFFE 2026. El fundador presentó Salsa Coreana y K-PEÑO, que combina gochujang con jalapeño."
+          ]
+        ]
+      },
+      "EN": {
+        "title": "[IFFE 2026] Gochujang meets jalapeño: MOKDA’s Salsa Coreana on AVING NEWS",
+        "summary": "AVING NEWS · Interview at IFFE 2026 · October 28, 2026",
+        "imageAlt": "AVING NEWS interviewing MOKDA at its IFFE 2026 booth",
+        "imageCaption": "Video still: AVING NEWS.",
+        "sections": [
+          [
+            "Interview at IFFE 2026",
+            "AVING NEWS interviewed Gyeom Park at MOKDA’s booth during IFFE 2026. The founder introduced Salsa Coreana and K-PEÑO, which combines gochujang with jalapeño."
+          ]
+        ]
+      },
+      "sources": [
+        {
+          "label": "AVING NEWS · YouTube",
+          "url": "https://www.youtube.com/@aving",
+          "labels": {
+            "KR": "AVING NEWS 채널 보기",
+            "ES": "Ver el canal de AVING NEWS",
+            "EN": "Visit the AVING NEWS channel"
+          }
+        }
+      ]
+    },
+    {
+      "id": "aving-iffe-2026",
+      "category": "press",
+      "location": "Jeonju, Corea del Sur",
+      "publishedDate": "2026-10-21",
+      "lastModified": "2026-10-30",
+      "image": "aving-iffe-products",
+      "gallery": [],
+      "related": [
+        "aving-iffe-interview"
+      ],
+      "homeFeatured": true,
+      "homeOrder": 2,
+      "sources": [
+        {
+          "label": "AVING NEWS · 2026-10-21",
+          "url": "https://kr.aving.net/news/articleView.html?idxno=1815821",
+          "labels": {
+            "KR": "AVING NEWS · 기사 원문",
+            "ES": "AVING NEWS · Artículo original (en coreano)",
+            "EN": "AVING NEWS · Original article (in Korean)"
+          }
+        }
+      ],
+      "KR": {
+        "title": "먹다, 제24회 전주국제발효식품엑스포서 중남미 맞춤 테이블 소스 'K-PEÑO' 선보여… \"한국 장류를 일상 식탁으로\"",
+        "summary": "AVING NEWS · 박유진 기자 · 2026년 10월 21일",
+        "imageAlt": "타코에 K-PEÑO를 곁들이는 모습과 MOKDA 소스 2종",
+        "imageCaption": "사진: 먹다 제공 · AVING NEWS 게재.",
+        "sections": [
+          [
+            "AVING NEWS 보도",
+            "AVING NEWS가 전주국제발효식품엑스포 참가를 앞둔 먹다를 소개했다. 고추장과 할라피뇨를 조합한 K-PEÑO, 쌈장 기반 Para Carnes와 중남미 식탁을 향한 브랜드의 방향을 전했다."
+          ]
+        ]
+      },
+      "ES": {
+        "title": "AVING NEWS presenta K-PEÑO: MOKDA lleva el jang coreano a la mesa latinoamericana en IFFE 2026",
+        "summary": "AVING NEWS · Park Yu-jin · 21 de octubre de 2026",
+        "imageAlt": "K-PEÑO servido sobre un taco junto a las dos salsas de MOKDA",
+        "imageCaption": "Foto facilitada por MOKDA y publicada en AVING NEWS.",
+        "sections": [
+          [
+            "En AVING NEWS",
+            "Antes de IFFE 2026, AVING NEWS presentó K-PEÑO, de gochujang y jalapeño, y Para Carnes, de ssamjang: dos salsas de MOKDA pensadas para acompañar la comida cotidiana en Latinoamérica."
+          ]
+        ]
+      },
+      "EN": {
+        "title": "AVING NEWS features K-PEÑO: MOKDA brings Korean jang to Latin American tables at IFFE 2026",
+        "summary": "AVING NEWS · Park Yu-jin · October 21, 2026",
+        "imageAlt": "K-PEÑO served on a taco alongside MOKDA’s two sauces",
+        "imageCaption": "Photograph supplied by MOKDA and published by AVING NEWS.",
+        "sections": [
+          [
+            "Featured in AVING NEWS",
+            "Ahead of IFFE 2026, AVING NEWS introduced MOKDA’s gochujang-and-jalapeño K-PEÑO and ssamjang-based Para Carnes, developed to accompany everyday food in Latin America."
+          ]
+        ]
+      }
+    },
     {
       "id": "kotra-interview",
       "category": "press",
@@ -221,7 +348,7 @@ window.MOKDA_NEWS = {
       },
       "publishedDate": "2026-10-07",
       "homeFeatured": true,
-      "homeOrder": 1,
+      "homeOrder": 3,
       "videoPoster": "expo-video",
       "videoDescriptions": {
         "KR": "MOKDA 부스 방문객과 제품을 들고 함께한 현장 영상",
@@ -276,8 +403,8 @@ window.MOKDA_NEWS = {
         ]
       },
       "publishedDate": "2026-10-07",
-      "homeFeatured": true,
-      "homeOrder": 2,
+      "homeFeatured": false,
+      "homeOrder": 99,
       "videoPoster": "kpop-video",
       "videoDescriptions": {
         "KR": "KPOP STYLE 무대에서 관객들에게 인사하는 MOKDA의 영상",
@@ -392,8 +519,8 @@ window.MOKDA_NEWS = {
         }
       ],
       "publishedDate": "2026-10-07",
-      "homeFeatured": true,
-      "homeOrder": 3,
+      "homeFeatured": false,
+      "homeOrder": 99,
       "videoAsCover": true,
       "videoPoster": "congreso-video"
     },
@@ -870,6 +997,22 @@ window.MOKDA_NEWS = {
     "kotra-lima-meeting-640": [
       640,
       360
+    ],
+    "aving-iffe-products": [
+      960,
+      1441
+    ],
+    "aving-iffe-products-640": [
+      640,
+      961
+    ],
+    "aving-iffe-interview": [
+      1322,
+      751
+    ],
+    "aving-iffe-interview-640": [
+      640,
+      364
     ]
   }
 };

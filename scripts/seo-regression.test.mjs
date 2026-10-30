@@ -30,7 +30,8 @@ const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<last
 assert.equal(sitemapEntries.length, listedUrls.length, 'Every sitemap entry must preserve its recorded modification date');
 for (const [, url, lastModified] of sitemapEntries) {
   const productDetail = /\/(kpeno|para-carnes)\.html$/.test(url);
-  assert.equal(lastModified, productDetail ? '2026-10-13' : '2026-10-11', `${url}: only the corrected product detail metadata has a new modification date`);
+  const updatedNews = /\/(?:news(?:-aving-iffe-(?:2026|interview))?\.html)?$/.test(url);
+  assert.equal(lastModified, updatedNews ? '2026-10-30' : productDetail ? '2026-10-13' : '2026-10-11', `${url}: modification date follows the changed page`);
 }
 for (const lang of ['ko', 'es', 'en']) {
   for (const page of pages) {

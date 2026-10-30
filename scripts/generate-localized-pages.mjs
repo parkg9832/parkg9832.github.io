@@ -24,6 +24,7 @@ const pages = {
   'index.html': {
     route: '',
     type: 'WebPage',
+    lastModified: '2026-10-30',
     brandImage: true,
     ES: {
       title: 'MOKDA | Salsa Coreana para Latinoamérica',

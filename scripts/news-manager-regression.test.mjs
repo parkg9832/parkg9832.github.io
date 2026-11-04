@@ -101,7 +101,9 @@ try{
  const result=await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify({record:updated,revision:after.revision,create:false})});assert.equal(result.status,200);const saved=await result.json();assert.equal(saved.built,true,saved.warning);
  assert.equal(saved.data.stories.find(s=>s.id==='fixture-new-event').category,'press','The API must retain an explicitly selected press category');
  const escaped=new JSDOM(await readFile(join(fixture,'en/news-fixture-new-event.html'),'utf8'));assert.equal(escaped.window.document.querySelector('h1').textContent,updated.EN.title);assert.equal(escaped.window.document.querySelector('h1 markup'),null);escaped.window.close();
- const home=new JSDOM(await readFile(join(fixture,'en/index.html'),'utf8'));assert.equal(home.window.document.querySelectorAll('.home-news-lead').length,0,'An empty leading slot must not promote a smaller card');assert.equal(home.window.document.querySelectorAll('#home-news [data-news-card]').length,3);home.window.close();
+ const home=new JSDOM(await readFile(join(fixture,'en/index.html'),'utf8'));assert.equal(home.window.document.querySelectorAll('.home-news-lead').length,0,'An empty leading slot must not promote a smaller card');
+ const supportingIds=initial.data.stories.filter(story=>story.homeFeatured&&story.id!==from.id).map(story=>story.id).sort();
+ assert.deepEqual(Array.from(home.window.document.querySelectorAll('#home-news [data-news-card]'),card=>card.dataset.newsCard).sort(),supportingIds,'Editing the leading slot preserves the existing supporting stories without restoring merged coverage');home.window.close();
  assert((await readdir(join(fixture,'output/news-manager/backups'))).length>=2);
  const bad={...updated,id:'../escape'};assert.equal((await fetch(origin+'/api/news',{method:'POST',headers,body:JSON.stringify({record:bad,revision:saved.revision,create:true})})).status,400);
  const image=await readFile(join(root,'assets/images/news/expo-booth.webp'));

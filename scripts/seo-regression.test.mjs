@@ -14,7 +14,7 @@ const languages = {
 // Schema.org types used by the current site, checked against the official vocabulary.
 const supportedSchemaTypes = new Set(['WebPage', 'AboutPage', 'CollectionPage', 'ContactPage', 'Article', 'NewsArticle', 'Organization', 'WebSite', 'BreadcrumbList']);
 const newsData = (await loadNews(fileURLToPath(new URL('../', import.meta.url)))).data;
-const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.map(story => 'news-' + story.id)];
+const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.filter(story => !story.redirectTo).map(story => 'news-' + story.id)];
 const urlFor = (lang, page) => `https://www.mokda.kr/${lang}/${page === 'index' ? '' : `${page}.html`}`;
 const sitemap = await readFile(new URL('sitemap.xml', root), 'utf8');
 const robots = await readFile(new URL('robots.txt', root), 'utf8');
@@ -30,8 +30,11 @@ const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<last
 assert.equal(sitemapEntries.length, listedUrls.length, 'Every sitemap entry must preserve its recorded modification date');
 for (const [, url, lastModified] of sitemapEntries) {
   const productDetail = /\/(kpeno|para-carnes)\.html$/.test(url);
-  const updatedNews = /\/(?:news(?:-aving-iffe-(?:2026|interview))?\.html)?$/.test(url);
-  assert.equal(lastModified, updatedNews ? '2026-10-30' : productDetail ? '2026-10-13' : '2026-10-11', `${url}: modification date follows the changed page`);
+  const updatedNews = /\/(?:news(?:-aving-iffe-interview)?\.html)?$/.test(url);
+  assert.equal(lastModified, updatedNews ? '2026-11-04' : productDetail ? '2026-10-13' : '2026-10-11', `${url}: modification date follows the changed page`);
+}
+for (const story of newsData.stories.filter(story => story.redirectTo)) {
+  for (const lang of Object.keys(languages)) assert(!listedUrls.includes(urlFor(lang, 'news-' + story.id)), 'Merged URLs are excluded from the canonical sitemap');
 }
 for (const lang of ['ko', 'es', 'en']) {
   for (const page of pages) {

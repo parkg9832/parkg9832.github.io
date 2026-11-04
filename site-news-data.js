@@ -80,51 +80,82 @@ window.MOKDA_NEWS = {
       "category": "press",
       "location": "Jeonju, Corea del Sur",
       "publishedDate": "2026-10-28",
-      "lastModified": "2026-10-30",
+      "lastModified": "2026-11-04",
       "image": "aving-iffe-interview",
       "gallery": [],
-      "related": [
-        "aving-iffe-2026"
-      ],
+      "related": [],
       "homeFeatured": true,
       "homeOrder": 1,
       "KR": {
         "title": "[IFFE 2026] 고추장에 할라페뇨를 더했다 – ‘먹다’ 살사 코레아나",
-        "summary": "AVING NEWS 에이빙 뉴스 · 전주국제발효식품엑스포 현장 인터뷰 · 2026년 10월 28일",
+        "summary": "AVING NEWS · 전주국제발효식품엑스포 기사·현장 인터뷰 · 2026년 10월",
         "imageAlt": "전주국제발효식품엑스포 먹다 부스에서 진행한 AVING NEWS 인터뷰",
         "imageCaption": "영상 화면: AVING NEWS 에이빙 뉴스.",
         "sections": [
           [
             "AVING NEWS 현장 인터뷰",
             "AVING NEWS가 전주국제발효식품엑스포 먹다 부스를 찾아 현장 인터뷰를 진행했다. 박겸 대표는 고추장과 할라피뇨를 조합한 K-PEÑO와 Salsa Coreana를 소개했다."
+          ],
+          [
+            "한국 장류를 일상 식탁으로",
+            "10월 21일 사전 기사에서는 한국 장류를 중남미 음식에 접목한 두 소스를 소개했다. K-PEÑO는 타코·치킨·피자·버거에 곁들이고, 쌈장 기반 Para Carnes는 구운 고기와 바비큐에 활용하는 제품이다."
+          ],
+          [
+            "간편하게 즐기는 한국 소스",
+            "두 소스는 별도 조리 없이 찍거나 뿌려 먹도록 개발됐다. 기사는 중남미의 일상 음식에 어울리는 맛과 활용법에 주목했다."
           ]
         ]
       },
       "ES": {
         "title": "[IFFE 2026] Gochujang con jalapeño: Salsa Coreana de MOKDA, en AVING NEWS",
-        "summary": "AVING NEWS · Entrevista en IFFE 2026 · 28 de octubre de 2026",
+        "summary": "AVING NEWS · Reportaje y entrevista en IFFE 2026 · Octubre de 2026",
         "imageAlt": "Entrevista de AVING NEWS en el stand de MOKDA durante IFFE 2026",
         "imageCaption": "Fotograma: AVING NEWS.",
         "sections": [
           [
             "Entrevista en IFFE 2026",
             "AVING NEWS entrevistó a Gyeom Park en el stand de MOKDA durante IFFE 2026. El fundador presentó Salsa Coreana y K-PEÑO, que combina gochujang con jalapeño."
+          ],
+          [
+            "Jang coreano para la mesa cotidiana",
+            "El reportaje del 21 de octubre destacó dos salsas: K-PEÑO, para tacos, pollo, pizza y hamburguesas; y Para Carnes, a base de ssamjang, para carnes a la parrilla."
+          ],
+          [
+            "Listas para acompañar tus comidas",
+            "Ambas se pueden usar directamente, para mojar o añadir a la comida. El artículo destacó su adaptación a los sabores y hábitos cotidianos de Latinoamérica."
           ]
         ]
       },
       "EN": {
         "title": "[IFFE 2026] Gochujang meets jalapeño: MOKDA’s Salsa Coreana on AVING NEWS",
-        "summary": "AVING NEWS · Interview at IFFE 2026 · October 28, 2026",
+        "summary": "AVING NEWS · IFFE 2026 feature and booth interview · October 2026",
         "imageAlt": "AVING NEWS interviewing MOKDA at its IFFE 2026 booth",
         "imageCaption": "Video still: AVING NEWS.",
         "sections": [
           [
             "Interview at IFFE 2026",
             "AVING NEWS interviewed Gyeom Park at MOKDA’s booth during IFFE 2026. The founder introduced Salsa Coreana and K-PEÑO, which combines gochujang with jalapeño."
+          ],
+          [
+            "Korean jang for everyday meals",
+            "The October 21 feature highlighted two sauces: K-PEÑO for tacos, chicken, pizza and burgers, and ssamjang-based Para Carnes for grilled meat and barbecue."
+          ],
+          [
+            "Ready to serve",
+            "Both can be served directly as a dip or topping. The article focused on adapting Korean fermented flavors to everyday Latin American meals."
           ]
         ]
       },
       "sources": [
+        {
+          "label": "AVING NEWS · Park Yu-jin · 2026-10-21",
+          "url": "https://kr.aving.net/news/articleView.html?idxno=1815821",
+          "labels": {
+            "KR": "기사 원문 · AVING NEWS · 박유진 기자 · 2026.10.21",
+            "ES": "Artículo original (en coreano) · AVING NEWS · Park Yu-jin · 21/10/2026",
+            "EN": "Original article (in Korean) · AVING NEWS · Park Yu-jin · October 21, 2026"
+          }
+        },
         {
           "label": "AVING NEWS · YouTube",
           "url": "https://www.youtube.com/@aving",
@@ -138,6 +169,8 @@ window.MOKDA_NEWS = {
     },
     {
       "id": "aving-iffe-2026",
+      "redirectTo": "aving-iffe-interview",
+      "archiveVisible": false,
       "category": "press",
       "location": "Jeonju, Corea del Sur",
       "publishedDate": "2026-10-21",
@@ -147,8 +180,8 @@ window.MOKDA_NEWS = {
       "related": [
         "aving-iffe-interview"
       ],
-      "homeFeatured": true,
-      "homeOrder": 2,
+      "homeFeatured": false,
+      "homeOrder": 99,
       "sources": [
         {
           "label": "AVING NEWS · 2026-10-21",

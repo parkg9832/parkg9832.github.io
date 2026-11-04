@@ -24,7 +24,7 @@ const pages = {
   'index.html': {
     route: '',
     type: 'WebPage',
-    lastModified: '2026-10-30',
+    lastModified: '2026-11-04',
     brandImage: true,
     ES: {
       title: 'MOKDA | Salsa Coreana para Latinoamérica',
@@ -319,17 +319,29 @@ function localizeHtml(source, language, page) {
 
 const sitemapUrls = [];
 
+// Keep links to a merged story working while indexing only its destination.
+function mergedNewsRedirect(html, language, page) {
+  const destination = routeUrl(language, { route: `news-${page.redirectTo}.html` });
+  return html
+    .replace(/<link\s+rel="canonical"[^>]*>/i, `<link rel="canonical" href="${destination}" />`)
+    .replace(/\s*<link\s+rel="alternate"\s+hreflang="[^"]+"[^>]*>/gi, '')
+    .replace(/<meta\s+name="robots"[^>]*>/i, '<meta name="robots" content="noindex,follow" />')
+    .replace(/\s*<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/gi, '')
+    .replace(/<\/head>/i, `<meta http-equiv="refresh" content="0;url=${destination}" />\n</head>`);
+}
+
 for (const [fileName, page] of Object.entries(pages)) {
   const source = await addHelpAssets(await readFile(join(ROOT, fileName), 'utf8'));
-  await writeFile(join(ROOT, fileName), secureHtml(source), 'utf8');
+  await writeFile(join(ROOT, fileName), secureHtml(page.redirectTo ? mergedNewsRedirect(source, 'ES', page) : source), 'utf8');
 
   for (const language of Object.keys(languages)) {
     const outputPath = join(ROOT, languages[language].directory, fileName);
     await mkdir(dirname(outputPath), { recursive: true });
     const localized = localizeHtml(source, language, page);
-    const rendered = await prerenderContent(localized, ROOT, routeUrl(language, page));
+    let rendered = await prerenderContent(localized, ROOT, routeUrl(language, page));
+    if (page.redirectTo) rendered = mergedNewsRedirect(rendered, language, page);
     await writeFile(outputPath, (await externalizeBlocks(rendered, ROOT)).replace(/^[\t ]+$/gm, ''), 'utf8');
-    sitemapUrls.push({ url: routeUrl(language, page), lastModified: page.lastModified || LAST_MODIFIED });
+    if (!page.redirectTo) sitemapUrls.push({ url: routeUrl(language, page), lastModified: page.lastModified || LAST_MODIFIED });
   }
 }
 

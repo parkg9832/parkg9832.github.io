@@ -13,7 +13,8 @@ function start(lang,page,query='',extend,configure){
 }
 for(const lang of ['es','ko','en']){
  const dom=start(lang,'news','?utm_source=partner'),w=dom.window,d=w.document;
- assert.equal(d.querySelectorAll('[data-news-card]').length,9);
+ assert.equal(d.querySelectorAll('[data-news-card]').length,8);
+ assert.equal(d.querySelector('[data-news-card="aving-iffe-2026"]'),null,'Merged AVING coverage appears only once');
  assert.equal(d.querySelector('[data-news-card="creators"]'),null,'Creator collection is excluded from the archive');
  assert.equal(d.querySelector('[data-news-card="kotra-interview"] time').dateTime,'2026-10-06');
  assert.equal(d.querySelector('[data-news-card="kpop-style"] time').dateTime,'2026-09-27');
@@ -69,14 +70,27 @@ for(const lang of ['es','ko','en']){
  input.value='nothing-match-fixture';d.querySelector('[data-search-news]').click();assert.equal(d.getElementById('newsEmpty').hidden,false);d.querySelector('[data-reset-news]').click();assert.equal(new URL(w.location.href).searchParams.has('q'),false);
  w.history.replaceState(null,'','?q=KOTRA');w.dispatchEvent(new w.PopStateEvent('popstate'));assert.equal(d.querySelectorAll('[data-news-card]:not([hidden])').length,3);assert.equal(input.value,'KOTRA');
  dom.window.close();
- const direct=start(lang,'news','?category=collaborations&utm_source=partner');assert.equal(direct.window.document.querySelectorAll('[data-news-card]:not([hidden])').length,9);assert.equal(new URL(direct.window.location.href).searchParams.has('category'),false);assert.equal(new URL(direct.window.location.href).searchParams.get('utm_source'),'partner');direct.window.close();
+ const direct=start(lang,'news','?category=collaborations&utm_source=partner');assert.equal(direct.window.document.querySelectorAll('[data-news-card]:not([hidden])').length,8);assert.equal(new URL(direct.window.location.href).searchParams.has('category'),false);assert.equal(new URL(direct.window.location.href).searchParams.get('utm_source'),'partner');direct.window.close();
  for(const id of ['gimje-hint','gimje-youth-day']){const detail=start(lang,'news-'+id);assert(detail.window.document.querySelector('h1').textContent.trim());detail.window.close();}
  const interview=start(lang,'news-aving-iffe-interview'),interviewDoc=interview.window.document;
  assert.equal(interviewDoc.querySelectorAll('iframe,video,[data-news-video],.news-play').length,0,'An interview record without a verified video URL shows no playback control');
- const channelLink=interviewDoc.querySelector('.news-sources a');
+ assert(interviewDoc.querySelector('.news-article-cover img').src.includes('/aving-iffe-interview.webp'),'Keep the existing interview cover');
+ assert.equal(interviewDoc.querySelectorAll('.news-article-body > p').length,3,'Merged coverage includes the interview and the article highlights');
+ const sourceLinks=[...interviewDoc.querySelectorAll('.news-sources a')];
+ assert.equal(sourceLinks.length,2);
+ assert.equal(sourceLinks[0].href,'https://kr.aving.net/news/articleView.html?idxno=1815821','Credit the exact original article');
+ assert(sourceLinks[0].textContent.includes('2026'),'Keep the article publication date with its source');
+ const channelLink=sourceLinks[1];
  assert.equal(channelLink.href,'https://www.youtube.com/@aving','Link to the verified AVING channel instead of guessing a video URL');
  assert.equal(channelLink.textContent.trim(),{ko:'AVING NEWS 채널 보기 ↗',es:'Ver el canal de AVING NEWS ↗',en:'Visit the AVING NEWS channel ↗'}[lang]);
  interview.window.close();
+ const mergedRedirect=new JSDOM(read(`${lang}/news-aving-iffe-2026.html`)),redirectDoc=mergedRedirect.window.document;
+ const mergedUrl=`https://www.mokda.kr/${lang}/news-aving-iffe-interview.html`;
+ assert.equal(redirectDoc.querySelector('link[rel="canonical"]').href,mergedUrl);
+ assert.equal(redirectDoc.querySelector('meta[http-equiv="refresh"]').content,`0;url=${mergedUrl}`,'Existing article links open the merged story');
+ assert(redirectDoc.querySelector('meta[name="robots"]').content.includes('noindex'));
+ assert.equal(redirectDoc.querySelectorAll('link[rel="alternate"][hreflang]').length,0,'Retired URLs do not advertise a duplicate language cluster');
+ mergedRedirect.window.close();
  const creators=start(lang,'news-creators'),c=creators.window.document;
  assert.equal(c.querySelectorAll('.news-article-heading .news-meta,.news-article-heading time').length,0,'The creator collection uses the same date-free article heading');
  assert.equal(c.querySelectorAll('[data-news-video]').length,5);
@@ -88,8 +102,8 @@ for(const lang of ['es','ko','en']){
  const home=new JSDOM(read(`${lang}/index.html`)),hd=home.window.document;
  assert.equal(hd.querySelectorAll('#home-news .home-news-lead').length,1);
  assert.equal(hd.querySelector('.home-news-lead').dataset.newsCard,'aving-iffe-interview');
- assert.deepEqual([...hd.querySelectorAll('.home-news-support')].map(node=>node.dataset.newsCard),['aving-iffe-2026','expoalimentaria-2026','kotra-interview']);
- assert.equal(hd.querySelectorAll('#home-news a').length,5,'Each story and the archive have one link');
+ assert.deepEqual([...hd.querySelectorAll('.home-news-support')].map(node=>node.dataset.newsCard),['expoalimentaria-2026','kotra-interview']);
+ assert.equal(hd.querySelectorAll('#home-news a').length,4,'Each story and the archive have one link');
  assert.equal(hd.querySelectorAll('#home-news [data-news-video]').length,0,'Home images navigate to stories without loading players');
  assert.equal(hd.querySelectorAll('.home-news-summary').length,1,'Only the main story has a summary');
  for(const card of hd.querySelectorAll('#home-news [data-news-card]')){

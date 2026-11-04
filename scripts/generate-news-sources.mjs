@@ -28,6 +28,7 @@ export async function generateNewsSources(root) {
       route: filename, type: story.id ? 'Article' : 'CollectionPage', ...metadata,
       image: Object.fromEntries(['ES', 'KR', 'EN'].map(lang => [lang, `https://www.mokda.kr/assets/images/news/${story.image}.webp`])),
       ...(story.id ? { publishedDate: story.publishedDate || data.publishedDate } : {}),
+      ...(story.redirectTo ? { redirectTo: story.redirectTo } : {}),
       ...(story.lastModified ? { lastModified: story.lastModified } : !story.id ? { lastModified: data.stories.map(item => item.lastModified || '').sort().at(-1) || undefined } : {}),
     };
     const esTitle = escapeHtml(metadata.ES.title);

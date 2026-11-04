@@ -11,7 +11,7 @@ const languages = {
 };
 const supportedSchemaTypes = new Set(['WebPage', 'AboutPage', 'CollectionPage', 'ContactPage', 'Article', 'NewsArticle', 'Organization', 'WebSite', 'BreadcrumbList']);
 const newsData = (await loadNews(fileURLToPath(new URL('../', import.meta.url)))).data;
-const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.map(story => 'news-' + story.id)];
+const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...newsData.stories.filter(story => !story.redirectTo).map(story => 'news-' + story.id)];
 const urlFor = (lang, page) => `${origin}/${lang}/${page === 'index' ? '' : `${page}.html`}`;
 
 async function get(url) {
@@ -66,3 +66,18 @@ for (const page of pages) {
   }));
 }
 console.log(`Live SEO audit passed: robots.txt, sitemap.xml and ${pages.length * Object.keys(languages).length} HTTP 200 pages with coherent language, canonical, hreflang and HTML content.`);
+for (const story of newsData.stories.filter(story => story.redirectTo)) {
+  for (const lang of Object.keys(languages)) {
+    const url = urlFor(lang, 'news-' + story.id);
+    assert(!listed.has(url), `${url}: merged URL must not be in the sitemap`);
+    const response = await fetch(url, { signal: AbortSignal.timeout(20_000) });
+    assert.equal(response.status, 200, `${url}: legacy link remains accessible`);
+    const dom = new JSDOM(await response.text());
+    const destination = urlFor(lang, 'news-' + story.redirectTo);
+    try {
+      assert.equal(dom.window.document.querySelector('link[rel="canonical"]')?.href, destination);
+      assert.equal(dom.window.document.querySelector('meta[http-equiv="refresh"]')?.content, `0;url=${destination}`);
+      assert.match(dom.window.document.querySelector('meta[name="robots"]')?.content || '', /noindex/);
+    } finally { dom.window.close(); }
+  }
+}

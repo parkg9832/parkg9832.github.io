@@ -286,13 +286,13 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
  .news-listing .news-archive-row h3 { font-size:16px; }
 }
 
-/* A lead story and three supporting stories, followed by the archive action. */
+/* One lead story and four supporting stories, followed by the archive action. */
 .home-page #home-news { padding:52px var(--brand-gutter,24px); background:#f3e5d5; }
-.home-page #home-news .news-container { max-width:1100px; }
+.home-page #home-news .news-container { max-width:1200px; }
 .home-page #home-news .home-news-heading { position:relative; margin-bottom:28px; text-align:center; }
 .home-page #home-news .home-news-kicker { margin-bottom:10px; }
 .home-page #home-news .home-news-heading h2 { font-size:clamp(28px,3vw,34px); }
-.home-page #home-news .home-news-grid { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr); gap:40px; overflow:visible; margin:0; padding:0; }
+.home-page #home-news .home-news-grid { display:grid; grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr); gap:32px; overflow:visible; margin:0; padding:0; }
 .home-page #home-news .home-news-supporting { min-width:0; border-top:1px solid #32150624; }
 .home-page #home-news .home-news-grid.is-without-lead { grid-template-columns:minmax(0,1fr); }
 .home-page #home-news .news-card { min-width:0; }
@@ -306,13 +306,19 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
 .home-page #home-news .news-card h3 { margin:8px 0 0; font-size:23px; line-height:1.45; letter-spacing:-.01em; }
 .home-page #home-news .home-news-summary { margin:10px 0 0; font-size:16px; line-height:1.75; letter-spacing:0; color:var(--news-muted); }
 .home-page #home-news .home-news-support { border-bottom:1px solid #32150624; }
-.home-page #home-news .home-news-support .news-card-link { display:grid; grid-template-columns:132px minmax(0,1fr); gap:20px; align-items:center; min-height:140px; padding:16px 0; }
-.home-page #home-news .home-news-support .news-card-image { width:132px; height:94px; aspect-ratio:auto; border-radius:8px; }
-.home-page #home-news .home-news-support h3 { max-width:24ch; margin:6px auto 0; font-size:17px; line-height:1.5; text-wrap:balance; }
+.home-page #home-news .home-news-support .news-card-link { display:grid; grid-template-columns:112px minmax(0,1fr); gap:18px; align-items:center; min-height:120px; padding:16px 0; }
+.home-page #home-news .home-news-support .news-card-image { width:112px; height:84px; aspect-ratio:auto; border-radius:8px; }
+.home-page #home-news .home-news-support .news-card-copy { text-align:left; }
+.home-page #home-news .home-news-support h3 { max-width:none; margin:6px 0 0; font-size:17px; line-height:1.5; text-wrap:pretty; }
 .home-page #home-news .news-card-link:hover h3 { text-decoration:underline; text-underline-offset:4px; }
 @media(min-width:768px) and (max-width:1023px) {
- .home-page #home-news .home-news-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:28px; }
- .home-page #home-news .home-news-support .news-card-link { grid-template-columns:96px minmax(0,1fr); gap:16px; min-height:132px; padding:14px 0; }
+ .home-page #home-news .home-news-grid { grid-template-columns:minmax(0,1fr); gap:28px; }
+ .home-page #home-news .home-news-lead .news-card-link { display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:24px; }
+ .home-page #home-news .home-news-lead .news-card-copy { padding:0; text-align:left; }
+ .home-page #home-news .home-news-supporting { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:24px; border-top:0; }
+ .home-page #home-news .home-news-support { border-top:1px solid #32150624; }
+ .home-page #home-news .home-news-support:nth-child(-n+2) { border-bottom:0; }
+ .home-page #home-news .home-news-support .news-card-link { grid-template-columns:96px minmax(0,1fr); gap:16px; min-height:120px; padding:14px 0; }
  .home-page #home-news .home-news-support .news-card-image { width:96px; height:86px; }
  .home-page #home-news .home-news-support h3 { font-size:16px; }
  .home-page #home-news .news-card h3 { overflow-wrap:anywhere; }

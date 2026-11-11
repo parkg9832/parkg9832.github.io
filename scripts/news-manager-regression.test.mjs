@@ -44,8 +44,8 @@ try{
   assert.equal(record.category,category==='press'?'press':'news','Normalize legacy activity categories without changing press coverage');
  }
  await assert.rejects(validateStory(fixture,{...draft,category:'unknown'},initial.data),error=>error.status===400,'Reject categories outside the supported or legacy values');
- assert.equal((await validateStory(fixture,{...draft,homePosition:4},initial.data)).homeOrder,4,'The third supporting story remains editable in the fourth home slot');
- await assert.rejects(validateStory(fixture,{...draft,homePosition:5},initial.data),error=>error.status===400,'Reject home positions outside the four available slots');
+ assert.equal((await validateStory(fixture,{...draft,homePosition:5},initial.data)).homeOrder,5,'The fourth supporting story remains editable in the fifth home slot');
+ await assert.rejects(validateStory(fixture,{...draft,homePosition:6},initial.data),error=>error.status===400,'Reject home positions outside the five available slots');
  const existingData=structuredClone(initial.data),existing=existingData.stories.find(story=>story.id===from.id);
  existing.related=[existingData.stories.find(story=>story.id!==from.id).id];
  assert.deepEqual((await validateStory(fixture,draft,existingData)).related,existing.related,'Omitting the removed related-stories field must preserve existing editorial data');
@@ -61,7 +61,7 @@ try{
  try{
   assert.deepEqual(Array.from(ui.window.document.querySelectorAll('#category option'),option=>[option.value,option.textContent]),[['news','소식'],['press','언론사 보도자료']]);
   assert.equal(ui.window.document.getElementById('related'),null,'The manager must not offer the removed related-stories editor');
-  assert(ui.window.document.querySelector('#homePosition option[value="4"]'),'The manager offers the third supporting home card');
+  assert(ui.window.document.querySelector('#homePosition option[value="5"]'),'The manager offers the fourth supporting home card');
   ui.window.eval(await readFile(join(fixture,'scripts/news-manager-ui/app.js'),'utf8'));await settleUI();
   for(const category of ['press','news','events','collaborations']){
    const button=ui.window.document.querySelector(`[data-story="fixture-ui-${category}"]`);assert(button,'Every story remains selectable after the category change');

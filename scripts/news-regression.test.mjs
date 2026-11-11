@@ -102,8 +102,8 @@ for(const lang of ['es','ko','en']){
  const home=new JSDOM(read(`${lang}/index.html`)),hd=home.window.document;
  assert.equal(hd.querySelectorAll('#home-news .home-news-lead').length,1);
  assert.equal(hd.querySelector('.home-news-lead').dataset.newsCard,'dongnip-interview');
- assert.deepEqual([...hd.querySelectorAll('.home-news-support')].map(node=>node.dataset.newsCard),['aving-iffe-interview','kotra-interview']);
- assert.equal(hd.querySelectorAll('#home-news a').length,4,'Each story and the archive have one link');
+ assert.deepEqual([...hd.querySelectorAll('.home-news-support')].map(node=>node.dataset.newsCard),['aving-iffe-interview','kotra-interview','kotra-lima','kpop-style']);
+ assert.equal(hd.querySelectorAll('#home-news a').length,6,'Each story and the archive have one link');
  assert.equal(hd.querySelectorAll('#home-news [data-news-video]').length,0,'Home images navigate to stories without loading players');
  assert.equal(hd.querySelectorAll('.home-news-summary').length,1,'Only the main story has a summary');
  for(const card of hd.querySelectorAll('#home-news [data-news-card]')){

@@ -168,7 +168,7 @@ window.MOKDA_NEWS = {
       "gallery": [],
       "related": [],
       "homeFeatured": true,
-      "homeOrder": 3,
+      "homeOrder": 2,
       "KR": {
         "title": "[IFFE 2026] 고추장에 할라페뇨를 더했다 – ‘먹다’ 살사 코레아나",
         "summary": "AVING NEWS · 전주국제발효식품엑스포 기사·현장 인터뷰 · 2026년 10월",
@@ -336,7 +336,7 @@ window.MOKDA_NEWS = {
         }
       ],
       "homeFeatured": true,
-      "homeOrder": 4,
+      "homeOrder": 3,
       "KR": {
         "title": "페루 국제 식음료 박람회 '엑스포알리멘타리아 2026(Expoalimentaria 2026)' 참관기",
         "summary": "KOTRA 해외시장뉴스 · 리마무역관 지정주 · 2026년 10월 6일",
@@ -519,8 +519,8 @@ window.MOKDA_NEWS = {
         ]
       },
       "publishedDate": "2026-10-07",
-      "homeFeatured": false,
-      "homeOrder": 99,
+      "homeFeatured": true,
+      "homeOrder": 5,
       "videoPoster": "kpop-video",
       "videoDescriptions": {
         "KR": "KPOP STYLE 무대에서 관객들에게 인사하는 MOKDA의 영상",
@@ -576,8 +576,8 @@ window.MOKDA_NEWS = {
         ]
       },
       "publishedDate": "2026-10-07",
-      "homeFeatured": false,
-      "homeOrder": 99
+      "homeFeatured": true,
+      "homeOrder": 4
     },
     {
       "id": "congreso",

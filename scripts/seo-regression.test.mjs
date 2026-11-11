@@ -30,8 +30,9 @@ const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<last
 assert.equal(sitemapEntries.length, listedUrls.length, 'Every sitemap entry must preserve its recorded modification date');
 for (const [, url, lastModified] of sitemapEntries) {
   const productDetail = /\/(kpeno|para-carnes)\.html$/.test(url);
-  const updatedNews = /\/(?:news(?:-aving-iffe-interview)?\.html)?$/.test(url);
-  assert.equal(lastModified, updatedNews ? '2026-11-04' : productDetail ? '2026-10-13' : '2026-10-11', `${url}: modification date follows the changed page`);
+  const updatedNews = /\/(?:news(?:-dongnip-interview)?\.html)?$/.test(url);
+  const previousInterview = /\/news-aving-iffe-interview\.html$/.test(url);
+  assert.equal(lastModified, updatedNews ? '2026-11-11' : previousInterview ? '2026-11-04' : productDetail ? '2026-10-13' : '2026-10-11', `${url}: modification date follows the changed page`);
 }
 for (const story of newsData.stories.filter(story => story.redirectTo)) {
   for (const lang of Object.keys(languages)) assert(!listedUrls.includes(urlFor(lang, 'news-' + story.id)), 'Merged URLs are excluded from the canonical sitemap');

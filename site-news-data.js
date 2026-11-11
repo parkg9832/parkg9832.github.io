@@ -76,6 +76,89 @@ window.MOKDA_NEWS = {
   },
   "stories": [
     {
+      "id": "dongnip-interview",
+      "category": "press",
+      "location": "",
+      "publishedDate": "2026-11-09",
+      "lastModified": "2026-11-11",
+      "image": "dongnip-interview",
+      "gallery": [],
+      "related": [],
+      "homeFeatured": true,
+      "homeOrder": 1,
+      "KR": {
+        "title": "윤준수 기자의 MOKDA 창업자 인터뷰",
+        "summary": "독립신문 · 윤준수 기자 · 2026년 11월 9일 — 중남미 유학에서 시작된 MOKDA와 일상에서 간편하게 즐기는 한국 소스.",
+        "imageAlt": "K-PEÑO와 Para Carnes를 들고 있는 MOKDA 창업자 박겸 대표",
+        "imageCaption": "독립신문 인터뷰에 게재된 MOKDA 박겸 대표. 사진 출처: 독립신문.",
+        "sections": [
+          [
+            "MOKDA의 시작",
+            "독립신문 윤준수 기자가 MOKDA 창업자 박겸 대표를 만나 중남미를 위한 한국 소스를 만들게 된 배경을 들었다."
+          ],
+          [
+            "유학 경험에서 제품 개발로",
+            "박 대표는 유학 시절, 함께 음식을 나누는 문화와 식탁에 다양한 소스가 올라오는 모습이 인상적이었다고 말했다. 그는 현지 셰프와 함께 복잡한 준비 없이 즐길 수 있는 K-PEÑO와 Para Carnes를 개발했다."
+          ],
+          [
+            "일상에서 찾는 한국 소스",
+            "박 대표는 중남미 가정에서 MOKDA를 냉장고에 두고, 언제든 꺼내 편하게 즐기는 일상용 소스로 만드는 것이 목표라고 설명했다. 앞으로도 현지 소비자의 의견을 들으며 제품을 발전시켜 나가고 싶다고 밝혔다."
+          ]
+        ]
+      },
+      "ES": {
+        "title": "Entrevista de Yun Jun-su al fundador de MOKDA",
+        "summary": "Dongnip Sinmun · Yun Jun-su · 9 de noviembre de 2026 — El origen de MOKDA y sus salsas coreanas para el día a día en Latinoamérica.",
+        "imageAlt": "Gyeom Park, fundador de MOKDA, con K-PEÑO y Para Carnes",
+        "imageCaption": "Gyeom Park en la fotografía publicada con la entrevista. Fuente de la imagen: Dongnip Sinmun.",
+        "sections": [
+          [
+            "El origen de MOKDA",
+            "Yun Jun-su, de Dongnip Sinmun, entrevistó a Gyeom Park, fundador de MOKDA, sobre su decisión de crear salsas coreanas para Latinoamérica."
+          ],
+          [
+            "De la experiencia al producto",
+            "Park contó que, durante sus estudios en la región, le llamó la atención la cultura de compartir la comida y la presencia de las salsas en la mesa. Junto a un chef local, desarrolló K-PEÑO y Para Carnes para disfrutarlas sin preparaciones complicadas."
+          ],
+          [
+            "Salsas para el día a día",
+            "Su objetivo, explicó, es que las familias latinoamericanas tengan MOKDA en el refrigerador y disfruten sus salsas en cualquier momento, como parte de su día a día. También expresó su deseo de seguir desarrollando los productos a partir de las opiniones del público local."
+          ]
+        ]
+      },
+      "EN": {
+        "title": "Yun Jun-su interviews MOKDA’s founder",
+        "summary": "Dongnip Sinmun · Yun Jun-su · November 9, 2026 — How MOKDA began and its Korean sauces for everyday life in Latin America.",
+        "imageAlt": "MOKDA founder Gyeom Park holding K-PEÑO and Para Carnes",
+        "imageCaption": "Gyeom Park in the photograph published with the interview. Image source: Dongnip Sinmun.",
+        "sections": [
+          [
+            "How MOKDA began",
+            "Dongnip Sinmun reporter Yun Jun-su interviewed MOKDA founder Gyeom Park about why he started developing Korean sauces for Latin America."
+          ],
+          [
+            "From experience to product development",
+            "Park said that, while studying in the region, he was struck by the culture of sharing meals and the variety of sauces on the table. Working with a local chef, he developed K-PEÑO and Para Carnes to be enjoyed without complicated preparation."
+          ],
+          [
+            "Korean sauces for everyday life",
+            "Park explained that his goal is for Latin American families to keep MOKDA in the refrigerator and enjoy its sauces whenever they like, as part of everyday life. He also expressed a wish to keep developing the products by listening to local consumers."
+          ]
+        ]
+      },
+      "sources": [
+        {
+          "label": "독립신문 · 윤준수 기자 · 2026-11-09",
+          "url": "https://www.ainews1.co.kr/news/articleView.html?idxno=38481",
+          "labels": {
+            "KR": "기사 원문 · 독립신문 · 윤준수 기자 · 2026.11.09",
+            "ES": "Artículo original (en coreano) · Dongnip Sinmun · Yun Jun-su · 09/11/2026",
+            "EN": "Original article (in Korean) · Dongnip Sinmun · Yun Jun-su · November 9, 2026"
+          }
+        }
+      ]
+    },
+    {
       "id": "aving-iffe-interview",
       "category": "press",
       "location": "Jeonju, Corea del Sur",
@@ -85,7 +168,7 @@ window.MOKDA_NEWS = {
       "gallery": [],
       "related": [],
       "homeFeatured": true,
-      "homeOrder": 1,
+      "homeOrder": 3,
       "KR": {
         "title": "[IFFE 2026] 고추장에 할라페뇨를 더했다 – ‘먹다’ 살사 코레아나",
         "summary": "AVING NEWS · 전주국제발효식품엑스포 기사·현장 인터뷰 · 2026년 10월",
@@ -380,8 +463,8 @@ window.MOKDA_NEWS = {
         "imageCaption": "Photo: Expoalimentaria’s official Instagram (@expoalimentaria), September 23, 2026."
       },
       "publishedDate": "2026-10-07",
-      "homeFeatured": true,
-      "homeOrder": 3,
+      "homeFeatured": false,
+      "homeOrder": 99,
       "videoPoster": "expo-video",
       "videoDescriptions": {
         "KR": "MOKDA 부스 방문객과 제품을 들고 함께한 현장 영상",
@@ -1046,6 +1129,10 @@ window.MOKDA_NEWS = {
     "aving-iffe-interview-640": [
       640,
       364
+    ],
+    "dongnip-interview": [
+      600,
+      900
     ]
   }
 };

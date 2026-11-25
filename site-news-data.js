@@ -81,7 +81,7 @@ window.MOKDA_NEWS = {
       "location": "Jeonju, Corea del Sur",
       "publishedDate": "2026-11-17",
       "lastModified": "2026-11-25",
-      "image": "kbs-radio-interview",
+      "image": "kbs-radio-interview-full",
       "gallery": [],
       "related": [],
       "homeFeatured": true,
@@ -89,8 +89,8 @@ window.MOKDA_NEWS = {
       "KR": {
         "title": "KBS 라디오 ‘패트롤전북’에 소개된 MOKDA",
         "summary": "KBS전주 · 패트롤전북 ‘전북 히든 챔피언’ · 2026년 11월 17일 — 소스를 통해 한국과 중남미를 잇는 MOKDA의 이야기.",
-        "imageAlt": "KBS 라디오 인터뷰를 소개하는 MOKDA 박겸 대표와 K-PEÑO·Para Carnes 썸네일",
-        "imageCaption": "박겸 대표의 KBS 라디오 출연을 소개하는 썸네일.",
+        "imageAlt": "KBS전주 패트롤전북에 출연해 소스를 소개하는 MOKDA 박겸 대표의 방송 원본 전체 화면",
+        "imageCaption": "KBS전주 ‘패트롤전북’ 방송 화면. 출처: KBS전주.",
         "sections": [
           [
             "KBS 라디오에서 나눈 MOKDA의 이야기",
@@ -109,8 +109,8 @@ window.MOKDA_NEWS = {
       "ES": {
         "title": "En KBS Radio: la historia de MOKDA",
         "summary": "KBS Jeonju · «Patrol Jeonbuk», sección «Hidden Champion» · 17 de noviembre de 2026 — Salsas que acercan Corea a la vida cotidiana en Latinoamérica.",
-        "imageAlt": "Imagen de Gyeom Park, fundador de MOKDA, con K-PEÑO y Para Carnes para presentar su entrevista en KBS Radio",
-        "imageCaption": "Imagen de presentación de la entrevista de Gyeom Park en KBS Radio.",
+        "imageAlt": "Fotograma completo de Gyeom Park presentando MOKDA en Patrol Jeonbuk de KBS Jeonju",
+        "imageCaption": "Fotograma de «Patrol Jeonbuk». Fuente: KBS Jeonju.",
         "sections": [
           [
             "La historia de MOKDA en KBS Radio",
@@ -129,8 +129,8 @@ window.MOKDA_NEWS = {
       "EN": {
         "title": "MOKDA shares its story on KBS Radio",
         "summary": "KBS Jeonju · “Patrol Jeonbuk,” “Hidden Champion” segment · November 17, 2026 — Bringing Korean flavors to everyday meals in Latin America through sauces.",
-        "imageAlt": "MOKDA founder Gyeom Park with K-PEÑO and Para Carnes in the thumbnail introducing his KBS Radio interview",
-        "imageCaption": "Thumbnail introducing Gyeom Park’s interview on KBS Radio.",
+        "imageAlt": "Full broadcast frame of Gyeom Park introducing MOKDA on KBS Jeonju’s Patrol Jeonbuk",
+        "imageCaption": "Broadcast frame from “Patrol Jeonbuk.” Source: KBS Jeonju.",
         "sections": [
           [
             "The MOKDA story on KBS Radio",
@@ -1220,6 +1220,10 @@ window.MOKDA_NEWS = {
     "kbs-radio-interview": [
       1080,
       1350
+    ],
+    "kbs-radio-interview-full": [
+      1200,
+      675
     ]
   }
 };

@@ -300,6 +300,8 @@ html[lang^="ko"] .home-page #homeNewsTitle { line-height:1.18; }
 .home-page #home-news .news-card-image { background:transparent; }
 .home-page #home-news .home-news-lead .news-card-image { aspect-ratio:3/2; border-radius:10px; }
 .home-page #home-news .home-news-lead .news-card-image img { object-position:50% 48%; }
+.home-page #home-news .home-news-lead[data-news-card="kbs-radio-interview"] .news-card-image { aspect-ratio:16/9; }
+[data-news-card="kbs-radio-interview"] .news-card-image img { object-fit:contain; }
 .home-page #home-news .news-card-copy { min-width:0; min-height:0; padding:0; text-align:center; }
 .home-page #home-news .home-news-lead .news-card-copy { padding:16px 4px 0; }
 .home-page #home-news .news-kicker { font-size:13px; }

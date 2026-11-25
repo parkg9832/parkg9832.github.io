@@ -13,7 +13,8 @@ function start(lang,page,query='',extend,configure){
 }
 for(const lang of ['es','ko','en']){
  const dom=start(lang,'news','?utm_source=partner'),w=dom.window,d=w.document;
- assert.equal(d.querySelectorAll('[data-news-card]').length,9);
+ assert.equal(d.querySelectorAll('[data-news-card]').length,10,'Keep every article in the crawlable archive');
+ assert.equal(d.querySelectorAll('[data-news-card]:not([hidden])').length,9,'Show nine stories on the first page');
  assert.equal(d.querySelector('[data-news-card="aving-iffe-2026"]'),null,'Merged AVING coverage appears only once');
  assert.equal(d.querySelector('[data-news-card="creators"]'),null,'Creator collection is excluded from the archive');
  assert.equal(d.querySelector('[data-news-card="kotra-interview"] time').dateTime,'2026-10-06');
@@ -25,15 +26,17 @@ for(const lang of ['es','ko','en']){
  assert.equal(meeting.publishedDate,'2026-10-07','Keep the meeting event date separate from the publication date');
  assert.equal(meeting.image,'kotra-lima-meeting','Use the uploaded KOTRA office photo');
  assert.equal(w.MOKDA_NEWS_MODEL.displayDate(w.MOKDA_NEWS,{eventDate:'2026-09-28',dateUnconfirmed:true}),'','Keep unconfirmed dates hidden');
- assert.equal(d.querySelector('[data-news-card]').dataset.newsCard,'dongnip-interview','Order the archive by actual event or source dates');
+ assert.equal(d.querySelector('[data-news-card]').dataset.newsCard,'kbs-radio-interview','Order the archive by actual broadcast or source dates');
  assert.equal(d.querySelectorAll('[data-news-video]').length,0,'Archive contains stories rather than a promotional video section');
  assert.equal(d.querySelectorAll('.news-feature').length,0);
  assert.equal(d.querySelectorAll('video').length,0);
  assert.equal(d.querySelectorAll('[data-news-filter],.news-filters').length,0,'Search-only archive');
  const language={es:'ES',ko:'KR',en:'EN'}[lang],labels={es:{press:'En medios',news:'Novedades'},ko:{press:'언론사 보도자료',news:'소식'},en:{press:'Press coverage',news:'Updates'}}[lang];
  assert.deepEqual([...new Set([...d.querySelectorAll('[data-news-card] .news-kicker')].map(node=>node.textContent.trim()))].sort(),Object.values(labels).sort(),'Only the two public classifications are displayed');
+ const secondPage=start(lang,'news','?page=2'),secondDoc=secondPage.window.document;
+ assert.equal(secondDoc.querySelectorAll('[data-news-card]:not([hidden])').length,1,'The tenth story remains accessible on page two');
  for(const story of w.MOKDA_NEWS.stories.filter(story=>story.archiveVisible!==false)){
-  const item=d.querySelector(`[data-news-card="${story.id}"]`);
+  const item=d.querySelector(`[data-news-card="${story.id}"]`)||secondDoc.querySelector(`[data-news-card="${story.id}"]`);
   assert.equal(item.dataset.category,story.category);
   assert.equal(item.querySelector('.news-kicker').textContent.trim(),labels[story.category]);
   const detail=start(lang,'news-'+story.id),dd=detail.window.document;
@@ -65,6 +68,13 @@ for(const lang of ['es','ko','en']){
   }
   detail.window.close();
  }
+ secondPage.window.close();
+ const radio=start(lang,'news-kbs-radio-interview'),radioDoc=radio.window.document;
+ assert.equal(radioDoc.querySelectorAll('.news-article-cover img').length,1,'KBS story has exactly one thumbnail');
+ assert.equal(radioDoc.querySelectorAll('iframe,video,[data-news-video],.news-gallery').length,0,'KBS coverage links to the original broadcast without uploading Shorts');
+ assert.equal(radioDoc.querySelectorAll('.news-sources a').length,1);
+ assert.equal(radioDoc.querySelector('.news-sources a').href,'https://www.youtube.com/watch?v=ZbFOgvBcPnQ&t=1047s','Open the original KBS broadcast at the MOKDA interview');
+ radio.window.close();
  assert.equal(new URL(w.location.href).searchParams.get('utm_source'),'partner');
  const input=d.getElementById('newsSearch');input.value='KOTRA';d.querySelector('[data-search-news]').click();assert.equal(d.querySelectorAll('[data-news-card]:not([hidden])').length,3);assert.equal(new URL(w.location.href).searchParams.get('q'),'KOTRA');
  input.value='nothing-match-fixture';d.querySelector('[data-search-news]').click();assert.equal(d.getElementById('newsEmpty').hidden,false);d.querySelector('[data-reset-news]').click();assert.equal(new URL(w.location.href).searchParams.has('q'),false);
@@ -101,8 +111,8 @@ for(const lang of ['es','ko','en']){
  assert.equal(c.querySelectorAll('dialog').length,0);const toggle=c.querySelector('[data-conveyor="toggle"]');toggle.click();assert.equal(toggle.getAttribute('aria-pressed'),'true');toggle.click();assert.equal(toggle.getAttribute('aria-pressed'),'false');creators.window.close();
  const home=new JSDOM(read(`${lang}/index.html`)),hd=home.window.document;
  assert.equal(hd.querySelectorAll('#home-news .home-news-lead').length,1);
- assert.equal(hd.querySelector('.home-news-lead').dataset.newsCard,'dongnip-interview');
- assert.deepEqual([...hd.querySelectorAll('.home-news-support')].map(node=>node.dataset.newsCard),['aving-iffe-interview','kotra-interview','kotra-lima','kpop-style']);
+ assert.equal(hd.querySelector('.home-news-lead').dataset.newsCard,'kbs-radio-interview');
+ assert.deepEqual([...hd.querySelectorAll('.home-news-support')].map(node=>node.dataset.newsCard),['dongnip-interview','aving-iffe-interview','kotra-interview','kotra-lima']);
  assert.equal(hd.querySelectorAll('#home-news a').length,6,'Each story and the archive have one link');
  assert.equal(hd.querySelectorAll('#home-news [data-news-video]').length,0,'Home images navigate to stories without loading players');
  assert.equal(hd.querySelectorAll('.home-news-summary').length,1,'Only the main story has a summary');

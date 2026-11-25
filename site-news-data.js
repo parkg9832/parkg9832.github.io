@@ -76,6 +76,89 @@ window.MOKDA_NEWS = {
   },
   "stories": [
     {
+      "id": "kbs-radio-interview",
+      "category": "press",
+      "location": "Jeonju, Corea del Sur",
+      "publishedDate": "2026-11-17",
+      "lastModified": "2026-11-25",
+      "image": "kbs-radio-interview",
+      "gallery": [],
+      "related": [],
+      "homeFeatured": true,
+      "homeOrder": 1,
+      "KR": {
+        "title": "KBS 라디오 ‘패트롤전북’에 소개된 MOKDA",
+        "summary": "KBS전주 · 패트롤전북 ‘전북 히든 챔피언’ · 2026년 11월 17일 — 소스를 통해 한국과 중남미를 잇는 MOKDA의 이야기.",
+        "imageAlt": "KBS 라디오 인터뷰를 소개하는 MOKDA 박겸 대표와 K-PEÑO·Para Carnes 썸네일",
+        "imageCaption": "박겸 대표의 KBS 라디오 출연을 소개하는 썸네일.",
+        "sections": [
+          [
+            "KBS 라디오에서 나눈 MOKDA의 이야기",
+            "MOKDA 박겸 대표가 2026년 11월 17일 KBS전주 라디오 ‘패트롤전북’의 ‘전북 히든 챔피언’ 코너에 출연했다. 소스를 통해 중남미의 일상 음식에 한국의 맛을 더해가는 브랜드의 시작과 방향을 소개했다."
+          ],
+          [
+            "이름에 담긴 뜻과 두 가지 소스",
+            "인터뷰에서는 ‘먹다’라는 이름에 담긴 의미와 제품 개발 과정, 고추장과 할라피뇨를 조합한 K-PEÑO와 쌈장에서 영감을 받은 Para Carnes를 이야기했다. 한국 음식을 따로 준비하지 않아도 평소 먹는 음식에 한국의 맛을 더할 수 있는 소스를 만들고 싶다는 생각을 전했다."
+          ],
+          [
+            "중남미에서 한국을 대표하는 브랜드를 향해",
+            "박 대표는 소스를 넘어 현대적인 한국의 맛과 문화를 전하는 브랜드를 만들고 싶다고 밝혔다. 중남미에서 한국 문화를 떠올릴 때 MOKDA도 함께 생각나는 브랜드가 되는 것이 목표다. 아래 링크에서 KBS 원본 방송의 MOKDA 인터뷰를 볼 수 있다."
+          ]
+        ]
+      },
+      "ES": {
+        "title": "En KBS Radio: la historia de MOKDA",
+        "summary": "KBS Jeonju · «Patrol Jeonbuk», sección «Hidden Champion» · 17 de noviembre de 2026 — Salsas que acercan Corea a la vida cotidiana en Latinoamérica.",
+        "imageAlt": "Imagen de Gyeom Park, fundador de MOKDA, con K-PEÑO y Para Carnes para presentar su entrevista en KBS Radio",
+        "imageCaption": "Imagen de presentación de la entrevista de Gyeom Park en KBS Radio.",
+        "sections": [
+          [
+            "La historia de MOKDA en KBS Radio",
+            "El 17 de noviembre de 2026, Gyeom Park, fundador de MOKDA, participó en «Hidden Champion», una sección del programa «Patrol Jeonbuk» de KBS Jeonju. Compartió cómo nació la marca y su idea de acercar los sabores de Corea a las comidas de todos los días en Latinoamérica a través de sus salsas."
+          ],
+          [
+            "Un nombre, dos salsas y una idea",
+            "La conversación recorrió el significado de «MOKDA», que viene del verbo coreano «comer», y el desarrollo de sus dos salsas: K-PEÑO, que combina gochujang y jalapeño, y Para Carnes, inspirada en el ssamjang. La idea es disfrutar un sabor coreano con la comida de siempre, sin tener que preparar un plato coreano."
+          ],
+          [
+            "Una marca que represente a Corea en Latinoamérica",
+            "Park habló de su deseo de compartir el sabor y la cultura de la Corea actual. Su meta es que, al pensar en cultura coreana en Latinoamérica, también se piense en MOKDA. La entrevista original de KBS está disponible en el enlace de abajo."
+          ]
+        ]
+      },
+      "EN": {
+        "title": "MOKDA shares its story on KBS Radio",
+        "summary": "KBS Jeonju · “Patrol Jeonbuk,” “Hidden Champion” segment · November 17, 2026 — Bringing Korean flavors to everyday meals in Latin America through sauces.",
+        "imageAlt": "MOKDA founder Gyeom Park with K-PEÑO and Para Carnes in the thumbnail introducing his KBS Radio interview",
+        "imageCaption": "Thumbnail introducing Gyeom Park’s interview on KBS Radio.",
+        "sections": [
+          [
+            "The MOKDA story on KBS Radio",
+            "On November 17, 2026, MOKDA founder Gyeom Park appeared on the “Hidden Champion” segment of KBS Jeonju’s radio program “Patrol Jeonbuk.” He shared how the brand began and its aim of bringing Korean flavors to everyday meals in Latin America through sauces."
+          ],
+          [
+            "One name, two sauces and an idea",
+            "The interview explored the meaning of MOKDA, from the Korean verb “to eat,” and the development of its two sauces: K-PEÑO, combining gochujang and jalapeño, and Para Carnes, inspired by ssamjang. The idea is to enjoy Korean flavor with familiar meals without having to cook a Korean dish."
+          ],
+          [
+            "A brand that represents Korea in Latin America",
+            "Park described his ambition to share the flavors and culture of contemporary Korea. His goal is for MOKDA to come to mind when people in Latin America think of Korean culture. Watch the original KBS interview through the link below."
+          ]
+        ]
+      },
+      "sources": [
+        {
+          "label": "KBS전주 · 패트롤전북 · 전북 히든 챔피언 · 2026-11-17",
+          "url": "https://www.youtube.com/watch?v=ZbFOgvBcPnQ&t=1047s",
+          "labels": {
+            "KR": "KBS 원본 방송 보기 · MOKDA 인터뷰부터 · 2026.11.17",
+            "ES": "Ver la entrevista original de KBS (en coreano) · 17/11/2026",
+            "EN": "Watch the original KBS interview (in Korean) · November 17, 2026"
+          }
+        }
+      ]
+    },
+    {
       "id": "dongnip-interview",
       "category": "press",
       "location": "",
@@ -85,7 +168,7 @@ window.MOKDA_NEWS = {
       "gallery": [],
       "related": [],
       "homeFeatured": true,
-      "homeOrder": 1,
+      "homeOrder": 2,
       "KR": {
         "title": "윤준수 기자의 MOKDA 창업자 인터뷰",
         "summary": "독립신문 · 윤준수 기자 · 2026년 11월 9일 — 중남미 유학에서 시작된 MOKDA와 일상에서 간편하게 즐기는 한국 소스.",
@@ -168,7 +251,7 @@ window.MOKDA_NEWS = {
       "gallery": [],
       "related": [],
       "homeFeatured": true,
-      "homeOrder": 2,
+      "homeOrder": 3,
       "KR": {
         "title": "[IFFE 2026] 고추장에 할라페뇨를 더했다 – ‘먹다’ 살사 코레아나",
         "summary": "AVING NEWS · 전주국제발효식품엑스포 기사·현장 인터뷰 · 2026년 10월",
@@ -336,7 +419,7 @@ window.MOKDA_NEWS = {
         }
       ],
       "homeFeatured": true,
-      "homeOrder": 3,
+      "homeOrder": 4,
       "KR": {
         "title": "페루 국제 식음료 박람회 '엑스포알리멘타리아 2026(Expoalimentaria 2026)' 참관기",
         "summary": "KOTRA 해외시장뉴스 · 리마무역관 지정주 · 2026년 10월 6일",
@@ -519,8 +602,8 @@ window.MOKDA_NEWS = {
         ]
       },
       "publishedDate": "2026-10-07",
-      "homeFeatured": true,
-      "homeOrder": 5,
+      "homeFeatured": false,
+      "homeOrder": 99,
       "videoPoster": "kpop-video",
       "videoDescriptions": {
         "KR": "KPOP STYLE 무대에서 관객들에게 인사하는 MOKDA의 영상",
@@ -577,7 +660,7 @@ window.MOKDA_NEWS = {
       },
       "publishedDate": "2026-10-07",
       "homeFeatured": true,
-      "homeOrder": 4
+      "homeOrder": 5
     },
     {
       "id": "congreso",
@@ -1133,6 +1216,10 @@ window.MOKDA_NEWS = {
     "dongnip-interview": [
       600,
       900
+    ],
+    "kbs-radio-interview": [
+      1080,
+      1350
     ]
   }
 };

@@ -133,9 +133,12 @@ for (const lang of ['ko', 'es', 'en']) {
     if (page === 'qna') assert.equal(doc.querySelectorAll('#qnaList article').length, 5);
     if (page === 'about') {
       assert.equal(doc.querySelectorAll('main>section.about-opening,#direction,#journeyHighlights,details.about-history-records').length, 0, 'Removed brand sections must not be regenerated');
-      assert.equal(doc.querySelectorAll('#timelineList li').length, 5, 'Five owner-supplied milestones in open chronology');
+      assert.equal(doc.querySelectorAll('#timelineList li').length, 6, 'Six owner-supplied milestones in open chronology');
       assert.equal(doc.querySelectorAll('#timelineList .about-history-year').length, 3, '2024–2026 year groups');
       assert.match(doc.querySelector('#timelineList').textContent, /2024[\s\S]*2025[\s\S]*2026/);
+      const novemberEvent = doc.querySelector('[aria-labelledby="history-year-2026"] li:last-child');
+      assert.equal(novemberEvent?.querySelector('.about-event-month')?.textContent, '11');
+      assert.match(novemberEvent?.textContent || '', { ko: /스타트업 전북 창업대전/, es: /Festival de Startups de Jeonbuk/, en: /Jeonbuk Startup Festival/ }[lang]);
       assert.equal(doc.querySelectorAll('#story img,#ingredients img').length, 2, 'Only the two specified photographs');
       for (const photo of doc.querySelectorAll('#story img,#ingredients img')) {
         assert.equal(Number(photo.getAttribute('width')) / Number(photo.getAttribute('height')), 16/9, 'Full landscape photograph');

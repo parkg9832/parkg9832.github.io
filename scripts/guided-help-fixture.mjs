@@ -13,6 +13,7 @@ export function fixture(language='ES',{product='',saved,legacy,width=1440,number
  w.fetch=()=>{requests++;throw Error('Guide must not call the network');};w.navigator.sendBeacon=w.fetch;
  Object.defineProperty(w,'MOKDA_CHAT_AI_CLIENT',{get(){throw Error('Guide must not use AI');}});
  Object.assign(w.HTMLDialogElement.prototype,{show(){this.open=true;},showModal(){this.open=true;},close(){this.open=false;this.dispatchEvent(new w.Event('close'));}});
+ w.eval(read('site-help-loader.js'));
  if(saved)w.sessionStorage.setItem(KEY,saved);if(legacy)w.sessionStorage.setItem('mokdaChatSessionV2',legacy);
  if(blocked)Object.defineProperty(w,'sessionStorage',{get(){throw Error('Storage blocked');}});
  for(const file of ['site-contact-config.js','site-company-knowledge.js','site-help-data.js','site-country-data.js','site-help-flow.js','site-help.js']){w.eval(read(file));if(file==='site-contact-config.js'&&number!==undefined)w.MOKDA_CONTACT.whatsappNumber=number;}

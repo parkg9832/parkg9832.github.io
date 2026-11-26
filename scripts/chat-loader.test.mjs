@@ -57,6 +57,7 @@ for (const lang of ['KR', 'ES', 'EN']) for (const width of [390, 1440]) {
   await f.finish();
   assert.deepEqual(f.loaded, names.map(name => `/${name}`));
   assert(f.d.querySelector('dialog').open); assert.equal(f.d.querySelectorAll('#mokda-help').length, 1);
+  assert.equal(f.d.querySelector('.help-launcher'), stub, 'The initial launcher remains the same DOM node after loading');
   assert.equal(f.d.querySelector('.help-launcher').innerHTML, launcherMark, 'The same bot mark survives deferred chat loading');
   assert.equal(f.d.querySelector('dialog').getAttribute('aria-modal'), String(width <= 600));
   assert(f.d.querySelector('.help-contact').hidden);

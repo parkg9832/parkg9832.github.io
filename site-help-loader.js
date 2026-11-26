@@ -63,27 +63,32 @@
     });
   }
   async function open(requestOptions) {
+    if (window.MOKDA_HELP_UI) {
+      window.MOKDA_HELP_UI.open(requestOptions);
+      return;
+    }
     if (loading) return;
     loading = true; launcher.setAttribute('aria-busy', 'true'); launcher.setAttribute('aria-label', text.loading);
     status.replaceChildren(document.createTextNode(text.loading)); status.hidden = false;
     try {
       if (!assets) throw new Error('invalid_assets');
-      for (let index = 0; index < assets.length; index++) {
-        if (index === assets.length - 1) root.remove();
-        await loadAsset(index);
-      }
+      for (let index = 0; index < assets.length; index++) await loadAsset(index);
+      status.hidden = true;
       window.MOKDA_HELP_UI.open(requestOptions);
     } catch {
-      if (!root.isConnected && !document.getElementById('mokda-help')) mount.append(root);
+      status.hidden = false;
       status.replaceChildren(document.createTextNode(`${text.failed} `));
       const link = document.createElement('a'); const product = {kpeno:'original',para_carnes:'para-carnes'}[requestOptions?.product]; link.href = contact + (requestOptions?.intent === 'business' ? '?purpose=distribution' + (product ? '&product=' + product : '') : ''); link.textContent = text.contact; status.append(link);
       launcher.setAttribute('aria-label', text.retry);
     } finally { loading = false; launcher.removeAttribute('aria-busy'); }
   }
-  launcher.addEventListener('click', open);
+  launcher.addEventListener('click', () => {
+    if (window.MOKDA_HELP_UI) window.MOKDA_HELP_UI.toggle();
+    else open();
+  });
   document.addEventListener('click', event => {
     const link = event.target.closest?.('a[data-chat-intent="business"]');
-    if (!link || window.MOKDA_HELP_UI || event.defaultPrevented || event.button || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (!link || event.defaultPrevented || event.button || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const product = { 'K-PEÑO': 'kpeno', 'Para Carnes': 'para_carnes' }[link.dataset.product];
     open({ intent: 'business', product, trigger: link });

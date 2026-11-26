@@ -15,14 +15,23 @@ for(const lang of ['KR','ES','EN']){
 const contact=new JSDOM(read('contact.html'),{url:'https://www.mokda.kr/es/contact.html?purpose=distribution&product=original',runScripts:'outside-only'});
 const cw=contact.window;cw.matchMedia=()=>({matches:false});cw.IntersectionObserver=class{observe(){}unobserve(){}};
 cw.eval(read('site-i18n.js'));cw.eval(read('site-footer.js'));cw.eval(read('site-country-data.js'));
-let submitted;cw.MOKDA_B2B_WEB_APP_URL='https://example.invalid/inquiry';cw.MOKDA_TURNSTILE={token:async()=> 'test-only-token'};
-cw.fetch=async(url,options)=>{submitted=JSON.parse(options.body);return {ok:true,json:async()=>({saved:false})};};
+let submitted, receiverResult = { ok: false, saved: false };
+const contactEvents = [];
+cw.MOKDA_B2B_WEB_APP_URL='https://example.invalid/inquiry';cw.MOKDA_TURNSTILE={token:async()=> 'test-only-token'};
+cw.MOKDA_ANALYTICS = { track: name => contactEvents.push(name) };
+cw.fetch=async(url,options)=>{submitted=JSON.parse(options.body);return {ok:true,json:async()=>receiverResult};};
 for(const script of contact.window.document.querySelectorAll('script:not([src])'))if(script.type!=='application/ld+json')cw.eval(script.textContent);
 const cd=cw.document;assert.equal(cd.querySelector('#productSelect').value,'original');
-for(const [id,value]of [['nameInput','Test buyer'],['countrySelect','Peru'],['emailInput','test@example.invalid'],['messageInput','Please quote the selected sauce.'],['productSelect','para-carnes']])cd.getElementById(id).value=value;
-cd.querySelector('#b2bForm').dispatchEvent(new cw.Event('submit',{bubbles:true,cancelable:true}));
-for(let i=0;i<12;i++)await Promise.resolve();
-assert(submitted);assert.equal(submitted.product,'para-carnes');contact.window.close();
+const formValues = [['nameInput','Test buyer'],['countrySelect','Peru'],['emailInput','test@example.invalid'],['messageInput','Please quote the selected sauce.'],['productSelect','para-carnes']];
+for (const result of [{ ok: false, saved: false }, { ok: true, saved: true, duplicate: true }, { ok: true, saved: true }]) {
+  receiverResult = result;
+  for (const [id, value] of formValues) cd.getElementById(id).value = value;
+  cd.querySelector('#b2bForm').dispatchEvent(new cw.Event('submit', { bubbles: true, cancelable: true }));
+  for (let i = 0; i < 12; i++) await Promise.resolve();
+  assert.equal(submitted?.product, 'para-carnes');
+  assert.equal(contactEvents.filter(name => name === 'generate_lead').length, Number(result.saved && !result.duplicate));
+}
+contact.window.close();
 
 // Exercise real event classification without sending a request or loading GA.
 const analytics=new JSDOM('<html><body><a href="/es/kpeno.html">Product</a><a href="https://wa.me/821022127815?text=PRIVATE_TEXT">WhatsApp</a></body></html>',{url:'https://www.mokda.kr/es/kpeno.html?analytics_debug=1&utm_medium=verification',runScripts:'outside-only'});

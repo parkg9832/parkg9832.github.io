@@ -1,6 +1,6 @@
 /* Selection-led support. Free text is collected only to prepare an inquiry; never interpreted or sent to AI. */
 (() => {
-  if (!window.MOKDA_HELP_FLOW || document.getElementById('mokda-help')) return;
+  if (!window.MOKDA_HELP_FLOW) return;
   const flow=window.MOKDA_HELP_FLOW, countries=window.MOKDA_COUNTRIES;
   const ui={
     KR:{launcher:'MOKDA 상담 안내 열기',close:'상담창 닫기',reset:'새로 시작',subtitle:'먹다 상담 도우미',auto:'선택형 안내',processing:'안내 준비 중',disclosure:'선택형 안내 · 담당자 문의는 WhatsApp',whatsapp:'WhatsApp에서 직접 전송',contact:'문의 양식 이용하기',latest:'새 안내 보기',user:'나',bot:'먹랑이 안내',history:'이전 대화',migration:'상담 방식이 선택형 안내로 바뀌었습니다. 작성 중이던 문의는 마지막 단계에 보관했습니다.',languageNote:'이전 안내는 보관하고, 지금부터 한국어로 안내합니다.',steps:['문의 목적','정보 안내','문의 작성']},
@@ -12,16 +12,17 @@
   const KEY='mokdaGuidedHelpV3',LEGACY='mokdaChatSessionV2',DRAFT='mokdaChatInquiryDraft',TTL=4*60*60*1000,MAX=24;
   const productOnPage=()=>({kpeno:'kpeno','para-carnes':'para_carnes',original:'kpeno',both:'both'}[document.body.dataset.productDetail||new URLSearchParams(location.search).get('product')]||'');
   const icon=paths=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
-  const root=document.createElement('aside');root.id='mokda-help';root.lang={KR:'ko-KR',ES:'es',EN:'en'}[lang];root.dataset.flow='guided';
-  root.innerHTML=`<button type="button" class="help-launcher" aria-haspopup="dialog" aria-controls="mokda-help-dialog" aria-expanded="false"><span class="help-launcher-mark" aria-hidden="true"><svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M2 10v5M22 10v5"/><circle cx="12" cy="2" r="1" fill="currentColor" stroke="none"/><rect x="4" y="6" width="16" height="14" rx="4"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><path d="M9 16h6"/></svg></span></button>
-  <dialog id="mokda-help-dialog" class="help-dialog" aria-labelledby="mokda-help-title" aria-modal="false">
+  const root = document.getElementById('mokda-help');
+  const launcher = root?.querySelector('.help-launcher');
+  if (!launcher || window.MOKDA_HELP_UI) return;
+  root.dataset.flow = 'guided';
+  launcher.setAttribute('aria-controls', 'mokda-help-dialog');
+  root.insertAdjacentHTML('beforeend', `<dialog id="mokda-help-dialog" class="help-dialog" aria-labelledby="mokda-help-title" aria-modal="false">
     <div class="help-header"><div class="help-brand-frame"><img class="help-brand" src="/assets/images/meokrangi-chat-avatar-20261013.webp" width="44" height="44" alt="" /></div><div class="help-heading"><h2 id="mokda-help-title">MOK-LANG</h2><p></p></div><button type="button" class="help-reset">${icon('<path d="M3 11a9 9 0 1 1 2.4 7M3 4v7h7"/>')}</button><button type="button" class="help-close">${icon('<path d="m6 6 12 12M18 6 6 18"/>')}</button></div>
     <div class="help-content"><p class="help-auto-label"></p><div class="help-conversation" role="log" aria-live="polite" aria-relevant="additions" aria-atomic="false"></div><div class="help-processing" role="status" hidden><span class="help-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="help-sr"></span></div><div class="help-options"></div></div>
     <button type="button" class="help-latest" hidden></button><div class="help-footer"><a class="help-contact" hidden><span class="help-whatsapp-icon">${icon('<path d="M21 11.5a9 9 0 0 1-13.4 8L3 21l1.5-4.6A9 9 0 1 1 21 11.5Z"/><path d="M8 7c-2 3 3 8 6 8l2-2-3-2-1 1-2-2 1-1-2-3-1 1Z"/>')}</span><span class="help-contact-text"></span><span aria-hidden="true">↗</span></a><p class="help-disclosure"></p><a class="help-form-link" hidden></a></div>
-  </dialog>`;
-  const mount=document.querySelector('[data-help-placement]')||document.body;
-  mount.append(root);
-  const find=s=>root.querySelector(s),launcher=find('.help-launcher'),dialog=find('dialog'),content=find('.help-content'),log=find('.help-conversation'),options=find('.help-options'),processing=find('.help-processing'),latest=find('.help-latest'),handoff=find('.help-contact'),formLink=find('.help-form-link'),closeButton=find('.help-close');
+  </dialog>`);
+  const find=s=>root.querySelector(s),dialog=find('dialog'),content=find('.help-content'),log=find('.help-conversation'),options=find('.help-options'),processing=find('.help-processing'),latest=find('.help-latest'),handoff=find('.help-contact'),formLink=find('.help-form-link'),closeButton=find('.help-close');
   launcher.setAttribute('aria-label',t.launcher);closeButton.setAttribute('aria-label',t.close);find('.help-reset').setAttribute('aria-label',t.reset);find('.help-heading p').textContent=t.subtitle;find('.help-disclosure').textContent=t.disclosure;find('.help-sr').textContent=t.processing;latest.textContent=t.latest+' ↓';formLink.textContent=t.contact;
   let state=flow.initial(productOnPage()),transcript=[],timer=null,pending=null,greetingNeeded=true,following=true,closing=false,modal=false,oldOverflow='',oldScroll=0,restoredOpen=false,previousLanguage='',archive=[];
   const compact=()=>window.innerWidth<=600||(window.innerWidth<=900&&window.innerHeight<=500);
@@ -74,18 +75,96 @@
   function cancel(){if(timer!==null)window.clearTimeout(timer);timer=null;pending=null;processing.hidden=true;}
   function run(type,value,label,focusNext=false){if(pending||greetingNeeded)return;const next=flow.transition(state,type,value);if(!next)return;add('user',label);pending={state:next,focusNext};options.replaceChildren();processing.hidden=false;updateHandoff();track('chat_intent_select',next);scrollBottom();timer=window.setTimeout(complete,type==='faq'?1450:350);persist();}
   function welcome(){if(!greetingNeeded||pending)return;pending={state};processing.hidden=false;showOptions();updateHandoff();timer=window.setTimeout(complete,1000);}
-  function viewport(){root.classList.toggle('help-mobile',compact());if(compact()&&dialog.open){const v=window.visualViewport;dialog.style.setProperty('--help-view-height',`${v?.height||window.innerHeight}px`);dialog.style.setProperty('--help-view-top',`${v?.offsetTop||0}px`);dialog.style.setProperty('--help-view-left',`${v?.offsetLeft||0}px`);dialog.style.setProperty('--help-view-width',`${v?.width||window.innerWidth}px`);}}
-  function unlock(){if(modal){document.body.style.overflow=oldOverflow;window.scrollTo(0,oldScroll);modal=false;}}
-  let returnFocus=launcher;
-  function open(request={}){if(request.trigger?.isConnected)returnFocus=request.trigger;else if(!request.restored)returnFocus=launcher;if(request.intent==='business'){cancel();state={...state,product:flow.products.includes(request.product)?request.product:productOnPage()||state.product};state=flow.transition(state,'branch','business');if(!greetingNeeded){const view=flow.view(state,lang);add('bot',view.message,view.sources);showOptions();updateHandoff();}track('chat_intent_select');}
-    if(dialog.open){welcome();scrollBottom();persist();return;}if(typeof dialog.show!=='function'){window.location.assign(internal('contact.html'));return;}
-    if(!request.restored)track('chat_open');closing=false;viewport();modal=compact()&&typeof dialog.showModal==='function';if(modal){oldOverflow=document.body.style.overflow;oldScroll=window.scrollY;document.body.style.overflow='hidden';dialog.showModal();}else dialog.show();dialog.setAttribute('aria-modal',String(modal));root.classList.add('help-open');launcher.setAttribute('aria-expanded','true');launcher.setAttribute('aria-label',t.close);viewport();closeButton.focus({preventScroll:true});welcome();scrollBottom();persist();}
-  function close(){if(!dialog.open||closing)return;closing=true;root.classList.add('help-closing');persist();if(reduced())dialog.close();else window.setTimeout(()=>{if(dialog.open)dialog.close();},160);}
+  function viewport() {
+    const mobile = compact();
+    root.classList.toggle('help-mobile', mobile);
+    if (!mobile || !dialog.open) return;
+    const visual = window.visualViewport;
+    dialog.style.setProperty('--help-view-height', `${visual?.height || window.innerHeight}px`);
+    dialog.style.setProperty('--help-view-top', `${visual?.offsetTop || 0}px`);
+    dialog.style.setProperty('--help-view-left', `${visual?.offsetLeft || 0}px`);
+    dialog.style.setProperty('--help-view-width', `${visual?.width || window.innerWidth}px`);
+  }
+
+  function unlock() {
+    if (!modal) return;
+    document.body.style.overflow = oldOverflow;
+    window.scrollTo(0, oldScroll);
+    modal = false;
+  }
+
+  let returnFocus = launcher;
+  function open(request = {}) {
+    if (request.trigger?.isConnected) returnFocus = request.trigger;
+    else if (!request.restored) returnFocus = launcher;
+
+    if (request.intent === 'business') {
+      cancel();
+      const product = flow.products.includes(request.product) ? request.product : productOnPage() || state.product;
+      state = flow.transition({ ...state, product }, 'branch', 'business');
+      if (!greetingNeeded) {
+        const view = flow.view(state, lang);
+        add('bot', view.message, view.sources);
+        showOptions();
+        updateHandoff();
+      }
+      track('chat_intent_select');
+    }
+
+    if (!dialog.open) {
+      if (typeof dialog.show !== 'function') {
+        window.location.assign(internal('contact.html'));
+        return;
+      }
+      if (!request.restored) track('chat_open');
+      closing = false;
+      viewport();
+      modal = compact() && typeof dialog.showModal === 'function';
+      if (modal) {
+        oldOverflow = document.body.style.overflow;
+        oldScroll = window.scrollY;
+        document.body.style.overflow = 'hidden';
+        dialog.showModal();
+      } else {
+        dialog.show();
+      }
+      dialog.setAttribute('aria-modal', String(modal));
+      root.classList.add('help-open');
+      launcher.setAttribute('aria-expanded', 'true');
+      launcher.setAttribute('aria-label', t.close);
+      viewport();
+      closeButton.focus({ preventScroll: true });
+    }
+    welcome();
+    scrollBottom();
+    persist();
+  }
+
+  function close() {
+    if (!dialog.open || closing) return;
+    closing = true;
+    root.classList.add('help-closing');
+    persist();
+    if (reduced()) dialog.close();
+    else window.setTimeout(() => { if (dialog.open) dialog.close(); }, 160);
+  }
+
+  function onDialogClosed() {
+    unlock();
+    closing = false;
+    root.classList.remove('help-open', 'help-closing');
+    launcher.setAttribute('aria-expanded', 'false');
+    launcher.setAttribute('aria-label', t.launcher);
+    (returnFocus.isConnected ? returnFocus : launcher).focus({ preventScroll: true });
+    persist();
+  }
   function fold(event){if(event?.ctrlKey||event?.metaKey||event?.shiftKey)return;closing=true;persist();}
   function saveDraft(){try{sessionStorage.setItem(DRAFT,flow.summary(state,lang));const destination=countries.known(state.countryCode)?flow.countryName(state):'Other';sessionStorage.setItem('mokdaChatInquiryContext',JSON.stringify({version:1,at:Date.now(),product:state.product,country:destination,businessType:state.businessType,purpose:state.topic==='collaboration'?'collaboration':state.branch==='business'?'pricing':'buy'}));}catch{/* Normal links still work. */}}
   formLink.addEventListener('click',event=>{saveDraft();fold(event);});handoff.addEventListener('click',event=>{if(!handoff.target){saveDraft();fold(event);}});
   find('.help-reset').addEventListener('click',()=>{cancel();state=flow.initial(productOnPage());transcript=[];archive=[];log.replaceChildren();options.replaceChildren();greetingNeeded=true;welcome();closeButton.focus({preventScroll:true});persist();});
-  launcher.addEventListener('click',()=>dialog.open?close():open());closeButton.addEventListener('click',close);dialog.addEventListener('cancel',event=>{event.preventDefault();close();});dialog.addEventListener('close',()=>{unlock();closing=false;root.classList.remove('help-open','help-closing');launcher.setAttribute('aria-expanded','false');launcher.setAttribute('aria-label',t.launcher);(returnFocus.isConnected?returnFocus:launcher).focus({preventScroll:true});persist();});
+  closeButton.addEventListener('click', close);
+  dialog.addEventListener('cancel', event => { event.preventDefault(); close(); });
+  dialog.addEventListener('close', onDialogClosed);
   content.addEventListener('scroll',()=>{following=content.scrollHeight-content.scrollTop-content.clientHeight<50;if(following)latest.hidden=true;});latest.addEventListener('click',scrollBottom);document.addEventListener('keydown',event=>{if(event.key==='Escape'&&dialog.open&&root.contains(document.activeElement)){event.preventDefault();close();}});
   window.addEventListener('resize',()=>{viewport();if(dialog.open&&compact()!==modal&&!closing){dialog.addEventListener('close',()=>open({restored:true}),{once:true});dialog.close();}});window.visualViewport?.addEventListener('resize',viewport);window.visualViewport?.addEventListener('scroll',viewport);window.addEventListener('pagehide',()=>{complete();persist();unlock();});
   const safeTranscript=value=>Array.isArray(value)?value.slice(-MAX).filter(item=>['user','bot'].includes(item?.role)&&typeof item.text==='string').map(item=>({role:item.role,text:item.text.slice(0,2200),sources:Array.isArray(item.sources)?item.sources.filter(link=>typeof link?.label==='string'&&(typeof link.path==='string'||link.url==='https://www.instagram.com/mokda_official/')).slice(0,2):[]})):[];
@@ -99,6 +178,5 @@
   transcript.forEach(item=>renderMessage(item,false));
   if(switched&&!(transcript.length===1&&state.stage==='home')){log.append(node('p','help-language-note',t.languageNote));const current=flow.view(state,lang);add('bot',current.message,current.sources);}
   showOptions();updateHandoff();viewport();if(restoredOpen)open({restored:true});
-  window.MOKDA_HELP_UI=Object.freeze({open});
-  document.addEventListener('click',event=>{const link=event.target.closest?.('a[data-chat-intent="business"]');if(!link||event.defaultPrevented||event.button||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;event.preventDefault();open({intent:'business',product:{'K-PEÑO':'kpeno','Para Carnes':'para_carnes'}[link.dataset.product],trigger:link});});
+  window.MOKDA_HELP_UI = Object.freeze({ open, toggle: () => dialog.open ? close() : open() });
 })();

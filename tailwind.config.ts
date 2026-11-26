@@ -6,6 +6,7 @@ const config: Config = {
     './components/**/*.{ts,tsx}',
     './*.html',
     './site-*.js',
+    './home-page.js',
   ],
   theme: {
     extend: {

@@ -5,7 +5,7 @@ import { runInContext } from 'node:vm';
 
 // Build-only rendering of trusted repository content. No external resources,
 // analytics, form submission, timers or motion scripts run during generation.
-const renderScripts = new Set(['site-country-data.js', 'site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-reviews-data.js', 'site-product-media.js', 'home-experience.js', 'product-detail.js', 'site-news-data.js', 'site-news-model.js', 'site-news.js']);
+const renderScripts = new Set(['site-country-data.js', 'site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-reviews-data.js', 'site-product-media.js', 'home-content.js', 'home-page.js', 'home-experience.js', 'product-detail.js', 'site-news-data.js', 'site-news-model.js', 'site-news.js']);
 
 export async function prerenderContent(html, root, url) {
   const dom = new JSDOM(html, { url, runScripts: 'outside-only' });
@@ -39,6 +39,8 @@ export async function prerenderContent(html, root, url) {
     }
     // Keep animation binding in the browser; never serialize bound observer state.
     window.document.querySelectorAll('[data-reveal-bound]').forEach(e => e.removeAttribute('data-reveal-bound'));
+    // The homepage copy is already in the selected language's rendered markup.
+    window.document.querySelector('script[src="./home-content.js"]')?.remove();
     const body = window.document.body.innerHTML;
     if (!window.document.querySelector('h1')?.textContent.trim()) throw new Error('Prerendered H1 is empty: ' + url);
     // Preserve the original head, metadata, script bytes and CSP hash inputs.

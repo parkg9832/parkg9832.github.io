@@ -60,7 +60,7 @@ MOKDA의 커스텀 이벤트는 `scroll_depth`이므로 GA4 기본 `scroll`과 �
 
 ## 홈페이지 운영 설정
 
-`index.html`의 `homepageProofConfig.verifiedLatamViews`는 검증된 누적 콘텐츠 조회 수만 표시한다. 기관 로고는 `assets/images/institutions/`, WhatsApp 번호는 `site-contact-config.js`에서 관리한다.
+홈의 세 언어 문구와 상품 카드 데이터는 `home-content.js`, 화면 뼈대는 `index.html`, 본문 생성과 언어 연결은 `home-page.js`에서 관리한다. `npm run generate:i18n`은 선택 언어의 문구를 각 HTML에 넣는다. WhatsApp 번호는 `site-contact-config.js`에서 관리한다.
 
 현재 출시 응원 페이지는 홈으로 이동하며, `Demand Support`의 과거 원본은 보존한다. 응원 기능의 기존 공개 로직은 `Demand Support`의 `Approved`와 `Homepage Featured`가 모두 `TRUE`이고 메시지가 있는 행만 표시한다. 전체 응원 수는 메시지 공개 여부와 별도로 유효 응원 전체를 집계한다.
 

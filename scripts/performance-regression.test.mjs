@@ -8,7 +8,7 @@ import { loadNews } from './news-store.mjs';
 const root = new URL('../', import.meta.url), read = name => readFileSync(new URL(name, root), 'utf8');
 const news = (await loadNews(fileURLToPath(root))).data;
 const pages = ['index', 'about', 'products', 'kpeno', 'para-carnes', 'qna', 'contact', 'news', ...news.stories.map(story => 'news-' + story.id)];
-const contentScripts = new Set(['site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-country-data.js', 'site-reviews-data.js', 'site-product-media.js', 'home-experience.js', 'product-detail.js', 'site-news-data.js', 'site-news-model.js', 'site-news.js']);
+const contentScripts = new Set(['site-i18n.js', 'site-footer.js', 'b2b-config.js', 'site-contact-config.js', 'site-country-data.js', 'site-reviews-data.js', 'site-product-media.js', 'home-page.js', 'home-experience.js', 'product-detail.js', 'site-news-data.js', 'site-news-model.js', 'site-news.js']);
 let documents = 0, retained = 0;
 for (const [locale, language] of [['ko', 'KR'], ['es', 'ES'], ['en', 'EN']]) for (const page of pages) {
   const errors = [], console = new VirtualConsole(); console.on('jsdomError', error => errors.push(error));
@@ -39,6 +39,7 @@ for (const [locale, language] of [['ko', 'KR'], ['es', 'ES'], ['en', 'EN']]) for
   assert.equal(d.querySelectorAll('script[src*="site-help-loader.js"]').length, 1);
   assert.equal(d.querySelectorAll('script[src*="site-help-flow.js"]').length, 0, 'Closed guide does not load the selection controller');
   if (page === 'index') {
+    assert.equal(d.querySelectorAll('script[src*="home-content.js"]').length, 0, 'Localized homes do not send the build-only copy to browsers');
     for (const image of d.querySelectorAll('.home-product-image img')) { assert.equal(image.getAttribute('loading'), 'lazy'); assert.notEqual(image.getAttribute('fetchpriority'), 'high'); }
     const portrait = d.querySelector('img[src*="testimonial-no-juhyeong-"]');
     assert(portrait); assert.match(portrait.getAttribute('src'), /160\.webp$/); assert.match(portrait.getAttribute('srcset'), /320\.webp 320w/); assert.equal(portrait.getAttribute('sizes'), '128px');

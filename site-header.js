@@ -39,6 +39,7 @@
       },
       news: { label: 'NOVEDADES', links: [['Todas las novedades', '']] },
       navigation: 'Navegación principal',
+      skip: 'Ir al contenido',
       menuLabel: 'MENÚ',
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú'
@@ -58,6 +59,7 @@
       },
       news: { label: 'MOKDA 소식', links: [['모든 소식', '']] },
       navigation: '주요 메뉴',
+      skip: '본문 바로가기',
       menuLabel: 'MENU',
       openMenu: '메뉴 열기',
       closeMenu: '메뉴 닫기'
@@ -77,6 +79,7 @@
       },
       news: { label: 'UPDATES', links: [['All updates', '']] },
       navigation: 'Primary navigation',
+      skip: 'Skip to content',
       menuLabel: 'MENU',
       openMenu: 'Open menu',
       closeMenu: 'Close menu'
@@ -85,6 +88,22 @@
 
   const style = document.createElement('style');
   style.textContent = `
+    .mokda-skip-link {
+      position: fixed;
+      z-index: 100;
+      top: 12px;
+      left: 12px;
+      padding: 12px 18px;
+      clip-path: inset(50%);
+      background: #fff8ef;
+      color: #321506;
+      border: 2px solid #321506;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .mokda-skip-link:focus { clip-path: none; }
+    .mokda-skip-target { scroll-margin-top: 80px; }
+
     .mokda-site-header {
       height: 80px !important;
       padding: 0 !important;
@@ -698,6 +717,21 @@
     }
   `;
   document.head.appendChild(style);
+
+  const main = document.querySelector('main');
+  const skipTarget = main?.contains(header) ? header.nextElementSibling : main;
+  if (skipTarget) {
+    skipTarget.id ||= 'main-content';
+    skipTarget.tabIndex = -1;
+    skipTarget.classList.add('mokda-skip-target');
+    const skipLink = document.createElement('a');
+    skipLink.className = 'mokda-skip-link';
+    const destination = new URL(location.href);
+    destination.hash = skipTarget.id;
+    skipLink.href = destination.href;
+    skipLink.textContent = copy.skip;
+    header.before(skipLink);
+  }
 
   header.classList.add('mokda-site-header');
   if (headerBar) headerBar.classList.add('mokda-header-bar');

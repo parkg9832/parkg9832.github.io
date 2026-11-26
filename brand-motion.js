@@ -4,24 +4,20 @@
   if (reduced.matches || !('IntersectionObserver' in window) || !Element.prototype.animate) return;
 
   const compact = matchMedia('(max-width: 767px)');
+  const photoReveal = { crop: 12, duration: 580, stagger: 65 };
   const homeGroups = [
-    ['[data-hero-kicker]', { distance:12, opacity:.45, duration:480 }],
-    ['[data-hero-title]', { distance:20, opacity:.3, duration:640, delay:60 }],
-    ['[data-hero-subtitle]', { distance:16, opacity:.45, duration:560, delay:140 }],
-    ['[data-hero-link]', { distance:12, opacity:.65, duration:480, delay:220 }],
-    ['.home-products-heading', {}],
-    ['.home-product-panel', { distance:24, opacity:.7, duration:640, stagger:80 }],
-    ['#productsPageCta', { distance:12, duration:480 }],
-    ['.home-history-heading', {}],
-    ['.home-history-milestones', { delay:80 }],
-    ['#proofHistoryCta', { distance:12, duration:480, delay:140 }],
-    ['#voicesList', {}],
-    ['.home-trial-reviews', { distance:20, opacity:.75, duration:640 }],
-    ['.home-news-heading', {}],
-    ['#home-news .news-card', { distance:24, opacity:.7, duration:640, stagger:80 }],
-    ['#faq > div > div:first-child', {}],
-    ['#homeFaqList', { distance:16, opacity:.65, delay:80 }],
-    ['#contact [data-reveal]', { stagger:100 }],
+    ['.home-products-heading', { distance:12 }],
+    ['.home-product-image', photoReveal],
+    ['.home-product-copy', { distance:10, stagger:65 }],
+    ['.home-history-heading', { distance:12 }],
+    ['.home-history-milestones li', { distance:9, stagger:55 }],
+    ['#voicesList .voice-entry', { distance:10, stagger:65 }],
+    ['.home-news-heading', { distance:12 }],
+    ['.home-news-lead .news-card-image', photoReveal],
+    ['.home-news-supporting .news-card', { distance:10 }],
+    ['.home-faq-heading, .home-faq-reading', { distance:8, duration:380 }],
+    ['#contact [data-reveal]:not(a)', { distance:8, duration:400 }],
+    ['#socialTitle', { distance:6, duration:360 }],
   ];
   const groups = {
     'home-page': homeGroups,
@@ -69,18 +65,20 @@
       ['.news-creators-heading > div:first-child', {}],
     ],
     'contact-page': [
-      ['#pageKicker', { distance:12, opacity:.6, duration:480 }],
-      ['#pageTitle', { delay:60, duration:640 }],
-      ['#pageDescription', { distance:14, opacity:.65, delay:140 }],
+      ['#pageDescription', { distance:8, opacity:1, duration:360 }],
     ],
   };
   const profiles = new Map();
+  const isHome = document.body.classList.contains('home-page');
   const pageGroups = Object.entries(groups)
     .filter(([page]) => document.body.classList.contains(page))
     .flatMap(([, targets]) => targets);
   pageGroups.forEach(([target, profile]) => {
     document.querySelectorAll(target).forEach((node, index) => {
-      profiles.set(node, { distance:18, opacity:.45, duration:560, delay:0,
+      // Keep restoration, deep links and fast first paints from changing content already in view.
+      const bounds = node.getBoundingClientRect();
+      if (isHome && bounds.top < innerHeight && bounds.bottom > 0) return;
+      profiles.set(node, { distance:18, opacity:isHome ? .9 : .45, duration:isHome ? 440 : 560, delay:0,
         ...profile, index });
     });
   });
@@ -92,17 +90,20 @@
       if (!entry.isIntersecting) continue;
       observer.unobserve(entry.target);
       if (reduced.matches || document.body.classList.contains('motion-paused')) continue;
-      if (entry.target.contains(document.activeElement)) continue;
+      const focused = document.activeElement;
+      if (focused !== document.body && (entry.target.contains(focused) || focused?.contains(entry.target))) continue;
       const profile = profiles.get(entry.target);
       const small = compact.matches;
       const distance = profile.distance * (small ? .65 : 1);
       const duration = profile.duration * (small ? .8 : 1);
       const delay = profile.delay + (small ? 0 : (profile.stagger || 0) * Math.min(profile.index, 2));
-      const animation = entry.target.animate(
-        [{ opacity: profile.opacity, transform: `translateY(${distance}px)` },
-          { opacity: 1, transform: 'translateY(0)' }],
-        { duration, delay, fill:'backwards', easing: 'cubic-bezier(.22,1,.36,1)' },
-      );
+      const crop = profile.crop * (small ? .65 : 1);
+      const frames = profile.crop
+        ? [{ clipPath: `inset(0 0 0 ${crop}%)` }, { clipPath: 'inset(0)' }]
+        : [{ opacity: profile.opacity, transform: `translateY(${distance}px)` }, { opacity: 1, transform: 'translateY(0)' }];
+      const animation = entry.target.animate(frames, {
+        duration, delay, fill:'backwards', easing: 'cubic-bezier(.22,1,.36,1)',
+      });
       animations.add(animation);
       activeTargets.set(entry.target, animation);
       animation.onfinish = animation.oncancel = () => {
@@ -110,7 +111,7 @@
         activeTargets.delete(entry.target);
       };
     }
-  }, { threshold: .03, rootMargin: '0px 0px -20px 0px' });
+  }, { threshold: .03, rootMargin: isHome ? '0px 0px -6% 0px' : '0px 0px -20px 0px' });
   profiles.forEach((_, node) => observer.observe(node));
 
   const milestones = document.querySelectorAll('.about-history-year');
@@ -121,7 +122,7 @@
   // A focused link settles immediately so keyboard interaction never moves away.
   document.addEventListener('focusin', event => {
     activeTargets.forEach((animation, node) => {
-      if (node.contains(event.target)) animation.cancel();
+      if (node.contains(event.target) || event.target.contains(node)) animation.cancel();
     });
   });
 

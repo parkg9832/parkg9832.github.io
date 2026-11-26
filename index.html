@@ -2,7 +2,7 @@
 <html lang="es" translate="no">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; form-action 'none'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com 'sha256-GImpl21HpKJarsX5FCOBB6eHmVun2KC9nbsTaGhGxmc=' 'sha256-++NN6ZOLE6IYBJMsbOgfLmHFHyPfPLOyBjs2Zib1uio=' 'sha256-MwGbocJ8tenAgU6xzHNJHA+QjExTI6CKQ5+1aR7qMaI=' 'sha256-IxcIuxtnkGP0HUWkJhIGp+0vdhGZpdyd5qvfX5YCBMo='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src https://challenges.cloudflare.com; form-action 'none'; script-src 'self' https://www.googletagmanager.com https://challenges.cloudflare.com 'sha256-GImpl21HpKJarsX5FCOBB6eHmVun2KC9nbsTaGhGxmc=' 'sha256-++NN6ZOLE6IYBJMsbOgfLmHFHyPfPLOyBjs2Zib1uio=' 'sha256-MwGbocJ8tenAgU6xzHNJHA+QjExTI6CKQ5+1aR7qMaI=' 'sha256-Js8Ku50Rer2wKizyqwK7BiKXPJfBjWnFa5Zv9dUDEec='; script-src-attr 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com; connect-src 'self' https://challenges.cloudflare.com https://script.google.com https://script.googleusercontent.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="google" content="notranslate" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -904,17 +904,19 @@
 
       <section id="faq" class="brand-grid-bg scroll-mt-20 bg-[#f7ddc2] py-14 sm:py-20 lg:py-24">
         <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div data-reveal class="mx-auto mb-8 max-w-3xl text-center">
+          <div data-reveal class="home-faq-heading mx-auto mb-8 max-w-3xl text-center">
             <p class="condensed-label mb-3 text-base uppercase text-mokdaOrange sm:text-lg">FAQ / Q&A</p>
             <h2 id="faqTitle" class="display-latin text-4xl uppercase leading-[0.94] text-[#321506] sm:text-6xl">Preguntas frecuentes</h2>
-            <a href="qna.html" class="home-section-cta mx-auto mt-6">
-              <span id="faqCta">Ver Q&A</span> <span class="cta-arrow" aria-hidden="true">→</span>
-            </a>
           </div>
           <div id="homeFaqList" data-reveal data-reveal-delay="120" class="mx-auto max-w-4xl overflow-hidden border-y border-[#321506]/30">
               <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">01</span><span id="faqQuestion1" class="home-faq-question">¿Qué significa MOKDA?</span></h3><p id="faqAnswer1">MOKDA viene de la expresión coreana “먹다”, que significa comer.</p></article>
               <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">02</span><span id="faqQuestion2" class="home-faq-question">¿Qué es Salsa Coreana?</span></h3><p id="faqAnswer2">Es la primera línea de MOKDA: K-PEÑO y Para Carnes, dos salsas pensadas para acompañar comidas cotidianas.</p></article>
               <article class="home-faq-reading"><h3><span class="home-faq-number" aria-hidden="true">03</span><span id="faqQuestion3" class="home-faq-question">¿MOKDA acepta consultas?</span></h3><p id="faqAnswer3">Sí. Estamos recibiendo consultas generales y propuestas B2B para Latinoamérica.</p></article>
+          </div>
+          <div class="text-center">
+            <a href="qna.html" class="home-section-cta mx-auto mt-6">
+              <span id="faqCta">Ver todas las preguntas</span> <span class="cta-arrow" aria-hidden="true">→</span>
+            </a>
           </div>
         </div>
       </section>
@@ -968,6 +970,7 @@
             </div>
           </div>
           <div id="footerText" class="mt-8"></div>
+          <div class="help-placement" data-help-placement></div>
         </div>
       </footer>
     </main>
@@ -1152,11 +1155,11 @@
           },
           faq: {
             title: 'Frequently Asked Questions',
-            cta: 'View Q&A',
+            cta: 'See all FAQs',
             items: [
               ['What does MOKDA mean?', 'MOKDA comes from the Korean word “먹다,” meaning “to eat.” We make Korean sauces for the food people enjoy in Latin America.'],
               ['What is Salsa Coreana?', 'It is MOKDA’s first product line: K-PEÑO and Para Carnes, two Korean sauces made for your favorite meals.'],
-              ['How can I get in touch?', 'Open the chatbot in the bottom-right corner. It can answer common questions and help you prepare an inquiry for WhatsApp.'],
+              ['How can I get in touch?', 'Open the MOKDA guide to get answers or prepare a WhatsApp inquiry.'],
             ],
           },
           story: {
@@ -1195,7 +1198,7 @@
             kicker: 'CONTACT MOKDA',
             title: 'Business partnerships',
             description: 'Get in touch about distribution, importing, retail, HORECA or a brand collaboration.',
-            cta: 'Discuss distribution',
+            cta: 'Start a business inquiry',
           },
         },
         ES: {
@@ -1238,11 +1241,11 @@
           },
           faq: {
             title: 'Preguntas frecuentes',
-            cta: 'Ver Q&A',
+            cta: 'Ver todas las preguntas',
             items: [
               ['¿Qué significa MOKDA?', 'MOKDA viene de la palabra coreana “먹다”, que significa comer. Elaboramos salsas coreanas para las comidas que se disfrutan en Latinoamérica.'],
               ['¿Qué es Salsa Coreana?', 'Es la primera línea de MOKDA: K-PEÑO y Para Carnes, dos salsas coreanas para acompañar tus comidas favoritas.'],
-              ['¿Cómo puedo comunicarme con ustedes?', 'Abre el chatbot de la esquina inferior derecha. Allí puedes resolver dudas frecuentes y preparar tu consulta para enviarla por WhatsApp.'],
+              ['¿Cómo puedo comunicarme con ustedes?', 'Abre la guía de MOKDA para resolver dudas o preparar una consulta por WhatsApp.'],
             ],
           },
           story: {
@@ -1281,7 +1284,7 @@
             kicker: 'CONTACTA CON MOKDA',
             title: 'Alianzas comerciales',
             description: 'Escríbenos si te interesa distribuir, importar o vender nuestras salsas, usarlas en tu negocio del sector HORECA o colaborar con la marca.',
-            cta: 'Consultar distribución',
+            cta: 'Iniciar consulta comercial',
           },
         },
         KR: {
@@ -1324,11 +1327,11 @@
           },
           faq: {
             title: '자주 묻는 질문',
-            cta: 'Q&A 보기',
+            cta: '자주 묻는 질문 전체 보기',
             items: [
               ['MOKDA는 무슨 뜻인가요?', 'MOKDA는 “먹다”라는 한국어에서 시작된 이름입니다. 중남미에서 즐겨 먹는 음식에 어울리는 한국 소스를 만듭니다.'],
               ['Salsa Coreana는 무엇인가요?', 'K-PEÑO와 Para Carnes로 구성된 MOKDA의 첫 번째 제품 라인입니다.'],
-              ['문의는 어떻게 할 수 있나요?', '오른쪽 하단 챗봇을 활용해주세요! 와츠앱으로 문의가 가능합니다.'],
+              ['문의는 어떻게 할 수 있나요?', '먹랑이 상담에서 궁금한 점을 확인하거나 왓츠앱 문의를 준비할 수 있습니다.'],
             ],
           },
           story: {
@@ -1612,7 +1615,8 @@
           title.classList.toggle('display-korean', usesKoreanDisplay);
           title.classList.toggle('display-latin', !usesKoreanDisplay);
           const titleLines = Array.isArray(copy.titleLines) && copy.titleLines.length ? copy.titleLines : [copy.title];
-          titleLines.forEach((line) => {
+          titleLines.forEach((line, index) => {
+            if (index > 0) title.append(' ');
             const titleLine = document.createElement('span');
             titleLine.className = 'hero-title-line';
             titleLine.textContent = line;
@@ -1862,6 +1866,6 @@
     <script src="./site-news.js?v=20261020-headlines"></script>
     <script src="./brand-motion.js?v=20261010-site" defer></script>
     <script defer src="./site-turnstile.js"></script>
-    <script defer src="./site-help-loader.js" data-chat-assets="[&quot;/site-company-knowledge.js?v=6539106d6123&quot;,&quot;/site-help-data.js?v=71da87e85353&quot;,&quot;/site-country-data.js?v=954ad730fa03&quot;,&quot;/site-help-flow.js?v=84bd9f5b0287&quot;,&quot;/site-help.js?v=c842449b1c11&quot;]"></script>
+    <script defer src="./site-help-loader.js" data-chat-assets="[&quot;/site-company-knowledge.js?v=6539106d6123&quot;,&quot;/site-help-data.js?v=71da87e85353&quot;,&quot;/site-country-data.js?v=954ad730fa03&quot;,&quot;/site-help-flow.js?v=84bd9f5b0287&quot;,&quot;/site-help.js?v=468cf2b9107b&quot;]"></script>
 </body>
 </html>

@@ -6,6 +6,23 @@
 .home-page .product-photo-card:focus-visible { outline:3px solid #a93600; outline-offset:6px; }
 .home-page .product-photo-card:focus-visible .home-product-label h3,
 .home-page .product-photo-card:focus-visible .home-product-copy::after { color:#a93600; }
+.home-page :is(.home-section-cta,.news-card-link):focus-visible { outline:2px solid #a93600; outline-offset:5px; }
+.home-page .home-news-support .news-card-link { position:relative; }
+.home-page .home-news-support .home-news-arrow { position:absolute; top:14px; right:2px; color:#a93600; font-size:16px; line-height:1; }
+.home-page .home-news-support .news-kicker { padding-right:22px; }
+
+@media (max-width:767px) {
+  .home-page .product-photo-card .home-product-copy::after {
+    display:grid;
+    place-items:center;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#3215060d;
+    color:#321506;
+    font-size:20px;
+  }
+}
 
 @media (hover:hover) and (pointer:fine) {
   .home-page .product-photo-card:hover .home-product-label h3,
@@ -13,6 +30,14 @@
 }
 
 @media (prefers-reduced-motion:no-preference) {
+  .home-page [data-hero-subtitle].hero-motion { animation:home-hero-note-in 360ms cubic-bezier(.22,1,.36,1)!important; }
+  .home-page .home-news-arrow,
+  .home-page .home-section-cta .cta-arrow,
+  .home-page .home-section-cta::after { transition:transform 240ms cubic-bezier(.22,1,.36,1); }
+  .home-page .home-section-cta::after { transform-origin:left; }
+  .home-page .home-section-cta:focus-visible::after { transform:scaleX(1.3); }
+  .home-page .home-section-cta:focus-visible .cta-arrow { transform:translateX(3px); }
+  .home-page .news-card-link:focus-visible .home-news-arrow { transform:translate(2px,-2px); }
   .home-page .product-photo-card .home-product-image > img { transition:transform 600ms cubic-bezier(.22,1,.36,1); }
   .home-page .product-photo-card .home-product-copy::after { transition:transform 300ms cubic-bezier(.22,1,.36,1),color 220ms ease; }
   .home-page .product-photo-card:focus-visible .home-product-image > img { transform:scale(1.035); }
@@ -20,9 +45,14 @@
 }
 
 @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .home-page .home-section-cta:hover::after { transform:scaleX(1.3); }
+  .home-page .home-section-cta:hover .cta-arrow { transform:translateX(3px); }
+  .home-page .news-card-link:hover .home-news-arrow { transform:translate(2px,-2px); }
   .home-page .product-photo-card:hover .home-product-image > img { transform:scale(1.035); }
   .home-page .product-photo-card:hover .home-product-copy::after { transform:translate(3px,-3px); }
 }
+
+@keyframes home-hero-note-in { from { transform:translateY(7px); } to { transform:translateY(0); } }
 
 @media (prefers-reduced-motion:reduce) {
   .home-page .product-photo-card .home-product-image > img,

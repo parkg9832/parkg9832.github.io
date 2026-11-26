@@ -48,7 +48,8 @@
   // Constant SVG; no visitor input is parsed as markup.
   launcher.innerHTML = '<span class="help-launcher-mark" aria-hidden="true"><svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M2 10v5M22 10v5"/><circle cx="12" cy="2" r="1" fill="currentColor" stroke="none"/><rect x="4" y="6" width="16" height="14" rx="4"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.2" fill="currentColor" stroke="none"/><path d="M9 16h6"/></svg></span>';
   const status = document.createElement('div'); status.className = 'help-load-status'; status.hidden = true; status.setAttribute('role', 'status');
-  root.append(launcher, status); document.body.append(root);
+  const mount = document.querySelector('[data-help-placement]') || document.body;
+  root.append(launcher, status); mount.append(root);
   let loading = false;
   function loadAsset(index) {
     if (hasAsset(index)) return Promise.resolve();
@@ -73,7 +74,7 @@
       }
       window.MOKDA_HELP_UI.open(requestOptions);
     } catch {
-      if (!root.isConnected && !document.getElementById('mokda-help')) document.body.append(root);
+      if (!root.isConnected && !document.getElementById('mokda-help')) mount.append(root);
       status.replaceChildren(document.createTextNode(`${text.failed} `));
       const link = document.createElement('a'); const product = {kpeno:'original',para_carnes:'para-carnes'}[requestOptions?.product]; link.href = contact + (requestOptions?.intent === 'business' ? '?purpose=distribution' + (product ? '&product=' + product : '') : ''); link.textContent = text.contact; status.append(link);
       launcher.setAttribute('aria-label', text.retry);
@@ -85,7 +86,7 @@
     if (!link || window.MOKDA_HELP_UI || event.defaultPrevented || event.button || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     const product = { 'K-PEÑO': 'kpeno', 'Para Carnes': 'para_carnes' }[link.dataset.product];
-    open({ intent: 'business', product });
+    open({ intent: 'business', product, trigger: link });
   });
   try {
     const saved = JSON.parse(sessionStorage.getItem('mokdaGuidedHelpV3') || sessionStorage.getItem('mokdaChatSessionV2') || 'null');
